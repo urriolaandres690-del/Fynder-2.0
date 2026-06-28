@@ -5255,9 +5255,156 @@ label.avatar-option-btn:hover { background: var(--teal-light); border-color: rgb
   border-top: 1px solid var(--border);
 }
 
+/* ── Sección de comentarios del artículo ── */
+.article-comments-section {
+  max-width: 780px;
+  margin: 32px auto 0;
+  padding: 0 24px 80px;
+}
+.article-comments-title {
+  font-size: 1.25rem;
+  font-weight: 800;
+  color: var(--fg);
+  margin-bottom: 24px;
+  font-family: 'Poppins', sans-serif;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.article-comments-title span {
+  font-size: .8rem;
+  font-weight: 600;
+  background: var(--teal-light);
+  color: var(--primary);
+  padding: 3px 10px;
+  border-radius: 99px;
+}
+
+.article-comment-form {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  padding: 24px;
+  margin-bottom: 32px;
+  box-shadow: var(--shadow-sm);
+}
+.article-comment-form h3 {
+  font-size: .9375rem;
+  font-weight: 700;
+  color: var(--fg);
+  margin-bottom: 16px;
+  font-family: 'Poppins', sans-serif;
+}
+.article-comment-form textarea {
+  width: 100%;
+  padding: 14px 16px;
+  border: 1.5px solid var(--border);
+  border-radius: 14px;
+  font-family: 'Inter', sans-serif;
+  font-size: .9375rem;
+  color: var(--fg);
+  background: var(--bg);
+  resize: vertical;
+  min-height: 100px;
+  outline: none;
+  transition: border-color .2s;
+  box-sizing: border-box;
+}
+.article-comment-form textarea:focus { border-color: var(--primary); }
+.article-comment-form textarea::placeholder { color: var(--muted); }
+
+.article-comment-form-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-top: 12px;
+  flex-wrap: wrap;
+}
+.article-comment-chars { font-size: .75rem; color: var(--muted); }
+
+.article-comment-submit {
+  padding: 10px 22px;
+  border-radius: 12px;
+  border: none;
+  background: var(--primary);
+  color: #fff;
+  font-family: 'Poppins', sans-serif;
+  font-size: .875rem;
+  font-weight: 600;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  transition: background .2s, transform .15s;
+}
+.article-comment-submit:hover { background: var(--primary-d); transform: translateY(-1px); }
+.article-comment-submit:disabled { opacity: .5; cursor: not-allowed; transform: none; }
+
+.article-comment-list { display: flex; flex-direction: column; gap: 16px; }
+
+.article-comment {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 18px;
+  padding: 18px 20px;
+  box-shadow: var(--shadow-sm);
+}
+.article-comment-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+.article-comment-av {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: .875rem;
+  color: #fff;
+  flex-shrink: 0;
+}
+.article-comment-meta { flex: 1; }
+.article-comment-name { font-size: .875rem; font-weight: 700; color: var(--fg); display: block; }
+.article-comment-date { font-size: .75rem; color: var(--muted); }
+.article-comment-text { font-size: .9375rem; color: var(--fg); line-height: 1.7; }
+.article-comment-actions { display: flex; gap: 8px; margin-top: 10px; }
+
+.article-comment-like-btn,
+.article-comment-delete-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 5px 12px;
+  border-radius: 99px;
+  border: 1px solid var(--border);
+  background: none;
+  font-size: .75rem;
+  color: var(--muted);
+  cursor: pointer;
+  transition: all .2s;
+  font-family: 'Inter', sans-serif;
+}
+.article-comment-like-btn:hover,
+.article-comment-like-btn.liked { border-color: #EF4444; color: #EF4444; background: #FEF2F2; }
+.article-comment-delete-btn:hover { color: #EF4444; border-color: #FECACA; background: #FEF2F2; }
+
+.article-no-comments {
+  text-align: center;
+  padding: 40px 20px;
+  color: var(--muted);
+  font-size: .9375rem;
+}
+.article-no-comments i { font-size: 2rem; display: block; margin-bottom: 12px; opacity: .4; }
+
 @media (max-width: 640px) {
   .article-hero { height: 240px; }
   .article-meta-bar { gap: 10px; }
+  .article-back-btn { top: 72px; left: 16px; }
 }
 
 
