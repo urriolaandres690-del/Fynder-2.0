@@ -1458,6 +1458,85 @@
       </form>
     </div>
 
+    <!-- Artículos creados por usuarios -->
+    <div id="userArticlesSection" style="display:none;margin-top:48px">
+      <div class="blog-section-title">Artículos de la comunidad</div>
+      <div class="blog-grid" id="userArticlesGrid"></div>
+    </div>
+
+  </div><!-- fin .blog-inner -->
+</div>
+
+<!-- MODAL: Nuevo Artículo -->
+<div id="newArticleOverlay" class="fynder-modal-overlay hide" onclick="closeNewArticleModal(event)" style="z-index:200">
+  <div class="fynder-modal" style="max-width:640px;max-height:90vh;overflow-y:auto" onclick="event.stopPropagation()">
+    <div style="padding:28px 28px 0;display:flex;align-items:center;justify-content:space-between;margin-bottom:20px">
+      <div>
+        <h2 style="font-family:'Poppins',sans-serif;font-size:1.25rem;font-weight:800;color:var(--fg);margin:0">Publicar artículo</h2>
+        <p style="font-size:.8125rem;color:var(--muted);margin:4px 0 0">Comparte tu historia con la comunidad FYNDER</p>
+      </div>
+      <button onclick="closeNewArticleModalDirect()" style="width:34px;height:34px;border-radius:50%;border:none;background:#F1F5F9;color:#6B7280;font-size:.875rem;cursor:pointer;display:flex;align-items:center;justify-content:center"><i class="fas fa-times"></i></button>
+    </div>
+    <div style="padding:0 28px 28px;display:flex;flex-direction:column;gap:16px">
+      <div>
+        <label style="font-size:.8125rem;font-weight:600;color:var(--fg);display:block;margin-bottom:6px">Título del artículo *</label>
+        <input id="naTitle" type="text" maxlength="120" placeholder="Ej: Cómo encontrar el mejor servicio de tu barrio..."
+          style="width:100%;padding:12px 16px;border:1.5px solid var(--border);border-radius:14px;font-family:'Inter',sans-serif;font-size:.9375rem;color:var(--fg);background:var(--bg);outline:none;box-sizing:border-box;transition:border-color .2s"
+          onfocus="this.style.borderColor='var(--primary)'" onblur="this.style.borderColor='var(--border)'">
+      </div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px">
+        <div>
+          <label style="font-size:.8125rem;font-weight:600;color:var(--fg);display:block;margin-bottom:6px">Categoría *</label>
+          <select id="naCategory" style="width:100%;padding:12px 16px;border:1.5px solid var(--border);border-radius:14px;font-family:'Inter',sans-serif;font-size:.875rem;color:var(--fg);background:var(--bg);outline:none;box-sizing:border-box">
+            <option value="">Selecciona...</option>
+            <option>Emprendimiento</option>
+            <option>Gastronomía</option>
+            <option>Tecnología</option>
+            <option>Belleza</option>
+            <option>Comunidad</option>
+            <option>Consejos</option>
+            <option>Deportes</option>
+            <option>Estilo de vida</option>
+            <option>Turismo</option>
+          </select>
+        </div>
+        <div>
+          <label style="font-size:.8125rem;font-weight:600;color:var(--fg);display:block;margin-bottom:6px">Tiempo de lectura</label>
+          <select id="naReadTime" style="width:100%;padding:12px 16px;border:1.5px solid var(--border);border-radius:14px;font-family:'Inter',sans-serif;font-size:.875rem;color:var(--fg);background:var(--bg);outline:none;box-sizing:border-box">
+            <option>2 min</option>
+            <option selected>3 min</option>
+            <option>4 min</option>
+            <option>5 min</option>
+            <option>7 min</option>
+            <option>10 min</option>
+          </select>
+        </div>
+      </div>
+      <div>
+        <label style="font-size:.8125rem;font-weight:600;color:var(--fg);display:block;margin-bottom:6px">Resumen (se muestra en la tarjeta) *</label>
+        <textarea id="naSummary" maxlength="220" rows="2" placeholder="Un resumen breve de lo que trata el artículo..."
+          style="width:100%;padding:12px 16px;border:1.5px solid var(--border);border-radius:14px;font-family:'Inter',sans-serif;font-size:.9375rem;color:var(--fg);background:var(--bg);resize:none;outline:none;box-sizing:border-box;transition:border-color .2s"
+          onfocus="this.style.borderColor='var(--primary)'" onblur="this.style.borderColor='var(--border)'"></textarea>
+      </div>
+      <div>
+        <label style="font-size:.8125rem;font-weight:600;color:var(--fg);display:block;margin-bottom:6px">Contenido completo *</label>
+        <textarea id="naBody" maxlength="5000" rows="8" placeholder="Escribe el contenido de tu artículo aquí. Puedes separar secciones con líneas en blanco..."
+          style="width:100%;padding:12px 16px;border:1.5px solid var(--border);border-radius:14px;font-family:'Inter',sans-serif;font-size:.9375rem;color:var(--fg);background:var(--bg);resize:vertical;outline:none;box-sizing:border-box;transition:border-color .2s"
+          onfocus="this.style.borderColor='var(--primary)'" onblur="this.style.borderColor='var(--border)'"></textarea>
+      </div>
+      <div>
+        <label style="font-size:.8125rem;font-weight:600;color:var(--fg);display:block;margin-bottom:6px">URL de imagen (opcional)</label>
+        <input id="naImage" type="url" placeholder="https://... (deja vacío para usar imagen por defecto)"
+          style="width:100%;padding:12px 16px;border:1.5px solid var(--border);border-radius:14px;font-family:'Inter',sans-serif;font-size:.9375rem;color:var(--fg);background:var(--bg);outline:none;box-sizing:border-box;transition:border-color .2s"
+          onfocus="this.style.borderColor='var(--primary)'" onblur="this.style.borderColor='var(--border)'">
+      </div>
+      <div style="display:flex;gap:12px;justify-content:flex-end;padding-top:8px;border-top:1px solid var(--border)">
+        <button onclick="closeNewArticleModalDirect()" style="padding:11px 22px;border-radius:12px;border:1.5px solid var(--border);background:none;color:var(--muted);font-family:'Inter',sans-serif;font-size:.875rem;cursor:pointer">Cancelar</button>
+        <button onclick="publishUserArticle()" style="padding:11px 24px;border-radius:12px;border:none;background:var(--primary);color:#fff;font-family:'Poppins',sans-serif;font-size:.875rem;font-weight:600;cursor:pointer;display:inline-flex;align-items:center;gap:7px">
+          <i class="fas fa-paper-plane"></i> Publicar
+        </button>
+      </div>
+    </div>
   </div>
 </div>
 
