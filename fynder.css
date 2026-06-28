@@ -5817,7 +5817,7 @@ label.avatar-option-btn:hover { background: var(--teal-light); border-color: rgb
   color: #fff;
 }
 
-/* Botón volver / back-page-btn */
+/* ── Botón volver / back-page-btn */
 [data-theme="dark"] .back-page-btn {
   background: rgba(255,255,255,.06);
   border-color: rgba(255,255,255,.12);
@@ -5827,6 +5827,48 @@ label.avatar-option-btn:hover { background: var(--teal-light); border-color: rgb
   background: rgba(103,184,180,.15);
   color: var(--primary);
 }
+
+/* ── Artículo ── */
+[data-theme="dark"] #page-article { background: var(--bg) !important; }
+[data-theme="dark"] .article-title { color: var(--fg); }
+[data-theme="dark"] .article-content { color: var(--muted); }
+[data-theme="dark"] .article-content h3 { color: var(--fg); }
+[data-theme="dark"] .article-content strong { color: var(--fg); }
+[data-theme="dark"] .article-footer-actions { border-top-color: rgba(255,255,255,.08); }
+
+[data-theme="dark"] .article-comments-title { color: var(--fg); }
+[data-theme="dark"] .article-comments-title span { background: rgba(103,184,180,.12); color: var(--primary); }
+
+[data-theme="dark"] .article-comment-form {
+  background: var(--card);
+  border-color: rgba(255,255,255,.07);
+}
+[data-theme="dark"] .article-comment-form h3 { color: var(--fg); }
+[data-theme="dark"] .article-comment-form textarea {
+  background: rgba(255,255,255,.05);
+  border-color: rgba(255,255,255,.1);
+  color: var(--fg);
+}
+[data-theme="dark"] .article-comment-form textarea:focus { border-color: var(--primary); }
+[data-theme="dark"] .article-comment-form textarea::placeholder { color: var(--muted); }
+[data-theme="dark"] .article-comment-chars { color: var(--muted); }
+
+[data-theme="dark"] .article-comment {
+  background: var(--card);
+  border-color: rgba(255,255,255,.07);
+}
+[data-theme="dark"] .article-comment-name { color: var(--fg); }
+[data-theme="dark"] .article-comment-date { color: var(--muted); }
+[data-theme="dark"] .article-comment-text { color: var(--fg); }
+[data-theme="dark"] .article-comment-like-btn,
+[data-theme="dark"] .article-comment-delete-btn {
+  border-color: rgba(255,255,255,.1);
+  color: var(--muted);
+}
+[data-theme="dark"] .article-comment-like-btn:hover,
+[data-theme="dark"] .article-comment-like-btn.liked { border-color: #EF4444; color: #EF4444; background: rgba(239,68,68,.1); }
+[data-theme="dark"] .article-comment-delete-btn:hover { color: #EF4444; border-color: rgba(239,68,68,.3); background: rgba(239,68,68,.1); }
+[data-theme="dark"] .article-no-comments { color: var(--muted); }
 
 /* ── Transición suave al cambiar tema ── */
 *, *::before, *::after {
