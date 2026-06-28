@@ -1346,24 +1346,44 @@ body{
     color: #2F5BB7;
     margin-right: 15px;
     font-size: 15px;
+    transition: color .2s;
+}
+
+#userName.on-hero {
+    color: rgba(255,255,255,.9);
+}
+
+.btn-teal.on-hero {
+    background: rgba(255,255,255,.15);
+    border: 1.5px solid rgba(255,255,255,.5);
+    color: #fff;
+}
+
+.btn-teal.on-hero:hover {
+    background: rgba(255,255,255,.25);
+    border-color: #fff;
 }
 
 .btn-ghost{
-    padding: 12px 24px;
-    border: 2px solid #2fb795;
+    padding: 8px 16px;
     border-radius: 12px;
-    background: white;
-    color:#22c7bb;
-    font-weight: 600;
+    background: none;
+    border: none;
+    color: var(--muted);
+    font-weight: 500;
+    font-size: .875rem;
     cursor: pointer;
-    transition: all .3s ease;
+    transition: color .2s, background .2s;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
 }
 
 .btn-ghost:hover{
-    background: #ffffff;
-    color:#22c7bb;
-    transform: translateY(-2px);
-    box-shadow: 0 8px 20px rgba(47,91,183,.25);
+    background: #F1F5F9;
+    color: var(--fg);
+    transform: none;
+    box-shadow: none;
 }
 
 .auth-container{

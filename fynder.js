@@ -239,7 +239,9 @@ const BUSINESSES=[
 {id:"323",name:"Pinturas & Acabados RD",category:"Hogar",categoryId:"hogar",description:"Venta de pinturas, barnices y acabados para interior y exterior. Servicio de pintura profesional a domicilio. Paleta de más de 500 colores y mezclas personalizadas.",address:"Av. Balboa, Santa Ana, Local 22",hours:"Lun–Sáb 7:30am – 6:00pm",rating:4.3,reviews:98,image:"https://images.unsplash.com/photo-1562259949-e8e7689d7828?w=700&h=450&fit=crop&auto=format",logo:"https://images.unsplash.com/photo-1562259949-e8e7689d7828?w=80&h=80&fit=crop&auto=format",phone:"+507 6323-0244",facebook:"PinturasRD",tags:["Pintura","Acabados","Domicilio","500 colores"],mapQuery:"Santa+Ana+Panama"},
 {id:"324",name:"Alarmas & Seguridad Home",category:"Hogar",categoryId:"hogar",description:"Instalación de sistemas de alarma, cámaras de vigilancia y control de acceso para residencias y condominios. Monitoreo 24/7 y respuesta inmediata ante emergencias.",address:"Calle 73, San Francisco, Edificio Tower, Of. 101",hours:"Lun–Vie 8:00am – 5:30pm",rating:4.7,reviews:167,image:"https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=700&h=450&fit=crop&auto=format",logo:"https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=80&h=80&fit=crop&auto=format",phone:"+507 6324-0255",instagram:"@alarmas_home_pty",website:"alarmashogar.pty",tags:["Alarmas","Cámaras","Seguridad","Monitoreo 24/7"],isFeatured:true,mapQuery:"San+Francisco+Panama"}];
 
-let favorites=new Set(["1","4"]); 
+// Cargar favoritos guardados en localStorage, o empezar vacío
+const _savedFavs = localStorage.getItem('fynderFavorites');
+let favorites = _savedFavs ? new Set(JSON.parse(_savedFavs)) : new Set(); 
 
 let currentPage="home",previousPage="home",dirViewMode="grid",dirActiveCategory="",modalBusinessId=null; 
 
@@ -298,32 +300,43 @@ function goBack(){
 }
 
 function updateNav(){
-    // Nav links activos
+    const isHero = currentPage==='home' && !window.__scrolled;
+
+    // Nav links activos + on-hero
     ['home','directory','favorites'].forEach(p=>{
         const el=document.getElementById('nl-'+p);
         if(!el) return;
         el.classList.toggle('active', p===currentPage);
-        el.classList.toggle('on-hero', currentPage==='home' && !window.__scrolled);
+        el.classList.toggle('on-hero', isHero);
     });
     const lt = document.getElementById('logoText');
-    if(lt) lt.classList.toggle('on-hero', currentPage==='home' && !window.__scrolled);
+    if(lt) lt.classList.toggle('on-hero', isHero);
 
-    // Badge de favoritos
-    const b=document.getElementById('navBadge');
-    if(b){ b.textContent=favorites.size; b.style.display=favorites.size>0?'flex':'none'; }
-    const fc=document.getElementById('favsCount');
-    if(fc) fc.textContent=`${favorites.size} negocio${favorites.size!==1?'s':''} guardado${favorites.size!==1?'s':''}`;
-
-    // Botones navbar según estado de sesión
+    // Botones y nombre de usuario: on-hero mientras estamos en el hero sin scroll
     const logged = !!localStorage.getItem('fynderLogged');
     const login   = document.getElementById('navBtnLogin');
     const logout  = document.getElementById('navBtnLogout');
     const profile = document.getElementById('navBtnProfile');
     const uname   = document.getElementById('userName');
+
     if(login)   login.style.display   = logged ? 'none'         : 'inline-flex';
     if(logout)  logout.style.display  = logged ? 'inline-flex'  : 'none';
     if(profile) profile.style.display = logged ? 'inline-flex'  : 'none';
     if(uname && !logged) uname.textContent = '';
+
+    [logout, profile].forEach(el => { if(el) el.classList.toggle('on-hero', isHero); });
+    if(login)  login.classList.toggle('on-hero', isHero);
+
+    const tealBtn = document.querySelector('#navbar .btn-teal');
+    if(tealBtn) tealBtn.classList.toggle('on-hero', isHero);
+
+    if(uname) uname.classList.toggle('on-hero', isHero);
+
+    // Badge de favoritos en navbar y contador en página de guardados
+    const b=document.getElementById('navBadge');
+    if(b){ b.textContent=favorites.size; b.style.display=favorites.size>0?'flex':'none'; }
+    const fc=document.getElementById('favsCount');
+    if(fc) fc.textContent=`${favorites.size} negocio${favorites.size!==1?'s':''} guardado${favorites.size!==1?'s':''}`;
 }
 
 function goDirectoryQuery(q,cat=''){document.getElementById('dirSearch').value=q;dirActiveCategory=cat;goPage('directory');} 
@@ -334,7 +347,7 @@ window.__scrolled=false;
 
 window.addEventListener('scroll',()=>{const s=window.scrollY>40;if(s!==window.__scrolled){window.__scrolled=s;document.getElementById('navbar').classList.toggle('scrolled',s);updateNav();}},{passive:true}); 
 
-function toggleFav(id){favorites.has(id)?favorites.delete(id):favorites.add(id);updateNav();refreshFavBtns(id);if(currentPage==='favorites')renderFavorites();if(modalBusinessId===id)updateModalFavBtn();} 
+function toggleFav(id){favorites.has(id)?favorites.delete(id):favorites.add(id);localStorage.setItem('fynderFavorites',JSON.stringify([...favorites]));updateNav();refreshFavBtns(id);if(currentPage==='favorites')renderFavorites();if(modalBusinessId===id)updateModalFavBtn();} 
 
 function refreshFavBtns(id){const isFav=favorites.has(id);['fav-grid-','fav-list-'].forEach(p=>{const el=document.getElementById(p+id);if(!el)return;el.classList.toggle('active',isFav);const svg=el.querySelector('svg');if(svg){const c=isFav?'#EF4444':'none';const s=isFav?'#EF4444':'#9CA3AF';svg.style.fill=c;svg.style.color=s;svg.setAttribute('stroke',s);}});} 
 
