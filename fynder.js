@@ -426,32 +426,83 @@ function renderModalReviews(bizId, cat){
   const wrap=document.getElementById('modalReviewsWrap');
   if(!wrap) return;
   wrap.style.display='block';
-  const list=REVIEWS[bizId];
+  const staticList=REVIEWS[bizId]||[];
+  const userComments=_getBizComments(bizId);
   const color=cat?.color||'#67B8B4';
-  if(list&&list.length>0){
-    wrap.innerHTML=`<p class="modal-section-title">Reseñas de clientes</p>
-    <div class="reviews-list">
-    ${list.map(r=>{
-      const filled=r.stars;
-      const stars=[1,2,3,4,5].map(i=>`<svg style="width:13px;height:13px;fill:${i<=filled?'#F4D35E':'#E5E7EB'};flex-shrink:0" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>`).join('');
-      return `<div class="review-card">
-        <div class="review-header">
-          <div class="review-avatar" style="background:linear-gradient(135deg,${color},#2F5BB7)">${r.avatar}</div>
-          <div class="review-meta">
-            <span class="review-name">${r.name}</span>
-            <div class="review-stars">${stars}</div>
-          </div>
-          <span class="review-date">${r.date}</span>
+
+  // Construir el HTML de reseñas estáticas
+  const staticHTML=staticList.map(r=>{
+    const filled=r.stars;
+    const stars=[1,2,3,4,5].map(i=>`<svg style="width:13px;height:13px;fill:${i<=filled?'#F4D35E':'#E5E7EB'};flex-shrink:0" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>`).join('');
+    return `<div class="review-card">
+      <div class="review-header">
+        <div class="review-avatar" style="background:linear-gradient(135deg,${color},#2F5BB7)">${r.avatar}</div>
+        <div class="review-meta">
+          <span class="review-name">${r.name}</span>
+          <div class="review-stars">${stars}</div>
         </div>
-        <p class="review-text">${r.text}</p>
-      </div>`;
-    }).join('')}
+        <span class="review-date">${r.date}</span>
+      </div>
+      <p class="review-text">${r.text}</p>
     </div>`;
-  } else {
-    wrap.innerHTML='';
-  }
-  // Sección de comentarios de usuarios (siempre se muestra)
-  renderBizComments(bizId);
+  }).join('');
+
+  // Construir el HTML de reseñas de usuario (mismo estilo review-card, sin estrellas)
+  const logged=!!localStorage.getItem('fynderLogged');
+  const user=JSON.parse(localStorage.getItem('fynderUser')||'null');
+  const userHTML=userComments.slice().reverse().map(c=>{
+    const isOwn=logged&&user&&c.userId===(user.email||user.name);
+    let avStyle;
+    if(c.avatarPhoto) {
+      avStyle=`background:transparent;overflow:hidden;padding:0`;
+      var avInner=`<img src="${c.avatarPhoto}" style="width:100%;height:100%;object-fit:cover;border-radius:50%;display:block" alt="av">`;
+    } else if(c.avatarPreset) {
+      avStyle=`background:#F0FEFE;font-size:1rem`;
+      var avInner=c.avatarPreset;
+    } else {
+      const bg=c.avatarInitBg||ART_COMMENT_COLORS[c.colorIdx||0];
+      avStyle=`background:${bg};font-weight:700;font-size:.875rem;color:#fff;font-family:'Poppins',sans-serif`;
+      var avInner=c.initial;
+    }
+    return `<div class="review-card" id="bizc-${c.id}">
+      <div class="review-header">
+        <div class="review-avatar" style="${avStyle}">${avInner}</div>
+        <div class="review-meta">
+          <span class="review-name">${c.name}</span>
+          <div class="review-stars" style="height:14px"></div>
+        </div>
+        <span class="review-date">${c.date}</span>
+        ${isOwn?`<button onclick="deleteBizComment('${bizId}','${c.id}')" title="Eliminar" style="background:none;border:none;cursor:pointer;color:#94A3B8;font-size:.75rem;padding:2px 4px;margin-left:4px"><i class="fas fa-trash-alt"></i></button>`:''}
+      </div>
+      <p class="review-text">${escapeHtml(c.text)}</p>
+    </div>`;
+  }).join('');
+
+  const totalCount=staticList.length+userComments.length;
+
+  wrap.innerHTML=`
+    <p class="modal-section-title">Reseñas de clientes (${totalCount})</p>
+    <div class="reviews-list" id="bizReviewsList">
+      ${staticHTML}
+      ${userHTML}
+      ${totalCount===0?'<p style="font-size:.8125rem;color:var(--muted);text-align:center;padding:16px 0">Aún no hay reseñas. ¡Sé el primero!</p>':''}
+    </div>
+    <div style="margin-top:20px">
+      <div style="display:flex;gap:10px;align-items:flex-start">
+        <div style="flex-shrink:0;margin-top:2px">${_getUserAvatarHTML(36)}</div>
+        <div style="flex:1">
+          <textarea id="bizCommentInput" placeholder="Escribe tu reseña..." maxlength="400" rows="2"
+            style="width:100%;padding:10px 14px;border:1.5px solid var(--border);border-radius:14px;font-family:'Inter',sans-serif;font-size:.875rem;color:var(--fg);background:var(--bg);resize:none;outline:none;box-sizing:border-box;transition:border-color .2s"
+            onfocus="this.style.borderColor='var(--primary)'" onblur="this.style.borderColor='var(--border)'"
+          ></textarea>
+          <div style="display:flex;justify-content:flex-end;margin-top:8px">
+            <button onclick="submitBizComment('${bizId}')" style="padding:9px 20px;border-radius:12px;border:none;background:var(--primary);color:#fff;font-family:'Poppins',sans-serif;font-size:.8125rem;font-weight:600;cursor:pointer;display:inline-flex;align-items:center;gap:6px">
+              <i class="fas fa-paper-plane"></i> Publicar reseña
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>`;
 }
 
 function shareModalBusiness(){
