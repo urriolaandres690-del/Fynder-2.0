@@ -242,9 +242,18 @@ const BUSINESSES=[
 {id:"323",name:"Pinturas & Acabados RD",category:"Hogar",categoryId:"hogar",description:"Venta de pinturas, barnices y acabados para interior y exterior. Servicio de pintura profesional a domicilio. Paleta de más de 500 colores y mezclas personalizadas.",address:"Av. Balboa, Santa Ana, Local 22",hours:"Lun–Sáb 7:30am – 6:00pm",rating:4.3,reviews:98,image:"https://images.unsplash.com/photo-1562259949-e8e7689d7828?w=700&h=450&fit=crop&auto=format",logo:"https://images.unsplash.com/photo-1562259949-e8e7689d7828?w=80&h=80&fit=crop&auto=format",phone:"+507 6323-0244",facebook:"PinturasRD",tags:["Pintura","Acabados","Domicilio","500 colores"],mapQuery:"Santa+Ana+Panama"},
 {id:"324",name:"Alarmas & Seguridad Home",category:"Hogar",categoryId:"hogar",description:"Instalación de sistemas de alarma, cámaras de vigilancia y control de acceso para residencias y condominios. Monitoreo 24/7 y respuesta inmediata ante emergencias.",address:"Calle 73, San Francisco, Edificio Tower, Of. 101",hours:"Lun–Vie 8:00am – 5:30pm",rating:4.7,reviews:167,image:"https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=700&h=450&fit=crop&auto=format",logo:"https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=80&h=80&fit=crop&auto=format",phone:"+507 6324-0255",instagram:"@alarmas_home_pty",website:"alarmashogar.pty",tags:["Alarmas","Cámaras","Seguridad","Monitoreo 24/7"],isFeatured:true,mapQuery:"San+Francisco+Panama"}];
 
-// Cargar favoritos guardados en localStorage, o empezar vacío
+// Cargar favoritos guardados en localStorage, filtrando IDs que ya no existen
 const _savedFavs = localStorage.getItem('fynderFavorites');
-let favorites = _savedFavs ? new Set(JSON.parse(_savedFavs)) : new Set(); 
+let favorites = new Set();
+if(_savedFavs){
+  try {
+    const parsed = JSON.parse(_savedFavs);
+    // Solo mantener IDs que existen en BUSINESSES
+    parsed.forEach(id => { if(BUSINESSES.find(b=>b.id===id)) favorites.add(id); });
+    // Actualizar localStorage con solo los válidos
+    localStorage.setItem('fynderFavorites', JSON.stringify([...favorites]));
+  } catch(e){ favorites = new Set(); }
+}
 
 let currentPage="home",previousPage="home",dirViewMode="grid",dirActiveCategory="",modalBusinessId=null; 
 
