@@ -5144,7 +5144,7 @@ label.avatar-option-btn:hover { background: var(--teal-light); border-color: rgb
   margin-top: 8px;
 }
 .review-card {
-  background: #F8FAFC;
+  background: var(--card);
   border-radius: 16px;
   padding: 16px;
   border: 1px solid var(--border);
@@ -5166,6 +5166,7 @@ label.avatar-option-btn:hover { background: var(--teal-light); border-color: rgb
   font-weight: 700;
   color: #fff;
   flex-shrink: 0;
+  overflow: hidden;
 }
 .review-meta {
   flex: 1;
@@ -5190,8 +5191,9 @@ label.avatar-option-btn:hover { background: var(--teal-light); border-color: rgb
 }
 .review-text {
   font-size: .875rem;
-  color: #4B5563;
+  color: var(--fg);
   line-height: 1.65;
+  opacity: .85;
 }
 
 /* ── Página de artículo ── */
