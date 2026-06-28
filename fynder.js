@@ -566,6 +566,25 @@ function deleteBizComment(bizId,commentId){
   showToast('Reseña eliminada.');
 }
 
+/* ── Drag-to-scroll en cat-filters (desktop mouse + touch mobile) ── */
+function initCatFiltersDrag(){
+  const el=document.getElementById('dirCatFilters');
+  if(!el) return;
+  let isDown=false, startX=0, scrollLeft=0;
+  el.addEventListener('mousedown',e=>{
+    isDown=true; el.classList.add('dragging');
+    startX=e.pageX-el.offsetLeft; scrollLeft=el.scrollLeft;
+  });
+  el.addEventListener('mouseleave',()=>{ isDown=false; el.classList.remove('dragging'); });
+  el.addEventListener('mouseup',()=>{ isDown=false; el.classList.remove('dragging'); });
+  el.addEventListener('mousemove',e=>{
+    if(!isDown) return;
+    e.preventDefault();
+    const x=e.pageX-el.offsetLeft;
+    el.scrollLeft=scrollLeft-(x-startX)*1.2;
+  });
+}
+
 function buildCategories(){
   document.getElementById('catGrid').innerHTML=CATEGORIES.map(c=>{
     const count=BUSINESSES.filter(b=>b.categoryId===c.id).length;
