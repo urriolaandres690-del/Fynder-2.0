@@ -5898,28 +5898,29 @@ label.avatar-option-btn:hover { background: var(--teal-light); border-color: rgb
 [data-theme="dark"] .article-no-comments { color: var(--muted); }
 
 /* ── Transición suave al cambiar tema ── */
-*, *::before, *::after {
+*:not(svg):not(path):not(polygon):not(circle):not(rect):not(line):not(polyline),
+*:not(svg):not(path):not(polygon):not(circle):not(rect):not(line):not(polyline)::before,
+*:not(svg):not(path):not(polygon):not(circle):not(rect):not(line):not(polyline)::after {
   transition:
     background-color .3s ease,
     border-color .3s ease,
     color .2s ease,
     box-shadow .3s ease !important;
 }
-/* excepciones: no animar transforms ni animaciones propias */
+/* Los SVG y sus hijos nunca se animan con el cambio de tema */
+svg, svg *, path, polygon, circle, rect, line, polyline {
+  transition: none !important;
+}
+/* Excepciones: no animar transforms ni animaciones propias */
 [class*="animation"],
 [style*="animation"],
 .footer-particles span,
 .how-icon-ring,
 .footer-line-anim,
-.footer-logo-texto,
-/* Los botones de favorito deben responder instantáneamente */
-.bcard-fav,
-.bcard-fav svg,
-.bcard-fav svg *,
-.bcard-fav path {
+.footer-logo-texto {
   transition: none !important;
 }
-/* Sólo el scale del hover va animado */
+/* Solo el scale del hover del botón fav va animado */
 .bcard-fav {
   transition: transform .15s ease !important;
 }
