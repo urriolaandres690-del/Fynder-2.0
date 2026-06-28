@@ -359,31 +359,60 @@ window.__scrolled=false;
 
 window.addEventListener('scroll',()=>{const s=window.scrollY>40;if(s!==window.__scrolled){window.__scrolled=s;document.getElementById('navbar').classList.toggle('scrolled',s);updateNav();}},{passive:true}); 
 
-function toggleFav(id){favorites.has(id)?favorites.delete(id):favorites.add(id);localStorage.setItem('fynderFavorites',JSON.stringify([...favorites]));updateNav();refreshFavBtns(id);if(currentPage==='favorites')renderFavorites();if(modalBusinessId===id)updateModalFavBtn();} 
+function toggleFav(id){
+  favorites.has(id)?favorites.delete(id):favorites.add(id);
+  localStorage.setItem('fynderFavorites',JSON.stringify([...favorites]));
+  updateNav();
+  refreshFavBtns(id);
+  if(currentPage==='favorites') renderFavorites();
+  if(modalBusinessId===id) updateModalFavBtn();
+}
 
 function refreshFavBtns(id){
-  const isFav=favorites.has(id);
-  const fill=isFav?'#EF4444':'none';
-  const stroke=isFav?'#EF4444':'#9CA3AF';
-  const strokeList=isFav?'#EF4444':'#D1D5DB';
+  const isFav = favorites.has(id);
 
-  // Grid card fav button
-  const gridBtn=document.getElementById('fav-grid-'+id);
+  // --- Grid card ---
+  const gridBtn = document.getElementById('fav-grid-'+id);
   if(gridBtn){
-    gridBtn.classList.toggle('active',isFav);
-    const svg=gridBtn.querySelector('svg');
-    if(svg){ svg.style.cssText+=`;fill:${fill};stroke:${stroke};transition:none`; }
-    const path=gridBtn.querySelector('path');
-    if(path){ path.style.cssText+=`;fill:${fill};stroke:${stroke};transition:none`; }
+    gridBtn.classList.toggle('active', isFav);
+    const svg = gridBtn.querySelector('svg');
+    if(svg){
+      const fill   = isFav ? '#EF4444' : 'none';
+      const stroke = isFav ? '#EF4444' : '#9CA3AF';
+      svg.setAttribute('fill',   fill);
+      svg.setAttribute('stroke', stroke);
+      // limpiar cualquier style inline acumulado
+      svg.style.fill   = fill;
+      svg.style.stroke = stroke;
+      const path = svg.querySelector('path');
+      if(path){
+        path.setAttribute('fill',   fill);
+        path.setAttribute('stroke', stroke);
+        path.style.fill   = fill;
+        path.style.stroke = stroke;
+      }
+    }
   }
 
-  // List card fav button
-  const listBtn=document.getElementById('fav-list-'+id);
+  // --- List card ---
+  const listBtn = document.getElementById('fav-list-'+id);
   if(listBtn){
-    const svg=listBtn.querySelector('svg');
-    if(svg){ svg.style.cssText+=`;fill:${fill};stroke:${strokeList};transition:none`; }
-    const path=listBtn.querySelector('path');
-    if(path){ path.style.cssText+=`;fill:${fill};stroke:${strokeList};transition:none`; }
+    const svg = listBtn.querySelector('svg');
+    if(svg){
+      const fill   = isFav ? '#EF4444' : 'none';
+      const stroke = isFav ? '#EF4444' : '#D1D5DB';
+      svg.setAttribute('fill',   fill);
+      svg.setAttribute('stroke', stroke);
+      svg.style.fill   = fill;
+      svg.style.stroke = stroke;
+      const path = svg.querySelector('path');
+      if(path){
+        path.setAttribute('fill',   fill);
+        path.setAttribute('stroke', stroke);
+        path.style.fill   = fill;
+        path.style.stroke = stroke;
+      }
+    }
   }
 }
 
