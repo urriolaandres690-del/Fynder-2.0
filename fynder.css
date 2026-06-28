@@ -5655,9 +5655,20 @@ label.avatar-option-btn:hover { background: var(--teal-light); border-color: rgb
   border-color: rgba(255,255,255,.08);
 }
 [data-theme="dark"] .support-faq-item summary { color: var(--fg); }
+[data-theme="dark"] .support-faq-item summary:hover { background: rgba(255,255,255,.04); }
 [data-theme="dark"] .support-faq-item[open] summary { color: var(--primary); }
 [data-theme="dark"] .support-faq-item p { color: var(--muted); }
 [data-theme="dark"] .support-faq-item p strong { color: var(--fg); }
+
+[data-theme="dark"] .support-channel-link {
+  background: rgba(103,184,180,.1);
+  border-color: rgba(103,184,180,.25);
+  color: var(--primary);
+}
+[data-theme="dark"] .support-channel-link:hover {
+  background: var(--primary);
+  color: #fff;
+}
 
 /* Botón volver / back-page-btn */
 [data-theme="dark"] .back-page-btn {
