@@ -447,6 +447,8 @@ function renderModalReviews(bizId, cat){
     </div>`;
   }).join('')}
   </div>`;
+  // Sección de comentarios de usuarios
+  renderBizComments(bizId);
 }
 
 function shareModalBusiness(){
