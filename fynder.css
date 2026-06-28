@@ -428,7 +428,7 @@ input, button, select, textarea {
 
     .bcard-badge.featured { background: var(--primary); color: #fff; } 
 
-    .bcard-fav { position: absolute; top: 12px; right: 12px; width: 32px; height: 32px; border-radius: 50%; border: none; background: rgba(255,255,255,.9); backdrop-filter: blur(8px); display: flex; align-items: center; justify-content: center; cursor: pointer; box-shadow: var(--shadow-sm); transition: transform .15s; } 
+    .bcard-fav { position: absolute; top: 12px; right: 12px; width: 32px; height: 32px; border-radius: 50%; border: none; background: rgba(255,255,255,.9); backdrop-filter: blur(8px); display: flex; align-items: center; justify-content: center; cursor: pointer; box-shadow: var(--shadow-sm); transition: transform .15s; z-index: 2; } 
 
     .bcard-fav:hover { transform: scale(1.12); } 
 
