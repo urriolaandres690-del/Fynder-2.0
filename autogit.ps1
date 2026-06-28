@@ -24,5 +24,5 @@ while ($true) {
         Write-Host "Cambios subidos a GitHub."
     }
 
-    Start-Sleep -Seconds 30
+    Start-Sleep -Seconds 5
 }
