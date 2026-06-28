@@ -246,6 +246,14 @@ input, button, select, textarea {
 
     .page.active { display: block; } 
 
+    /* Páginas internas con fondo y padding estándar */
+    .page-inner {
+      min-height: 100vh;
+      background: var(--bg);
+      padding-top: 80px;
+      padding-bottom: 80px;
+    }
+
     /* ── Hero ── */ 
 
     .hero { 
