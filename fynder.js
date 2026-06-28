@@ -425,29 +425,32 @@ function openModal(id){
 function renderModalReviews(bizId, cat){
   const wrap=document.getElementById('modalReviewsWrap');
   if(!wrap) return;
-  const list=REVIEWS[bizId];
-  if(!list||list.length===0){ wrap.style.display='none'; return; }
   wrap.style.display='block';
+  const list=REVIEWS[bizId];
   const color=cat?.color||'#67B8B4';
-  wrap.innerHTML=`<p class="modal-section-title">Reseñas de clientes</p>
-  <div class="reviews-list">
-  ${list.map(r=>{
-    const filled=r.stars;
-    const stars=[1,2,3,4,5].map(i=>`<svg style="width:13px;height:13px;fill:${i<=filled?'#F4D35E':'#E5E7EB'};flex-shrink:0" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>`).join('');
-    return `<div class="review-card">
-      <div class="review-header">
-        <div class="review-avatar" style="background:linear-gradient(135deg,${color},#2F5BB7)">${r.avatar}</div>
-        <div class="review-meta">
-          <span class="review-name">${r.name}</span>
-          <div class="review-stars">${stars}</div>
+  if(list&&list.length>0){
+    wrap.innerHTML=`<p class="modal-section-title">Reseñas de clientes</p>
+    <div class="reviews-list">
+    ${list.map(r=>{
+      const filled=r.stars;
+      const stars=[1,2,3,4,5].map(i=>`<svg style="width:13px;height:13px;fill:${i<=filled?'#F4D35E':'#E5E7EB'};flex-shrink:0" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>`).join('');
+      return `<div class="review-card">
+        <div class="review-header">
+          <div class="review-avatar" style="background:linear-gradient(135deg,${color},#2F5BB7)">${r.avatar}</div>
+          <div class="review-meta">
+            <span class="review-name">${r.name}</span>
+            <div class="review-stars">${stars}</div>
+          </div>
+          <span class="review-date">${r.date}</span>
         </div>
-        <span class="review-date">${r.date}</span>
-      </div>
-      <p class="review-text">${r.text}</p>
+        <p class="review-text">${r.text}</p>
+      </div>`;
+    }).join('')}
     </div>`;
-  }).join('')}
-  </div>`;
-  // Sección de comentarios de usuarios
+  } else {
+    wrap.innerHTML='';
+  }
+  // Sección de comentarios de usuarios (siempre se muestra)
   renderBizComments(bizId);
 }
 
