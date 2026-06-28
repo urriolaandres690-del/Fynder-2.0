@@ -369,50 +369,22 @@ function toggleFav(id){
 }
 
 function refreshFavBtns(id){
-  const isFav = favorites.has(id);
+  const isFav  = favorites.has(id);
+  const fill   = isFav ? '#EF4444' : 'none';
+  const strokeG= isFav ? '#EF4444' : '#9CA3AF';
+  const strokeL= isFav ? '#EF4444' : '#D1D5DB';
 
-  // --- Grid card ---
   const gridBtn = document.getElementById('fav-grid-'+id);
   if(gridBtn){
     gridBtn.classList.toggle('active', isFav);
-    const svg = gridBtn.querySelector('svg');
-    if(svg){
-      const fill   = isFav ? '#EF4444' : 'none';
-      const stroke = isFav ? '#EF4444' : '#9CA3AF';
-      svg.setAttribute('fill',   fill);
-      svg.setAttribute('stroke', stroke);
-      // limpiar cualquier style inline acumulado
-      svg.style.fill   = fill;
-      svg.style.stroke = stroke;
-      const path = svg.querySelector('path');
-      if(path){
-        path.setAttribute('fill',   fill);
-        path.setAttribute('stroke', stroke);
-        path.style.fill   = fill;
-        path.style.stroke = stroke;
-      }
-    }
+    const path = gridBtn.querySelector('path');
+    if(path){ path.setAttribute('fill', fill); path.setAttribute('stroke', strokeG); }
   }
 
-  // --- List card ---
   const listBtn = document.getElementById('fav-list-'+id);
   if(listBtn){
-    const svg = listBtn.querySelector('svg');
-    if(svg){
-      const fill   = isFav ? '#EF4444' : 'none';
-      const stroke = isFav ? '#EF4444' : '#D1D5DB';
-      svg.setAttribute('fill',   fill);
-      svg.setAttribute('stroke', stroke);
-      svg.style.fill   = fill;
-      svg.style.stroke = stroke;
-      const path = svg.querySelector('path');
-      if(path){
-        path.setAttribute('fill',   fill);
-        path.setAttribute('stroke', stroke);
-        path.style.fill   = fill;
-        path.style.stroke = stroke;
-      }
-    }
+    const path = listBtn.querySelector('path');
+    if(path){ path.setAttribute('fill', fill); path.setAttribute('stroke', strokeL); }
   }
 }
 
