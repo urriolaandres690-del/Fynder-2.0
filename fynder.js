@@ -1462,6 +1462,25 @@ function _saveArticleComments(articleId, comments) {
   localStorage.setItem('fynderComments_' + articleId, JSON.stringify(comments));
 }
 
+function _getUserAvatarHTML(size = 36) {
+  const stored  = localStorage.getItem('fynderAvatarPhoto');
+  const preset  = localStorage.getItem('fynderAvatarPreset');
+  const initBg  = localStorage.getItem('fynderAvatarInitialBg');
+  const user    = JSON.parse(localStorage.getItem('fynderUser') || 'null');
+  const name    = user?.name || 'Visitante';
+  const initial = name.charAt(0).toUpperCase();
+
+  const base = `width:${size}px;height:${size}px;border-radius:50%;flex-shrink:0;overflow:hidden;display:flex;align-items:center;justify-content:center;`;
+  if(stored) {
+    return `<div style="${base}"><img src="${stored}" style="width:100%;height:100%;object-fit:cover;border-radius:50%;display:block" alt="avatar"></div>`;
+  } else if(preset) {
+    return `<div style="${base}background:#F0FEFE;font-size:${size*0.55}px;line-height:1">${preset}</div>`;
+  } else {
+    const bg = initBg || 'linear-gradient(135deg,#67B8B4,#2F5BB7)';
+    return `<div style="${base}background:${bg};font-weight:700;font-size:${size*0.45}px;color:#fff;font-family:'Poppins',sans-serif">${initial}</div>`;
+  }
+}
+
 function renderArticleComments(articleId) {
   const comments = _getArticleComments(articleId);
   const list = document.getElementById('artCommentList');
@@ -1479,15 +1498,23 @@ function renderArticleComments(articleId) {
   const likedKey = 'fynderCommentLikes_' + articleId;
   const liked = JSON.parse(localStorage.getItem(likedKey) || '[]');
 
-  list.innerHTML = comments.slice().reverse().map((c, i) => {
-    const realIdx = comments.length - 1 - i;
+  list.innerHTML = comments.slice().reverse().map((c) => {
     const isLiked = liked.includes(c.id);
     const isOwn   = logged && user && c.userId === (user.email || user.name);
     const colorIdx = c.colorIdx !== undefined ? c.colorIdx : 0;
+    // Si el comentario guardó avatarPhoto, úsala; si no, usa el color
+    let avatarHTML;
+    if(c.avatarPhoto) {
+      avatarHTML = `<img src="${c.avatarPhoto}" style="width:36px;height:36px;border-radius:50%;object-fit:cover;flex-shrink:0;display:block" alt="avatar">`;
+    } else if(c.avatarPreset) {
+      avatarHTML = `<div class="article-comment-av" style="background:#F0FEFE;font-size:1.1rem">${c.avatarPreset}</div>`;
+    } else {
+      avatarHTML = `<div class="article-comment-av" style="background:${ART_COMMENT_COLORS[colorIdx]}">${c.initial}</div>`;
+    }
     return `
     <div class="article-comment" id="comment-${c.id}">
       <div class="article-comment-header">
-        <div class="article-comment-av" style="background:${ART_COMMENT_COLORS[colorIdx]}">${c.initial}</div>
+        ${avatarHTML}
         <div class="article-comment-meta">
           <span class="article-comment-name">${c.name}</span>
           <span class="article-comment-date">${c.date}</span>
