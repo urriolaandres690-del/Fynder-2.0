@@ -3389,7 +3389,8 @@ body{
 
 .legal-section-content p {
   font-size: .9375rem;
-  color: #4B5563;
+  color: var(--fg);
+  opacity: .8;
   line-height: 1.75;
 }
 
