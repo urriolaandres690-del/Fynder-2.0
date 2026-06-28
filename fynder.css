@@ -5551,12 +5551,14 @@ label.avatar-option-btn:hover { background: var(--teal-light); border-color: rgb
 [data-theme="dark"] .review-name        { color: var(--fg); }
 [data-theme="dark"] .review-text        { color: rgba(203,213,225,.9); }
 [data-theme="dark"] .review-date        { color: var(--muted); }
-[data-theme="dark"] .reviews-list textarea {
+[data-theme="dark"] .reviews-list textarea,
+[data-theme="dark"] .biz-review-textarea {
   background: rgba(255,255,255,.06) !important;
   border-color: rgba(255,255,255,.12) !important;
   color: var(--fg) !important;
 }
-[data-theme="dark"] .reviews-list textarea::placeholder { color: rgba(148,163,184,.6) !important; }
+[data-theme="dark"] .reviews-list textarea::placeholder,
+[data-theme="dark"] .biz-review-textarea::placeholder { color: rgba(148,163,184,.6) !important; }
 
 /* ── Perfil ── */
 [data-theme="dark"] #page-profile  { background: var(--bg) !important; }
