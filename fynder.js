@@ -528,78 +528,14 @@ function closeModal(e){if(e.target===document.getElementById('modalOverlay'))clo
 
 function closeModalDirect(){document.getElementById('modalOverlay').classList.add('hide');document.body.style.overflow='';modalBusinessId=null;}
 
-/* ── Comentarios de negocios ── */
+/* ── Reseñas de usuario en negocios ── */
 function _getBizComments(bizId){try{return JSON.parse(localStorage.getItem('fynderBizComments_'+bizId)||'[]');}catch(e){return[];}}
 function _saveBizComments(bizId,c){localStorage.setItem('fynderBizComments_'+bizId,JSON.stringify(c));}
-
-function renderBizComments(bizId){
-  const wrap=document.getElementById('modalReviewsWrap');
-  if(!wrap) return;
-  const comments=_getBizComments(bizId);
-  const likedKey='fynderBizCommentLikes_'+bizId;
-  const liked=JSON.parse(localStorage.getItem(likedKey)||'[]');
-  const logged=!!localStorage.getItem('fynderLogged');
-  const user=JSON.parse(localStorage.getItem('fynderUser')||'null');
-
-  // Eliminar bloque anterior si existe
-  const existing=document.getElementById('bizCommentsBlock');
-  if(existing) existing.remove();
-
-  const block=document.createElement('div');
-  block.id='bizCommentsBlock';
-  block.style.marginTop='20px';
-
-  const commentsHTML=comments.length===0
-    ? `<p style="font-size:.8125rem;color:var(--muted);text-align:center;padding:16px 0">Aún no hay comentarios. ¡Sé el primero!</p>`
-    : comments.slice().reverse().map(c=>{
-        const isLiked=liked.includes(c.id);
-        const isOwn=logged&&user&&c.userId===(user.email||user.name);
-        let avHTML;
-        if(c.avatarPhoto) avHTML=`<img src="${c.avatarPhoto}" style="width:32px;height:32px;border-radius:50%;object-fit:cover;flex-shrink:0" alt="av">`;
-        else if(c.avatarPreset) avHTML=`<div style="width:32px;height:32px;border-radius:50%;background:#F0FEFE;display:flex;align-items:center;justify-content:center;font-size:1rem;flex-shrink:0">${c.avatarPreset}</div>`;
-        else { const bg=c.avatarInitBg||ART_COMMENT_COLORS[c.colorIdx||0]; avHTML=`<div style="width:32px;height:32px;border-radius:50%;background:${bg};display:flex;align-items:center;justify-content:center;font-weight:700;font-size:.8rem;color:#fff;flex-shrink:0;font-family:'Poppins',sans-serif">${c.initial}</div>`; }
-        return `<div style="display:flex;gap:10px;padding:12px 0;border-bottom:1px solid var(--border)">
-          ${avHTML}
-          <div style="flex:1;min-width:0">
-            <div style="display:flex;align-items:center;gap:8px;margin-bottom:4px">
-              <span style="font-size:.8125rem;font-weight:700;color:var(--fg)">${c.name}</span>
-              <span style="font-size:.7rem;color:var(--muted)">${c.date}</span>
-            </div>
-            <p style="font-size:.875rem;color:var(--fg);line-height:1.6;margin:0 0 8px">${escapeHtml(c.text)}</p>
-            <div style="display:flex;gap:8px">
-              <button onclick="likeBizComment('${bizId}','${c.id}')" style="display:inline-flex;align-items:center;gap:4px;padding:4px 10px;border-radius:99px;border:1px solid ${isLiked?'#EF4444':'var(--border)'};background:${isLiked?'#FEF2F2':'none'};color:${isLiked?'#EF4444':'var(--muted)'};font-size:.7rem;cursor:pointer;font-family:'Inter',sans-serif"><i class="fas fa-heart"></i> ${c.likes||0}</button>
-              ${isOwn?`<button onclick="deleteBizComment('${bizId}','${c.id}')" style="display:inline-flex;align-items:center;gap:4px;padding:4px 10px;border-radius:99px;border:1px solid transparent;background:none;color:var(--muted);font-size:.7rem;cursor:pointer;font-family:'Inter',sans-serif"><i class="fas fa-trash-alt"></i></button>`:''}
-            </div>
-          </div>
-        </div>`;
-      }).join('');
-
-  block.innerHTML=`
-    <p class="modal-section-title" style="margin-bottom:12px">Comentarios <span style="font-size:.7rem;background:var(--teal-light);color:var(--primary);padding:2px 8px;border-radius:99px;font-weight:600">${comments.length}</span></p>
-    <div id="bizCommentsList">${commentsHTML}</div>
-    <div style="margin-top:16px">
-      <div style="display:flex;gap:10px;align-items:flex-start">
-        <div style="flex-shrink:0;margin-top:2px">${_getUserAvatarHTML(32)}</div>
-        <div style="flex:1">
-          <textarea id="bizCommentInput" placeholder="Escribe un comentario..." maxlength="400" rows="2"
-            style="width:100%;padding:10px 14px;border:1.5px solid var(--border);border-radius:14px;font-family:'Inter',sans-serif;font-size:.875rem;color:var(--fg);background:var(--bg);resize:none;outline:none;box-sizing:border-box;transition:border-color .2s"
-            onfocus="this.style.borderColor='var(--primary)'" onblur="this.style.borderColor='var(--border)'"
-          ></textarea>
-          <div style="display:flex;justify-content:flex-end;margin-top:8px">
-            <button onclick="submitBizComment('${bizId}')" style="padding:8px 18px;border-radius:12px;border:none;background:var(--primary);color:#fff;font-family:'Poppins',sans-serif;font-size:.8125rem;font-weight:600;cursor:pointer;display:inline-flex;align-items:center;gap:6px">
-              <i class="fas fa-paper-plane"></i> Comentar
-            </button>
-          </div>
-        </div>
-      </div>
-    </div>`;
-  wrap.appendChild(block);
-}
 
 function submitBizComment(bizId){
   const ta=document.getElementById('bizCommentInput');
   const text=ta?ta.value.trim():'';
-  if(!text||text.length<2){showToast('Escribe algo antes de comentar.','error');return;}
+  if(!text||text.length<2){showToast('Escribe algo antes de publicar.','error');return;}
   const logged=!!localStorage.getItem('fynderLogged');
   const user=JSON.parse(localStorage.getItem('fynderUser')||'null');
   const name=logged&&user?user.name:'Visitante';
@@ -611,37 +547,23 @@ function submitBizComment(bizId){
   const colorIdx=Math.floor(Math.random()*ART_COMMENT_COLORS.length);
   const now=new Date();
   const dateStr=now.toLocaleDateString('es-ES',{day:'numeric',month:'short',year:'numeric'});
-  const comment={id:Date.now().toString(),name,initial,userId,colorIdx,avatarPhoto,avatarPreset,avatarInitBg,text,date:dateStr,likes:0};
+  const comment={id:Date.now().toString(),name,initial,userId,colorIdx,avatarPhoto,avatarPreset,avatarInitBg,text,date:dateStr};
   const comments=_getBizComments(bizId);
   comments.push(comment);
   _saveBizComments(bizId,comments);
-  ta.value='';
-  renderBizComments(bizId);
-  showToast('¡Comentario publicado! 💬');
-}
-
-function likeBizComment(bizId,commentId){
-  const likedKey='fynderBizCommentLikes_'+bizId;
-  const liked=JSON.parse(localStorage.getItem(likedKey)||'[]');
-  const comments=_getBizComments(bizId);
-  const idx=comments.findIndex(c=>c.id===commentId);
-  if(idx===-1) return;
-  if(liked.includes(commentId)){
-    comments[idx].likes=Math.max(0,(comments[idx].likes||0)-1);
-    localStorage.setItem(likedKey,JSON.stringify(liked.filter(l=>l!==commentId)));
-  } else {
-    comments[idx].likes=(comments[idx].likes||0)+1;
-    liked.push(commentId);
-    localStorage.setItem(likedKey,JSON.stringify(liked));
-  }
-  _saveBizComments(bizId,comments);
-  renderBizComments(bizId);
+  // Re-renderizar usando el bizId almacenado
+  const b=BUSINESSES.find(x=>x.id===bizId)||BUSINESSES.find(x=>x.id===modalBusinessId);
+  const cat=b?CATEGORIES.find(c=>c.id===b.categoryId):null;
+  renderModalReviews(bizId,cat);
+  showToast('¡Reseña publicada! ⭐');
 }
 
 function deleteBizComment(bizId,commentId){
   _saveBizComments(bizId,_getBizComments(bizId).filter(c=>c.id!==commentId));
-  renderBizComments(bizId);
-  showToast('Comentario eliminado.');
+  const b=BUSINESSES.find(x=>x.id===bizId)||BUSINESSES.find(x=>x.id===modalBusinessId);
+  const cat=b?CATEGORIES.find(c=>c.id===b.categoryId):null;
+  renderModalReviews(bizId,cat);
+  showToast('Reseña eliminada.');
 }
 
 function buildCategories(){
