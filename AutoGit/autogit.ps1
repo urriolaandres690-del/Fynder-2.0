@@ -1,28 +1,89 @@
-# Ruta de tu proyecto
-$repo = "C:\Users\SupérateSantiago\Fynder\Fynder-2.0"
+Clear-Host
 
-Set-Location $repo
+$config = Get-Content ".\config.json" | ConvertFrom-Json
 
-Write-Host "Auto Git iniciado..."
-Write-Host "Presiona Ctrl + C para detenerlo."
+Set-Location $config.Repository
 
-while ($true) {
+function Write-Log($texto){
+
+    $hora = Get-Date -Format "yyyy-MM-dd HH:mm:ss"
+
+    Add-Content $config.LogFile "[$hora] $texto"
+}
+
+Write-Host ""
+Write-Host "======================================" -ForegroundColor Cyan
+Write-Host "         AutoGit" -ForegroundColor Green
+Write-Host "======================================" -ForegroundColor Cyan
+Write-Host ""
+
+Write-Host "Repositorio :" $config.Repository
+Write-Host "Rama        :" $config.Branch
+Write-Host ""
+
+Write-Host "Esperando cambios..."
+Write-Host ""
+
+while($true){
 
     $status = git status --porcelain
 
-    if ($status) {
-        Write-Host "Cambios detectados..."
+    if($status){
+
+        Write-Host ""
+        Write-Host "Cambios detectados." -ForegroundColor Yellow
+
+        Start-Sleep -Seconds $config.DelaySeconds
 
         git add .
 
         $fecha = Get-Date -Format "yyyy-MM-dd HH:mm:ss"
 
-        git commit -m "Auto guardado $fecha"
+        $mensaje = "$($config.CommitPrefix) $fecha"
 
-        git push
+        git commit -m $mensaje
 
-        Write-Host "Cambios subidos a GitHub."
+        if($LASTEXITCODE -eq 0){
+
+            Write-Host "Commit realizado." -ForegroundColor Green
+
+            Write-Log "Commit -> $mensaje"
+
+            git push
+
+            if($LASTEXITCODE -eq 0){
+
+                Write-Host "Push realizado correctamente." -ForegroundColor Green
+
+                Write-Log "Push correcto"
+
+            }
+            else{
+
+                Write-Host "Error al hacer Push." -ForegroundColor Red
+
+                Write-Log "Push fallido"
+
+                if($config.RetryPush){
+
+                    Write-Host "Reintentando en $($config.RetryInterval) segundos..."
+
+                    Start-Sleep -Seconds $config.RetryInterval
+
+                    git push
+
+                }
+
+            }
+
+        }
+
+        Write-Host ""
+        Write-Host "Esperando cambios..."
+        Write-Host ""
+
     }
 
-    Start-Sleep -Seconds 5
+    Start-Sleep -Milliseconds 700
+
 }
