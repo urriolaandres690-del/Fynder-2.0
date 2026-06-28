@@ -1439,9 +1439,7 @@ function sendSupport(event) {
     showToast("¡Mensaje enviado! Te responderemos en menos de 24 horas 💬");
 }
 
-/* ════════════════════════════════
-   DARK MODE
-   ════════════════════════════════ */
+/*modo oscuro*/
 function toggleDarkMode(){
     const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
     const next   = isDark ? 'light' : 'dark';
