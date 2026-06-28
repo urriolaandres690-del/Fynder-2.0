@@ -5242,7 +5242,7 @@ label.avatar-option-btn:hover { background: var(--teal-light); border-color: rgb
 }
 .article-content {
   font-size: 1rem;
-  color: #374151;
+  color: var(--fg);
   line-height: 1.85;
 }
 .article-content h3 {
