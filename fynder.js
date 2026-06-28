@@ -1437,6 +1437,144 @@ function openArticle(id) {
   goPage('article');
 }
 
+/* ── Sistema de comentarios de artículos ── */
+let _currentArticleId = null;
+const ART_COMMENT_COLORS = [
+  'linear-gradient(135deg,#67B8B4,#2F5BB7)',
+  'linear-gradient(135deg,#EF4444,#F97316)',
+  'linear-gradient(135deg,#10B981,#67B8B4)',
+  'linear-gradient(135deg,#8B5CF6,#EC4899)',
+  'linear-gradient(135deg,#2F5BB7,#1E8F8B)',
+  'linear-gradient(135deg,#F97316,#F4D35E)',
+];
+
+function _getArticleComments(articleId) {
+  try { return JSON.parse(localStorage.getItem('fynderComments_' + articleId) || '[]'); }
+  catch(e){ return []; }
+}
+function _saveArticleComments(articleId, comments) {
+  localStorage.setItem('fynderComments_' + articleId, JSON.stringify(comments));
+}
+
+function renderArticleComments(articleId) {
+  const comments = _getArticleComments(articleId);
+  const list = document.getElementById('artCommentList');
+  const countEl = document.getElementById('artCommentCount');
+  if(countEl) countEl.textContent = comments.length;
+  if(!list) return;
+
+  if(comments.length === 0) {
+    list.innerHTML = `<div class="article-no-comments"><i class="fas fa-comments"></i>Sé el primero en comentar este artículo.</div>`;
+    return;
+  }
+
+  const logged = !!localStorage.getItem('fynderLogged');
+  const user   = JSON.parse(localStorage.getItem('fynderUser') || 'null');
+  const likedKey = 'fynderCommentLikes_' + articleId;
+  const liked = JSON.parse(localStorage.getItem(likedKey) || '[]');
+
+  list.innerHTML = comments.slice().reverse().map((c, i) => {
+    const realIdx = comments.length - 1 - i;
+    const isLiked = liked.includes(c.id);
+    const isOwn   = logged && user && c.userId === (user.email || user.name);
+    const colorIdx = c.colorIdx !== undefined ? c.colorIdx : 0;
+    return `
+    <div class="article-comment" id="comment-${c.id}">
+      <div class="article-comment-header">
+        <div class="article-comment-av" style="background:${ART_COMMENT_COLORS[colorIdx]}">${c.initial}</div>
+        <div class="article-comment-meta">
+          <span class="article-comment-name">${c.name}</span>
+          <span class="article-comment-date">${c.date}</span>
+        </div>
+      </div>
+      <div class="article-comment-text">${escapeHtml(c.text)}</div>
+      <div class="article-comment-actions">
+        <button class="article-comment-like-btn ${isLiked ? 'liked' : ''}" onclick="likeComment('${articleId}','${c.id}',this)">
+          <i class="fas fa-heart"></i> ${c.likes || 0}
+        </button>
+        ${isOwn ? `<button class="article-comment-delete-btn" onclick="deleteComment('${articleId}','${c.id}')"><i class="fas fa-trash-alt"></i> Eliminar</button>` : ''}
+      </div>
+    </div>`;
+  }).join('');
+}
+
+function artCommentCharCount(el) {
+  const c = document.getElementById('artCommentChars');
+  if(c) c.textContent = el.value.length + ' / 500';
+}
+
+function submitArticleComment() {
+  const ta = document.getElementById('artCommentText');
+  const text = ta ? ta.value.trim() : '';
+  if(!text) { showToast('Escribe algo antes de comentar.', 'error'); return; }
+  if(text.length < 3) { showToast('El comentario es demasiado corto.', 'error'); return; }
+
+  const logged = !!localStorage.getItem('fynderLogged');
+  const user   = JSON.parse(localStorage.getItem('fynderUser') || 'null');
+  const name   = logged && user ? user.name : 'Visitante';
+  const initial = name.charAt(0).toUpperCase();
+  const userId  = logged && user ? (user.email || user.name) : null;
+  const colorIdx = Math.floor(Math.random() * ART_COMMENT_COLORS.length);
+
+  const now = new Date();
+  const dateStr = now.toLocaleDateString('es-ES', { day: 'numeric', month: 'short', year: 'numeric' });
+
+  const comment = {
+    id: Date.now().toString(),
+    name, initial, userId, colorIdx,
+    text,
+    date: dateStr,
+    likes: 0,
+  };
+
+  const comments = _getArticleComments(_currentArticleId);
+  comments.push(comment);
+  _saveArticleComments(_currentArticleId, comments);
+
+  ta.value = '';
+  artCommentCharCount(ta);
+  renderArticleComments(_currentArticleId);
+  showToast('¡Comentario publicado! 💬');
+}
+
+function likeComment(articleId, commentId, btn) {
+  const likedKey = 'fynderCommentLikes_' + articleId;
+  const liked = JSON.parse(localStorage.getItem(likedKey) || '[]');
+  const comments = _getArticleComments(articleId);
+  const idx = comments.findIndex(c => c.id === commentId);
+  if(idx === -1) return;
+
+  if(liked.includes(commentId)) {
+    // unlike
+    comments[idx].likes = Math.max(0, (comments[idx].likes || 0) - 1);
+    const newLiked = liked.filter(l => l !== commentId);
+    localStorage.setItem(likedKey, JSON.stringify(newLiked));
+  } else {
+    comments[idx].likes = (comments[idx].likes || 0) + 1;
+    liked.push(commentId);
+    localStorage.setItem(likedKey, JSON.stringify(liked));
+  }
+  _saveArticleComments(articleId, comments);
+  renderArticleComments(articleId);
+}
+
+function deleteComment(articleId, commentId) {
+  const comments = _getArticleComments(articleId);
+  const newComments = comments.filter(c => c.id !== commentId);
+  _saveArticleComments(articleId, newComments);
+  renderArticleComments(articleId);
+  showToast('Comentario eliminado.');
+}
+
+function escapeHtml(str) {
+  return str
+    .replace(/&/g,'&amp;')
+    .replace(/</g,'&lt;')
+    .replace(/>/g,'&gt;')
+    .replace(/"/g,'&quot;')
+    .replace(/\n/g,'<br>');
+}
+
 function sendSupport(event) {
     event.preventDefault();
     const name    = document.getElementById("supportName").value.trim();
