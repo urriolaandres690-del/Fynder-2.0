@@ -1549,12 +1549,18 @@ function submitArticleComment() {
   const userId  = logged && user ? (user.email || user.name) : null;
   const colorIdx = Math.floor(Math.random() * ART_COMMENT_COLORS.length);
 
+  // Capturar avatar actual del usuario
+  const avatarPhoto  = localStorage.getItem('fynderAvatarPhoto') || null;
+  const avatarPreset = !avatarPhoto ? (localStorage.getItem('fynderAvatarPreset') || null) : null;
+  const avatarInitBg = (!avatarPhoto && !avatarPreset) ? (localStorage.getItem('fynderAvatarInitialBg') || null) : null;
+
   const now = new Date();
   const dateStr = now.toLocaleDateString('es-ES', { day: 'numeric', month: 'short', year: 'numeric' });
 
   const comment = {
     id: Date.now().toString(),
     name, initial, userId, colorIdx,
+    avatarPhoto, avatarPreset, avatarInitBg,
     text,
     date: dateStr,
     likes: 0,
