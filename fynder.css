@@ -5911,8 +5911,17 @@ label.avatar-option-btn:hover { background: var(--teal-light); border-color: rgb
 .footer-particles span,
 .how-icon-ring,
 .footer-line-anim,
-.footer-logo-texto {
+.footer-logo-texto,
+/* Los botones de favorito deben responder instantáneamente */
+.bcard-fav,
+.bcard-fav svg,
+.bcard-fav svg *,
+.bcard-fav path {
   transition: none !important;
+}
+/* Sólo el scale del hover va animado */
+.bcard-fav {
+  transition: transform .15s ease !important;
 }
 
 
