@@ -363,27 +363,28 @@ function toggleFav(id){favorites.has(id)?favorites.delete(id):favorites.add(id);
 
 function refreshFavBtns(id){
   const isFav=favorites.has(id);
-  const color=isFav?'#EF4444':'none';
+  const fill=isFav?'#EF4444':'none';
   const stroke=isFav?'#EF4444':'#9CA3AF';
-  ['fav-grid-','fav-list-'].forEach(prefix=>{
-    const el=document.getElementById(prefix+id);
-    if(!el) return;
-    el.classList.toggle('active',isFav);
-    const svg=el.querySelector('svg');
-    if(svg){
-      // Forzar sin transición
-      svg.style.transition='none';
-      svg.style.fill=color;
-      svg.style.color=stroke;
-      svg.style.stroke=stroke;
-      // Todos los paths también
-      svg.querySelectorAll('path,polygon').forEach(p=>{
-        p.style.transition='none';
-        p.style.fill=isFav?'#EF4444':'none';
-        p.style.stroke=stroke;
-      });
-    }
-  });
+  const strokeList=isFav?'#EF4444':'#D1D5DB';
+
+  // Grid card fav button
+  const gridBtn=document.getElementById('fav-grid-'+id);
+  if(gridBtn){
+    gridBtn.classList.toggle('active',isFav);
+    const svg=gridBtn.querySelector('svg');
+    if(svg){ svg.style.cssText+=`;fill:${fill};stroke:${stroke};transition:none`; }
+    const path=gridBtn.querySelector('path');
+    if(path){ path.style.cssText+=`;fill:${fill};stroke:${stroke};transition:none`; }
+  }
+
+  // List card fav button
+  const listBtn=document.getElementById('fav-list-'+id);
+  if(listBtn){
+    const svg=listBtn.querySelector('svg');
+    if(svg){ svg.style.cssText+=`;fill:${fill};stroke:${strokeList};transition:none`; }
+    const path=listBtn.querySelector('path');
+    if(path){ path.style.cssText+=`;fill:${fill};stroke:${strokeList};transition:none`; }
+  }
 }
 
 function openModal(id){
