@@ -350,7 +350,30 @@ window.addEventListener('scroll',()=>{const s=window.scrollY>40;if(s!==window.__
 
 function toggleFav(id){favorites.has(id)?favorites.delete(id):favorites.add(id);localStorage.setItem('fynderFavorites',JSON.stringify([...favorites]));updateNav();refreshFavBtns(id);if(currentPage==='favorites')renderFavorites();if(modalBusinessId===id)updateModalFavBtn();} 
 
-function refreshFavBtns(id){const isFav=favorites.has(id);['fav-grid-','fav-list-'].forEach(p=>{const el=document.getElementById(p+id);if(!el)return;el.classList.toggle('active',isFav);const svg=el.querySelector('svg');if(svg){const c=isFav?'#EF4444':'none';const s=isFav?'#EF4444':'#9CA3AF';svg.style.fill=c;svg.style.color=s;svg.setAttribute('stroke',s);}});} 
+function refreshFavBtns(id){
+  const isFav=favorites.has(id);
+  const color=isFav?'#EF4444':'none';
+  const stroke=isFav?'#EF4444':'#9CA3AF';
+  ['fav-grid-','fav-list-'].forEach(prefix=>{
+    const el=document.getElementById(prefix+id);
+    if(!el) return;
+    el.classList.toggle('active',isFav);
+    const svg=el.querySelector('svg');
+    if(svg){
+      // Forzar sin transición
+      svg.style.transition='none';
+      svg.style.fill=color;
+      svg.style.color=stroke;
+      svg.style.stroke=stroke;
+      // Todos los paths también
+      svg.querySelectorAll('path,polygon').forEach(p=>{
+        p.style.transition='none';
+        p.style.fill=isFav?'#EF4444':'none';
+        p.style.stroke=stroke;
+      });
+    }
+  });
+}
 
 function openModal(id){
   const b=BUSINESSES.find(x=>x.id===id);
