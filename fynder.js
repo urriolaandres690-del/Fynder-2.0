@@ -492,6 +492,7 @@ function renderModalReviews(bizId, cat){
         <div style="flex-shrink:0;margin-top:2px">${_getUserAvatarHTML(36)}</div>
         <div style="flex:1">
           <textarea id="bizCommentInput" placeholder="Escribe tu reseña..." maxlength="400" rows="2"
+            class="biz-review-textarea"
             style="width:100%;padding:10px 14px;border:1.5px solid var(--border);border-radius:14px;font-family:'Inter',sans-serif;font-size:.875rem;color:var(--fg);background:var(--bg);resize:none;outline:none;box-sizing:border-box;transition:border-color .2s"
             onfocus="this.style.borderColor='var(--primary)'" onblur="this.style.borderColor='var(--border)'"
           ></textarea>
