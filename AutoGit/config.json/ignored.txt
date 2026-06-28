@@ -1,0 +1,11 @@
+.git
+.vscode
+node_modules
+dist
+build
+cache
+logs
+AutoGit
+autogit.log
+Thumbs.db
+Desktop.ini
