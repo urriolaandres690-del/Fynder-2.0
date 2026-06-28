@@ -1434,6 +1434,9 @@ function openArticle(id) {
   document.getElementById('artReadTime').textContent = art.readTime;
   document.getElementById('artBody').innerHTML = art.body;
 
+  _currentArticleId = id;
+  renderArticleComments(id);
+
   goPage('article');
 }
 
