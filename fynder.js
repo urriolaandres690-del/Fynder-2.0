@@ -368,23 +368,25 @@ function toggleFav(id){
   if(modalBusinessId===id) updateModalFavBtn();
 }
 
-function refreshFavBtns(id){
-  const isFav  = favorites.has(id);
+function _heartSVG(isFav, size){
   const fill   = isFav ? '#EF4444' : 'none';
-  const strokeG= isFav ? '#EF4444' : '#9CA3AF';
-  const strokeL= isFav ? '#EF4444' : '#D1D5DB';
+  const stroke = isFav ? '#EF4444' : (size==='sm' ? '#D1D5DB' : '#9CA3AF');
+  const w = size==='sm' ? 17 : 15;
+  return `<svg xmlns="http://www.w3.org/2000/svg" width="${w}" height="${w}" viewBox="0 0 24 24" fill="${fill}" stroke="${stroke}" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/></svg>`;
+}
+
+function refreshFavBtns(id){
+  const isFav = favorites.has(id);
 
   const gridBtn = document.getElementById('fav-grid-'+id);
   if(gridBtn){
     gridBtn.classList.toggle('active', isFav);
-    const path = gridBtn.querySelector('path');
-    if(path){ path.setAttribute('fill', fill); path.setAttribute('stroke', strokeG); }
+    gridBtn.innerHTML = _heartSVG(isFav, 'md');
   }
 
   const listBtn = document.getElementById('fav-list-'+id);
   if(listBtn){
-    const path = listBtn.querySelector('path');
-    if(path){ path.setAttribute('fill', fill); path.setAttribute('stroke', strokeL); }
+    listBtn.innerHTML = _heartSVG(isFav, 'sm');
   }
 }
 
