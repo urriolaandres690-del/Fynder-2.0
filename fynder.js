@@ -342,6 +342,9 @@ function updateNav(){
     if(profile) profile.style.display = logged ? 'inline-flex'  : 'none';
     if(uname && !logged) uname.textContent = '';
 
+    const dashboard = document.getElementById('navBtnDashboard');
+    if(dashboard) dashboard.style.display = logged ? 'inline-flex' : 'none';
+
     [logout, profile].forEach(el => { if(el) el.classList.toggle('on-hero', isHero); });
     if(login)  login.classList.toggle('on-hero', isHero);
 
