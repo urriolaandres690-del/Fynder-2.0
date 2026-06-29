@@ -9673,7 +9673,9 @@ section.fyl-section-alt > *:last-child { padding-bottom: 72px; }
 }
 
 /* CTA goes full-width too */
-.about-cta-v2 { margin: 0; border-radius: 0; }/* ---- HERO V2 ---- */
+.about-cta-v2 { margin: 0; border-radius: 0; }
+
+/* ---- HERO V2 ---- */
 .about-hero-v2 {
   position:relative; background:linear-gradient(135deg,#0F172A 0%,#1E293B 55%,#0A1628 100%);
   padding:100px 24px 0; text-align:center; overflow:hidden; min-height:520px;
