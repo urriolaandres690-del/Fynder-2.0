@@ -2682,6 +2682,139 @@
   </div>
 </div>
 
+<!-- PAGE: DASHBOARD -->
+<div id="page-dashboard" class="page page-inner">
+  <div class="dashboard-inner">
+    <button class="back-page-btn" onclick="goBack()"><i class="fas fa-arrow-left"></i> Volver</button>
+
+    <!-- Cabecera -->
+    <div class="dashboard-header">
+      <div class="dashboard-header-icon">
+        <i class="fas fa-chart-line"></i>
+      </div>
+      <div>
+        <p class="section-label" style="margin-bottom:4px">Panel de control</p>
+        <h1 class="dashboard-title">Mi panel</h1>
+        <p class="dashboard-lead" id="dashWelcome">Bienvenido de nuevo</p>
+      </div>
+    </div>
+
+    <!-- =================== PLAN ACTIVO =================== -->
+    <section class="dash-section">
+      <h2 class="dash-section-title"><i class="fas fa-gem"></i> Mi plan</h2>
+      <div class="dash-plan-card" id="dashPlanCard">
+        <!-- Relleno por JS -->
+      </div>
+      <!-- Upgrade CTA (se oculta si ya es Premium) -->
+      <div class="dash-upgrade-strip" id="dashUpgradeStrip">
+        <div class="dash-upgrade-text">
+          <i class="fas fa-bolt"></i>
+          <div>
+            <strong>¿Quieres más visibilidad?</strong>
+            <span>Actualiza tu plan y llega a más clientes locales.</span>
+          </div>
+        </div>
+        <button class="plan-btn plan-btn-pro" style="width:auto;padding:10px 22px" onclick="goPage('plans')">
+          Ver planes <i class="fas fa-arrow-right"></i>
+        </button>
+      </div>
+    </section>
+
+    <!-- =================== ANALÍTICAS =================== -->
+    <section class="dash-section">
+      <div class="dash-section-head">
+        <h2 class="dash-section-title"><i class="fas fa-chart-bar"></i> Analíticas</h2>
+        <div class="dash-period-tabs">
+          <button class="dash-period-btn active" onclick="changePeriod('7d',this)">7 días</button>
+          <button class="dash-period-btn" onclick="changePeriod('30d',this)">30 días</button>
+          <button class="dash-period-btn" onclick="changePeriod('90d',this)">90 días</button>
+        </div>
+      </div>
+
+      <!-- Stat cards -->
+      <div class="dash-stats-grid" id="dashStatsGrid">
+        <div class="dash-stat-card">
+          <div class="dash-stat-icon" style="background:#E6F5F4;color:#67B8B4"><i class="fas fa-eye"></i></div>
+          <div class="dash-stat-body">
+            <span class="dash-stat-label">Visitas al perfil</span>
+            <span class="dash-stat-value" id="statViews">—</span>
+            <span class="dash-stat-delta" id="statViewsDelta"></span>
+          </div>
+        </div>
+        <div class="dash-stat-card">
+          <div class="dash-stat-icon" style="background:#FEF9EE;color:#F4D35E"><i class="fas fa-bookmark"></i></div>
+          <div class="dash-stat-body">
+            <span class="dash-stat-label">Guardados</span>
+            <span class="dash-stat-value" id="statSaves">—</span>
+            <span class="dash-stat-delta" id="statSavesDelta"></span>
+          </div>
+        </div>
+        <div class="dash-stat-card">
+          <div class="dash-stat-icon" style="background:#EEF2FF;color:#2F5BB7"><i class="fas fa-arrow-pointer"></i></div>
+          <div class="dash-stat-body">
+            <span class="dash-stat-label">Clics en contacto</span>
+            <span class="dash-stat-value" id="statClicks">—</span>
+            <span class="dash-stat-delta" id="statClicksDelta"></span>
+          </div>
+        </div>
+        <div class="dash-stat-card">
+          <div class="dash-stat-icon" style="background:#FDF2F8;color:#EC4899"><i class="fas fa-star"></i></div>
+          <div class="dash-stat-body">
+            <span class="dash-stat-label">Reseñas recibidas</span>
+            <span class="dash-stat-value" id="statReviews">—</span>
+            <span class="dash-stat-delta" id="statReviewsDelta"></span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Gráfica de visitas -->
+      <div class="dash-chart-card">
+        <div class="dash-chart-header">
+          <span class="dash-chart-title">Visitas por día</span>
+          <span class="dash-chart-badge" id="dashPlanBadgeChart"></span>
+        </div>
+        <div class="dash-chart-wrap">
+          <canvas id="dashChartVisits" height="220"></canvas>
+        </div>
+      </div>
+
+      <!-- Locked overlay para plan Básico -->
+      <div class="dash-locked-overlay" id="dashLockedOverlay" style="display:none">
+        <div class="dash-locked-box">
+          <div class="dash-locked-icon"><i class="fas fa-lock"></i></div>
+          <h3>Analíticas disponibles desde el plan Pro</h3>
+          <p>Con el plan Pro obtienes estadísticas de visitas, guardados y clics en tiempo real.</p>
+          <button class="plan-btn plan-btn-pro" style="width:auto;padding:12px 28px" onclick="goPage('plans')">
+            <i class="fas fa-bolt"></i> Ver planes
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- =================== MIS NEGOCIOS =================== -->
+    <section class="dash-section">
+      <div class="dash-section-head">
+        <h2 class="dash-section-title"><i class="fas fa-store"></i> Mis negocios</h2>
+        <button class="btn-teal" style="padding:8px 18px;font-size:.85rem" onclick="goPage('business')">
+          <i class="fas fa-plus" style="font-size:.7rem"></i> Agregar
+        </button>
+      </div>
+      <div id="dashBizList" class="dash-biz-list">
+        <!-- Relleno por JS -->
+      </div>
+    </section>
+
+    <!-- =================== ACTIVIDAD RECIENTE =================== -->
+    <section class="dash-section">
+      <h2 class="dash-section-title"><i class="fas fa-clock-rotate-left"></i> Actividad reciente</h2>
+      <div class="dash-activity-list" id="dashActivityList">
+        <!-- Relleno por JS -->
+      </div>
+    </section>
+
+  </div>
+</div>
+
 <!-- PAGE: SUPPORT -->
 <div id="page-support" class="page page-inner">
   <div class="support-inner">
