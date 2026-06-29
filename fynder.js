@@ -655,7 +655,7 @@ function submitBizComment(bizId){
   const logged=!!localStorage.getItem('fynderLogged');
   const user=JSON.parse(localStorage.getItem('fynderUser')||'null');
   const name=logged&&user?user.name:'Visitante';
-  const initial=name.charAt(0).toUpperCase();
+  const initial=_getInitials(name);
   const userId=logged&&user?(user.email||user.name):null;
   const avatarPhoto=localStorage.getItem('fynderAvatarPhoto')||null;
   const avatarPreset=!avatarPhoto?(localStorage.getItem('fynderAvatarPreset')||null):null;
