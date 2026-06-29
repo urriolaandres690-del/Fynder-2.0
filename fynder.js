@@ -2396,3 +2396,79 @@ function createRipple(e) {
   btn.appendChild(ripple);
   setTimeout(() => ripple.remove(), 600);
 }
+
+
+// ============================================================
+// MENÚ MÓVIL – Drawer lateral
+// ============================================================
+
+function toggleMobileMenu() {
+  const drawer  = document.getElementById('mobileMenuDrawer');
+  const overlay = document.getElementById('mobileMenuOverlay');
+  const burger  = document.getElementById('navHamburger');
+  const isOpen  = drawer.classList.contains('open');
+  if (isOpen) {
+    closeMobileMenu();
+  } else {
+    drawer.classList.add('open');
+    overlay.classList.add('open');
+    burger.classList.add('open');
+    document.body.style.overflow = 'hidden';
+    updateMobileMenuActions();
+  }
+}
+
+function closeMobileMenu() {
+  document.getElementById('mobileMenuDrawer').classList.remove('open');
+  document.getElementById('mobileMenuOverlay').classList.remove('open');
+  const burger = document.getElementById('navHamburger');
+  if (burger) burger.classList.remove('open');
+  document.body.style.overflow = '';
+}
+
+// Cierra el drawer al cambiar de página
+const _origGoPage = goPage;
+// Wrap ya aplicado en goPage directamente — cerramos aquí
+function updateMobileMenuActions() {
+  const logged = !!localStorage.getItem('fynderLogged');
+  const user   = JSON.parse(localStorage.getItem('fynderUser') || 'null');
+  const el     = document.getElementById('mobileMenuActions');
+  if (!el) return;
+
+  if (logged && user) {
+    el.innerHTML = `
+      <div style="text-align:center;margin-bottom:8px;font-size:.8rem;color:var(--muted)">
+        Hola, <strong style="color:var(--fg)">${user.name}</strong>
+      </div>
+      <button class="mobile-action-register" onclick="closeMobileMenu();goPage('dashboard')">
+        <i class="fas fa-chart-line"></i> Mi panel
+      </button>
+      <button class="mobile-action-register" onclick="closeMobileMenu();goPage('profile')" style="background:var(--blue-light);color:#2F5BB7;border:none">
+        <i class="fas fa-user-circle"></i> Mi perfil
+      </button>
+      <button class="mobile-action-logout" onclick="closeMobileMenu();logout()">
+        <i class="fas fa-right-from-bracket"></i> Cerrar sesión
+      </button>`;
+  } else {
+    el.innerHTML = `
+      <button class="mobile-action-register" onclick="closeMobileMenu();goPage('business')">
+        <i class="fas fa-plus"></i> Registrar negocio
+      </button>
+      <button class="mobile-action-login" onclick="closeMobileMenu();goPage('login')">
+        <i class="fas fa-right-to-bracket"></i> Iniciar sesión
+      </button>`;
+  }
+}
+
+// Cerrar drawer al navegar
+document.addEventListener('click', e => {
+  const drawer = document.getElementById('mobileMenuDrawer');
+  if (drawer && drawer.classList.contains('open')) {
+    // Si el click fue en un botón de navegación dentro del drawer, ya se cierra por closeMobileMenu()
+  }
+});
+
+// Cerrar con Escape
+document.addEventListener('keydown', e => {
+  if (e.key === 'Escape') closeMobileMenu();
+});
