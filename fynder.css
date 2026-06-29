@@ -7448,7 +7448,7 @@ svg, svg *, path, polygon, circle, rect, line, polyline {
 /* ── Impacto en números ── */
 .fyl-impact-grid {
   display: grid;
-  grid-template-columns: 2fr 1fr 1fr 1fr 1fr 2fr;
+  grid-template-columns: repeat(3, 1fr);
   gap: 16px;
   align-items: stretch;
 }
