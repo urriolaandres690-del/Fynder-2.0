@@ -735,7 +735,8 @@ function buildHome(){
   if(loginCount) loginCount.textContent=`+${total} negocios registrados`;
 }
 
-// ── Modal de estadísticas ──
+// ── Estimación global de usuarios (coherente en toda la app) ──
+const USERS_EST = Math.max(1200, BUSINESSES.length * 14);
 function openStatModal(type){
   const total=BUSINESSES.length;
   const allRatings=BUSINESSES.map(b=>b.rating).filter(Boolean);
