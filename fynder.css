@@ -7824,3 +7824,7 @@ svg, svg *, path, polygon, circle, rect, line, polyline {
 
 /* Modales en dark: fondo del input de reseña */
 [data-theme="dark"] .bizCommentInput { background: rgba(255,255,255,.06) !important; color: var(--fg) !important; border-color: rgba(255,255,255,.1) !important; }
+
+/* ── Hero wave fill adaptable ── */
+.hero-wave-fill { fill: #F8FAFC; }
+[data-theme="dark"] .hero-wave-fill { fill: #0F172A; }
