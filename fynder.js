@@ -1031,11 +1031,12 @@ function applyAvatarDisplay(){
         avt.innerHTML = `<span style="font-size:1.9rem;line-height:1;pointer-events:none;user-select:none">${preset}</span>`;
         avt.style.background = '#F0FEFE';
     } else {
-        // Inicial del usuario con color elegido (o degradado por defecto)
-        const initial = user?.name ? user.name.charAt(0).toUpperCase() : '?';
+        // Iniciales del usuario con color elegido (o degradado por defecto)
+        const initials = user?.name ? _getInitials(user.name) : '?';
         const bg = initBg || 'linear-gradient(135deg,#67B8B4,#2F5BB7)';
         avt.style.background = bg;
-        avt.innerHTML = `<span style="font-size:1.6rem;font-weight:800;color:#fff;pointer-events:none;user-select:none;font-family:'Poppins',sans-serif">${initial}</span>`;
+        const fs = initials.length > 1 ? '1.3rem' : '1.6rem';
+        avt.innerHTML = `<span style="font-size:${fs};font-weight:800;color:#fff;pointer-events:none;user-select:none;font-family:'Poppins',sans-serif;letter-spacing:1px">${initials}</span>`;
     }
 }
 
