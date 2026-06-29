@@ -9656,3 +9656,28 @@ section.fyl-section-alt > *:last-child { padding-bottom: 72px; }
   background:rgba(103,184,180,.6); animation:about-particle 3s ease-out infinite;
 }
 .about-hero-v2-content { position:relative; z-index:2; max-width:720px; }
+
+.about-hero-badge-pill {
+  display:inline-flex; align-items:center; gap:8px;
+  padding:6px 16px; border-radius:99px;
+  background:rgba(103,184,180,.15); border:1px solid rgba(103,184,180,.3);
+  color:#67B8B4; font-size:.75rem; font-weight:700;
+  font-family:'Poppins',sans-serif; text-transform:uppercase; letter-spacing:.07em;
+  margin-bottom:20px;
+}
+.about-badge-dot {
+  width:7px; height:7px; border-radius:50%; background:#67B8B4;
+  animation:about-badge-pulse 2s infinite;
+}
+.about-hero-v2-title {
+  font-family:'Poppins',sans-serif; font-size:clamp(1.8rem,4vw,2.75rem);
+  font-weight:900; color:#fff; line-height:1.2; margin-bottom:16px;
+}
+.about-title-gradient {
+  background:linear-gradient(90deg,#67B8B4,#F4D35E,#67B8B4);
+  background-size:200% auto; -webkit-background-clip:text; background-clip:text;
+  -webkit-text-fill-color:transparent;
+  animation:about-shine 3s linear infinite;
+}
+.about-hero-v2-lead { color:rgba(255,255,255,.72); font-size:1rem; line-height:1.75; max-width:580px; margin:0 auto 28px; }
+.about-hero-v2-actions { display:flex; gap:14px; justify-content:center; flex-wrap:wrap; margin-bottom:40px; }
