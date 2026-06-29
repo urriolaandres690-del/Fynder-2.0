@@ -479,7 +479,7 @@ input, button, select, textarea {
 
     .bcard-hours svg { width: 11px; height: 11px; flex-shrink: 0; } 
 
-    .bcard-btn { width: 100%; padding: 10px; border-radius: 12px; border: none; cursor: pointer; font-family: 'Poppins',sans-serif; font-size: .75rem; font-weight: 600; background: var(--teal-light); color: var(--primary); transition: background .2s, color .2s; } 
+    .bcard-btn { width: 100%; padding: 10px; border-radius: 12px; border: none; cursor: pointer; font-family: 'Poppins',sans-serif; font-size: .75rem; font-weight: 600; background: var(--teal-light); color: var(--primary); transition: background .2s, color .2s; margin-top: auto; } 
 
     .bcard-btn:hover { background: var(--primary); color: #fff; } 
 
