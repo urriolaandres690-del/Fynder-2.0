@@ -7417,7 +7417,12 @@ section.fyl-section-alt > *:last-child { padding-bottom: 72px; }
   transform: translateY(-2px);
   box-shadow: 0 4px 14px rgba(0,0,0,.08);
 }
-[data-theme="dark"] .fyl-cat:hover { background: rgba(255,255,255,.06); }
+[data-theme="dark"] .fyl-cat:hover {
+  background: color-mix(in srgb, var(--cc, var(--primary)) 12%, #1E293B);
+  border-color: var(--cc, var(--primary));
+  color: var(--cc, var(--primary));
+  box-shadow: 0 4px 20px rgba(0,0,0,.25);
+}
 
 /* CTA final */
 .fyl-cta {
