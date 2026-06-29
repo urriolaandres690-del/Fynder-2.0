@@ -8861,3 +8861,44 @@ section.fyl-section-alt > *:last-child { padding-bottom: 72px; }
 }
 
 
+
+
+/* ---- Ofertas: badge en card y chip de filtro ---- */
+.bcard-badge.deal {
+  color: #fff;
+  bottom: 10px;
+  top: auto;
+  left: 10px;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+.bcard-badge.deal i { font-size: .6rem; }
+
+.bcard-deal-strip {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: .75rem;
+  font-weight: 600;
+  color: #EF4444;
+  margin: -4px 0 2px;
+  padding: 3px 8px;
+  background: #FEF2F2;
+  border-radius: 6px;
+  width: fit-content;
+}
+[data-theme="dark"] .bcard-deal-strip { background: rgba(239,68,68,.12); }
+
+.filter-chip-deals {
+  border-color: #EF4444 !important;
+  color: #EF4444 !important;
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+}
+.filter-chip-deals.active {
+  background: #EF4444 !important;
+  color: #fff !important;
+}
+.filter-chip-deals i { font-size: .75rem; }
