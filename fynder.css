@@ -9631,8 +9631,8 @@ section.fyl-section-alt > *:last-child { padding-bottom: 72px; }
 }
 
 /* En mobile el mismo botón muestra tres barras */
-.nav-icon-mobile  { display: none; }
-.nav-icon-desktop { display: block; }
+.nav-icon-mobile  { display: none !important; }
+.nav-icon-desktop { display: block !important; }
 
 @media (max-width: 768px) {
   .nav-icon-desktop { display: none !important; }
