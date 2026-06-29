@@ -9651,9 +9651,7 @@ section.fyl-section-alt > *:last-child { padding-bottom: 72px; }
 
 /* Page wrapper */
 .about-page-redesign { min-height:100vh; background:var(--bg); }
-.about-back-btn { position:absolute; top:90px; left:24px; z-index:10; }
-
-/* ---- HERO V2 ---- */
+.about-back-btn { position:absolute; top:90px; left:24px; z-index:10; }/* ---- HERO V2 ---- */
 .about-hero-v2 {
   position:relative; background:linear-gradient(135deg,#0F172A 0%,#1E293B 55%,#0A1628 100%);
   padding:100px 24px 0; text-align:center; overflow:hidden; min-height:520px;
