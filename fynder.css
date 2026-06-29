@@ -9185,6 +9185,9 @@ section.fyl-section-alt > *:last-child { padding-bottom: 72px; }
   /* Nombre de usuario más compacto */
   #userName { font-size: 13px !important; margin-right: 4px !important; max-width: 80px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 
+  /* Nav inner padding reducido */
+  .nav-inner { padding: 0 12px !important; }
+
   /* Hero ajustes */
   .hero { padding: 80px 16px 40px; }
   .hero h1 { font-size: 1.9rem; }
