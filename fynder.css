@@ -9634,7 +9634,7 @@ section.fyl-section-alt > *:last-child { padding-bottom: 72px; }
 .nav-icon-mobile  { display: none; }
 .nav-icon-desktop { display: block; }
 
-@media (max-width: 600px) {
+@media (max-width: 768px) {
   .nav-icon-desktop { display: none !important; }
   .nav-icon-mobile  { display: block !important; font-size: 1.1rem; }
   .nav-dots-btn {
