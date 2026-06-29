@@ -228,6 +228,13 @@ input, button, select, textarea {
         /* Evita que el fondo blanco del body se vea detrás del navbar transparente sobre el hero */
         body:has(#page-home.active) {
           background: linear-gradient(135deg, #1E8F8B 0%, #67B8B4 45%, #2F5BB7 100%);
+          background-attachment: fixed;
+        }
+
+        /* En modo oscuro, mantener el fondo oscuro */
+        [data-theme="dark"] body:has(#page-home.active) {
+          background: linear-gradient(135deg, #0F172A 0%, #1E293B 60%, #0F172A 100%);
+          background-attachment: fixed;
         }
 
         #page-login,
