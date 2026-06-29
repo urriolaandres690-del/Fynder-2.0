@@ -9756,7 +9756,7 @@ section.fyl-section-alt > *:last-child { padding-bottom: 72px; }
 
 /* ---- Body sections ---- */
 .about-body { background:var(--bg); }
-.about-section { max-width:1060px; margin:0 auto; padding:64px 24px; }
+.about-section { max-width:1060px; margin:0 auto; padding:52px 24px; }
 .about-section-label {
   display:inline-flex; align-items:center; gap:7px; padding:5px 14px;
   background:var(--teal-light); color:var(--primary); border-radius:99px;
