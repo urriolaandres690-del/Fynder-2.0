@@ -366,7 +366,7 @@ function updateNav(){
     if(fc) fc.textContent=`${favorites.size} negocio${favorites.size!==1?'s':''} guardado${favorites.size!==1?'s':''}`;
 
     // Sincronizar drawer móvil con estado de sesión
-    updateMobileMenuActions();
+    if (typeof updateMobileMenuActions === 'function') updateMobileMenuActions();
 }
 
 function goDirectoryQuery(q,cat=''){document.getElementById('dirSearch').value=q;dirActiveCategory=cat;goPage('directory');} 
