@@ -7689,3 +7689,138 @@ svg, svg *, path, polygon, circle, rect, line, polyline {
   .fyl-compare-col    { padding: 24px 20px; }
   .fyl-for-card       { padding: 28px 22px; }
 }
+
+/* ══════════════════════════════════════════════
+   ICON COLOR UTILITY CLASSES
+   Reemplaza inline styles para que dark mode funcione
+   ══════════════════════════════════════════════ */
+.icon-teal   { background: #E6F5F4; color: #67B8B4; }
+.icon-blue   { background: #EEF2FF; color: #2F5BB7; }
+.icon-green  { background: #ECFDF5; color: #10B981; }
+.icon-orange { background: #FFF7ED; color: #F97316; }
+.icon-yellow { background: #FEF9EC; color: #F4D35E; }
+.icon-purple { background: #FDF4FF; color: #8B5CF6; }
+.icon-red    { background: #FEF2F2; color: #EF4444; }
+.icon-pink   { background: #FDF2F8; color: #EC4899; }
+.icon-gray   { background: #F3F4F6; color: #6B7280; }
+
+[data-theme="dark"] .icon-teal   { background: rgba(103,184,180,.15); color: #67B8B4; }
+[data-theme="dark"] .icon-blue   { background: rgba(47,91,183,.15);   color: #93b4f5; }
+[data-theme="dark"] .icon-green  { background: rgba(16,185,129,.15);  color: #34d399; }
+[data-theme="dark"] .icon-orange { background: rgba(249,115,22,.15);  color: #fb923c; }
+[data-theme="dark"] .icon-yellow { background: rgba(244,211,94,.15);  color: #fcd34d; }
+[data-theme="dark"] .icon-purple { background: rgba(139,92,246,.15);  color: #a78bfa; }
+[data-theme="dark"] .icon-red    { background: rgba(239,68,68,.15);   color: #f87171; }
+[data-theme="dark"] .icon-pink   { background: rgba(236,72,153,.15);  color: #f472b6; }
+[data-theme="dark"] .icon-gray   { background: rgba(107,114,128,.15); color: #9ca3af; }
+
+/* ══════════════════════════════════════════════
+   GLOBAL DARK MODE FIXES – cosas faltantes
+   ══════════════════════════════════════════════ */
+
+/* Botón ghost hover */
+[data-theme="dark"] .btn-ghost:hover { background: rgba(255,255,255,.08); color: var(--fg); }
+
+/* Favorito en cards */
+[data-theme="dark"] .bcard-fav { background: rgba(15,23,42,.55); border-color: rgba(255,255,255,.08); }
+
+/* Modal: logo y mapa */
+[data-theme="dark"] .modal-logo        { background: var(--card); border-color: rgba(255,255,255,.1); }
+[data-theme="dark"] .modal-map-ext-link { background: rgba(255,255,255,.06); color: var(--fg); border-color: rgba(255,255,255,.1); }
+[data-theme="dark"] .modal-map-ext-link:hover { background: rgba(103,184,180,.15); color: var(--primary); }
+
+/* Login/Register back-home btn */
+[data-theme="dark"] .back-home         { background: rgba(255,255,255,.08) !important; color: rgba(255,255,255,.85) !important; }
+[data-theme="dark"] .back-home:hover   { background: rgba(255,255,255,.14) !important; color: #fff !important; }
+
+/* Favoritos empty state */
+[data-theme="dark"] .fav-empty-icon    { background: rgba(239,68,68,.12) !important; }
+
+/* Business form footer bar */
+[data-theme="dark"] .biz-reg-submit-wrap { background: var(--card); border-top-color: rgba(255,255,255,.07); }
+
+/* Profile: chips, badges, stats, danger btn, status dropdown */
+[data-theme="dark"] .profile-action-chip {
+  background: rgba(255,255,255,.06);
+  border-color: rgba(255,255,255,.1);
+  color: var(--fg);
+}
+[data-theme="dark"] .profile-action-chip:hover { background: rgba(103,184,180,.12); color: var(--primary); }
+[data-theme="dark"] .profile-badge-city        { background: rgba(103,184,180,.12); color: var(--primary); }
+[data-theme="dark"] .profile-stat              { background: rgba(255,255,255,.04); border-color: rgba(255,255,255,.07); }
+[data-theme="dark"] .profile-stat-val          { color: var(--fg); }
+[data-theme="dark"] .profile-stat-lbl          { color: var(--muted); }
+[data-theme="dark"] .profile-status-card       { background: var(--card); border-color: rgba(255,255,255,.07); }
+[data-theme="dark"] .profile-danger-btn        { background: rgba(239,68,68,.1); border-color: rgba(239,68,68,.25); color: #f87171; }
+[data-theme="dark"] .profile-danger-btn:hover  { background: rgba(239,68,68,.2); }
+[data-theme="dark"] .status-dropdown           { background: var(--card); border-color: rgba(255,255,255,.1); box-shadow: 0 8px 32px rgba(0,0,0,.4); }
+[data-theme="dark"] .status-dropdown-item      { color: var(--fg); }
+[data-theme="dark"] .status-dropdown-item:hover { background: rgba(255,255,255,.06); }
+
+/* Hero wave SVG fill – usa CSS variable para que cambie con el tema */
+[data-theme="dark"] .hero-wave path { fill: var(--bg) !important; }
+[data-theme="dark"] .fyl-hero-wave path { fill: var(--fyl-bg) !important; }
+
+/* Sections con background inline en home */
+[data-theme="dark"] .section[style*="background:#F8FAFC"],
+[data-theme="dark"] .section[style*="background:#F0FEFE"] { background: var(--bg) !important; }
+
+/* Blog: post body paragraphs */
+[data-theme="dark"] .blog-featured-body { background: var(--card); }
+[data-theme="dark"] .blog-inner         { background: var(--bg); }
+
+/* Article body wrap */
+[data-theme="dark"] .article-body-wrap     { background: var(--bg); }
+[data-theme="dark"] .article-comments-section { background: var(--bg); }
+[data-theme="dark"] .article-meta-bar      { background: var(--bg); }
+[data-theme="dark"] .article-hero-overlay  { background: linear-gradient(to bottom, rgba(15,23,42,.3), rgba(15,23,42,.8)); }
+
+/* Support channel icons (los inline styles no se pueden override así, pero sí con !important en clases derivadas) */
+[data-theme="dark"] .support-channel-icon { background: rgba(103,184,180,.15) !important; color: var(--primary) !important; }
+
+/* Legal section icons */
+[data-theme="dark"] .legal-section-icon   { background: rgba(255,255,255,.06) !important; }
+
+/* fyl-section-alt en dark */
+[data-theme="dark"] .fyl-section-alt  { background: #1E293B; }
+[data-theme="dark"] #page-fynder      { background: var(--bg) !important; }
+[data-theme="dark"] .fyl-impact-card  { background: var(--card); border-color: rgba(255,255,255,.07); }
+[data-theme="dark"] .fyl-impact-lbl   { color: var(--fg); }
+[data-theme="dark"] .fyl-impact-sub   { color: var(--muted); }
+[data-theme="dark"] .fyl-compare-no   { background: rgba(239,68,68,.08); }
+[data-theme="dark"] .fyl-compare-no .fyl-compare-list li { color: #94A3B8; }
+[data-theme="dark"] .fyl-testi        { background: var(--card); border-color: rgba(255,255,255,.07); }
+[data-theme="dark"] .fyl-testi-text   { color: var(--muted); }
+[data-theme="dark"] .fyl-testi-author strong { color: var(--fg); }
+[data-theme="dark"] .fyl-testi-author span   { color: var(--muted); }
+[data-theme="dark"] .fyl-for-card     { background: var(--card); border-color: rgba(255,255,255,.07); }
+[data-theme="dark"] .fyl-for-card h3  { color: var(--fg); }
+[data-theme="dark"] .fyl-for-list li  { color: var(--muted); }
+[data-theme="dark"] .fyl-faq-item     { background: var(--card); border-color: rgba(255,255,255,.07); }
+[data-theme="dark"] .fyl-faq-item[open] { border-color: var(--primary); }
+[data-theme="dark"] .fyl-faq-item summary { color: var(--fg); }
+[data-theme="dark"] .fyl-faq-item p   { color: var(--muted); }
+[data-theme="dark"] .fyl-feature      { background: var(--card); border-color: rgba(255,255,255,.07); }
+[data-theme="dark"] .fyl-feature h4   { color: var(--fg); }
+[data-theme="dark"] .fyl-feature p    { color: var(--muted); }
+[data-theme="dark"] .fyl-step-body h3 { color: var(--fg); }
+[data-theme="dark"] .fyl-step-body p  { color: var(--muted); }
+[data-theme="dark"] .fyl-section-title { color: var(--fg); }
+[data-theme="dark"] .fyl-section-lead  { color: var(--muted); }
+[data-theme="dark"] .fyl-cat          { background: var(--card); border-color: rgba(255,255,255,.08); color: var(--fg); }
+
+/* About nuevas secciones – origin, team, impact */
+[data-theme="dark"] .about-origin-text h2 { color: var(--fg); }
+[data-theme="dark"] .about-origin-text p  { color: var(--muted); }
+[data-theme="dark"] .about-impact-title   { color: var(--fg); }
+[data-theme="dark"] .about-impact-item    { background: var(--card); border-color: rgba(255,255,255,.07); }
+[data-theme="dark"] .about-impact-item p  { color: var(--muted); }
+[data-theme="dark"] .about-team-banner    { background: var(--card); border-color: rgba(255,255,255,.07); }
+[data-theme="dark"] .about-team-banner-text h2 { color: var(--fg); }
+[data-theme="dark"] .about-team-banner-text p  { color: var(--muted); }
+
+/* Write page: bg de página */
+[data-theme="dark"] #page-write { background: var(--bg) !important; }
+
+/* Modales en dark: fondo del input de reseña */
+[data-theme="dark"] .bizCommentInput { background: rgba(255,255,255,.06) !important; color: var(--fg) !important; border-color: rgba(255,255,255,.1) !important; }
