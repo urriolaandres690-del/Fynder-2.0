@@ -6397,8 +6397,8 @@ label.avatar-option-btn:hover { background: var(--teal-light); border-color: rgb
 .share-opt-btn:hover { transform: translateY(-2px); box-shadow: var(--shadow-sm); }
 .share-opt-wa  { border-color: #25D366; color: #25D366; background: #f0fff4; }
 .share-opt-wa:hover  { background: #25D366; color: #fff; }
-.share-opt-tg  { border-color: #229ED9; color: #229ED9; background: #f0f8ff; }
-.share-opt-tg:hover  { background: #229ED9; color: #fff; }
+.share-opt-tg  { border-color: #E1306C; color: #E1306C; background: rgba(225,48,108,.06); }
+.share-opt-tg:hover  { background: linear-gradient(135deg,#F58529,#DD2A7B,#8134AF); color: #fff; border-color: transparent; }
 .share-opt-copy { border-color: var(--primary); color: var(--primary); background: var(--teal-light); }
 .share-opt-copy:hover { background: var(--primary); color: #fff; }
 .share-panel-close {
