@@ -9770,3 +9770,45 @@ section.fyl-section-alt > *:last-child { padding-bottom: 72px; }
   font-size:.85rem; color:rgba(255,255,255,.5); font-style:italic;
   border-top:1px solid rgba(255,255,255,.08); padding-top:14px; margin-top:4px;
 }
+
+/* ---- MVV Cards con brillo ---- */
+.about-mvv-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:20px; }
+@media(max-width:900px){.about-mvv-grid{grid-template-columns:1fr 1fr;}}
+@media(max-width:560px){.about-mvv-grid{grid-template-columns:1fr;}}
+.about-mvv-card {
+  position:relative; border-radius:22px; padding:32px 24px; overflow:hidden;
+  border:1.5px solid var(--border); transition:transform .28s cubic-bezier(.34,1.56,.64,1), box-shadow .28s;
+  cursor:default;
+}
+.about-mvv-card:hover { transform:translateY(-8px) scale(1.02); }
+.about-mvv-teal { background:linear-gradient(135deg,rgba(103,184,180,.12),rgba(103,184,180,.04)); }
+.about-mvv-teal:hover { box-shadow:0 20px 48px rgba(103,184,180,.2); border-color:rgba(103,184,180,.4); }
+.about-mvv-blue { background:linear-gradient(135deg,rgba(47,91,183,.12),rgba(47,91,183,.04)); }
+.about-mvv-blue:hover { box-shadow:0 20px 48px rgba(47,91,183,.2); border-color:rgba(47,91,183,.35); }
+.about-mvv-yellow { background:linear-gradient(135deg,rgba(244,211,94,.12),rgba(244,211,94,.04)); }
+.about-mvv-yellow:hover { box-shadow:0 20px 48px rgba(244,211,94,.2); border-color:rgba(244,211,94,.35); }
+.about-mvv-glow {
+  position:absolute; top:-20px; left:50%; transform:translateX(-50%);
+  width:150px; height:80px; border-radius:50%;
+  pointer-events:none; opacity:0; transition:opacity .3s;
+}
+.about-mvv-teal  .about-mvv-glow { background:radial-gradient(ellipse,rgba(103,184,180,.35) 0%,transparent 70%); }
+.about-mvv-blue  .about-mvv-glow { background:radial-gradient(ellipse,rgba(47,91,183,.35) 0%,transparent 70%); }
+.about-mvv-yellow .about-mvv-glow { background:radial-gradient(ellipse,rgba(244,211,94,.35) 0%,transparent 70%); }
+.about-mvv-card:hover .about-mvv-glow { opacity:1; }
+.about-mvv-icon {
+  width:52px; height:52px; border-radius:16px; display:flex; align-items:center;
+  justify-content:center; font-size:1.2rem; margin-bottom:18px; transition:transform .3s;
+}
+.about-mvv-teal  .about-mvv-icon { background:rgba(103,184,180,.2); color:#67B8B4; }
+.about-mvv-blue  .about-mvv-icon { background:rgba(47,91,183,.2); color:#2F5BB7; }
+.about-mvv-yellow .about-mvv-icon { background:rgba(244,211,94,.2); color:#d4a900; }
+.about-mvv-card:hover .about-mvv-icon { transform:scale(1.15) rotate(-5deg); }
+.about-mvv-card h3 { font-family:'Poppins',sans-serif; font-size:1.05rem; font-weight:800; color:var(--fg); margin-bottom:10px; }
+.about-mvv-card p { font-size:.875rem; color:var(--muted); line-height:1.7; margin:0; }
+.about-mvv-shine {
+  position:absolute; top:0; left:-100%; width:50%; height:100%;
+  background:linear-gradient(105deg,transparent 40%,rgba(255,255,255,.07) 50%,transparent 60%);
+  transition:left .5s ease; pointer-events:none;
+}
+.about-mvv-card:hover .about-mvv-shine { left:200%; }
