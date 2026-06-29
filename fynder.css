@@ -7237,13 +7237,14 @@ svg, svg *, path, polygon, circle, rect, line, polyline {
 
 /* BODY sections */
 .fyl-body { max-width: 1060px; margin: 0 auto; padding: 0 24px 80px; }
-.fyl-section { padding: 64px 0; }
+.fyl-section { padding: 72px 0; border-bottom: 1px solid var(--border); }
+.fyl-section:last-child { border-bottom: none; }
 .fyl-section-alt {
-  background: #fff;
-  margin: 0 -24px;
-  padding: 64px 24px;
+  background: transparent;
+  padding: 72px 0;
+  border-bottom: 1px solid var(--border);
 }
-[data-theme="dark"] .fyl-section-alt { background: #1E293B; }
+.fyl-section-alt:last-child { border-bottom: none; }
 
 .fyl-section-label {
   display: inline-flex; align-items: center; gap: 7px;
