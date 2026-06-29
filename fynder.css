@@ -4100,9 +4100,9 @@ body{
 }
 
 /* Dark mode – nuevas secciones about */
-[data-theme="dark"] .about-origin       { background: var(--card); border-color: rgba(255,255,255,.07); }
-[data-theme="dark"] .about-origin-text h2 { color: var(--fg); }
-[data-theme="dark"] .about-origin-text p  { color: var(--muted); }
+[data-theme="dark"] .about-origin       { background: linear-gradient(135deg, #0a0f1e 0%, #0d1a2e 100%); }
+[data-theme="dark"] .about-origin-text h2 { color: #fff; }
+[data-theme="dark"] .about-origin-text p  { color: rgba(255,255,255,.65); }
 [data-theme="dark"] .about-impact-item    { background: var(--card); border-color: rgba(255,255,255,.07); }
 [data-theme="dark"] .about-impact-title   { color: var(--fg); }
 [data-theme="dark"] .about-impact-item p  { color: var(--muted); }
