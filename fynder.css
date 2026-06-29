@@ -9550,3 +9550,56 @@ section.fyl-section-alt > *:last-child { padding-bottom: 72px; }
 .mobile-menu-nav-small i { color: var(--muted) !important; font-size: .8rem !important; }
 .mobile-menu-nav-small:hover { color: var(--primary) !important; }
 .mobile-menu-nav-small:hover i { color: var(--primary) !important; }
+
+
+/* ---- Botón tres puntitos (desktop) / hamburguesa (mobile) ---- */
+.nav-dots-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: none;
+  border: 1.5px solid var(--border);
+  cursor: pointer;
+  color: var(--muted);
+  font-size: 1rem;
+  transition: background .18s, color .18s, border-color .18s;
+  flex-shrink: 0;
+}
+.nav-dots-btn:hover {
+  background: var(--teal-light);
+  color: var(--primary);
+  border-color: var(--primary);
+}
+[data-theme="dark"] .nav-dots-btn {
+  border-color: rgba(255,255,255,.12);
+  color: var(--muted);
+}
+[data-theme="dark"] .nav-dots-btn:hover {
+  background: rgba(103,184,180,.12);
+  color: var(--primary);
+  border-color: var(--primary);
+}
+.nav-dots-btn.open {
+  background: var(--teal-light);
+  color: var(--primary);
+  border-color: var(--primary);
+}
+
+/* En mobile el mismo botón muestra tres barras */
+@media (max-width: 600px) {
+  .nav-dots-btn {
+    border-radius: 10px;
+    width: 38px;
+    height: 38px;
+  }
+  .nav-dots-btn i { display: none; }
+  .nav-dots-btn::before,
+  .nav-dots-btn::after,
+  .nav-dots-btn .bar { display: block; }
+}
+
+/* Quitar el nav-hamburger que ya no existe */
+.nav-hamburger { display: none !important; }
