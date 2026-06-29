@@ -10052,7 +10052,7 @@ section.fyl-section-alt > *:last-child { padding-bottom: 72px; }
 .about-team-av:hover {
   transform: translateY(-7px) scale(1.18);
   z-index: 10;
-  box-shadow: 0 0 18px 4px var(--av-glow, rgba(103,184,180,.6)), 0 6px 20px rgba(0,0,0,.3);
+  filter: drop-shadow(0 0 10px var(--av-glow, rgba(103,184,180,.7))) drop-shadow(0 0 20px var(--av-glow, rgba(103,184,180,.4))) !important;
 }
 
 .about-team-av span {
