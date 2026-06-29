@@ -311,6 +311,7 @@ function goPage(p){
     if(p==='favorites') renderFavorites();
     if(p==='profile')   loadProfile();
     if(p==='dashboard') loadDashboard();
+    if(p==='fynder')    initFynderAnimations();
 }
 
 function goBack(){
