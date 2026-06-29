@@ -5776,6 +5776,9 @@ label.avatar-option-btn:hover { background: var(--teal-light); border-color: rgb
   color: var(--primary);
 }
 
+[data-theme="dark"] .plan-icon-free { background: rgba(103,184,180,.15); color: var(--primary); }
+[data-theme="dark"] .plan-icon-biz  { background: rgba(47,91,183,.15);   color: #93b4f5; }
+
 /* Tabla comparativa */
 [data-theme="dark"] .plans-compare-title { color: var(--fg); }
 [data-theme="dark"] .plans-table-wrap {
