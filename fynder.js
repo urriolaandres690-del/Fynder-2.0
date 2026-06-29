@@ -1704,7 +1704,7 @@ function _getUserAvatarHTML(size = 36) {
   const initBg  = localStorage.getItem('fynderAvatarInitialBg');
   const user    = JSON.parse(localStorage.getItem('fynderUser') || 'null');
   const name    = user?.name || 'Visitante';
-  const initial = name.charAt(0).toUpperCase();
+  const initials = _getInitials(name);
 
   const base = `width:${size}px;height:${size}px;border-radius:50%;flex-shrink:0;overflow:hidden;display:flex;align-items:center;justify-content:center;`;
   if(stored) {
@@ -1713,7 +1713,8 @@ function _getUserAvatarHTML(size = 36) {
     return `<div style="${base}background:#F0FEFE;font-size:${size*0.55}px;line-height:1">${preset}</div>`;
   } else {
     const bg = initBg || 'linear-gradient(135deg,#67B8B4,#2F5BB7)';
-    return `<div style="${base}background:${bg};font-weight:700;font-size:${size*0.45}px;color:#fff;font-family:'Poppins',sans-serif">${initial}</div>`;
+    const fs = initials.length > 1 ? size*0.38 : size*0.45;
+    return `<div style="${base}background:${bg};font-weight:700;font-size:${fs}px;color:#fff;font-family:'Poppins',sans-serif;letter-spacing:.5px">${initials}</div>`;
   }
 }
 
