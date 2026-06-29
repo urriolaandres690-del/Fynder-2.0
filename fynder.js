@@ -599,9 +599,10 @@ function _showSharePanel(b, shareText, shareUrl){
 function _shareTo(platform, encodedText){
   const urls={
     wa: `https://wa.me/?text=${encodedText}`,
-    tg: `https://t.me/share/url?url=${encodeURIComponent(window.location.href)}&text=${encodedText}`
+    ig: `https://www.instagram.com/`
   };
   window.open(urls[platform],'_blank','noopener');
+  if(platform==='ig') showToast('Copia el texto y compártelo en Instagram 📸');
 }
 
 function _shareCopy(encodedText){
