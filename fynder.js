@@ -743,7 +743,7 @@ function openStatModal(type){
   const avgRating=(allRatings.reduce((a,b)=>a+b,0)/allRatings.length).toFixed(1);
   const highSat=BUSINESSES.filter(b=>b.rating>=4.0).length;
   const satPct=Math.round((highSat/total)*100);
-  const usersEst=Math.max(2400,total*18);
+  const usersEst=USERS_EST;
   const byCat=CATEGORIES.map(c=>({
     label:c.label,color:c.color,bg:c.bg,
     count:BUSINESSES.filter(b=>b.categoryId===c.id).length
