@@ -9533,3 +9533,20 @@ section.fyl-section-alt > *:last-child { padding-bottom: 72px; }
   color: #EF4444;
 }
 .mobile-action-logout:hover { background: rgba(239,68,68,.08); }
+
+
+/* ---- Mobile drawer: separador y links legales ---- */
+.mobile-menu-divider {
+  height: 1px;
+  background: var(--border);
+  margin: 6px 8px;
+}
+
+.mobile-menu-nav-small {
+  font-size: .8rem !important;
+  color: var(--muted) !important;
+  padding: 10px 14px !important;
+}
+.mobile-menu-nav-small i { color: var(--muted) !important; font-size: .8rem !important; }
+.mobile-menu-nav-small:hover { color: var(--primary) !important; }
+.mobile-menu-nav-small:hover i { color: var(--primary) !important; }
