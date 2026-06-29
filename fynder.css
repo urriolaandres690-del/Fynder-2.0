@@ -9659,7 +9659,7 @@ section.fyl-section-alt > *:last-child { padding-bottom: 72px; }
   background: #fff;
   border-top: 1px solid var(--border);
   border-bottom: 1px solid var(--border);
-  padding: 48px 24px !important;
+  padding: 32px 24px !important;
 }
 [data-theme="dark"] .about-section-alt-bg {
   background: #1E293B !important;
