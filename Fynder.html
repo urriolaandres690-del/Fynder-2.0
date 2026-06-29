@@ -92,13 +92,39 @@
         </span>
       </button>
 
+      <!-- Menú hamburguesa (solo mobile) -->
+      <button class="nav-hamburger" id="navHamburger" onclick="toggleMobileMenu()" aria-label="Menú">
+        <span></span><span></span><span></span>
+      </button>
+
 </div>
 
-    </div> 
+    </div>
+  </div>
+</nav>
 
-  </div> 
-
-</nav> 
+<!-- Drawer móvil -->
+<div class="mobile-menu-overlay" id="mobileMenuOverlay" onclick="closeMobileMenu()"></div>
+<div class="mobile-menu-drawer" id="mobileMenuDrawer">
+  <div class="mobile-menu-header">
+    <button class="logo mobile-menu-logo" onclick="closeMobileMenu();goPage('home')">
+      <div class="logo-icon"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="white" stroke="white" stroke-width="2"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg></div>
+      <span class="logo-text"><span class="fyn">FYN</span><span class="der">DER</span></span>
+    </button>
+    <button class="mobile-menu-close" onclick="closeMobileMenu()"><i class="fas fa-times"></i></button>
+  </div>
+  <nav class="mobile-menu-nav">
+    <button onclick="closeMobileMenu();goPage('home')"><i class="fas fa-house"></i> Inicio</button>
+    <button onclick="closeMobileMenu();goPage('directory')"><i class="fas fa-compass"></i> Directorio</button>
+    <button onclick="closeMobileMenu();goPage('favorites')"><i class="fas fa-heart"></i> Guardados</button>
+    <button onclick="closeMobileMenu();goPage('plans')"><i class="fas fa-gem"></i> Planes</button>
+    <button onclick="closeMobileMenu();goPage('about')"><i class="fas fa-circle-info"></i> Sobre Fynder</button>
+    <button onclick="closeMobileMenu();goPage('support')"><i class="fas fa-headset"></i> Soporte</button>
+  </nav>
+  <div class="mobile-menu-actions" id="mobileMenuActions">
+    <!-- Rellenado por JS -->
+  </div>
+</div> 
 
 <!-- PAGE: HOME --> 
 
