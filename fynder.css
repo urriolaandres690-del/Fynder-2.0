@@ -9627,3 +9627,32 @@ section.fyl-section-alt > *:last-child { padding-bottom: 72px; }
 @keyframes about-ring-spin { from{transform:rotate(0deg)} to{transform:rotate(360deg)} }
 @keyframes about-count-up { from{opacity:0;transform:translateY(12px)} to{opacity:1;transform:translateY(0)} }
 @keyframes about-particle { 0%{transform:translateY(0) scale(1);opacity:.7} 100%{transform:translateY(-80px) scale(0);opacity:0} }
+
+/* Page wrapper */
+.about-page-redesign { min-height:100vh; background:var(--bg); }
+.about-back-btn { position:absolute; top:90px; left:24px; z-index:10; }
+
+/* ---- HERO V2 ---- */
+.about-hero-v2 {
+  position:relative; background:linear-gradient(135deg,#0F172A 0%,#1E293B 55%,#0A1628 100%);
+  padding:100px 24px 0; text-align:center; overflow:hidden; min-height:520px;
+  display:flex; flex-direction:column; align-items:center;
+}
+.about-hero-glow1 {
+  position:absolute; top:-80px; left:50%; transform:translateX(-50%);
+  width:600px; height:280px;
+  background:radial-gradient(ellipse,rgba(103,184,180,.28) 0%,transparent 70%);
+  animation:about-glow-pulse 4s ease-in-out infinite; pointer-events:none;
+}
+.about-hero-glow2 {
+  position:absolute; bottom:60px; right:-100px;
+  width:300px; height:300px;
+  background:radial-gradient(ellipse,rgba(47,91,183,.2) 0%,transparent 70%);
+  animation:about-glow-pulse2 5s ease-in-out infinite reverse; pointer-events:none;
+}
+.about-hero-particles { position:absolute; inset:0; pointer-events:none; overflow:hidden; }
+.about-particle {
+  position:absolute; width:4px; height:4px; border-radius:50%;
+  background:rgba(103,184,180,.6); animation:about-particle 3s ease-out infinite;
+}
+.about-hero-v2-content { position:relative; z-index:2; max-width:720px; }
