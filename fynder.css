@@ -7697,12 +7697,13 @@ svg, svg *, path, polygon, circle, rect, line, polyline {
 
 /* Responsive nuevas secciones */
 @media (max-width: 900px) {
-  .fyl-impact-grid    { grid-template-columns: repeat(3,1fr); }
+  .fyl-impact-grid    { grid-template-columns: repeat(2,1fr); }
   .fyl-compare        { grid-template-columns: 1fr; }
   .fyl-compare-vs     { display: none; }
   .fyl-testimonials   { grid-template-columns: 1fr; }
   .fyl-testi-featured { transform: none; }
   .fyl-for-grid       { grid-template-columns: 1fr; }
+  .fyl-steps          { grid-template-columns: 1fr; }
 }
 @media (max-width: 540px) {
   .fyl-impact-grid    { grid-template-columns: 1fr 1fr; }
