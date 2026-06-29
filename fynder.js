@@ -314,6 +314,7 @@ function goPage(p){
     if(p==='profile')   loadProfile();
     if(p==='dashboard') loadDashboard();
     if(p==='fynder')    initFynderAnimations();
+    if(p==='about')     initAboutPage();
 }
 
 function goBack(){
