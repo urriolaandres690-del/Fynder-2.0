@@ -2461,29 +2461,28 @@
     </div>
 
     <!-- Cards de planes -->
-    <div class="plans-grid">
+    <div class="plans-grid plans-grid-4">
 
-      <!-- Plan Gratis -->
+      <!-- Plan Básico / Gratis -->
       <div class="plan-card">
         <div class="plan-badge plan-badge-free">Gratis</div>
-        <div class="plan-icon plan-icon-free">
-          <i class="fas fa-store"></i>
-        </div>
+        <div class="plan-icon plan-icon-free"><i class="fas fa-store"></i></div>
         <h2 class="plan-name">Básico</h2>
-        <p class="plan-desc">Todo lo que necesitas para empezar y llegar a clientes locales.</p>
+        <p class="plan-desc">Todo lo necesario para existir en el directorio y ser encontrado por clientes locales.</p>
         <div class="plan-price">
           <span class="plan-price-amount">$0</span>
           <span class="plan-price-period">/ para siempre</span>
         </div>
         <ul class="plan-features">
-          <li><i class="fas fa-check"></i> Perfil de negocio en el directorio</li>
-          <li><i class="fas fa-check"></i> Información de contacto y horarios</li>
+          <li><i class="fas fa-check"></i> Perfil en el directorio</li>
+          <li><i class="fas fa-check"></i> Contacto, horarios y dirección</li>
           <li><i class="fas fa-check"></i> Apareces en búsquedas y categorías</li>
-          <li><i class="fas fa-check"></i> Los usuarios pueden guardar tu negocio</li>
+          <li><i class="fas fa-check"></i> 1 foto de portada</li>
           <li><i class="fas fa-check"></i> Redes sociales vinculadas</li>
-          <li class="plan-feature-off"><i class="fas fa-times"></i> Posición destacada en resultados</li>
+          <li><i class="fas fa-check"></i> Usuarios pueden guardarte</li>
+          <li class="plan-feature-off"><i class="fas fa-times"></i> Posición destacada</li>
           <li class="plan-feature-off"><i class="fas fa-times"></i> Insignia "Verificado"</li>
-          <li class="plan-feature-off"><i class="fas fa-times"></i> Estadísticas de visitas</li>
+          <li class="plan-feature-off"><i class="fas fa-times"></i> Estadísticas</li>
         </ul>
         <button class="plan-btn plan-btn-outline" onclick="goPage('business')">
           <i class="fas fa-rocket"></i> Empezar gratis
@@ -2494,11 +2493,9 @@
       <div class="plan-card plan-card-pro">
         <div class="plan-popular-ribbon">Más popular</div>
         <div class="plan-badge plan-badge-pro">Pro</div>
-        <div class="plan-icon" style="background:rgba(255,255,255,.18);color:#F4D35E">
-          <i class="fas fa-bolt"></i>
-        </div>
+        <div class="plan-icon" style="background:rgba(255,255,255,.18);color:#F4D35E"><i class="fas fa-bolt"></i></div>
         <h2 class="plan-name">Pro</h2>
-        <p class="plan-desc">Mayor visibilidad y herramientas para crecer tu negocio local.</p>
+        <p class="plan-desc">Más visibilidad, estadísticas y herramientas para emprendedores que quieren crecer.</p>
         <div class="plan-price">
           <span class="plan-price-amount">$9.99</span>
           <span class="plan-price-period">/ mes</span>
@@ -2506,12 +2503,13 @@
         <ul class="plan-features plan-features-pro">
           <li><i class="fas fa-check"></i> Todo lo del plan Básico</li>
           <li><i class="fas fa-check"></i> Posición destacada en resultados</li>
-          <li><i class="fas fa-check"></i> Insignia "Verificado" en tu perfil</li>
+          <li><i class="fas fa-check"></i> Insignia "Verificado"</li>
           <li><i class="fas fa-check"></i> Estadísticas de visitas y guardados</li>
           <li><i class="fas fa-check"></i> Galería de hasta 10 fotos</li>
-          <li><i class="fas fa-check"></i> Aparecer en sección "Destacados"</li>
-          <li><i class="fas fa-check"></i> Soporte prioritario por correo</li>
-          <li><i class="fas fa-check"></i> Sin anuncios en tu perfil</li>
+          <li><i class="fas fa-check"></i> Sección "Destacados" del inicio</li>
+          <li><i class="fas fa-check"></i> Responder reseñas públicas</li>
+          <li><i class="fas fa-check"></i> Soporte por correo (24 h)</li>
+          <li class="plan-feature-off" style="color:rgba(255,255,255,.4)"><i class="fas fa-times"></i> Sucursales múltiples</li>
         </ul>
         <button class="plan-btn plan-btn-pro" onclick="goPage('support')">
           <i class="fas fa-paper-plane"></i> Contactar para activar
@@ -2521,27 +2519,52 @@
       <!-- Plan Business -->
       <div class="plan-card">
         <div class="plan-badge plan-badge-biz">Business</div>
-        <div class="plan-icon plan-icon-biz">
-          <i class="fas fa-building"></i>
-        </div>
+        <div class="plan-icon plan-icon-biz"><i class="fas fa-building"></i></div>
         <h2 class="plan-name">Business</h2>
-        <p class="plan-desc">Para cadenas, franquicias y negocios con múltiples sucursales.</p>
+        <p class="plan-desc">Para cadenas, franquicias y negocios con múltiples sedes que necesitan gestión centralizada.</p>
         <div class="plan-price">
           <span class="plan-price-amount">$24.99</span>
           <span class="plan-price-period">/ mes</span>
         </div>
         <ul class="plan-features">
           <li><i class="fas fa-check"></i> Todo lo del plan Pro</li>
-          <li><i class="fas fa-check"></i> Hasta 5 sucursales en un perfil</li>
-          <li><i class="fas fa-check"></i> Panel de administración multi-sede</li>
-          <li><i class="fas fa-check"></i> Reportes mensuales de rendimiento</li>
-          <li><i class="fas fa-check"></i> Destacado en categoría fija</li>
-          <li><i class="fas fa-check"></i> Publicaciones promocionales (2/mes)</li>
-          <li><i class="fas fa-check"></i> Soporte dedicado vía WhatsApp</li>
-          <li><i class="fas fa-check"></i> API de integración (próximamente)</li>
+          <li><i class="fas fa-check"></i> Hasta 5 sucursales</li>
+          <li><i class="fas fa-check"></i> Panel multi-sede centralizado</li>
+          <li><i class="fas fa-check"></i> Fotos ilimitadas</li>
+          <li><i class="fas fa-check"></i> Catálogo de productos/servicios</li>
+          <li><i class="fas fa-check"></i> Reportes mensuales</li>
+          <li><i class="fas fa-check"></i> Publicaciones promo (4/mes)</li>
+          <li><i class="fas fa-check"></i> Integración Google Maps</li>
+          <li><i class="fas fa-check"></i> Soporte WhatsApp (4 h)</li>
         </ul>
         <button class="plan-btn plan-btn-outline" onclick="goPage('support')">
           <i class="fas fa-headset"></i> Hablar con ventas
+        </button>
+      </div>
+
+      <!-- Plan Premium -->
+      <div class="plan-card plan-card-premium">
+        <div class="plan-badge plan-badge-premium"><i class="fas fa-crown" style="font-size:.6rem"></i> Premium</div>
+        <div class="plan-icon plan-icon-premium"><i class="fas fa-crown"></i></div>
+        <h2 class="plan-name">Premium</h2>
+        <p class="plan-desc">La solución completa para dominar tu categoría y llegar a miles de usuarios locales.</p>
+        <div class="plan-price">
+          <span class="plan-price-amount">$59.99</span>
+          <span class="plan-price-period">/ mes</span>
+        </div>
+        <ul class="plan-features plan-features-premium">
+          <li><i class="fas fa-check"></i> Todo lo del plan Business</li>
+          <li><i class="fas fa-check"></i> Sucursales ilimitadas</li>
+          <li><i class="fas fa-check"></i> Gestor de cuenta exclusivo</li>
+          <li><i class="fas fa-check"></i> Posición #1 fija en tu categoría</li>
+          <li><i class="fas fa-check"></i> Banner en página de inicio</li>
+          <li><i class="fas fa-check"></i> Campañas de email a usuarios locales</li>
+          <li><i class="fas fa-check"></i> Publicaciones ilimitadas</li>
+          <li><i class="fas fa-check"></i> API completa de integración</li>
+          <li><i class="fas fa-check"></i> Dashboard analítico avanzado</li>
+        </ul>
+        <button class="plan-btn plan-btn-premium" onclick="goPage('support')">
+          <i class="fas fa-crown"></i> Contactar ventas
         </button>
       </div>
 
