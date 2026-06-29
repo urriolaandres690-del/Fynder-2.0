@@ -382,17 +382,11 @@ function _heartSVG(isFav, size){
 
 function refreshFavBtns(id){
   const isFav = favorites.has(id);
-
-  const gridBtn = document.getElementById('fav-grid-'+id);
-  if(gridBtn){
-    gridBtn.classList.toggle('active', isFav);
-    gridBtn.innerHTML = _heartSVG(isFav, 'md');
-  }
-
-  const listBtn = document.getElementById('fav-list-'+id);
-  if(listBtn){
-    listBtn.innerHTML = _heartSVG(isFav, 'sm');
-  }
+  document.querySelectorAll(`[data-fav-id="${id}"]`).forEach(btn => {
+    const size = btn.dataset.favSize || 'md';
+    btn.classList.toggle('active', isFav);
+    btn.innerHTML = _heartSVG(isFav, size);
+  });
 }
 
 function openModal(id){
