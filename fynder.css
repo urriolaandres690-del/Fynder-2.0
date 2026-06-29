@@ -7253,15 +7253,30 @@ svg, svg *, path, polygon, circle, rect, line, polyline {
   margin: 0 auto;
   padding: 72px 24px;
 }
-.fyl-section-alt {
+/* fyl-section-alt: cuando el section tiene ambas clases,
+   aplicamos fondo al elemento padre (fyl-body),
+   por eso usamos :has o simplemente usamos un wrapper en el HTML.
+   Solución: fyl-section-alt es un pseudo-wrapper de ancho completo */
+section.fyl-section-alt {
+  max-width: 100% !important;
   background: #fff;
   border-top: 1px solid var(--border);
   border-bottom: 1px solid var(--border);
+  padding: 0;
 }
-.fyl-section-alt .fyl-section {
-  padding: 72px 24px;
+section.fyl-section-alt > * {
+  max-width: 1060px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 24px;
+  padding-right: 24px;
 }
-[data-theme="dark"] .fyl-section-alt { background: #1E293B; border-color: rgba(255,255,255,.07); }
+/* Restablecer display de label que era inline-flex */
+section.fyl-section-alt > .fyl-section-label { display: inline-flex; margin-left: 24px; }
+section.fyl-section-alt > .fyl-section-title  { padding-top: 72px; }
+/* El último hijo lleva padding-bottom */
+section.fyl-section-alt > *:last-child { padding-bottom: 72px; }
+[data-theme="dark"] section.fyl-section-alt { background: #1E293B !important; border-color: rgba(255,255,255,.07) !important; }
 
 .fyl-section-label {
   display: inline-flex; align-items: center; gap: 7px;
