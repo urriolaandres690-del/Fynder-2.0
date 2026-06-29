@@ -9631,16 +9631,17 @@ section.fyl-section-alt > *:last-child { padding-bottom: 72px; }
 }
 
 /* En mobile el mismo botón muestra tres barras */
+.nav-icon-mobile  { display: none; }
+.nav-icon-desktop { display: block; }
+
 @media (max-width: 600px) {
+  .nav-icon-desktop { display: none !important; }
+  .nav-icon-mobile  { display: block !important; font-size: 1.1rem; }
   .nav-dots-btn {
     border-radius: 10px;
-    width: 38px;
-    height: 38px;
+    width: 34px;
+    height: 34px;
   }
-  .nav-dots-btn i { display: none; }
-  .nav-dots-btn::before,
-  .nav-dots-btn::after,
-  .nav-dots-btn .bar { display: block; }
 }
 
 /* Quitar el nav-hamburger que ya no existe */
