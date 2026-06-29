@@ -475,7 +475,7 @@ input, button, select, textarea {
 
     .bcard-desc { font-size: .75rem; color: var(--muted); margin-bottom: 12px; line-height: 1.5; } 
 
-    .bcard-hours { display: flex; align-items: center; gap: 4px; font-size: .6875rem; color: var(--muted); margin-bottom: 14px; } 
+    .bcard-hours { display: flex; align-items: center; gap: 4px; font-size: .6875rem; color: var(--muted); margin-bottom: 14px; margin-top: auto; } 
 
     .bcard-hours svg { width: 11px; height: 11px; flex-shrink: 0; } 
 
