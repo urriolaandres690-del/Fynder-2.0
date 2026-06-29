@@ -231,10 +231,19 @@ input, button, select, textarea {
           background-attachment: fixed;
         }
 
+        /* Navbar sobre el hero en modo claro: fondo semitransparente del color del hero */
+        body:has(#page-home.active) #navbar:not(.scrolled) {
+          background: rgba(15, 90, 87, 0.25);
+          backdrop-filter: blur(4px);
+        }
+
         /* En modo oscuro, mantener el fondo oscuro */
         [data-theme="dark"] body:has(#page-home.active) {
           background: linear-gradient(135deg, #0F172A 0%, #1E293B 60%, #0F172A 100%);
           background-attachment: fixed;
+        }
+        [data-theme="dark"] body:has(#page-home.active) #navbar:not(.scrolled) {
+          background: rgba(15, 23, 42, 0.4);
         }
 
         #page-login,
