@@ -720,6 +720,7 @@ function buildCategories(){
 function buildHome(){
   document.getElementById('featuredGrid').innerHTML=BUSINESSES.filter(b=>b.isFeatured).slice(0,3).map(gridCardHTML).join('');
   document.getElementById('popularList').innerHTML=BUSINESSES.filter(b=>b.isPopular).slice(0,4).map(listCardHTML).join('');
+  renderOffers();
 
   // ── Cifras reales calculadas desde BUSINESSES y REVIEWS ──
   const total = BUSINESSES.length;
