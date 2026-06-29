@@ -2440,25 +2440,35 @@ function updateMobileMenuActions() {
 
   if (logged && user) {
     el.innerHTML = `
-      <div style="text-align:center;margin-bottom:8px;font-size:.8rem;color:var(--muted)">
-        Hola, <strong style="color:var(--fg)">${user.name}</strong>
+      <div class="mobile-menu-user-info">
+        <div class="mobile-menu-avatar">${user.name.charAt(0).toUpperCase()}</div>
+        <div>
+          <strong>${user.name}</strong>
+          <span>${user.email || ''}</span>
+        </div>
       </div>
-      <button class="mobile-action-register" onclick="closeMobileMenu();goPage('dashboard')">
+      <button class="mobile-action-btn mobile-action-panel" onclick="closeMobileMenu();goPage('dashboard')">
         <i class="fas fa-chart-line"></i> Mi panel
       </button>
-      <button class="mobile-action-register" onclick="closeMobileMenu();goPage('profile')" style="background:var(--blue-light);color:#2F5BB7;border:none">
+      <button class="mobile-action-btn mobile-action-profile" onclick="closeMobileMenu();goPage('profile')">
         <i class="fas fa-user-circle"></i> Mi perfil
       </button>
-      <button class="mobile-action-logout" onclick="closeMobileMenu();logout()">
+      <button class="mobile-action-btn mobile-action-biz" onclick="closeMobileMenu();goPage('business')">
+        <i class="fas fa-plus"></i> Registrar negocio
+      </button>
+      <button class="mobile-action-btn mobile-action-logout" onclick="closeMobileMenu();logout()">
         <i class="fas fa-right-from-bracket"></i> Cerrar sesión
       </button>`;
   } else {
     el.innerHTML = `
-      <button class="mobile-action-register" onclick="closeMobileMenu();goPage('business')">
+      <button class="mobile-action-btn mobile-action-biz" onclick="closeMobileMenu();goPage('business')">
         <i class="fas fa-plus"></i> Registrar negocio
       </button>
-      <button class="mobile-action-login" onclick="closeMobileMenu();goPage('login')">
+      <button class="mobile-action-btn mobile-action-login" onclick="closeMobileMenu();goPage('login')">
         <i class="fas fa-right-to-bracket"></i> Iniciar sesión
+      </button>
+      <button class="mobile-action-btn mobile-action-register-acc" onclick="closeMobileMenu();goPage('register')">
+        <i class="fas fa-user-plus"></i> Crear cuenta
       </button>`;
   }
 }
