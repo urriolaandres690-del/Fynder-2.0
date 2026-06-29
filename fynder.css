@@ -7866,3 +7866,10 @@ svg, svg *, path, polygon, circle, rect, line, polyline {
 /* ── Hero wave fill adaptable ── */
 .hero-wave-fill { fill: #F8FAFC; }
 [data-theme="dark"] .hero-wave-fill { fill: #0F172A; }
+
+/* ── Fynder hero wave fill ── */
+.fyl-wave-fill { fill: #F8FAFC; }
+[data-theme="dark"] .fyl-wave-fill { fill: #0F172A; }
+
+/* ── Fynder section-alt dark override (evita duplicado) ── */
+[data-theme="dark"] .fyl-section-alt { background: #1E293B !important; border-color: rgba(255,255,255,.07) !important; }
