@@ -6238,7 +6238,6 @@ label.avatar-option-btn:hover { background: var(--teal-light); border-color: rgb
 [data-theme="dark"] .about-stats-row     { background: var(--card); border-color: rgba(255,255,255,.07); }
 [data-theme="dark"] .about-stat          { border-right-color: rgba(255,255,255,.07); }
 [data-theme="dark"] .about-stat-lbl      { color: var(--muted); }
-
 /* ── Artículo ── */
 [data-theme="dark"] #page-article { background: var(--bg) !important; }
 [data-theme="dark"] .article-title { color: var(--fg); }
