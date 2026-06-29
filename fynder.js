@@ -1754,7 +1754,8 @@ function renderArticleComments(articleId) {
     } else if(c.avatarPreset) {
       avatarHTML = `<div class="article-comment-av" style="background:#F0FEFE;font-size:1.1rem">${c.avatarPreset}</div>`;
     } else {
-      avatarHTML = `<div class="article-comment-av" style="background:${ART_COMMENT_COLORS[colorIdx]}">${c.initial}</div>`;
+      const initFs = (c.initial && c.initial.length > 1) ? '.7rem' : '.9rem';
+      avatarHTML = `<div class="article-comment-av" style="background:${ART_COMMENT_COLORS[colorIdx]};font-size:${initFs};letter-spacing:.5px">${c.initial}</div>`;
     }
     return `
     <div class="article-comment" id="comment-${c.id}">
