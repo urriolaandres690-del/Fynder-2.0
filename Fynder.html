@@ -316,36 +316,103 @@
 
   </section> 
 
-  <section class="cta-section"> 
+  <section class="cta-section">
 
-    <div class="cta-inner"> 
+    <!-- partículas decorativas de fondo -->
+    <div class="cta-particles">
+      <span style="left:8%;top:20%;animation-delay:0s"></span>
+      <span style="left:25%;top:70%;animation-delay:1.5s"></span>
+      <span style="left:50%;top:15%;animation-delay:3s"></span>
+      <span style="left:72%;top:60%;animation-delay:1s"></span>
+      <span style="left:90%;top:30%;animation-delay:2.5s"></span>
+    </div>
 
-      <div class="cta-icon"><svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="16" height="20" x="4" y="2" rx="2"/><path d="M9 22v-4h6v4"/><path d="M8 6h.01"/><path d="M16 6h.01"/><path d="M12 6h.01"/><path d="M12 10h.01"/><path d="M12 14h.01"/><path d="M16 10h.01"/><path d="M16 14h.01"/><path d="M8 10h.01"/><path d="M8 14h.01"/></svg></div> 
+    <div class="cta-inner cta-inner-split">
 
-      <h2>¿Tienes un negocio?<br><span>Únete a Fynder gratis</span></h2> 
+      <!-- Lado izquierdo: texto -->
+      <div class="cta-left">
+        <div class="cta-badge">
+          <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+          Para emprendedores locales
+        </div>
 
-      <p>Registra tu negocio hoy y llega a miles de clientes potenciales en tu comunidad. Sin comisiones, sin costos ocultos.</p> 
+        <h2>Tu negocio merece<br><span>ser encontrado</span></h2>
 
-      <div class="cta-btns"> 
+        <p>Miles de personas en tu comunidad buscan lo que tú ofreces. Ponles tu negocio enfrente — gratis, sin comisiones, sin letras pequeñas.</p>
 
-        <button class="btn-yellow" onclick="goPage('business')">Registrar mi negocio <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 7h10v10"/><path d="M7 17 17 7"/></svg></button> 
+        <div class="cta-btns">
+          <button class="btn-yellow" onclick="goPage('business')">
+            Registrar mi negocio
+            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 7h10v10"/><path d="M7 17 17 7"/></svg>
+          </button>
+          <button class="btn-outline-white" onclick="goPage('about')">
+            Saber más
+            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg>
+          </button>
+        </div>
 
-        <button class="btn-outline-white" onclick="goPage('about')">Saber más <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg></button> 
+        <div class="cta-perks">
+          <div class="cta-perk">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+            100% gratuito
+          </div>
+          <div class="cta-perk">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+            Activación inmediata
+          </div>
+          <div class="cta-perk">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+            Miles de usuarios
+          </div>
+        </div>
+      </div>
 
-      </div> 
+      <!-- Lado derecho: tarjeta visual -->
+      <div class="cta-right">
+        <div class="cta-card">
+          <div class="cta-card-header">
+            <div class="cta-card-avatar">
+              <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#2F5BB7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="16" height="20" x="4" y="2" rx="2"/><path d="M9 22v-4h6v4"/><path d="M8 6h.01"/><path d="M16 6h.01"/><path d="M12 6h.01"/><path d="M12 10h.01"/><path d="M12 14h.01"/><path d="M16 10h.01"/><path d="M16 14h.01"/><path d="M8 10h.01"/><path d="M8 14h.01"/></svg>
+            </div>
+            <div>
+              <p class="cta-card-name">Tu Negocio</p>
+              <p class="cta-card-cat">Emprendimiento local</p>
+            </div>
+            <span class="cta-card-badge-new">NUEVO</span>
+          </div>
+          <div class="cta-card-steps">
+            <div class="cta-step done">
+              <div class="cta-step-dot"></div>
+              <span>Crea tu perfil</span>
+            </div>
+            <div class="cta-step done">
+              <div class="cta-step-dot"></div>
+              <span>Agrega fotos y descripción</span>
+            </div>
+            <div class="cta-step active">
+              <div class="cta-step-dot"></div>
+              <span>Llega a tu comunidad</span>
+            </div>
+            <div class="cta-step">
+              <div class="cta-step-dot"></div>
+              <span>Recibe clientes nuevos</span>
+            </div>
+          </div>
+          <div class="cta-card-footer">
+            <div class="cta-card-stat">
+              <span class="cta-stat-val" id="ctaStatNegocios">139+</span>
+              <span class="cta-stat-lbl">negocios activos</span>
+            </div>
+            <div class="cta-card-divider"></div>
+            <div class="cta-card-stat">
+              <span class="cta-stat-val">3 países</span>
+              <span class="cta-stat-lbl">de cobertura</span>
+            </div>
+          </div>
+        </div>
+      </div>
 
-      <div class="cta-perks"> 
-
-        <div class="cta-perk"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>100% gratuito</div> 
-
-        <div class="cta-perk"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>Activación inmediata</div> 
-
-        <div class="cta-perk"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>Miles de usuarios</div> 
-
-      </div> 
-
-    </div> 
-
+    </div>
   </section> 
 
   <footer> 
