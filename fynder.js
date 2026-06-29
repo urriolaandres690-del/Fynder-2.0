@@ -2415,7 +2415,7 @@ function toggleMobileMenu() {
   } else {
     drawer.classList.add('open');
     overlay.classList.add('open');
-    burger.classList.add('open');
+    if (burger) burger.classList.add('open');
     document.body.style.overflow = 'hidden';
     updateMobileMenuActions();
   }
