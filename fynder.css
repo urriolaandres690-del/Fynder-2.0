@@ -9175,6 +9175,13 @@ section.fyl-section-alt > *:last-child { padding-bottom: 72px; }
   /* El botón "Registrar negocio" ocupa demasiado en el nav */
   #navbar .btn-teal  { display: none !important; }
 
+  /* Nav actions: reducir gap y evitar desborde */
+  .nav-actions { gap: 6px !important; flex-wrap: nowrap; overflow: visible; }
+
+  /* Dark toggle y dots más compactos en móvil */
+  .dark-toggle-btn { width: 34px !important; height: 34px !important; }
+  .nav-dots-btn    { width: 34px !important; height: 34px !important; flex-shrink: 0; }
+
   /* Hero ajustes */
   .hero { padding: 80px 16px 40px; }
   .hero h1 { font-size: 1.9rem; }
