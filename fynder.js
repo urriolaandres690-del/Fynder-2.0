@@ -348,6 +348,9 @@ function updateNav(){
     [logout, profile].forEach(el => { if(el) el.classList.toggle('on-hero', isHero); });
     if(login)  login.classList.toggle('on-hero', isHero);
 
+    const dashBtn = document.getElementById('navBtnDashboard');
+    if(dashBtn) dashBtn.classList.toggle('on-hero', isHero);
+
     const tealBtn = document.querySelector('#navbar .btn-teal');
     if(tealBtn) tealBtn.classList.toggle('on-hero', isHero);
 
