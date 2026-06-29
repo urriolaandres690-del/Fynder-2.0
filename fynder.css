@@ -5650,6 +5650,8 @@ label.avatar-option-btn:hover { background: var(--teal-light); border-color: rgb
 
 /* ── CTA section ── */
 [data-theme="dark"] .cta-section { background: linear-gradient(135deg, #1a2f6b 0%, #0f5a57 100%); }
+[data-theme="dark"] .cta-card { background: rgba(255,255,255,.06); border-color: rgba(255,255,255,.12); }
+[data-theme="dark"] .cta-card-footer { background: rgba(255,255,255,.04); }
 
 /* ── Footer ── */
 [data-theme="dark"] footer { background: #020817; }
