@@ -6354,3 +6354,86 @@ svg, svg *, path, polygon, circle, rect, line, polyline {
   transform: translateY(-1px);
   box-shadow: 0 6px 20px rgba(103,184,180,.45);
 }
+
+/* Secciones del editor */
+.write-section {
+  background: #fff;
+  border-radius: 18px;
+  border: 1.5px solid var(--border);
+  padding: 20px 22px;
+  margin-bottom: 16px;
+  box-shadow: var(--shadow-sm);
+}
+
+/* Portada */
+.write-cover-preview {
+  position: relative;
+  width: 100%;
+  height: 200px;
+  border-radius: 12px;
+  background: #F1F5F9;
+  border: 2px dashed #CBD5E1;
+  overflow: hidden;
+  margin-bottom: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.write-cover-placeholder {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  color: #94A3B8;
+}
+.write-cover-placeholder i { font-size: 2rem; }
+.write-cover-placeholder span { font-size: .875rem; font-weight: 500; }
+.write-cover-remove {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background: rgba(0,0,0,.55);
+  border: none;
+  color: #fff;
+  font-size: .75rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background .18s;
+}
+.write-cover-remove:hover { background: rgba(239,68,68,.8); }
+.write-cover-url-row { display: flex; gap: 10px; align-items: center; }
+
+/* Inputs */
+.write-input-wrap {
+  position: relative;
+  display: flex;
+  align-items: center;
+  background: #F8FAFC;
+  border: 1.5px solid var(--border);
+  border-radius: 12px;
+  overflow: hidden;
+  transition: border-color .18s;
+}
+.write-input-wrap:focus-within { border-color: var(--primary); }
+.write-input-icon {
+  padding: 0 10px 0 14px;
+  color: #9CA3AF;
+  font-size: .875rem;
+  flex-shrink: 0;
+}
+.write-input-wrap input {
+  flex: 1;
+  padding: 10px 14px 10px 0;
+  border: none;
+  background: transparent;
+  font-family: 'Inter', sans-serif;
+  font-size: .875rem;
+  color: var(--fg);
+  outline: none;
+}
+.write-input-wrap input::placeholder { color: #9CA3AF; }
