@@ -1698,6 +1698,13 @@ function _saveArticleComments(articleId, comments) {
   localStorage.setItem('fynderComments_' + articleId, JSON.stringify(comments));
 }
 
+function _getInitials(name) {
+  if(!name || !name.trim()) return '?';
+  const parts = name.trim().split(/\s+/);
+  if(parts.length === 1) return parts[0].charAt(0).toUpperCase();
+  return (parts[0].charAt(0) + parts[parts.length - 1].charAt(0)).toUpperCase();
+}
+
 function _getUserAvatarHTML(size = 36) {
   const stored  = localStorage.getItem('fynderAvatarPhoto');
   const preset  = localStorage.getItem('fynderAvatarPreset');
