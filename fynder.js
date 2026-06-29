@@ -364,6 +364,9 @@ function updateNav(){
     if(b){ b.textContent=favorites.size; b.style.display=favorites.size>0?'flex':'none'; }
     const fc=document.getElementById('favsCount');
     if(fc) fc.textContent=`${favorites.size} negocio${favorites.size!==1?'s':''} guardado${favorites.size!==1?'s':''}`;
+
+    // Sincronizar drawer móvil con estado de sesión
+    updateMobileMenuActions();
 }
 
 function goDirectoryQuery(q,cat=''){document.getElementById('dirSearch').value=q;dirActiveCategory=cat;goPage('directory');} 
