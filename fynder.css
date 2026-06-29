@@ -292,9 +292,17 @@ input, button, select, textarea {
 
       background: rgba(255,255,255,.15); border: 1px solid rgba(255,255,255,.2); 
 
-      color: rgba(255,255,255,.9); font-size: .75rem; font-weight: 500; margin-bottom: 20px; 
+      color: rgba(255,255,255,.9); font-size: .75rem; font-weight: 500; margin-bottom: 20px;
+      cursor: pointer; transition: background .2s, border-color .2s, transform .2s, gap .2s;
 
-    } 
+    }
+
+    .hero-pill:hover {
+      background: rgba(255,255,255,.24);
+      border-color: rgba(255,255,255,.4);
+      transform: translateY(-2px);
+      gap: 10px;
+    }
 
     .hero-pill svg { color: var(--yellow); width:13px; height:13px; } 
 
