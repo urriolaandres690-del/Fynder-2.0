@@ -7246,43 +7246,22 @@ svg, svg *, path, polygon, circle, rect, line, polyline {
 .fyl-hero-wave svg { width: 100%; display: block; }
 
 /* BODY sections */
-.fyl-body { background: #F8FAFC; }
-.fyl-body-inner { max-width: 1060px; margin: 0 auto; padding: 0 24px 80px; }
+.fyl-body { background: #F8FAFC; min-height: 60vh; }
+[data-theme="dark"] .fyl-body { background: var(--bg); }
 .fyl-section {
-  padding: 72px 24px;
   max-width: 1060px;
   margin: 0 auto;
+  padding: 72px 24px;
 }
 .fyl-section-alt {
   background: #fff;
-  padding: 72px 0;
-  box-shadow: inset 0 1px 0 var(--border), inset 0 -1px 0 var(--border);
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
 }
-.fyl-section-alt > * {
-  max-width: 1060px;
-  margin-left: auto;
-  margin-right: auto;
-  padding-left: 24px;
-  padding-right: 24px;
+.fyl-section-alt .fyl-section {
+  padding: 72px 24px;
 }
-/* Para los hijos directos de fyl-section-alt que son divs/sections */
-.fyl-section-alt .fyl-section-label,
-.fyl-section-alt .fyl-section-title,
-.fyl-section-alt .fyl-section-lead,
-.fyl-section-alt .fyl-steps,
-.fyl-section-alt .fyl-cats,
-.fyl-section-alt .fyl-compare,
-.fyl-section-alt .fyl-for-grid,
-.fyl-section-alt > p {
-  max-width: 1060px;
-  margin-left: auto;
-  margin-right: auto;
-  padding-left: 24px;
-  padding-right: 24px;
-  display: block;
-}
-/* Reset para elementos que no deben tener display:block */
-.fyl-section-alt .fyl-section-label { display: inline-flex; }
+[data-theme="dark"] .fyl-section-alt { background: #1E293B; border-color: rgba(255,255,255,.07); }
 
 .fyl-section-label {
   display: inline-flex; align-items: center; gap: 7px;
