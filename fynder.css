@@ -9182,6 +9182,9 @@ section.fyl-section-alt > *:last-child { padding-bottom: 72px; }
   .dark-toggle-btn { width: 34px !important; height: 34px !important; }
   .nav-dots-btn    { width: 34px !important; height: 34px !important; flex-shrink: 0; }
 
+  /* Nombre de usuario más compacto */
+  #userName { font-size: 13px !important; margin-right: 4px !important; max-width: 80px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+
   /* Hero ajustes */
   .hero { padding: 80px 16px 40px; }
   .hero h1 { font-size: 1.9rem; }
