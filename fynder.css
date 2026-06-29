@@ -9438,3 +9438,98 @@ section.fyl-section-alt > *:last-child { padding-bottom: 72px; }
   .cta-btns        { flex-direction: column; gap: 10px; }
   .btn-yellow, .btn-outline-white { width: 100%; justify-content: center; }
 }
+
+
+/* ---- Mobile drawer: user info + botones de acción ---- */
+.mobile-menu-user-info {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 14px;
+  background: var(--teal-light);
+  border-radius: 12px;
+  margin-bottom: 8px;
+}
+[data-theme="dark"] .mobile-menu-user-info { background: rgba(103,184,180,.1); }
+
+.mobile-menu-avatar {
+  width: 38px; height: 38px;
+  border-radius: 50%;
+  background: var(--primary);
+  color: #fff;
+  font-size: 1rem;
+  font-weight: 700;
+  font-family: 'Poppins', sans-serif;
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
+}
+
+.mobile-menu-user-info strong {
+  display: block;
+  font-size: .875rem;
+  color: var(--fg);
+  font-family: 'Poppins', sans-serif;
+}
+.mobile-menu-user-info span {
+  font-size: .72rem;
+  color: var(--muted);
+}
+
+.mobile-action-btn {
+  width: 100%;
+  padding: 11px 14px;
+  border-radius: 11px;
+  font-size: .875rem;
+  font-weight: 600;
+  font-family: 'Poppins', sans-serif;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  transition: all .2s;
+  text-align: left;
+}
+.mobile-action-btn i { width: 16px; text-align: center; flex-shrink: 0; }
+
+.mobile-action-panel {
+  background: var(--teal-light);
+  border: 1.5px solid rgba(103,184,180,.3);
+  color: var(--primary);
+}
+.mobile-action-panel:hover { background: rgba(103,184,180,.2); }
+
+.mobile-action-profile {
+  background: var(--blue-light);
+  border: 1.5px solid rgba(47,91,183,.2);
+  color: #2F5BB7;
+}
+.mobile-action-profile:hover { background: rgba(47,91,183,.15); }
+[data-theme="dark"] .mobile-action-profile { color: #7ba8f7; border-color: rgba(47,91,183,.3); }
+
+.mobile-action-biz {
+  background: var(--primary);
+  border: none;
+  color: #fff;
+}
+.mobile-action-biz:hover { background: var(--primary-d); }
+
+.mobile-action-login {
+  background: none;
+  border: 1.5px solid var(--border);
+  color: var(--fg);
+}
+.mobile-action-login:hover { border-color: var(--primary); color: var(--primary); }
+
+.mobile-action-register-acc {
+  background: none;
+  border: 1.5px solid var(--border);
+  color: var(--muted);
+}
+.mobile-action-register-acc:hover { border-color: var(--primary); color: var(--primary); }
+
+.mobile-action-logout {
+  background: none;
+  border: 1.5px solid rgba(239,68,68,.3);
+  color: #EF4444;
+}
+.mobile-action-logout:hover { background: rgba(239,68,68,.08); }
