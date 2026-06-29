@@ -9712,3 +9712,34 @@ section.fyl-section-alt > *:last-child { padding-bottom: 72px; }
 .about-stat-pill-num { font-weight:900; color:#67B8B4; }
 .about-hero-wave { width:100%; line-height:0; position:relative; z-index:2; margin-top:40px; }
 .about-hero-wave svg { width:100%; display:block; }
+
+/* ---- Body sections ---- */
+.about-body { background:var(--bg); }
+.about-section { max-width:1060px; margin:0 auto; padding:64px 24px; }
+.about-section-label {
+  display:inline-flex; align-items:center; gap:7px; padding:5px 14px;
+  background:var(--teal-light); color:var(--primary); border-radius:99px;
+  font-size:.72rem; font-weight:700; font-family:'Poppins',sans-serif;
+  text-transform:uppercase; letter-spacing:.07em; margin-bottom:14px;
+}
+[data-theme="dark"] .about-section-label { background:rgba(103,184,180,.12); }
+.about-section-title {
+  font-family:'Poppins',sans-serif; font-size:clamp(1.5rem,3vw,2rem);
+  font-weight:900; color:var(--fg); margin-bottom:14px; line-height:1.25;
+}
+.about-section-title span { color:var(--primary); }
+.about-section-lead { font-size:.9375rem; color:var(--muted); line-height:1.75; max-width:620px; margin-bottom:36px; }
+
+/* ---- Origen ---- */
+.about-origin-v2-grid { display:grid; grid-template-columns:1fr 340px; gap:40px; align-items:center; }
+@media(max-width:900px){.about-origin-v2-grid{grid-template-columns:1fr;}}
+.about-origin-v2-text h2 { font-family:'Poppins',sans-serif; font-size:1.6rem; font-weight:900; color:var(--fg); margin-bottom:14px; }
+.about-origin-v2-text h2 span { color:var(--primary); }
+.about-origin-v2-text p { font-size:.9rem; color:var(--muted); line-height:1.75; margin-bottom:14px; }
+.about-origin-link-v2 {
+  display:inline-flex; align-items:center; gap:8px; padding:11px 20px;
+  background:var(--primary); color:#fff; border-radius:12px; text-decoration:none;
+  font-size:.875rem; font-weight:700; font-family:'Poppins',sans-serif;
+  transition:all .22s; box-shadow:0 4px 16px rgba(103,184,180,.35);
+}
+.about-origin-link-v2:hover { transform:translateY(-2px); box-shadow:0 8px 24px rgba(103,184,180,.5); }
