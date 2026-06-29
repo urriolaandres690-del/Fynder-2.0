@@ -225,11 +225,6 @@ input, button, select, textarea {
         background:#ffffff;
         }
 
-        /* En modo claro, el fondo de la zona del hero no deja ver blanco en los lados */
-        #page-home .hero {
-          width: 100%;
-        }
-
         #page-login,
         #page-register{
 
