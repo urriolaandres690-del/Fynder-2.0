@@ -9743,3 +9743,30 @@ section.fyl-section-alt > *:last-child { padding-bottom: 72px; }
   transition:all .22s; box-shadow:0 4px 16px rgba(103,184,180,.35);
 }
 .about-origin-link-v2:hover { transform:translateY(-2px); box-shadow:0 8px 24px rgba(103,184,180,.5); }
+
+.about-origin-v2-card {
+  background:linear-gradient(135deg,#1E293B,#0F172A); border-radius:24px;
+  padding:32px 24px; text-align:center; position:relative; overflow:hidden;
+  border:1px solid rgba(103,184,180,.2);
+}
+.about-origin-glow {
+  position:absolute; top:-40px; left:50%; transform:translateX(-50%);
+  width:200px; height:120px;
+  background:radial-gradient(ellipse,rgba(103,184,180,.3) 0%,transparent 70%);
+  animation:about-glow-pulse 3s ease-in-out infinite; pointer-events:none;
+}
+.about-origin-logo-big {
+  width:80px; height:80px; border-radius:20px; background:rgba(103,184,180,.2);
+  display:flex; align-items:center; justify-content:center; margin:0 auto 18px;
+  animation:about-float 3s ease-in-out infinite; position:relative; z-index:1;
+}
+.about-origin-pills { display:flex; flex-direction:column; gap:8px; margin-bottom:18px; }
+.about-origin-pill {
+  display:inline-flex; align-items:center; justify-content:center; gap:7px;
+  padding:7px 16px; background:rgba(255,255,255,.06); border:1px solid rgba(255,255,255,.1);
+  border-radius:99px; color:rgba(255,255,255,.8); font-size:.78rem; font-weight:600;
+}
+.about-origin-quote-v2 {
+  font-size:.85rem; color:rgba(255,255,255,.5); font-style:italic;
+  border-top:1px solid rgba(255,255,255,.08); padding-top:14px; margin-top:4px;
+}
