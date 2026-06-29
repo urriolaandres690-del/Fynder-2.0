@@ -7865,7 +7865,7 @@ section.fyl-section-alt > *:last-child { padding-bottom: 72px; }
 [data-theme="dark"] .fyl-step-body p  { color: var(--muted); }
 [data-theme="dark"] .fyl-section-title { color: var(--fg); }
 [data-theme="dark"] .fyl-section-lead  { color: var(--muted); }
-[data-theme="dark"] .fyl-cat          { background: var(--card); border-color: rgba(255,255,255,.08); color: var(--fg); }
+[data-theme="dark"] .fyl-cat          { background: var(--card); border-color: rgba(255,255,255,.08); }
 
 /* About nuevas secciones – origin, team, impact */
 [data-theme="dark"] .about-origin-text h2 { color: var(--fg); }
