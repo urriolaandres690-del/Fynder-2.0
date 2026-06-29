@@ -8545,3 +8545,312 @@ section.fyl-section-alt > *:last-child { padding-bottom: 72px; }
   .dash-upgrade-strip { flex-direction: column; align-items: flex-start; }
   .dashboard-header { flex-direction: column; align-items: flex-start; gap: 12px; }
 }
+
+
+/* ============================================================
+   SABER MÁS – Animaciones, efectos y mejoras de botones
+   ============================================================ */
+
+/* ---- Keyframes ---- */
+@keyframes fyl-fade-up {
+  from { opacity: 0; transform: translateY(32px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes fyl-fade-in {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+@keyframes fyl-float {
+  0%, 100% { transform: translateY(0px); }
+  50%       { transform: translateY(-8px); }
+}
+@keyframes fyl-float-slow {
+  0%, 100% { transform: translateY(0px) rotate(-2deg); }
+  50%       { transform: translateY(-12px) rotate(2deg); }
+}
+@keyframes fyl-pulse-ring {
+  0%   { box-shadow: 0 0 0 0 rgba(103,184,180,.45); }
+  70%  { box-shadow: 0 0 0 14px rgba(103,184,180,0); }
+  100% { box-shadow: 0 0 0 0 rgba(103,184,180,0); }
+}
+@keyframes fyl-ripple {
+  to { transform: scale(3.5); opacity: 0; }
+}
+@keyframes fyl-bounce-in {
+  0%   { transform: scale(.85); opacity: 0; }
+  60%  { transform: scale(1.06); opacity: 1; }
+  100% { transform: scale(1); }
+}
+@keyframes fyl-glow-pulse {
+  0%, 100% { opacity: .6; transform: translateX(-50%) scale(1); }
+  50%       { opacity: 1;  transform: translateX(-50%) scale(1.15); }
+}
+@keyframes fyl-counter-spin {
+  from { transform: rotateX(60deg); opacity: 0; }
+  to   { transform: rotateX(0deg);  opacity: 1; }
+}
+
+/* ---- Pills flotantes del hero ---- */
+.fyl-stat-pill {
+  animation: fyl-float var(--float-dur, 3.2s) ease-in-out infinite;
+  animation-delay: var(--float-delay, 0s);
+  cursor: default;
+  transition: transform .2s, box-shadow .2s;
+}
+.fyl-stat-pill:hover {
+  transform: translateY(-4px) scale(1.04);
+  box-shadow: 0 8px 24px rgba(103,184,180,.25);
+}
+.fyl-pill-1 { --float-dur: 3.4s; --float-delay: 0s; }
+.fyl-pill-2 { --float-dur: 2.8s; --float-delay: .6s; }
+.fyl-pill-3 { --float-dur: 3.8s; --float-delay: 1.1s; }
+
+/* ---- Glow del hero animado ---- */
+.fyl-hero-glow1 {
+  animation: fyl-glow-pulse 4s ease-in-out infinite;
+}
+.fyl-hero-glow2 {
+  animation: fyl-glow-pulse 5s ease-in-out infinite reverse;
+}
+
+/* ---- Botones primarios: ripple + pulse ---- */
+.fyl-btn-primary,
+.fyl-for-btn-teal,
+.fyl-for-btn-purple {
+  position: relative;
+  overflow: hidden;
+}
+.fyl-btn-primary::after,
+.fyl-for-btn-teal::after,
+.fyl-for-btn-purple::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: rgba(255,255,255,.18);
+  transform: scale(0);
+  opacity: 0;
+  transition: transform .01s, opacity .01s;
+  pointer-events: none;
+}
+.fyl-btn-primary:active::after,
+.fyl-for-btn-teal:active::after,
+.fyl-for-btn-purple:active::after {
+  transform: scale(1);
+  opacity: 1;
+  transition: none;
+}
+
+/* Pulse continuo en el botón principal del hero */
+.fyl-btn-primary {
+  animation: fyl-pulse-ring 2.4s ease-in-out infinite;
+}
+.fyl-btn-primary:hover {
+  animation: none;
+}
+
+/* ---- Botón ghost mejorado ---- */
+.fyl-btn-ghost {
+  position: relative;
+  overflow: hidden;
+}
+.fyl-btn-ghost::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: linear-gradient(135deg, rgba(255,255,255,.06), rgba(255,255,255,.14));
+  opacity: 0;
+  transition: opacity .22s;
+}
+.fyl-btn-ghost:hover::before { opacity: 1; }
+
+/* ---- Botones de categoría: bounce al click + scale ---- */
+.fyl-cat {
+  transition: all .22s cubic-bezier(.34,1.56,.64,1);
+  position: relative;
+  overflow: hidden;
+}
+.fyl-cat:active {
+  transform: scale(.93) !important;
+  transition: transform .1s;
+}
+/* Shine sweep en hover */
+.fyl-cat::after {
+  content: '';
+  position: absolute;
+  top: 0; left: -100%;
+  width: 60%;
+  height: 100%;
+  background: linear-gradient(105deg, transparent 40%, rgba(255,255,255,.35) 50%, transparent 60%);
+  transition: left .35s ease;
+  pointer-events: none;
+}
+.fyl-cat:hover::after { left: 160%; }
+
+/* ---- Animación de entrada para secciones (Intersection Observer) ---- */
+.fyl-animate {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity .55s cubic-bezier(.22,1,.36,1), transform .55s cubic-bezier(.22,1,.36,1);
+}
+.fyl-animate.fyl-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+/* Delay escalonado para hijos */
+.fyl-animate-child { opacity: 0; transform: translateY(20px); transition: opacity .45s cubic-bezier(.22,1,.36,1), transform .45s cubic-bezier(.22,1,.36,1); }
+.fyl-animate-child.fyl-visible { opacity: 1; transform: translateY(0); }
+.fyl-animate-child:nth-child(1) { transition-delay: .05s; }
+.fyl-animate-child:nth-child(2) { transition-delay: .13s; }
+.fyl-animate-child:nth-child(3) { transition-delay: .21s; }
+.fyl-animate-child:nth-child(4) { transition-delay: .29s; }
+.fyl-animate-child:nth-child(5) { transition-delay: .37s; }
+.fyl-animate-child:nth-child(6) { transition-delay: .45s; }
+
+/* ---- What cards: hover lift con borde coloreado ---- */
+.fyl-what-card {
+  transition: transform .25s cubic-bezier(.34,1.56,.64,1), box-shadow .25s;
+  cursor: default;
+}
+.fyl-what-card:hover {
+  transform: translateY(-6px) scale(1.01);
+  box-shadow: 0 16px 40px rgba(0,0,0,.1);
+}
+.fyl-what-teal:hover  { border-color: #67B8B4; }
+.fyl-what-blue:hover  { border-color: #2F5BB7; }
+.fyl-what-green:hover { border-color: #10B981; }
+
+/* ---- Feature cards ---- */
+.fyl-feature {
+  transition: transform .22s cubic-bezier(.34,1.56,.64,1), box-shadow .22s;
+  cursor: default;
+}
+.fyl-feature:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 12px 32px rgba(0,0,0,.08);
+}
+.fyl-feature:hover .fyl-feat-icon {
+  transform: scale(1.1) rotate(-4deg);
+}
+.fyl-feat-icon {
+  transition: transform .25s cubic-bezier(.34,1.56,.64,1);
+}
+
+/* ---- Steps: número animado al entrar en pantalla ---- */
+.fyl-step-num {
+  transition: transform .3s cubic-bezier(.34,1.56,.64,1), color .3s;
+}
+.fyl-step:hover .fyl-step-num {
+  transform: scale(1.15);
+  color: var(--primary);
+}
+.fyl-step {
+  transition: transform .22s;
+}
+.fyl-step:hover {
+  transform: translateX(6px);
+}
+
+/* ---- Impact numbers: counter animation hint ---- */
+.fyl-impact-card {
+  transition: transform .25s cubic-bezier(.34,1.56,.64,1), box-shadow .25s;
+  cursor: default;
+}
+.fyl-impact-card:hover {
+  transform: translateY(-5px) scale(1.02);
+  box-shadow: 0 16px 40px rgba(0,0,0,.1);
+}
+.fyl-impact-num {
+  transition: transform .3s cubic-bezier(.34,1.56,.64,1);
+}
+.fyl-impact-card:hover .fyl-impact-num {
+  transform: scale(1.08);
+}
+
+/* ---- Testimonios: hover lift ---- */
+.fyl-testi {
+  transition: transform .25s cubic-bezier(.34,1.56,.64,1), box-shadow .25s;
+  cursor: default;
+}
+.fyl-testi:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 20px 48px rgba(0,0,0,.1);
+}
+.fyl-testi-featured:hover {
+  transform: scale(1.02) translateY(-4px);
+}
+
+/* ---- For cards ---- */
+.fyl-for-card {
+  transition: transform .25s cubic-bezier(.34,1.56,.64,1), box-shadow .25s;
+}
+.fyl-for-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 20px 48px rgba(0,0,0,.1);
+}
+.fyl-for-icon {
+  transition: transform .3s cubic-bezier(.34,1.56,.64,1);
+}
+.fyl-for-card:hover .fyl-for-icon {
+  transform: rotate(-8deg) scale(1.08);
+}
+
+/* ---- FAQ items ---- */
+.fyl-faq-item {
+  transition: transform .2s, box-shadow .2s;
+}
+.fyl-faq-item:hover {
+  transform: translateX(4px);
+}
+.fyl-faq-item summary {
+  transition: color .2s;
+}
+.fyl-faq-item summary:hover {
+  color: var(--primary);
+}
+/* Animación de apertura del contenido */
+.fyl-faq-item p {
+  animation: fyl-fade-up .25s ease;
+}
+
+/* ---- CTA section: glow animado y botones ---- */
+.fyl-cta {
+  transition: transform .3s;
+}
+.fyl-cta-btn {
+  position: relative;
+  overflow: hidden;
+  transition: transform .25s cubic-bezier(.34,1.56,.64,1), box-shadow .25s, background .2s;
+}
+.fyl-cta-btn:hover {
+  transform: translateY(-3px) scale(1.02);
+}
+.fyl-cta-btn::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: rgba(255,255,255,.1);
+  transform: scale(0);
+  opacity: 0;
+  transition: none;
+}
+.fyl-cta-btn:active::after {
+  transform: scale(1);
+  opacity: 1;
+}
+
+/* ---- Compare columns: hover ---- */
+.fyl-compare-col {
+  transition: transform .22s;
+}
+.fyl-compare-col:hover {
+  transform: translateY(-4px);
+}
+.fyl-compare-list li {
+  transition: transform .15s, color .15s;
+}
+.fyl-compare-list li:hover {
+  transform: translateX(4px);
+}
