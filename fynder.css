@@ -7120,3 +7120,117 @@ svg, svg *, path, polygon, circle, rect, line, polyline {
 [data-theme="dark"] .write-preview-body      { background: var(--card); }
 [data-theme="dark"] .write-toolbar-sep       { background: rgba(255,255,255,.08); }
 [data-theme="dark"] .write-char-count        { color: #475569; }
+
+/* ══════════════════════════════════════════════
+   PAGE FYNDER – Saber más (landing interna)
+   ══════════════════════════════════════════════ */
+:root { --fyl-bg: #F8FAFC; }
+[data-theme="dark"] { --fyl-bg: #0F172A; }
+
+.fynder-landing-page { background: var(--fyl-bg); min-height: 100vh; }
+
+/* HERO */
+.fyl-hero {
+  position: relative;
+  background: linear-gradient(135deg, #0F172A 0%, #1E293B 55%, #0A1628 100%);
+  padding: 100px 24px 80px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+.fyl-hero-glow1 {
+  position: absolute; top: -80px; left: 20%; width: 400px; height: 300px;
+  background: radial-gradient(ellipse, rgba(103,184,180,.2) 0%, transparent 70%);
+  pointer-events: none;
+}
+.fyl-hero-glow2 {
+  position: absolute; bottom: 0; right: 10%; width: 300px; height: 250px;
+  background: radial-gradient(ellipse, rgba(47,91,183,.18) 0%, transparent 70%);
+  pointer-events: none;
+}
+.fyl-back {
+  align-self: flex-start;
+  margin-bottom: 32px;
+  position: relative; z-index: 2;
+  background: rgba(255,255,255,.08) !important;
+  border-color: rgba(255,255,255,.15) !important;
+  color: rgba(255,255,255,.85) !important;
+}
+.fyl-back:hover { background: rgba(255,255,255,.14) !important; color: #fff !important; }
+.fyl-hero-content { position: relative; z-index: 2; max-width: 700px; }
+.fyl-hero-badge {
+  display: inline-flex; align-items: center; gap: 7px;
+  padding: 6px 16px;
+  background: rgba(103,184,180,.15);
+  border: 1px solid rgba(103,184,180,.3);
+  border-radius: 99px;
+  font-size: .75rem; font-weight: 700;
+  color: #67B8B4;
+  font-family: 'Poppins', sans-serif;
+  text-transform: uppercase; letter-spacing: .07em;
+  margin-bottom: 22px;
+}
+.fyl-hero-title {
+  font-family: 'Poppins', sans-serif;
+  font-size: clamp(2rem, 4.5vw, 3rem);
+  font-weight: 900;
+  color: #fff;
+  line-height: 1.15;
+  margin-bottom: 18px;
+}
+.fyl-hero-title span { color: #67B8B4; }
+.fyl-hero-lead {
+  font-size: 1.0625rem;
+  color: rgba(255,255,255,.65);
+  line-height: 1.7;
+  max-width: 560px;
+  margin: 0 auto 32px;
+}
+.fyl-hero-actions { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; margin-bottom: 48px; }
+.fyl-btn-primary {
+  display: inline-flex; align-items: center; gap: 8px;
+  padding: 13px 24px;
+  background: #67B8B4;
+  color: #fff;
+  border: none;
+  border-radius: 14px;
+  font-family: 'Poppins', sans-serif;
+  font-size: .9rem; font-weight: 700;
+  cursor: pointer;
+  transition: all .2s;
+  box-shadow: 0 6px 20px rgba(103,184,180,.35);
+}
+.fyl-btn-primary:hover { background: #1E8F8B; transform: translateY(-2px); box-shadow: 0 10px 28px rgba(103,184,180,.45); }
+.fyl-btn-ghost {
+  display: inline-flex; align-items: center; gap: 8px;
+  padding: 13px 24px;
+  background: rgba(255,255,255,.08);
+  border: 1.5px solid rgba(255,255,255,.2);
+  border-radius: 14px;
+  color: rgba(255,255,255,.85);
+  font-family: 'Poppins', sans-serif;
+  font-size: .9rem; font-weight: 700;
+  cursor: pointer;
+  transition: all .2s;
+}
+.fyl-btn-ghost:hover { background: rgba(255,255,255,.14); color: #fff; transform: translateY(-2px); }
+.fyl-hero-visual {
+  position: relative; z-index: 2;
+  display: flex; gap: 12px; justify-content: center; flex-wrap: wrap;
+}
+.fyl-stat-pill {
+  display: inline-flex; align-items: center; gap: 8px;
+  padding: 10px 18px;
+  background: rgba(255,255,255,.07);
+  border: 1px solid rgba(255,255,255,.12);
+  border-radius: 99px;
+  color: rgba(255,255,255,.85);
+  font-size: .8125rem; font-weight: 600;
+  font-family: 'Poppins', sans-serif;
+  backdrop-filter: blur(6px);
+}
+.fyl-pill-num { font-weight: 900; color: #67B8B4; }
+.fyl-hero-wave { position: relative; z-index: 2; width: 100%; margin-top: 40px; line-height: 0; }
+.fyl-hero-wave svg { width: 100%; display: block; }
