@@ -544,17 +544,97 @@ function renderModalReviews(bizId, cat){
 function shareModalBusiness(){
   const b=BUSINESSES.find(x=>x.id===modalBusinessId);
   if(!b) return;
-  const text=`${b.name} – ${b.address}. ${b.description.slice(0,80)}...`;
-  if(navigator.share){
-    navigator.share({title:b.name,text,url:window.location.href}).catch(()=>{});
-  } else {
-    navigator.clipboard.writeText(`${b.name}\n${b.address}\nTel: ${b.phone}`).then(()=>{
-      showToast('¡Información copiada al portapapeles! 📋');
-    }).catch(()=>{
-      showToast(`📍 ${b.name} – ${b.address}`);
-    });
+
+  const shareText=`${b.name}\n📍 ${b.address}\n📞 ${b.phone}`;
+  const shareUrl=window.location.href;
+
+  // Intentar Web Share API (funciona en móvil/HTTPS)
+  if(navigator.share && location.protocol!=='file:'){
+    navigator.share({title:b.name,text:`${b.name} – ${b.address}`,url:shareUrl}).catch(()=>{});
+    return;
   }
-} 
+
+  // Fallback: mostrar panel de opciones de compartir
+  _showSharePanel(b, shareText, shareUrl);
+}
+
+function _showSharePanel(b, shareText, shareUrl){
+  // Si ya existe, quitarlo
+  const existing=document.getElementById('sharePanel');
+  if(existing){ existing.remove(); return; }
+
+  const waText=encodeURIComponent(`${b.name}\n📍 ${b.address}\n📞 ${b.phone}`);
+  const tgText=encodeURIComponent(`${b.name} – ${b.address}`);
+
+  const panel=document.createElement('div');
+  panel.id='sharePanel';
+  panel.innerHTML=`
+    <div class="share-panel-backdrop" onclick="document.getElementById('sharePanel').remove()"></div>
+    <div class="share-panel-box">
+      <div class="share-panel-title">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" x2="15.42" y1="13.51" y2="17.49"/><line x1="15.41" x2="8.59" y1="6.51" y2="10.49"/></svg>
+        Compartir negocio
+      </div>
+      <div class="share-panel-name">${b.name}</div>
+      <div class="share-panel-btns">
+        <button class="share-opt-btn share-opt-wa" onclick="_shareTo('wa','${waText}')">
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51a12.8 12.8 0 0 0-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M11.92 2C6.418 2 2 6.418 2 11.92c0 1.846.487 3.579 1.34 5.083L2 22l5.104-1.333A9.875 9.875 0 0 0 11.92 21.84C17.421 21.84 22 17.421 22 11.92S17.421 2 11.92 2zm0 17.882a7.93 7.93 0 0 1-4.043-1.105l-.29-.173-3.008.787.803-2.933-.19-.302A7.875 7.875 0 0 1 4.04 11.92c0-4.348 3.538-7.882 7.881-7.882 4.344 0 7.882 3.534 7.882 7.882 0 4.349-3.538 7.882-7.882 7.882z"/></svg>
+          WhatsApp
+        </button>
+        <button class="share-opt-btn share-opt-tg" onclick="_shareTo('tg','${tgText}')">
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/></svg>
+          Telegram
+        </button>
+        <button class="share-opt-btn share-opt-copy" id="shareCopyBtn" onclick="_shareCopy('${encodeURIComponent(shareText)}')">
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="14" height="14" x="8" y="8" rx="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg>
+          Copiar
+        </button>
+      </div>
+      <button class="share-panel-close" onclick="document.getElementById('sharePanel').remove()">Cerrar</button>
+    </div>
+  `;
+  document.body.appendChild(panel);
+}
+
+function _shareTo(platform, encodedText){
+  const urls={
+    wa: `https://wa.me/?text=${encodedText}`,
+    tg: `https://t.me/share/url?url=${encodeURIComponent(window.location.href)}&text=${encodedText}`
+  };
+  window.open(urls[platform],'_blank','noopener');
+}
+
+function _shareCopy(encodedText){
+  const text=decodeURIComponent(encodedText);
+  const btn=document.getElementById('shareCopyBtn');
+  if(navigator.clipboard && navigator.clipboard.writeText){
+    navigator.clipboard.writeText(text).then(()=>{
+      if(btn){ btn.innerHTML='<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg> ¡Copiado!'; btn.style.color='#10B981'; }
+      setTimeout(()=>{ const p=document.getElementById('sharePanel'); if(p) p.remove(); },1200);
+    }).catch(()=>_shareCopyFallback(text));
+  } else {
+    _shareCopyFallback(text);
+  }
+}
+
+function _shareCopyFallback(text){
+  // Método clásico compatible con file://
+  const ta=document.createElement('textarea');
+  ta.value=text;
+  ta.style.cssText='position:fixed;top:-9999px;left:-9999px;opacity:0';
+  document.body.appendChild(ta);
+  ta.select();
+  ta.setSelectionRange(0,99999);
+  const ok=document.execCommand('copy');
+  document.body.removeChild(ta);
+  const btn=document.getElementById('shareCopyBtn');
+  if(ok){
+    if(btn){ btn.innerHTML='<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg> ¡Copiado!'; btn.style.color='#10B981'; }
+    setTimeout(()=>{ const p=document.getElementById('sharePanel'); if(p) p.remove(); },1200);
+  } else {
+    showToast(`📋 ${text.split('\n')[0]}`);
+  }
+}
 
 function updateModalFavBtn(){const isFav=favorites.has(modalBusinessId);const btn=document.getElementById('modalFavBtn');btn.classList.toggle('active',isFav);document.getElementById('modalFavLabel').textContent=isFav?'Guardado':'Guardar';btn.querySelector('svg').style.fill=isFav?'#EF4444':'none';} 
 
