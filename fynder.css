@@ -5779,13 +5779,15 @@ label.avatar-option-btn:hover { background: var(--teal-light); border-color: rgb
   background: var(--card);
   border-color: rgba(255,255,255,.07);
 }
+[data-theme="dark"] .plans-table         { background: var(--card); }
 [data-theme="dark"] .plans-table thead tr { background: rgba(255,255,255,.04); }
 [data-theme="dark"] .plans-table th       { color: var(--fg); border-color: rgba(255,255,255,.07); }
 [data-theme="dark"] .plans-table td       { color: var(--muted); border-color: rgba(255,255,255,.07); }
 [data-theme="dark"] .plans-table th:first-child,
 [data-theme="dark"] .plans-table td:first-child { color: var(--fg); }
-[data-theme="dark"] .plans-table tbody tr:hover { background: rgba(255,255,255,.04); }
+[data-theme="dark"] .plans-table tbody tr:hover { background: rgba(255,255,255,.05); }
 [data-theme="dark"] .plans-no { color: rgba(100,116,139,.5); }
+[data-theme="dark"] .plan-features li    { color: var(--muted); }
 
 /* FAQ planes */
 [data-theme="dark"] .plans-faq-title { color: var(--fg); }
