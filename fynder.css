@@ -439,7 +439,7 @@ input, button, select, textarea {
 
     .cards-grid { display: grid; grid-template-columns: repeat(auto-fill,minmax(240px,1fr)); gap: 20px; } 
 
-    .bcard { background: var(--card); border-radius: 20px; overflow: hidden; border: 1px solid var(--border); cursor: pointer; transition: transform .22s, box-shadow .22s; } 
+    .bcard { background: var(--card); border-radius: 20px; overflow: hidden; border: 1px solid var(--border); cursor: pointer; transition: transform .22s, box-shadow .22s; display: flex; flex-direction: column; } 
 
     .bcard:hover { transform: translateY(-4px); box-shadow: var(--shadow-lg); } 
 
