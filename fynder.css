@@ -6296,9 +6296,10 @@ label.avatar-option-btn:hover { background: var(--teal-light); border-color: rgb
 [data-theme="dark"] .about-card          { background: var(--card); border-color: rgba(255,255,255,.07); }
 [data-theme="dark"] .about-card h3       { color: var(--fg); }
 [data-theme="dark"] .about-card p        { color: var(--muted); }
-[data-theme="dark"] .about-stats-row     { background: var(--card); border-color: rgba(255,255,255,.07); }
-[data-theme="dark"] .about-stat          { border-right-color: rgba(255,255,255,.07); }
-[data-theme="dark"] .about-stat-lbl      { color: var(--muted); }
+[data-theme="dark"] .about-stats-row     { background: linear-gradient(135deg,#1E8F8B,#2F5BB7); }
+[data-theme="dark"] .about-stat          { border-right-color: rgba(255,255,255,.15); }
+[data-theme="dark"] .about-stat-num      { color: #fff; }
+[data-theme="dark"] .about-stat-lbl      { color: rgba(255,255,255,.75); }
 /* ── Artículo ── */
 [data-theme="dark"] #page-article { background: var(--bg) !important; }
 [data-theme="dark"] .article-title { color: var(--fg); }
