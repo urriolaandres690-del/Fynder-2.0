@@ -310,6 +310,7 @@ function goPage(p){
     if(p==='directory') renderDirectory();
     if(p==='favorites') renderFavorites();
     if(p==='profile')   loadProfile();
+    if(p==='dashboard') loadDashboard();
 }
 
 function goBack(){
