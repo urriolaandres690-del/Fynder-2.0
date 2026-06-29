@@ -10034,29 +10034,36 @@ section.fyl-section-alt > *:last-child { padding-bottom: 72px; }
 
 .about-team-av {
   position: relative;
-  width: 46px;
-  height: 46px;
+  width: 58px;
+  height: 58px;
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-left: -10px;
-  border: 2.5px solid #1E293B;
+  margin-left: -14px;
+  border: 3px solid #1E293B;
   cursor: pointer;
-  transition: transform .2s cubic-bezier(.34,1.56,.64,1), z-index 0s;
+  transition: transform .2s cubic-bezier(.34,1.56,.64,1), box-shadow .2s;
   z-index: 1;
+  /* brillo base */
+  box-shadow: 0 0 0 0 transparent;
 }
 .about-team-avatars .about-team-av:first-child { margin-left: 0; }
-.about-team-av:hover { transform: translateY(-6px) scale(1.12); z-index: 10; }
+.about-team-av:hover {
+  transform: translateY(-7px) scale(1.18);
+  z-index: 10;
+  box-shadow: 0 0 18px 4px var(--av-glow, rgba(103,184,180,.6)), 0 6px 20px rgba(0,0,0,.3);
+}
 
 .about-team-av span {
   font-family: 'Poppins', sans-serif;
-  font-size: .78rem;
+  font-size: .85rem;
   font-weight: 800;
   color: #fff;
   position: relative;
   z-index: 1;
   pointer-events: none;
+  text-shadow: 0 1px 4px rgba(0,0,0,.3);
 }
 
 /* Tooltip con el nombre */
