@@ -721,7 +721,7 @@ function buildHome(){
   const avgRating = allRatings.length ? (allRatings.reduce((a,b)=>a+b,0)/allRatings.length).toFixed(1) : '4.8';
   const highSat = BUSINESSES.filter(b=>b.rating>=4.0).length;
   const satPct = Math.round((highSat/total)*100);
-  const usersEst = Math.max(500, total * 8);
+  const usersEst = USERS_EST;
 
   const heroStat=document.getElementById('heroStatNegocios');
   if(heroStat) heroStat.textContent=total;
