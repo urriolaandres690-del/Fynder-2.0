@@ -1594,144 +1594,207 @@
 </div>
 
 <!-- PAGE: ABOUT -->
-<div id="page-about" class="page" style="min-height:100vh;padding-top:80px;padding-bottom:64px">
+<div id="page-about" class="page about-page-redesign">
   <div class="about-inner">
-    <button class="back-page-btn" onclick="goBack()"><i class="fas fa-arrow-left"></i> Volver</button>
+    <button class="back-page-btn about-back-btn" onclick="goBack()"><i class="fas fa-arrow-left"></i> Volver</button>
 
-    <!-- HERO -->
-    <div class="about-hero">
-      <div class="about-hero-icon">
-        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="white" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg>
-      </div>
-      <p class="section-label" style="text-align:center;margin-bottom:8px">Nuestra historia</p>
-      <h1 class="about-title">Conectando comunidades,<br><span>impulsando emprendedores</span></h1>
-      <p class="about-lead">FYNDER nació de una idea simple: que cualquier emprendedor local merezca ser encontrado. Somos la plataforma gratuita que conecta a las personas con los mejores negocios de su comunidad en Panamá.</p>
-    </div>
-
-    <!-- ORIGEN SUPÉRATE -->
-    <div class="about-origin">
-      <div class="about-origin-badge">
-        <i class="fas fa-bolt"></i> El origen
-      </div>
-      <div class="about-origin-content">
-        <div class="about-origin-text">
-          <h2>Nacido del espíritu <span>¡Supérate!</span></h2>
-          <p>FYNDER fue creado por jóvenes del <strong>Programa ¡Supérate!</strong>, una iniciativa educativa que transforma vidas en Centroamérica enseñando inglés, tecnología y valores. Con más de 20 años de historia y 7,000 beneficiarios en 15 centros en El Salvador, Panamá y Guatemala, Supérate nos enseñó que la tecnología es una herramienta de cambio social.</p>
-          <p>Aplicamos esa misma filosofía a FYNDER: <strong>tecnología accesible, impacto real en la comunidad.</strong> Cada negocio que se registra es un emprendedor panameño que da un paso adelante. Cada usuario que descubre un local es una transacción que se queda en la economía de su barrio.</p>
-          <a href="https://superate.org" target="_blank" rel="noopener" class="about-origin-link">
-            <i class="fas fa-arrow-up-right-from-square"></i> Conocer el Programa ¡Supérate!
-          </a>
+    <!-- HERO OSCURO CON PARTÍCULAS -->
+    <div class="about-hero-v2">
+      <div class="about-hero-glow1"></div>
+      <div class="about-hero-glow2"></div>
+      <div class="about-hero-particles" id="aboutParticles"></div>
+      <div class="about-hero-v2-content">
+        <div class="about-hero-badge-pill">
+          <span class="about-badge-dot"></span>
+          Nuestra historia
         </div>
-        <div class="about-origin-visual">
-          <div class="about-origin-icon-big">
-            <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="white" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg>
-          </div>
-          <div class="about-origin-countries">
-            <span><i class="fas fa-location-dot"></i> Panamá</span>
-            <span><i class="fas fa-store"></i> 85 negocios activos</span>
-            <span><i class="fas fa-rocket"></i> Expansión próximamente</span>
-          </div>
-          <p class="about-origin-quote">"La tecnología es el puente entre el talento y la oportunidad."</p>
-        </div>
-      </div>
-    </div>
-
-    <!-- MISIÓN, VISIÓN, VALORES -->
-    <div class="about-cards">
-      <div class="about-card">
-        <div class="about-card-icon icon-teal"><i class="fas fa-bullseye"></i></div>
-        <h3>Nuestra misión</h3>
-        <p>Dar visibilidad digital gratuita a cada emprendedor local de Centroamérica, eliminando las barreras tecnológicas y económicas que los mantienen invisibles para sus propios vecinos.</p>
-      </div>
-      <div class="about-card">
-        <div class="about-card-icon icon-blue"><i class="fas fa-eye"></i></div>
-        <h3>Nuestra visión</h3>
-        <p>Ser el directorio de referencia para el comercio local en toda Latinoamérica, donde cada búsqueda fortalezca la economía del barrio y no la de una corporación lejana.</p>
-      </div>
-      <div class="about-card">
-        <div class="about-card-icon icon-yellow"><i class="fas fa-heart"></i></div>
-        <h3>Nuestros valores</h3>
-        <p>Comunidad sobre todo. Transparencia sin excepciones. Accesibilidad como principio, no como opción. Innovación al servicio del que más lo necesita.</p>
-      </div>
-    </div>
-
-    <!-- STATS -->
-    <div class="about-stats-row">
-      <div class="about-stat"><span class="about-stat-num">85</span><span class="about-stat-lbl">Negocios registrados</span></div>
-      <div class="about-stat"><span class="about-stat-num">Panamá</span><span class="about-stat-lbl">País activo</span></div>
-      <div class="about-stat"><span class="about-stat-num">4.8 ★</span><span class="about-stat-lbl">Valoración promedio</span></div>
-      <div class="about-stat"><span class="about-stat-num">100%</span><span class="about-stat-lbl">Gratuito siempre</span></div>
-    </div>
-
-    <!-- IMPACTO -->
-    <div class="about-impact">
-      <h2 class="about-impact-title">¿Por qué importa comprar local?</h2>
-      <div class="about-impact-grid">
-        <div class="about-impact-item">
-          <div class="about-impact-num" style="color:#67B8B4">68%</div>
-          <p>del dinero gastado en un negocio local <strong>se queda circulando en tu comunidad</strong>, frente al 28% de las cadenas internacionales.</p>
-        </div>
-        <div class="about-impact-item">
-          <div class="about-impact-num" style="color:#2F5BB7">3×</div>
-          <p>más clientes recibe un negocio con <strong>presencia digital activa</strong> respecto a uno que solo opera de boca en boca.</p>
-        </div>
-        <div class="about-impact-item">
-          <div class="about-impact-num" style="color:#10B981">80%</div>
-          <p>de los nuevos empleos en economías en desarrollo son creados por <strong>pequeños negocios locales</strong> como los que encuentras en FYNDER.</p>
-        </div>
-      </div>
-    </div>
-
-    <!-- EQUIPO / HISTORIA HUMANA -->
-    <div class="about-team-banner">
-      <div class="about-team-banner-text">
-        <p class="section-label" style="margin-bottom:6px">Detrás de FYNDER</p>
-        <h2>Jóvenes que decidieron <span>hacer algo</span></h2>
-        <p>Somos un equipo de jóvenes centroamericanos formados en el Programa ¡Supérate! que aprendieron que la tecnología sin propósito social no vale nada. FYNDER es nuestra respuesta a una pregunta sencilla: ¿por qué es tan difícil encontrar el buen negocio que está a tres cuadras de tu casa?</p>
-      </div>
-      <div class="about-team-banner-icons">
-        <div class="about-team-avatar" style="background:linear-gradient(135deg,#67B8B4,#2F5BB7)" title="Josseph González">JG</div>
-        <div class="about-team-avatar" style="background:linear-gradient(135deg,#EC4899,#8B5CF6)" title="Ivanka Watts">IW</div>
-        <div class="about-team-avatar" style="background:linear-gradient(135deg,#10B981,#67B8B4)" title="Andrés Urriola">AU</div>
-        <div class="about-team-avatar" style="background:linear-gradient(135deg,#2F5BB7,#0EA5E9)" title="Nazareth Castillo">NC</div>
-        <div class="about-team-avatar" style="background:linear-gradient(135deg,#F97316,#F4D35E)" title="Angelis Carmona">AC</div>
-        <div class="about-team-avatar" style="background:linear-gradient(135deg,#8B5CF6,#EC4899)" title="Angel Samaniego">AS</div>
-        <div class="about-team-avatar" style="background:linear-gradient(135deg,#EF4444,#F97316)" title="José Rodríguez">JR</div>
-      </div>
-    </div>
-
-    <!-- CTA MEJORADO -->
-    <div class="about-cta">
-      <div class="about-cta-glow"></div>
-      <div class="about-cta-inner">
-        <div class="about-cta-badge"><i class="fas fa-rocket"></i> Únete hoy, es gratis</div>
-        <h2>Tu negocio merece ser <span>encontrado</span></h2>
-        <p>Miles de personas en tu comunidad buscan exactamente lo que tú ofreces. Deja de ser invisible. Regístrate en 2 minutos, sin tarjeta, sin comisiones, sin letra chica.</p>
-        <div class="about-cta-btns">
-          <button class="about-cta-btn-primary" onclick="goPage('business')">
-            <i class="fas fa-store"></i>
-            <span>
-              <strong>Registrar mi negocio</strong>
-              <small>Gratis · Activo al instante</small>
-            </span>
+        <h1 class="about-hero-v2-title">
+          Conectando comunidades,<br>
+          <span class="about-title-gradient">impulsando emprendedores</span>
+        </h1>
+        <p class="about-hero-v2-lead">FYNDER nació de una idea simple: que cualquier emprendedor local merezca ser encontrado. Somos la plataforma gratuita que conecta personas con negocios locales en Panamá.</p>
+        <div class="about-hero-v2-actions">
+          <button class="about-hero-btn-primary" onclick="goPage('business')">
+            <i class="fas fa-rocket"></i> Registrar mi negocio
           </button>
-          <button class="about-cta-btn-secondary" onclick="goPage('directory')">
-            <i class="fas fa-compass"></i>
-            <span>
-              <strong>Explorar el directorio</strong>
-              <small>Descubre negocios cerca de ti</small>
-            </span>
+          <button class="about-hero-btn-ghost" onclick="goPage('directory')">
+            <i class="fas fa-compass"></i> Explorar directorio
           </button>
         </div>
-        <div class="about-cta-perks">
-          <span><i class="fas fa-shield-halved"></i> Sin intermediarios</span>
-          <span><i class="fas fa-bolt"></i> Activación inmediata</span>
-          <span><i class="fas fa-users"></i> Comunidad real</span>
-          <span><i class="fas fa-lock-open"></i> 100% gratuito</span>
+      </div>
+      <!-- Stats flotantes -->
+      <div class="about-hero-stats">
+        <div class="about-hero-stat-pill">
+          <span class="about-stat-pill-num" id="aboutStatBiz">85</span>
+          <span>negocios</span>
         </div>
+        <div class="about-hero-stat-pill">
+          <span class="about-stat-pill-num">4.8★</span>
+          <span>valoración</span>
+        </div>
+        <div class="about-hero-stat-pill">
+          <i class="fas fa-bolt"></i>
+          <span>100% gratis</span>
+        </div>
+      </div>
+      <div class="about-hero-wave">
+        <svg viewBox="0 0 1440 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M0 60L1440 60L1440 20C1200 60 720 0 0 40L0 60Z" fill="var(--bg)"/>
+        </svg>
       </div>
     </div>
 
+    <div class="about-body">
+
+      <!-- ORIGEN SUPÉRATE -->
+      <section class="about-section about-origin-v2">
+        <div class="about-section-label"><i class="fas fa-bolt"></i> El origen</div>
+        <div class="about-origin-v2-grid">
+          <div class="about-origin-v2-text">
+            <h2 class="about-section-title">Nacido del espíritu <span>¡Supérate!</span></h2>
+            <p>FYNDER fue creado por jóvenes del <strong>Programa ¡Supérate!</strong>, una iniciativa educativa que transforma vidas en Centroamérica enseñando inglés, tecnología y valores. Con más de 20 años de historia y 7,000 beneficiarios en El Salvador, Panamá y Guatemala.</p>
+            <p>Aplicamos esa filosofía a FYNDER: <strong>tecnología accesible, impacto real en la comunidad.</strong> Cada negocio registrado es un emprendedor que da un paso adelante.</p>
+            <a href="https://superate.org" target="_blank" rel="noopener" class="about-origin-link-v2">
+              <i class="fas fa-arrow-up-right-from-square"></i> Conocer el Programa ¡Supérate!
+            </a>
+          </div>
+          <div class="about-origin-v2-card">
+            <div class="about-origin-glow"></div>
+            <div class="about-origin-logo-big">
+              <svg xmlns="http://www.w3.org/2000/svg" width="52" height="52" viewBox="0 0 24 24" fill="white" stroke="white" stroke-width="1.5"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg>
+            </div>
+            <div class="about-origin-pills">
+              <span class="about-origin-pill"><i class="fas fa-location-dot"></i> Panamá</span>
+              <span class="about-origin-pill"><i class="fas fa-store"></i> 85 negocios</span>
+              <span class="about-origin-pill"><i class="fas fa-rocket"></i> En expansión</span>
+            </div>
+            <p class="about-origin-quote-v2">"La tecnología es el puente entre el talento y la oportunidad."</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- MISIÓN, VISIÓN, VALORES – cards con brillo -->
+      <section class="about-section">
+        <div class="about-section-label"><i class="fas fa-sparkles"></i> Lo que nos mueve</div>
+        <h2 class="about-section-title">Nuestra esencia</h2>
+        <div class="about-mvv-grid">
+          <div class="about-mvv-card about-mvv-teal">
+            <div class="about-mvv-glow"></div>
+            <div class="about-mvv-icon"><i class="fas fa-bullseye"></i></div>
+            <h3>Misión</h3>
+            <p>Dar visibilidad digital gratuita a cada emprendedor local de Centroamérica, eliminando las barreras que los mantienen invisibles para sus vecinos.</p>
+            <div class="about-mvv-shine"></div>
+          </div>
+          <div class="about-mvv-card about-mvv-blue">
+            <div class="about-mvv-glow"></div>
+            <div class="about-mvv-icon"><i class="fas fa-eye"></i></div>
+            <h3>Visión</h3>
+            <p>Ser el directorio de referencia para el comercio local en toda Latinoamérica, donde cada búsqueda fortalezca la economía del barrio.</p>
+            <div class="about-mvv-shine"></div>
+          </div>
+          <div class="about-mvv-card about-mvv-yellow">
+            <div class="about-mvv-glow"></div>
+            <div class="about-mvv-icon"><i class="fas fa-heart"></i></div>
+            <h3>Valores</h3>
+            <p>Comunidad sobre todo. Transparencia sin excepciones. Accesibilidad como principio. Innovación al servicio de quien más lo necesita.</p>
+            <div class="about-mvv-shine"></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- STATS ANIMADOS -->
+      <section class="about-section about-stats-section">
+        <div class="about-stats-glow"></div>
+        <div class="about-stats-v2-grid">
+          <div class="about-stat-v2" data-target="85">
+            <span class="about-stat-v2-num" id="aStat0">0</span>
+            <span class="about-stat-v2-lbl">Negocios registrados</span>
+          </div>
+          <div class="about-stat-v2">
+            <span class="about-stat-v2-num">Panamá</span>
+            <span class="about-stat-v2-lbl">País activo</span>
+          </div>
+          <div class="about-stat-v2" data-target="4.8" data-suffix="★">
+            <span class="about-stat-v2-num" id="aStat2">0</span>
+            <span class="about-stat-v2-lbl">Valoración promedio</span>
+          </div>
+          <div class="about-stat-v2">
+            <span class="about-stat-v2-num">100%</span>
+            <span class="about-stat-v2-lbl">Gratuito siempre</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- IMPACTO – cards interactivas -->
+      <section class="about-section">
+        <div class="about-section-label"><i class="fas fa-chart-line"></i> Impacto real</div>
+        <h2 class="about-section-title">¿Por qué importa <span>comprar local?</span></h2>
+        <div class="about-impact-v2-grid">
+          <div class="about-impact-v2-card">
+            <div class="about-impact-v2-num" style="--ic:#67B8B4">68%</div>
+            <h4>Economía circular</h4>
+            <p>del dinero gastado en un negocio local <strong>se queda en tu comunidad</strong>, frente al 28% de las cadenas internacionales.</p>
+            <div class="about-impact-bar"><div class="about-impact-bar-fill" style="width:68%;background:#67B8B4"></div></div>
+          </div>
+          <div class="about-impact-v2-card">
+            <div class="about-impact-v2-num" style="--ic:#2F5BB7">3×</div>
+            <h4>Más clientes</h4>
+            <p>más clientes recibe un negocio con <strong>presencia digital activa</strong> respecto a uno que solo opera de boca en boca.</p>
+            <div class="about-impact-bar"><div class="about-impact-bar-fill" style="width:75%;background:#2F5BB7"></div></div>
+          </div>
+          <div class="about-impact-v2-card">
+            <div class="about-impact-v2-num" style="--ic:#10B981">80%</div>
+            <h4>Empleo local</h4>
+            <p>de los nuevos empleos en economías en desarrollo son creados por <strong>pequeños negocios locales</strong> como los de FYNDER.</p>
+            <div class="about-impact-bar"><div class="about-impact-bar-fill" style="width:80%;background:#10B981"></div></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- EQUIPO -->
+      <section class="about-section">
+        <div class="about-section-label"><i class="fas fa-users"></i> Detrás de FYNDER</div>
+        <h2 class="about-section-title">Jóvenes que decidieron <span>hacer algo</span></h2>
+        <p class="about-section-lead">Somos un equipo de jóvenes centroamericanos formados en el Programa ¡Supérate! que aprendieron que la tecnología sin propósito social no vale nada.</p>
+        <div class="about-team-v2">
+          <div class="about-team-v2-avatar" style="--ac:linear-gradient(135deg,#67B8B4,#2F5BB7)" title="Josseph González"><span>JG</span><div class="about-avatar-ring"></div></div>
+          <div class="about-team-v2-avatar" style="--ac:linear-gradient(135deg,#EC4899,#8B5CF6)" title="Ivanka Watts"><span>IW</span><div class="about-avatar-ring"></div></div>
+          <div class="about-team-v2-avatar" style="--ac:linear-gradient(135deg,#10B981,#67B8B4)" title="Andrés Urriola"><span>AU</span><div class="about-avatar-ring"></div></div>
+          <div class="about-team-v2-avatar" style="--ac:linear-gradient(135deg,#2F5BB7,#0EA5E9)" title="Nazareth Castillo"><span>NC</span><div class="about-avatar-ring"></div></div>
+          <div class="about-team-v2-avatar" style="--ac:linear-gradient(135deg,#F97316,#F4D35E)" title="Angelis Carmona"><span>AC</span><div class="about-avatar-ring"></div></div>
+          <div class="about-team-v2-avatar" style="--ac:linear-gradient(135deg,#8B5CF6,#EC4899)" title="Angel Samaniego"><span>AS</span><div class="about-avatar-ring"></div></div>
+          <div class="about-team-v2-avatar" style="--ac:linear-gradient(135deg,#EF4444,#F97316)" title="José Rodríguez"><span>JR</span><div class="about-avatar-ring"></div></div>
+        </div>
+      </section>
+
+      <!-- CTA FINAL -->
+      <section class="about-cta-v2">
+        <div class="about-cta-v2-glow1"></div>
+        <div class="about-cta-v2-glow2"></div>
+        <div class="about-cta-v2-content">
+          <div class="about-cta-v2-badge"><i class="fas fa-rocket"></i> Únete hoy, es gratis</div>
+          <h2>Tu negocio merece ser <span>encontrado</span></h2>
+          <p>Miles de personas en tu comunidad buscan exactamente lo que ofreces. Deja de ser invisible.</p>
+          <div class="about-cta-v2-btns">
+            <button class="about-cta-v2-primary" onclick="goPage('business')">
+              <i class="fas fa-store"></i>
+              <span><strong>Registrar mi negocio</strong><small>Gratis · Activo al instante</small></span>
+            </button>
+            <button class="about-cta-v2-ghost" onclick="goPage('directory')">
+              <i class="fas fa-compass"></i>
+              <span><strong>Explorar el directorio</strong><small>Descubre negocios cerca de ti</small></span>
+            </button>
+          </div>
+          <div class="about-cta-v2-perks">
+            <span><i class="fas fa-shield-halved"></i> Sin intermediarios</span>
+            <span><i class="fas fa-bolt"></i> Activación inmediata</span>
+            <span><i class="fas fa-lock-open"></i> 100% gratuito</span>
+            <span><i class="fas fa-users"></i> Comunidad real</span>
+          </div>
+        </div>
+      </section>
+
+    </div>
   </div>
 </div>
 
