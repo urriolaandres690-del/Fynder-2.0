@@ -4555,6 +4555,9 @@ label.avatar-option-btn:hover { background: var(--teal-light); border-color: rgb
   font-size: 1.25rem;
 }
 
+.plan-icon-free { background: #E6F5F4; color: #67B8B4; }
+.plan-icon-biz  { background: #EEF2FF; color: #2F5BB7; }
+
 /* Nombre y descripción */
 .plan-name {
   font-size: 1.375rem;
