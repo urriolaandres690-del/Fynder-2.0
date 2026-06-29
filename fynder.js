@@ -1275,13 +1275,13 @@ function hideAvatarOptions(){
 function _buildInitialsGrid(){
     const container = document.getElementById("avatarInitialsGrid");
     if(!container) return;
-    const user    = JSON.parse(localStorage.getItem("fynderUser"));
-    const initial = user?.name ? user.name.charAt(0).toUpperCase() : '?';
-    const current = localStorage.getItem("fynderAvatarInitialBg");
+    const user     = JSON.parse(localStorage.getItem("fynderUser"));
+    const initials = user?.name ? _getInitials(user.name) : '?';
+    const current  = localStorage.getItem("fynderAvatarInitialBg");
 
     container.innerHTML = INITIAL_COLORS.map((bg, i) => {
         const sel = (!localStorage.getItem("fynderAvatarPhoto") && !localStorage.getItem("fynderAvatarPreset") && bg === (current || INITIAL_COLORS[0])) ? 'selected' : '';
-        return `<button class="avatar-initial-chip ${sel}" style="background:${bg}" onclick="setAvatarInitial('${bg}')" title="Inicial ${initial}">${initial}</button>`;
+        return `<button class="avatar-initial-chip ${sel}" style="background:${bg}" onclick="setAvatarInitial('${bg}')" title="Iniciales ${initials}">${initials}</button>`;
     }).join('');
 }
 
