@@ -9903,8 +9903,8 @@ section.fyl-section-alt > *:last-child { padding-bottom: 72px; }
 /* ---- CTA final ---- */
 .about-cta-v2 {
   background:linear-gradient(135deg,#0F172A 0%,#1E293B 50%,#0A1628 100%);
-  border-radius:28px; padding:64px 40px; text-align:center; color:#fff;
-  position:relative; overflow:hidden; margin:0 24px 64px;
+  padding:64px 40px; text-align:center; color:#fff;
+  position:relative; overflow:hidden;
 }
 @media(max-width:600px){.about-cta-v2{padding:44px 20px;margin:0 12px 48px;border-radius:20px;}}
 .about-cta-v2-glow1 {
