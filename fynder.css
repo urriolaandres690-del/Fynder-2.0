@@ -224,6 +224,11 @@ input, button, select, textarea {
         #page-home{
         background:#ffffff;
         }
+        
+        /* Evita que el fondo blanco del body se vea detrás del navbar transparente sobre el hero */
+        body:has(#page-home.active) {
+          background: linear-gradient(135deg, #1E8F8B 0%, #67B8B4 45%, #2F5BB7 100%);
+        }
 
         #page-login,
         #page-register{
