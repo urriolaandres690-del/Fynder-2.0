@@ -1790,7 +1790,7 @@ function submitArticleComment() {
   const logged = !!localStorage.getItem('fynderLogged');
   const user   = JSON.parse(localStorage.getItem('fynderUser') || 'null');
   const name   = logged && user ? user.name : 'Visitante';
-  const initial = name.charAt(0).toUpperCase();
+  const initial = _getInitials(name);
   const userId  = logged && user ? (user.email || user.name) : null;
   const colorIdx = Math.floor(Math.random() * ART_COMMENT_COLORS.length);
 
