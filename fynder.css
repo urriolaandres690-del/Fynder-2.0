@@ -4373,7 +4373,7 @@ button.profile-badge:hover {
   color: #2F5BB7;
 }
 
-/* ── Dropdown de estado desde el badge ── */
+/* dropdown de estado */
 .profile-status-badge-wrap {
   position: relative;
   display: inline-flex;
@@ -4628,7 +4628,7 @@ label.avatar-option-btn:hover { background: var(--teal-light); border-color: rgb
   .avatar-presets-grid { grid-template-columns: repeat(5, 1fr); }
 }
 
-/* ── Selector de estado del usuario ── */
+/* selector de estado */
 .profile-status-card { background: #fff; }
 
 .profile-status-desc {
@@ -4718,7 +4718,7 @@ label.avatar-option-btn:hover { background: var(--teal-light); border-color: rgb
   .status-options { grid-template-columns: 1fr; }
 }
 
-/* ── Grid y cards ── */
+/* grid del perfil */
 .profile-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -4785,7 +4785,7 @@ label.avatar-option-btn:hover { background: var(--teal-light); border-color: rgb
 .profile-save-btn-alt { background: #2F5BB7; }
 .profile-save-btn-alt:hover { background: #264fa0; }
 
-/* ── Actividad ── */
+/* actividad del usuario */
 .profile-stats {
   display: flex;
   gap: 0;
