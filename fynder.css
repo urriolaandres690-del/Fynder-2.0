@@ -6098,7 +6098,7 @@ label.avatar-option-btn:hover { background: var(--teal-light); border-color: rgb
 }
 [data-theme="dark"] .blog-newsletter-form input::placeholder { color: rgba(255,255,255,.5) !important; }
 
-/* ── Páginas legales (Términos y Privacidad) ── */
+/* legal */
 [data-theme="dark"] .legal-page  { background: var(--bg); }
 [data-theme="dark"] .legal-content-wrap { background: var(--bg); }
 
@@ -6172,7 +6172,7 @@ label.avatar-option-btn:hover { background: var(--teal-light); border-color: rgb
 [data-theme="dark"] .legal-action-btn-primary { background: var(--primary); color: #fff; }
 [data-theme="dark"] .legal-action-btn-primary:hover { background: var(--primary-d); }
 
-/* ── Planes ── */
+/* planes */
 [data-theme="dark"] #page-plans { background: var(--bg) !important; }
 [data-theme="dark"] .plans-title { color: var(--fg); }
 [data-theme="dark"] .plans-lead  { color: var(--muted); }
@@ -6245,7 +6245,7 @@ label.avatar-option-btn:hover { background: var(--teal-light); border-color: rgb
 [data-theme="dark"] .plans-faq-item h3 { color: var(--fg); }
 [data-theme="dark"] .plans-faq-item p  { color: var(--muted); }
 
-/* ── Soporte ── */
+/* soporte */
 [data-theme="dark"] #page-support { background: var(--bg) !important; }
 [data-theme="dark"] .support-title { color: var(--fg); }
 [data-theme="dark"] .support-lead  { color: var(--muted); }
