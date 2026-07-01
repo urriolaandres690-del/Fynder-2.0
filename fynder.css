@@ -5716,7 +5716,7 @@ label.avatar-option-btn:hover { background: var(--teal-light); border-color: rgb
   border-top: 1px solid var(--border);
 }
 
-/* ── Sección de comentarios del artículo ── */
+/* comentarios del articulo */
 .article-comments-section {
   max-width: 780px;
   margin: 32px auto 0;
@@ -5871,7 +5871,7 @@ label.avatar-option-btn:hover { background: var(--teal-light); border-color: rgb
 
 /* Modo oscuro */
 
-/* ── Botón toggle ── */
+/* boton de tema */
 .dark-toggle-btn {
   width: 38px; height: 38px;
   border-radius: 50%;
@@ -5898,7 +5898,7 @@ label.avatar-option-btn:hover { background: var(--teal-light); border-color: rgb
 [data-theme="dark"] .dark-toggle-btn .icon-moon { display: none;  }
 [data-theme="dark"] .dark-toggle-btn .icon-sun  { display: block; }
 
-/* ── Variables dark ── */
+/* variables modo oscuro */
 [data-theme="dark"] {
   --bg:         #0F172A;
   --fg:         #E2E8F0;
