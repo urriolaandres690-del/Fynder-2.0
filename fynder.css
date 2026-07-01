@@ -31,7 +31,7 @@ input, button, select, textarea {
   margin-bottom: 0;
 }
 
-/* ── End Bootstrap override ── */
+/* fin override bootstrap */
 
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; } 
 
