@@ -94,7 +94,7 @@ input, button, select, textarea {
   line-clamp: 2;
   }
 
-    /* ── Navbar ── */ 
+    /* navbar */ 
 
     #navbar.scrolled{
         background: rgba(255,255,255,.85);
@@ -5915,7 +5915,7 @@ label.avatar-option-btn:hover { background: var(--teal-light); border-color: rgb
 /* ── Body & base ── */
 [data-theme="dark"] body { background: var(--bg); color: var(--fg); }
 
-/* ── Navbar ── */
+/* navbar modo oscuro */
 [data-theme="dark"] #navbar { background: rgba(15,23,42,.7); }
 [data-theme="dark"] #navbar.scrolled {
   background: rgba(15,23,42,.95);
