@@ -403,7 +403,7 @@ input, button, select, textarea {
 
     .hero-wave svg { width: 100%; } 
 
-    /* ── Sections ── */ 
+    /* secciones */
 
     .section { padding: 72px 0; } 
 
@@ -906,7 +906,7 @@ input, button, select, textarea {
 
     .fav-empty-icon svg { width: 40px; height: 40px; color: #FCA5A5; } 
 
-    /* ── Modal ── */ 
+    /* modal */ 
 
     /* Renamed from .modal-overlay/.modal to avoid Bootstrap JS hijacking these class names */
     .fynder-modal-overlay { position: fixed; inset: 0; z-index: 200; display: flex; align-items: center; justify-content: center; padding: 16px; background: rgba(0,0,0,.5); backdrop-filter: blur(6px); } 
@@ -996,7 +996,7 @@ input, button, select, textarea {
 
     .btn-map svg { width: 16px; height: 16px; } 
 
-    /* ── Responsive ── */ 
+    /* responsive */
 
     @media(max-width:1100px) { 
 
@@ -2461,7 +2461,7 @@ body{
   transform: translateY(-1px);
 }
 
-/* ── Responsive ── */
+/* responsive auth */
 @media (max-width: 900px) {
   .auth-page {
     grid-template-columns: 1fr;
