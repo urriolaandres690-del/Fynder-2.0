@@ -5912,7 +5912,7 @@ label.avatar-option-btn:hover { background: var(--teal-light); border-color: rgb
   --shadow-lg:  0 8px 32px rgba(0,0,0,.55);
 }
 
-/* ── Body & base ── */
+/* base */
 [data-theme="dark"] body { background: var(--bg); color: var(--fg); }
 
 /* navbar modo oscuro */
@@ -5941,7 +5941,7 @@ label.avatar-option-btn:hover { background: var(--teal-light); border-color: rgb
 [data-theme="dark"] .section-title { color: var(--fg); }
 [data-theme="dark"] .section-label { color: var(--primary); }
 
-/* ── Cards de negocio ── */
+/* tarjetas de negocio */
 [data-theme="dark"] .bcard       { background: var(--card); border-color: rgba(255,255,255,.07); }
 [data-theme="dark"] .bcard-name  { color: var(--fg); }
 [data-theme="dark"] .bcard-desc  { color: var(--muted); }
@@ -5993,7 +5993,7 @@ label.avatar-option-btn:hover { background: var(--teal-light); border-color: rgb
 [data-theme="dark"] .modal-review-text  { color: var(--muted); }
 [data-theme="dark"] .modal-reviewer     { color: var(--fg); }
 
-/* ── Reseñas unificadas (review-card) ── */
+/* resenas */
 [data-theme="dark"] .review-card        { background: rgba(255,255,255,.04); border-color: rgba(255,255,255,.08); }
 [data-theme="dark"] .review-name        { color: var(--fg); }
 [data-theme="dark"] .review-text        { color: rgba(203,213,225,.9); }
@@ -6007,7 +6007,7 @@ label.avatar-option-btn:hover { background: var(--teal-light); border-color: rgb
 [data-theme="dark"] .reviews-list textarea::placeholder,
 [data-theme="dark"] .biz-review-textarea::placeholder { color: rgba(148,163,184,.6) !important; }
 
-/* ── Perfil ── */
+/* perfil modo oscuro */
 [data-theme="dark"] #page-profile  { background: var(--bg) !important; }
 [data-theme="dark"] .profile-card  { background: var(--card); border-color: rgba(255,255,255,.07); }
 [data-theme="dark"] .profile-card-title { color: var(--fg); }
@@ -6036,7 +6036,7 @@ label.avatar-option-btn:hover { background: var(--teal-light); border-color: rgb
 [data-theme="dark"] .avatar-options-close:hover { background: rgba(255,255,255,.08); color: var(--fg); }
 [data-theme="dark"] .avatar-preset-item  { background: rgba(103,184,180,.1); }
 
-/* ── Registro negocio ── */
+/* registro negocio modo oscuro */
 [data-theme="dark"] #page-business   { background: var(--bg) !important; }
 [data-theme="dark"] .biz-reg-card    { background: var(--card); border-color: rgba(255,255,255,.07); }
 [data-theme="dark"] .biz-reg-title   { color: var(--fg); }
