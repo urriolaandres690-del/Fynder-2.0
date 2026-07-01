@@ -5925,7 +5925,7 @@ label.avatar-option-btn:hover { background: var(--teal-light); border-color: rgb
 [data-theme="dark"] .nav-link.active  { background: rgba(103,184,180,.15); color: var(--primary); }
 [data-theme="dark"] .dark-toggle-btn  { background: rgba(255,255,255,.06); color: var(--fg); }
 
-/* ── Hero ── */
+/* hero modo oscuro */
 [data-theme="dark"] #page-home { background: var(--bg); }
 [data-theme="dark"] .hero { background: linear-gradient(135deg, #0F172A 0%, #1E293B 60%, #0F172A 100%); }
 [data-theme="dark"] .hero-search  { background: rgba(30,41,59,.9); border-color: rgba(103,184,180,.25); }
@@ -5936,7 +5936,7 @@ label.avatar-option-btn:hover { background: var(--teal-light); border-color: rgb
 [data-theme="dark"] .hero-stat-card { background: rgba(30,41,59,.85); border-color: rgba(103,184,180,.15); }
 [data-theme="dark"] .hero-stat-icon { background: rgba(255,255,255,.05); }
 
-/* ── Sections ── */
+/* secciones modo oscuro */
 [data-theme="dark"] .section { background: var(--bg) !important; }
 [data-theme="dark"] .section-title { color: var(--fg); }
 [data-theme="dark"] .section-label { color: var(--primary); }
@@ -5951,7 +5951,7 @@ label.avatar-option-btn:hover { background: var(--teal-light); border-color: rgb
 [data-theme="dark"] .bcard-list-name { color: var(--fg); }
 [data-theme="dark"] .bcard-list-desc { color: var(--muted); }
 
-/* ── Categorías ── */
+/* categorias modo oscuro */
 [data-theme="dark"] .cat-card { background: var(--card); border-color: rgba(255,255,255,.07); }
 [data-theme="dark"] .cat-name { color: var(--fg); }
 [data-theme="dark"] .cat-count { color: var(--muted); }
@@ -5980,7 +5980,7 @@ label.avatar-option-btn:hover { background: var(--teal-light); border-color: rgb
 [data-theme="dark"] .favs-title     { color: var(--fg); }
 [data-theme="dark"] .favs-sub       { color: var(--muted); }
 
-/* ── Modal ── */
+/* modal modo oscuro */
 [data-theme="dark"] #modalOverlay { background: rgba(0,0,0,.7); }
 [data-theme="dark"] .modal-box    { background: var(--card); border-color: rgba(255,255,255,.07); }
 [data-theme="dark"] .modal-img    { background: #1E293B; }
