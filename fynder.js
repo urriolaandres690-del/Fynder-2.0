@@ -2004,7 +2004,7 @@ function generateChartLabels(period) {
   return labels;
 }
 
-// Genera datos de visitas para la gráfica
+// datos de visitas
 function generateChartData(period) {
   const points = period === '7d' ? 7 : period === '30d' ? 10 : 12;
   const base = Math.max(JSON.parse(localStorage.getItem('fynderBusinesses') || '[]').length * 2, 2);
@@ -2282,7 +2282,7 @@ function loadDashboard() {
   }
 }
 
-// Abre el detalle de un negocio registrado en el directorio (si existe) o muestra toast
+// abre detalle del negocio
 function openBusinessDetail(index) {
   const businesses = JSON.parse(localStorage.getItem('fynderBusinesses') || '[]');
   const biz = businesses[index];
@@ -2297,7 +2297,7 @@ function openBusinessDetail(index) {
 }
 
 
-// Saber más – Animaciones de entrada
+// animaciones pagina saber mas
 
 let fynderObserver = null;
 
@@ -2398,7 +2398,7 @@ function createRipple(e) {
 }
 
 
-// Menú móvil – Drawer lateral
+// menu movil
 
 function toggleMobileMenu() {
   const drawer  = document.getElementById('mobileMenuDrawer');
