@@ -1874,7 +1874,7 @@ body{
 .fynder-toast.toast-error { background: #DC2626; }
 
 
-/* ── Navbar: btn-login-nav (Iniciar sesión) ── */
+/* boton iniciar sesion */
 .btn-login-nav {
   display: inline-flex;
   align-items: center;
@@ -1910,7 +1910,7 @@ body{
   border-color: #fff;
 }
 
-/* ── Fix: Bootstrap bleeds box-shadow/border onto .input-wrap input ── */
+/* fix sombras bootstrap en inputs */
 .input-wrap input,
 .input-wrap input:focus,
 .input-wrap input:focus-visible {
@@ -2014,7 +2014,7 @@ body{
   min-height: 100vh;
 }
 
-/* ── Panel izquierdo ── */
+/* panel izquierdo */
 .auth-panel {
   position: relative;
   background: linear-gradient(155deg, #1E8F8B 0%, #2F5BB7 60%, #1a3a8a 100%);
