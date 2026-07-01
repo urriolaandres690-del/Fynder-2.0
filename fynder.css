@@ -4141,7 +4141,7 @@ body{
 /* Profile page */
 .profile-inner { max-width: 960px; margin: 0 auto; padding: 0 24px; }
 
-/* ── Portada ── */
+/* portada del perfil */
 .profile-cover-wrap {
   border-radius: 24px;
   /* overflow: hidden ELIMINADO — causaba que el avatar y el panel quedaran recortados */
@@ -4246,7 +4246,7 @@ label.profile-cover-edit-btn:hover {
 }
 .profile-cover-del-btn:hover { background: rgba(239,68,68,.5) !important; color: #fff; }
 
-/* ── Fila cabecera: avatar + info ── */
+/* cabecera del perfil */
 .profile-header {
   display: flex;
   align-items: center;
