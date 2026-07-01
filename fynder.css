@@ -6295,7 +6295,7 @@ label.avatar-option-btn:hover { background: var(--teal-light); border-color: rgb
   color: #fff;
 }
 
-/* ── Botón volver / back-page-btn */
+/* boton volver */
 [data-theme="dark"] .back-page-btn {
   background: rgba(255,255,255,.06);
   border-color: rgba(255,255,255,.12);
@@ -6306,7 +6306,7 @@ label.avatar-option-btn:hover { background: var(--teal-light); border-color: rgb
   color: var(--primary);
 }
 
-/* ── About / Saber más ── */
+/* about y saber mas */
 [data-theme="dark"] #page-about          { background: var(--bg) !important; }
 [data-theme="dark"] .about-title         { color: var(--fg); }
 [data-theme="dark"] .about-lead          { color: var(--muted); }
@@ -6317,7 +6317,7 @@ label.avatar-option-btn:hover { background: var(--teal-light); border-color: rgb
 [data-theme="dark"] .about-stat          { border-right-color: rgba(255,255,255,.15); }
 [data-theme="dark"] .about-stat-num      { color: #fff; }
 [data-theme="dark"] .about-stat-lbl      { color: rgba(255,255,255,.75); }
-/* ── Artículo ── */
+/* articulo */
 [data-theme="dark"] #page-article { background: var(--bg) !important; }
 [data-theme="dark"] .article-title { color: var(--fg); }
 [data-theme="dark"] .article-content { color: var(--muted); }
