@@ -16,7 +16,7 @@
 
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800;900&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" /> 
 
-  <!-- Bootstrap -->
+  <!-- Bootstrap CSS -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
 
   <link rel="stylesheet" href="fynder.css">
@@ -27,7 +27,7 @@
 
 <body> 
 
-<!-- NAVBAR --> 
+<!-- Barra de navegación -->
 
 <nav id="navbar"> 
 
@@ -104,7 +104,7 @@
   </div>
 </nav>
 
-<!-- Drawer móvil -->
+<!-- Menú móvil -->
 <div class="mobile-menu-overlay" id="mobileMenuOverlay" onclick="closeMobileMenu()"></div>
 <div class="mobile-menu-drawer" id="mobileMenuDrawer">
   <div class="mobile-menu-header">
@@ -132,7 +132,7 @@
   </div>
 </div> 
 
-<!-- PAGE: HOME --> 
+<!-- Página: Inicio -->
 
 <div id="page-home" class="page active"> 
 
@@ -467,7 +467,7 @@
 
 </div> 
 
-<!-- PAGE: DIRECTORY --> 
+<!-- Página: Directorio -->
 
 <div id="page-directory" class="page" style="min-height:100vh;background:#F8FAFC;padding-top:64px"> 
 
@@ -503,7 +503,7 @@
 
 </div> 
 
-<!-- PAGE: FAVORITES --> 
+<!-- Página: Favoritos -->
 
 <div id="page-favorites" class="page" style="min-height:100vh;background:#F8FAFC"> 
 
@@ -513,7 +513,7 @@
 
 </div> 
 
-<!-- LOGIN PAGE -->
+<!-- Página: Iniciar sesión -->
 <div id="page-login" class="page auth-page">
 
   <!-- Panel izquierdo decorativo -->
@@ -616,7 +616,7 @@
 
 </div>
 
-<!-- REGISTER PAGE -->
+<!-- Página: Registro -->
 <div id="page-register" class="page auth-page">
 
   <!-- Panel izquierdo decorativo -->
@@ -746,7 +746,7 @@
 
 </div>
 
-<!-- PAGE: BUSINESS -->
+<!-- Página: Registrar negocio -->
 
 <div id="page-business" class="page" style="min-height:100vh; background:#F8FAFC; padding-top:80px; padding-bottom:64px">
 
@@ -919,7 +919,7 @@
 
 </div> 
 
-<!-- PAGE: PROFILE -->
+<!-- Página: Perfil -->
 <div id="page-profile" class="page" style="min-height:100vh;background:#F8FAFC;padding-top:80px;padding-bottom:64px">
   <div class="profile-inner">
 
@@ -1275,7 +1275,7 @@
   </div>
 </div>
 
-<!-- PAGE: FYNDER (Saber más desde hero) -->
+<!-- Página: Saber más -->
 <div id="page-fynder" class="page fynder-landing-page">
 
   <!-- HERO OSCURO CON GLOW -->
@@ -1594,7 +1594,7 @@
   </div>
 </div>
 
-<!-- PAGE: ABOUT -->
+<!-- Página: Sobre Fynder -->
 <div id="page-about" class="page about-page-redesign">
 
     <!-- HERO OSCURO CON PARTÍCULAS -->
@@ -1815,7 +1815,7 @@
     </div>
 </div>
 
-<!-- PAGE: BLOG -->
+<!-- Página: Blog -->
 <div id="page-blog" class="page page-inner">
   <div class="blog-inner">
     <button class="back-page-btn" onclick="goBack()"><i class="fas fa-arrow-left"></i> Volver</button>
@@ -1993,7 +1993,7 @@
   </div><!-- fin .blog-inner -->
 </div>
 
-<!-- MODAL: Nuevo Artículo -->
+<!-- Modal: Nuevo artículo -->
 <div id="newArticleOverlay" class="fynder-modal-overlay hide" onclick="closeNewArticleModal(event)" style="z-index:200">
   <div class="fynder-modal" style="max-width:640px;max-height:90vh;overflow-y:auto" onclick="event.stopPropagation()">
     <div style="padding:28px 28px 0;display:flex;align-items:center;justify-content:space-between;margin-bottom:20px">
@@ -2066,7 +2066,7 @@
   </div>
 </div>
 
-<!-- PAGE: WRITE ARTICLE -->
+<!-- Página: Escribir artículo -->
 <div id="page-write" class="page page-inner">
   <div class="write-inner">
 
@@ -2221,7 +2221,7 @@
   </div><!-- /write-inner -->
 </div>
 
-<!-- PAGE: TERMS -->
+<!-- Página: Términos -->
 <div id="page-terms" class="page legal-page">
 
   <!-- Hero banner legal -->
@@ -2392,7 +2392,7 @@
   </div>
 </div>
 
-<!-- PAGE: PRIVACY -->
+<!-- Página: Privacidad -->
 <div id="page-privacy" class="page legal-page">
 
   <!-- Hero banner legal -->
@@ -2564,7 +2564,7 @@
   </div>
 </div>
 
-<!-- PAGE: PLANS -->
+<!-- Página: Planes -->
 <div id="page-plans" class="page page-inner">
   <div class="plans-inner">
     <button class="back-page-btn" onclick="goBack()"><i class="fas fa-arrow-left"></i> Volver</button>
@@ -2794,7 +2794,7 @@
   </div>
 </div>
 
-<!-- PAGE: DASHBOARD -->
+<!-- Página: Dashboard -->
 <div id="page-dashboard" class="page page-inner">
   <div class="dashboard-inner">
     <button class="back-page-btn" onclick="goBack()"><i class="fas fa-arrow-left"></i> Volver</button>
@@ -2811,13 +2811,13 @@
       </div>
     </div>
 
-    <!-- =================== PLAN ACTIVO =================== -->
+    <!-- Plan activo -->
     <section class="dash-section">
       <h2 class="dash-section-title"><i class="fas fa-gem"></i> Mi plan</h2>
       <div class="dash-plan-card" id="dashPlanCard">
         <!-- Relleno por JS -->
       </div>
-      <!-- Upgrade CTA (se oculta si ya es Premium) -->
+      <!-- CTA de mejora (se oculta si ya es Premium) -->
       <div class="dash-upgrade-strip" id="dashUpgradeStrip">
         <div class="dash-upgrade-text">
           <i class="fas fa-bolt"></i>
@@ -2832,7 +2832,7 @@
       </div>
     </section>
 
-    <!-- =================== ANALÍTICAS =================== -->
+    <!-- Analíticas -->
     <section class="dash-section">
       <div class="dash-section-head">
         <h2 class="dash-section-title"><i class="fas fa-chart-bar"></i> Analíticas</h2>
@@ -2843,7 +2843,7 @@
         </div>
       </div>
 
-      <!-- Stat cards -->
+      <!-- Tarjetas de estadísticas -->
       <div class="dash-stats-grid" id="dashStatsGrid">
         <div class="dash-stat-card">
           <div class="dash-stat-icon" style="background:#E6F5F4;color:#67B8B4"><i class="fas fa-eye"></i></div>
@@ -2890,7 +2890,7 @@
         </div>
       </div>
 
-      <!-- Locked overlay para plan Básico -->
+      <!-- Bloqueo para plan Básico -->
       <div class="dash-locked-overlay" id="dashLockedOverlay" style="display:none">
         <div class="dash-locked-box">
           <div class="dash-locked-icon"><i class="fas fa-lock"></i></div>
@@ -2903,7 +2903,7 @@
       </div>
     </section>
 
-    <!-- =================== MIS NEGOCIOS =================== -->
+    <!-- Mis negocios -->
     <section class="dash-section">
       <div class="dash-section-head">
         <h2 class="dash-section-title"><i class="fas fa-store"></i> Mis negocios</h2>
@@ -2916,7 +2916,7 @@
       </div>
     </section>
 
-    <!-- =================== ACTIVIDAD RECIENTE =================== -->
+    <!-- Actividad reciente -->
     <section class="dash-section">
       <h2 class="dash-section-title"><i class="fas fa-clock-rotate-left"></i> Actividad reciente</h2>
       <div class="dash-activity-list" id="dashActivityList">
@@ -2927,7 +2927,7 @@
   </div>
 </div>
 
-<!-- PAGE: SUPPORT -->
+<!-- Página: Soporte -->
 <div id="page-support" class="page page-inner">
   <div class="support-inner">
     <button class="back-page-btn" onclick="goBack()"><i class="fas fa-arrow-left"></i> Volver</button>
@@ -3066,7 +3066,7 @@
   </div>
 </div>
 
-<!-- PAGE: ARTICLE -->
+<!-- Página: Artículo -->
 <div id="page-article" class="page" style="min-height:100vh;background:var(--bg);padding-bottom:0">
   <div class="article-hero">
     <img id="artHeroImg" src="" alt="" class="article-hero-img" />
@@ -3120,7 +3120,7 @@
   </div>
 </div>
 
-<!-- MODAL --> 
+<!-- Modal: detalle negocio -->
 
 <div class="fynder-modal-overlay hide" id="modalOverlay" onclick="closeModal(event)"> 
 
@@ -3204,7 +3204,7 @@
   </div>
 </div>
 
-<!-- STAT MODAL -->
+<!-- Modal: estadísticas -->
 <div class="smodal-overlay hide" id="statModalOverlay" onclick="closeStatModal()"></div>
 
 </body> 
