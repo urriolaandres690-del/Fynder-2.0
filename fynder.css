@@ -3834,7 +3834,7 @@ body{
   margin: 0;
 }
 
-/* ── About: impacto ── */
+/* seccion impacto */
 .about-impact {
   margin-bottom: 52px;
 }
@@ -3872,7 +3872,7 @@ body{
   margin: 0;
 }
 
-/* ── About: equipo banner ── */
+/* equipo */
 .about-team-banner {
   background: #fff;
   border-radius: 24px;
@@ -3979,7 +3979,7 @@ body{
   transform: translateX(-50%) translateY(0);
 }
 
-/* ── About: sección de llamada a la acción mejorada ── */
+/* seccion final about */
 .about-cta {
   text-align: center;
   background: linear-gradient(135deg, #0F172A 0%, #1E293B 50%, #0F2A4A 100%);
