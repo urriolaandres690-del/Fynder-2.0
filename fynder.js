@@ -2482,7 +2482,7 @@ document.addEventListener('keydown', e => {
 });
 
 
-// Sobre Fynder – Animaciones
+// animaciones pagina about
 
 function initAboutPage() {
   spawnAboutParticles();
