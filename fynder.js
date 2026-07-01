@@ -1246,7 +1246,7 @@ function cameraClose(){
 
 /* ── Panel de opciones de avatar ── */
 
-// Colores para la inicial
+// colores del avatar
 const INITIAL_COLORS = [
     'linear-gradient(135deg,#67B8B4,#2F5BB7)',
     'linear-gradient(135deg,#EF4444,#EC4899)',
@@ -1258,7 +1258,7 @@ const INITIAL_COLORS = [
     'linear-gradient(135deg,#6366F1,#8B5CF6)',
 ];
 
-// Avatares emoji predeterminados
+// emojis predeterminados
 const AVATAR_PRESETS = [
     '🦊','🐺','🦁','🐯','🐻','🐼',
     '🐨','🐸','🦋','🐙','🦄','🐲',
@@ -1908,7 +1908,7 @@ function _applyNavbarTheme(){
     navbar.style.transition = 'background .3s, box-shadow .3s';
 }
 
-// Aplicar tema guardado al cargar la página
+// iniciar tema guardado
 (function initTheme(){
     const saved = localStorage.getItem('fynderTheme');
     if(saved === 'dark'){
@@ -1924,7 +1924,7 @@ window.addEventListener('beforeunload', function(){
 });
 
 
-// Dashboard – Panel de plan y analíticas
+// panel del usuario
 
 // Datos de planes para el panel
 const PLAN_DATA = {
