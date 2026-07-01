@@ -1843,7 +1843,7 @@ body{
 
 .register-link a:hover { text-decoration: underline; }
 
-/* ── Toast notification ── */
+/* notificacion toast */
 .fynder-toast {
   position: fixed;
   bottom: 28px;
