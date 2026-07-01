@@ -1926,7 +1926,7 @@ window.addEventListener('beforeunload', function(){
 
 // panel del usuario
 
-// Datos de planes para el panel
+// datos de planes
 const PLAN_DATA = {
   basico: {
     name: 'Básico',
@@ -1970,7 +1970,7 @@ const PLAN_DATA = {
   }
 };
 
-// Genera datos de analíticas simulados basados en los negocios registrados
+// datos de analiticas simulados
 function generateAnalytics(period) {
   const bizCount = JSON.parse(localStorage.getItem('fynderBusinesses') || '[]').length;
   const base = Math.max(bizCount * 15, 5);
@@ -1990,7 +1990,7 @@ function generateAnalytics(period) {
   return { views, saves, clicks, reviews, deltaViews, deltaSaves, deltaClicks, deltaReviews };
 }
 
-// Genera etiquetas de días para la gráfica
+// etiquetas para la grafica
 function generateChartLabels(period) {
   const days = period === '7d' ? 7 : period === '30d' ? 10 : 12;
   const labels = [];
