@@ -9658,7 +9658,7 @@ section.fyl-section-alt > *:last-child { padding-bottom: 72px; }
   margin-right: auto;
 }
 
-/* CTA también va a ancho completo */
+/* seccion final tambien full width */
 .about-cta-v2 { margin: 0; border-radius: 0; }
 
 /* ---- HERO V2 ---- */
