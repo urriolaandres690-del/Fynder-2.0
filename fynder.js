@@ -2424,9 +2424,9 @@ function closeMobileMenu() {
   document.body.style.overflow = '';
 }
 
-// Cierra el drawer al cambiar de página
+// cerrar menu al navegar
 const _origGoPage = goPage;
-// Wrap ya aplicado en goPage directamente — cerramos aquí
+// se cierra en goPage
 function updateMobileMenuActions() {
   const logged = !!localStorage.getItem('fynderLogged');
   const user   = JSON.parse(localStorage.getItem('fynderUser') || 'null');
@@ -2468,7 +2468,7 @@ function updateMobileMenuActions() {
   }
 }
 
-// Cerrar drawer al navegar
+// cerrar al hacer click
 document.addEventListener('click', e => {
   const drawer = document.getElementById('mobileMenuDrawer');
   if (drawer && drawer.classList.contains('open')) {
@@ -2476,7 +2476,7 @@ document.addEventListener('click', e => {
   }
 });
 
-// Cerrar con Escape
+// cerrar con tecla escape
 document.addEventListener('keydown', e => {
   if (e.key === 'Escape') closeMobileMenu();
 });
