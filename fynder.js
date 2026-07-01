@@ -1167,7 +1167,7 @@ function _saveImageToStorage(file, target){
     reader.readAsDataURL(file);
 }
 
-// Handlers llamados desde onchange="handleXxx(this)" — reciben el input directamente
+// handlers de cambio de archivo
 function handleAvatarChange(input){
     const file = input.files && input.files[0];
     if(file) _saveImageToStorage(file, 'avatar');
