@@ -4822,7 +4822,7 @@ label.avatar-option-btn:hover { background: var(--teal-light); border-color: rgb
 }
 .profile-stat-lbl { font-size: .75rem; color: var(--muted); font-weight: 500; }
 
-/* ── Zona de peligro ── */
+/* zona de peligro */
 .profile-danger-card { border-color: #FEE2E2; }
 
 .profile-danger-row {
@@ -5529,7 +5529,7 @@ label.avatar-option-btn:hover { background: var(--teal-light); border-color: rgb
   .support-form-header { flex-direction: column; text-align: center; }
 }
 
-/* ── Botón de regreso genérico para páginas internas ── */
+/* boton volver */
 .back-page-btn {
   display: inline-flex;
   align-items: center;
@@ -5553,7 +5553,7 @@ label.avatar-option-btn:hover { background: var(--teal-light); border-color: rgb
   border-color: rgba(103,184,180,.3);
 }
 
-/* ── Mapa en el modal ── */
+/* mapa */
 .modal-map-wrap {
   border-radius: 16px;
   overflow: hidden;
@@ -5585,7 +5585,7 @@ label.avatar-option-btn:hover { background: var(--teal-light); border-color: rgb
 .modal-map-ext-link svg { width: 15px; height: 15px; flex-shrink: 0; stroke: #1A73E8; }
 .modal-map-ext-link:hover svg { stroke: #1557b0; }
 
-/* ── Reseñas en el modal ── */
+/* resenas en modal */
 .reviews-list {
   display: flex;
   flex-direction: column;
@@ -5645,7 +5645,7 @@ label.avatar-option-btn:hover { background: var(--teal-light); border-color: rgb
   opacity: .85;
 }
 
-/* ── Página de artículo ── */
+/* pagina de articulo */
 .article-hero {
   position: relative;
   height: 360px;
