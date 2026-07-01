@@ -836,7 +836,7 @@ input, button, select, textarea {
     }
     .footer-bottom p { font-size: .78rem; color: rgba(255,255,255,.6); letter-spacing: .02em; }
 
-    /* ── Directory ── */
+    /* directorio */
 
     .dir-toolbar { position: sticky; top: 64px; z-index: 50; background: rgba(255,255,255,.95); backdrop-filter: blur(12px); border-bottom: 1px solid var(--border); box-shadow: var(--shadow-sm); }
 
@@ -892,7 +892,7 @@ input, button, select, textarea {
 
     .empty-desc { font-size: .9375rem; color: var(--muted); } 
 
-    /* ── Favorites ── */ 
+    /* favoritos */ 
 
     .favs-header { padding: 96px 24px 40px; max-width: 1280px; margin: 0 auto; } 
 
