@@ -521,7 +521,7 @@ input, button, select, textarea {
 
     .star-off { fill: #E5E7EB; color: #E5E7EB; width: 13px; height: 13px; } 
 
-    /* ── How it works ── */
+    /* ── Cómo funciona ── */
 
     .how-section {
       padding: 96px 0;
@@ -589,7 +589,7 @@ input, button, select, textarea {
     .how-tag-blue  { color: #6B8DE3; border-color: rgba(47,91,183,.35);   background: rgba(47,91,183,.08);   }
     .how-tag-green { color: #34D399; border-color: rgba(16,185,129,.35);   background: rgba(16,185,129,.08);  }
 
-    /* ── CTA ── */ 
+    /* ── Llamada a la acción ── */ 
 
     .cta-section { padding: 88px 0 120px; background: linear-gradient(135deg,#2F5BB7 0%,#1E8F8B 100%); } 
 
@@ -2005,9 +2005,7 @@ body{
 }
 
 
-/* ════════════════════════════════════════════
-   AUTH PAGES  –  Login & Register  (redesign)
-   ════════════════════════════════════════════ */
+/* Páginas de autenticación – Login y Registro */
 
 /* Página completa: layout split */
 .auth-page.active {
@@ -2516,9 +2514,7 @@ body{
 }
 
 
-/* ════════════════════════════════════════
-   PAGE: BUSINESS REGISTRATION
-   ════════════════════════════════════════ */
+/* Página de registro de negocio */
 
 .biz-reg-inner {
   max-width: 860px;
@@ -2814,9 +2810,7 @@ body{
 }
 
 
-/* ════════════════════════════════════════
-   PAGE: BLOG
-   ════════════════════════════════════════ */
+/* Página de blog */
 
 .blog-inner {
   max-width: 1100px;
@@ -3985,7 +3979,7 @@ body{
   transform: translateX(-50%) translateY(0);
 }
 
-/* ── About: CTA mejorado ── */
+/* ── About: sección de llamada a la acción mejorada ── */
 .about-cta {
   text-align: center;
   background: linear-gradient(135deg, #0F172A 0%, #1E293B 50%, #0F2A4A 100%);
@@ -4877,9 +4871,7 @@ label.avatar-option-btn:hover { background: var(--teal-light); border-color: rgb
 }
 
 
-/* ════════════════════════════════════════
-   PAGE: PLANS
-   ════════════════════════════════════════ */
+/* Página de planes */
 
 .plans-inner {
   max-width: 1100px;
@@ -5237,7 +5229,7 @@ label.avatar-option-btn:hover { background: var(--teal-light); border-color: rgb
   padding-left: 24px;
 }
 
-/* CTA planes */
+/* Llamada a la acción de planes */
 .plans-cta {
   text-align: center;
   background: linear-gradient(135deg, #1E8F8B 0%, #2F5BB7 100%);
@@ -5263,9 +5255,7 @@ label.avatar-option-btn:hover { background: var(--teal-light); border-color: rgb
 }
 
 
-/* ════════════════════════════════════════
-   PAGE: SUPPORT
-   ════════════════════════════════════════ */
+/* Página de soporte */
 
 .support-inner {
   max-width: 900px;
@@ -5879,9 +5869,7 @@ label.avatar-option-btn:hover { background: var(--teal-light); border-color: rgb
 }
 
 
-/* ═══════════════════════════════════════════════
-   DARK MODE
-   ═══════════════════════════════════════════════ */
+/* Modo oscuro */
 
 /* ── Botón toggle ── */
 .dark-toggle-btn {
@@ -6071,7 +6059,7 @@ label.avatar-option-btn:hover { background: var(--teal-light); border-color: rgb
 [data-theme="dark"] .auth-divider span { background: var(--card); color: var(--muted); }
 [data-theme="dark"] .auth-remember span:last-child { color: var(--muted); }
 
-/* ── CTA section ── */
+/* ── Sección de llamada a la acción ── */
 [data-theme="dark"] .cta-section { background: linear-gradient(135deg, #1a2f6b 0%, #0f5a57 100%); }
 
 /* ── Footer ── */
@@ -6494,9 +6482,7 @@ svg, svg *, path, polygon, circle, rect, line, polyline {
 }
 
 
-/* ══════════════════════════════════════════════
-   STAT MODAL – Modal de estadísticas con gráfica
-   ══════════════════════════════════════════════ */
+/* Modal de estadísticas con gráfica */
 
 /* Tarjetas hero-stat interactivas */
 .hero-stat-card {
@@ -6741,9 +6727,7 @@ svg, svg *, path, polygon, circle, rect, line, polyline {
   .smodal-box::before { display: none; }
 }
 
-/* ══════════════════════════════════════════════
-   WRITE ARTICLE – Página de redacción
-   ══════════════════════════════════════════════ */
+/* Página de redacción de artículos */
 
 .write-inner {
   max-width: 860px;
@@ -7160,15 +7144,13 @@ svg, svg *, path, polygon, circle, rect, line, polyline {
 [data-theme="dark"] .write-toolbar-sep       { background: rgba(255,255,255,.08); }
 [data-theme="dark"] .write-char-count        { color: #475569; }
 
-/* ══════════════════════════════════════════════
-   PAGE FYNDER – Saber más (landing interna)
-   ══════════════════════════════════════════════ */
+/* Página Saber más */
 :root { --fyl-bg: #F8FAFC; }
 [data-theme="dark"] { --fyl-bg: #0F172A; }
 
 .fynder-landing-page { background: var(--fyl-bg); min-height: 100vh; }
 
-/* HERO */
+/* Hero de saber más */
 .fyl-hero {
   position: relative;
   background: linear-gradient(135deg, #0F172A 0%, #1E293B 55%, #0A1628 100%);
@@ -7282,10 +7264,7 @@ svg, svg *, path, polygon, circle, rect, line, polyline {
   margin: 0 auto;
   padding: 72px 24px;
 }
-/* fyl-section-alt: cuando el section tiene ambas clases,
-   aplicamos fondo al elemento padre (fyl-body),
-   por eso usamos :has o simplemente usamos un wrapper en el HTML.
-   Solución: fyl-section-alt es un pseudo-wrapper de ancho completo */
+/* Secciones alternadas de saber más: pseudo-wrapper de ancho completo */
 section.fyl-section-alt {
   max-width: 100% !important;
   background: #fff;
@@ -7453,7 +7432,7 @@ section.fyl-section-alt > *:last-child { padding-bottom: 72px; }
   box-shadow: 0 4px 20px rgba(0,0,0,.25);
 }
 
-/* CTA final */
+/* Sección final de acción */
 .fyl-cta {
   background: linear-gradient(135deg, #0F172A 0%, #1E293B 50%, #0A1628 100%);
   border-radius: 28px;
@@ -7777,10 +7756,7 @@ section.fyl-section-alt > *:last-child { padding-bottom: 72px; }
   .fyl-for-card       { padding: 28px 22px; }
 }
 
-/* ══════════════════════════════════════════════
-   ICON COLOR UTILITY CLASSES
-   Reemplaza inline styles para que dark mode funcione
-   ══════════════════════════════════════════════ */
+/* Clases de color para íconos */
 .icon-teal   { background: #E6F5F4; color: #67B8B4; }
 .icon-blue   { background: #EEF2FF; color: #2F5BB7; }
 .icon-green  { background: #ECFDF5; color: #10B981; }
@@ -7801,9 +7777,7 @@ section.fyl-section-alt > *:last-child { padding-bottom: 72px; }
 [data-theme="dark"] .icon-pink   { background: rgba(236,72,153,.15);  color: #f472b6; }
 [data-theme="dark"] .icon-gray   { background: rgba(107,114,128,.15); color: #9ca3af; }
 
-/* ══════════════════════════════════════════════
-   GLOBAL DARK MODE FIXES – cosas faltantes
-   ══════════════════════════════════════════════ */
+/* Correcciones de modo oscuro */
 
 /* Botón ghost hover */
 [data-theme="dark"] .btn-ghost:hover { background: rgba(255,255,255,.08); color: var(--fg); }
@@ -7923,9 +7897,7 @@ section.fyl-section-alt > *:last-child { padding-bottom: 72px; }
 /* ── Fynder section-alt dark override (evita duplicado) ── */
 [data-theme="dark"] .fyl-section-alt { background: #1E293B !important; border-color: rgba(255,255,255,.07) !important; }
 
-/* ══════════════════════════════════════════════
-   PLANS – 4 planes + tabla mejorada
-   ══════════════════════════════════════════════ */
+/* Página de planes */
 
 /* Grid de 4 columnas */
 .plans-grid-4 {
@@ -8848,7 +8820,7 @@ section.fyl-section-alt > *:last-child { padding-bottom: 72px; }
   animation: fyl-fade-up .25s ease;
 }
 
-/* ---- CTA section: glow animado y botones ---- */
+/* ---- Sección de acción: glow animado y botones ---- */
 .fyl-cta {
   transition: transform .3s;
 }
@@ -9372,7 +9344,7 @@ section.fyl-section-alt > *:last-child { padding-bottom: 72px; }
   /* ---- Categorías ---- */
   .cat-item-label  { font-size: .7rem; }
 
-  /* ---- CTA ---- */
+  /* ---- Sección de acción ---- */
   .cta-inner h2    { font-size: 1.5rem !important; }
   .cta-inner p     { font-size: .875rem; }
   .cta-section     { padding: 44px 0; }
@@ -9474,7 +9446,7 @@ section.fyl-section-alt > *:last-child { padding-bottom: 72px; }
   .bcard           { border-radius: 14px; }
   .bcard-img       { height: 150px; }
 
-  /* CTA */
+  /* Llamada a la acción */
   .cta-inner h2    { font-size: 1.3rem !important; }
   .cta-inner       { padding: 32px 16px; border-radius: 16px; }
   .cta-btns        { flex-direction: column; gap: 10px; }
@@ -9667,7 +9639,7 @@ section.fyl-section-alt > *:last-child { padding-bottom: 72px; }
 .about-page-redesign { min-height:100vh; background:var(--bg); }
 .about-back-btn { position:absolute; top:90px; left:24px; z-index:10; }
 
-/* Full-width alternating sections (like fyl-section-alt) */
+/* Full-width alternating sections (like secciones alternadas de saber más) */
 .about-section-alt-bg {
   max-width: 100% !important;
   background: #fff;
@@ -9686,7 +9658,7 @@ section.fyl-section-alt > *:last-child { padding-bottom: 72px; }
   margin-right: auto;
 }
 
-/* CTA goes full-width too */
+/* CTA también va a ancho completo */
 .about-cta-v2 { margin: 0; border-radius: 0; }
 
 /* ---- HERO V2 ---- */
@@ -9828,7 +9800,7 @@ section.fyl-section-alt > *:last-child { padding-bottom: 72px; }
   border-top:1px solid rgba(255,255,255,.08); padding-top:14px; margin-top:4px;
 }
 
-/* ---- MVV Cards con brillo ---- */
+/* ---- Misión, visión y valores: tarjetas con brillo ---- */
 .about-mvv-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:20px; }
 @media(max-width:900px){.about-mvv-grid{grid-template-columns:1fr 1fr;}}
 @media(max-width:560px){.about-mvv-grid{grid-template-columns:1fr;}}
@@ -9938,7 +9910,7 @@ section.fyl-section-alt > *:last-child { padding-bottom: 72px; }
 }
 .about-team-v2-avatar:hover .about-avatar-ring { opacity:1; }
 
-/* ---- CTA final ---- */
+/* ---- Sección final de acción ---- */
 .about-cta-v2 {
   background:linear-gradient(135deg,#0F172A 0%,#1E293B 50%,#0A1628 100%);
   padding:64px 40px; text-align:center; color:#fff;

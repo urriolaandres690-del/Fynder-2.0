@@ -1924,9 +1924,7 @@ window.addEventListener('beforeunload', function(){
 });
 
 
-// ============================================================
-// DASHBOARD – Panel de plan y analíticas
-// ============================================================
+// Dashboard – Panel de plan y analíticas
 
 // Datos de planes para el panel
 const PLAN_DATA = {
@@ -2299,9 +2297,7 @@ function openBusinessDetail(index) {
 }
 
 
-// ============================================================
-// SABER MÁS – Animaciones de entrada con Intersection Observer
-// ============================================================
+// Saber más – Animaciones de entrada
 
 let fynderObserver = null;
 
@@ -2402,9 +2398,7 @@ function createRipple(e) {
 }
 
 
-// ============================================================
-// MENÚ MÓVIL – Drawer lateral
-// ============================================================
+// Menú móvil – Drawer lateral
 
 function toggleMobileMenu() {
   const drawer  = document.getElementById('mobileMenuDrawer');
@@ -2488,9 +2482,7 @@ document.addEventListener('keydown', e => {
 });
 
 
-// ============================================================
-// ABOUT PAGE V2 – Animaciones
-// ============================================================
+// Sobre Fynder – Animaciones
 
 function initAboutPage() {
   spawnAboutParticles();
