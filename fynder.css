@@ -4451,7 +4451,7 @@ button.profile-badge:hover {
 }
 .profile-action-chip:hover { background: var(--teal-light); color: var(--primary); border-color: rgba(103,184,180,.3); }
 
-/* ── Panel de opciones de avatar ── */
+/* opciones de avatar */
 .avatar-options-panel {
   background: #fff;
   border-radius: 20px;
@@ -6453,7 +6453,7 @@ label.avatar-option-btn:hover { background: var(--teal-light); border-color: rgb
 [data-theme="dark"] .share-panel-close   { border-color: rgba(255,255,255,.1); color: var(--muted); }
 [data-theme="dark"] .share-panel-close:hover { background: rgba(255,255,255,.06); color: var(--fg); }
 
-/* ── Transición suave al cambiar tema ── */
+/* transicion de tema */
 *:not(svg):not(path):not(polygon):not(circle):not(rect):not(line):not(polyline),
 *:not(svg):not(path):not(polygon):not(circle):not(rect):not(line):not(polyline)::before,
 *:not(svg):not(path):not(polygon):not(circle):not(rect):not(line):not(polyline)::after {
