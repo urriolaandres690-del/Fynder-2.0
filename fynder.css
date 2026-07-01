@@ -2154,7 +2154,7 @@ body{
   flex-shrink: 0;
 }
 
-/* ── Panel derecho: formulario ── */
+/* panel del formulario */
 .auth-form-side {
   display: flex;
   align-items: center;
@@ -2214,7 +2214,7 @@ body{
   margin: 0;
 }
 
-/* ── Campos del formulario ── */
+/* campos del formulario */
 .auth-field {
   margin-bottom: 18px;
 }
@@ -2787,7 +2787,7 @@ body{
 }
 
 
-/* ── Bootstrap isolation: force Fynder modal children to ignore Bootstrap resets ── */
+/* aislamiento bootstrap en modal */
 
 /* Bootstrap sets .modal-body padding and .modal display:none — override inside fynder-modal */
 .fynder-modal .modal-body {
@@ -3158,7 +3158,7 @@ body{
   .blog-newsletter-form { flex-direction: column; }
 }
 
-/* ── Legal pages (Terms & Privacy) — rediseño completo ── */
+/* paginas legales */
 
 .legal-page {
   min-height: 100vh;
@@ -3718,7 +3718,7 @@ body{
   .about-cta { padding: 44px 24px; }
 }
 
-/* ── About: origen Supérate ── */
+/* seccion origen */
 .about-origin {
   background: linear-gradient(135deg, #0F172A 0%, #1a2a4a 100%);
   border-radius: 24px;
