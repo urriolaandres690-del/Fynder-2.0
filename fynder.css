@@ -5966,7 +5966,7 @@ label.avatar-option-btn:hover { background: var(--teal-light); border-color: rgb
 [data-theme="dark"] .how-main-title { color: var(--fg); }
 [data-theme="dark"] .how-subtitle  { color: var(--muted); }
 
-/* ── Directorio ── */
+/* directorio modo oscuro */
 [data-theme="dark"] #page-directory { background: var(--bg) !important; }
 [data-theme="dark"] .dir-toolbar    { background: rgba(15,23,42,.95); border-bottom-color: rgba(103,184,180,.15); }
 [data-theme="dark"] .search-box input { background: rgba(255,255,255,.07); color: var(--fg); }
@@ -5975,7 +5975,7 @@ label.avatar-option-btn:hover { background: var(--teal-light); border-color: rgb
 [data-theme="dark"] .filter-chip:hover { background: rgba(103,184,180,.15); color: var(--primary); }
 [data-theme="dark"] .dir-count      { color: var(--muted); }
 
-/* ── Favoritos ── */
+/* favoritos modo oscuro */
 [data-theme="dark"] #page-favorites { background: var(--bg) !important; }
 [data-theme="dark"] .favs-title     { color: var(--fg); }
 [data-theme="dark"] .favs-sub       { color: var(--muted); }
@@ -6041,7 +6041,7 @@ label.avatar-option-btn:hover { background: var(--teal-light); border-color: rgb
 [data-theme="dark"] .biz-reg-card    { background: var(--card); border-color: rgba(255,255,255,.07); }
 [data-theme="dark"] .biz-reg-title   { color: var(--fg); }
 
-/* ── Login / Register ── */
+/* login registro */
 [data-theme="dark"] #page-login,
 [data-theme="dark"] #page-register {
   background:
@@ -6066,7 +6066,7 @@ label.avatar-option-btn:hover { background: var(--teal-light); border-color: rgb
 [data-theme="dark"] footer { background: #020817; }
 [data-theme="dark"] .footer-bottom { background: rgba(0,0,0,.4); }
 
-/* ── Blog ── */
+/* blog */
 [data-theme="dark"] #page-blog { background: var(--bg) !important; }
 [data-theme="dark"] .blog-title { color: var(--fg); }
 [data-theme="dark"] .blog-lead  { color: var(--muted); }
