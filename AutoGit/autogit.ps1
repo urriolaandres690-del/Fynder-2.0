@@ -1,7 +1,7 @@
 Clear-Host
 
-$Repo = Split-Path $PSScriptRoot -Parent
-Set-Location $Repo
+$Repo = Split-Path $MyInvocation.MyCommand.Path -Parent
+$Repo = Split-Path $Repo -Parent
 
 Write-Host ""
 Write-Host "========================================"
@@ -37,9 +37,7 @@ while ($true)
             if ($LASTEXITCODE -eq 0)
             {
                 Write-Host "Commit realizado."
-
-                git pull --rebase origin main
-
+                
                 if ($LASTEXITCODE -eq 0)
                 {
                     git push origin main
