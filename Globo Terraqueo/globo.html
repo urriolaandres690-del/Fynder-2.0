@@ -1,0 +1,733 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Globo Terráqueo — Fynder</title>
+<style>
+  :root{
+    --bg:#04140f;
+    --panel-bg:rgba(6,30,24,0.78);
+    --panel-border:rgba(52,211,153,0.32);
+    --accent:#34d399;
+    --accent-warm:#f0b83c;
+    --text-dim:#9fd9c4;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html,body{width:100%;height:100%;background:var(--bg);overflow:hidden;
+    font-family:'SFMono-Regular','JetBrains Mono','Consolas',monospace}
+  #globe-wrap{position:relative;width:100%;height:100vh;
+    background:radial-gradient(ellipse at 50% 38%,#0a2b21 0%,#04140f 58%,#010805 100%);
+    cursor:grab}
+  #globe-wrap:active{cursor:grabbing}
+  #globeCanvas{display:block;width:100%;height:100%}
+
+  /* loader */
+  #loader{position:absolute;inset:0;display:flex;flex-direction:column;
+    align-items:center;justify-content:center;gap:14px;background:var(--bg);
+    z-index:50;transition:opacity .7s ease,visibility .7s ease}
+  #loader.hidden{opacity:0;visibility:hidden}
+  .spinner{width:34px;height:34px;border-radius:50%;
+    border:2px solid rgba(52,211,153,.15);border-top-color:var(--accent);
+    animation:spin .9s linear infinite}
+  #loader-text{color:var(--text-dim);font-size:11px;letter-spacing:.15em;text-transform:uppercase}
+  @keyframes spin{to{transform:rotate(360deg)}}
+
+  /* vignette */
+  #vignette{position:absolute;inset:0;pointer-events:none;
+    background:radial-gradient(ellipse at 50% 50%,transparent 43%,rgba(0,0,0,.58) 100%);z-index:5}
+
+  /* corners */
+  .corner{position:absolute;width:26px;height:26px;border-color:rgba(52,211,153,.52);
+    border-style:solid;border-width:0;pointer-events:none;z-index:6}
+  .corner.tl{top:18px;left:18px;border-top-width:2px;border-left-width:2px}
+  .corner.tr{top:18px;right:18px;border-top-width:2px;border-right-width:2px}
+  .corner.bl{bottom:18px;left:18px;border-bottom-width:2px;border-left-width:2px}
+  .corner.br{bottom:18px;right:18px;border-bottom-width:2px;border-right-width:2px}
+
+  /* brand */
+  #brand{position:absolute;top:22px;left:30px;z-index:10;display:flex;
+    align-items:center;gap:8px;color:#eafff5;font-size:11px;letter-spacing:.16em;
+    text-transform:uppercase;pointer-events:none}
+  #brand .dot{width:7px;height:7px;border-radius:50%;background:var(--accent);
+    box-shadow:0 0 8px 2px var(--accent);animation:pulseDot 1.6s ease-in-out infinite}
+  @keyframes pulseDot{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.4;transform:scale(.7)}}
+
+  /* zoom controls */
+  #zoom-ctrl{position:absolute;right:22px;top:50%;transform:translateY(-50%);
+    z-index:10;display:flex;flex-direction:column;gap:6px}
+  .zoom-btn{width:32px;height:32px;border-radius:8px;background:var(--panel-bg);
+    border:1px solid var(--panel-border);color:var(--accent);font-size:18px;
+    cursor:pointer;display:flex;align-items:center;justify-content:center;
+    backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);
+    transition:background .2s,border-color .2s}
+  .zoom-btn:hover{background:rgba(52,211,153,.15);border-color:var(--accent)}
+  .zoom-btn.reset{font-size:12px;color:var(--text-dim)}
+
+  /* stat cards */
+  .stat-card{position:absolute;background:var(--panel-bg);border:1px solid var(--panel-border);
+    border-left:3px solid var(--accent);padding:14px 18px;color:#eafff5;
+    backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);
+    pointer-events:none;user-select:none;max-width:290px;z-index:10;
+    opacity:0;animation:fadeIn 1s ease-out forwards}
+  .stat-card .icon{color:var(--accent);font-size:10px;letter-spacing:.12em;opacity:.85;margin-bottom:6px}
+  .stat-card .eyebrow{font-size:11px;letter-spacing:.08em;color:var(--text-dim);text-transform:uppercase}
+  .stat-card .highlight{font-size:12px;letter-spacing:.03em;color:var(--accent);
+    margin-top:4px;line-height:1.5;text-transform:uppercase}
+  .stat-card .big-number{font-size:26px;color:#fff;font-weight:600;margin-bottom:4px;
+    font-variant-numeric:tabular-nums}
+  #card-left{animation-delay:1s}
+  #card-right{text-align:right;border-left:none;border-right:3px solid var(--accent-warm);animation-delay:1.4s}
+  #card-right .highlight{color:var(--accent-warm)}
+  #card-small{text-align:right;border-left:none;border-right:3px solid var(--accent);
+    padding:10px 16px;animation-delay:1.8s}
+  #card-small .big-number{font-size:18px}
+  @keyframes fadeIn{from{opacity:0}to{opacity:1}}
+
+  /* city labels */
+  #labels-layer{position:absolute;inset:0;pointer-events:none;z-index:8}
+  .city-label{position:absolute;transform:translate(-50%,-100%);display:flex;
+    align-items:center;gap:6px;font-size:10px;letter-spacing:.1em;text-transform:uppercase;
+    color:#eafff5;white-space:nowrap;transition:opacity .15s linear}
+  .city-label .ring{width:6px;height:6px;border-radius:50%;background:var(--accent-warm);
+    box-shadow:0 0 6px 2px rgba(240,184,60,.8)}
+  .city-label span.name{text-shadow:0 1px 3px rgba(0,0,0,.8)}
+  .highlight-label{font-size:12px;font-weight:700;padding:3px 8px;
+    background:rgba(255,92,92,.18);border:1px solid rgba(255,92,92,.55);border-radius:3px}
+  .highlight-label .ring{background:#ffd166;box-shadow:0 0 8px 3px rgba(255,209,102,.85)}
+
+  /* city tooltip */
+  #city-tooltip{position:absolute;z-index:20;pointer-events:none;opacity:0;
+    transition:opacity .2s;background:var(--panel-bg);border:1px solid var(--panel-border);
+    border-left:3px solid var(--accent-warm);padding:9px 13px;
+    backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);min-width:150px}
+  #city-tooltip .tt-name{color:#fff;font-size:12px;font-weight:600;margin-bottom:3px}
+  #city-tooltip .tt-info{color:var(--text-dim);font-size:10px;letter-spacing:.06em}
+
+  /* hint */
+  #hint{position:absolute;bottom:52px;left:50%;transform:translateX(-50%);
+    color:var(--text-dim);font-size:10px;letter-spacing:.15em;text-transform:uppercase;
+    z-index:10;pointer-events:none;opacity:0;animation:hintCycle 7s ease forwards}
+  @keyframes hintCycle{0%{opacity:0}15%{opacity:.75}75%{opacity:.75}100%{opacity:0}}
+
+  /* ticker */
+  #ticker{position:absolute;left:0;right:0;bottom:0;z-index:10;height:34px;overflow:hidden;
+    background:linear-gradient(180deg,rgba(4,20,15,0) 0%,rgba(4,20,15,.88) 40%);
+    border-top:1px solid rgba(52,211,153,.15);display:flex;align-items:center}
+  #ticker-track{display:flex;gap:46px;white-space:nowrap;
+    animation:scrollTicker 38s linear infinite;padding-left:100%}
+  .ticker-item{font-size:11px;color:var(--text-dim);letter-spacing:.04em}
+  .ticker-item b{color:var(--accent);font-weight:600}
+  @keyframes scrollTicker{from{transform:translateX(0)}to{transform:translateX(-100%)}}
+
+  @media(max-width:760px){
+    .stat-card{max-width:200px;padding:9px 13px}
+    .stat-card .big-number{font-size:18px}
+    #card-small{display:none}
+    .corner{width:16px;height:16px}
+    #brand{top:14px;left:14px;font-size:9px}
+    .city-label{font-size:8px}
+    #ticker{height:26px}
+    .ticker-item{font-size:9px}
+    #zoom-ctrl{right:10px}
+  }
+  @media(prefers-reduced-motion:reduce){
+    .stat-card,#hint,#brand .dot,#ticker-track{animation:none!important;opacity:1}
+  }
+</style>
+</head>
+<body>
+<div id="globe-wrap">
+  <div id="loader">
+    <div class="spinner"></div>
+    <div id="loader-text">Cargando el planeta… 0%</div>
+  </div>
+
+  <canvas id="globeCanvas"></canvas>
+  <div id="vignette"></div>
+  <div class="corner tl"></div>
+  <div class="corner tr"></div>
+  <div class="corner bl"></div>
+  <div class="corner br"></div>
+
+  <div id="brand"><span class="dot"></span> Red global &middot; en vivo</div>
+
+  <!-- zoom controls -->
+  <div id="zoom-ctrl">
+    <button class="zoom-btn" id="btn-zoom-in" title="Acercar">+</button>
+    <button class="zoom-btn" id="btn-zoom-out" title="Alejar">−</button>
+    <button class="zoom-btn reset" id="btn-reset" title="Restablecer vista">↺</button>
+  </div>
+
+  <div id="labels-layer"></div>
+  <div id="city-tooltip">
+    <div class="tt-name" id="tt-name"></div>
+    <div class="tt-info" id="tt-info"></div>
+  </div>
+
+  <div class="stat-card" id="card-left">
+    <div class="icon">◆ ACTIVIDAD</div>
+    <div class="eyebrow">Cada 18 segundos</div>
+    <div class="highlight">un nuevo cliente se conecta<br>desde algún lugar del mundo</div>
+  </div>
+
+  <div class="stat-card" id="card-right">
+    <div class="big-number" id="stat-number">$0</div>
+    <div class="eyebrow">ventas por minuto</div>
+    <div class="highlight">a través de todas las zonas horarias</div>
+  </div>
+
+  <div class="stat-card" id="card-small">
+    <div class="big-number">118</div>
+    <div class="eyebrow">países activos ahora mismo</div>
+  </div>
+
+  <div id="hint">◐ Arrastra · Rueda para zoom · Toca ciudad para info</div>
+
+  <div id="ticker">
+    <div id="ticker-track"></div>
+  </div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script>
+(function(){
+  'use strict';
+
+  const wrap        = document.getElementById('globe-wrap');
+  const canvas      = document.getElementById('globeCanvas');
+  const loaderEl    = document.getElementById('loader');
+  const loaderText  = document.getElementById('loader-text');
+  const labelsLayer = document.getElementById('labels-layer');
+  const tooltip     = document.getElementById('city-tooltip');
+  const ttName      = document.getElementById('tt-name');
+  const ttInfo      = document.getElementById('tt-info');
+
+  /* ---- loading manager ---- */
+  const manager = new THREE.LoadingManager();
+  manager.onProgress = (url, loaded, total) => {
+    loaderText.textContent = 'Cargando el planeta… ' + Math.round(loaded / total * 100) + '%';
+  };
+  manager.onLoad = () => {
+    loaderEl.classList.add('hidden');
+    startCountUp();
+  };
+  const loader = new THREE.TextureLoader(manager);
+
+  /* ---- scene ---- */
+  const scene  = new THREE.Scene();
+  const camera = new THREE.PerspectiveCamera(42, wrap.clientWidth / wrap.clientHeight, 0.1, 2000);
+  const BASE_Z = 285;
+  camera.position.set(0, 0, BASE_Z);
+  const baseCameraPos = camera.position.clone();
+
+  const renderer = new THREE.WebGLRenderer({ canvas, antialias: true, alpha: true });
+  renderer.setPixelRatio(Math.min(window.devicePixelRatio, 1.8));
+  renderer.setSize(wrap.clientWidth, wrap.clientHeight);
+
+  const RADIUS = 100;
+
+  /* ---- starfield ---- */
+  const starCount = 1400;
+  const starGeo   = new THREE.BufferGeometry();
+  const starPos   = new Float32Array(starCount * 3);
+  const starCol   = new Float32Array(starCount * 3);
+  const palette   = [[1,1,1],[.75,.85,1],[1,.9,.75],[.9,.7,1]];
+  for (let i = 0; i < starCount; i++) {
+    const r  = 560 + Math.random() * 440;
+    const th = Math.random() * Math.PI * 2;
+    const ph = Math.acos(Math.random() * 2 - 1);
+    starPos[i*3]   = r * Math.sin(ph) * Math.cos(th);
+    starPos[i*3+1] = r * Math.sin(ph) * Math.sin(th);
+    starPos[i*3+2] = r * Math.cos(ph);
+    const c = palette[Math.floor(Math.random() * palette.length)];
+    starCol[i*3] = c[0]; starCol[i*3+1] = c[1]; starCol[i*3+2] = c[2];
+  }
+  starGeo.setAttribute('position', new THREE.BufferAttribute(starPos, 3));
+  starGeo.setAttribute('color',    new THREE.BufferAttribute(starCol, 3));
+  const starField = new THREE.Points(starGeo, new THREE.PointsMaterial({
+    size: 1.4, vertexColors: true, transparent: true, opacity: 0.86, sizeAttenuation: true
+  }));
+  scene.add(starField);
+
+  /* ---- globe group ---- */
+  const globeGroup = new THREE.Group();
+  scene.add(globeGroup);
+
+  const dayTexture   = loader.load('https://threejs.org/examples/textures/planets/earth_atmos_2048.jpg');
+  const nightTexture = loader.load('https://threejs.org/examples/textures/planets/earth_lights_2048.png');
+  const cloudTexture = loader.load('https://threejs.org/examples/textures/planets/earth_clouds_1024.png');
+
+  /* radial glow texture generated on canvas */
+  function createGlowTexture() {
+    const size = 128, c = document.createElement('canvas');
+    c.width = size; c.height = size;
+    const ctx = c.getContext('2d');
+    const g = ctx.createRadialGradient(size/2, size/2, 0, size/2, size/2, size/2);
+    g.addColorStop(0,   'rgba(255,255,255,1)');
+    g.addColorStop(.25, 'rgba(255,255,255,.55)');
+    g.addColorStop(1,   'rgba(255,255,255,0)');
+    ctx.fillStyle = g;
+    ctx.fillRect(0, 0, size, size);
+    return new THREE.CanvasTexture(c);
+  }
+  const glowTexture = createGlowTexture();
+
+  let sunAngle = Math.atan2(0.8, 0.6);
+  const sunDirection  = new THREE.Vector3(0.6, 0.35, 0.8).normalize();
+  const sunDirLive    = new THREE.Vector3();
+
+  const sunSprite = new THREE.Sprite(new THREE.SpriteMaterial({
+    map: glowTexture, color: 0xfff0c4, transparent: true,
+    blending: THREE.AdditiveBlending, depthWrite: false
+  }));
+  sunSprite.scale.set(195, 195, 1);
+  scene.add(sunSprite);
+
+  /* earth day/night shader */
+  const earthMaterial = new THREE.ShaderMaterial({
+    uniforms: {
+      dayTexture:   { value: dayTexture },
+      nightTexture: { value: nightTexture },
+      sunDirection: { value: sunDirection.clone() }
+    },
+    vertexShader: `
+      varying vec2 vUv; varying vec3 vWorldNormal;
+      void main(){
+        vUv = uv;
+        vWorldNormal = normalize(mat3(modelMatrix) * normal);
+        gl_Position = projectionMatrix * modelViewMatrix * vec4(position,1.0);
+      }`,
+    fragmentShader: `
+      uniform sampler2D dayTexture, nightTexture;
+      uniform vec3 sunDirection;
+      varying vec2 vUv; varying vec3 vWorldNormal;
+      void main(){
+        vec3 day   = texture2D(dayTexture,   vUv).rgb;
+        vec3 night = texture2D(nightTexture, vUv).rgb;
+        float intensity = dot(normalize(vWorldNormal), normalize(sunDirection));
+        float mixFactor = smoothstep(-0.25, 0.35, intensity);
+        vec3 color = mix(night * 1.6, day * 0.95, mixFactor);
+        float band = 1.0 - smoothstep(0.0, 0.4, abs(intensity));
+        color += vec3(1.0, 0.45, 0.15) * band * 0.35;
+        gl_FragColor = vec4(color, 1.0);
+      }`
+  });
+  globeGroup.add(new THREE.Mesh(new THREE.SphereGeometry(RADIUS, 96, 96), earthMaterial));
+
+  /* cloud layer */
+  const cloudMesh = new THREE.Mesh(
+    new THREE.SphereGeometry(RADIUS + 1.5, 64, 64),
+    new THREE.MeshBasicMaterial({
+      map: cloudTexture, transparent: true, opacity: 0.36,
+      blending: THREE.AdditiveBlending, depthWrite: false
+    })
+  );
+  globeGroup.add(cloudMesh);
+
+  /* atmosphere glow */
+  const glowMat = new THREE.ShaderMaterial({
+    uniforms: { glowColor: { value: new THREE.Color(0x34d399) } },
+    vertexShader: `
+      varying vec3 vNormal;
+      void main(){ vNormal = normalize(normalMatrix * normal);
+        gl_Position = projectionMatrix * modelViewMatrix * vec4(position,1.0); }`,
+    fragmentShader: `
+      varying vec3 vNormal; uniform vec3 glowColor;
+      void main(){
+        float intensity = pow(0.55 - dot(vNormal, vec3(0,0,1)), 2.5);
+        gl_FragColor = vec4(glowColor, clamp(intensity,0.0,1.0) * 0.9); }`,
+    blending: THREE.AdditiveBlending, side: THREE.BackSide, transparent: true
+  });
+  globeGroup.add(new THREE.Mesh(new THREE.SphereGeometry(RADIUS + 6, 64, 64), glowMat));
+
+  /* ---- helpers ---- */
+  function latLonToVector3(lat, lon, radius) {
+    const phi   = (90 - lat)  * (Math.PI / 180);
+    const theta = (lon + 180) * (Math.PI / 180);
+    return new THREE.Vector3(
+      -radius * Math.sin(phi) * Math.cos(theta),
+       radius * Math.cos(phi),
+       radius * Math.sin(phi) * Math.sin(theta)
+    );
+  }
+
+  /* ---- city data (extendido con latinoamérica) ---- */
+  const cityData = [
+    { name: 'Nueva York',      lat: 40.7,   lon: -74.0,   label: true,  info: 'Hub financiero global' },
+    { name: 'Londres',         lat: 51.5,   lon: -0.1,    label: true,  info: 'Capital europea de negocios' },
+    { name: 'Lagos',           lat: 6.5,    lon: 3.4,     label: false, info: 'Mayor ciudad de África' },
+    { name: 'El Cairo',        lat: 30.0,   lon: 31.2,    label: false, info: 'Ciudad milenaria de Egipto' },
+    { name: 'Dubái',           lat: 25.2,   lon: 55.3,    label: true,  info: 'Centro de comercio de Oriente Medio' },
+    { name: 'Bombay',          lat: 19.1,   lon: 72.9,    label: false, info: 'Capital financiera de India' },
+    { name: 'Singapur',        lat: 1.35,   lon: 103.8,   label: false, info: 'Centro tecnológico de Asia' },
+    { name: 'Tokio',           lat: 35.7,   lon: 139.7,   label: true,  info: 'Metrópolis más grande del mundo' },
+    { name: 'Sídney',          lat: -33.9,  lon: 151.2,   label: false, info: 'Principal ciudad de Oceanía' },
+    { name: 'Los Ángeles',     lat: 34.0,   lon: -118.2,  label: false, info: 'Capital del entretenimiento' },
+    { name: 'São Paulo',       lat: -23.5,  lon: -46.6,   label: true,  info: 'Motor económico de Latinoamérica' },
+    { name: 'Ciudad de México',lat: 19.4,   lon: -99.1,   label: false, info: 'Capital de México' },
+    { name: 'Bogotá',          lat: 4.7,    lon: -74.1,   label: false, info: 'Capital de Colombia' },
+    { name: 'Lima',            lat: -12.0,  lon: -77.0,   label: false, info: 'Capital de Perú' },
+    { name: 'Buenos Aires',    lat: -34.6,  lon: -58.4,   label: false, info: 'Capital de Argentina' },
+    { name: 'Madrid',          lat: 40.4,   lon: -3.7,    label: false, info: 'Capital de España' },
+    { name: 'Nairobi',         lat: -1.3,   lon: 36.8,    label: false, info: 'Capital de Kenia' },
+    { name: 'Toronto',         lat: 43.7,   lon: -79.4,   label: false, info: 'Mayor ciudad de Canadá' },
+    { name: 'Moscú',           lat: 55.75,  lon: 37.6,    label: false, info: 'Capital de Rusia' },
+    { name: 'Shanghái',        lat: 31.2,   lon: 121.5,   label: false, info: 'Hub financiero de China' },
+    { name: 'Panamá',          lat: 8.98,   lon: -79.52,  label: true,  highlight: true, info: '🇵🇦 Hub logístico de las Américas' },
+  ];
+
+  const markerGeo      = new THREE.SphereGeometry(1.1, 10, 10);
+  const markerWorldPos = [];
+  const cities = cityData.map(c => {
+    const pos        = latLonToVector3(c.lat, c.lon, RADIUS + 1.2);
+    const markerColor = c.highlight ? 0xff5c5c : 0xffc773;
+    const mat        = new THREE.MeshBasicMaterial({ color: markerColor });
+    const mesh       = new THREE.Mesh(markerGeo, mat);
+    mesh.position.copy(pos);
+    mesh.scale.setScalar(c.highlight ? 1.9 : 1);
+    globeGroup.add(mesh);
+
+    const halo = new THREE.Sprite(new THREE.SpriteMaterial({
+      map: glowTexture, color: markerColor, transparent: true,
+      blending: THREE.AdditiveBlending, depthWrite: false
+    }));
+    halo.scale.setScalar(c.highlight ? 22 : 11);
+    halo.position.copy(pos);
+    globeGroup.add(halo);
+
+    let ring = null;
+    if (c.highlight) {
+      const ringGeo = new THREE.RingGeometry(1, 1.35, 40);
+      const ringMat = new THREE.MeshBasicMaterial({
+        color: 0xffd166, transparent: true, opacity: 0.8,
+        side: THREE.DoubleSide, blending: THREE.AdditiveBlending
+      });
+      ring = new THREE.Mesh(ringGeo, ringMat);
+      ring.position.copy(pos);
+      ring.lookAt(0, 0, 0);
+      globeGroup.add(ring);
+    }
+
+    let labelEl = null;
+    if (c.label) {
+      labelEl = document.createElement('div');
+      labelEl.className = c.highlight ? 'city-label highlight-label' : 'city-label';
+      const flag = c.highlight ? '🇵🇦 ' : '';
+      labelEl.innerHTML = '<span class="ring"></span><span class="name">' + flag + c.name + '</span>';
+      labelsLayer.appendChild(labelEl);
+    }
+
+    markerWorldPos.push({ mesh, city: c });
+    return { ...c, mesh, halo, ring, ringT: Math.random(), labelEl, phase: Math.random() * Math.PI * 2 };
+  });
+
+  /* ---- arcs ---- */
+  const arcPairs = [
+    ['Nueva York',      'Londres'],
+    ['Londres',         'El Cairo'],
+    ['El Cairo',        'Dubái'],
+    ['Dubái',           'Bombay'],
+    ['Bombay',          'Singapur'],
+    ['Singapur',        'Tokio'],
+    ['Tokio',           'Los Ángeles'],
+    ['Los Ángeles',     'Panamá'],
+    ['Panamá',          'Nueva York'],
+    ['Panamá',          'São Paulo'],
+    ['São Paulo',       'Lagos'],
+    ['Lagos',           'Londres'],
+    ['Panamá',          'Ciudad de México'],
+    ['Panamá',          'Bogotá'],
+    ['São Paulo',       'Buenos Aires'],
+    ['Ciudad de México','Los Ángeles'],
+  ];
+
+  function findCity(name) { return cities.find(c => c.name === name); }
+
+  const trailGeo = new THREE.SphereGeometry(1.0, 8, 8);
+  const trailMat = new THREE.MeshBasicMaterial({ color: 0xffffff, transparent: true });
+  const arcs = [];
+
+  arcPairs.forEach(pair => {
+    const fromCity = findCity(pair[0]);
+    const toCity   = findCity(pair[1]);
+    if (!fromCity || !toCity) return;
+
+    const start = fromCity.mesh.position.clone();
+    const end   = toCity.mesh.position.clone();
+    const mid   = start.clone().add(end).multiplyScalar(0.5);
+    mid.setLength(RADIUS + 1 + start.distanceTo(end) * 0.42);
+
+    const curve   = new THREE.QuadraticBezierCurve3(start, mid, end);
+    const tubeGeo = new THREE.TubeGeometry(curve, 64, 0.35, 6, false);
+
+    const isPanama = pair[0] === 'Panamá' || pair[1] === 'Panamá';
+    const tubeMat  = new THREE.MeshBasicMaterial({
+      color: isPanama ? 0xffd166 : 0x9fe6c9,
+      transparent: true, opacity: isPanama ? 0.55 : 0.38,
+      blending: THREE.AdditiveBlending
+    });
+    globeGroup.add(new THREE.Mesh(tubeGeo, tubeMat));
+
+    const trailCount  = 5;
+    const trailMeshes = [];
+    for (let i = 0; i < trailCount; i++) {
+      const m = new THREE.Mesh(trailGeo, trailMat.clone());
+      m.material.opacity = 1 - i / trailCount;
+      m.scale.setScalar(1 - i * 0.14);
+      globeGroup.add(m);
+      trailMeshes.push(m);
+    }
+    arcs.push({ curve, trailMeshes, t: Math.random(), speed: 0.0028 + Math.random() * 0.0016 });
+  });
+
+  /* ---- interaction: drag + inertia ---- */
+  let isDragging  = false;
+  let prevX = 0, prevY = 0;
+  let velX  = 0.0015;
+  let targetZ = BASE_Z;
+  const MIN_Z = 170, MAX_Z = 420;
+  const AUTO_SPEED = 0.0014;
+  let pointerNormX = 0, pointerNormY = 0;
+
+  wrap.addEventListener('pointerdown', e => {
+    isDragging = true; prevX = e.clientX; prevY = e.clientY;
+    checkCityClick(e);
+  });
+  window.addEventListener('pointerup',   () => { isDragging = false; });
+  window.addEventListener('pointermove', e => {
+    pointerNormX = (e.clientX / window.innerWidth)  * 2 - 1;
+    pointerNormY = (e.clientY / window.innerHeight) * 2 - 1;
+    if (!isDragging) return;
+    const dx = e.clientX - prevX;
+    const dy = e.clientY - prevY;
+    globeGroup.rotation.y += dx * 0.005;
+    globeGroup.rotation.x += dy * 0.003;
+    globeGroup.rotation.x  = Math.max(-0.9, Math.min(0.9, globeGroup.rotation.x));
+    velX = dx * 0.0006;
+    prevX = e.clientX; prevY = e.clientY;
+  });
+
+  /* wheel zoom */
+  wrap.addEventListener('wheel', e => {
+    e.preventDefault();
+    targetZ = Math.max(MIN_Z, Math.min(MAX_Z, targetZ + e.deltaY * 0.22));
+  }, { passive: false });
+
+  /* touch pinch zoom */
+  let lastPinchDist = 0;
+  wrap.addEventListener('touchstart', e => {
+    if (e.touches.length === 2) {
+      lastPinchDist = Math.hypot(
+        e.touches[0].clientX - e.touches[1].clientX,
+        e.touches[0].clientY - e.touches[1].clientY
+      );
+    }
+  }, { passive: true });
+  wrap.addEventListener('touchmove', e => {
+    if (e.touches.length === 2) {
+      const d = Math.hypot(
+        e.touches[0].clientX - e.touches[1].clientX,
+        e.touches[0].clientY - e.touches[1].clientY
+      );
+      targetZ = Math.max(MIN_Z, Math.min(MAX_Z, targetZ - (d - lastPinchDist) * 0.6));
+      lastPinchDist = d;
+    }
+  }, { passive: true });
+
+  /* zoom buttons */
+  document.getElementById('btn-zoom-in').addEventListener('click',  () => { targetZ = Math.max(MIN_Z, targetZ - 30); });
+  document.getElementById('btn-zoom-out').addEventListener('click', () => { targetZ = Math.min(MAX_Z, targetZ + 30); });
+  document.getElementById('btn-reset').addEventListener('click',    () => {
+    targetZ = BASE_Z;
+    globeGroup.rotation.x = 0;
+    velX = 0.0015;
+    hideTooltip();
+  });
+
+  /* window resize */
+  function onResize() {
+    const w = wrap.clientWidth, h = wrap.clientHeight;
+    camera.aspect = w / h;
+    camera.updateProjectionMatrix();
+    renderer.setSize(w, h);
+  }
+  window.addEventListener('resize', onResize);
+
+  /* ---- city click / tooltip ---- */
+  const raycaster  = new THREE.Raycaster();
+  const mouse      = new THREE.Vector2();
+  let   tooltipTimeout = null;
+
+  function checkCityClick(e) {
+    const rect = canvas.getBoundingClientRect();
+    mouse.x =  ((e.clientX - rect.left) / rect.width)  * 2 - 1;
+    mouse.y = -((e.clientY - rect.top)  / rect.height) * 2 + 1;
+    raycaster.setFromCamera(mouse, camera);
+    const meshes = markerWorldPos.map(m => m.mesh);
+    const hits   = raycaster.intersectObjects(meshes);
+    if (hits.length > 0) {
+      const hit  = markerWorldPos.find(m => m.mesh === hits[0].object);
+      if (hit) showTooltip(e.clientX, e.clientY, hit.city);
+    } else {
+      hideTooltip();
+    }
+  }
+
+  function showTooltip(x, y, city) {
+    ttName.textContent = city.name;
+    ttInfo.textContent = city.info || '';
+    tooltip.style.left    = (x + 14) + 'px';
+    tooltip.style.top     = (y - 10) + 'px';
+    tooltip.style.opacity = '1';
+    clearTimeout(tooltipTimeout);
+    tooltipTimeout = setTimeout(hideTooltip, 3200);
+  }
+  function hideTooltip() { tooltip.style.opacity = '0'; }
+
+  /* ---- count-up animation ---- */
+  function startCountUp() {
+    const el       = document.getElementById('stat-number');
+    const target   = 4280000;
+    const duration = 1600;
+    const startTime = performance.now();
+    function tick(now) {
+      const p     = Math.min(1, (now - startTime) / duration);
+      const eased = 1 - Math.pow(1 - p, 3);
+      el.textContent = '$' + Math.round(target * eased).toLocaleString('es-ES');
+      if (p < 1) requestAnimationFrame(tick);
+    }
+    requestAnimationFrame(tick);
+  }
+
+  /* ---- ticker ---- */
+  const tickerItems = [
+    'Nueva venta en <b>Tokio</b> · hace 2s',
+    'Nuevo cliente en <b>Berlín</b> · hace 5s',
+    'Pago confirmado en <b>São Paulo</b> · hace 9s',
+    'Nueva venta en <b>Dubái</b> · hace 14s',
+    'Nuevo cliente en <b>Toronto</b> · hace 18s',
+    'Pago confirmado en <b>Bombay</b> · hace 24s',
+    'Nueva venta en <b>Londres</b> · hace 29s',
+    'Nuevo cliente en <b>Lagos</b> · hace 33s',
+    'Pago desde <b>Panamá</b> · hace 37s',
+    'Venta en <b>Bogotá</b> · hace 41s',
+  ];
+  const track    = document.getElementById('ticker-track');
+  const fullList = tickerItems.concat(tickerItems);
+  track.innerHTML = fullList.map(t => '<span class="ticker-item">● ' + t + '</span>').join('');
+
+  /* ---- orbiting stat cards ---- */
+  const orbitCards = [
+    { el: document.getElementById('card-left'),  angle: Math.PI * 0.78, speed: 0.10,  rx: 0.47, ry: 0.40, dir:  1 },
+    { el: document.getElementById('card-right'), angle: -Math.PI * 0.22, speed: 0.075, rx: 0.45, ry: 0.36, dir: -1 },
+    { el: document.getElementById('card-small'), angle: Math.PI * 0.12, speed: 0.13,  rx: 0.40, ry: 0.42, dir:  1 }
+  ];
+
+  function updateOrbitCards(delta) {
+    const cx = wrap.clientWidth / 2, cy = wrap.clientHeight / 2;
+    const minDim = Math.min(wrap.clientWidth, wrap.clientHeight);
+    orbitCards.forEach(o => {
+      o.angle += o.dir * o.speed * delta;
+      const x = cx + Math.cos(o.angle) * minDim * o.rx;
+      const y = cy + Math.sin(o.angle) * minDim * o.ry;
+      o.el.style.left      = x + 'px';
+      o.el.style.top       = y + 'px';
+      o.el.style.transform = 'translate(-50%,-50%)';
+    });
+  }
+  updateOrbitCards(0);
+
+  /* ---- label projection ---- */
+  const tmpVec    = new THREE.Vector3();
+  const tmpNormal = new THREE.Vector3();
+  const camDir    = new THREE.Vector3();
+
+  function updateLabels() {
+    cities.forEach(c => {
+      if (!c.labelEl) return;
+      c.mesh.getWorldPosition(tmpVec);
+      tmpNormal.copy(tmpVec).normalize();
+      camDir.copy(camera.position).sub(tmpVec).normalize();
+      const facing  = tmpNormal.dot(camDir);
+      const opacity = Math.max(0, Math.min(1, (facing + 0.05) / 0.35));
+      const proj    = tmpVec.clone().project(camera);
+      const x = (proj.x * 0.5 + 0.5) * wrap.clientWidth;
+      const y = (-proj.y * 0.5 + 0.5) * wrap.clientHeight;
+      c.labelEl.style.left    = x + 'px';
+      c.labelEl.style.top     = (y - 10) + 'px';
+      c.labelEl.style.opacity = opacity.toFixed(2);
+    });
+  }
+
+  /* ---- animation loop ---- */
+  const clock = new THREE.Clock();
+
+  function animate() {
+    requestAnimationFrame(animate);
+    const delta = Math.min(clock.getDelta(), 0.05);
+    const t     = clock.getElapsedTime();
+
+    /* auto-rotation + inertia */
+    if (!isDragging) {
+      globeGroup.rotation.y += AUTO_SPEED + velX;
+      velX *= 0.94;
+    }
+
+    /* smooth zoom */
+    camera.position.z += (targetZ - camera.position.z) * 0.08;
+
+    /* sun orbit */
+    sunAngle += delta * 0.01;
+    sunDirLive.set(Math.cos(sunAngle), 0.35, Math.sin(sunAngle)).normalize();
+    earthMaterial.uniforms.sunDirection.value.copy(sunDirLive);
+    sunSprite.position.copy(sunDirLive).multiplyScalar(480);
+
+    /* cloud slow rotation */
+    cloudMesh.rotation.y += 0.00018;
+
+    /* city marker pulse */
+    cities.forEach(c => {
+      const base = c.highlight ? 1.9 : 1;
+      const s    = base * (1 + Math.sin(t * 2 + c.phase) * 0.18);
+      c.mesh.scale.setScalar(s);
+      c.halo.scale.setScalar((c.highlight ? 22 : 11) * (1 + Math.sin(t * 1.6 + c.phase) * 0.15));
+      if (c.ring) {
+        c.ringT += delta * 0.4;
+        if (c.ringT > 1) c.ringT = 0;
+        const sc = 1 + c.ringT * 2.2;
+        c.ring.scale.setScalar(sc);
+        c.ring.material.opacity = 0.8 * (1 - c.ringT);
+      }
+    });
+
+    /* arc comet trails */
+    arcs.forEach(arc => {
+      arc.t += arc.speed;
+      if (arc.t > 1.15) arc.t = -0.15;
+      arc.trailMeshes.forEach((m, i) => {
+        const tt = arc.t - i * 0.028;
+        if (tt < 0 || tt > 1) { m.visible = false; return; }
+        m.visible = true;
+        m.position.copy(arc.curve.getPoint(tt));
+      });
+    });
+
+    /* stars slow drift */
+    starField.rotation.y += 0.00006;
+
+    /* parallax camera */
+    camera.position.x = baseCameraPos.x + pointerNormX * 12;
+    camera.position.y = baseCameraPos.y - pointerNormY * 8;
+    camera.lookAt(0, 0, 0);
+
+    updateOrbitCards(delta);
+    updateLabels();
+    renderer.render(scene, camera);
+  }
+
+  animate();
+})();
+</script>
+</body>
+</html>

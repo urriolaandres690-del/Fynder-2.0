@@ -1,0 +1,117 @@
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=IBM+Plex+Mono:wght@400;500&display=swap');
+
+:root {
+  --void: #05060a;
+  --panel: #0c0f14;
+  --green: #95bf47;
+  --green-glow: #b7e36a;
+  --text: #eef1e9;
+  --muted: #8a9188;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html, body {
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(ellipse at 50% 35%, var(--panel) 0%, var(--void) 70%);
+  font-family: 'Space Grotesk', 'Helvetica Neue', sans-serif;
+  overflow: hidden;
+}
+
+#globe-container {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+}
+
+#globe-canvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  cursor: grab;
+  touch-action: none;
+}
+
+#globe-canvas:active {
+  cursor: grabbing;
+}
+
+.overlay {
+  position: absolute;
+  top: 40px;
+  left: 40px;
+  z-index: 2;
+  max-width: 420px;
+  pointer-events: none;
+}
+
+.eyebrow {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 0.28em;
+  color: var(--green);
+  margin-bottom: 10px;
+}
+
+.overlay h1 {
+  font-size: clamp(28px, 4vw, 46px);
+  font-weight: 700;
+  color: var(--text);
+  letter-spacing: -0.01em;
+  margin-bottom: 12px;
+}
+
+.overlay .subtitle {
+  font-size: 15px;
+  line-height: 1.5;
+  color: var(--muted);
+}
+
+.legend {
+  position: absolute;
+  bottom: 28px;
+  left: 40px;
+  z-index: 2;
+  display: flex;
+  gap: 22px;
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 11px;
+  color: var(--muted);
+  pointer-events: none;
+}
+
+.dot {
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  margin-right: 6px;
+}
+
+.dot.orange { background: #ff8a4c; box-shadow: 0 0 8px #ff8a4c; }
+.dot.green { background: var(--green); box-shadow: 0 0 8px var(--green); }
+
+.hint {
+  position: absolute;
+  bottom: 28px;
+  right: 40px;
+  z-index: 2;
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 11px;
+  color: var(--muted);
+  opacity: 0.85;
+  transition: opacity 0.6s ease;
+  pointer-events: none;
+}
+
+@media (max-width: 640px) {
+  .overlay { top: 24px; left: 20px; max-width: 80%; }
+  .legend { left: 20px; }
+  .hint { right: 20px; }
+}
