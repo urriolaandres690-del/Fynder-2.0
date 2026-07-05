@@ -11902,23 +11902,68 @@ body:has(#page-fynder.active) #navbar:not(.scrolled) .nav-dots-btn:hover {
 
 /* ================================================================
    SISTEMA DE MENSAJES – FYNDER
-   Estilo oscuro tipo chat app móvil
+   Variables adaptables: modo día (claro) y noche (oscuro)
    ================================================================ */
 
+/* ── Modo DÍA (claro) – valores por defecto ── */
 :root {
-  --msg-bg:       #2b2d31;
-  --msg-bg2:      #313338;
-  --msg-surface:  #383a40;
-  --msg-border:   rgba(255,255,255,.08);
-  --msg-text:     #e5e7eb;
-  --msg-muted:    #9ca3af;
-  --msg-accent:   #67B8B4;
-  --msg-bubble-in:  #383a40;
-  --msg-bubble-out: #944f30;
+  /* Fondos */
+  --msg-bg:         #F0F2F5;
+  --msg-bg2:        #E4E6EB;
+  --msg-surface:    #FFFFFF;
+  --msg-surface2:   #F0F2F5;
+  /* Bordes */
+  --msg-border:     rgba(0,0,0,.08);
+  /* Texto */
+  --msg-text:       #1C1E21;
+  --msg-muted:      #65676B;
+  --msg-title:      #1C1E21;
+  /* Acento */
+  --msg-accent:     #67B8B4;
+  /* Burbujas */
+  --msg-bubble-in:  #FFFFFF;
+  --msg-bubble-in-text: #1C1E21;
+  --msg-bubble-out: #67B8B4;
+  --msg-bubble-out-text: #FFFFFF;
+  /* Barra inferior */
+  --msg-bnav-bg:    #FFFFFF;
+  /* Input */
+  --msg-input-bg:   #FFFFFF;
+  --msg-input-text: #1C1E21;
+  /* Avatar placeholder */
+  --msg-avatar-bg:  #D8DADF;
+  /* Separador fecha */
+  --msg-sep-line:   rgba(0,0,0,.1);
+  /* Tick leído */
+  --msg-tick-read:  #67B8B4;
+  /* Alturas fijas */
   --msg-header-h: 56px;
   --msg-tabs-h:   48px;
   --msg-bnav-h:   64px;
   --msg-input-h:  60px;
+}
+
+/* ── Modo NOCHE (oscuro) ── */
+[data-theme="dark"] {
+  --msg-bg:         #1A1B1E;
+  --msg-bg2:        #111213;
+  --msg-surface:    #2B2D31;
+  --msg-surface2:   #313338;
+  --msg-border:     rgba(255,255,255,.07);
+  --msg-text:       #E5E7EB;
+  --msg-muted:      #9CA3AF;
+  --msg-title:      #FFFFFF;
+  --msg-accent:     #67B8B4;
+  --msg-bubble-in:  #383A40;
+  --msg-bubble-in-text: #E5E7EB;
+  --msg-bubble-out: #67B8B4;
+  --msg-bubble-out-text: #FFFFFF;
+  --msg-bnav-bg:    #1E1F22;
+  --msg-input-bg:   #2B2D31;
+  --msg-input-text: #E5E7EB;
+  --msg-avatar-bg:  #4A4D55;
+  --msg-sep-line:   rgba(255,255,255,.07);
+  --msg-tick-read:  #67B8B4;
 }
 
 /* ---- Página raíz ---- */
