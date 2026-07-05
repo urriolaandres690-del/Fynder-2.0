@@ -366,6 +366,12 @@ function updateNav(){
     if(tealBtn) tealBtn.classList.toggle('on-hero', isHero);
 
     if(uname) uname.classList.toggle('on-hero', isHero);
+
+    // nav-icon-btn on-hero (perfil, dashboard compactos)
+    document.querySelectorAll('.nav-icon-btn').forEach(el => el.classList.toggle('on-hero', isHero));
+    // nav-msg-btn on-hero
+    const msgNavBtn = document.getElementById('navMsgBtn');
+    if(msgNavBtn) msgNavBtn.classList.toggle('on-hero', isHero);
     const b=document.getElementById('navBadge');
     if(b){ b.textContent=favorites.size; b.style.display=favorites.size>0?'flex':'none'; }
     const fc=document.getElementById('favsCount');
