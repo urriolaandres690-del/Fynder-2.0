@@ -4330,20 +4330,18 @@ function updateMsgBadge() {
   const convs  = _getConversations();
   const unread = convs.reduce((s, c) => s + (c.unread || 0), 0);
 
-  const badge    = document.getElementById('navMsgBadge');
-  const bnavBadge = document.getElementById('msgBnavBadge');
-  const navBtn   = document.getElementById('navMsgBtn');
-
+  // Badge en el nuevo nav-link "Mensajes"
+  const badge = document.getElementById('navMsgBadge');
   if (badge) {
     badge.textContent = unread > 9 ? '9+' : unread;
     badge.style.display = unread > 0 ? 'flex' : 'none';
   }
+
+  // Badge en el bottom-nav de la página de mensajes
+  const bnavBadge = document.getElementById('msgBnavBadge');
   if (bnavBadge) {
     bnavBadge.textContent = unread > 9 ? '9+' : unread;
     bnavBadge.style.display = unread > 0 ? 'flex' : 'none';
-  }
-  if (navBtn) {
-    navBtn.style.display = !!localStorage.getItem('fynderLogged') ? 'flex' : 'none';
   }
 }
 
