@@ -12521,15 +12521,16 @@ body:has(#page-fynder.active) #navbar:not(.scrolled) .nav-dots-btn:hover {
   gap: 8px;
 }
 .msg-notif-card-title {
-  font-size: .875rem;
+  font-size: .9rem;
   font-weight: 700;
-  color: #67B8B4;
+  color: var(--msg-notif-title, var(--msg-title));
   margin: 0 0 4px;
   line-height: 1.35;
   flex: 1;
 }
 .msg-notif-card--read .msg-notif-card-title {
-  color: var(--msg-muted);
+  color: var(--msg-notif-date, var(--msg-muted));
+  font-weight: 500;
 }
 .msg-notif-card-del {
   background: none;
@@ -12537,21 +12538,23 @@ body:has(#page-fynder.active) #navbar:not(.scrolled) .nav-dots-btn:hover {
   color: var(--msg-muted);
   cursor: pointer;
   font-size: .8rem;
-  padding: 2px 4px;
+  padding: 4px 6px;
   border-radius: 6px;
   flex-shrink: 0;
   transition: color .15s, background .15s;
 }
 .msg-notif-card-del:hover { color: #EF4444; background: rgba(239,68,68,.1); }
 .msg-notif-card-date {
-  font-size: .75rem;
-  color: var(--msg-muted);
+  font-size: .72rem;
+  font-weight: 500;
+  color: var(--msg-notif-date, var(--msg-muted));
   margin: 0 0 8px;
 }
 .msg-notif-card-desc {
-  font-size: .8rem;
-  color: var(--msg-muted);
-  line-height: 1.5;
+  font-size: .85rem;
+  font-weight: 400;
+  color: var(--msg-notif-desc, var(--msg-text));
+  line-height: 1.55;
   margin: 0 0 12px;
 }
 .msg-notif-card-btn {
@@ -12559,7 +12562,7 @@ body:has(#page-fynder.active) #navbar:not(.scrolled) .nav-dots-btn:hover {
   padding: 9px;
   border-radius: 22px;
   border: none;
-  background: #67B8B4;
+  background: var(--msg-accent);
   color: #fff;
   font-size: .8rem;
   font-weight: 600;
