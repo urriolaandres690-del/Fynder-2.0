@@ -12461,10 +12461,15 @@ body:has(#page-fynder.active) #navbar:not(.scrolled) .nav-dots-btn:hover {
   border-radius: 14px;
   overflow: hidden;
   cursor: pointer;
-  transition: background .15s;
-  border-left: 3px solid #67B8B4;
+  transition: background .15s, box-shadow .2s, transform .15s;
+  border-left: 3px solid var(--msg-accent);
+  box-shadow: 0 1px 4px rgba(0,0,0,.06);
 }
-.msg-notif-card:hover { background: #444750; }
+.msg-notif-card:hover {
+  background: var(--msg-surface2);
+  box-shadow: 0 4px 16px rgba(0,0,0,.1);
+  transform: translateY(-1px);
+}
 /* Notificación ya leída */
 .msg-notif-card--read {
   border-left-color: transparent;
@@ -12483,7 +12488,7 @@ body:has(#page-fynder.active) #navbar:not(.scrolled) .nav-dots-btn:hover {
   align-items: center;
   justify-content: center;
   font-size: 1.8rem;
-  background: #3a3d44;
+  background: var(--msg-surface2);
 }
 .msg-notif-card-body { padding: 12px 14px; }
 .msg-notif-card-header {
