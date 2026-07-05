@@ -12454,7 +12454,7 @@ body:has(#page-fynder.active) #navbar:not(.scrolled) .nav-dots-btn:hover {
   border-radius: 8px;
   transition: background .15s;
 }
-.msg-notif-markall:hover { background: #3a3d44; }
+.msg-notif-markall:hover { background: var(--msg-surface2); }
 
 .msg-notif-card {
   background: var(--msg-surface);
