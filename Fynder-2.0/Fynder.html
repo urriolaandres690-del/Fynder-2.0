@@ -3470,6 +3470,157 @@
 </div>
 
 <!-- ================================================================
+     OVERLAY: MENÚ CONTEXTUAL DE CHAT (⋮)
+     ================================================================ -->
+<div class="msg-ctx-overlay" id="msgCtxOverlay" onclick="closeMsgCtxMenu()"></div>
+<div class="msg-ctx-menu" id="msgCtxMenu">
+  <div class="msg-ctx-header" id="msgCtxHeader">
+    <div class="msg-ctx-ava" id="msgCtxAva"></div>
+    <span class="msg-ctx-name" id="msgCtxName"></span>
+  </div>
+  <button class="msg-ctx-item" id="msgCtxBookmark" onclick="toggleMsgBookmark()">
+    <i class="fas fa-bookmark" id="msgCtxBookmarkIcon"></i>
+    <span id="msgCtxBookmarkLabel">Añadir a marcadores</span>
+  </button>
+  <button class="msg-ctx-item" onclick="msgCtxOpenChat()">
+    <i class="fas fa-comment-dots"></i>
+    <span>Abrir chat</span>
+  </button>
+  <button class="msg-ctx-item" onclick="msgCtxViewProfile()">
+    <i class="fas fa-circle-info"></i>
+    <span>Ver información</span>
+  </button>
+  <button class="msg-ctx-item" onclick="msgCtxMarkRead()">
+    <i class="fas fa-check-double"></i>
+    <span>Marcar como leído</span>
+  </button>
+  <div class="msg-ctx-divider"></div>
+  <button class="msg-ctx-item msg-ctx-item-danger" onclick="msgCtxDeleteChat()">
+    <i class="fas fa-trash-can"></i>
+    <span>Borrar conversación</span>
+  </button>
+</div>
+
+<!-- ================================================================
+     OVERLAY: EMOJI PICKER
+     ================================================================ -->
+<div class="emoji-overlay" id="emojiOverlay" onclick="closeEmojiPicker()"></div>
+<div class="emoji-picker" id="emojiPicker">
+  <div class="emoji-picker-tabs" id="emojiPickerTabs"></div>
+  <div class="emoji-picker-search">
+    <input type="text" id="emojiSearch" placeholder="Buscar emoji..." oninput="filterEmojis()" autocomplete="off">
+  </div>
+  <div class="emoji-picker-grid" id="emojiGrid"></div>
+</div>
+
+<!-- ================================================================
+     PANEL: AJUSTES DE MENSAJES (desliza desde arriba)
+     ================================================================ -->
+<div class="msg-settings-overlay" id="msgSettingsOverlay" onclick="closeMsgSettings()"></div>
+<div class="msg-settings-panel" id="msgSettingsPanel">
+  <div class="msg-settings-header">
+    <h3 class="msg-settings-title">Ajustes de mensajes</h3>
+    <button class="msg-icon-btn" onclick="closeMsgSettings()"><i class="fas fa-xmark"></i></button>
+  </div>
+  <div class="msg-settings-body">
+
+    <!-- Notificaciones -->
+    <div class="msg-settings-section-title">Notificaciones</div>
+    <div class="msg-settings-item">
+      <div class="msg-settings-item-left">
+        <div class="msg-settings-icon"><i class="fas fa-bell"></i></div>
+        <div>
+          <span class="msg-settings-label">Notificaciones de chat</span>
+          <span class="msg-settings-sub">Nuevos mensajes de negocios</span>
+        </div>
+      </div>
+      <button class="msg-settings-toggle on" id="settingNotifToggle" onclick="toggleMsgSetting('notif')"></button>
+    </div>
+    <div class="msg-settings-item">
+      <div class="msg-settings-item-left">
+        <div class="msg-settings-icon"><i class="fas fa-volume-high"></i></div>
+        <div>
+          <span class="msg-settings-label">Sonido</span>
+          <span class="msg-settings-sub">Sonido al recibir mensajes</span>
+        </div>
+      </div>
+      <button class="msg-settings-toggle" id="settingSoundToggle" onclick="toggleMsgSetting('sound')"></button>
+    </div>
+
+    <!-- Apariencia -->
+    <div class="msg-settings-section-title">Apariencia</div>
+    <div class="msg-settings-item">
+      <div class="msg-settings-item-left">
+        <div class="msg-settings-icon"><i class="fas fa-palette"></i></div>
+        <div>
+          <span class="msg-settings-label">Color de mis mensajes</span>
+          <span class="msg-settings-sub" id="settingColorSub">Rojo oscuro</span>
+        </div>
+      </div>
+      <div class="msg-settings-colors" id="settingColors">
+        <button class="msg-color-dot active" data-color="#7b3838" style="background:#7b3838" onclick="setChatBubbleColor('#7b3838','Rojo oscuro',this)"></button>
+        <button class="msg-color-dot" data-color="#1e4d7b" style="background:#1e4d7b" onclick="setChatBubbleColor('#1e4d7b','Azul oscuro',this)"></button>
+        <button class="msg-color-dot" data-color="#1a5c34" style="background:#1a5c34" onclick="setChatBubbleColor('#1a5c34','Verde oscuro',this)"></button>
+        <button class="msg-color-dot" data-color="#5b2d82" style="background:#5b2d82" onclick="setChatBubbleColor('#5b2d82','Morado',this)"></button>
+        <button class="msg-color-dot" data-color="#7a4a1a" style="background:#7a4a1a" onclick="setChatBubbleColor('#7a4a1a','Naranja',this)"></button>
+        <button class="msg-color-dot" data-color="#2b5c5c" style="background:#2b5c5c" onclick="setChatBubbleColor('#2b5c5c','Verde azulado',this)"></button>
+      </div>
+    </div>
+    <div class="msg-settings-item">
+      <div class="msg-settings-item-left">
+        <div class="msg-settings-icon"><i class="fas fa-text-height"></i></div>
+        <div>
+          <span class="msg-settings-label">Tamaño de texto</span>
+          <span class="msg-settings-sub" id="settingFontSub">Normal</span>
+        </div>
+      </div>
+      <div class="msg-settings-font-btns">
+        <button class="msg-font-btn" onclick="setChatFontSize('small','Pequeño')">A</button>
+        <button class="msg-font-btn active" onclick="setChatFontSize('normal','Normal')">A</button>
+        <button class="msg-font-btn" onclick="setChatFontSize('large','Grande')">A</button>
+      </div>
+    </div>
+
+    <!-- Privacidad -->
+    <div class="msg-settings-section-title">Privacidad</div>
+    <div class="msg-settings-item">
+      <div class="msg-settings-item-left">
+        <div class="msg-settings-icon"><i class="fas fa-eye-slash"></i></div>
+        <div>
+          <span class="msg-settings-label">Confirmación de lectura</span>
+          <span class="msg-settings-sub">Mostrar ticks de leído</span>
+        </div>
+      </div>
+      <button class="msg-settings-toggle on" id="settingReadToggle" onclick="toggleMsgSetting('read')"></button>
+    </div>
+
+    <!-- Datos -->
+    <div class="msg-settings-section-title">Datos</div>
+    <div class="msg-settings-item msg-settings-item-btn" onclick="exportChats()">
+      <div class="msg-settings-item-left">
+        <div class="msg-settings-icon"><i class="fas fa-file-export"></i></div>
+        <div>
+          <span class="msg-settings-label">Exportar conversaciones</span>
+          <span class="msg-settings-sub">Descargar como .txt</span>
+        </div>
+      </div>
+      <i class="fas fa-chevron-right msg-settings-chevron"></i>
+    </div>
+    <div class="msg-settings-item msg-settings-item-btn msg-settings-item-danger" onclick="clearAllChats()">
+      <div class="msg-settings-item-left">
+        <div class="msg-settings-icon msg-settings-icon-danger"><i class="fas fa-trash-can"></i></div>
+        <div>
+          <span class="msg-settings-label msg-settings-danger-txt">Borrar todos los chats</span>
+          <span class="msg-settings-sub">Esta acción no se puede deshacer</span>
+        </div>
+      </div>
+      <i class="fas fa-chevron-right msg-settings-chevron"></i>
+    </div>
+
+  </div>
+</div>
+
+<!-- ================================================================
      PÁGINA: CHAT INDIVIDUAL
      ================================================================ -->
 <div id="page-chat" class="page chat-page">
