@@ -12927,19 +12927,19 @@ body:has(#page-fynder.active) #navbar:not(.scrolled) .nav-dots-btn:hover {
 
 
 /* ================================================================
-   MEJORAS CHAT – burbujas más fieles al diseño Stripchat
+   MEJORAS CHAT – burbujas
    ================================================================ */
 
-/* Fondo del chat más oscuro */
-.chat-page { background: #1a1b1e; }
+/* Fondo del chat */
+.chat-page { background: var(--msg-bg2); }
 
 .chat-messages {
-  background: #1a1b1e;
+  background: var(--msg-bg2);
   padding: 12px 10px 8px;
   gap: 4px;
 }
 
-/* Bubble rediseño */
+/* Burbujas */
 .chat-bubble {
   padding: 8px 12px 6px;
   border-radius: 16px;
@@ -12948,17 +12948,19 @@ body:has(#page-fynder.active) #navbar:not(.scrolled) .nav-dots-btn:hover {
   line-height: 1.5;
 }
 .chat-msg-row.in .chat-bubble {
-  background: #383a40;
-  color: #e5e7eb;
+  background: var(--msg-bubble-in);
+  color: var(--msg-bubble-in-text);
   border-radius: 18px 18px 18px 4px;
+  box-shadow: 0 1px 3px rgba(0,0,0,.08);
 }
 .chat-msg-row.out .chat-bubble {
-  background: #7b3838;   /* rojo oscuro estilo Stripchat */
-  color: #fff;
+  background: var(--msg-bubble-out);
+  color: var(--msg-bubble-out-text);
   border-radius: 18px 18px 4px 18px;
+  box-shadow: 0 1px 6px rgba(103,184,180,.25);
 }
 
-/* Meta tiempo dentro de la burbuja, alineado a la derecha-abajo */
+/* Meta tiempo */
 .chat-bubble-meta {
   display: flex;
   align-items: center;
@@ -12969,18 +12971,22 @@ body:has(#page-fynder.active) #navbar:not(.scrolled) .nav-dots-btn:hover {
 }
 .chat-bubble-time {
   font-size: .62rem;
-  color: rgba(255,255,255,.45);
+  color: rgba(0,0,0,.35);
   white-space: nowrap;
 }
+[data-theme="dark"] .chat-bubble-time { color: rgba(255,255,255,.45); }
+.chat-msg-row.out .chat-bubble-time { color: rgba(255,255,255,.7); }
+
 .chat-bubble-tick { font-size: .68rem; }
-.chat-bubble-tick.sent { color: rgba(255,255,255,.4); }
-.chat-bubble-tick.read { color: #67B8B4; }
+.chat-bubble-tick.sent { color: rgba(0,0,0,.3); }
+.chat-bubble-tick.read { color: var(--msg-tick-read); }
+[data-theme="dark"] .chat-bubble-tick.sent { color: rgba(255,255,255,.4); }
 
 /* Avatar del negocio en mensajes */
 .chat-msg-ava {
   width: 30px; height: 30px;
   border-radius: 50%;
-  background: #4a4d55;
+  background: var(--msg-avatar-bg);
   display: flex; align-items: center; justify-content: center;
   font-size: .68rem;
   font-weight: 700;
@@ -13008,26 +13014,31 @@ body:has(#page-fynder.active) #navbar:not(.scrolled) .nav-dots-btn:hover {
   width: 10px; height: 10px;
   border-radius: 50%;
   background: #22c55e;
-  border: 2px solid #2b2d31;
-  display: none;  /* mostrado por JS si está "online" */
+  border: 2px solid var(--msg-bg);
+  display: none;
 }
 .chat-header-online.visible { display: block; }
 
 /* Sub del header: "en línea" en verde */
 .chat-header-sub.online { color: #22c55e; }
 
-/* Input bar mejorado */
+/* Input bar */
 .chat-input-bar {
-  background: #1a1b1e;
-  border-top: 1px solid rgba(255,255,255,.06);
+  background: var(--msg-bg);
+  border-top: 1px solid var(--msg-border);
   padding: 10px 12px;
   gap: 8px;
 }
 .chat-input {
-  background: #2b2d31;
-  border: 1px solid rgba(255,255,255,.1);
+  background: var(--msg-input-bg);
+  border: 1px solid var(--msg-border);
   border-radius: 24px;
   padding: 10px 16px;
+  font-size: .875rem;
+  color: var(--msg-input-text);
+}
+.chat-input::placeholder { color: var(--msg-muted); }
+.chat-input:focus { border-color: var(--msg-accent); }
   font-size: .875rem;
   color: #e5e7eb;
 }
