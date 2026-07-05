@@ -12549,7 +12549,7 @@ body:has(#page-fynder.active) #navbar:not(.scrolled) .nav-dots-btn:hover {
 /* ---- Bottom Nav ---- */
 .msg-bottom-nav {
   height: var(--msg-bnav-h);
-  background: #1e1f22;
+  background: var(--msg-bnav-bg);
   border-top: 1px solid var(--msg-border);
   border-radius: 22px 22px 0 0;
   display: flex;
@@ -12575,8 +12575,8 @@ body:has(#page-fynder.active) #navbar:not(.scrolled) .nav-dots-btn:hover {
   min-width: 52px;
 }
 .msg-bnav-btn i { font-size: 1.1rem; }
-.msg-bnav-btn.active { color: #fff; }
-.msg-bnav-btn.active i { color: #fff; }
+.msg-bnav-btn.active { color: var(--msg-accent); }
+.msg-bnav-btn.active i { color: var(--msg-accent); }
 .msg-bnav-badge {
   position: absolute;
   top: 4px; right: 8px;
@@ -12587,7 +12587,7 @@ body:has(#page-fynder.active) #navbar:not(.scrolled) .nav-dots-btn:hover {
   font-size: .55rem;
   font-weight: 700;
   display: flex; align-items: center; justify-content: center;
-  border: 2px solid #1e1f22;
+  border: 2px solid var(--msg-bnav-bg);
 }
 
 /* ================================================================
