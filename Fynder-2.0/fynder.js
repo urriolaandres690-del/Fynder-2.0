@@ -767,6 +767,12 @@ function buildHome(){
   if(heroStatRating) heroStatRating.textContent=avgRating;
   const heroStatSat=document.getElementById('heroStatSatisfaccion');
   if(heroStatSat) heroStatSat.textContent=satPct+'%';
+
+  // Sincronizar versión móvil de stats
+  const m1=document.getElementById('heroStatNegociosMobile');   if(m1) m1.textContent=total;
+  const m2=document.getElementById('heroStatUsuariosMobile');   if(m2) m2.textContent=usersEst.toLocaleString('es')+'+';
+  const m3=document.getElementById('heroStatRatingMobile');     if(m3) m3.textContent=avgRating;
+  const m4=document.getElementById('heroStatSatisfaccionMobile');if(m4) m4.textContent=satPct+'%';
   const loginCount=document.getElementById('loginNegociosCount');
   if(loginCount) loginCount.textContent=`+${total} negocios registrados`;
 }
