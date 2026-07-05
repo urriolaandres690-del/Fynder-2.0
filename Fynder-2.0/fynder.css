@@ -11519,3 +11519,329 @@ body:has(#page-fynder.active) #navbar:not(.scrolled) .nav-dots-btn:hover {
 @media (prefers-reduced-motion: reduce) {
   .globe-stat-card, #globe-hint, .globe-brand-dot, #globe-ticker-track { animation: none !important; opacity: 1; }
 }
+
+
+/* ============================================================
+   RESPONSIVE MÓVIL – CORRECCIONES COMPLETAS
+   Aplicadas al final para que tengan máxima prioridad
+   ============================================================ */
+
+/* ---- viewport meta fix: evitar zoom al tocar inputs ---- */
+@media (max-width: 768px) {
+  input, select, textarea { font-size: 16px !important; }
+}
+
+/* ============================================================
+   TABLET (≤ 1024px) – nav + hero + layout
+   ============================================================ */
+@media (max-width: 1024px) {
+  .nav-inner { padding: 0 16px; }
+  .hero-inner {
+    grid-template-columns: 1fr;
+    gap: 32px;
+    padding: 100px 20px 60px;
+  }
+  .hero-right { display: none; }
+  .hero h1 { font-size: clamp(2rem, 5vw, 2.8rem); }
+  .hero p  { max-width: 100%; }
+  .footer-grid { grid-template-columns: 1fr 1fr; gap: 32px; }
+}
+
+/* ============================================================
+   TABLET PEQUEÑA / MÓVIL GRANDE (≤ 768px)
+   ============================================================ */
+@media (max-width: 768px) {
+  /* ---- Navbar ---- */
+  .nav-links      { display: none !important; }
+  .btn-ghost      { display: none !important; }
+  .btn-login-nav  { display: none !important; }
+  #navbar .btn-teal { display: none !important; }
+  .nav-inner { padding: 0 14px; height: 56px; }
+
+  /* Dark toggle + hamburger más compactos */
+  .dark-toggle-btn { width: 36px !important; height: 36px !important; padding: 0; }
+  .nav-dots-btn    { width: 36px !important; height: 36px !important; padding: 0; flex-shrink: 0; }
+  .nav-actions     { gap: 6px !important; }
+
+  /* Nombre de usuario truncado */
+  #userName {
+    font-size: 12px !important;
+    max-width: 70px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    margin-right: 2px !important;
+  }
+
+  /* ---- Hero ---- */
+  .hero {
+    min-height: auto;
+    padding: 0;
+  }
+  .hero-inner {
+    grid-template-columns: 1fr;
+    padding: 80px 16px 48px;
+    gap: 24px;
+  }
+  .hero-right { display: none !important; }
+  .hero h1 { font-size: 1.95rem; line-height: 1.2; }
+  .hero p  { font-size: .9375rem; line-height: 1.65; margin-bottom: 24px; }
+  .hero-pill { font-size: .75rem; padding: 6px 12px; }
+  .hero-search {
+    flex-wrap: wrap;
+    gap: 8px;
+    padding: 8px;
+  }
+  .hero-search input {
+    flex: 1 1 100%;
+    border-radius: 10px;
+    padding: 10px 12px;
+  }
+  .hero-search-btn {
+    width: 100%;
+    border-radius: 10px;
+    padding: 12px;
+  }
+  .hero-popular { gap: 6px; flex-wrap: wrap; }
+  .hero-stats {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    margin-top: 16px;
+  }
+  .hero-stat-card {
+    padding: 12px;
+    border-radius: 14px;
+    gap: 10px;
+  }
+  .hero-stat-val { font-size: 1rem; }
+  .hero-stat-lbl { font-size: .7rem; }
+  .hero-stat-tap { display: none; }
+
+  /* ---- Secciones ---- */
+  .section { padding: 44px 0; }
+  .section-inner { padding: 0 16px; }
+  .section-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+    margin-bottom: 24px;
+  }
+  .section-title { font-size: 1.4rem !important; }
+  .section-label { font-size: .72rem; }
+
+  /* ---- Categorías ---- */
+  .cat-grid { grid-template-columns: repeat(4, 1fr) !important; gap: 10px; }
+  .cat-card { padding: 14px 6px; border-radius: 14px; gap: 8px; }
+  .cat-icon { width: 42px; height: 42px; border-radius: 12px; }
+  .cat-name { font-size: .65rem; }
+  .cat-count { font-size: .6rem; }
+
+  /* ---- Cards de negocios ---- */
+  .cards-grid { grid-template-columns: 1fr 1fr !important; gap: 12px; }
+  .bcard { border-radius: 16px; }
+  .bcard-img { height: 160px; }
+  .bcard-body { padding: 12px; }
+  .bcard-name { font-size: .85rem; }
+  .bcard-desc { font-size: .78rem; }
+  .bcard-btn  { font-size: .78rem; padding: 8px 12px; }
+
+  /* Lista de cards */
+  .bcard-list { flex-direction: column; gap: 0; }
+  .bcard-list-img { width: 100%; height: 160px; border-radius: 14px 14px 0 0; }
+
+  /* ---- Populares ---- */
+  .cards-list { display: flex; flex-direction: column; gap: 12px; }
+
+  /* ---- Cómo funciona ---- */
+  .how-section { padding: 48px 0; }
+  .how-grid    { grid-template-columns: 1fr; gap: 16px; }
+  .how-connector { display: none; }
+  .how-grid > .how-card:last-child { grid-column: auto; max-width: 100%; }
+  .how-header { margin-bottom: 36px; }
+  .how-main-title { font-size: 1.6rem; }
+  .how-card { padding: 28px 20px 24px; }
+
+  /* ---- CTA section ---- */
+  .cta-section { padding: 48px 0 80px; }
+  .cta-inner { padding: 0 16px; }
+  .cta-inner h2 { font-size: 1.6rem; }
+  .cta-btns { flex-direction: column; align-items: center; gap: 10px; }
+  .btn-yellow,
+  .btn-outline-white { width: 100%; justify-content: center; padding: 14px 20px; }
+  .cta-perks { gap: 16px; }
+
+  /* ---- Footer ---- */
+  footer { border-radius: 24px 24px 0 0; padding-top: 48px; margin-top: -24px; }
+  .footer-inner { padding: 0 16px; }
+  .footer-grid { grid-template-columns: 1fr 1fr !important; gap: 24px; margin-bottom: 32px; }
+  .footer-bottom {
+    flex-direction: column;
+    gap: 6px;
+    text-align: center;
+    font-size: .78rem;
+    padding: 16px 0 20px;
+  }
+
+  /* ---- Directorio ---- */
+  .dir-toolbar { top: 56px; }
+  .dir-toolbar-inner { flex-wrap: wrap; gap: 8px; padding: 10px 16px; }
+  .search-box { width: 100%; }
+  .cat-filters { order: 3; width: 100%; overflow-x: auto; }
+  .view-toggle { margin-left: auto; }
+  .dir-content { padding: 0 16px; }
+
+  /* ---- Mapa ---- */
+  .map-panel { display: none; }
+  .map-toolbar { top: 56px; }
+
+  /* ---- Página business register ---- */
+  .biz-reg-grid-2 { grid-template-columns: 1fr; }
+
+  /* ---- Modal ---- */
+  .fynder-modal-overlay { padding: 0; align-items: flex-end; }
+  .fynder-modal {
+    border-radius: 20px 20px 0 0;
+    max-height: 90dvh;
+    overflow-y: auto;
+  }
+
+  /* ---- Share panel ---- */
+  .share-panel-box { width: 100%; border-radius: 20px 20px 0 0; }
+
+  /* ---- Menú móvil drawer más ancho ---- */
+  .mobile-menu-drawer { width: min(320px, 88vw) !important; }
+}
+
+/* ============================================================
+   MÓVIL (≤ 600px) – ajustes adicionales
+   ============================================================ */
+@media (max-width: 600px) {
+  /* Hero aún más compacto */
+  .hero-inner { padding: 72px 14px 40px; }
+  .hero h1 { font-size: 1.75rem !important; }
+  .hero-stats { grid-template-columns: 1fr 1fr; gap: 8px; }
+  .hero-stat-card { padding: 10px; gap: 8px; }
+  .hero-stat-icon { width: 32px; height: 32px; border-radius: 10px; }
+  .hero-stat-icon svg { width: 16px; height: 16px; }
+
+  /* Categorías: 4 cols */
+  .cat-grid { grid-template-columns: repeat(4, 1fr) !important; gap: 8px; }
+
+  /* Cards: 1 columna en móvil chico */
+  .cards-grid { grid-template-columns: 1fr !important; }
+  .bcard-img  { height: 180px; }
+
+  /* Footer: 1 columna */
+  .footer-grid { grid-template-columns: 1fr !important; gap: 20px; }
+  .footer-col ul { display: grid; grid-template-columns: 1fr 1fr; gap: 4px 16px; }
+
+  /* Sección popular: stack */
+  .cards-list .bcard-list { flex-direction: column; }
+
+  /* Section header always stacked */
+  .section-header { flex-direction: column !important; align-items: flex-start !important; }
+}
+
+/* ============================================================
+   MÓVIL PEQUEÑO (≤ 480px)
+   ============================================================ */
+@media (max-width: 480px) {
+  html { font-size: 14.5px; }
+
+  .hero-inner { padding: 70px 12px 36px; }
+  .hero h1 { font-size: 1.55rem !important; }
+  .hero p  { font-size: .875rem; }
+
+  /* Categorías: 4 columnas */
+  .cat-grid { grid-template-columns: repeat(4, 1fr) !important; gap: 6px; }
+  .cat-card { padding: 10px 4px; border-radius: 12px; }
+  .cat-icon { width: 36px; height: 36px; border-radius: 10px; }
+  .cat-name { font-size: .6rem; }
+
+  /* Cards */
+  .bcard-img { height: 160px; }
+
+  /* Footer */
+  .footer-col ul { grid-template-columns: 1fr; }
+  .footer-social { gap: 6px; }
+
+  /* CTA */
+  .cta-inner h2 { font-size: 1.35rem !important; }
+  .cta-perks    { flex-direction: column; align-items: center; gap: 10px; }
+
+  /* Drawer un poco más angosto */
+  .mobile-menu-drawer { width: 82vw !important; }
+
+  /* Stat cards en hero: compactos */
+  .hero-stat-card { padding: 8px 10px; border-radius: 12px; }
+}
+
+/* ============================================================
+   MÓVIL MUY PEQUEÑO (≤ 360px)
+   ============================================================ */
+@media (max-width: 360px) {
+  html { font-size: 13.5px; }
+  .hero h1 { font-size: 1.4rem !important; }
+  .cat-grid { grid-template-columns: repeat(3, 1fr) !important; }
+  .hero-stats { grid-template-columns: 1fr 1fr; }
+  .nav-inner { padding: 0 10px; }
+}
+
+/* ============================================================
+   DARK MODE – ajustes adicionales en móvil
+   ============================================================ */
+@media (max-width: 768px) {
+  [data-theme="dark"] .hero-search {
+    background: rgba(255,255,255,.12);
+    border: 1px solid rgba(255,255,255,.2);
+  }
+  [data-theme="dark"] .hero-search input {
+    background: transparent;
+    color: #fff;
+  }
+  [data-theme="dark"] .hero-search input::placeholder { color: rgba(255,255,255,.55); }
+  [data-theme="dark"] .hero-search-btn { background: var(--primary); }
+}
+
+/* ============================================================
+   DESKTOP – asegurar que el hero-right se muestre correctamente
+   ============================================================ */
+@media (min-width: 1025px) {
+  .hero-right { display: flex !important; }
+  .hero-inner { grid-template-columns: 1fr 1fr; padding: 80px 24px 64px; }
+}
+
+/* ============================================================
+   TOUCH TARGETS – mínimo 44px en todos los botones táctiles
+   ============================================================ */
+@media (max-width: 768px) {
+  .hero-tag,
+  .filter-chip,
+  .cat-card,
+  .bcard-btn,
+  .btn-yellow,
+  .btn-outline-white,
+  .btn-teal,
+  .btn-ghost,
+  .nav-dots-btn,
+  .dark-toggle-btn {
+    min-height: 44px;
+  }
+  .hero-tag         { min-height: 36px; }
+  .filter-chip      { min-height: 36px; }
+  .mobile-menu-nav button { min-height: 48px; }
+}
+
+/* ============================================================
+   SMOOTH SCROLL + OVERSCROLL para móvil
+   ============================================================ */
+@media (max-width: 768px) {
+  .mobile-menu-drawer,
+  .fynder-modal,
+  .dir-content,
+  .map-panel {
+    -webkit-overflow-scrolling: touch;
+    overscroll-behavior: contain;
+  }
+}
