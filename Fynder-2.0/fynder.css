@@ -11591,12 +11591,6 @@ body:has(#page-fynder.active) #navbar:not(.scrolled) .nav-dots-btn:hover {
     text-overflow: ellipsis;
     white-space: nowrap;
   }
-    max-width: 70px;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-    margin-right: 2px !important;
-  }
 
   /* ---- Hero ---- */
   .hero {
