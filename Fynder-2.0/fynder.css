@@ -12050,34 +12050,39 @@ body:has(#page-fynder.active) #navbar:not(.scrolled) .nav-dots-btn:hover {
   gap: 14px;
 }
 .msg-back-btn {
-  display: flex;
+  display: inline-flex;
   align-items: center;
-  gap: 6px;
-  padding: 6px 12px 6px 8px;
-  border-radius: 10px;
-  border: none;
-  background: var(--msg-surface2);
+  gap: 7px;
+  padding: 7px 14px 7px 10px;
+  border-radius: 22px;
+  border: 1.5px solid var(--msg-border);
+  background: var(--msg-surface);
   color: var(--msg-text);
   font-size: .8125rem;
-  font-weight: 500;
+  font-weight: 600;
   font-family: 'Inter', sans-serif;
   cursor: pointer;
-  transition: background .2s, color .2s, transform .15s;
+  transition: background .2s, border-color .2s, color .2s, transform .15s, box-shadow .2s;
   white-space: nowrap;
   flex-shrink: 0;
+  box-shadow: 0 1px 4px rgba(0,0,0,.06);
 }
 .msg-back-btn:hover {
-  background: var(--msg-surface);
-  color: var(--msg-title);
+  background: var(--msg-accent);
+  border-color: var(--msg-accent);
+  color: #fff;
   transform: translateX(-2px);
+  box-shadow: 0 3px 12px rgba(103,184,180,.3);
 }
 .msg-back-btn i {
-  font-size: .9rem;
+  font-size: .8rem;
+  transition: transform .2s;
 }
+.msg-back-btn:hover i { transform: translateX(-2px); }
 /* En móvil solo mostrar el ícono, ocultar el texto */
 @media (max-width: 480px) {
   .msg-back-label { display: none; }
-  .msg-back-btn { padding: 6px 8px; }
+  .msg-back-btn { padding: 7px 10px; }
 }
 .msg-header-title {
   font-family: 'Poppins', sans-serif;
