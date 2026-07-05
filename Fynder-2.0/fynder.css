@@ -13474,11 +13474,10 @@ body:has(#page-fynder.active) #navbar:not(.scrolled) .nav-dots-btn:hover {
   .nav-username { display: none; }
 }
 
-/* Ocultar botones de ícono de perfil/dashboard en móvil
-   (están en el drawer) */
+/* En móvil: íconos de perfil/dashboard ocultos (están en el drawer) —
+   userName se maneja en el bloque 768px de abajo */
 @media (max-width: 768px) {
   .nav-icon-btn { display: none !important; }
-  .nav-username  { display: none !important; }
 }
 
 [data-theme="dark"] .nav-links + .nav-actions { border-left-color: rgba(255,255,255,.08); }
