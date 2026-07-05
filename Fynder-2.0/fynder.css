@@ -14194,9 +14194,6 @@ body:has(#page-fynder.active) #navbar:not(.scrolled) .nav-settings-btn:hover {
 /* ---- Stat hero card val en modo oscuro ---- */
 [data-theme="dark"] .hero-stat-val { color: var(--fg); }
 
-/* ---- Footer wave ---- */
-[data-theme="dark"] .cta-section { background: linear-gradient(135deg, #1a2f6b 0%, #0f4a48 100%); }
-
 /* ---- Página de registro de negocio ---- */
 [data-theme="dark"] .biz-steps-header     { background: var(--bg); }
 [data-theme="dark"] .biz-step-label       { color: var(--muted); }
