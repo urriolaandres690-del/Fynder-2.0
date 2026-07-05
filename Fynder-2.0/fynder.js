@@ -3767,8 +3767,13 @@ function openChat(bizId, biz) {
   const nameEl  = document.getElementById('chatHeaderName');
   const subEl   = document.getElementById('chatHeaderSub');
   const avaEl   = document.getElementById('chatHeaderAvatar');
+  const onlineEl = document.getElementById('chatHeaderOnline');
   if (nameEl) nameEl.textContent = biz.name;
-  if (subEl)  subEl.textContent  = biz.category || 'Negocio local';
+  if (subEl)  {
+    subEl.textContent = 'en línea';
+    subEl.classList.add('online');
+  }
+  if (onlineEl) onlineEl.classList.add('visible');
   if (avaEl)  {
     if (biz.image) {
       avaEl.innerHTML = `<img src="${biz.image}" alt="${biz.name}" loading="lazy">`;
