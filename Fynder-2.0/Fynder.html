@@ -3422,13 +3422,18 @@
 
     <!-- Panel: Notificaciones -->
     <div id="msgPanelNotif" class="msg-panel">
-      <div class="msg-notif-banner">
-        <div class="msg-notif-banner-icon"><i class="fas fa-bell-slash"></i></div>
+      <div class="msg-notif-banner" id="msgNotifBanner">
+        <div class="msg-notif-banner-icon"><i class="fas fa-bell"></i></div>
         <div>
           <p class="msg-notif-banner-title">Activa las notificaciones</p>
           <p class="msg-notif-banner-sub">¡Mantente al tanto de las actualizaciones sobre negocios, mensajes y ofertas!</p>
         </div>
-        <button class="msg-notif-banner-close" onclick="this.closest('.msg-notif-banner').remove()"><i class="fas fa-xmark"></i></button>
+        <div style="display:flex;flex-direction:column;gap:8px;align-items:flex-end;flex-shrink:0">
+          <button class="msg-notif-banner-allow" onclick="requestNotifPermission()">
+            <i class="fas fa-bell"></i> Activar
+          </button>
+          <button class="msg-notif-banner-close" onclick="this.closest('.msg-notif-banner').style.display='none'"><i class="fas fa-xmark"></i></button>
+        </div>
       </div>
       <div id="msgNotifList" class="msg-notif-list">
         <!-- Rellenado por JS -->
