@@ -12214,10 +12214,10 @@ body:has(#page-fynder.active) #navbar:not(.scrolled) .nav-dots-btn:hover {
 .msg-notif-banner-icon {
   width: 38px; height: 38px;
   border-radius: 50%;
-  background: #4a4d55;
+  background: rgba(103,184,180,.18);
   display: flex; align-items: center; justify-content: center;
   font-size: .95rem;
-  color: var(--msg-muted);
+  color: #67B8B4;
   flex-shrink: 0;
   overflow: visible;
 }
@@ -12233,15 +12233,48 @@ body:has(#page-fynder.active) #navbar:not(.scrolled) .nav-dots-btn:hover {
   margin: 0;
   line-height: 1.4;
 }
+.msg-notif-banner-allow {
+  padding: 7px 14px;
+  border-radius: 22px;
+  border: none;
+  background: #67B8B4;
+  color: #fff;
+  font-size: .78rem;
+  font-weight: 600;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  white-space: nowrap;
+  font-family: 'Inter', sans-serif;
+  transition: background .2s;
+}
+.msg-notif-banner-allow:hover { background: #5aa6a2; }
 .msg-notif-banner-close {
-  position: absolute;
-  top: 10px; right: 10px;
   background: none;
   border: none;
   color: var(--msg-muted);
   cursor: pointer;
   font-size: .85rem;
   padding: 4px;
+  line-height: 1;
+}
+
+/* Badge en el tab Notificaciones */
+.msg-notif-dot {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 16px;
+  height: 16px;
+  padding: 0 4px;
+  border-radius: 99px;
+  background: #EF4444;
+  color: #fff;
+  font-size: .65rem;
+  font-weight: 700;
+  margin-left: 6px;
+  vertical-align: middle;
 }
 
 .msg-notif-list {
@@ -12250,27 +12283,94 @@ body:has(#page-fynder.active) #navbar:not(.scrolled) .nav-dots-btn:hover {
   flex-direction: column;
   gap: 10px;
 }
+
+/* Fila "X sin leer / Marcar todas" */
+.msg-notif-actions-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 4px 4px;
+}
+.msg-notif-count {
+  font-size: .75rem;
+  color: var(--msg-muted);
+}
+.msg-notif-markall {
+  background: none;
+  border: none;
+  color: #67B8B4;
+  font-size: .75rem;
+  font-weight: 600;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-family: 'Inter', sans-serif;
+  padding: 4px 8px;
+  border-radius: 8px;
+  transition: background .15s;
+}
+.msg-notif-markall:hover { background: #3a3d44; }
+
 .msg-notif-card {
   background: var(--msg-surface);
   border-radius: 14px;
   overflow: hidden;
   cursor: pointer;
   transition: background .15s;
+  border-left: 3px solid #67B8B4;
 }
 .msg-notif-card:hover { background: #444750; }
+/* Notificación ya leída */
+.msg-notif-card--read {
+  border-left-color: transparent;
+  opacity: .75;
+}
 .msg-notif-card-img {
   width: 100%;
   height: 120px;
   object-fit: cover;
 }
+/* Ícono emoji cuando no hay imagen */
+.msg-notif-card-emoji {
+  width: 100%;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.8rem;
+  background: #3a3d44;
+}
 .msg-notif-card-body { padding: 12px 14px; }
+.msg-notif-card-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 8px;
+}
 .msg-notif-card-title {
   font-size: .875rem;
   font-weight: 700;
   color: #67B8B4;
   margin: 0 0 4px;
   line-height: 1.35;
+  flex: 1;
 }
+.msg-notif-card--read .msg-notif-card-title {
+  color: var(--msg-muted);
+}
+.msg-notif-card-del {
+  background: none;
+  border: none;
+  color: var(--msg-muted);
+  cursor: pointer;
+  font-size: .8rem;
+  padding: 2px 4px;
+  border-radius: 6px;
+  flex-shrink: 0;
+  transition: color .15s, background .15s;
+}
+.msg-notif-card-del:hover { color: #EF4444; background: rgba(239,68,68,.1); }
 .msg-notif-card-date {
   font-size: .75rem;
   color: var(--msg-muted);
@@ -12293,7 +12393,9 @@ body:has(#page-fynder.active) #navbar:not(.scrolled) .nav-dots-btn:hover {
   font-weight: 600;
   cursor: pointer;
   font-family: 'Inter', sans-serif;
+  transition: background .2s;
 }
+.msg-notif-card-btn:hover { background: #5aa6a2; }
 
 /* ---- Bottom Nav ---- */
 .msg-bottom-nav {
