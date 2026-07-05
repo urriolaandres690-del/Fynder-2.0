@@ -11940,12 +11940,13 @@ body:has(#page-fynder.active) #navbar:not(.scrolled) .nav-dots-btn:hover {
   display: flex;
 }
 
-/* En desktop: columna centrada de max 480px, resto es fondo oscuro */
+/* En desktop: layout de pantalla completa tipo WhatsApp Web */
 @media (min-width: 769px) {
   .msg-page.active,
   .chat-page.active {
-    background: #0d0e10;
-    align-items: center;
+    background: var(--msg-bg);
+    align-items: stretch;
+    flex-direction: column;
   }
 
   .msg-page.active .msg-header,
@@ -11956,26 +11957,30 @@ body:has(#page-fynder.active) #navbar:not(.scrolled) .nav-dots-btn:hover {
   .chat-page.active .chat-messages,
   .chat-page.active .chat-input-bar {
     width: 100%;
-    max-width: 480px;
+    max-width: 100%;
+    align-self: stretch;
+  }
+
+  /* Ampliar el contenido al ancho completo */
+  .msg-page.active .msg-header,
+  .msg-page.active .msg-tabs,
+  .msg-page.active .msg-bottom-nav,
+  .chat-page.active .chat-header,
+  .chat-page.active .chat-input-bar {
+    padding-left: clamp(16px, 5vw, 80px);
+    padding-right: clamp(16px, 5vw, 80px);
+  }
+
+  .msg-page.active .msg-body,
+  .chat-page.active .chat-messages {
+    max-width: 900px;
+    width: 100%;
     align-self: center;
   }
 
-  /* Fondo de la columna visible como barra */
-  .msg-page.active {
-    box-shadow: inset 0 0 0 0; /* reset */
-  }
   .msg-page.active::after,
   .chat-page.active::after {
-    content: '';
-    position: fixed;
-    top: 0; bottom: 0;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 480px;
-    background: var(--msg-bg);
-    z-index: -1;
-    pointer-events: none;
-    box-shadow: 0 0 80px rgba(0,0,0,.6);
+    content: none;
   }
 }
 
