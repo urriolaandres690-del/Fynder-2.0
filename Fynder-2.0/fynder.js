@@ -320,6 +320,8 @@ function goPage(p){
     if(p==='fynder')    initFynderAnimations();
     if(p==='about')     initAboutPage();
     if(p==='map')       initMap();
+    if(p==='messages')  { if(typeof msgSwitchTab==='function') msgSwitchTab('chats'); if(typeof updateMsgBadge==='function') updateMsgBadge(); }
+    if(p!=='messages' && p!=='chat') { if(typeof updateMsgBadge==='function') updateMsgBadge(); }
 }
 
 function goBack(){
