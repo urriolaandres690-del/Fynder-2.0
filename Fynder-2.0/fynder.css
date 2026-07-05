@@ -12004,6 +12004,36 @@ body:has(#page-fynder.active) #navbar:not(.scrolled) .nav-dots-btn:hover {
   align-items: center;
   gap: 14px;
 }
+.msg-back-btn {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 12px 6px 8px;
+  border-radius: 10px;
+  border: none;
+  background: var(--msg-surface);
+  color: var(--msg-text);
+  font-size: .8125rem;
+  font-weight: 500;
+  font-family: 'Inter', sans-serif;
+  cursor: pointer;
+  transition: background .2s, color .2s, transform .15s;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+.msg-back-btn:hover {
+  background: #4a4d55;
+  color: #fff;
+  transform: translateX(-2px);
+}
+.msg-back-btn i {
+  font-size: .9rem;
+}
+/* En móvil solo mostrar el ícono, ocultar el texto */
+@media (max-width: 480px) {
+  .msg-back-label { display: none; }
+  .msg-back-btn { padding: 6px 8px; }
+}
 .msg-header-title {
   font-family: 'Poppins', sans-serif;
   font-size: 1.1rem;
