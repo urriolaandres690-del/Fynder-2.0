@@ -13460,15 +13460,15 @@ body:has(#page-fynder.active) #navbar:not(.scrolled) .nav-dots-btn:hover {
 .nav-actions {
   display: flex;
   align-items: center;
-  gap: 6px;
+  gap: 8px;
 }
 
 /* Separador visual entre grupo de acciones y los íconos */
 .nav-actions .btn-teal {
-  margin-left: 2px;
+  margin-left: 0;
 }
 .nav-actions .dark-toggle-btn {
-  margin-left: 2px;
+  margin-left: 0;
 }
 
 /* Ocultar btn-login-nav cuando no hay espacio */
