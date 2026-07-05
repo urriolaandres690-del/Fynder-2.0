@@ -13382,9 +13382,9 @@ body:has(#page-fynder.active) #navbar:not(.scrolled) .nav-dots-btn:hover {
   bottom: -100%;
   left: 0; right: 0;
   z-index: 401;
-  background: #1e1f22;
+  background: var(--msg-surface);
   border-radius: 20px 20px 0 0;
-  box-shadow: 0 -4px 32px rgba(0,0,0,.6);
+  box-shadow: 0 -4px 32px rgba(0,0,0,.3);
   transition: bottom .3s cubic-bezier(.22,1,.36,1);
   max-height: 56dvh;
   display: flex;
@@ -13399,16 +13399,16 @@ body:has(#page-fynder.active) #navbar:not(.scrolled) .nav-dots-btn:hover {
 }
 .emoji-picker-search input {
   width: 100%;
-  background: #2b2d31;
-  border: 1px solid rgba(255,255,255,.1);
+  background: var(--msg-input-bg);
+  border: 1px solid var(--msg-border);
   border-radius: 10px;
   padding: 8px 14px;
-  color: #e5e7eb;
+  color: var(--msg-input-text);
   font-size: .875rem;
   font-family: 'Inter', sans-serif;
   outline: none;
 }
-.emoji-picker-search input:focus { border-color: #67B8B4; }
+.emoji-picker-search input:focus { border-color: var(--msg-accent); }
 
 .emoji-picker-tabs {
   display: flex;
