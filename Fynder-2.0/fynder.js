@@ -366,8 +366,6 @@ function updateNav(){
     if(tealBtn) tealBtn.classList.toggle('on-hero', isHero);
 
     if(uname) uname.classList.toggle('on-hero', isHero);
-
-    // Badge de favoritos en navbar y contador en página de guardados
     const b=document.getElementById('navBadge');
     if(b){ b.textContent=favorites.size; b.style.display=favorites.size>0?'flex':'none'; }
     const fc=document.getElementById('favsCount');
