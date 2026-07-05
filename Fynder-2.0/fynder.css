@@ -12056,7 +12056,7 @@ body:has(#page-fynder.active) #navbar:not(.scrolled) .nav-dots-btn:hover {
   padding: 6px 12px 6px 8px;
   border-radius: 10px;
   border: none;
-  background: var(--msg-surface);
+  background: var(--msg-surface2);
   color: var(--msg-text);
   font-size: .8125rem;
   font-weight: 500;
@@ -12067,8 +12067,8 @@ body:has(#page-fynder.active) #navbar:not(.scrolled) .nav-dots-btn:hover {
   flex-shrink: 0;
 }
 .msg-back-btn:hover {
-  background: #4a4d55;
-  color: #fff;
+  background: var(--msg-surface);
+  color: var(--msg-title);
   transform: translateX(-2px);
 }
 .msg-back-btn i {
@@ -12083,7 +12083,7 @@ body:has(#page-fynder.active) #navbar:not(.scrolled) .nav-dots-btn:hover {
   font-family: 'Poppins', sans-serif;
   font-size: 1.1rem;
   font-weight: 700;
-  color: #fff;
+  color: var(--msg-title);
   margin: 0;
 }
 .msg-tab {
