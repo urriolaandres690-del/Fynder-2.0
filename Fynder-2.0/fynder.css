@@ -12647,7 +12647,7 @@ body:has(#page-fynder.active) #navbar:not(.scrolled) .nav-dots-btn:hover {
   display: block;
   font-size: .9rem;
   font-weight: 700;
-  color: #fff;
+  color: var(--msg-title);
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
