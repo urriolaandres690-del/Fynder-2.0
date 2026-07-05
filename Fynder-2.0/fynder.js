@@ -283,7 +283,7 @@ function goPage(p){
 
     // Guardar la página anterior solo si NO es una página legal (para no perder el origen real)
     const legalPages = ['terms','privacy'];
-    const noHistoryPages = ['messages','chat'];
+    const noHistoryPages = ['messages','chat','chat-profile'];
     if(!legalPages.includes(currentPage) && !noHistoryPages.includes(currentPage)){
         previousPage = currentPage;
     }
@@ -293,7 +293,7 @@ function goPage(p){
     currentPage = p;
 
     const navbar  = document.getElementById('navbar');
-    const noNavPages = ['login','register','terms','privacy','messages','chat'];
+    const noNavPages = ['login','register','terms','privacy','messages','chat','chat-profile'];
     navbar.style.display = noNavPages.includes(p) ? 'none' : 'block';
 
     // Actualizar el botón "Volver" de las páginas legales con el destino correcto
