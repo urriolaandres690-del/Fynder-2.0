@@ -3817,6 +3817,14 @@ function openChat(bizId, biz) {
     _saveMsgs(bizId, msgs);
     // Actualizar conversación con el último mensaje
     _updateConvLastMsg(bizId, welcomeMsg.text, welcomeMsg.time);
+    // Notificación: primer contacto con el negocio
+    pushNotification({
+      type:  'chat',
+      title: biz.name,
+      body:  welcomeMsg.text.length > 80 ? welcomeMsg.text.slice(0, 80) + '…' : welcomeMsg.text,
+      bizId: biz.id,
+      image: biz.image || null
+    });
   }
 
   renderChatMessages(bizId);
