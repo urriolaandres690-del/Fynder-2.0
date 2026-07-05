@@ -14237,8 +14237,6 @@ body:has(#page-fynder.active) #navbar:not(.scrolled) .nav-settings-btn:hover {
 [data-theme="dark"] .mobile-menu-actions  { border-top-color: rgba(255,255,255,.07); }
 [data-theme="dark"] .mobile-menu-nav button { color: var(--muted); }
 
-/* ---- Mensajes – colores de variables propias ---- */
-[data-theme="dark"] { --msg-bg: #0A0F1C; --msg-surface: #1A2030; --msg-border: rgba(255,255,255,.08); --msg-muted: #64748B; }
 
 /* ---- Fynder (saber más) page ---- */
 [data-theme="dark"] #page-fynder          { background: var(--bg) !important; }
