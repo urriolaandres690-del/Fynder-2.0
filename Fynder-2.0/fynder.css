@@ -199,7 +199,10 @@ input, button, select, textarea {
 
     } 
 
-    .nav-actions { display: flex; align-items: center; gap: 12px; } 
+    .nav-actions { display: flex; align-items: center; gap: 12px; margin-left: auto; }
+
+    /* Separador entre links de nav y acciones */
+    .nav-links + .nav-actions { margin-left: auto; padding-left: 0; border-left: none; } 
 
     .btn-ghost { font-size: .875rem; font-weight: 500; background: none; border: none; cursor: pointer; color: var(--muted); transition: color .2s, background .2s; } 
 
@@ -11182,11 +11185,11 @@ body:has(#page-fynder.active) #navbar:not(.scrolled) .btn-login-nav:hover {
   border-color: #fff;
 }
 
-/* Separador links/acciones sobre hero — sin separador */
+/* Separador links/acciones sobre hero */
 body:has(#page-home.active) #navbar:not(.scrolled) .nav-links + .nav-actions,
 body:has(#page-about.active) #navbar:not(.scrolled) .nav-links + .nav-actions,
 body:has(#page-fynder.active) #navbar:not(.scrolled) .nav-links + .nav-actions {
-  border-left-color: transparent;
+  border-left-color: rgba(255,255,255,.2);
 }
 
 /* Logo: FYN en blanco sobre hero */
@@ -13465,7 +13468,13 @@ body:has(#page-fynder.active) #navbar:not(.scrolled) .nav-dots-btn:hover {
   .nav-username  { display: none !important; }
 }
 
-[data-theme="dark"] .nav-links + .nav-actions { border-left-color: transparent; }
+[data-theme="dark"] .nav-links + .nav-actions { border-left-color: rgba(255,255,255,.08); }
+
+.nav-actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
 
 /* En pantallas medias (1024-1280px) reducir padding de los CTA del nav */
 @media (max-width: 1200px) {
@@ -13480,7 +13489,9 @@ body:has(#page-fynder.active) #navbar:not(.scrolled) .nav-dots-btn:hover {
   .nav-username {
     max-width: 72px;
   }
-}/* Separador visual: sin margin extra, el gap lo hace todo */
+}
+
+/* Separador visual: sin margin extra, el gap lo hace todo */
 .nav-actions .btn-teal    { margin-left: 0; }
 .nav-actions .dark-toggle-btn { margin-left: 0; }
 
