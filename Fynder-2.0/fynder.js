@@ -3705,3 +3705,441 @@ if (_origToggleDark) {
   };
 
 }()); // fin IIFE
+
+
+/* ================================================================
+   SISTEMA DE MENSAJES – FYNDER
+   ================================================================ */
+
+// ---- Storage helpers ----
+function _getMsgs(bizId) {
+  try { return JSON.parse(localStorage.getItem('fynderChat_' + bizId) || '[]'); }
+  catch(e) { return []; }
+}
+function _saveMsgs(bizId, msgs) {
+  localStorage.setItem('fynderChat_' + bizId, JSON.stringify(msgs));
+}
+function _getConversations() {
+  try { return JSON.parse(localStorage.getItem('fynderConversations') || '[]'); }
+  catch(e) { return []; }
+}
+function _saveConversations(list) {
+  localStorage.setItem('fynderConversations', JSON.stringify(list));
+}
+function _getBookmarks() {
+  try { return JSON.parse(localStorage.getItem('fynderMsgBookmarks') || '[]'); }
+  catch(e) { return []; }
+}
+function _saveBookmarks(list) {
+  localStorage.setItem('fynderMsgBookmarks', JSON.stringify(list));
+}
+
+// ---- Estado activo del chat ----
+let _activeChatBizId = null;
+
+// ---- Abrir chat desde el modal del negocio ----
+function openChatFromModal() {
+  const logged = !!localStorage.getItem('fynderLogged');
+  if (!logged) { showToast('Inicia sesión para enviar mensajes'); goPage('login'); return; }
+  const id = modalBusinessId; // variable global del modal existente
+  if (!id) return;
+  const biz = BUSINESSES.find(b => String(b.id) === String(id));
+  if (!biz) return;
+  closeModal();
+  openChat(id, biz);
+}
+
+// ---- Abrir chat con un negocio ----
+function openChat(bizId, biz) {
+  _activeChatBizId = String(bizId);
+
+  // Asegurar que la conversación existe
+  let convs = _getConversations();
+  if (!convs.find(c => String(c.id) === String(bizId))) {
+    convs.unshift({ id: String(bizId), name: biz.name, cat: biz.category, img: biz.img || null, unread: 0, lastMsg: '', lastTime: '' });
+    _saveConversations(convs);
+  }
+
+  // Header del chat
+  const nameEl  = document.getElementById('chatHeaderName');
+  const subEl   = document.getElementById('chatHeaderSub');
+  const avaEl   = document.getElementById('chatHeaderAvatar');
+  if (nameEl) nameEl.textContent = biz.name;
+  if (subEl)  subEl.textContent  = biz.category || 'Negocio local';
+  if (avaEl)  {
+    if (biz.img) {
+      avaEl.innerHTML = `<img src="${biz.img}" alt="${biz.name}" loading="lazy">`;
+    } else {
+      avaEl.textContent = (biz.name || '?')[0].toUpperCase();
+      avaEl.style.background = _avatarColor(biz.name);
+    }
+  }
+
+  // Si no tiene mensajes, agregar un mensaje de bienvenida del negocio
+  let msgs = _getMsgs(bizId);
+  if (msgs.length === 0) {
+    const welcomeMsg = {
+      id: Date.now(),
+      from: 'biz',
+      text: `¡Hola! 👋 Bienvenido a ${biz.name}. ¿En qué podemos ayudarte?`,
+      time: _fmtTime(new Date()),
+      date: _fmtDate(new Date())
+    };
+    msgs = [welcomeMsg];
+    _saveMsgs(bizId, msgs);
+    // Actualizar conversación con el último mensaje
+    _updateConvLastMsg(bizId, welcomeMsg.text, welcomeMsg.time);
+  }
+
+  renderChatMessages(bizId);
+  goPage('chat');
+}
+
+// ---- Renderizar mensajes ----
+function renderChatMessages(bizId) {
+  const container = document.getElementById('chatMessages');
+  if (!container) return;
+  const msgs = _getMsgs(bizId);
+
+  let html = '';
+  let prevDate = '';
+  let prevFrom = '';
+
+  msgs.forEach((msg, i) => {
+    const isOut = (msg.from === 'user');
+    const isIn  = !isOut;
+
+    // Separador de fecha
+    if (msg.date && msg.date !== prevDate) {
+      html += `<div class="chat-date-sep">${msg.date}</div>`;
+      prevDate = msg.date;
+    }
+
+    const noAva = isIn && prevFrom === 'biz';
+    const avaClass = noAva ? 'chat-msg-row in no-ava' : (isIn ? 'chat-msg-row in' : 'chat-msg-row out');
+
+    const biz = BUSINESSES.find(b => String(b.id) === String(bizId));
+    const avaContent = isIn
+      ? `<div class="chat-msg-ava">${biz && biz.img ? `<img src="${biz.img}" alt="">` : (biz ? (biz.name||'?')[0].toUpperCase() : '?')}</div>`
+      : '';
+
+    const tickClass = msg.read ? 'read' : 'sent';
+    const ticks = isOut ? `<span class="chat-bubble-tick ${tickClass}"><i class="fas fa-check-double"></i></span>` : '';
+
+    html += `
+      <div class="${avaClass}">
+        ${isIn ? avaContent : ''}
+        <div>
+          <div class="chat-bubble">
+            ${escapeHtml(msg.text)}
+            <div class="chat-bubble-meta">
+              <span class="chat-bubble-time">${msg.time || ''}</span>
+              ${ticks}
+            </div>
+          </div>
+        </div>
+        ${isOut ? avaContent : ''}
+      </div>`;
+    prevFrom = msg.from;
+  });
+
+  container.innerHTML = html;
+  // Scroll al final
+  requestAnimationFrame(() => { container.scrollTop = container.scrollHeight; });
+}
+
+// ---- Enviar mensaje ----
+function sendChatMessage() {
+  const input = document.getElementById('chatInput');
+  if (!input || !_activeChatBizId) return;
+  const text = input.value.trim();
+  if (!text) return;
+
+  const logged = !!localStorage.getItem('fynderLogged');
+  if (!logged) { showToast('Inicia sesión para enviar mensajes'); return; }
+
+  const now = new Date();
+  const msg = {
+    id: Date.now(),
+    from: 'user',
+    text,
+    time: _fmtTime(now),
+    date: _fmtDate(now),
+    read: false
+  };
+
+  const msgs = _getMsgs(_activeChatBizId);
+  msgs.push(msg);
+  _saveMsgs(_activeChatBizId, msgs);
+  _updateConvLastMsg(_activeChatBizId, text, msg.time);
+
+  input.value = '';
+  renderChatMessages(_activeChatBizId);
+
+  // Respuesta automática del negocio después de 1.2s
+  setTimeout(() => _bizAutoReply(_activeChatBizId), 1200);
+}
+
+// ---- Respuesta automática del negocio ----
+function _bizAutoReply(bizId) {
+  if (_activeChatBizId !== bizId) return; // usuario ya cambió de chat
+  const replies = [
+    '¡Gracias por escribirnos! 😊 Estaremos encantados de ayudarte.',
+    'Claro, con gusto te atendemos. ¿Cuéntanos más detalles?',
+    '¡Hola! Recibimos tu mensaje. Te respondemos a la brevedad.',
+    'Gracias por contactarnos. ¿En qué podemos servirte hoy?',
+    '¡Qué bueno saber de ti! Dinos cómo podemos ayudarte.',
+    'Entendido, ya tomamos nota. Te enviamos la información en un momento.'
+  ];
+  const text = replies[Math.floor(Math.random() * replies.length)];
+  const now  = new Date();
+  const msg  = { id: Date.now(), from: 'biz', text, time: _fmtTime(now), date: _fmtDate(now) };
+  const msgs = _getMsgs(bizId);
+  msgs.push(msg);
+  _saveMsgs(bizId, msgs);
+  _updateConvLastMsg(bizId, text, msg.time);
+  renderChatMessages(bizId);
+}
+
+// ---- Renderizar lista de conversaciones ----
+function renderConversations() {
+  const convs = _getConversations();
+  const list  = document.getElementById('msgChatList');
+  const empty = document.getElementById('msgEmptyChats');
+  if (!list) return;
+
+  if (convs.length === 0) {
+    list.innerHTML = '';
+    if (empty) { empty.classList.remove('hide'); }
+    return;
+  }
+  if (empty) empty.classList.add('hide');
+
+  list.innerHTML = convs.map(c => {
+    const initial = (c.name || '?')[0].toUpperCase();
+    const bg      = _avatarColor(c.name);
+    const avatar  = c.img
+      ? `<img src="${c.img}" alt="${c.name}" loading="lazy">`
+      : `<span style="color:#fff;font-size:1.1rem;font-weight:700;font-family:'Poppins',sans-serif">${initial}</span>`;
+    const unread  = c.unread > 0 ? `<span class="msg-chat-unread">${c.unread}</span>` : '';
+    return `
+      <div class="msg-chat-item" onclick="openChatById('${c.id}')">
+        <div class="msg-chat-avatar-wrap">
+          <div class="msg-chat-avatar" style="background:${bg}">${avatar}</div>
+          <span class="msg-chat-online"></span>
+        </div>
+        <div class="msg-chat-body">
+          <div class="msg-chat-top">
+            <span class="msg-chat-name">${escapeHtml(c.name)}</span>
+            <span class="msg-chat-time">${c.lastTime || ''}</span>
+          </div>
+          <span class="msg-chat-preview">${escapeHtml(c.lastMsg || 'Toca para ver el chat')}</span>
+        </div>
+        <div class="msg-chat-actions">
+          ${unread}
+          <button class="msg-chat-menu" onclick="event.stopPropagation();msgConvMenu('${c.id}')" title="Más opciones">
+            <i class="fas fa-ellipsis-vertical"></i>
+          </button>
+        </div>
+      </div>`;
+  }).join('');
+}
+
+// ---- Abrir chat por ID ----
+function openChatById(bizId) {
+  const biz = BUSINESSES.find(b => String(b.id) === String(bizId));
+  // Limpiar unread
+  let convs = _getConversations();
+  const conv = convs.find(c => String(c.id) === String(bizId));
+  if (conv) { conv.unread = 0; _saveConversations(convs); }
+  updateMsgBadge();
+  if (biz) { openChat(bizId, biz); }
+  else {
+    // La conversación existe pero el negocio fue eliminado de demo
+    _activeChatBizId = String(bizId);
+    const nameEl = document.getElementById('chatHeaderName');
+    const subEl  = document.getElementById('chatHeaderSub');
+    const avaEl  = document.getElementById('chatHeaderAvatar');
+    if (nameEl) nameEl.textContent = conv ? conv.name : 'Negocio';
+    if (subEl)  subEl.textContent  = conv ? conv.cat  : '';
+    if (avaEl)  avaEl.textContent  = (conv ? conv.name : 'N')[0].toUpperCase();
+    renderChatMessages(bizId);
+    goPage('chat');
+  }
+}
+
+// ---- Menú contextual de conversación ----
+function msgConvMenu(bizId) {
+  const bmarks = _getBookmarks();
+  const isBookmarked = bmarks.includes(String(bizId));
+  const action1 = isBookmarked ? 'Quitar de marcadores' : 'Añadir a marcadores';
+  const icon1   = isBookmarked ? 'fa-bookmark-slash' : 'fa-bookmark';
+  showToast(`${action1}… (próximamente)`);
+}
+
+// ---- Tab switch ----
+function msgSwitchTab(tab) {
+  // Actualizar botones
+  document.getElementById('msgTabChats')    .classList.toggle('active', tab === 'chats');
+  document.getElementById('msgTabBookmarks').classList.toggle('active', tab === 'bookmarks');
+
+  // Mostrar panel
+  document.getElementById('msgPanelChats')    .classList.toggle('active', tab === 'chats');
+  document.getElementById('msgPanelBookmarks').classList.toggle('active', tab === 'bookmarks');
+  document.getElementById('msgPanelNotif')    .classList.remove('active');
+
+  if (tab === 'chats')     renderConversations();
+  if (tab === 'bookmarks') renderBookmarks();
+}
+
+function msgSwitchSection(section) {
+  // Botón "Notificaciones" en el header
+  document.getElementById('msgPanelChats')    .classList.remove('active');
+  document.getElementById('msgPanelBookmarks').classList.remove('active');
+  document.getElementById('msgPanelNotif')    .classList.toggle('active', section === 'notif');
+  document.getElementById('msgTabChats')    .classList.remove('active');
+  document.getElementById('msgTabBookmarks').classList.remove('active');
+  if (section === 'notif') renderNotifications();
+}
+
+// ---- Marcadores ----
+function renderBookmarks() {
+  const bmarks = _getBookmarks();
+  const list   = document.getElementById('msgBookmarkList');
+  const empty  = document.getElementById('msgEmptyBookmarks');
+  if (!list) return;
+
+  if (bmarks.length === 0) {
+    list.innerHTML = '';
+    if (empty) empty.style.display = 'flex';
+    return;
+  }
+  if (empty) empty.style.display = 'none';
+
+  const convs = _getConversations();
+  list.innerHTML = bmarks.map(id => {
+    const c = convs.find(x => String(x.id) === String(id));
+    if (!c) return '';
+    const initial = (c.name || '?')[0].toUpperCase();
+    const bg      = _avatarColor(c.name);
+    const avatar  = c.img
+      ? `<img src="${c.img}" alt="${c.name}" loading="lazy">`
+      : `<span style="color:#fff;font-size:1.1rem;font-weight:700">${initial}</span>`;
+    return `
+      <div class="msg-chat-item" onclick="openChatById('${c.id}')">
+        <div class="msg-chat-avatar-wrap">
+          <div class="msg-chat-avatar" style="background:${bg}">${avatar}</div>
+        </div>
+        <div class="msg-chat-body">
+          <div class="msg-chat-top">
+            <span class="msg-chat-name">${escapeHtml(c.name)}</span>
+            <span class="msg-chat-time">${c.lastTime || ''}</span>
+          </div>
+          <span class="msg-chat-preview">${escapeHtml(c.lastMsg || '')}</span>
+        </div>
+      </div>`;
+  }).join('');
+}
+
+// ---- Notificaciones ----
+function renderNotifications() {
+  const list = document.getElementById('msgNotifList');
+  if (!list) return;
+  // Notificaciones de ejemplo basadas en negocios destacados
+  const featured = BUSINESSES.filter(b => b.featured).slice(0, 3);
+  if (featured.length === 0) { list.innerHTML = ''; return; }
+  list.innerHTML = featured.map(b => `
+    <div class="msg-notif-card" onclick="openChatById('${b.id}')">
+      ${b.img ? `<img class="msg-notif-card-img" src="${b.img}" alt="${b.name}" loading="lazy">` : ''}
+      <div class="msg-notif-card-body">
+        <p class="msg-notif-card-title">${escapeHtml(b.name)}</p>
+        <p class="msg-notif-card-date">${_fmtRelativeDate()}</p>
+        <p class="msg-notif-card-desc">${escapeHtml(b.description || b.desc || 'Novedad disponible')}</p>
+        <button class="msg-notif-card-btn" onclick="event.stopPropagation();openChatById('${b.id}')">Ver más</button>
+      </div>
+    </div>`).join('');
+}
+
+// ---- Badge de mensajes no leídos ----
+function updateMsgBadge() {
+  const convs  = _getConversations();
+  const unread = convs.reduce((s, c) => s + (c.unread || 0), 0);
+
+  const badge    = document.getElementById('navMsgBadge');
+  const bnavBadge = document.getElementById('msgBnavBadge');
+  const navBtn   = document.getElementById('navMsgBtn');
+
+  if (badge) {
+    badge.textContent = unread > 9 ? '9+' : unread;
+    badge.style.display = unread > 0 ? 'flex' : 'none';
+  }
+  if (bnavBadge) {
+    bnavBadge.textContent = unread > 9 ? '9+' : unread;
+    bnavBadge.style.display = unread > 0 ? 'flex' : 'none';
+  }
+  if (navBtn) {
+    navBtn.style.display = !!localStorage.getItem('fynderLogged') ? 'flex' : 'none';
+  }
+}
+
+// ---- Helpers ----
+function _updateConvLastMsg(bizId, text, time) {
+  let convs = _getConversations();
+  const idx = convs.findIndex(c => String(c.id) === String(bizId));
+  if (idx > -1) {
+    convs[idx].lastMsg  = text;
+    convs[idx].lastTime = time;
+    // Mover al principio
+    const [conv] = convs.splice(idx, 1);
+    convs.unshift(conv);
+    _saveConversations(convs);
+  }
+}
+function _fmtTime(d) {
+  return d.toLocaleTimeString('es', { hour: '2-digit', minute: '2-digit', hour12: false });
+}
+function _fmtDate(d) {
+  const today = new Date();
+  const isToday = d.toDateString() === today.toDateString();
+  if (isToday) return 'Hoy';
+  const yesterday = new Date(today); yesterday.setDate(today.getDate() - 1);
+  if (d.toDateString() === yesterday.toDateString()) return 'Ayer';
+  return d.toLocaleDateString('es', { day: 'numeric', month: 'short' });
+}
+function _fmtRelativeDate() {
+  const now = new Date();
+  const d   = new Date(now.getFullYear(), now.getMonth(), now.getDate() - Math.floor(Math.random() * 7));
+  return _fmtDate(d);
+}
+function _avatarColor(name) {
+  const colors = ['#67B8B4','#2F5BB7','#F97316','#8B5CF6','#EC4899','#10B981','#EF4444','#F4D35E'];
+  let hash = 0;
+  for (let i = 0; i < (name||'').length; i++) hash = (name||'').charCodeAt(i) + ((hash << 5) - hash);
+  return colors[Math.abs(hash) % colors.length];
+}
+function escapeHtml(str) {
+  if (!str) return '';
+  return String(str).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+}
+
+// ---- Hook en goPage para inicializar mensajes ----
+(function() {
+  const _origGoPage = goPage;
+  window.goPage = function(p) {
+    if (p === 'messages') {
+      _origGoPage(p);
+      // Asegurar que el panel de chats está activo
+      msgSwitchTab('chats');
+      updateMsgBadge();
+      return;
+    }
+    _origGoPage(p);
+    // Mostrar/ocultar botón de mensajes según login
+    updateMsgBadge();
+  };
+})();
+
+// ---- Inicialización al cargar ----
+document.addEventListener('DOMContentLoaded', () => {
+  updateMsgBadge();
+});
