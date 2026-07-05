@@ -165,7 +165,7 @@ input, button, select, textarea {
 
     .logo-text.on-hero .fyn { color: #fff; } 
 
-    .nav-links { display: flex; align-items: center; gap: 4px; margin-left: 32px; } 
+    .nav-links { display: flex; align-items: center; gap: 4px; margin-left: 20px; } 
 
     .nav-link { 
 
@@ -13463,13 +13463,24 @@ body:has(#page-fynder.active) #navbar:not(.scrolled) .nav-dots-btn:hover {
   gap: 8px;
 }
 
-/* Separador visual entre grupo de acciones y los íconos */
-.nav-actions .btn-teal {
-  margin-left: 0;
+/* En pantallas medias (1024-1280px) reducir padding de los CTA del nav */
+@media (max-width: 1200px) {
+  .btn-login-nav {
+    padding: 7px 12px;
+    font-size: .8125rem;
+  }
+  .nav-actions .btn-teal {
+    padding: 7px 12px;
+    font-size: .8125rem;
+  }
+  .nav-username {
+    max-width: 72px;
+  }
 }
-.nav-actions .dark-toggle-btn {
-  margin-left: 0;
-}
+
+/* Separador visual: sin margin extra, el gap lo hace todo */
+.nav-actions .btn-teal    { margin-left: 0; }
+.nav-actions .dark-toggle-btn { margin-left: 0; }
 
 /* Ocultar btn-login-nav cuando no hay espacio */
 @media (max-width: 900px) {
