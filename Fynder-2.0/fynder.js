@@ -3966,8 +3966,12 @@ function openChatById(bizId) {
     const subEl  = document.getElementById('chatHeaderSub');
     const avaEl  = document.getElementById('chatHeaderAvatar');
     if (nameEl) nameEl.textContent = conv ? conv.name : 'Negocio';
-    if (subEl)  subEl.textContent  = conv ? conv.cat  : '';
-    if (avaEl)  avaEl.textContent  = (conv ? conv.name : 'N')[0].toUpperCase();
+    if (subEl)  subEl.textContent  = conv ? (conv.cat || 'Negocio local') : 'Negocio local';
+    if (avaEl)  {
+      avaEl.innerHTML = '';
+      avaEl.textContent = (conv ? conv.name : 'N')[0].toUpperCase();
+      avaEl.style.background = _avatarColor(conv ? conv.name : 'N');
+    }
     renderChatMessages(bizId);
     goPage('chat');
   }
