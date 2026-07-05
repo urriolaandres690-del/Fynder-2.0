@@ -12267,7 +12267,7 @@ body:has(#page-fynder.active) #navbar:not(.scrolled) .nav-dots-btn:hover {
 .msg-notif-card-title {
   font-size: .875rem;
   font-weight: 700;
-  color: #84cc16;
+  color: #67B8B4;
   margin: 0 0 4px;
   line-height: 1.35;
 }
@@ -12287,7 +12287,7 @@ body:has(#page-fynder.active) #navbar:not(.scrolled) .nav-dots-btn:hover {
   padding: 9px;
   border-radius: 22px;
   border: none;
-  background: #84cc16;
+  background: #67B8B4;
   color: #fff;
   font-size: .8rem;
   font-weight: 600;
