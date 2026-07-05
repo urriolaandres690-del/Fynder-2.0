@@ -12204,12 +12204,10 @@ body:has(#page-fynder.active) #navbar:not(.scrolled) .nav-dots-btn:hover {
   margin: 12px 12px 0;
   background: var(--msg-surface);
   border-radius: 14px;
-  padding: 14px 14px 14px 16px;
+  padding: 14px 12px 14px 16px;
   display: flex;
   align-items: center;
   gap: 12px;
-  position: relative;
-  overflow: visible;
 }
 .msg-notif-banner-icon {
   width: 38px; height: 38px;
@@ -12219,7 +12217,10 @@ body:has(#page-fynder.active) #navbar:not(.scrolled) .nav-dots-btn:hover {
   font-size: .95rem;
   color: #67B8B4;
   flex-shrink: 0;
-  overflow: visible;
+}
+.msg-notif-banner-text {
+  flex: 1;
+  min-width: 0;
 }
 .msg-notif-banner-title {
   font-size: .875rem;
@@ -12234,6 +12235,7 @@ body:has(#page-fynder.active) #navbar:not(.scrolled) .nav-dots-btn:hover {
   line-height: 1.4;
 }
 .msg-notif-banner-allow {
+  flex-shrink: 0;
   padding: 7px 14px;
   border-radius: 22px;
   border: none;
@@ -12251,14 +12253,18 @@ body:has(#page-fynder.active) #navbar:not(.scrolled) .nav-dots-btn:hover {
 }
 .msg-notif-banner-allow:hover { background: #5aa6a2; }
 .msg-notif-banner-close {
+  flex-shrink: 0;
   background: none;
   border: none;
   color: var(--msg-muted);
   cursor: pointer;
   font-size: .85rem;
-  padding: 4px;
+  padding: 6px;
   line-height: 1;
+  border-radius: 8px;
+  transition: color .15s, background .15s;
 }
+.msg-notif-banner-close:hover { color: #fff; background: rgba(255,255,255,.08); }
 
 /* Badge en el tab Notificaciones */
 .msg-notif-dot {
