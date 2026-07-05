@@ -12595,7 +12595,7 @@ body:has(#page-fynder.active) #navbar:not(.scrolled) .nav-dots-btn:hover {
    ================================================================ */
 
 .chat-page {
-  background: #1e1f22;
+  background: var(--msg-bg2);
 }
 
 /* ---- Header ---- */
@@ -12626,7 +12626,7 @@ body:has(#page-fynder.active) #navbar:not(.scrolled) .nav-dots-btn:hover {
 .chat-header-avatar {
   width: 36px; height: 36px;
   border-radius: 50%;
-  background: #4a4d55;
+  background: var(--msg-avatar-bg);
   flex-shrink: 0;
   display: flex; align-items: center; justify-content: center;
   font-weight: 700;
