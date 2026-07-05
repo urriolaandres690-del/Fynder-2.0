@@ -5015,120 +5015,92 @@ function openPhotoLightbox() {
 
 /** Navega a una sección del panel de ajustes */
 function settGoSection(id, btn) {
-  // Desactivar todas las secciones y nav items
-  document.querySelectorAll('.sett-section').forEach(s => s.classList.remove('active'));
-  document.querySelectorAll('.sett-nav-item').forEach(b => b.classList.remove('active'));
+  document.querySelectorAll('#page-settings .sett-section').forEach(s => s.classList.remove('active'));
+  document.querySelectorAll('#page-settings .sett-nav-item').forEach(b => b.classList.remove('active'));
 
   const sec = document.getElementById('sett-' + id);
   if (sec) sec.classList.add('active');
   if (btn) btn.classList.add('active');
 
-  // Acciones específicas al entrar en una sección
-  if (id === 'cuenta')        settSyncAccount();
-  if (id === 'apariencia')    settSyncAppearance();
+  // Sync específico al entrar en cada sección
+  if (id === 'cuenta')         settSyncAccount();
+  if (id === 'apariencia')     settSyncAppearance();
   if (id === 'notificaciones') settSyncNotif();
-  if (id === 'datos')         settSyncStorage();
+  if (id === 'privacidad')     settSyncNotif();   // read toggle vive aquí también
+  if (id === 'accesibilidad')  settSyncAccessibility();
+  if (id === 'datos')          settSyncStorage();
 }
 
-/** Inicializa la página de ajustes al entrar */
+/** Inicializa la página cada vez que se navega a ella */
 function initSettingsPage() {
-  settGoSection('cuenta', document.querySelector('.sett-nav-item[data-section="cuenta"]'));
-  settSyncAccount();
-  settSyncAppearance();
-  settSyncNotif();
-  settSyncStorage();
+  // Activar sección "cuenta" por defecto
+  const firstBtn = document.querySelector('#page-settings .sett-nav-item[data-section="cuenta"]');
+  settGoSection('cuenta', firstBtn);
 }
 
-/** Sincroniza la tarjeta de usuario y otros datos de cuenta */
+// ── CUENTA ─────────────────────────────────────────────────────────────────
+
 function settSyncAccount() {
   const user = JSON.parse(localStorage.getItem('fynderUser') || '{}');
+
   const nameEl  = document.getElementById('settUserName');
   const emailEl = document.getElementById('settUserEmail');
   const avaEl   = document.getElementById('settUserAvatar');
+
   if (nameEl)  nameEl.textContent  = user.name  || 'Usuario';
   if (emailEl) emailEl.textContent = user.email || '—';
 
-  // Avatar
   if (avaEl) {
-    const photo = localStorage.getItem('fynderAvatarPhoto');
+    const photo  = localStorage.getItem('fynderAvatarPhoto');
+    const preset = localStorage.getItem('fynderAvatarPreset');
     if (photo) {
-      avaEl.innerHTML = `<img src="${photo}" alt="avatar">`;
+      avaEl.innerHTML = `<img src="${photo}" alt="avatar" style="width:100%;height:100%;object-fit:cover;border-radius:50%">`;
+    } else if (preset) {
+      avaEl.innerHTML = '';
+      avaEl.textContent = preset;
     } else {
       avaEl.innerHTML = '';
       avaEl.textContent = (user.name || 'U')[0].toUpperCase();
+      const bg = localStorage.getItem('fynderAvatarInitialBg');
+      if (bg) avaEl.style.background = bg;
     }
   }
 
-  // Plan label
   const planEl = document.getElementById('settPlanLabel');
   if (planEl) {
-    const biz = JSON.parse(localStorage.getItem('fynderBusinesses') || '[]')[0];
-    planEl.textContent = biz?.plan || 'Free';
+    const bizList = JSON.parse(localStorage.getItem('fynderBusinesses') || '[]');
+    planEl.textContent = bizList[0]?.plan || 'Free';
   }
 }
 
-/** Sincroniza controles de apariencia */
+/** Cierra sesión correctamente usando la función centralizada */
+function settLogout() {
+  if (!confirm('¿Cerrar sesión?')) return;
+  logout();   // llama a la función completa que limpia todo
+}
+
+// ── APARIENCIA ──────────────────────────────────────────────────────────────
+
 function settSyncAppearance() {
   _loadMsgSettings();
 
-  // Modo oscuro toggle
-  const darkToggle = document.getElementById('settDarkToggle');
-  if (darkToggle) {
-    const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
-    darkToggle.classList.toggle('on', isDark);
+  // Modo oscuro
+  const darkBtn = document.getElementById('settDarkToggle');
+  if (darkBtn) {
+    darkBtn.classList.toggle('on', document.documentElement.getAttribute('data-theme') === 'dark');
   }
 
-  // Tamaño de fuente
+  // Tamaño de fuente del chat — solo los botones dentro de page-settings
+  const fontBtns = document.querySelectorAll('#sett-apariencia .sett-font-btn');
   const sizes = ['small', 'normal', 'large'];
-  document.querySelectorAll('.sett-font-btn').forEach((btn, i) => {
-    btn.classList.toggle('active', sizes[i] === _msgSettings.fontSize);
-  });
+  fontBtns.forEach((btn, i) => btn.classList.toggle('active', sizes[i] === _msgSettings.fontSize));
 
-  // Color de burbujas
-  document.querySelectorAll('.sett-color-dot').forEach(dot => {
+  // Color de burbujas — solo los dots dentro de page-settings
+  document.querySelectorAll('#sett-apariencia .sett-color-dot').forEach(dot => {
     dot.classList.toggle('active', dot.dataset.color === _msgSettings.bubbleColor);
   });
 }
 
-/** Sincroniza estado de notificaciones */
-function settSyncNotif() {
-  _loadMsgSettings();
-
-  // Estado del permiso nativo
-  const statusEl = document.getElementById('settNotifStatusLabel');
-  if (statusEl) {
-    const perm = ('Notification' in window) ? Notification.permission : 'unsupported';
-    const labels = { granted: '✅ Activadas', denied: '🚫 Bloqueadas', default: 'Sin configurar', unsupported: 'No compatible' };
-    statusEl.textContent = labels[perm] || 'Sin configurar';
-  }
-
-  // Toggles
-  const chatToggle  = document.getElementById('settNotifChatToggle');
-  const soundToggle = document.getElementById('settSoundToggle2');
-  if (chatToggle)  chatToggle.classList.toggle('on', _msgSettings.notif);
-  if (soundToggle) soundToggle.classList.toggle('on', _msgSettings.sound);
-
-  // Sync también privacidad
-  const readToggle = document.getElementById('settReadToggle2');
-  if (readToggle) readToggle.classList.toggle('on', _msgSettings.read);
-}
-
-/** Calcula y muestra el almacenamiento usado */
-function settSyncStorage() {
-  const el = document.getElementById('settStorageLabel');
-  if (!el) return;
-  let total = 0;
-  for (let i = 0; i < localStorage.length; i++) {
-    const key = localStorage.key(i);
-    if (key && key.startsWith('fynder')) {
-      total += (localStorage.getItem(key) || '').length;
-    }
-  }
-  const kb = (total / 1024).toFixed(1);
-  el.textContent = kb + ' KB usados';
-}
-
-/** Toggle dark mode desde ajustes */
 function settToggleDark() {
   toggleDarkMode();
   const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
@@ -5136,46 +5108,83 @@ function settToggleDark() {
   if (btn) btn.classList.toggle('on', isDark);
 }
 
-/** Toggle de una preferencia de mensajes desde ajustes */
+// ── NOTIFICACIONES / PRIVACIDAD ─────────────────────────────────────────────
+
+function settSyncNotif() {
+  _loadMsgSettings();
+
+  // Estado del permiso nativo del navegador
+  const statusEl = document.getElementById('settNotifStatusLabel');
+  if (statusEl) {
+    if (!('Notification' in window)) {
+      statusEl.textContent = '⚠️ No compatible con este navegador';
+    } else {
+      const map = { granted: '✅ Activadas', denied: '🚫 Bloqueadas por el navegador', default: 'Sin configurar — haz clic en Activar' };
+      statusEl.textContent = map[Notification.permission] || 'Sin configurar';
+    }
+  }
+
+  // Botón "Activar": ocultarlo si ya están concedidas o bloqueadas
+  const activarBtn = document.getElementById('settNotifActivarBtn');
+  if (activarBtn) {
+    const perm = ('Notification' in window) ? Notification.permission : 'unsupported';
+    activarBtn.style.display = (perm === 'granted' || perm === 'unsupported') ? 'none' : '';
+  }
+
+  // Toggles de notificaciones de chat y sonido
+  const chatT  = document.getElementById('settNotifChatToggle');
+  const soundT = document.getElementById('settSoundToggle2');
+  if (chatT)  chatT.classList.toggle('on', _msgSettings.notif);
+  if (soundT) soundT.classList.toggle('on', _msgSettings.sound);
+
+  // Toggle de confirmación de lectura (sección privacidad)
+  const readT = document.getElementById('settReadToggle2');
+  if (readT) readT.classList.toggle('on', _msgSettings.read);
+}
+
+/** Toggle genérico de preferencias de mensajes */
 function settToggleSetting(key, btnId) {
   _loadMsgSettings();
   _msgSettings[key] = !_msgSettings[key];
   _saveMsgSettings();
+
   const btn = document.getElementById(btnId);
   if (btn) btn.classList.toggle('on', _msgSettings[key]);
-  // Sincronizar también el panel de mensajes si está abierto
-  const msgId = { notif:'settingNotifToggle', sound:'settingSoundToggle', read:'settingReadToggle' };
-  const msgBtn = document.getElementById(msgId[key]);
-  if (msgBtn) msgBtn.classList.toggle('on', _msgSettings[key]);
+
+  // Mantener sincronizado el panel de mensajes si estaba abierto
+  const mirror = { notif: 'settingNotifToggle', sound: 'settingSoundToggle', read: 'settingReadToggle' };
+  const mirrorEl = document.getElementById(mirror[key]);
+  if (mirrorEl) mirrorEl.classList.toggle('on', _msgSettings[key]);
+
   showToast(_msgSettings[key] ? 'Activado' : 'Desactivado');
 }
 
-/** Sincroniza la UI del panel de mensajes con los cambios de ajustes */
-function settSyncMsgUI() {
-  _loadMsgSettings();
-  // Color dots en el panel de mensajes
-  document.querySelectorAll('.msg-color-dot').forEach(d => {
-    d.classList.toggle('active', d.dataset.color === _msgSettings.bubbleColor);
-  });
-  // Font buttons en el panel de mensajes
-  document.querySelectorAll('.msg-font-btn').forEach((btn, i) => {
-    const sizes = ['small','normal','large'];
-    btn.classList.toggle('active', sizes[i] === _msgSettings.fontSize);
-  });
+// ── ACCESIBILIDAD ───────────────────────────────────────────────────────────
+
+function settSyncAccessibility() {
+  // Tamaño de fuente UI
+  const sel = document.getElementById('settUIFontSize');
+  if (sel) {
+    const saved = localStorage.getItem('fynderUIFontSize') || 'normal';
+    sel.value = saved;
+  }
+
+  // Reducir animaciones
+  const rmBtn = document.getElementById('settReduceMotion');
+  if (rmBtn) rmBtn.classList.toggle('on', document.documentElement.hasAttribute('data-reduce-motion'));
 }
 
-/** Cambia el tamaño de fuente global de la UI */
 function settSetUIFontSize(val) {
   const map = { normal: '16px', large: '18px', xlarge: '20px' };
   document.documentElement.style.fontSize = map[val] || '16px';
   localStorage.setItem('fynderUIFontSize', val);
+  showToast('Tamaño de fuente actualizado');
 }
 
-/** Toggle reducir animaciones */
 function settToggleReduceMotion() {
   const btn = document.getElementById('settReduceMotion');
-  const current = document.documentElement.hasAttribute('data-reduce-motion');
-  if (current) {
+  const active = document.documentElement.hasAttribute('data-reduce-motion');
+  if (active) {
     document.documentElement.removeAttribute('data-reduce-motion');
     localStorage.removeItem('fynderReduceMotion');
     if (btn) btn.classList.remove('on');
@@ -5188,45 +5197,83 @@ function settToggleReduceMotion() {
   }
 }
 
-/** Limpiar datos locales de la app */
-function settClearData() {
-  if (!confirm('¿Limpiar preferencias locales? Se perderán conversaciones, favoritos y ajustes.')) return;
-  const keysToKeep = ['fynderUser', 'fynderLogged', 'fynderTheme'];
-  const allKeys = [];
+// ── DATOS ────────────────────────────────────────────────────────────────────
+
+function settSyncStorage() {
+  const el = document.getElementById('settStorageLabel');
+  if (!el) return;
+  let bytes = 0;
   for (let i = 0; i < localStorage.length; i++) {
     const k = localStorage.key(i);
-    if (k && k.startsWith('fynder') && !keysToKeep.includes(k)) allKeys.push(k);
+    if (k && k.startsWith('fynder')) {
+      bytes += ((localStorage.getItem(k) || '').length * 2); // UTF-16
+    }
   }
-  allKeys.forEach(k => localStorage.removeItem(k));
-  showToast('Datos limpiados');
+  const kb = (bytes / 1024).toFixed(1);
+  el.textContent = `${kb} KB usados (localStorage)`;
+
+  // Barra de progreso (localStorage máx ~5MB)
+  const bar = document.getElementById('settStorageBar');
+  if (bar) {
+    const pct = Math.min((bytes / (5 * 1024 * 1024)) * 100, 100).toFixed(1);
+    bar.style.width = pct + '%';
+  }
+}
+
+function settClearData() {
+  if (!confirm('¿Limpiar caché y preferencias locales?\n\nSe perderán: conversaciones, favoritos guardados y ajustes de la app.\nTu cuenta (nombre y contraseña) se mantendrá.')) return;
+
+  const keep = ['fynderUser', 'fynderLogged', 'fynderTheme'];
+  const toRemove = [];
+  for (let i = 0; i < localStorage.length; i++) {
+    const k = localStorage.key(i);
+    if (k && k.startsWith('fynder') && !keep.includes(k)) toRemove.push(k);
+  }
+  toRemove.forEach(k => localStorage.removeItem(k));
+
+  // Reinicializar estado en memoria
+  favorites.clear();
+  updateNav();
+
+  showToast('✅ Datos limpiados correctamente');
   settSyncStorage();
 }
 
-/** Cerrar sesión desde ajustes */
-function settLogout() {
-  if (!confirm('¿Cerrar sesión?')) return;
-  localStorage.removeItem('fynderLogged');
-  updateNav();
-  goPage('home');
-  showToast('Sesión cerrada');
+// ── HELPERS ──────────────────────────────────────────────────────────────────
+
+/** Sincroniza los controles de apariencia del panel de mensajes cuando se cambian desde Ajustes */
+function settSyncMsgUI() {
+  _loadMsgSettings();
+  document.querySelectorAll('.msg-color-dot').forEach(d => {
+    d.classList.toggle('active', d.dataset.color === _msgSettings.bubbleColor);
+  });
+  document.querySelectorAll('.msg-font-btn').forEach((btn, i) => {
+    const sizes = ['small', 'normal', 'large'];
+    btn.classList.toggle('active', sizes[i] === _msgSettings.fontSize);
+  });
 }
 
 /** Filtro de búsqueda en el sidebar */
 function settFilterSections(q) {
   const query = q.toLowerCase().trim();
-  document.querySelectorAll('.sett-nav-item').forEach(btn => {
+  document.querySelectorAll('#page-settings .sett-nav-item').forEach(btn => {
     const text = btn.textContent.toLowerCase();
     btn.style.display = (!query || text.includes(query)) ? '' : 'none';
   });
+  document.querySelector('#page-settings .sett-nav-divider').style.display =
+    query ? 'none' : '';
 }
 
-// Hook en goPage para inicializar la página de ajustes
-const _origGoPage = goPage;
-// En lugar de monkey-patch, simplemente inicializamos desde el hook de DOMContentLoaded y al navegar
+// ── INICIALIZACIÓN ────────────────────────────────────────────────────────────
+
 document.addEventListener('DOMContentLoaded', () => {
-  // Restaurar preferencias de accesibilidad
+  // Restaurar tamaño de fuente UI
   const savedFont = localStorage.getItem('fynderUIFontSize');
-  if (savedFont) settSetUIFontSize(savedFont);
+  if (savedFont) {
+    const map = { normal: '16px', large: '18px', xlarge: '20px' };
+    document.documentElement.style.fontSize = map[savedFont] || '16px';
+  }
+  // Restaurar reducción de animaciones
   if (localStorage.getItem('fynderReduceMotion')) {
     document.documentElement.setAttribute('data-reduce-motion', '1');
   }
