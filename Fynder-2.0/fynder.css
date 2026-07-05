@@ -12363,7 +12363,7 @@ body:has(#page-fynder.active) #navbar:not(.scrolled) .nav-dots-btn:hover {
 .msg-notif-banner-title {
   font-size: .875rem;
   font-weight: 600;
-  color: #fff;
+  color: var(--msg-title);
   margin: 0 0 3px;
 }
 .msg-notif-banner-sub {
