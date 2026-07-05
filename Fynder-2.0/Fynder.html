@@ -3479,12 +3479,15 @@
     <button class="chat-back-btn" onclick="goPage('messages')">
       <i class="fas fa-arrow-left"></i>
     </button>
-    <div class="chat-header-avatar" id="chatHeaderAvatar"></div>
-    <div class="chat-header-info">
+    <div class="chat-header-ava-wrap" onclick="openChatProfile()">
+      <div class="chat-header-avatar" id="chatHeaderAvatar"></div>
+      <span class="chat-header-online" id="chatHeaderOnline"></span>
+    </div>
+    <div class="chat-header-info" onclick="openChatProfile()" style="cursor:pointer">
       <span class="chat-header-name" id="chatHeaderName">—</span>
       <span class="chat-header-sub" id="chatHeaderSub">Negocio local</span>
     </div>
-    <button class="chat-icon-btn" onclick="showToast('Opciones próximamente')">
+    <button class="chat-icon-btn" onclick="openChatProfile()" title="Ver perfil">
       <i class="fas fa-ellipsis"></i>
     </button>
   </div>
@@ -3510,6 +3513,83 @@
     <button class="chat-send-btn" onclick="sendChatMessage()" id="chatSendBtn">
       <i class="fas fa-paper-plane"></i>
     </button>
+  </div>
+</div>
+
+<!-- ================================================================
+     PÁGINA: PERFIL DEL NEGOCIO (desde el chat)
+     ================================================================ -->
+<div id="page-chat-profile" class="page chat-profile-page">
+
+  <!-- Header -->
+  <div class="cpro-header">
+    <button class="chat-back-btn" onclick="goPage('chat')">
+      <i class="fas fa-arrow-left"></i>
+    </button>
+    <span class="cpro-header-title" id="cproHeaderTitle">Información</span>
+    <button class="chat-icon-btn" onclick="showToast('Opciones próximamente')">
+      <i class="fas fa-ellipsis-vertical"></i>
+    </button>
+  </div>
+
+  <!-- Scroll body -->
+  <div class="cpro-body">
+
+    <!-- Hero: avatar grande + nombre + teléfono -->
+    <div class="cpro-hero">
+      <div class="cpro-avatar" id="cproAvatar"></div>
+      <h2 class="cpro-name"  id="cproName">—</h2>
+      <p  class="cpro-phone" id="cproPhone"></p>
+    </div>
+
+    <!-- Acciones: Llamar / Ver mapa / Buscar -->
+    <div class="cpro-actions">
+      <button class="cpro-action-btn" id="cproCallBtn">
+        <div class="cpro-action-icon"><i class="fas fa-phone"></i></div>
+        <span>Llamar</span>
+      </button>
+      <button class="cpro-action-btn" onclick="openChatProfileMap()">
+        <div class="cpro-action-icon"><i class="fas fa-map-location-dot"></i></div>
+        <span>Ver mapa</span>
+      </button>
+      <button class="cpro-action-btn" onclick="goPage('directory')">
+        <div class="cpro-action-icon"><i class="fas fa-magnifying-glass"></i></div>
+        <span>Buscar</span>
+      </button>
+    </div>
+
+    <!-- Fotos (logo + imagen del negocio) -->
+    <div class="cpro-section">
+      <div class="cpro-section-header">
+        <span class="cpro-section-label">Archivos y fotos</span>
+        <span class="cpro-section-count" id="cproMediaCount">2 &rsaquo;</span>
+      </div>
+      <div class="cpro-media-strip" id="cproMediaStrip">
+        <!-- Rellenado por JS -->
+      </div>
+    </div>
+
+    <!-- Info del negocio: settings-list estilo WhatsApp -->
+    <div class="cpro-settings-list" id="cproInfoList">
+      <!-- Rellenado por JS -->
+    </div>
+
+    <!-- Acciones de chat -->
+    <div class="cpro-settings-list cpro-danger-section">
+      <div class="cpro-settings-item cpro-settings-item-danger" onclick="deleteChatHistory()">
+        <div class="cpro-settings-icon cpro-icon-danger"><i class="fas fa-trash-can"></i></div>
+        <div class="cpro-settings-text">
+          <span class="cpro-settings-title cpro-danger-txt">Borrar historial</span>
+        </div>
+      </div>
+      <div class="cpro-settings-item cpro-settings-item-danger" onclick="blockBiz()">
+        <div class="cpro-settings-icon cpro-icon-danger"><i class="fas fa-ban"></i></div>
+        <div class="cpro-settings-text">
+          <span class="cpro-settings-title cpro-danger-txt">Bloquear negocio</span>
+        </div>
+      </div>
+    </div>
+
   </div>
 </div>
 
