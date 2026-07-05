@@ -4082,23 +4082,223 @@ function renderBookmarks() {
   }).join('');
 }
 
-// ---- Notificaciones ----
+// ---- Notificaciones — sistema real ----
+
+const NOTIF_KEY = 'fynderNotifications';
+
+/** Carga todas las notificaciones guardadas en localStorage */
+function _getNotifications() {
+  try { return JSON.parse(localStorage.getItem(NOTIF_KEY)) || []; }
+  catch { return []; }
+}
+
+/** Guarda la lista de notificaciones */
+function _saveNotifications(list) {
+  localStorage.setItem(NOTIF_KEY, JSON.stringify(list));
+}
+
+/**
+ * Agrega una nueva notificación al almacén.
+ * @param {Object} opts - { type, title, body, icon, bizId, image }
+ */
+function pushNotification({ type = 'info', title, body, icon = '🔔', bizId = null, image = null } = {}) {
+  const notifs = _getNotifications();
+  notifs.unshift({
+    id:    Date.now() + Math.random(),
+    type,          // 'welcome'|'fav'|'chat'|'promo'|'info'
+    title,
+    body,
+    icon,
+    bizId,
+    image,
+    ts:    Date.now(),
+    read:  false
+  });
+  // Máximo 50 notificaciones
+  if (notifs.length > 50) notifs.length = 50;
+  _saveNotifications(notifs);
+  updateNotifBadge();
+
+  // Dispara notificación nativa del navegador si el permiso está concedido
+  if (Notification.permission === 'granted' && _msgSettings.notif) {
+    try {
+      new Notification(title, {
+        body,
+        icon: '/favicon.ico',
+        badge: '/favicon.ico',
+        tag: String(bizId || type)
+      });
+    } catch (e) { /* Safari puede lanzar en algunos contextos */ }
+  }
+}
+
+/** Marca todas las notificaciones como leídas */
+function markAllNotifsRead() {
+  const notifs = _getNotifications().map(n => ({ ...n, read: true }));
+  _saveNotifications(notifs);
+  updateNotifBadge();
+}
+
+/** Marca una notificación individual como leída */
+function markNotifRead(id) {
+  const notifs = _getNotifications().map(n => n.id === id ? { ...n, read: true } : n);
+  _saveNotifications(notifs);
+  updateNotifBadge();
+}
+
+/** Elimina una notificación */
+function deleteNotif(id) {
+  const notifs = _getNotifications().filter(n => n.id !== id);
+  _saveNotifications(notifs);
+  renderNotifications();
+  updateNotifBadge();
+}
+
+/** Actualiza el badge del botón "Notificaciones" en el header de mensajes */
+function updateNotifBadge() {
+  const unread = _getNotifications().filter(n => !n.read).length;
+  // Badge en el tab del header
+  const tabBtn = document.getElementById('msgTabNotif');
+  if (tabBtn) {
+    let dot = tabBtn.querySelector('.msg-notif-dot');
+    if (unread > 0) {
+      if (!dot) {
+        dot = document.createElement('span');
+        dot.className = 'msg-notif-dot';
+        tabBtn.appendChild(dot);
+      }
+      dot.textContent = unread > 9 ? '9+' : unread;
+    } else {
+      if (dot) dot.remove();
+    }
+  }
+}
+
+/** Solicita permiso de notificaciones al navegador */
+async function requestNotifPermission() {
+  if (!('Notification' in window)) {
+    showToast('Tu navegador no soporta notificaciones');
+    return;
+  }
+  if (Notification.permission === 'granted') {
+    showToast('¡Las notificaciones ya están activadas!');
+    _hideNotifBanner();
+    return;
+  }
+  if (Notification.permission === 'denied') {
+    showToast('Notificaciones bloqueadas. Actívalas desde la configuración del navegador.');
+    return;
+  }
+  const perm = await Notification.requestPermission();
+  if (perm === 'granted') {
+    showToast('✅ ¡Notificaciones activadas!');
+    _hideNotifBanner();
+    pushNotification({
+      type: 'welcome',
+      title: '¡Bienvenido a Fynder!',
+      body: 'Ahora recibirás actualizaciones sobre negocios y ofertas.',
+      icon: '🎉'
+    });
+    renderNotifications();
+  } else {
+    showToast('Notificaciones no activadas');
+  }
+}
+
+function _hideNotifBanner() {
+  const banner = document.querySelector('.msg-notif-banner');
+  if (banner) banner.style.display = 'none';
+}
+
+/** Formatea una fecha para las notificaciones (relativa al presente real) */
+function _fmtNotifDate(ts) {
+  const diff = Date.now() - ts;
+  const min  = Math.floor(diff / 60000);
+  const hrs  = Math.floor(diff / 3600000);
+  const days = Math.floor(diff / 86400000);
+  if (min < 1)   return 'Ahora mismo';
+  if (min < 60)  return `Hace ${min} min`;
+  if (hrs < 24)  return `Hace ${hrs} h`;
+  if (days < 7)  return `Hace ${days} día${days > 1 ? 's' : ''}`;
+  return new Date(ts).toLocaleDateString('es', { day: 'numeric', month: 'short' });
+}
+
+/** Ícono por tipo de notificación */
+function _notifTypeIcon(type) {
+  const map = {
+    welcome: '🎉',
+    fav:     '❤️',
+    chat:    '💬',
+    promo:   '🏷️',
+    info:    '📢'
+  };
+  return map[type] || '🔔';
+}
+
 function renderNotifications() {
   const list = document.getElementById('msgNotifList');
   if (!list) return;
-  // Notificaciones de ejemplo basadas en negocios destacados
-  const featured = BUSINESSES.filter(b => b.isFeatured).slice(0, 3);
-  if (featured.length === 0) { list.innerHTML = ''; return; }
-  list.innerHTML = featured.map(b => `
-    <div class="msg-notif-card" onclick="openChatById('${b.id}')">
-      ${b.image ? `<img class="msg-notif-card-img" src="${b.image}" alt="${b.name}" loading="lazy">` : ''}
-      <div class="msg-notif-card-body">
-        <p class="msg-notif-card-title">${escapeHtml(b.name)}</p>
-        <p class="msg-notif-card-date">${_fmtRelativeDate()}</p>
-        <p class="msg-notif-card-desc">${escapeHtml(b.description || 'Novedad disponible')}</p>
-        <button class="msg-notif-card-btn" onclick="event.stopPropagation();openChatById('${b.id}')">Ver más</button>
-      </div>
-    </div>`).join('');
+
+  // Actualizar visibilidad del banner según permiso
+  const banner = document.querySelector('.msg-notif-banner');
+  if (banner) {
+    const shouldShow = !('Notification' in window) || Notification.permission !== 'granted';
+    banner.style.display = shouldShow ? 'flex' : 'none';
+  }
+
+  const notifs = _getNotifications();
+
+  if (notifs.length === 0) {
+    list.innerHTML = `
+      <div class="msg-empty" style="display:flex">
+        <div class="msg-empty-icon"><i class="fas fa-bell-slash"></i></div>
+        <p class="msg-empty-title">Sin notificaciones</p>
+        <p class="msg-empty-sub">Cuando haya novedades de negocios o tus actividades, aparecerán aquí.</p>
+      </div>`;
+    return;
+  }
+
+  // Cabecera con "Marcar todas como leídas"
+  const unread = notifs.filter(n => !n.read).length;
+  const header = unread > 0
+    ? `<div class="msg-notif-actions-row">
+         <span class="msg-notif-count">${unread} sin leer</span>
+         <button class="msg-notif-markall" onclick="markAllNotifsRead();renderNotifications()">
+           <i class="fas fa-check-double"></i> Marcar todas
+         </button>
+       </div>`
+    : '';
+
+  list.innerHTML = header + notifs.map(n => {
+    const icon = n.image
+      ? `<img class="msg-notif-card-img" src="${n.image}" alt="${n.title}" loading="lazy">`
+      : `<div class="msg-notif-card-emoji">${_notifTypeIcon(n.type)}</div>`;
+
+    const action = n.bizId
+      ? `<button class="msg-notif-card-btn"
+           onclick="event.stopPropagation();markNotifRead(${n.id});openChatById('${n.bizId}')">
+           Ver más
+         </button>`
+      : '';
+
+    return `
+      <div class="msg-notif-card${n.read ? ' msg-notif-card--read' : ''}"
+           onclick="markNotifRead(${n.id});this.classList.add('msg-notif-card--read');updateNotifBadge()${n.bizId ? `;openChatById('${n.bizId}')` : ''}">
+        ${icon}
+        <div class="msg-notif-card-body">
+          <div class="msg-notif-card-header">
+            <p class="msg-notif-card-title">${escapeHtml(n.title)}</p>
+            <button class="msg-notif-card-del" title="Eliminar"
+              onclick="event.stopPropagation();deleteNotif(${n.id})">
+              <i class="fas fa-xmark"></i>
+            </button>
+          </div>
+          <p class="msg-notif-card-date">${_fmtNotifDate(n.ts)}</p>
+          <p class="msg-notif-card-desc">${escapeHtml(n.body)}</p>
+          ${action}
+        </div>
+      </div>`;
+  }).join('');
 }
 
 // ---- Badge de mensajes no leídos ----
