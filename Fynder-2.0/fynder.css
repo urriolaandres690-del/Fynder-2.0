@@ -11940,44 +11940,42 @@ body:has(#page-fynder.active) #navbar:not(.scrolled) .nav-dots-btn:hover {
   display: flex;
 }
 
-/* En desktop: centrar el contenido con max-width, como WhatsApp Web */
+/* En desktop: columna centrada de max 480px, resto es fondo oscuro */
 @media (min-width: 769px) {
   .msg-page.active,
   .chat-page.active {
+    background: #0d0e10;
     align-items: center;
-    background: #111214; /* fondo exterior oscuro */
   }
 
-  /* Contenedor interior centrado */
-  .msg-page.active > *,
-  .chat-page.active > * {
+  .msg-page.active .msg-header,
+  .msg-page.active .msg-tabs,
+  .msg-page.active .msg-body,
+  .msg-page.active .msg-bottom-nav,
+  .chat-page.active .chat-header,
+  .chat-page.active .chat-messages,
+  .chat-page.active .chat-input-bar {
     width: 100%;
     max-width: 480px;
+    align-self: center;
   }
 
-  /* El body/panel necesita contener el scroll */
-  .msg-page.active .msg-body {
-    max-width: 480px;
-    width: 100%;
-  }
-
-  /* Wrap interior: columna centrada con fondo de la app */
+  /* Fondo de la columna visible como barra */
   .msg-page.active {
-    flex-direction: row;
-    justify-content: center;
+    box-shadow: inset 0 0 0 0; /* reset */
   }
-
-  /* Columna central */
-  .msg-page.active::before {
+  .msg-page.active::after,
+  .chat-page.active::after {
     content: '';
-    position: absolute;
+    position: fixed;
     top: 0; bottom: 0;
     left: 50%;
     transform: translateX(-50%);
     width: 480px;
     background: var(--msg-bg);
     z-index: -1;
-    box-shadow: 0 0 60px rgba(0,0,0,.5);
+    pointer-events: none;
+    box-shadow: 0 0 80px rgba(0,0,0,.6);
   }
 }
 
