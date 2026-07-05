@@ -11238,6 +11238,29 @@ body:has(#page-fynder.active) #navbar:not(.scrolled) .nav-links + .nav-actions {
   border-left-color: transparent;
 }
 
+/* Barra de búsqueda del nav sobre hero */
+body:has(#page-home.active) #navbar:not(.scrolled) .nav-search-wrap,
+body:has(#page-about.active) #navbar:not(.scrolled) .nav-search-wrap,
+body:has(#page-fynder.active) #navbar:not(.scrolled) .nav-search-wrap {
+  background: rgba(255,255,255,.15);
+  border-color: rgba(255,255,255,.25);
+}
+body:has(#page-home.active) #navbar:not(.scrolled) .nav-search-input,
+body:has(#page-about.active) #navbar:not(.scrolled) .nav-search-input,
+body:has(#page-fynder.active) #navbar:not(.scrolled) .nav-search-input {
+  color: #fff;
+}
+body:has(#page-home.active) #navbar:not(.scrolled) .nav-search-input::placeholder,
+body:has(#page-about.active) #navbar:not(.scrolled) .nav-search-input::placeholder,
+body:has(#page-fynder.active) #navbar:not(.scrolled) .nav-search-input::placeholder {
+  color: rgba(255,255,255,.6);
+}
+body:has(#page-home.active) #navbar:not(.scrolled) .nav-search-icon,
+body:has(#page-about.active) #navbar:not(.scrolled) .nav-search-icon,
+body:has(#page-fynder.active) #navbar:not(.scrolled) .nav-search-icon {
+  color: rgba(255,255,255,.7);
+}
+
 /* Logo: FYN en blanco sobre hero */
 body:has(#page-home.active) #navbar:not(.scrolled) .logo-text .fyn,
 body:has(#page-about.active) #navbar:not(.scrolled) .logo-text .fyn,
