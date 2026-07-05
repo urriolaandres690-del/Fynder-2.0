@@ -13229,7 +13229,7 @@ body:has(#page-fynder.active) #navbar:not(.scrolled) .nav-dots-btn:hover {
 .msg-settings-item:last-of-type { border-bottom: none; }
 .msg-settings-item-btn { cursor: pointer; transition: background .15s; }
 .msg-settings-item-btn:hover { background: #242628; }
-.msg-settings-item-danger { }
+.msg-settings-item-danger { cursor: pointer; transition: background .15s; }
 .msg-settings-item-left {
   display: flex; align-items: center; gap: 14px; flex: 1; min-width: 0;
 }
