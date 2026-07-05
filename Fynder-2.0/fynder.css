@@ -14194,9 +14194,6 @@ body:has(#page-fynder.active) #navbar:not(.scrolled) .nav-settings-btn:hover {
 /* ---- Stat hero card val en modo oscuro ---- */
 [data-theme="dark"] .hero-stat-val { color: var(--fg); }
 
-/* ---- Sección ¿Cómo funciona? - background claro ---- */
-[data-theme="dark"] .hero-wave-fill { fill: #0F172A; }
-
 /* ---- Footer wave ---- */
 [data-theme="dark"] .cta-section { background: linear-gradient(135deg, #1a2f6b 0%, #0f4a48 100%); }
 
