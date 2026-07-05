@@ -401,7 +401,8 @@ function updateNav(){
 
 function goDirectoryQuery(q,cat=''){document.getElementById('dirSearch').value=q;dirActiveCategory=cat;goPage('directory');} 
 
-function heroSearchGo(){const q=document.getElementById('heroSearch').value.trim();goDirectoryQuery(q);} 
+function heroSearchGo(){const q=document.getElementById('heroSearch').value.trim();goDirectoryQuery(q);}
+function heroSearchGoNav(){const q=document.getElementById('navSearchInput').value.trim();goDirectoryQuery(q);} 
 
 window.__scrolled=false; 
 
