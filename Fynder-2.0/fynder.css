@@ -11913,29 +11913,35 @@ body:has(#page-fynder.active) #navbar:not(.scrolled) .nav-dots-btn:hover {
   --msg-surface:    #FFFFFF;
   --msg-surface2:   #F0F2F5;
   /* Bordes */
-  --msg-border:     rgba(0,0,0,.08);
-  /* Texto */
-  --msg-text:       #1C1E21;
-  --msg-muted:      #65676B;
-  --msg-title:      #1C1E21;
+  --msg-border:     rgba(0,0,0,.09);
+  /* Texto – oscuro para máximo contraste en día */
+  --msg-text:       #050505;
+  --msg-muted:      #444950;
+  --msg-title:      #000000;
+  --msg-subtitle:   #1C1E21;
   /* Acento */
   --msg-accent:     #67B8B4;
   /* Burbujas */
   --msg-bubble-in:  #FFFFFF;
-  --msg-bubble-in-text: #1C1E21;
+  --msg-bubble-in-text: #050505;
   --msg-bubble-out: #67B8B4;
   --msg-bubble-out-text: #FFFFFF;
   /* Barra inferior */
   --msg-bnav-bg:    #FFFFFF;
   /* Input */
   --msg-input-bg:   #F0F2F5;
-  --msg-input-text: #1C1E21;
+  --msg-input-text: #050505;
   /* Avatar placeholder */
   --msg-avatar-bg:  #BEC3C9;
   /* Separador fecha */
-  --msg-sep-line:   rgba(0,0,0,.1);
+  --msg-sep-line:   rgba(0,0,0,.12);
   /* Tick leído */
   --msg-tick-read:  #67B8B4;
+  /* Notificaciones – colores explícitos modo día */
+  --msg-notif-title:   #000000;
+  --msg-notif-desc:    #1C1E21;
+  --msg-notif-date:    #444950;
+  --msg-notif-card-bg: #FFFFFF;
   /* Alturas fijas */
   --msg-header-h: 56px;
   --msg-tabs-h:   48px;
@@ -11949,21 +11955,27 @@ body:has(#page-fynder.active) #navbar:not(.scrolled) .nav-dots-btn:hover {
   --msg-bg2:        #111213;
   --msg-surface:    #2B2D31;
   --msg-surface2:   #313338;
-  --msg-border:     rgba(255,255,255,.07);
-  --msg-text:       #E5E7EB;
-  --msg-muted:      #9CA3AF;
+  --msg-border:     rgba(255,255,255,.08);
+  --msg-text:       #F3F4F6;
+  --msg-muted:      #B0B7C0;
   --msg-title:      #FFFFFF;
+  --msg-subtitle:   #E5E7EB;
   --msg-accent:     #67B8B4;
   --msg-bubble-in:  #383A40;
-  --msg-bubble-in-text: #E5E7EB;
+  --msg-bubble-in-text: #F3F4F6;
   --msg-bubble-out: #67B8B4;
   --msg-bubble-out-text: #FFFFFF;
   --msg-bnav-bg:    #1E1F22;
   --msg-input-bg:   #2B2D31;
-  --msg-input-text: #E5E7EB;
+  --msg-input-text: #F3F4F6;
   --msg-avatar-bg:  #4A4D55;
-  --msg-sep-line:   rgba(255,255,255,.07);
+  --msg-sep-line:   rgba(255,255,255,.08);
   --msg-tick-read:  #67B8B4;
+  /* Notificaciones – colores explícitos modo noche */
+  --msg-notif-title:   #FFFFFF;
+  --msg-notif-desc:    #E5E7EB;
+  --msg-notif-date:    #B0B7C0;
+  --msg-notif-card-bg: #2B2D31;
 }
 
 /* ---- Página raíz ---- */
