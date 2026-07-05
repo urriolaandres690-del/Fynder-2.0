@@ -408,12 +408,27 @@ window.__scrolled=false;
 window.addEventListener('scroll',()=>{const s=window.scrollY>40;if(s!==window.__scrolled){window.__scrolled=s;document.getElementById('navbar').classList.toggle('scrolled',s);updateNav();}},{passive:true}); 
 
 function toggleFav(id){
+  const wasFav = favorites.has(id);
   favorites.has(id)?favorites.delete(id):favorites.add(id);
   localStorage.setItem('fynderFavorites',JSON.stringify([...favorites]));
   updateNav();
   refreshFavBtns(id);
   if(currentPage==='favorites') renderFavorites();
   if(modalBusinessId===id) updateModalFavBtn();
+
+  // Notificación real al guardar (no al quitar)
+  if (!wasFav) {
+    const biz = BUSINESSES.find(b => String(b.id) === String(id));
+    if (biz) {
+      pushNotification({
+        type:  'fav',
+        title: `Guardaste "${biz.name}"`,
+        body:  biz.description ? biz.description.slice(0, 80) + (biz.description.length > 80 ? '…' : '') : 'Negocio guardado en tus favoritos.',
+        bizId: biz.id,
+        image: biz.image || null
+      });
+    }
+  }
 }
 
 function _heartSVG(isFav, size){
