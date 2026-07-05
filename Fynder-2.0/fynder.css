@@ -9242,7 +9242,7 @@ section.fyl-section-alt > *:last-child { padding-bottom: 72px; }
   .nav-dots-btn    { width: 34px !important; height: 34px !important; flex-shrink: 0; }
 
   /* Nombre de usuario más compacto */
-  #userName { font-size: 13px !important; margin-right: 4px !important; max-width: 80px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  #userName { font-size: 13px !important; margin-right: 4px !important; max-width: 80px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; display: inline-block !important; }
 
   /* Nav inner padding reducido */
   .nav-inner { padding: 0 12px !important; }
