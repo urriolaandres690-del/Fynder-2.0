@@ -3757,7 +3757,7 @@ function openChat(bizId, biz) {
   // Asegurar que la conversación existe
   let convs = _getConversations();
   if (!convs.find(c => String(c.id) === String(bizId))) {
-    convs.unshift({ id: String(bizId), name: biz.name, cat: biz.category, img: biz.img || null, unread: 0, lastMsg: '', lastTime: '' });
+    convs.unshift({ id: String(bizId), name: biz.name, cat: biz.category, image: biz.image || null, unread: 0, lastMsg: '', lastTime: '' });
     _saveConversations(convs);
   }
 
@@ -3768,9 +3768,10 @@ function openChat(bizId, biz) {
   if (nameEl) nameEl.textContent = biz.name;
   if (subEl)  subEl.textContent  = biz.category || 'Negocio local';
   if (avaEl)  {
-    if (biz.img) {
-      avaEl.innerHTML = `<img src="${biz.img}" alt="${biz.name}" loading="lazy">`;
+    if (biz.image) {
+      avaEl.innerHTML = `<img src="${biz.image}" alt="${biz.name}" loading="lazy">`;
     } else {
+      avaEl.innerHTML = '';
       avaEl.textContent = (biz.name || '?')[0].toUpperCase();
       avaEl.style.background = _avatarColor(biz.name);
     }
@@ -3820,8 +3821,9 @@ function renderChatMessages(bizId) {
     const avaClass = noAva ? 'chat-msg-row in no-ava' : (isIn ? 'chat-msg-row in' : 'chat-msg-row out');
 
     const biz = BUSINESSES.find(b => String(b.id) === String(bizId));
+    // Avatar solo para mensajes entrantes (del negocio)
     const avaContent = isIn
-      ? `<div class="chat-msg-ava">${biz && biz.img ? `<img src="${biz.img}" alt="">` : (biz ? (biz.name||'?')[0].toUpperCase() : '?')}</div>`
+      ? `<div class="chat-msg-ava">${biz && biz.image ? `<img src="${biz.image}" alt="">` : (biz ? (biz.name||'?')[0].toUpperCase() : '?')}</div>`
       : '';
 
     const tickClass = msg.read ? 'read' : 'sent';
