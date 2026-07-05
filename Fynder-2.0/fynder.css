@@ -12139,20 +12139,26 @@ body:has(#page-fynder.active) #navbar:not(.scrolled) .nav-dots-btn:hover {
   position: relative;
   padding: 9px 12px;
   border-radius: 10px;
-  border: 1px solid transparent;
+  border: 1.5px solid transparent;
   background: transparent;
   color: var(--msg-muted);
   font-size: .875rem;
   font-weight: 500;
   font-family: 'Inter', sans-serif;
   cursor: pointer;
-  transition: all .2s;
+  transition: background .2s, color .2s, border-color .2s;
+}
+.msg-tabs-btn:hover:not(.active) {
+  background: var(--msg-surface);
+  color: var(--msg-text);
+  border-color: transparent;
 }
 .msg-tabs-btn.active {
   background: var(--msg-surface);
-  border-color: var(--msg-border);
-  color: var(--msg-title);
-  font-weight: 600;
+  border-color: var(--msg-accent);
+  color: var(--msg-accent);
+  font-weight: 700;
+  box-shadow: 0 1px 6px rgba(103,184,180,.15);
 }
 .msg-tab-dot {
   display: inline-block;
