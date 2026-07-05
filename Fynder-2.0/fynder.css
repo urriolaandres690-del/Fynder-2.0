@@ -11845,3 +11845,37 @@ body:has(#page-fynder.active) #navbar:not(.scrolled) .nav-dots-btn:hover {
     overscroll-behavior: contain;
   }
 }
+
+
+/* ---- Hero stats mobile: ocultas en desktop, visibles en móvil ---- */
+.hero-stats-mobile {
+  display: none;
+  margin-top: 24px;
+}
+
+@media (max-width: 1024px) {
+  .hero-stats-mobile {
+    display: grid !important;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+  }
+  .hero-stats-mobile .hero-stat-card {
+    background: rgba(255,255,255,.92);
+    backdrop-filter: blur(8px);
+    border-radius: 14px;
+    padding: 12px;
+    gap: 10px;
+  }
+  .hero-stats-mobile .hero-stat-val { font-size: 1rem; color: #1F2937; }
+  .hero-stats-mobile .hero-stat-lbl { font-size: .7rem; color: #6B7280; }
+  .hero-stats-mobile .hero-stat-icon {
+    width: 34px; height: 34px;
+    border-radius: 10px;
+    background: #F8FAFC;
+    flex-shrink: 0;
+  }
+}
+
+@media (min-width: 1025px) {
+  .hero-stats-mobile { display: none !important; }
+}
