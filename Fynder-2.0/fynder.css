@@ -14255,9 +14255,6 @@ body:has(#page-fynder.active) #navbar:not(.scrolled) .nav-settings-btn:hover {
 /* ---- Plan card: divider ---- */
 [data-theme="dark"] .plan-divider         { background: rgba(255,255,255,.07); }
 
-/* ---- Sección CTA wave ---- */
-[data-theme="dark"] .hero-wave svg path   { fill: var(--bg); }
-
 /* ---- Chat / Mensajes ---- */
 [data-theme="dark"] #page-messages        { background: var(--msg-bg) !important; }
 [data-theme="dark"] .chat-input-bar       { background: var(--msg-bg); border-top-color: rgba(255,255,255,.08); }
