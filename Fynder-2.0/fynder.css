@@ -167,7 +167,7 @@ input, button, select, textarea {
 
     .nav-links { display: flex; align-items: center; gap: 4px; margin-left: 0; }
 
-
+    .nav-right { display: flex; align-items: center; gap: 0; margin-left: 24px; } 
 
     .nav-link { 
 
@@ -199,7 +199,7 @@ input, button, select, textarea {
 
     } 
 
-    .nav-actions { display: flex; align-items: center; gap: 12px; margin-left: 32px; } 
+    .nav-actions { display: flex; align-items: center; gap: 12px; } 
 
     .btn-ghost { font-size: .875rem; font-weight: 500; background: none; border: none; cursor: pointer; color: var(--muted); transition: color .2s, background .2s; } 
 
