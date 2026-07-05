@@ -3749,6 +3749,311 @@
   </div>
 </div>
 
-</body> 
+<!-- =====================================================
+     PÁGINA: AJUSTES
+     ===================================================== -->
+<div id="page-settings" class="page">
+  <div class="sett-wrap">
+
+    <!-- Sidebar -->
+    <aside class="sett-sidebar">
+      <div class="sett-sidebar-header">
+        <div class="sett-sidebar-icon"><i class="fas fa-gear"></i></div>
+        <h1 class="sett-sidebar-title">Ajustes</h1>
+      </div>
+
+      <!-- Buscador de ajustes -->
+      <div class="sett-search-wrap">
+        <i class="fas fa-magnifying-glass sett-search-icon"></i>
+        <input type="text" class="sett-search-input" placeholder="Buscar ajustes"
+               oninput="settFilterSections(this.value)" id="settSearch">
+      </div>
+
+      <!-- Categorías -->
+      <nav class="sett-nav">
+        <button class="sett-nav-item active" data-section="cuenta" onclick="settGoSection('cuenta',this)">
+          <i class="fas fa-user-circle"></i><span>Cuenta</span>
+        </button>
+        <button class="sett-nav-item" data-section="apariencia" onclick="settGoSection('apariencia',this)">
+          <i class="fas fa-palette"></i><span>Apariencia</span>
+        </button>
+        <button class="sett-nav-item" data-section="notificaciones" onclick="settGoSection('notificaciones',this)">
+          <i class="fas fa-bell"></i><span>Notificaciones</span>
+        </button>
+        <button class="sett-nav-item" data-section="privacidad" onclick="settGoSection('privacidad',this)">
+          <i class="fas fa-shield-halved"></i><span>Privacidad y seguridad</span>
+        </button>
+        <button class="sett-nav-item" data-section="mensajes" onclick="settGoSection('mensajes',this)">
+          <i class="fas fa-comment-dots"></i><span>Mensajes</span>
+        </button>
+        <button class="sett-nav-item" data-section="accesibilidad" onclick="settGoSection('accesibilidad',this)">
+          <i class="fas fa-universal-access"></i><span>Accesibilidad</span>
+        </button>
+        <button class="sett-nav-item" data-section="datos" onclick="settGoSection('datos',this)">
+          <i class="fas fa-database"></i><span>Datos y almacenamiento</span>
+        </button>
+        <div class="sett-nav-divider"></div>
+        <button class="sett-nav-item" data-section="acerca" onclick="settGoSection('acerca',this)">
+          <i class="fas fa-circle-info"></i><span>Acerca de Fynder</span>
+        </button>
+      </nav>
+    </aside>
+
+    <!-- Contenido principal -->
+    <main class="sett-content" id="settContent">
+
+      <!-- ── CUENTA ── -->
+      <section class="sett-section active" id="sett-cuenta">
+        <h2 class="sett-section-title">Cuenta</h2>
+
+        <!-- Tarjeta de usuario -->
+        <div class="sett-user-card" onclick="goPage('profile')">
+          <div class="sett-user-avatar" id="settUserAvatar">J</div>
+          <div class="sett-user-info">
+            <p class="sett-user-name" id="settUserName">Usuario</p>
+            <p class="sett-user-email" id="settUserEmail">—</p>
+          </div>
+          <i class="fas fa-chevron-right sett-user-arrow"></i>
+        </div>
+
+        <div class="sett-group">
+          <div class="sett-row" onclick="goPage('profile')">
+            <div class="sett-row-left">
+              <div class="sett-row-icon" style="background:#E6F5F4;color:#67B8B4"><i class="fas fa-user-pen"></i></div>
+              <div><span class="sett-row-label">Editar perfil</span><span class="sett-row-sub">Nombre, foto, ciudad, bio</span></div>
+            </div>
+            <i class="fas fa-chevron-right sett-row-arrow"></i>
+          </div>
+          <div class="sett-row" onclick="goPage('profile')">
+            <div class="sett-row-left">
+              <div class="sett-row-icon" style="background:#EEF2FF;color:#2F5BB7"><i class="fas fa-lock"></i></div>
+              <div><span class="sett-row-label">Contraseña</span><span class="sett-row-sub">Cambiar contraseña</span></div>
+            </div>
+            <i class="fas fa-chevron-right sett-row-arrow"></i>
+          </div>
+          <div class="sett-row" onclick="goPage('dashboard')">
+            <div class="sett-row-left">
+              <div class="sett-row-icon" style="background:#FFF7ED;color:#F97316"><i class="fas fa-chart-line"></i></div>
+              <div><span class="sett-row-label">Mi panel</span><span class="sett-row-sub">Estadísticas y negocios</span></div>
+            </div>
+            <i class="fas fa-chevron-right sett-row-arrow"></i>
+          </div>
+          <div class="sett-row" onclick="goPage('plans')">
+            <div class="sett-row-left">
+              <div class="sett-row-icon" style="background:#FDF4FF;color:#8B5CF6"><i class="fas fa-gem"></i></div>
+              <div><span class="sett-row-label">Plan activo</span><span class="sett-row-sub" id="settPlanLabel">Free</span></div>
+            </div>
+            <i class="fas fa-chevron-right sett-row-arrow"></i>
+          </div>
+        </div>
+
+        <div class="sett-group">
+          <div class="sett-row sett-row-danger" onclick="settLogout()">
+            <div class="sett-row-left">
+              <div class="sett-row-icon" style="background:#FEF2F2;color:#EF4444"><i class="fas fa-right-from-bracket"></i></div>
+              <div><span class="sett-row-label sett-danger-text">Cerrar sesión</span></div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ── APARIENCIA ── -->
+      <section class="sett-section" id="sett-apariencia">
+        <h2 class="sett-section-title">Apariencia</h2>
+
+        <div class="sett-group">
+          <div class="sett-row">
+            <div class="sett-row-left">
+              <div class="sett-row-icon" style="background:#1E293B;color:#F4D35E"><i class="fas fa-moon"></i></div>
+              <div><span class="sett-row-label">Modo oscuro</span><span class="sett-row-sub">Cambiar tema de la interfaz</span></div>
+            </div>
+            <button class="sett-toggle" id="settDarkToggle" onclick="settToggleDark()"></button>
+          </div>
+          <div class="sett-row">
+            <div class="sett-row-left">
+              <div class="sett-row-icon" style="background:#E6F5F4;color:#67B8B4"><i class="fas fa-text-height"></i></div>
+              <div><span class="sett-row-label">Tamaño de texto</span><span class="sett-row-sub">Mensajes del chat</span></div>
+            </div>
+            <div class="sett-font-btns">
+              <button class="sett-font-btn" onclick="setChatFontSize('small','Pequeño');settSyncMsgUI()">A<span>pequeño</span></button>
+              <button class="sett-font-btn active" id="settFontNormal" onclick="setChatFontSize('normal','Normal');settSyncMsgUI()">A<span>normal</span></button>
+              <button class="sett-font-btn" onclick="setChatFontSize('large','Grande');settSyncMsgUI()">A<span>grande</span></button>
+            </div>
+          </div>
+          <div class="sett-row">
+            <div class="sett-row-left">
+              <div class="sett-row-icon" style="background:#E6F5F4;color:#67B8B4"><i class="fas fa-palette"></i></div>
+              <div><span class="sett-row-label">Color de mis mensajes</span><span class="sett-row-sub">Burbuja de chat saliente</span></div>
+            </div>
+            <div class="sett-colors">
+              <button class="sett-color-dot active" data-color="#7b3838" style="background:#7b3838" onclick="setChatBubbleColor('#7b3838','Rojo oscuro',this);settSyncMsgUI()"></button>
+              <button class="sett-color-dot" data-color="#1e4d7b" style="background:#1e4d7b" onclick="setChatBubbleColor('#1e4d7b','Azul oscuro',this);settSyncMsgUI()"></button>
+              <button class="sett-color-dot" data-color="#1a5c34" style="background:#1a5c34" onclick="setChatBubbleColor('#1a5c34','Verde oscuro',this);settSyncMsgUI()"></button>
+              <button class="sett-color-dot" data-color="#5b2d82" style="background:#5b2d82" onclick="setChatBubbleColor('#5b2d82','Morado',this);settSyncMsgUI()"></button>
+              <button class="sett-color-dot" data-color="#7a4a1a" style="background:#7a4a1a" onclick="setChatBubbleColor('#7a4a1a','Naranja',this);settSyncMsgUI()"></button>
+              <button class="sett-color-dot" data-color="#2b5c5c" style="background:#2b5c5c" onclick="setChatBubbleColor('#2b5c5c','Verde azulado',this);settSyncMsgUI()"></button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ── NOTIFICACIONES ── -->
+      <section class="sett-section" id="sett-notificaciones">
+        <h2 class="sett-section-title">Notificaciones</h2>
+
+        <div class="sett-group">
+          <div class="sett-row">
+            <div class="sett-row-left">
+              <div class="sett-row-icon" style="background:#FEF9EE;color:#F4D35E"><i class="fas fa-bell"></i></div>
+              <div><span class="sett-row-label">Notificaciones del navegador</span><span class="sett-row-sub" id="settNotifStatusLabel">Sin configurar</span></div>
+            </div>
+            <button class="sett-btn-sm" onclick="requestNotifPermission()">Activar</button>
+          </div>
+          <div class="sett-row">
+            <div class="sett-row-left">
+              <div class="sett-row-icon" style="background:#E6F5F4;color:#67B8B4"><i class="fas fa-comment-dots"></i></div>
+              <div><span class="sett-row-label">Notificaciones de chat</span><span class="sett-row-sub">Nuevos mensajes de negocios</span></div>
+            </div>
+            <button class="sett-toggle" id="settNotifChatToggle" onclick="settToggleSetting('notif','settNotifChatToggle')"></button>
+          </div>
+          <div class="sett-row">
+            <div class="sett-row-left">
+              <div class="sett-row-icon" style="background:#EEF2FF;color:#2F5BB7"><i class="fas fa-volume-high"></i></div>
+              <div><span class="sett-row-label">Sonido</span><span class="sett-row-sub">Sonido al recibir mensajes</span></div>
+            </div>
+            <button class="sett-toggle" id="settSoundToggle2" onclick="settToggleSetting('sound','settSoundToggle2')"></button>
+          </div>
+        </div>
+      </section>
+
+      <!-- ── PRIVACIDAD ── -->
+      <section class="sett-section" id="sett-privacidad">
+        <h2 class="sett-section-title">Privacidad y seguridad</h2>
+
+        <div class="sett-group">
+          <div class="sett-row">
+            <div class="sett-row-left">
+              <div class="sett-row-icon" style="background:#E6F5F4;color:#67B8B4"><i class="fas fa-eye-slash"></i></div>
+              <div><span class="sett-row-label">Confirmación de lectura</span><span class="sett-row-sub">Mostrar ticks de leído en chats</span></div>
+            </div>
+            <button class="sett-toggle" id="settReadToggle2" onclick="settToggleSetting('read','settReadToggle2')"></button>
+          </div>
+          <div class="sett-row" onclick="goPage('terms')">
+            <div class="sett-row-left">
+              <div class="sett-row-icon" style="background:#F3F4F6;color:#6B7280"><i class="fas fa-file-lines"></i></div>
+              <div><span class="sett-row-label">Términos de servicio</span></div>
+            </div>
+            <i class="fas fa-chevron-right sett-row-arrow"></i>
+          </div>
+          <div class="sett-row" onclick="goPage('privacy')">
+            <div class="sett-row-left">
+              <div class="sett-row-icon" style="background:#F3F4F6;color:#6B7280"><i class="fas fa-shield-halved"></i></div>
+              <div><span class="sett-row-label">Política de privacidad</span></div>
+            </div>
+            <i class="fas fa-chevron-right sett-row-arrow"></i>
+          </div>
+        </div>
+      </section>
+
+      <!-- ── MENSAJES ── -->
+      <section class="sett-section" id="sett-mensajes">
+        <h2 class="sett-section-title">Mensajes</h2>
+
+        <div class="sett-group">
+          <div class="sett-row sett-row-btn" onclick="exportChats()">
+            <div class="sett-row-left">
+              <div class="sett-row-icon" style="background:#E6F5F4;color:#67B8B4"><i class="fas fa-file-export"></i></div>
+              <div><span class="sett-row-label">Exportar conversaciones</span><span class="sett-row-sub">Descargar como .txt</span></div>
+            </div>
+            <i class="fas fa-download sett-row-arrow"></i>
+          </div>
+          <div class="sett-row sett-row-danger" onclick="clearAllChats()">
+            <div class="sett-row-left">
+              <div class="sett-row-icon" style="background:#FEF2F2;color:#EF4444"><i class="fas fa-trash"></i></div>
+              <div><span class="sett-row-label sett-danger-text">Borrar todos los chats</span><span class="sett-row-sub">Esta acción no se puede deshacer</span></div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ── ACCESIBILIDAD ── -->
+      <section class="sett-section" id="sett-accesibilidad">
+        <h2 class="sett-section-title">Accesibilidad</h2>
+
+        <div class="sett-group">
+          <div class="sett-row">
+            <div class="sett-row-left">
+              <div class="sett-row-icon" style="background:#F0F9FF;color:#0EA5E9"><i class="fas fa-text-height"></i></div>
+              <div><span class="sett-row-label">Tamaño de fuente UI</span><span class="sett-row-sub">Interfaz general de la app</span></div>
+            </div>
+            <select class="sett-select" onchange="settSetUIFontSize(this.value)" id="settUIFontSize">
+              <option value="normal">Normal (16px)</option>
+              <option value="large">Grande (18px)</option>
+              <option value="xlarge">Muy grande (20px)</option>
+            </select>
+          </div>
+          <div class="sett-row">
+            <div class="sett-row-left">
+              <div class="sett-row-icon" style="background:#F5F3FF;color:#8B5CF6"><i class="fas fa-adjust"></i></div>
+              <div><span class="sett-row-label">Reducir animaciones</span><span class="sett-row-sub">Limitar movimiento en la UI</span></div>
+            </div>
+            <button class="sett-toggle" id="settReduceMotion" onclick="settToggleReduceMotion()"></button>
+          </div>
+        </div>
+      </section>
+
+      <!-- ── DATOS ── -->
+      <section class="sett-section" id="sett-datos">
+        <h2 class="sett-section-title">Datos y almacenamiento</h2>
+
+        <div class="sett-group">
+          <div class="sett-row">
+            <div class="sett-row-left">
+              <div class="sett-row-icon" style="background:#F0F9FF;color:#0EA5E9"><i class="fas fa-database"></i></div>
+              <div><span class="sett-row-label">Almacenamiento usado</span><span class="sett-row-sub" id="settStorageLabel">Calculando...</span></div>
+            </div>
+          </div>
+          <div class="sett-row sett-row-danger" onclick="settClearData()">
+            <div class="sett-row-left">
+              <div class="sett-row-icon" style="background:#FEF2F2;color:#EF4444"><i class="fas fa-broom"></i></div>
+              <div><span class="sett-row-label sett-danger-text">Limpiar datos de la app</span><span class="sett-row-sub">Elimina caché y preferencias locales</span></div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ── ACERCA ── -->
+      <section class="sett-section" id="sett-acerca">
+        <h2 class="sett-section-title">Acerca de Fynder</h2>
+
+        <div class="sett-group">
+          <div class="sett-row">
+            <div class="sett-row-left">
+              <div class="sett-row-icon" style="background:#E6F5F4;color:#67B8B4"><i class="fas fa-bolt"></i></div>
+              <div><span class="sett-row-label">Versión</span><span class="sett-row-sub">Fynder 2.0</span></div>
+            </div>
+          </div>
+          <div class="sett-row" onclick="goPage('about')">
+            <div class="sett-row-left">
+              <div class="sett-row-icon" style="background:#EEF2FF;color:#2F5BB7"><i class="fas fa-circle-info"></i></div>
+              <div><span class="sett-row-label">Sobre Fynder</span><span class="sett-row-sub">Misión, equipo y más</span></div>
+            </div>
+            <i class="fas fa-chevron-right sett-row-arrow"></i>
+          </div>
+          <div class="sett-row" onclick="goPage('support')">
+            <div class="sett-row-left">
+              <div class="sett-row-icon" style="background:#FFF7ED;color:#F97316"><i class="fas fa-headset"></i></div>
+              <div><span class="sett-row-label">Soporte</span><span class="sett-row-sub">Ayuda y contacto</span></div>
+            </div>
+            <i class="fas fa-chevron-right sett-row-arrow"></i>
+          </div>
+        </div>
+      </section>
+
+    </main>
+  </div>
+</div>
+
+</body>
 
 </html>
