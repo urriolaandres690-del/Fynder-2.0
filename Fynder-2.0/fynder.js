@@ -4139,3 +4139,143 @@ function escapeHtml(str) {
 document.addEventListener('DOMContentLoaded', () => {
   updateMsgBadge();
 });
+
+
+/* ================================================================
+   PERFIL DEL NEGOCIO DESDE CHAT
+   ================================================================ */
+
+function openChatProfile() {
+  if (!_activeChatBizId) return;
+  const biz = BUSINESSES.find(b => String(b.id) === String(_activeChatBizId));
+
+  // Título del header
+  const titleEl = document.getElementById('cproHeaderTitle');
+  if (titleEl) titleEl.textContent = biz ? biz.name : 'Información';
+
+  // Avatar grande
+  const avaEl = document.getElementById('cproAvatar');
+  if (avaEl) {
+    if (biz && (biz.logo || biz.image)) {
+      avaEl.innerHTML = `<img src="${biz.logo || biz.image}" alt="${biz ? biz.name : ''}">`;
+      avaEl.style.background = '';
+    } else {
+      avaEl.innerHTML = '';
+      const initial = biz ? (biz.name||'?')[0].toUpperCase() : '?';
+      avaEl.textContent = initial;
+      avaEl.style.background = _avatarColor(biz ? biz.name : '');
+    }
+  }
+
+  // Nombre y teléfono
+  const nameEl  = document.getElementById('cproName');
+  const phoneEl = document.getElementById('cproPhone');
+  if (nameEl)  nameEl.textContent  = biz ? biz.name  : '—';
+  if (phoneEl) phoneEl.textContent = biz && biz.phone ? biz.phone : '';
+
+  // Botón llamar
+  const callBtn = document.getElementById('cproCallBtn');
+  if (callBtn && biz && biz.phone) {
+    callBtn.onclick = () => { window.location.href = 'tel:' + biz.phone.replace(/\s/g,''); };
+  } else if (callBtn) {
+    callBtn.onclick = () => showToast('Teléfono no disponible');
+  }
+
+  // Media strip (logo + imagen del negocio)
+  const strip     = document.getElementById('cproMediaStrip');
+  const countEl   = document.getElementById('cproMediaCount');
+  if (strip) {
+    const imgs = [];
+    if (biz && biz.logo)  imgs.push(biz.logo);
+    if (biz && biz.image) imgs.push(biz.image);
+    strip.innerHTML = imgs.map(url =>
+      `<img class="cpro-media-thumb" src="${url}" alt="" loading="lazy">`
+    ).join('');
+    if (countEl) countEl.textContent = imgs.length + ' ›';
+  }
+
+  // Lista de info (settings-list)
+  const infoList = document.getElementById('cproInfoList');
+  if (infoList && biz) {
+    const rows = [];
+
+    if (biz.address) rows.push({
+      icon: 'fa-location-dot',
+      title: biz.address,
+      sub:   biz.category || ''
+    });
+    if (biz.hours) rows.push({
+      icon: 'fa-clock',
+      title: biz.hours,
+      sub:   'Horario'
+    });
+    if (biz.phone) rows.push({
+      icon: 'fa-phone',
+      title: biz.phone,
+      sub:   'Teléfono'
+    });
+    if (biz.website) rows.push({
+      icon: 'fa-globe',
+      title: biz.website,
+      sub:   'Sitio web'
+    });
+    if (biz.instagram) rows.push({
+      icon: 'fa-instagram',
+      title: biz.instagram,
+      sub:   'Instagram'
+    });
+    if (biz.facebook) rows.push({
+      icon: 'fa-facebook',
+      title: biz.facebook,
+      sub:   'Facebook'
+    });
+    if (biz.description) rows.push({
+      icon: 'fa-circle-info',
+      title: biz.description,
+      sub:   'Descripción'
+    });
+    if (biz.rating) rows.push({
+      icon: 'fa-star',
+      title: `${biz.rating} ⭐  (${biz.reviews || 0} reseñas)`,
+      sub:   'Valoración'
+    });
+
+    infoList.innerHTML = rows.map(r => `
+      <div class="cpro-settings-item">
+        <div class="cpro-settings-icon"><i class="fas ${r.icon}"></i></div>
+        <div class="cpro-settings-text">
+          <span class="cpro-settings-title">${escapeHtml(r.title)}</span>
+          ${r.sub ? `<span class="cpro-settings-sub">${escapeHtml(r.sub)}</span>` : ''}
+        </div>
+      </div>`).join('');
+  }
+
+  // Agregar 'chat-profile-page' a noNavPages y mostrar
+  goPage('chat-profile');
+}
+
+function openChatProfileMap() {
+  if (!_activeChatBizId) return;
+  const biz = BUSINESSES.find(b => String(b.id) === String(_activeChatBizId));
+  if (biz && biz.mapQuery) {
+    window.open('https://maps.google.com/?q=' + encodeURIComponent(biz.mapQuery), '_blank');
+  } else {
+    showToast('Ubicación no disponible');
+  }
+}
+
+function deleteChatHistory() {
+  if (!_activeChatBizId) return;
+  if (!confirm('¿Borrar todo el historial de este chat?')) return;
+  localStorage.removeItem('fynderChat_' + _activeChatBizId);
+  // Actualizar conversación
+  let convs = _getConversations();
+  const idx = convs.findIndex(c => String(c.id) === String(_activeChatBizId));
+  if (idx > -1) { convs[idx].lastMsg = ''; convs[idx].lastTime = ''; _saveConversations(convs); }
+  showToast('Historial borrado');
+  goPage('chat');
+}
+
+function blockBiz() {
+  showToast('Función de bloqueo próximamente');
+}
