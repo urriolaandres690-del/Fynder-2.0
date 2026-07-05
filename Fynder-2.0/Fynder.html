@@ -3907,7 +3907,7 @@
               <div class="sett-row-icon" style="background:#FEF9EE;color:#F4D35E"><i class="fas fa-bell"></i></div>
               <div><span class="sett-row-label">Notificaciones del navegador</span><span class="sett-row-sub" id="settNotifStatusLabel">Sin configurar</span></div>
             </div>
-            <button class="sett-btn-sm" onclick="requestNotifPermission()">Activar</button>
+            <button class="sett-btn-sm" id="settNotifActivarBtn" onclick="requestNotifPermission().then(()=>settSyncNotif())">Activar</button>
           </div>
           <div class="sett-row">
             <div class="sett-row-left">
@@ -4010,7 +4010,11 @@
           <div class="sett-row">
             <div class="sett-row-left">
               <div class="sett-row-icon" style="background:#F0F9FF;color:#0EA5E9"><i class="fas fa-database"></i></div>
-              <div><span class="sett-row-label">Almacenamiento usado</span><span class="sett-row-sub" id="settStorageLabel">Calculando...</span></div>
+              <div>
+                <span class="sett-row-label">Almacenamiento usado</span>
+                <span class="sett-row-sub" id="settStorageLabel">Calculando...</span>
+                <div class="sett-storage-bar-wrap"><div class="sett-storage-bar" id="settStorageBar"></div></div>
+              </div>
             </div>
           </div>
           <div class="sett-row sett-row-danger" onclick="settClearData()">
