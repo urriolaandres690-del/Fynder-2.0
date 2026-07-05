@@ -4055,15 +4055,15 @@ function renderNotifications() {
   const list = document.getElementById('msgNotifList');
   if (!list) return;
   // Notificaciones de ejemplo basadas en negocios destacados
-  const featured = BUSINESSES.filter(b => b.featured).slice(0, 3);
+  const featured = BUSINESSES.filter(b => b.isFeatured).slice(0, 3);
   if (featured.length === 0) { list.innerHTML = ''; return; }
   list.innerHTML = featured.map(b => `
     <div class="msg-notif-card" onclick="openChatById('${b.id}')">
-      ${b.img ? `<img class="msg-notif-card-img" src="${b.img}" alt="${b.name}" loading="lazy">` : ''}
+      ${b.image ? `<img class="msg-notif-card-img" src="${b.image}" alt="${b.name}" loading="lazy">` : ''}
       <div class="msg-notif-card-body">
         <p class="msg-notif-card-title">${escapeHtml(b.name)}</p>
         <p class="msg-notif-card-date">${_fmtRelativeDate()}</p>
-        <p class="msg-notif-card-desc">${escapeHtml(b.description || b.desc || 'Novedad disponible')}</p>
+        <p class="msg-notif-card-desc">${escapeHtml(b.description || 'Novedad disponible')}</p>
         <button class="msg-notif-card-btn" onclick="event.stopPropagation();openChatById('${b.id}')">Ver más</button>
       </div>
     </div>`).join('');
