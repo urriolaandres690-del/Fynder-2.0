@@ -3802,6 +3802,10 @@ function openChat(bizId, biz) {
 
   renderChatMessages(bizId);
   goPage('chat');
+  // Aplicar ajustes guardados
+  _loadMsgSettings();
+  if (_msgSettings.bubbleColor) _applyChatBubbleColor(_msgSettings.bubbleColor);
+  if (_msgSettings.fontSize)    _applyChatFontSize(_msgSettings.fontSize);
 }
 
 // ---- Renderizar mensajes ----
