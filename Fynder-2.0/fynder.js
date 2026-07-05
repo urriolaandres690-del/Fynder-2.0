@@ -3921,8 +3921,8 @@ function renderConversations() {
   list.innerHTML = convs.map(c => {
     const initial = (c.name || '?')[0].toUpperCase();
     const bg      = _avatarColor(c.name);
-    const avatar  = c.img
-      ? `<img src="${c.img}" alt="${c.name}" loading="lazy">`
+    const avatar  = c.image
+      ? `<img src="${c.image}" alt="${c.name}" loading="lazy">`
       : `<span style="color:#fff;font-size:1.1rem;font-weight:700;font-family:'Poppins',sans-serif">${initial}</span>`;
     const unread  = c.unread > 0 ? `<span class="msg-chat-unread">${c.unread}</span>` : '';
     return `
@@ -4025,8 +4025,8 @@ function renderBookmarks() {
     if (!c) return '';
     const initial = (c.name || '?')[0].toUpperCase();
     const bg      = _avatarColor(c.name);
-    const avatar  = c.img
-      ? `<img src="${c.img}" alt="${c.name}" loading="lazy">`
+    const avatar  = c.image
+      ? `<img src="${c.image}" alt="${c.name}" loading="lazy">`
       : `<span style="color:#fff;font-size:1.1rem;font-weight:700">${initial}</span>`;
     return `
       <div class="msg-chat-item" onclick="openChatById('${c.id}')">
