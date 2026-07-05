@@ -12146,7 +12146,7 @@ body:has(#page-fynder.active) #navbar:not(.scrolled) .nav-dots-btn:hover {
 .msg-tabs-btn.active {
   background: var(--msg-surface);
   border-color: var(--msg-border);
-  color: #fff;
+  color: var(--msg-title);
   font-weight: 600;
 }
 .msg-tab-dot {
@@ -12202,11 +12202,11 @@ body:has(#page-fynder.active) #navbar:not(.scrolled) .nav-dots-btn:hover {
 .msg-chat-avatar {
   width: 46px; height: 46px;
   border-radius: 50%;
-  background: #4a4d55;
+  background: var(--msg-avatar-bg);
   display: flex; align-items: center; justify-content: center;
   font-size: 1.1rem;
   font-weight: 700;
-  color: #fff;
+  color: var(--msg-title);
   font-family: 'Poppins', sans-serif;
   overflow: hidden;
 }
