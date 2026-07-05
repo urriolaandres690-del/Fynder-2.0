@@ -12326,16 +12326,16 @@ body:has(#page-fynder.active) #navbar:not(.scrolled) .nav-dots-btn:hover {
 }
 .msg-empty-icon {
   font-size: 3.2rem;
-  color: #4b5563;
+  color: var(--msg-muted);
   margin-bottom: 4px;
 }
 .msg-empty-icon svg {
-  color: #4b5563;
+  color: var(--msg-muted);
 }
 .msg-empty-title {
   font-size: 1.1rem;
-  font-weight: 600;
-  color: #9ca3af;
+  font-weight: 700;
+  color: var(--msg-title);
   margin: 0;
 }
 .msg-empty-sub {
@@ -12461,8 +12461,9 @@ body:has(#page-fynder.active) #navbar:not(.scrolled) .nav-dots-btn:hover {
   padding: 0 4px 4px;
 }
 .msg-notif-count {
-  font-size: .75rem;
-  color: var(--msg-muted);
+  font-size: .8rem;
+  font-weight: 600;
+  color: var(--msg-notif-desc, var(--msg-text));
 }
 .msg-notif-markall {
   background: none;
