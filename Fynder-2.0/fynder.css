@@ -147,7 +147,7 @@ input, button, select, textarea {
 
       max-width: 1280px; margin: 0 auto; padding: 0 24px; 
 
-      height: 64px; display: flex; align-items: center; justify-content: space-between;
+      height: 64px; display: flex; align-items: center; gap: 24px;
 
     } 
 
@@ -166,8 +166,6 @@ input, button, select, textarea {
     .logo-text.on-hero .fyn { color: #fff; } 
 
     .nav-links { display: flex; align-items: center; gap: 4px; margin-left: 0; }
-
-    .nav-left  { display: flex; align-items: center; gap: 20px; }
 
 
 
@@ -201,7 +199,7 @@ input, button, select, textarea {
 
     } 
 
-    .nav-actions { display: flex; align-items: center; gap: 12px; } 
+    .nav-actions { display: flex; align-items: center; gap: 12px; margin-left: 32px; } 
 
     .btn-ghost { font-size: .875rem; font-weight: 500; background: none; border: none; cursor: pointer; color: var(--muted); transition: color .2s, background .2s; } 
 
