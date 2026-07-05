@@ -4223,7 +4223,11 @@ function openChatProfile() {
     strip.innerHTML = imgs.map(url =>
       `<img class="cpro-media-thumb" src="${url}" alt="" loading="lazy">`
     ).join('');
-    if (countEl) countEl.textContent = imgs.length + ' ›';
+    if (countEl) {
+      countEl.textContent = imgs.length + ' ›';
+      countEl.onclick = openPhotoLightbox;
+      countEl.style.cursor = 'pointer';
+    }
   }
 
   // Lista de info (settings-list)
