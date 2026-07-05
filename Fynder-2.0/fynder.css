@@ -13007,3 +13007,18 @@ body:has(#page-fynder.active) #navbar:not(.scrolled) .nav-dots-btn:hover {
 
 /* Sección peligrosa con margen bottom */
 .cpro-danger-section { margin-bottom: 32px; }
+
+
+/* ---- Rabillos de burbuja (tail) ---- */
+.chat-bubble-tail-in {
+  border-bottom-left-radius: 4px;
+}
+.chat-bubble-tail-out {
+  border-bottom-right-radius: 4px;
+}
+
+/* Más espacio entre grupos de mensajes */
+.chat-msg-row.in  + .chat-msg-row.out,
+.chat-msg-row.out + .chat-msg-row.in {
+  margin-top: 8px;
+}
