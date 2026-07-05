@@ -3741,12 +3741,12 @@ let _activeChatBizId = null;
 // ---- Abrir chat desde el modal del negocio ----
 function openChatFromModal() {
   const logged = !!localStorage.getItem('fynderLogged');
-  if (!logged) { showToast('Inicia sesión para enviar mensajes'); goPage('login'); return; }
+  if (!logged) { showToast('Inicia sesión para enviar mensajes'); closeModalDirect(); goPage('login'); return; }
   const id = modalBusinessId; // variable global del modal existente
   if (!id) return;
   const biz = BUSINESSES.find(b => String(b.id) === String(id));
   if (!biz) return;
-  closeModal();
+  closeModalDirect();
   openChat(id, biz);
 }
 
