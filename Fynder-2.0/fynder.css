@@ -13064,14 +13064,14 @@ body:has(#page-fynder.active) #navbar:not(.scrolled) .nav-dots-btn:hover {
    ================================================================ */
 
 .chat-profile-page {
-  background: #111213;
+  background: var(--msg-bg2);
   display: none;
   flex-direction: column;
   height: 100dvh;
   position: fixed;
   inset: 0;
   z-index: 20;
-  color: #e5e7eb;
+  color: var(--msg-text);
   font-family: 'Inter', sans-serif;
 }
 .chat-profile-page.active { display: flex; }
@@ -13083,15 +13083,15 @@ body:has(#page-fynder.active) #navbar:not(.scrolled) .nav-dots-btn:hover {
   gap: 8px;
   padding: 0 12px;
   height: 56px;
-  background: #1a1b1e;
-  border-bottom: 1px solid rgba(255,255,255,.06);
+  background: var(--msg-bg);
+  border-bottom: 1px solid var(--msg-border);
   flex-shrink: 0;
 }
 .cpro-header-title {
   flex: 1;
   font-size: .9375rem;
   font-weight: 600;
-  color: #fff;
+  color: var(--msg-title);
 }
 
 /* Body scrollable */
@@ -13108,14 +13108,14 @@ body:has(#page-fynder.active) #navbar:not(.scrolled) .nav-dots-btn:hover {
   flex-direction: column;
   align-items: center;
   padding: 36px 24px 28px;
-  background: #1a1b1e;
+  background: var(--msg-bg);
   text-align: center;
-  border-bottom: 1px solid rgba(255,255,255,.06);
+  border-bottom: 1px solid var(--msg-border);
 }
 .cpro-avatar {
   width: 100px; height: 100px;
   border-radius: 50%;
-  background: #2b6b68;
+  background: var(--msg-accent);
   display: flex; align-items: center; justify-content: center;
   font-size: 2.5rem;
   font-weight: 700;
@@ -13123,7 +13123,7 @@ body:has(#page-fynder.active) #navbar:not(.scrolled) .nav-dots-btn:hover {
   font-family: 'Poppins', sans-serif;
   overflow: hidden;
   margin-bottom: 16px;
-  box-shadow: 0 4px 24px rgba(0,0,0,.4);
+  box-shadow: 0 4px 24px rgba(103,184,180,.3);
 }
 .cpro-avatar img {
   width: 100%; height: 100%;
@@ -13132,13 +13132,13 @@ body:has(#page-fynder.active) #navbar:not(.scrolled) .nav-dots-btn:hover {
 .cpro-name {
   font-size: 1.25rem;
   font-weight: 700;
-  color: #fff;
+  color: var(--msg-title);
   margin: 0 0 4px;
   font-family: 'Poppins', sans-serif;
 }
 .cpro-phone {
   font-size: .875rem;
-  color: #9ca3af;
+  color: var(--msg-muted);
   margin: 0;
 }
 
@@ -13148,8 +13148,8 @@ body:has(#page-fynder.active) #navbar:not(.scrolled) .nav-dots-btn:hover {
   grid-template-columns: repeat(3, 1fr);
   gap: 12px;
   padding: 20px 16px;
-  background: #1a1b1e;
-  border-bottom: 8px solid #111213;
+  background: var(--msg-bg);
+  border-bottom: 8px solid var(--msg-bg2);
 }
 .cpro-action-btn {
   display: flex;
@@ -13159,31 +13159,31 @@ body:has(#page-fynder.active) #navbar:not(.scrolled) .nav-dots-btn:hover {
   border: none;
   background: none;
   cursor: pointer;
-  color: #9ca3af;
+  color: var(--msg-muted);
   font-size: .75rem;
   font-family: 'Inter', sans-serif;
   transition: color .2s;
 }
-.cpro-action-btn:hover { color: #fff; }
+.cpro-action-btn:hover { color: var(--msg-title); }
 .cpro-action-icon {
   width: 52px; height: 52px;
   border-radius: 14px;
-  background: #242628;
-  border: 1px solid rgba(255,255,255,.08);
+  background: var(--msg-surface);
+  border: 1px solid var(--msg-border);
   display: flex; align-items: center; justify-content: center;
   font-size: 1.15rem;
-  color: #67B8B4;
+  color: var(--msg-accent);
   transition: background .2s;
 }
 .cpro-action-btn:hover .cpro-action-icon {
-  background: #2e3035;
+  background: var(--msg-surface2);
 }
 
 /* Sección de fotos */
 .cpro-section {
-  background: #1a1b1e;
+  background: var(--msg-bg);
   padding: 14px 16px;
-  border-bottom: 8px solid #111213;
+  border-bottom: 8px solid var(--msg-bg2);
 }
 .cpro-section-header {
   display: flex;
@@ -13193,14 +13193,14 @@ body:has(#page-fynder.active) #navbar:not(.scrolled) .nav-dots-btn:hover {
 }
 .cpro-section-label {
   font-size: .8125rem;
-  color: #9ca3af;
+  color: var(--msg-muted);
   font-weight: 500;
   text-transform: uppercase;
   letter-spacing: .05em;
 }
 .cpro-section-count {
   font-size: .8rem;
-  color: #67B8B4;
+  color: var(--msg-accent);
   cursor: pointer;
 }
 .cpro-media-strip {
@@ -13216,20 +13216,20 @@ body:has(#page-fynder.active) #navbar:not(.scrolled) .nav-dots-btn:hover {
   border-radius: 10px;
   object-fit: cover;
   flex-shrink: 0;
-  background: #242628;
+  background: var(--msg-surface);
 }
 
 /* Lista de settings (info del negocio) */
 .cpro-settings-list {
-  background: #1a1b1e;
-  border-bottom: 8px solid #111213;
+  background: var(--msg-bg);
+  border-bottom: 8px solid var(--msg-bg2);
 }
 .cpro-settings-item {
   display: flex;
   align-items: flex-start;
   gap: 16px;
   padding: 16px 16px;
-  border-bottom: 1px solid rgba(255,255,255,.05);
+  border-bottom: 1px solid var(--msg-border);
   cursor: default;
 }
 .cpro-settings-item:last-child { border-bottom: none; }
@@ -13238,10 +13238,10 @@ body:has(#page-fynder.active) #navbar:not(.scrolled) .nav-dots-btn:hover {
 .cpro-settings-icon {
   width: 34px; height: 34px;
   border-radius: 10px;
-  background: rgba(255,255,255,.05);
+  background: var(--msg-surface);
   display: flex; align-items: center; justify-content: center;
   font-size: .95rem;
-  color: #9ca3af;
+  color: var(--msg-muted);
   flex-shrink: 0;
 }
 .cpro-icon-danger { background: rgba(239,68,68,.12); color: #ef4444; }
@@ -13253,7 +13253,7 @@ body:has(#page-fynder.active) #navbar:not(.scrolled) .nav-dots-btn:hover {
 .cpro-settings-title {
   display: block;
   font-size: .9375rem;
-  color: #e5e7eb;
+  color: var(--msg-text);
   font-weight: 500;
   margin-bottom: 2px;
 }
