@@ -4393,6 +4393,34 @@ function escapeHtml(str) {
 // ---- Inicialización al cargar ----
 document.addEventListener('DOMContentLoaded', () => {
   updateMsgBadge();
+  updateNotifBadge();
+
+  // Genera notificaciones de bienvenida la primera vez que el usuario abre la app
+  const SEED_KEY = 'fynderNotifSeeded';
+  if (!localStorage.getItem(SEED_KEY)) {
+    localStorage.setItem(SEED_KEY, '1');
+    const promos = BUSINESSES.filter(b => b.isFeatured).slice(0, 3);
+    promos.forEach((b, i) => {
+      setTimeout(() => {
+        pushNotification({
+          type:  'promo',
+          title: `Novedad de ${b.name}`,
+          body:  b.description ? b.description.slice(0, 90) + (b.description.length > 90 ? '…' : '') : '¡Visita su perfil!',
+          bizId: b.id,
+          image: b.image || null
+        });
+      }, i * 50); // ligero stagger para timestamps distintos
+    });
+    // Notificación de bienvenida a Fynder
+    setTimeout(() => {
+      pushNotification({
+        type:  'welcome',
+        title: '¡Bienvenido a Fynder!',
+        body:  'Descubre negocios locales, guarda tus favoritos y chatea directamente con ellos.',
+        icon:  '🎉'
+      });
+    }, 200);
+  }
 });
 
 
