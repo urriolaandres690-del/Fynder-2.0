@@ -11940,6 +11940,47 @@ body:has(#page-fynder.active) #navbar:not(.scrolled) .nav-dots-btn:hover {
   display: flex;
 }
 
+/* En desktop: centrar el contenido con max-width, como WhatsApp Web */
+@media (min-width: 769px) {
+  .msg-page.active,
+  .chat-page.active {
+    align-items: center;
+    background: #111214; /* fondo exterior oscuro */
+  }
+
+  /* Contenedor interior centrado */
+  .msg-page.active > *,
+  .chat-page.active > * {
+    width: 100%;
+    max-width: 480px;
+  }
+
+  /* El body/panel necesita contener el scroll */
+  .msg-page.active .msg-body {
+    max-width: 480px;
+    width: 100%;
+  }
+
+  /* Wrap interior: columna centrada con fondo de la app */
+  .msg-page.active {
+    flex-direction: row;
+    justify-content: center;
+  }
+
+  /* Columna central */
+  .msg-page.active::before {
+    content: '';
+    position: absolute;
+    top: 0; bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 480px;
+    background: var(--msg-bg);
+    z-index: -1;
+    box-shadow: 0 0 60px rgba(0,0,0,.5);
+  }
+}
+
 /* ================================================================
    PÁGINA: MENSAJES
    ================================================================ */
