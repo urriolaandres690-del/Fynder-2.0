@@ -4126,21 +4126,8 @@ function escapeHtml(str) {
 }
 
 // ---- Hook en goPage para inicializar mensajes ----
-(function() {
-  const _origGoPage = goPage;
-  window.goPage = function(p) {
-    if (p === 'messages') {
-      _origGoPage(p);
-      // Asegurar que el panel de chats está activo
-      msgSwitchTab('chats');
-      updateMsgBadge();
-      return;
-    }
-    _origGoPage(p);
-    // Mostrar/ocultar botón de mensajes según login
-    updateMsgBadge();
-  };
-})();
+// La inicialización se hace directamente desde el goPage original modificado arriba
+// y desde el DOMContentLoaded abajo.
 
 // ---- Inicialización al cargar ----
 document.addEventListener('DOMContentLoaded', () => {
