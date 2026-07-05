@@ -3361,15 +3361,16 @@
   <!-- Header -->
   <div class="msg-header">
     <div class="msg-header-left">
+      <button class="msg-back-btn" onclick="goPage('home')" title="Volver">
+        <i class="fas fa-arrow-left"></i>
+        <span class="msg-back-label">Volver</span>
+      </button>
       <h2 class="msg-header-title">Mensajes</h2>
       <button class="msg-tab" id="msgTabNotif" onclick="msgSwitchSection('notif')">Notificaciones</button>
     </div>
     <div class="msg-header-right">
       <button class="msg-icon-btn" id="msgSettingsBtn" title="Ajustes" onclick="openMsgSettings()">
         <i class="fas fa-gear"></i>
-      </button>
-      <button class="msg-icon-btn" onclick="goPage('home')" title="Cerrar">
-        <i class="fas fa-xmark"></i>
       </button>
     </div>
   </div>
