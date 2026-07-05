@@ -4716,3 +4716,43 @@ document.addEventListener('DOMContentLoaded', () => {
   if (_msgSettings.bubbleColor) _applyChatBubbleColor(_msgSettings.bubbleColor);
   if (_msgSettings.fontSize)    _applyChatFontSize(_msgSettings.fontSize);
 });
+
+/* ================================================================
+   PHOTO LIGHTBOX – abre galería de fotos del negocio
+   ================================================================ */
+
+function openPhotoLightbox() {
+  if (!_activeChatBizId) return;
+  const biz = BUSINESSES.find(b => String(b.id) === String(_activeChatBizId));
+  if (!biz) return;
+  const imgs = [];
+  if (biz.logo)  imgs.push({ src: biz.logo,  caption: 'Logo' });
+  if (biz.image) imgs.push({ src: biz.image, caption: biz.name });
+
+  if (!imgs.length) { showToast('Sin fotos disponibles'); return; }
+
+  let currentIdx = 0;
+  const overlay = document.createElement('div');
+  overlay.id = 'photoLightbox';
+  overlay.style.cssText = 'position:fixed;inset:0;z-index:9999;background:rgba(0,0,0,.92);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:16px;';
+
+  function render() {
+    const img = imgs[currentIdx];
+    overlay.innerHTML = `
+      <button onclick="document.getElementById('photoLightbox').remove()" style="position:absolute;top:16px;right:16px;background:rgba(255,255,255,.15);border:none;color:#fff;width:40px;height:40px;border-radius:50%;font-size:1.2rem;cursor:pointer;display:flex;align-items:center;justify-content:center;"><i class="fas fa-xmark"></i></button>
+      <img src="${img.src}" style="max-width:90vw;max-height:70dvh;border-radius:16px;object-fit:contain;box-shadow:0 8px 40px rgba(0,0,0,.6);" loading="lazy">
+      <p style="color:rgba(255,255,255,.7);font-size:.875rem;font-family:'Inter',sans-serif;margin:0;">${escapeHtml(img.caption)} · ${currentIdx+1}/${imgs.length}</p>
+      ${imgs.length > 1 ? `
+      <div style="display:flex;gap:12px;">
+        <button onclick="lightboxNav(-1)" style="background:rgba(255,255,255,.15);border:none;color:#fff;padding:10px 20px;border-radius:10px;cursor:pointer;font-size:.875rem;">‹ Anterior</button>
+        <button onclick="lightboxNav(1)"  style="background:rgba(255,255,255,.15);border:none;color:#fff;padding:10px 20px;border-radius:10px;cursor:pointer;font-size:.875rem;">Siguiente ›</button>
+      </div>` : ''}
+    `;
+  }
+  window.lightboxNav = (dir) => {
+    currentIdx = (currentIdx + dir + imgs.length) % imgs.length;
+    render();
+  };
+  render();
+  document.body.appendChild(overlay);
+}
