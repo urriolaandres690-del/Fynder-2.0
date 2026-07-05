@@ -13039,27 +13039,24 @@ body:has(#page-fynder.active) #navbar:not(.scrolled) .nav-dots-btn:hover {
 }
 .chat-input::placeholder { color: var(--msg-muted); }
 .chat-input:focus { border-color: var(--msg-accent); }
-  font-size: .875rem;
-  color: #e5e7eb;
-}
-.chat-input:focus { border-color: rgba(103,184,180,.5); }
+
 .chat-send-btn {
   width: 40px; height: 40px;
-  background: #67B8B4;
+  background: var(--msg-accent);
   flex-shrink: 0;
 }
-.chat-emoji-btn { color: #6b7280; font-size: 1.2rem; }
+.chat-emoji-btn { color: var(--msg-muted); font-size: 1.2rem; }
 
 /* Separador de fecha */
 .chat-date-sep {
   font-size: .7rem;
-  color: #6b7280;
+  color: var(--msg-muted);
   margin: 12px 0 6px;
 }
 .chat-date-sep::before,
 .chat-date-sep::after {
   width: 40px;
-  background: rgba(255,255,255,.07);
+  background: var(--msg-sep-line);
 }
 
 /* ================================================================
