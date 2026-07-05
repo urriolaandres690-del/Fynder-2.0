@@ -11905,7 +11905,7 @@ body:has(#page-fynder.active) #navbar:not(.scrolled) .nav-dots-btn:hover {
    Variables adaptables: modo día (claro) y noche (oscuro)
    ================================================================ */
 
-/* ── Modo DÍA (claro) – valores por defecto ── */
+/* Variables del sistema de mensajes en modo claro */
 :root {
   /* Fondos */
   --msg-bg:         #F0F2F5;
@@ -11928,10 +11928,10 @@ body:has(#page-fynder.active) #navbar:not(.scrolled) .nav-dots-btn:hover {
   /* Barra inferior */
   --msg-bnav-bg:    #FFFFFF;
   /* Input */
-  --msg-input-bg:   #FFFFFF;
+  --msg-input-bg:   #F0F2F5;
   --msg-input-text: #1C1E21;
   /* Avatar placeholder */
-  --msg-avatar-bg:  #D8DADF;
+  --msg-avatar-bg:  #BEC3C9;
   /* Separador fecha */
   --msg-sep-line:   rgba(0,0,0,.1);
   /* Tick leído */
