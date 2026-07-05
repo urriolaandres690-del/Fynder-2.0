@@ -12480,17 +12480,17 @@ body:has(#page-fynder.active) #navbar:not(.scrolled) .nav-dots-btn:hover {
 .msg-notif-markall:hover { background: var(--msg-surface2); }
 
 .msg-notif-card {
-  background: var(--msg-surface);
+  background: var(--msg-notif-card-bg, var(--msg-surface));
   border-radius: 14px;
   overflow: hidden;
   cursor: pointer;
   transition: background .15s, box-shadow .2s, transform .15s;
   border-left: 3px solid var(--msg-accent);
-  box-shadow: 0 1px 4px rgba(0,0,0,.06);
+  box-shadow: 0 1px 6px rgba(0,0,0,.08);
 }
 .msg-notif-card:hover {
   background: var(--msg-surface2);
-  box-shadow: 0 4px 16px rgba(0,0,0,.1);
+  box-shadow: 0 4px 16px rgba(0,0,0,.12);
   transform: translateY(-1px);
 }
 /* Notificación ya leída */
