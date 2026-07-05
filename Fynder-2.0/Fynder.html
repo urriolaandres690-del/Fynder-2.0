@@ -3346,6 +3346,164 @@
 <!-- Modal: estadísticas -->
 <div class="smodal-overlay hide" id="statModalOverlay" onclick="closeStatModal()"></div>
 
+<!-- ================================================================
+     PÁGINA: MENSAJES
+     ================================================================ -->
+<div id="page-messages" class="page msg-page">
+
+  <!-- Header -->
+  <div class="msg-header">
+    <div class="msg-header-left">
+      <h2 class="msg-header-title">Mensajes</h2>
+      <button class="msg-tab" id="msgTabNotif" onclick="msgSwitchSection('notif')">Notificaciones</button>
+    </div>
+    <div class="msg-header-right">
+      <button class="msg-icon-btn" id="msgSettingsBtn" title="Ajustes" onclick="showToast('Ajustes de mensajes próximamente')">
+        <i class="fas fa-gear"></i>
+      </button>
+      <button class="msg-icon-btn" onclick="goPage('home')" title="Cerrar">
+        <i class="fas fa-xmark"></i>
+      </button>
+    </div>
+  </div>
+
+  <!-- Tabs Chats / Marcadores -->
+  <div class="msg-tabs">
+    <button class="msg-tabs-btn active" id="msgTabChats" onclick="msgSwitchTab('chats')">
+      Chats<span class="msg-tab-dot" id="msgChatsDot"></span>
+    </button>
+    <button class="msg-tabs-btn" id="msgTabBookmarks" onclick="msgSwitchTab('bookmarks')">
+      Marcadores
+    </button>
+  </div>
+
+  <!-- Contenido principal -->
+  <div class="msg-body" id="msgBody">
+
+    <!-- Panel: Chats -->
+    <div id="msgPanelChats" class="msg-panel active">
+      <div id="msgChatList" class="msg-chat-list">
+        <!-- Rellenado por JS -->
+      </div>
+      <!-- Estado vacío -->
+      <div id="msgEmptyChats" class="msg-empty hide">
+        <div class="msg-empty-icon">
+          <i class="fas fa-comment-dots"></i>
+        </div>
+        <p class="msg-empty-title">Sin mensajes</p>
+        <p class="msg-empty-sub">Empieza a chatear con un negocio desde su perfil.</p>
+        <button class="msg-empty-btn" onclick="goPage('directory')">
+          <i class="fas fa-compass"></i> Explorar negocios
+        </button>
+      </div>
+    </div>
+
+    <!-- Panel: Marcadores -->
+    <div id="msgPanelBookmarks" class="msg-panel">
+      <div id="msgBookmarkList" class="msg-chat-list">
+        <!-- Rellenado por JS -->
+      </div>
+      <!-- Estado vacío marcadores -->
+      <div id="msgEmptyBookmarks" class="msg-empty">
+        <div class="msg-empty-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" width="52" height="52" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
+            <path d="M8 9h8M8 13h5"/>
+            <path d="M19 11h2a1 1 0 0 1 1 1v9"/>
+          </svg>
+        </div>
+        <p class="msg-empty-title">Sin marcadores</p>
+        <p class="msg-empty-sub">Guarda aquí tus chats favoritos para encontrarlos más rápido.</p>
+      </div>
+    </div>
+
+    <!-- Panel: Notificaciones -->
+    <div id="msgPanelNotif" class="msg-panel">
+      <div class="msg-notif-banner">
+        <div class="msg-notif-banner-icon"><i class="fas fa-bell-slash"></i></div>
+        <div>
+          <p class="msg-notif-banner-title">Activa las notificaciones</p>
+          <p class="msg-notif-banner-sub">¡Mantente al tanto de las actualizaciones sobre negocios, mensajes y ofertas!</p>
+        </div>
+        <button class="msg-notif-banner-close" onclick="this.closest('.msg-notif-banner').remove()"><i class="fas fa-xmark"></i></button>
+      </div>
+      <div id="msgNotifList" class="msg-notif-list">
+        <!-- Rellenado por JS -->
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Bottom Nav -->
+  <nav class="msg-bottom-nav">
+    <button class="msg-bnav-btn" onclick="goPage('home')">
+      <i class="fas fa-house"></i>
+      <span>Inicio</span>
+    </button>
+    <button class="msg-bnav-btn" onclick="goPage('favorites')">
+      <i class="fas fa-heart"></i>
+      <span>Guardados</span>
+    </button>
+    <button class="msg-bnav-btn" onclick="goPage('directory')">
+      <i class="fas fa-compass"></i>
+      <span>Explorar</span>
+    </button>
+    <button class="msg-bnav-btn" onclick="goPage('profile')">
+      <i class="fas fa-user"></i>
+      <span>Perfil</span>
+    </button>
+    <button class="msg-bnav-btn active" onclick="goPage('messages')">
+      <i class="fas fa-comment-dots"></i>
+      <span class="msg-bnav-label">Mensajes</span>
+      <span class="msg-bnav-badge" id="msgBnavBadge" style="display:none"></span>
+    </button>
+  </nav>
+</div>
+
+<!-- ================================================================
+     PÁGINA: CHAT INDIVIDUAL
+     ================================================================ -->
+<div id="page-chat" class="page chat-page">
+
+  <!-- Header del chat -->
+  <div class="chat-header">
+    <button class="chat-back-btn" onclick="goPage('messages')">
+      <i class="fas fa-arrow-left"></i>
+    </button>
+    <div class="chat-header-avatar" id="chatHeaderAvatar"></div>
+    <div class="chat-header-info">
+      <span class="chat-header-name" id="chatHeaderName">—</span>
+      <span class="chat-header-sub" id="chatHeaderSub">Negocio local</span>
+    </div>
+    <button class="chat-icon-btn" onclick="showToast('Opciones próximamente')">
+      <i class="fas fa-ellipsis"></i>
+    </button>
+  </div>
+
+  <!-- Mensajes -->
+  <div class="chat-messages" id="chatMessages">
+    <!-- Rellenado por JS -->
+  </div>
+
+  <!-- Input de mensaje -->
+  <div class="chat-input-bar">
+    <button class="chat-emoji-btn" onclick="showToast('Emojis próximamente')">
+      <i class="fas fa-face-smile"></i>
+    </button>
+    <input
+      type="text"
+      id="chatInput"
+      class="chat-input"
+      placeholder="Mensaje privado..."
+      onkeydown="if(event.key==='Enter')sendChatMessage()"
+      autocomplete="off"
+    />
+    <button class="chat-send-btn" onclick="sendChatMessage()" id="chatSendBtn">
+      <i class="fas fa-paper-plane"></i>
+    </button>
+  </div>
+</div>
+
 </body> 
 
 </html>
