@@ -13911,3 +13911,30 @@ body:has(#page-fynder.active) #navbar:not(.scrolled) .nav-settings-btn:hover {
     padding: 24px 20px;
   }
 }
+
+/* Barra de almacenamiento */
+.sett-storage-bar-wrap {
+  width: 100%;
+  height: 4px;
+  border-radius: 99px;
+  background: var(--border);
+  margin-top: 6px;
+  overflow: hidden;
+}
+.sett-storage-bar {
+  height: 100%;
+  border-radius: 99px;
+  background: linear-gradient(90deg, #67B8B4, #2F5BB7);
+  width: 0%;
+  transition: width .5s ease;
+}
+
+/* Reducir animaciones cuando está activado */
+[data-reduce-motion] *,
+[data-reduce-motion] *::before,
+[data-reduce-motion] *::after {
+  animation-duration: 0.01ms !important;
+  animation-iteration-count: 1 !important;
+  transition-duration: 0.01ms !important;
+  scroll-behavior: auto !important;
+}
