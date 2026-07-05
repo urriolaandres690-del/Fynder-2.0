@@ -13298,3 +13298,70 @@ body:has(#page-fynder.active) #navbar:not(.scrolled) .nav-dots-btn:hover {
 .chat-messages.font-small  .chat-bubble { font-size: .8rem; }
 .chat-messages.font-normal .chat-bubble { font-size: .875rem; }
 .chat-messages.font-large  .chat-bubble { font-size: 1rem; }
+
+
+/* ================================================================
+   NAVBAR REDISEÑADO – limpio y sin saturación
+   ================================================================ */
+
+/* Botón ícono genérico del navbar (perfil, dashboard) */
+.nav-icon-btn {
+  width: 34px; height: 34px;
+  border-radius: 10px;
+  border: none;
+  background: none;
+  color: var(--muted);
+  display: flex; align-items: center; justify-content: center;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: background .15s, color .15s;
+  flex-shrink: 0;
+}
+.nav-icon-btn:hover { background: #F1F5F9; color: var(--fg); }
+.nav-icon-btn.on-hero { color: rgba(255,255,255,.8); }
+.nav-icon-btn.on-hero:hover { background: rgba(255,255,255,.12); color: #fff; }
+
+/* Nombre del usuario: solo letras, compacto */
+.nav-username {
+  font-size: .8125rem;
+  font-weight: 600;
+  color: var(--fg);
+  max-width: 90px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+.nav-username.on-hero { color: rgba(255,255,255,.9); }
+
+/* Ocultar username en pantallas medianas */
+@media (max-width: 1100px) {
+  .nav-username { display: none; }
+}
+
+/* Ocultar botones de ícono de perfil/dashboard en móvil
+   (están en el drawer) */
+@media (max-width: 768px) {
+  .nav-icon-btn { display: none !important; }
+  .nav-username  { display: none !important; }
+}
+
+/* nav-actions: gap reducido y más ordenado */
+.nav-actions {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+/* Separador visual entre grupo de acciones y los íconos */
+.nav-actions .btn-teal {
+  margin-left: 2px;
+}
+.nav-actions .dark-toggle-btn {
+  margin-left: 2px;
+}
+
+/* Ocultar btn-login-nav cuando no hay espacio */
+@media (max-width: 900px) {
+  .btn-login-nav { display: none !important; }
+}
