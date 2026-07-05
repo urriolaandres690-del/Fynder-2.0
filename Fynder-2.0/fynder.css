@@ -11565,19 +11565,32 @@ body:has(#page-fynder.active) #navbar:not(.scrolled) .nav-dots-btn:hover {
 @media (max-width: 768px) {
   /* ---- Navbar ---- */
   .nav-links      { display: none !important; }
+  .nav-right .nav-links { display: none !important; }
   .btn-ghost      { display: none !important; }
   .btn-login-nav  { display: none !important; }
   #navbar .btn-teal { display: none !important; }
   .nav-inner { padding: 0 14px; height: 56px; }
 
+  /* Ocultar íconos de perfil, dashboard, mensajes y ajustes en móvil —
+     solo dejar: userName + dark toggle + hamburger (barras) + dots (puntos) */
+  .nav-icon-btn      { display: none !important; }
+  .nav-msg-btn       { display: none !important; }
+  .nav-settings-btn  { display: none !important; }
+
   /* Dark toggle + hamburger más compactos */
   .dark-toggle-btn { width: 36px !important; height: 36px !important; padding: 0; }
   .nav-dots-btn    { width: 36px !important; height: 36px !important; padding: 0; flex-shrink: 0; }
-  .nav-actions     { gap: 6px !important; }
+  .nav-actions     { gap: 8px !important; }
 
-  /* Nombre de usuario truncado */
+  /* "Hola, Joss" visible en móvil */
   #userName {
-    font-size: 12px !important;
+    display: inline-block !important;
+    font-size: 13px !important;
+    max-width: 90px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
     max-width: 70px;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -13456,8 +13469,8 @@ body:has(#page-fynder.active) #navbar:not(.scrolled) .nav-dots-btn:hover {
 }
 .nav-username.on-hero { color: rgba(255,255,255,.9); }
 
-/* Ocultar username en pantallas medianas */
-@media (max-width: 1100px) {
+/* Ocultar username en pantallas medianas pero NO en móvil (se restaura arriba) */
+@media (min-width: 769px) and (max-width: 1100px) {
   .nav-username { display: none; }
 }
 
