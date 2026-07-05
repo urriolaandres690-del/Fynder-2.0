@@ -11182,11 +11182,11 @@ body:has(#page-fynder.active) #navbar:not(.scrolled) .btn-login-nav:hover {
   border-color: #fff;
 }
 
-/* Separador links/acciones sobre hero */
+/* Separador links/acciones sobre hero — sin separador */
 body:has(#page-home.active) #navbar:not(.scrolled) .nav-links + .nav-actions,
 body:has(#page-about.active) #navbar:not(.scrolled) .nav-links + .nav-actions,
 body:has(#page-fynder.active) #navbar:not(.scrolled) .nav-links + .nav-actions {
-  border-left-color: rgba(255,255,255,.2);
+  border-left-color: transparent;
 }
 
 /* Logo: FYN en blanco sobre hero */
