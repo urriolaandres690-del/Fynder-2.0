@@ -12365,10 +12365,12 @@ body:has(#page-fynder.active) #navbar:not(.scrolled) .nav-dots-btn:hover {
   margin: 12px 12px 0;
   background: var(--msg-surface);
   border-radius: 14px;
+  border: 1px solid var(--msg-border);
   padding: 14px 12px 14px 16px;
   display: flex;
   align-items: center;
   gap: 12px;
+  box-shadow: 0 1px 4px rgba(0,0,0,.06);
 }
 .msg-notif-banner-icon {
   width: 38px; height: 38px;
@@ -12376,7 +12378,7 @@ body:has(#page-fynder.active) #navbar:not(.scrolled) .nav-dots-btn:hover {
   background: rgba(103,184,180,.18);
   display: flex; align-items: center; justify-content: center;
   font-size: .95rem;
-  color: #67B8B4;
+  color: var(--msg-accent);
   flex-shrink: 0;
 }
 .msg-notif-banner-text {
@@ -12384,14 +12386,14 @@ body:has(#page-fynder.active) #navbar:not(.scrolled) .nav-dots-btn:hover {
   min-width: 0;
 }
 .msg-notif-banner-title {
-  font-size: .875rem;
-  font-weight: 600;
-  color: var(--msg-title);
+  font-size: .9rem;
+  font-weight: 700;
+  color: var(--msg-notif-title, var(--msg-title));
   margin: 0 0 3px;
 }
 .msg-notif-banner-sub {
-  font-size: .78rem;
-  color: var(--msg-muted);
+  font-size: .8rem;
+  color: var(--msg-notif-desc, var(--msg-text));
   margin: 0;
   line-height: 1.4;
 }
