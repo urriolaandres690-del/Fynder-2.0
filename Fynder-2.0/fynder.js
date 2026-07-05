@@ -283,7 +283,8 @@ function goPage(p){
 
     // Guardar la página anterior solo si NO es una página legal (para no perder el origen real)
     const legalPages = ['terms','privacy'];
-    if(!legalPages.includes(currentPage)){
+    const noHistoryPages = ['messages','chat'];
+    if(!legalPages.includes(currentPage) && !noHistoryPages.includes(currentPage)){
         previousPage = currentPage;
     }
 
