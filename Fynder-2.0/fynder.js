@@ -3824,23 +3824,43 @@ function renderChatMessages(bizId) {
       prevDate = msg.date;
     }
 
-    const noAva = isIn && prevFrom === 'biz';
-    const avaClass = noAva ? 'chat-msg-row in no-ava' : (isIn ? 'chat-msg-row in' : 'chat-msg-row out');
+    // Determinar si es el último mensaje de un grupo (para el rabillo de la burbuja)
+    const nextMsg  = msgs[i + 1];
+    const isLastInGroup = !nextMsg || nextMsg.from !== msg.from;
+    const isFirstInGroup = prevFrom !== msg.from;
 
     const biz = BUSINESSES.find(b => String(b.id) === String(bizId));
-    // Avatar solo para mensajes entrantes (del negocio)
-    const avaContent = isIn
-      ? `<div class="chat-msg-ava">${biz && biz.image ? `<img src="${biz.image}" alt="">` : (biz ? (biz.name||'?')[0].toUpperCase() : '?')}</div>`
-      : '';
+    const bizInitial = biz ? (biz.name || '?')[0].toUpperCase() : '?';
+    const bizAvaHtml = biz && biz.image
+      ? `<img src="${biz.image}" alt="">`
+      : bizInitial;
+    const bizAvaBg = biz ? _avatarColor(biz.name) : '#4a4d55';
+
+    // Avatar solo en el primer mensaje de cada grupo entrante
+    let avaHtml = '';
+    if (isIn) {
+      if (isFirstInGroup) {
+        avaHtml = `<div class="chat-msg-ava" style="${biz && !biz.image ? 'background:'+bizAvaBg : ''}">${bizAvaHtml}</div>`;
+      } else {
+        avaHtml = `<div class="chat-msg-ava" style="visibility:hidden"></div>`;
+      }
+    }
+
+    // Rabillo solo en el último mensaje del grupo
+    let bubbleClass = 'chat-bubble';
+    if (isIn && isLastInGroup)  bubbleClass += ' chat-bubble-tail-in';
+    if (!isIn && isLastInGroup) bubbleClass += ' chat-bubble-tail-out';
 
     const tickClass = msg.read ? 'read' : 'sent';
     const ticks = isOut ? `<span class="chat-bubble-tick ${tickClass}"><i class="fas fa-check-double"></i></span>` : '';
 
+    const rowClass = isIn ? 'chat-msg-row in' : 'chat-msg-row out';
+
     html += `
-      <div class="${avaClass}">
-        ${isIn ? avaContent : ''}
+      <div class="${rowClass}">
+        ${isIn ? avaHtml : ''}
         <div>
-          <div class="chat-bubble">
+          <div class="${bubbleClass}">
             ${escapeHtml(msg.text)}
             <div class="chat-bubble-meta">
               <span class="chat-bubble-time">${msg.time || ''}</span>
@@ -3848,7 +3868,6 @@ function renderChatMessages(bizId) {
             </div>
           </div>
         </div>
-        ${isOut ? avaContent : ''}
       </div>`;
     prevFrom = msg.from;
   });
