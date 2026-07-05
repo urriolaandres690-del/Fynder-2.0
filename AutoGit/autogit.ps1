@@ -32,7 +32,7 @@ while ($true)
 
             $fecha = Get-Date -Format "yyyy-MM-dd HH:mm:ss"
 
-            git commit -m "AutoSave $fecha"
+            git commit -m "Fynder-2.0 | $fecha"
 
             if ($LASTEXITCODE -eq 0)
             {
