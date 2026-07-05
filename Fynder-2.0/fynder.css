@@ -151,7 +151,7 @@ input, button, select, textarea {
 
     } 
 
-    .logo { display: flex; align-items: center; gap: 8px; text-decoration: none; cursor: pointer; background: none; border: none; } 
+    .logo { display: flex; align-items: center; gap: 8px; text-decoration: none; cursor: pointer; background: none; border: none; flex-shrink: 0; } 
 
     .logo-icon { width: 32px; height: 32px; border-radius: 10px; background: var(--primary); display: flex; align-items: center; justify-content: center; } 
 
@@ -165,7 +165,7 @@ input, button, select, textarea {
 
     .logo-text.on-hero .fyn { color: #fff; } 
 
-    .nav-links { display: flex; align-items: center; gap: 4px; margin-left: 20px; } 
+    .nav-links { display: flex; align-items: center; gap: 4px; margin-left: 0; flex: 1; justify-content: center; } 
 
     .nav-link { 
 
