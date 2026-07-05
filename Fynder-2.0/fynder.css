@@ -12340,7 +12340,7 @@ body:has(#page-fynder.active) #navbar:not(.scrolled) .nav-dots-btn:hover {
 }
 .msg-empty-sub {
   font-size: .85rem;
-  color: #6b7280;
+  color: var(--msg-muted);
   max-width: 260px;
   line-height: 1.55;
   margin: 0;
