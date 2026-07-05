@@ -4303,3 +4303,404 @@ function deleteChatHistory() {
 function blockBiz() {
   showToast('Función de bloqueo próximamente');
 }
+
+
+/* ================================================================
+   MENÚ CONTEXTUAL DE CHAT (⋮)
+   ================================================================ */
+
+let _ctxMenuBizId = null;
+
+function openMsgCtxMenu(bizId, event) {
+  if (event) event.stopPropagation();
+  _ctxMenuBizId = String(bizId);
+
+  const convs = _getConversations();
+  const conv  = convs.find(c => String(c.id) === String(bizId));
+  const biz   = BUSINESSES.find(b => String(b.id) === String(bizId));
+
+  // Header del menú
+  const ava  = document.getElementById('msgCtxAva');
+  const name = document.getElementById('msgCtxName');
+  if (ava) {
+    const src = (conv && conv.image) || (biz && biz.image) || '';
+    const lbl = conv ? conv.name : (biz ? biz.name : '?');
+    if (src) {
+      ava.innerHTML = `<img src="${src}" alt="">`;
+    } else {
+      ava.innerHTML = '';
+      ava.textContent = lbl[0].toUpperCase();
+      ava.style.background = _avatarColor(lbl);
+    }
+  }
+  if (name) name.textContent = conv ? conv.name : (biz ? biz.name : '');
+
+  // Estado de marcador
+  const bmarks = _getBookmarks();
+  const isBookmarked = bmarks.includes(String(bizId));
+  const icon  = document.getElementById('msgCtxBookmarkIcon');
+  const label = document.getElementById('msgCtxBookmarkLabel');
+  if (icon)  icon.className  = isBookmarked ? 'fas fa-bookmark-slash' : 'fas fa-bookmark';
+  if (label) label.textContent = isBookmarked ? 'Quitar de marcadores' : 'Añadir a marcadores';
+
+  document.getElementById('msgCtxOverlay').classList.add('open');
+  document.getElementById('msgCtxMenu').classList.add('open');
+}
+
+function closeMsgCtxMenu() {
+  document.getElementById('msgCtxOverlay').classList.remove('open');
+  document.getElementById('msgCtxMenu').classList.remove('open');
+}
+
+function toggleMsgBookmark() {
+  if (!_ctxMenuBizId) return;
+  let bmarks = _getBookmarks();
+  const id   = String(_ctxMenuBizId);
+  const idx  = bmarks.indexOf(id);
+  if (idx > -1) {
+    bmarks.splice(idx, 1);
+    showToast('Eliminado de marcadores');
+  } else {
+    bmarks.unshift(id);
+    showToast('Añadido a marcadores ⭐');
+  }
+  _saveBookmarks(bmarks);
+  closeMsgCtxMenu();
+  renderConversations(); // refrescar lista
+}
+
+function msgCtxOpenChat() {
+  closeMsgCtxMenu();
+  if (_ctxMenuBizId) openChatById(_ctxMenuBizId);
+}
+
+function msgCtxViewProfile() {
+  closeMsgCtxMenu();
+  if (!_ctxMenuBizId) return;
+  _activeChatBizId = _ctxMenuBizId;
+  openChatProfile();
+}
+
+function msgCtxMarkRead() {
+  if (!_ctxMenuBizId) return;
+  let convs = _getConversations();
+  const conv = convs.find(c => String(c.id) === String(_ctxMenuBizId));
+  if (conv) { conv.unread = 0; _saveConversations(convs); }
+  updateMsgBadge();
+  renderConversations();
+  showToast('Marcado como leído');
+  closeMsgCtxMenu();
+}
+
+function msgCtxDeleteChat() {
+  if (!_ctxMenuBizId) return;
+  closeMsgCtxMenu();
+  if (!confirm('¿Eliminar esta conversación?')) return;
+  // Borrar mensajes
+  localStorage.removeItem('fynderChat_' + _ctxMenuBizId);
+  // Quitar de lista de conversaciones
+  let convs = _getConversations();
+  convs = convs.filter(c => String(c.id) !== String(_ctxMenuBizId));
+  _saveConversations(convs);
+  // Quitar de marcadores
+  let bmarks = _getBookmarks();
+  bmarks = bmarks.filter(id => id !== String(_ctxMenuBizId));
+  _saveBookmarks(bmarks);
+  updateMsgBadge();
+  renderConversations();
+  showToast('Conversación eliminada');
+}
+
+/* Actualizar renderConversations para usar openMsgCtxMenu */
+// (Sobreescribe la función anterior con la nueva que pasa bizId al menú)
+function renderConversations() {
+  const convs = _getConversations();
+  const list  = document.getElementById('msgChatList');
+  const empty = document.getElementById('msgEmptyChats');
+  if (!list) return;
+
+  if (convs.length === 0) {
+    list.innerHTML = '';
+    if (empty) empty.classList.remove('hide');
+    return;
+  }
+  if (empty) empty.classList.add('hide');
+
+  list.innerHTML = convs.map(c => {
+    const initial = (c.name || '?')[0].toUpperCase();
+    const bg      = _avatarColor(c.name);
+    const avatar  = c.image
+      ? `<img src="${c.image}" alt="${escapeHtml(c.name)}" loading="lazy">`
+      : `<span style="color:#fff;font-size:1rem;font-weight:700;font-family:'Poppins',sans-serif">${initial}</span>`;
+    const unread  = c.unread > 0 ? `<span class="msg-chat-unread">${c.unread}</span>` : '';
+
+    // Punto de marcador
+    const bmarks = _getBookmarks();
+    const starBadge = bmarks.includes(String(c.id))
+      ? `<span class="msg-chat-bookmark-dot" title="Marcado"><i class="fas fa-bookmark" style="font-size:.6rem;color:#F4D35E"></i></span>`
+      : '';
+
+    return `
+      <div class="msg-chat-item" onclick="openChatById('${c.id}')">
+        <div class="msg-chat-avatar-wrap">
+          <div class="msg-chat-avatar" style="background:${bg}">${avatar}</div>
+          <span class="msg-chat-online"></span>
+        </div>
+        <div class="msg-chat-body">
+          <div class="msg-chat-top">
+            <span class="msg-chat-name">${escapeHtml(c.name)}${starBadge}</span>
+            <span class="msg-chat-time">${c.lastTime || ''}</span>
+          </div>
+          <span class="msg-chat-preview">${escapeHtml(c.lastMsg || 'Toca para ver el chat')}</span>
+        </div>
+        <div class="msg-chat-actions">
+          ${unread}
+          <button class="msg-chat-menu" onclick="openMsgCtxMenu('${c.id}', event)" title="Más opciones">
+            <i class="fas fa-ellipsis-vertical"></i>
+          </button>
+        </div>
+      </div>`;
+  }).join('');
+}
+
+/* ================================================================
+   EMOJI PICKER
+   ================================================================ */
+
+const EMOJI_CATS = [
+  { icon: '😊', label: 'Caras',      emojis: ['😀','😃','😄','😁','😆','😅','🤣','😂','🙂','🙃','😉','😊','😇','🥰','😍','🤩','😘','😗','☺️','😚','😙','🥲','😋','😛','😜','🤪','😝','🤑','🤗','🤭','🤫','🤔','🤐','🤨','😐','😑','😶','😏','😒','🙄','😬','🤥','😌','😔','😪','🤤','😴','😷','🤒','🤕','🤢','🤮','🤧','🥵','🥶','🥴','😵','💫','🤯','🤠','🥳','🥸','😎','🤓','🧐','😕','😟','🙁','☹️','😮','😯','😲','😳','🥺','😦','😧','😨','😰','😥','😢','😭','😱','😖','😣','😞','😓','😩','😫','🥱','😤','😡','😠','🤬','😈','👿','💀','☠️','💩','🤡','👹','👺','👻','👽','👾','🤖'] },
+  { icon: '👋', label: 'Gestos',     emojis: ['👋','🤚','🖐️','✋','🖖','🤙','💪','🦾','🖕','✌️','🤞','🤟','🤘','🤙','👈','👉','👆','🖕','👇','☝️','👍','👎','✊','👊','🤛','🤜','👏','🙌','🤲','🤝','🙏','✍️','💅','🤳','💃','🕺'] },
+  { icon: '❤️', label: 'Corazones',  emojis: ['❤️','🧡','💛','💚','💙','💜','🖤','🤍','🤎','💔','❣️','💕','💞','💓','💗','💖','💘','💝','💟','❤️‍🔥','❤️‍🩹','🫀'] },
+  { icon: '🎉', label: 'Celebrar',   emojis: ['🎉','🎊','🎈','🎁','🎀','🥂','🍾','🎂','🎆','🎇','✨','🌟','⭐','💫','🏆','🥇','🎖️','🎗️','🎟️','🎫'] },
+  { icon: '🐶', label: 'Animales',   emojis: ['🐶','🐱','🐭','🐹','🐰','🦊','🐻','🐼','🐨','🐯','🦁','🐮','🐷','🐸','🐵','🐔','🐧','🐦','🦆','🦅','🦉','🦇','🐺','🐗','🐴','🦄','🐝','🐛','🦋','🐌','🐞','🐜','🦟','🦗','🕷️','🦂','🐢','🐍','🦎','🦖','🦕','🐙','🦑','🦐','🦞','🦀','🐡','🐠','🐟','🐬','🐳','🐋','🦈','🐊','🐅','🐆','🦓','🦍','🦧','🦣','🐘','🦛','🦏','🐪','🐫','🦒','🦘','🦬','🐃','🐂','🐄','🐎','🐖','🐏','🐑','🦙','🐐','🦌','🐕','🐩','🦮','🐕‍🦺','🐈','🐈‍⬛','🪶','🐓','🦃','🦤','🦚','🦜','🦢','🦩','🕊️','🐇','🦝','🦨','🦡','🦫','🦦','🦥','🐁','🐀','🐿️','🦔'] },
+  { icon: '🍕', label: 'Comida',     emojis: ['🍕','🍔','🍟','🌭','🍿','🧂','🥓','🥚','🍳','🧇','🥞','🧈','🍞','🥐','🥖','🫓','🥨','🥯','🧀','🥗','🥙','🥪','🌮','🌯','🫔','🥫','🍝','🍜','🍲','🍛','🍣','🍱','🥟','🦪','🍤','🍙','🍚','🍘','🍥','🥮','🍢','🧆','🥚','🍡','🍧','🍨','🍦','🥧','🧁','🍰','🎂','🍮','🍭','🍬','🍫','🍿','🍩','🍪','🌰','🥜','🍯','🧃','🥤','🧋','☕','🍵','🫖','🍶','🍺','🍻','🥂','🍷','🥃','🍸','🍹','🧉','🍾','🧊'] },
+  { icon: '⚽', label: 'Deportes',   emojis: ['⚽','🏀','🏈','⚾','🥎','🎾','🏐','🏉','🥏','🎱','🪀','🏓','🏸','🏒','🥍','🏑','🏏','🪃','🥅','⛳','🏹','🎣','🤿','🎽','🎿','🛷','🥌','🎯','🎱'] },
+  { icon: '🌍', label: 'Viajes',     emojis: ['🌍','🌎','🌏','🌐','🗺️','🧭','🏔️','⛰️','🌋','🗻','🏕️','🏖️','🏜️','🏝️','🏟️','🏛️','🏗️','🧱','🪨','🪵','🛖','🏘️','🏚️','🏠','🏡','🏢','🏣','🏤','🏥','🏦','🏧','🏨','🏩','🏪','🏫','🏬','🏭','🏯','🏰','💒','🗼','🗽','⛪','🕌','🛕','🕍','⛩️','🕋','⛲','⛺','🌁','🌃','🏙️','🌄','🌅','🌆','🌇','🌉','♨️','🎠','🛝','🎡','🎢','💈','🎪','🚂','🚃','🚄','🚅','🚆','🚇','🚈','🚉','🚊','🚝','🚞','🚋','🚌','🚍','🚎','🚐','🚑','🚒','🚓','🚔','🚕','🚖','🚗','🚘','🚙','🛻','🚚','🚛','🚜','🏎️','🏍️','🛵','🛺','🚲','🛴','🛹','🛼','🚏','🛣️','🛤️','⛽','🚨','🚥','🚦','🛑','🚧','⚓','⛵','🛶','🚤','🛳️','⛴️','🛥️','🚢','✈️','🛩️','🛫','🛬','🪂','💺','🚁','🚟','🚠','🚡','🛸','🪐','🌙'] },
+  { icon: '💼', label: 'Negocios',   emojis: ['💼','📁','📂','🗂️','📋','📊','📈','📉','📅','📆','📇','📌','📍','✂️','🗃️','🗄️','🗑️','🔒','🔓','🔏','🔐','🔑','🗝️','🔨','🪓','⛏️','⚒️','🛠️','🗡️','⚔️','🛡️','🪚','🔧','🪛','🔩','⚙️','🗜️','⚖️','🦯','🔗','⛓️','🪝','🧲','🪜','🧰','🪤','🔬','🔭','📡','💉','🩸','💊','🩺','🩻','🚪','🛗','🪞','🪟','🛏️','🛋️','🚽','🪠','🚿','🛁','🪤','🪒','🧴','🧷','🧹','🧺','🧻','🪣','🧼','🫧','🪥','🧽','🧯','🛒'] },
+  { icon: '💡', label: 'Símbolos',   emojis: ['💡','🔥','💧','🌊','💥','✨','⚡','❄️','🌈','☀️','🌤️','⛅','🌥️','☁️','🌦️','🌧️','⛈️','🌩️','🌨️','❄️','☃️','⛄','🌬️','💨','💦','🌫️','🌀','🌈','🌂','☂️','☔','⛱️','⚡','❄️','🔔','🔕','🎵','🎶','📣','📢','💬','💭','🗨️','🗯️','💯','🔞','📵','🚫','⛔','❌','⭕','🛑','♻️','✅','☑️','🔳','🔲','▪️','▫️','◾','◽','◼️','◻️','🔶','🔷','🔸','🔹','🔺','🔻','💠','🔘','🔲','🔳'] }
+];
+
+let _emojiActiveCat = 0;
+let _emojiOpen = false;
+
+function toggleEmojiPicker() {
+  _emojiOpen ? closeEmojiPicker() : openEmojiPicker();
+}
+
+function openEmojiPicker() {
+  _emojiOpen = true;
+  // Construir tabs
+  const tabsEl = document.getElementById('emojiPickerTabs');
+  if (tabsEl && !tabsEl.children.length) {
+    tabsEl.innerHTML = EMOJI_CATS.map((cat, i) =>
+      `<button class="emoji-tab-btn${i === 0 ? ' active' : ''}" onclick="emojiSelectCat(${i})" title="${cat.label}">${cat.icon}</button>`
+    ).join('');
+  }
+  // Renderizar primera categoría
+  renderEmojiCat(_emojiActiveCat);
+
+  document.getElementById('emojiOverlay').classList.add('open');
+  document.getElementById('emojiPicker').classList.add('open');
+  document.getElementById('emojiSearch').value = '';
+  document.getElementById('emojiSearch').focus();
+}
+
+function closeEmojiPicker() {
+  _emojiOpen = false;
+  document.getElementById('emojiOverlay').classList.remove('open');
+  document.getElementById('emojiPicker').classList.remove('open');
+}
+
+function emojiSelectCat(idx) {
+  _emojiActiveCat = idx;
+  document.querySelectorAll('.emoji-tab-btn').forEach((b, i) => b.classList.toggle('active', i === idx));
+  document.getElementById('emojiSearch').value = '';
+  renderEmojiCat(idx);
+}
+
+function renderEmojiCat(idx) {
+  const grid = document.getElementById('emojiGrid');
+  if (!grid) return;
+  grid.innerHTML = EMOJI_CATS[idx].emojis.map(e =>
+    `<button class="emoji-btn" onclick="insertEmoji('${e}')">${e}</button>`
+  ).join('');
+}
+
+function filterEmojis() {
+  const q    = document.getElementById('emojiSearch').value.toLowerCase().trim();
+  const grid = document.getElementById('emojiGrid');
+  if (!grid) return;
+  if (!q) { renderEmojiCat(_emojiActiveCat); return; }
+
+  // Buscar en todas las categorías
+  const allEmojis = EMOJI_CATS.flatMap(cat => cat.emojis);
+  const filtered  = allEmojis.filter((e, i, arr) => arr.indexOf(e) === i); // deduplicate
+  grid.innerHTML = filtered.map(e =>
+    `<button class="emoji-btn" onclick="insertEmoji('${e}')">${e}</button>`
+  ).join('');
+}
+
+function insertEmoji(emoji) {
+  const input = document.getElementById('chatInput');
+  if (!input) return;
+  const start = input.selectionStart;
+  const end   = input.selectionEnd;
+  const val   = input.value;
+  input.value = val.slice(0, start) + emoji + val.slice(end);
+  input.setSelectionRange(start + emoji.length, start + emoji.length);
+  input.focus();
+  closeEmojiPicker();
+}
+
+/* ================================================================
+   AJUSTES DE MENSAJES
+   ================================================================ */
+
+const _msgSettings = {
+  notif: true,
+  sound: false,
+  read:  true,
+  bubbleColor: '#7b3838',
+  fontSize: 'normal'
+};
+
+function _loadMsgSettings() {
+  try {
+    const saved = JSON.parse(localStorage.getItem('fynderMsgSettings') || '{}');
+    Object.assign(_msgSettings, saved);
+  } catch(e) {}
+}
+function _saveMsgSettings() {
+  localStorage.setItem('fynderMsgSettings', JSON.stringify(_msgSettings));
+}
+
+function openMsgSettings() {
+  _loadMsgSettings();
+
+  // Sync toggles
+  ['notif','sound','read'].forEach(k => {
+    const el = document.getElementById('setting' + k.charAt(0).toUpperCase() + k.slice(1) + 'Toggle');
+    if (el) el.classList.toggle('on', _msgSettings[k]);
+  });
+
+  // Sync color dots
+  document.querySelectorAll('.msg-color-dot').forEach(dot => {
+    dot.classList.toggle('active', dot.dataset.color === _msgSettings.bubbleColor);
+  });
+
+  // Sync font sub
+  const fontLabels = { small:'Pequeño', normal:'Normal', large:'Grande' };
+  const fontSubEl = document.getElementById('settingFontSub');
+  if (fontSubEl) fontSubEl.textContent = fontLabels[_msgSettings.fontSize] || 'Normal';
+
+  // Sync font buttons
+  document.querySelectorAll('.msg-font-btn').forEach((btn, i) => {
+    const sizes = ['small','normal','large'];
+    btn.classList.toggle('active', sizes[i] === _msgSettings.fontSize);
+  });
+
+  // Sync color sub
+  const colorNames = { '#7b3838':'Rojo oscuro','#1e4d7b':'Azul oscuro','#1a5c34':'Verde oscuro','#5b2d82':'Morado','#7a4a1a':'Naranja','#2b5c5c':'Verde azulado' };
+  const colorSubEl = document.getElementById('settingColorSub');
+  if (colorSubEl) colorSubEl.textContent = colorNames[_msgSettings.bubbleColor] || 'Personalizado';
+
+  document.getElementById('msgSettingsOverlay').classList.add('open');
+  document.getElementById('msgSettingsPanel').classList.add('open');
+}
+
+function closeMsgSettings() {
+  document.getElementById('msgSettingsOverlay').classList.remove('open');
+  document.getElementById('msgSettingsPanel').classList.remove('open');
+}
+
+function toggleMsgSetting(key) {
+  _loadMsgSettings();
+  _msgSettings[key] = !_msgSettings[key];
+  _saveMsgSettings();
+  const idMap = { notif:'settingNotifToggle', sound:'settingSoundToggle', read:'settingReadToggle' };
+  const el = document.getElementById(idMap[key]);
+  if (el) el.classList.toggle('on', _msgSettings[key]);
+  showToast(_msgSettings[key] ? 'Activado' : 'Desactivado');
+}
+
+function setChatBubbleColor(color, name, btn) {
+  _loadMsgSettings();
+  _msgSettings.bubbleColor = color;
+  _saveMsgSettings();
+  // Actualizar CSS en tiempo real
+  _applyChatBubbleColor(color);
+  // Actualizar UI
+  document.querySelectorAll('.msg-color-dot').forEach(d => d.classList.remove('active'));
+  if (btn) btn.classList.add('active');
+  const colorSubEl = document.getElementById('settingColorSub');
+  if (colorSubEl) colorSubEl.textContent = name;
+  showToast('Color actualizado');
+}
+
+function _applyChatBubbleColor(color) {
+  let styleEl = document.getElementById('chatBubbleColorStyle');
+  if (!styleEl) {
+    styleEl = document.createElement('style');
+    styleEl.id = 'chatBubbleColorStyle';
+    document.head.appendChild(styleEl);
+  }
+  styleEl.textContent = `.chat-msg-row.out .chat-bubble { background: ${color} !important; }`;
+}
+
+function setChatFontSize(size, label) {
+  _loadMsgSettings();
+  _msgSettings.fontSize = size;
+  _saveMsgSettings();
+  _applyChatFontSize(size);
+  const fontSubEl = document.getElementById('settingFontSub');
+  if (fontSubEl) fontSubEl.textContent = label;
+  document.querySelectorAll('.msg-font-btn').forEach((btn, i) => {
+    const sizes = ['small','normal','large'];
+    btn.classList.toggle('active', sizes[i] === size);
+  });
+  showToast('Tamaño actualizado');
+}
+
+function _applyChatFontSize(size) {
+  const msgs = document.getElementById('chatMessages');
+  if (!msgs) return;
+  ['font-small','font-normal','font-large'].forEach(c => msgs.classList.remove(c));
+  msgs.classList.add('font-' + size);
+}
+
+function exportChats() {
+  const convs = _getConversations();
+  if (convs.length === 0) { showToast('No hay conversaciones para exportar'); return; }
+  let txt = 'Conversaciones de Fynder\n' + '='.repeat(40) + '\n\n';
+  convs.forEach(c => {
+    const msgs = _getMsgs(c.id);
+    txt += `=== ${c.name} ===\n`;
+    msgs.forEach(m => { txt += `[${m.date} ${m.time}] ${m.from === 'user' ? 'Yo' : c.name}: ${m.text}\n`; });
+    txt += '\n';
+  });
+  const blob = new Blob([txt], { type: 'text/plain;charset=utf-8' });
+  const url  = URL.createObjectURL(blob);
+  const a    = document.createElement('a');
+  a.href = url; a.download = 'fynder-chats.txt'; a.click();
+  URL.revokeObjectURL(url);
+  showToast('Conversaciones exportadas');
+}
+
+function clearAllChats() {
+  if (!confirm('¿Borrar TODOS los chats? Esta acción no se puede deshacer.')) return;
+  const convs = _getConversations();
+  convs.forEach(c => localStorage.removeItem('fynderChat_' + c.id));
+  _saveConversations([]);
+  _saveBookmarks([]);
+  updateMsgBadge();
+  renderConversations();
+  closeMsgSettings();
+  showToast('Todos los chats eliminados');
+}
+
+// ---- Aplicar ajustes al iniciar ----
+document.addEventListener('DOMContentLoaded', () => {
+  _loadMsgSettings();
+  if (_msgSettings.bubbleColor) _applyChatBubbleColor(_msgSettings.bubbleColor);
+  if (_msgSettings.fontSize)    _applyChatFontSize(_msgSettings.fontSize);
+});
