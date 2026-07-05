@@ -63,7 +63,14 @@
 
     </div>
 
-    </div><!-- /nav-left --> 
+    </div><!-- /nav-left -->
+
+    <!-- Búsqueda central -->
+    <div class="nav-search-wrap" id="navSearchWrap">
+      <svg class="nav-search-icon" xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+      <input type="text" id="navSearchInput" class="nav-search-input" placeholder="Buscar negocios..." onkeydown="if(event.key==='Enter'){heroSearchGoNav()}" />
+      <button class="nav-search-btn" onclick="heroSearchGoNav()">Buscar</button>
+    </div> 
 
     <div class="nav-actions">
 
