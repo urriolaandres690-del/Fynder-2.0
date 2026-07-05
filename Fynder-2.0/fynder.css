@@ -167,6 +167,8 @@ input, button, select, textarea {
 
     .nav-links { display: flex; align-items: center; gap: 4px; margin-left: 0; }
 
+    .nav-left  { display: flex; align-items: center; gap: 20px; }
+
 
 
     .nav-link { 
