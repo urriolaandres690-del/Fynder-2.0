@@ -13367,3 +13367,88 @@ body:has(#page-fynder.active) #navbar:not(.scrolled) .nav-dots-btn:hover {
 @media (max-width: 900px) {
   .btn-login-nav { display: none !important; }
 }
+
+/* ================================================================
+   HERO IMPROVEMENTS – better spacing and visual hierarchy
+   ================================================================ */
+
+/* More padding top so content doesn't start right at the navbar */
+.hero-inner {
+  padding-top: 100px !important;
+  padding-bottom: 80px !important;
+}
+
+/* Hero left column: more space between elements */
+.hero h1 {
+  margin-bottom: 24px !important;
+  letter-spacing: -.02em;
+}
+.hero p {
+  margin-bottom: 36px !important;
+  font-size: 1.0625rem !important;
+}
+.hero-pill { margin-bottom: 28px !important; }
+
+/* Search bar: more prominent */
+.hero-search {
+  padding: 10px 10px 10px 20px !important;
+  border-radius: 18px !important;
+  margin-bottom: 24px !important;
+  max-width: 520px !important;
+}
+.hero-search input {
+  font-size: .9375rem !important;
+  padding: 10px 8px !important;
+}
+.hero-search-btn {
+  padding: 12px 24px !important;
+  border-radius: 14px !important;
+  font-size: .9rem !important;
+}
+
+/* Popular tags more spaced */
+.hero-popular { gap: 10px !important; margin-top: 4px; }
+.hero-tag { padding: 7px 16px !important; font-size: .8rem !important; }
+
+/* Stats cards: more padding and shadow */
+.hero-stat-card {
+  padding: 18px !important;
+  border-radius: 18px !important;
+  box-shadow: 0 4px 20px rgba(0,0,0,.12) !important;
+  gap: 14px !important;
+}
+.hero-stat-val {
+  font-size: 1.25rem !important;
+}
+.hero-stat-lbl {
+  font-size: .8rem !important;
+}
+
+/* Hero image taller */
+.hero-img {
+  height: 240px !important;
+  border-radius: 22px !important;
+}
+
+/* Stats grid more spaced */
+.hero-stats { gap: 14px !important; }
+
+/* Wave more visible */
+.hero-wave svg { height: 60px !important; }
+
+/* Section breathing room */
+.section { padding: 80px 0 !important; }
+.section-header { margin-bottom: 48px !important; }
+.section-title { font-size: 2rem !important; }
+
+/* Category cards more uniform */
+.cat-card {
+  padding: 20px 10px !important;
+  border-radius: 20px !important;
+}
+.cat-icon {
+  width: 52px !important;
+  height: 52px !important;
+  border-radius: 16px !important;
+}
+.cat-name { font-size: .75rem !important; }
