@@ -12097,7 +12097,7 @@ body:has(#page-fynder.active) #navbar:not(.scrolled) .nav-dots-btn:hover {
   transition: color .2s;
 }
 .msg-tab:hover,
-.msg-tab.active { color: #fff; }
+.msg-tab.active { color: var(--msg-title); }
 
 .msg-header-right {
   display: flex;
@@ -12117,7 +12117,7 @@ body:has(#page-fynder.active) #navbar:not(.scrolled) .nav-dots-btn:hover {
 }
 .msg-icon-btn:hover {
   background: var(--msg-surface);
-  color: #fff;
+  color: var(--msg-title);
 }
 
 /* ---- Tabs ---- */
