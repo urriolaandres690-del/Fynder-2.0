@@ -333,7 +333,7 @@ function updateNav(){
     const isHero = (currentPage==='home' || currentPage==='about' || currentPage==='fynder') && !window.__scrolled;
 
     // Nav links activos + on-hero
-    ['home','directory','favorites'].forEach(p=>{
+    ['home','directory','favorites','messages'].forEach(p=>{
         const el=document.getElementById('nl-'+p);
         if(!el) return;
         el.classList.toggle('active', p===currentPage);
