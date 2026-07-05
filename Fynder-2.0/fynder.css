@@ -11185,6 +11185,13 @@ body:has(#page-fynder.active) #navbar:not(.scrolled) .btn-login-nav:hover {
   border-color: #fff;
 }
 
+/* Separador links/acciones sobre hero */
+body:has(#page-home.active) #navbar:not(.scrolled) .nav-links + .nav-actions,
+body:has(#page-about.active) #navbar:not(.scrolled) .nav-links + .nav-actions,
+body:has(#page-fynder.active) #navbar:not(.scrolled) .nav-links + .nav-actions {
+  border-left-color: rgba(255,255,255,.2);
+}
+
 /* Logo: FYN en blanco sobre hero */
 body:has(#page-home.active) #navbar:not(.scrolled) .logo-text .fyn,
 body:has(#page-about.active) #navbar:not(.scrolled) .logo-text .fyn,
@@ -13461,7 +13468,8 @@ body:has(#page-fynder.active) #navbar:not(.scrolled) .nav-dots-btn:hover {
   .nav-username  { display: none !important; }
 }
 
-/* nav-actions: gap reducido y más ordenado */
+[data-theme="dark"] .nav-links + .nav-actions { border-left-color: rgba(255,255,255,.08); }
+
 .nav-actions {
   display: flex;
   align-items: center;
