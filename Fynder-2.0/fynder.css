@@ -15396,3 +15396,55 @@ body { top: 0 !important; }
   opacity: .75;
   white-space: nowrap;
 }
+
+/* ================================================================
+   CHAT HEADER: menú contextual de los tres puntos
+   ================================================================ */
+.wa-chat-area {
+  position: relative; /* necesario para el menú absoluto */
+}
+.wa-chat-header-actions {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  flex-shrink: 0;
+  margin-left: auto;
+}
+.wa-chat-ctx-menu {
+  position: absolute;
+  top: 60px;
+  right: 12px;
+  background: var(--msg-surface);
+  border: 1px solid var(--msg-border);
+  border-radius: 12px;
+  padding: 6px;
+  box-shadow: 0 8px 28px rgba(0,0,0,.22);
+  z-index: 50;
+  min-width: 200px;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+.wa-chat-ctx-menu button {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+  padding: 9px 12px;
+  border: none;
+  border-radius: 8px;
+  background: none;
+  color: var(--msg-text);
+  font-size: .875rem;
+  font-family: 'Inter', sans-serif;
+  cursor: pointer;
+  text-align: left;
+  transition: background .15s;
+}
+.wa-chat-ctx-menu button:hover { background: var(--msg-surface2); }
+.wa-chat-ctx-menu button i { width: 16px; text-align: center; font-size: .9rem; flex-shrink: 0; }
+.wa-ctx-divider {
+  height: 1px;
+  background: var(--msg-border);
+  margin: 4px 8px;
+}
