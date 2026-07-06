@@ -6895,3 +6895,82 @@ document.addEventListener('click', (e) => {
   if (btn && btn.contains(e.target)) return;
   if (!menu.contains(e.target)) closeCproMenu();
 });
+
+/* ================================================================
+   RAIL DE ÍCONOS: lógica de navegación y avatar
+   ================================================================ */
+
+/** Cambia la sección activa del rail */
+function waRailSwitch(section, btn) {
+  // Quitar activo de todos los botones del rail
+  document.querySelectorAll('.wa-rail-btn').forEach(b => b.classList.remove('active'));
+  if (btn) btn.classList.add('active');
+
+  // Sincronizar con las tabs y paneles existentes
+  if (section === 'chats') {
+    if (typeof msgSwitchTab === 'function') msgSwitchTab('chats');
+  } else if (section === 'bookmarks') {
+    if (typeof msgSwitchTab === 'function') msgSwitchTab('bookmarks');
+  } else if (section === 'notif') {
+    if (typeof msgSwitchSection === 'function') msgSwitchSection('notif');
+  }
+}
+
+/** Sincroniza el avatar del usuario en el rail */
+function waRailSyncAvatar() {
+  const btn = document.getElementById('waRailAvatar');
+  if (!btn) return;
+  const photo  = localStorage.getItem('fynderAvatarPhoto');
+  const preset = localStorage.getItem('fynderAvatarPreset');
+  const user   = JSON.parse(localStorage.getItem('fynderUser') || '{}');
+  const initial = (user.name || 'U')[0].toUpperCase();
+  const bg = localStorage.getItem('fynderAvatarInitialBg') || '#67B8B4';
+
+  if (photo) {
+    btn.innerHTML = `<img src="${photo}" alt="avatar" style="width:36px;height:36px;object-fit:cover;border-radius:50%;">`;
+  } else if (preset) {
+    btn.innerHTML = `<span style="font-size:1.3rem">${preset}</span>`;
+  } else if (user.name) {
+    btn.innerHTML = `<span style="width:32px;height:32px;border-radius:50%;background:${bg};display:flex;align-items:center;justify-content:center;font-size:.85rem;font-weight:700;color:#fff;font-family:'Poppins',sans-serif;">${initial}</span>`;
+  } else {
+    btn.innerHTML = '<i class="fas fa-user-circle"></i>';
+  }
+}
+
+/** Actualiza el badge de mensajes no leídos en el rail */
+function waRailUpdateBadge() {
+  const badge = document.getElementById('railBadgeChats');
+  const navBadge = document.getElementById('navMsgBadge');
+  if (!badge) return;
+  const count = navBadge ? (parseInt(navBadge.textContent) || 0) : 0;
+  if (count > 0) {
+    badge.textContent = count > 99 ? '99+' : count;
+    badge.style.display = 'flex';
+  } else {
+    badge.style.display = 'none';
+  }
+}
+
+// Inicializar el rail cuando se abre la página de mensajes
+document.addEventListener('DOMContentLoaded', () => {
+  // Parchear goPage para sincronizar el rail al entrar a mensajes
+  const _origGoPageRail = window.goPage;
+  if (_origGoPageRail) {
+    const _patchedGoPage = function(p) {
+      _origGoPageRail(p);
+      if (p === 'messages') {
+        waRailSyncAvatar();
+        waRailUpdateBadge();
+        // Marcar chats como activo en el rail
+        document.querySelectorAll('.wa-rail-btn').forEach(b => b.classList.remove('active'));
+        const railChats = document.getElementById('railBtnChats');
+        if (railChats) railChats.classList.add('active');
+      }
+    };
+    // Solo parchear si no fue ya parcheado
+    if (!window._waRailPatched) {
+      window._waRailPatched = true;
+      window.goPage = _patchedGoPage;
+    }
+  }
+});
