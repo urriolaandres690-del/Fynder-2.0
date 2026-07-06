@@ -15928,9 +15928,9 @@ mark.msg-search-mark {
 
 .about-sponsors-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(440px, 1fr));
   gap: 28px;
-  max-width: 860px;
+  max-width: 1100px;
   margin: 0 auto;
 }
 
@@ -16220,6 +16220,6 @@ mark.msg-search-mark {
 
 /* Grid más amplio para las tarjetas */
 .about-sponsors-grid {
-  max-width: 960px !important;
-  grid-template-columns: repeat(auto-fit, minmax(340px, 1fr)) !important;
+  max-width: 1100px !important;
+  grid-template-columns: repeat(auto-fit, minmax(440px, 1fr)) !important;
 }
