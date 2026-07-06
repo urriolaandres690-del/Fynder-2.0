@@ -3404,36 +3404,52 @@
 <div class="smodal-overlay hide" id="statModalOverlay" onclick="closeStatModal()"></div>
 
 <!-- ================================================================
-     PÁGINA: MENSAJES
+     PÁGINA: MENSAJES (layout WhatsApp Web en desktop)
      ================================================================ -->
 <div id="page-messages" class="page msg-page">
 
-  <!-- Header -->
-  <div class="msg-header">
-    <div class="msg-header-left">
-      <button class="msg-back-btn" onclick="goPage('home')" title="Volver">
-        <i class="fas fa-arrow-left"></i>
-        <span class="msg-back-label">Volver</span>
-      </button>
-      <h2 class="msg-header-title">Mensajes</h2>
-      <button class="msg-tab" id="msgTabNotif" onclick="msgSwitchSection('notif')">Notificaciones</button>
-    </div>
-    <div class="msg-header-right">
-      <button class="msg-icon-btn" id="msgSettingsBtn" title="Ajustes" onclick="openMsgSettings()">
-        <i class="fas fa-gear"></i>
-      </button>
-    </div>
-  </div>
+  <!-- ═══ COLUMNA IZQUIERDA (lista de chats) ═══ -->
+  <div class="wa-sidebar">
 
-  <!-- Tabs Chats / Marcadores -->
-  <div class="msg-tabs">
-    <button class="msg-tabs-btn active" id="msgTabChats" onclick="msgSwitchTab('chats')">
-      Chats<span class="msg-tab-dot" id="msgChatsDot"></span>
-    </button>
-    <button class="msg-tabs-btn" id="msgTabBookmarks" onclick="msgSwitchTab('bookmarks')">
-      Marcadores
-    </button>
-  </div>
+    <!-- Header sidebar -->
+    <div class="wa-sidebar-header">
+      <div class="wa-sidebar-header-left">
+        <button class="chat-back-btn wa-back-home" onclick="goPage('home')" title="Volver">
+          <i class="fas fa-arrow-left"></i>
+        </button>
+        <h2 class="wa-sidebar-title">Chats</h2>
+      </div>
+      <div class="wa-sidebar-header-right">
+        <button class="msg-icon-btn" title="Nuevo chat" onclick="goPage('directory')">
+          <i class="fas fa-pen-to-square"></i>
+        </button>
+        <button class="msg-icon-btn" id="msgTabNotif" onclick="msgSwitchSection('notif')" title="Notificaciones">
+          <i class="fas fa-bell"></i>
+        </button>
+        <button class="msg-icon-btn" id="msgSettingsBtn" title="Ajustes" onclick="openMsgSettings()">
+          <i class="fas fa-ellipsis-vertical"></i>
+        </button>
+      </div>
+    </div>
+
+    <!-- Buscador -->
+    <div class="wa-search-bar">
+      <i class="fas fa-magnifying-glass wa-search-icon"></i>
+      <input type="text" class="wa-search-input" id="msgSearchInput" placeholder="Buscar un chat..." oninput="filterConversations(this.value)" autocomplete="off">
+    </div>
+
+    <!-- Tabs Chats / Marcadores -->
+    <div class="msg-tabs">
+      <button class="msg-tabs-btn active" id="msgTabChats" onclick="msgSwitchTab('chats')">
+        Todos<span class="msg-tab-dot" id="msgChatsDot"></span>
+      </button>
+      <button class="msg-tabs-btn" id="msgTabBookmarks" onclick="msgSwitchTab('bookmarks')">
+        Favoritos
+      </button>
+      <button class="msg-tabs-btn" onclick="msgSwitchSection('notif')">
+        Notif<span id="msgNotifTabDot"></span>
+      </button>
+    </div>
 
   <!-- Contenido principal -->
   <div class="msg-body" id="msgBody">
