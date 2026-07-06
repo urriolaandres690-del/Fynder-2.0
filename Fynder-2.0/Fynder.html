@@ -3992,11 +3992,15 @@
       <section class="sett-section" id="sett-accesibilidad">
         <h2 class="sett-section-title">Accesibilidad</h2>
 
+        <div class="sett-group-label">General</div>
         <div class="sett-group">
           <div class="sett-row">
             <div class="sett-row-left">
               <div class="sett-row-icon" style="background:#F0F9FF;color:#0EA5E9"><i class="fas fa-text-height"></i></div>
-              <div><span class="sett-row-label">Tamaño de fuente UI</span><span class="sett-row-sub">Interfaz general de la app</span></div>
+              <div>
+                <span class="sett-row-label">Tamaño de fuente UI</span>
+                <span class="sett-row-sub">Interfaz general de la app</span>
+              </div>
             </div>
             <select class="sett-select" onchange="settSetUIFontSize(this.value)" id="settUIFontSize">
               <option value="normal">Normal (16px)</option>
@@ -4007,9 +4011,167 @@
           <div class="sett-row">
             <div class="sett-row-left">
               <div class="sett-row-icon" style="background:#F5F3FF;color:#8B5CF6"><i class="fas fa-adjust"></i></div>
-              <div><span class="sett-row-label">Reducir animaciones</span><span class="sett-row-sub">Limitar movimiento en la UI</span></div>
+              <div>
+                <span class="sett-row-label">Reducir animaciones</span>
+                <span class="sett-row-sub">Limitar movimiento en la UI</span>
+              </div>
             </div>
             <button class="sett-toggle" id="settReduceMotion" onclick="settToggleReduceMotion()"></button>
+          </div>
+          <div class="sett-row">
+            <div class="sett-row-left">
+              <div class="sett-row-icon" style="background:#FEF9EE;color:#F4D35E"><i class="fas fa-closed-captioning"></i></div>
+              <div>
+                <span class="sett-row-label">Subtítulos automáticos</span>
+                <span class="sett-row-sub">Crea subtítulos en los idiomas admitidos</span>
+              </div>
+            </div>
+            <button class="sett-toggle" id="settCaptionsToggle" onclick="settToggleSetting('captions','settCaptionsToggle')"></button>
+          </div>
+          <div class="sett-row">
+            <div class="sett-row-left">
+              <div class="sett-row-icon" style="background:#F0FEFE;color:#67B8B4"><i class="fas fa-hand-pointer"></i></div>
+              <div>
+                <span class="sett-row-label">Destacar brevemente el elemento enfocado</span>
+                <span class="sett-row-sub">Resalta visualmente el elemento activo</span>
+              </div>
+            </div>
+            <button class="sett-toggle" id="settFocusToggle" onclick="settToggleSetting('focus','settFocusToggle')"></button>
+          </div>
+          <div class="sett-row">
+            <div class="sett-row-left">
+              <div class="sett-row-icon" style="background:#EEF2FF;color:#2F5BB7"><i class="fas fa-hand-sparkles"></i></div>
+              <div>
+                <span class="sett-row-label">Deslizar de una página a otra</span>
+                <span class="sett-row-sub">Avanza y retrocede con gesto de deslizar</span>
+              </div>
+            </div>
+            <button class="sett-toggle on" id="settSwipeToggle" onclick="settToggleSetting('swipe','settSwipeToggle')"></button>
+          </div>
+          <div class="sett-row">
+            <div class="sett-row-left">
+              <div class="sett-row-icon" style="background:#F3F4F6;color:#6B7280"><i class="fas fa-clipboard"></i></div>
+              <div>
+                <span class="sett-row-label">Confirmaciones de copiar en el portapapeles</span>
+                <span class="sett-row-sub">Muestra confirmación cuando copias enlaces</span>
+              </div>
+            </div>
+            <button class="sett-toggle on" id="settClipboardToggle" onclick="settToggleSetting('clipboard','settClipboardToggle')"></button>
+          </div>
+        </div>
+      </section>
+
+      <!-- ── RENDIMIENTO ── -->
+      <section class="sett-section" id="sett-rendimiento">
+        <h2 class="sett-section-title">Rendimiento</h2>
+
+        <div class="sett-group-label">General</div>
+        <div class="sett-group">
+          <div class="sett-row">
+            <div class="sett-row-left">
+              <div class="sett-row-icon" style="background:#FEF9EE;color:#F4D35E"><i class="fas fa-triangle-exclamation"></i></div>
+              <div>
+                <span class="sett-row-label">Alertas de rendimiento</span>
+                <span class="sett-row-sub">Recibe sugerencias sobre problemas de rendimiento detectados</span>
+              </div>
+            </div>
+            <button class="sett-toggle on" id="settPerfAlertsToggle" onclick="settToggleSetting('perfAlerts','settPerfAlertsToggle')"></button>
+          </div>
+          <div class="sett-row">
+            <div class="sett-row-left">
+              <div class="sett-row-icon" style="background:#F0F9FF;color:#0EA5E9"><i class="fas fa-circle-dot"></i></div>
+              <div>
+                <span class="sett-row-label">Aspecto de las pestañas inactivas</span>
+                <span class="sett-row-sub">Aparece un indicador en las páginas sin actividad</span>
+              </div>
+            </div>
+            <button class="sett-toggle on" id="settInactiveTabsToggle" onclick="settToggleSetting('inactiveTabs','settInactiveTabsToggle')"></button>
+          </div>
+        </div>
+
+        <div class="sett-group-label">Memoria</div>
+        <div class="sett-group">
+          <div class="sett-row">
+            <div class="sett-row-left">
+              <div class="sett-row-icon" style="background:#F5F3FF;color:#8B5CF6"><i class="fas fa-memory"></i></div>
+              <div>
+                <span class="sett-row-label">Ahorro de memoria</span>
+                <span class="sett-row-sub">Libera recursos de páginas inactivas para mejorar la velocidad</span>
+              </div>
+            </div>
+            <button class="sett-toggle" id="settMemSaverToggle" onclick="settToggleSetting('memSaver','settMemSaverToggle')"></button>
+          </div>
+          <div class="sett-row sett-row-btn" onclick="showToast('Próximamente: gestión de sitios siempre activos')">
+            <div class="sett-row-left">
+              <div class="sett-row-icon" style="background:#E6F5F4;color:#67B8B4"><i class="fas fa-thumbtack"></i></div>
+              <div>
+                <span class="sett-row-label">Mantener siempre activos estos sitios</span>
+                <span class="sett-row-sub">Los sitios añadidos no liberarán memoria</span>
+              </div>
+            </div>
+            <span class="sett-btn-sm">Añadir</span>
+          </div>
+        </div>
+
+        <div class="sett-group-label">Encendido</div>
+        <div class="sett-group">
+          <div class="sett-row">
+            <div class="sett-row-left">
+              <div class="sett-row-icon" style="background:#FEF2F2;color:#EF4444"><i class="fas fa-battery-half"></i></div>
+              <div>
+                <span class="sett-row-label">Ahorro de energía</span>
+                <span class="sett-row-sub">Limita la actividad en segundo plano y efectos visuales</span>
+              </div>
+            </div>
+            <button class="sett-toggle on" id="settEnergySaverToggle" onclick="settToggleEnergySaver()"></button>
+          </div>
+          <div class="sett-row sett-radio-row" id="settEnergyRow1">
+            <div class="sett-row-left" style="gap:10px">
+              <div class="sett-radio-dot active" id="settEnergyOpt1" onclick="settSelectEnergyMode(1)"></div>
+              <div>
+                <span class="sett-row-label">Activar solo cuando la batería esté al 20% o menos</span>
+              </div>
+            </div>
+          </div>
+          <div class="sett-row sett-radio-row" id="settEnergyRow2">
+            <div class="sett-row-left" style="gap:10px">
+              <div class="sett-radio-dot" id="settEnergyOpt2" onclick="settSelectEnergyMode(2)"></div>
+              <div>
+                <span class="sett-row-label">Activar cuando el dispositivo esté desconectado</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="sett-group-label">Velocidad</div>
+        <div class="sett-group">
+          <div class="sett-row">
+            <div class="sett-row-left">
+              <div class="sett-row-icon" style="background:#E6F5F4;color:#67B8B4"><i class="fas fa-bolt"></i></div>
+              <div>
+                <span class="sett-row-label">Precargar páginas</span>
+                <span class="sett-row-sub">Anticipa la siguiente página para que cargue más rápido</span>
+              </div>
+            </div>
+            <button class="sett-toggle on" id="settPreloadToggle" onclick="settToggleSetting('preload','settPreloadToggle')"></button>
+          </div>
+          <div class="sett-row sett-radio-row">
+            <div class="sett-row-left" style="gap:10px">
+              <div class="sett-radio-dot" id="settPreloadOpt1" onclick="settSelectPreloadMode(1)"></div>
+              <div>
+                <span class="sett-row-label">Precarga ampliada</span>
+                <span class="sett-row-sub">Se precargan más páginas</span>
+              </div>
+            </div>
+          </div>
+          <div class="sett-row sett-radio-row">
+            <div class="sett-row-left" style="gap:10px">
+              <div class="sett-radio-dot active" id="settPreloadOpt2" onclick="settSelectPreloadMode(2)"></div>
+              <div>
+                <span class="sett-row-label">Precarga estándar</span>
+                <span class="sett-row-sub">Algunas de las páginas que visitas están precargadas</span>
+              </div>
+            </div>
           </div>
         </div>
       </section>
@@ -4035,6 +4197,93 @@
               <div><span class="sett-row-label sett-danger-text">Limpiar datos de la app</span><span class="sett-row-sub">Elimina caché y preferencias locales</span></div>
             </div>
           </div>
+        </div>
+      </section>
+
+      <!-- ── SISTEMA ── -->
+      <section class="sett-section" id="sett-sistema">
+        <h2 class="sett-section-title">Sistema</h2>
+
+        <div class="sett-group-label">Sistema</div>
+        <div class="sett-group">
+          <div class="sett-row">
+            <div class="sett-row-left">
+              <div class="sett-row-icon" style="background:#E6F5F4;color:#67B8B4"><i class="fas fa-layer-group"></i></div>
+              <div>
+                <span class="sett-row-label">Seguir ejecutando en segundo plano al cerrar</span>
+                <span class="sett-row-sub">Permite que Fynder reciba notificaciones aún cerrado</span>
+              </div>
+            </div>
+            <button class="sett-toggle on" id="settBgRunToggle" onclick="settToggleSetting('bgRun','settBgRunToggle')"></button>
+          </div>
+          <div class="sett-row">
+            <div class="sett-row-left">
+              <div class="sett-row-icon" style="background:#EEF2FF;color:#2F5BB7"><i class="fas fa-microchip"></i></div>
+              <div>
+                <span class="sett-row-label">Usar aceleración de hardware</span>
+                <span class="sett-row-sub">Usa la GPU para mejorar el rendimiento visual</span>
+              </div>
+            </div>
+            <button class="sett-toggle on" id="settHwAccelToggle" onclick="settToggleSetting('hwAccel','settHwAccelToggle')"></button>
+          </div>
+          <div class="sett-row">
+            <div class="sett-row-left">
+              <div class="sett-row-icon" style="background:#FFF7ED;color:#F97316"><i class="fas fa-bell"></i></div>
+              <div>
+                <span class="sett-row-label">Mostrar notificaciones del sistema</span>
+                <span class="sett-row-sub">Notificaciones sobre funciones y consejos de Fynder</span>
+              </div>
+            </div>
+            <button class="sett-toggle on" id="settSysNotifToggle" onclick="settToggleSetting('sysNotif','settSysNotifToggle')"></button>
+          </div>
+          <div class="sett-row" onclick="showToast('Redirigiendo a configuración de proxy...')">
+            <div class="sett-row-left">
+              <div class="sett-row-icon" style="background:#F3F4F6;color:#6B7280"><i class="fas fa-network-wired"></i></div>
+              <div>
+                <span class="sett-row-label">Abrir configuración de proxy</span>
+                <span class="sett-row-sub">Ajustes de red de tu dispositivo</span>
+              </div>
+            </div>
+            <i class="fas fa-arrow-up-right-from-square sett-row-arrow"></i>
+          </div>
+        </div>
+
+        <div class="sett-group-label">IA en el dispositivo</div>
+        <div class="sett-group">
+          <div class="sett-row">
+            <div class="sett-row-left">
+              <div class="sett-row-icon" style="background:#F5F3FF;color:#8B5CF6"><i class="fas fa-robot"></i></div>
+              <div>
+                <span class="sett-row-label">IA local</span>
+                <span class="sett-row-sub">Usa modelos locales para funciones como detección de contenido</span>
+              </div>
+            </div>
+            <button class="sett-toggle on" id="settLocalAIToggle" onclick="settToggleSetting('localAI','settLocalAIToggle')"></button>
+          </div>
+        </div>
+      </section>
+
+      <!-- ── RESTABLECER ── -->
+      <section class="sett-section" id="sett-restablecer">
+        <h2 class="sett-section-title">Restablecer ajustes</h2>
+
+        <div class="sett-group-label">Restablecer configuración</div>
+        <div class="sett-group">
+          <div class="sett-row sett-row-btn" onclick="settResetConfig()">
+            <div class="sett-row-left">
+              <div class="sett-row-icon" style="background:#FEF2F2;color:#EF4444"><i class="fas fa-rotate-left"></i></div>
+              <div>
+                <span class="sett-row-label">Restaurar valores predeterminados</span>
+                <span class="sett-row-sub">Restablece todos los ajustes a su estado original</span>
+              </div>
+            </div>
+            <i class="fas fa-chevron-right sett-row-arrow"></i>
+          </div>
+        </div>
+
+        <div class="sett-restore-info">
+          <i class="fas fa-circle-info"></i>
+          <p>Esta acción restablecerá todos los ajustes a sus valores predeterminados. Tus datos de cuenta y negocios no se verán afectados.</p>
         </div>
       </section>
 
