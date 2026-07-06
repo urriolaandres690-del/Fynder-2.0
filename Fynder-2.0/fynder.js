@@ -6974,3 +6974,98 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 });
+
+/* ================================================================
+   AJUSTES DEL CHAT: modo oscuro y fondo del chat
+   ================================================================ */
+
+/** Toggle modo oscuro/día desde el panel de ajustes del chat */
+function msgToggleTheme() {
+  toggleDarkMode(); // usa la función global existente
+  _syncMsgSettingsTheme();
+}
+
+/** Sincroniza el toggle y label del tema en el panel */
+function _syncMsgSettingsTheme() {
+  const isDark   = document.documentElement.getAttribute('data-theme') === 'dark';
+  const toggle   = document.getElementById('settingThemeToggle');
+  const sub      = document.getElementById('settingThemeSub');
+  const icon     = document.getElementById('settingThemeIcon');
+
+  if (toggle) toggle.classList.toggle('on', isDark);
+  if (sub)    sub.textContent    = isDark ? 'Tema actual: oscuro' : 'Tema actual: claro';
+  if (icon)   icon.innerHTML     = isDark
+    ? '<i class="fas fa-moon"></i>'
+    : '<i class="fas fa-sun" style="color:#F4D35E"></i>';
+}
+
+/** Toggle genérico de ajustes del chat (online, etc.) */
+function msgToggleSetting(key, btnId) {
+  const lsKey  = 'fynderMsgOpt_' + key;
+  const btn    = document.getElementById(btnId);
+  const isOn   = btn ? btn.classList.contains('on') : localStorage.getItem(lsKey) !== '0';
+  const newVal = !isOn;
+  localStorage.setItem(lsKey, newVal ? '1' : '0');
+  if (btn) btn.classList.toggle('on', newVal);
+  showToast(newVal ? 'Activado' : 'Desactivado');
+}
+
+/** Cambiar fondo del chat */
+function setChatWallpaper(wp, btn) {
+  // Quitar clases anteriores del área de mensajes
+  const msgs1 = document.getElementById('chatMessages');
+  const msgs2 = document.getElementById('chatMessagesMobile');
+  [msgs1, msgs2].forEach(el => {
+    if (!el) return;
+    el.classList.remove('wp-dots', 'wp-gradient', 'wp-dark', 'wp-nature');
+    if (wp !== 'default') el.classList.add('wp-' + wp);
+  });
+
+  // Guardar preferencia
+  localStorage.setItem('fynderChatWallpaper', wp);
+
+  // Actualizar dots activos
+  document.querySelectorAll('.msg-wallpaper-dot').forEach(d => d.classList.remove('active'));
+  if (btn) btn.classList.add('active');
+
+  // Actualizar sub-label
+  const wpLabels = { default:'Patrón por defecto', dots:'Puntos', gradient:'Gradiente', dark:'Oscuro total', nature:'Verde' };
+  const sub = document.getElementById('settingWallpaperSub');
+  if (sub) sub.textContent = wpLabels[wp] || wp;
+
+  showToast('Fondo actualizado');
+}
+
+/** Restaurar fondo del chat al cargar */
+function _restoreChatWallpaper() {
+  const wp = localStorage.getItem('fynderChatWallpaper') || 'default';
+  const msgs1 = document.getElementById('chatMessages');
+  const msgs2 = document.getElementById('chatMessagesMobile');
+  [msgs1, msgs2].forEach(el => {
+    if (!el) return;
+    el.classList.remove('wp-dots', 'wp-gradient', 'wp-dark', 'wp-nature');
+    if (wp !== 'default') el.classList.add('wp-' + wp);
+  });
+
+  // Sync dots en el panel
+  document.querySelectorAll('.msg-wallpaper-dot').forEach(d => {
+    d.classList.toggle('active', d.dataset.wp === wp);
+  });
+  const wpLabels = { default:'Patrón por defecto', dots:'Puntos', gradient:'Gradiente', dark:'Oscuro total', nature:'Verde' };
+  const sub = document.getElementById('settingWallpaperSub');
+  if (sub) sub.textContent = wpLabels[wp] || wp;
+}
+
+// Parchear openMsgSettings para sincronizar el tema y wallpaper al abrir
+const _origOpenMsgSettings = window.openMsgSettings;
+window.openMsgSettings = function() {
+  if (_origOpenMsgSettings) _origOpenMsgSettings();
+  _syncMsgSettingsTheme();
+  _restoreChatWallpaper();
+};
+
+// Restaurar wallpaper al cargar la página
+document.addEventListener('DOMContentLoaded', () => {
+  _restoreChatWallpaper();
+  _syncMsgSettingsTheme();
+});
