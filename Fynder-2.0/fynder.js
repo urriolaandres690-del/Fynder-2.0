@@ -7276,8 +7276,105 @@ function _pick(arr) {
   return arr[Math.floor(Math.random() * arr.length)];
 }
 
+/**
+ * Detecta la intención del usuario usando múltiples señales:
+ * palabras clave, frases completas, contexto negativo ("no me quedó"),
+ * verbos de acción ("cambiar", "devolver") y variantes coloquiales.
+ */
+function _detectIntent(t) {
+  // t ya viene en minúsculas sin acentos normalizados
+  const intents = [];
+
+  // ── DEVOLUCIÓN / CAMBIO / NO QUEDÓ ──
+  if (/(no me qued|no qued|no sirvi|no funcion|no jal|no encaj|no entr|cambiar|cambi|devolver|devolución|devolucion|reembolso|reembolsar|quiero cambiar|me la cambia|me lo cambia|talla mal|talla equivocad|quedó grande|quedó pequeño|quedo grande|quedo pequeño|no era lo que|vino mal|llegó mal|llegó roto|llegó dañado|llegó defectuoso|en mal estado|producto malo|no es lo que ped|no coincide|no es correcto|artículo incorrecto)/.test(t)) {
+    intents.push('cambio_devolucion');
+  }
+
+  // ── QUEJA / PROBLEMA / MAL SERVICIO ──
+  if (/(queja|reclamo|molest|inconveniente|pésimo|pesimo|mal servicio|mala atención|mala atencion|me trataron|irresponsable|tardaron mucho|nunca llegó|nunca llego|me estafaron|me robaron|me cobraron de más|cobro de mas|no cumplieron|incumplieron|fallaron|decepcionante|deplorable|negligencia|dañaron|rompieron|perdieron mi|extraviaron)/.test(t)) {
+    intents.push('queja');
+  }
+
+  // ── PRODUCTO DAÑADO / DEFECTO ──
+  if (/(dañad|roto|defecto|defectuos|no funciona|se dañó|se daño|se rompió|se rompio|no enciende|no prende|no carga|no corre|falla|fallo|error|no abre|no cierra|suena raro|hace ruido|se calienta demasiado|se sobre calienta|pantalla rota|pantalla rayada|pantalla quebrada)/.test(t)) {
+    intents.push('producto_danado');
+  }
+
+  // ── PRECIO / COTIZACIÓN ──
+  if (/(precio|costo|cuánto|cuanto|cuánto cuesta|cuanto cuesta|cuánto cobran|cuanto cobran|tarifa|valor|cuánto sale|cuanto sale|presupuesto|cotización|cotizacion|cotizar|cuánto me costaría|cuanto me costaria|qué precio|que precio|tienen precio|tienen tarifa|economico|barato|caro)/.test(t)) {
+    intents.push('precio');
+  }
+
+  // ── HORARIO ──
+  if (/(horario|qué hora|que hora|a qué hora|a que hora|cuándo abren|cuando abren|cuándo cierran|cuando cierran|están abiertos|estan abiertos|abren hoy|cierran hoy|hora de apertura|hora de cierre|cuándo atienden|cuando atienden|abierto ahora|hasta qué hora|hasta que hora|desde qué hora|desde que hora)/.test(t)) {
+    intents.push('horario');
+  }
+
+  // ── DIRECCIÓN / UBICACIÓN ──
+  if (/(dónde están|donde estan|dónde quedan|donde quedan|dirección|direccion|ubicación|ubicacion|cómo llego|como llego|cómo llegar|como llegar|están en|estan en|dónde se encuentran|donde se encuentran|local|sucursal|tienen tienda|tienen local|qué zona|que zona|en qué barrio|en que barrio|mapa|google maps)/.test(t)) {
+    intents.push('ubicacion');
+  }
+
+  // ── CITA / RESERVA ──
+  if (/(cita|reserva|reservar|agendar|agenda|turno|appointment|quiero una hora|pedir hora|disponibilidad|cupo|cuándo puedo ir|cuando puedo ir|puedo ir hoy|puedo ir mañana|puedo ir manana|me pueden atender|me pueden recibir|me dan un espacio)/.test(t)) {
+    intents.push('cita');
+  }
+
+  // ── MENÚ / PRODUCTOS / QUÉ OFRECEN ──
+  if (/(menú|menu|carta|qué platos|que platos|qué tienen|que tienen|qué ofrecen|que ofrecen|qué venden|que venden|qué servicios|que servicios|catálogo|catalogo|lista de precios|productos disponibles|tienen.*\?|venden.*\?|ofrecen.*\?)/.test(t)) {
+    intents.push('menu_productos');
+  }
+
+  // ── DELIVERY / ENVÍO ──
+  if (/(delivery|domicilio|envío|envio|mandan a|despachan|llevan a|traen a|a mi casa|a mi dirección|a mi direccion|entregan|hacen entregas|llega a|reparto|mensajería|mensajeria|shipping)/.test(t)) {
+    intents.push('delivery');
+  }
+
+  // ── PAGO ──
+  if (/(pago|pagar|cómo pago|como pago|métodos de pago|metodos de pago|efectivo|tarjeta|transferencia|yappy|nequi|sinpe|visa|mastercard|crédito|credito|débito|debito|depósito|deposito|digital|billetera|billetera digital|aceptan tarjeta|aceptan efectivo)/.test(t)) {
+    intents.push('pago');
+  }
+
+  // ── DESCUENTO / PROMO ──
+  if (/(descuento|promoción|promo|oferta|rebaja|especial|cupón|cupon|2x1|gratis|precio especial|precio de oferta|tienen algo barato|algo económico|algo economico|sale|hay algún descuento|hay algun descuento|están de oferta|estan de oferta)/.test(t)) {
+    intents.push('descuento');
+  }
+
+  // ── TIEMPO / URGENCIA ──
+  if (/(cuánto tarda|cuanto tarda|cuánto demora|cuanto demora|tiempo de espera|qué tan rápido|que tan rapido|urgente|para hoy|para ya|lo más pronto|lo mas pronto|inmediato|express|rápido|rapido|mismo día|mismo dia|en el día|en el dia|antes de las|para mañana|para manana)/.test(t)) {
+    intents.push('tiempo');
+  }
+
+  // ── INFORMACIÓN CONTACTO ──
+  if (/(teléfono|telefono|número|numero|whatsapp|llamar|llamada|contacto|correo|email|instagram|facebook|redes|página web|pagina web|página|pagina|web|redes sociales)/.test(t)) {
+    intents.push('contacto');
+  }
+
+  // ── AGRADECIMIENTO ──
+  if (/(gracias|thank|muchas gracias|muy amable|perfecto|excelente|genial|increíble|increible|muy bien|buenísimo|buenisimo|satisfecho|satisfecha|todo bien|quedé feliz|quede feliz|quedé contento|quede contento|estuvo bien|me gustó|me gusto|les quedo bien|les quedó bien)/.test(t)) {
+    intents.push('gracias');
+  }
+
+  // ── SALUDO ──
+  if (/(^hola|^buenas|^buenos|^hey|^hi |^buen dia|^buen día|saludos|^ola |buenas tardes|buenas noches|buenos dias|buenos días)/.test(t)) {
+    intents.push('saludo');
+  }
+
+  // ── DISPONIBILIDAD / HAY STOCK ──
+  if (/(disponible|disponibilidad|hay|tienen en stock|queda|quedan|en existencia|lo tienen|lo tienen disponible|está disponible|esta disponible|puedo conseguir|puedo comprar)/.test(t) && !intents.includes('menu_productos')) {
+    intents.push('disponibilidad');
+  }
+
+  return intents;
+}
+
 function _getSmartReply(userText, cat, bizName, biz) {
-  const t = userText;
+  // Normalizar: minúsculas, sin acentos
+  const t = userText
+    .toLowerCase()
+    .normalize('NFD')
+    .replace(/[\u0300-\u036f]/g, '');
+  const tOrig = userText.toLowerCase(); // también buscar con acentos
 
   // ── Saludos ──
   if (/\b(hola|buenas|buenos|saludos|hey|hi|buen día|buenas tardes|buenas noches)\b/.test(t)) {
