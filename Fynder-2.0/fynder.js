@@ -4047,6 +4047,18 @@ function _advanceMsgStatus(bizId, msgId, newStatus, renderFn) {
 // ---- Respuesta automática del negocio ----
 function _bizAutoReply(bizId, renderFn) {
   if (_activeChatBizId !== bizId) return;
+
+  // Marcar todos los mensajes del usuario como 'read' (el negocio los leyó)
+  const msgs = _getMsgs(bizId);
+  let changed = false;
+  msgs.forEach(m => {
+    if (m.from === 'user' && m.status !== 'read') {
+      m.status = 'read';
+      m.read   = true;
+      changed  = true;
+    }
+  });
+
   const replies = [
     '¡Gracias por escribirnos! 😊 Estaremos encantados de ayudarte.',
     'Claro, con gusto te atendemos. ¿Cuéntanos más detalles?',
@@ -4057,11 +4069,10 @@ function _bizAutoReply(bizId, renderFn) {
   ];
   const text = replies[Math.floor(Math.random() * replies.length)];
   const now  = new Date();
-  const msg  = { id: Date.now(), from: 'biz', text, time: _fmtTime(now), date: _fmtDate(now) };
-  const msgs = _getMsgs(bizId);
-  msgs.push(msg);
+  const reply = { id: Date.now(), from: 'biz', text, time: _fmtTime(now), date: _fmtDate(now) };
+  msgs.push(reply);
   _saveMsgs(bizId, msgs);
-  _updateConvLastMsg(bizId, text, msg.time);
+  _updateConvLastMsg(bizId, text, reply.time);
   renderConversations();
   // Usa la función de render pasada, o detecta cuál aplica
   if (renderFn) {
