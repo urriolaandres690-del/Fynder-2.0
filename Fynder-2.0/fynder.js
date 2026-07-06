@@ -7073,3 +7073,143 @@ document.addEventListener('DOMContentLoaded', () => {
   _restoreChatWallpaper();
   _syncMsgSettingsTheme();
 });
+
+// ============================================================
+//  HEADER CHATS — Menú de tres puntitos (dropdown)
+// ============================================================
+
+let _msgHeaderMenuOpen = false;
+
+function toggleMsgHeaderMenu() {
+  const dd = document.getElementById('msgHeaderDropdown');
+  if (!dd) return;
+  _msgHeaderMenuOpen = !_msgHeaderMenuOpen;
+  dd.style.display = _msgHeaderMenuOpen ? 'block' : 'none';
+  if (_msgHeaderMenuOpen) {
+    setTimeout(() => {
+      document.addEventListener('click', _closeMsgHeaderMenuOutside, { once: true });
+    }, 10);
+  }
+}
+
+function closeMsgHeaderMenu() {
+  const dd = document.getElementById('msgHeaderDropdown');
+  if (dd) dd.style.display = 'none';
+  _msgHeaderMenuOpen = false;
+}
+
+function _closeMsgHeaderMenuOutside(e) {
+  const wrap = document.getElementById('msgHeaderMenuWrap');
+  if (wrap && wrap.contains(e.target)) return;
+  closeMsgHeaderMenu();
+}
+
+/** Marca todos los chats como leídos (limpia badges) */
+function msgMarkAllRead() {
+  const convs = _getConversations();
+  convs.forEach(c => {
+    c.unread = 0;
+    const msgs = _getMsgs(c.bizId);
+    msgs.forEach(m => { m.read = true; });
+    _saveMsgs(c.bizId, msgs);
+  });
+  _saveConversations(convs);
+  renderConversations();
+  updateMsgBadge();
+  showToast('✅ Todos los chats marcados como leídos');
+}
+
+/** Ordena los chats por criterio */
+function msgSortChats(by) {
+  const convs = _getConversations();
+  if (by === 'unread') {
+    convs.sort((a, b) => (b.unread || 0) - (a.unread || 0));
+  } else {
+    // recent: orden por timestamp del último mensaje
+    convs.sort((a, b) => (b.lastTime || 0) - (a.lastTime || 0));
+  }
+  _saveConversations(convs);
+  renderConversations();
+  showToast(by === 'unread' ? '📬 Ordenado por no leídos' : '🕐 Ordenado por recientes');
+}
+
+/** Limpia todo el historial de chats (pide confirmación) */
+function msgClearAllChats() {
+  if (!confirm('¿Limpiar todo el historial de chats? Esta acción no se puede deshacer.')) return;
+  const convs = _getConversations();
+  convs.forEach(c => {
+    localStorage.removeItem('fynderMsgs_' + c.bizId);
+  });
+  _saveConversations([]);
+  renderConversations();
+  showToast('🗑️ Historial eliminado');
+}
+
+// ============================================================
+//  BOTÓN LÁPIZ — Modal "Nuevo chat"
+// ============================================================
+
+function openNewChatModal() {
+  const overlay = document.getElementById('newChatOverlay');
+  const modal   = document.getElementById('newChatModal');
+  const input   = document.getElementById('newChatSearchInput');
+  if (!overlay || !modal) return;
+  overlay.style.display = 'block';
+  modal.style.display   = 'flex';
+  _renderNewChatList('');
+  if (input) { input.value = ''; input.focus(); }
+}
+
+function closeNewChatModal() {
+  document.getElementById('newChatOverlay').style.display = 'none';
+  document.getElementById('newChatModal').style.display   = 'none';
+}
+
+function filterNewChatList(q) {
+  _renderNewChatList(q);
+}
+
+function _renderNewChatList(q) {
+  const list = document.getElementById('newChatList');
+  if (!list) return;
+  const term = (q || '').trim().toLowerCase();
+
+  // Negocios con los que ya hay conversación
+  const existingIds = new Set(_getConversations().map(c => String(c.bizId)));
+
+  let businesses = BUSINESSES;
+  if (term) {
+    businesses = businesses.filter(b =>
+      b.name.toLowerCase().includes(term) ||
+      (b.category || '').toLowerCase().includes(term)
+    );
+  }
+
+  if (businesses.length === 0) {
+    list.innerHTML = `<div class="msg-newchat-empty"><i class="fas fa-search"></i><p>Sin resultados para "${q}"</p></div>`;
+    return;
+  }
+
+  list.innerHTML = businesses.map(b => {
+    const hasChat = existingIds.has(String(b.id));
+    const cat     = CATEGORIES.find(c => c.id === b.category);
+    const stars   = b.rating ? '⭐ ' + b.rating.toFixed(1) : '';
+    return `
+      <div class="msg-newchat-item" onclick="closeNewChatModal();openChat(${b.id})">
+        <div class="msg-newchat-avatar" style="background:${cat ? cat.color + '22' : '#eee'}">
+          ${b.image
+            ? `<img src="${b.image}" alt="${b.name}" style="width:100%;height:100%;object-fit:cover;border-radius:50%">`
+            : `<span style="font-weight:700;color:${cat ? cat.color : '#555'};font-size:1rem">${b.name.charAt(0)}</span>`
+          }
+        </div>
+        <div class="msg-newchat-info">
+          <span class="msg-newchat-name">${b.name}</span>
+          <span class="msg-newchat-meta">${cat ? cat.label : ''} ${stars ? '· ' + stars : ''}</span>
+        </div>
+        ${hasChat
+          ? `<span class="msg-newchat-badge-existing"><i class="fas fa-comment-dots"></i></span>`
+          : `<span class="msg-newchat-badge-new"><i class="fas fa-plus"></i></span>`
+        }
+      </div>`;
+  }).join('');
+}
