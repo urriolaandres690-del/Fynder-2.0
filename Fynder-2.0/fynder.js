@@ -4900,7 +4900,28 @@ function deleteChatHistory() {
 }
 
 function blockBiz() {
-  showToast('Función de bloqueo próximamente');
+  if (!_activeChatBizId) return;
+  
+  if (!confirm('¿Bloquear este negocio? Ya no recibirás mensajes.')) return;
+  
+  // Aquí iría la lógica real de bloqueo (localStorage, etc.)
+  let blocked = JSON.parse(localStorage.getItem('fynderBlocked') || '[]');
+  if (!blocked.includes(_activeChatBizId)) {
+    blocked.push(_activeChatBizId);
+    localStorage.setItem('fynderBlocked', JSON.stringify(blocked));
+  }
+  
+  showToast('Negocio bloqueado');
+  
+  // En desktop: cerrar panel y chat
+  const isDesktop = window.innerWidth >= 769;
+  if (isDesktop) {
+    closeWaChatInfoPanel();
+    waCloseChat();
+    renderConversations();
+  } else {
+    goPage('messages');
+  }
 }
 
 
