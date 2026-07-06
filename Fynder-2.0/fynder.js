@@ -7802,4 +7802,3 @@ function _getSmartReply(userText, cat, bizName, biz) {
     `Estamos aquí para ayudarte ✅. ¿Cuéntanos?`,
   ]);
 }
-
