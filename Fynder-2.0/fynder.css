@@ -16132,7 +16132,7 @@ mark.msg-search-mark {
   border-radius: 100px;
 }
 
-@media (max-width: 600px) {
+@media (max-width: 960px) {
   .about-sponsors-grid { grid-template-columns: 1fr; }
   .about-sponsor-card  { padding: 24px 20px; }
 }
