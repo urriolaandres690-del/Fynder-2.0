@@ -5263,11 +5263,13 @@ function insertEmoji(emoji) {
    ================================================================ */
 
 const _msgSettings = {
-  notif: true,
-  sound: false,
-  read:  true,
-  bubbleColor: '#7b3838',
-  fontSize: 'normal'
+  notif:       true,
+  sound:       false,
+  read:        true,
+  online:      true,
+  bubbleColor: '#1a5c34',
+  fontSize:    'normal',
+  wallpaper:   'default'
 };
 
 function _loadMsgSettings() {
