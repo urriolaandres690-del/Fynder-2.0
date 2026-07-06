@@ -3970,8 +3970,7 @@ function _renderMsgsInto(container, bizId) {
     if (isIn  && isLastInGroup) bubbleClass += ' chat-bubble-tail-in';
     if (!isIn && isLastInGroup) bubbleClass += ' chat-bubble-tail-out';
 
-    const tickClass = msg.read ? 'read' : 'sent';
-    const ticks = isOut ? `<span class="chat-bubble-tick ${tickClass}"><i class="fas fa-check-double"></i></span>` : '';
+    const ticks = isOut ? _buildTickHtml(msg) : '';
 
     html += `
       <div class="${isIn ? 'chat-msg-row in' : 'chat-msg-row out'}">
