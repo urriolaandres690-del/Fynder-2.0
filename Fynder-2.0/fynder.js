@@ -5685,14 +5685,16 @@ function settSyncAppearance() {
     darkBtn.classList.toggle('on', document.documentElement.getAttribute('data-theme') === 'dark');
   }
 
-  // Tamaño de fuente del chat — solo los botones dentro de page-settings
+  // Tamaño de fuente del chat
   const fontBtns = document.querySelectorAll('#sett-apariencia .sett-font-btn');
   const sizes = ['small', 'normal', 'large'];
-  fontBtns.forEach((btn, i) => btn.classList.toggle('active', sizes[i] === _msgSettings.fontSize));
+  const currentSize = _msgSettings.fontSize || 'normal';
+  fontBtns.forEach((btn, i) => btn.classList.toggle('active', sizes[i] === currentSize));
 
-  // Color de burbujas — solo los dots dentro de page-settings
+  // Color de burbujas
+  const currentColor = _msgSettings.bubbleColor || '#1a5c34';
   document.querySelectorAll('#sett-apariencia .sett-color-dot').forEach(dot => {
-    dot.classList.toggle('active', dot.dataset.color === _msgSettings.bubbleColor);
+    dot.classList.toggle('active', dot.dataset.color === currentColor);
   });
 }
 
