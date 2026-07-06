@@ -7459,13 +7459,17 @@ function _getSmartReply(userText, cat, bizName, biz) {
 
   if (intents.includes('tiempo')) {
     const catT = {
-      tecnologia:   [`Básicas en el día ⚡, complejas 24–48h. ¿Qué tiene tu equipo?`],
-      restaurantes: [`En mesa: 15–20 min ⏱️. Delivery: 30–45 min.`],
-      belleza:      [`Corte 30 min, tinte 2h, manicure 1h 💅. ¿Qué servicio?`],
-      hogar:        [`Trabajos pequeños: mismo día ⚡. Grandes: 2–5 días. ¿Qué necesitas?`],
-      transporte:   [`Confirmamos el vehículo en 15 min 🚗. ¿Para cuándo?`],
+      tecnologia:   [`Reparaciones básicas en el día ⚡, complejas en 24–48h. ¿Qué tiene tu equipo?`, `Pantalla: 2h. Batería: 1h. Software: mismo día 🔧. ¿Cuál es tu caso?`],
+      restaurantes: [`En mesa: 15–20 min ⏱️. Delivery: 30–45 min. ¿Para cuándo lo necesitas?`, `Si reservas con anticipación garantizamos tu mesa al llegar 🍽️`],
+      belleza:      [`Corte 30 min, tinte 2h, manicure 1h, pedicure 1h 💅. ¿Qué servicio te interesa?`, `Para no esperar, ¿agendamos una cita y garantizamos tu hora? 📅`],
+      hogar:        [`Trabajos pequeños: mismo día ⚡. Remodelaciones: 2–7 días. ¿Qué necesitas?`, `Técnicos disponibles hoy si es urgente. ¿Cuál es el trabajo? 🔨`],
+      transporte:   [`Confirmamos el vehículo en 15 min 🚗. Llegamos en 20–30 min. ¿Para cuándo?`, `Traslado al aeropuerto: llegar 30 min antes de tu vuelo 🛫. ¿A qué hora sales?`],
+      turismo:      [`Tours de medio día: 4–5h. Día completo: 8–10h 🗺️. ¿Cuánto tiempo tienes disponible?`, `Los tours salen por la mañana. ¿Cuántos días estarás en la ciudad? ✈️`],
+      salud:        [`Consultas con cita: espera máx 15 min 🩺. Sin cita según disponibilidad.`, `Exámenes de laboratorio listos en 24–48h. Urgentes en el día 🏥. ¿Qué examen necesitas?`],
+      ropa:         [`Encuentras lo que buscas al instante 👗. ¿Tienes una ocasión específica próximamente?`, `Si necesitas algo con urgencia tenemos disponibilidad inmediata en tienda 🏪`],
+      deportes:     [`Los artículos están disponibles de inmediato ⚽. ¿Qué equipo necesitas?`, `Entregas a domicilio en 24–48h si lo prefieres 📦. ¿Cuándo lo necesitas?`],
     };
-    return _pick(catT[cat] || [`Depende del servicio. ¿Más detalles? ⏱️`, `Trabajamos rápido. ¿Qué tan urgente es? ⚡`]);
+    return _pick(catT[cat] || [`Depende del servicio. ¿Nos das más detalles? ⏱️`, `Trabajamos rápido y con calidad. ¿Qué tan urgente es? ⚡`]);
   }
 
   if (intents.includes('contacto')) return _pick([
