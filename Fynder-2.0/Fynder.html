@@ -3509,6 +3509,9 @@
 
   </div><!-- /wa-sidebar -->
 
+  <!-- ── Divisor redimensionable ── -->
+  <div class="wa-resize-handle" id="waResizeHandle" title="Arrastrar para redimensionar"></div>
+
   <!-- ═══ COLUMNA DERECHA (chat activo) — solo desktop ═══ -->
   <div class="wa-main" id="waMain">
 
@@ -3563,17 +3566,60 @@
 
       <!-- Input de mensaje -->
       <div class="chat-input-bar wa-input-bar">
-        <button class="chat-emoji-btn" id="chatEmojiBtn" onclick="toggleEmojiPicker()">
+        <!-- Emoji -->
+        <button class="chat-emoji-btn" id="chatEmojiBtn" onclick="toggleEmojiPicker()" title="Emoji">
           <i class="fas fa-face-smile"></i>
         </button>
-        <button class="chat-emoji-btn" onclick="showToast('Adjuntar archivos próximamente')" title="Adjuntar">
-          <i class="fas fa-paperclip"></i>
-        </button>
+
+        <!-- Botón adjuntar con menú popup -->
+        <div class="chat-attach-wrap" id="chatAttachWrap">
+          <button class="chat-emoji-btn" onclick="toggleAttachMenu()" title="Adjuntar">
+            <i class="fas fa-paperclip"></i>
+          </button>
+          <div class="chat-attach-menu" id="chatAttachMenu">
+            <label class="chat-attach-item" title="Imagen o video">
+              <i class="fas fa-image" style="color:#7C3AED"></i>
+              <span>Imagen/Video</span>
+              <input type="file" accept="image/*,video/*" multiple style="display:none" onchange="handleFileAttach(this,'media')">
+            </label>
+            <label class="chat-attach-item" title="Documento">
+              <i class="fas fa-file-lines" style="color:#2563EB"></i>
+              <span>Documento</span>
+              <input type="file" accept=".pdf,.doc,.docx,.xls,.xlsx,.ppt,.pptx,.txt,.zip,.rar" multiple style="display:none" onchange="handleFileAttach(this,'doc')">
+            </label>
+            <label class="chat-attach-item" title="Audio">
+              <i class="fas fa-music" style="color:#059669"></i>
+              <span>Audio</span>
+              <input type="file" accept="audio/*" multiple style="display:none" onchange="handleFileAttach(this,'audio')">
+            </label>
+          </div>
+        </div>
+
         <input type="text" id="chatInput" class="chat-input"
           placeholder="Escribe un mensaje..."
+          oninput="chatInputChange()"
           onkeydown="if(event.key==='Enter')sendChatMessage()"
           autocomplete="off" />
-        <button class="chat-send-btn" onclick="sendChatMessage()" id="chatSendBtn">
+
+        <!-- Botón enviar / micrófono (cambia según haya texto) -->
+        <button class="chat-send-btn chat-mic-btn" onclick="sendChatMessage()" id="chatSendBtn" title="Enviar">
+          <i class="fas fa-paper-plane" id="chatSendIcon"></i>
+        </button>
+        <button class="chat-send-btn chat-mic-btn chat-mic-active" onclick="toggleAudioRecord()" id="chatMicBtn" title="Grabar audio" style="display:none">
+          <i class="fas fa-microphone" id="chatMicIcon"></i>
+        </button>
+      </div>
+
+      <!-- Barra de grabación de audio -->
+      <div class="chat-record-bar" id="chatRecordBar" style="display:none">
+        <button class="chat-record-cancel" onclick="cancelAudioRecord()" title="Cancelar">
+          <i class="fas fa-trash"></i>
+        </button>
+        <div class="chat-record-wave">
+          <span class="chat-record-dot"></span>
+          <span class="chat-record-time" id="chatRecordTime">0:00</span>
+        </div>
+        <button class="chat-record-send" onclick="stopAndSendAudio()" title="Enviar audio">
           <i class="fas fa-paper-plane"></i>
         </button>
       </div>
