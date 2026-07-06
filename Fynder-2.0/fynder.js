@@ -6581,3 +6581,91 @@ function _onRecordStop() {
   reader.readAsDataURL(blob);
   _audioChunks = [];
 }
+
+/* ================================================================
+   CHAT: ESTADO DE MENSAJES — TICKS ESTILO WHATSAPP
+   pending   → reloj        (esperando envío / sin conexión)
+   sent      → ✓ gris       (llegó al servidor)
+   delivered → ✓✓ gris      (entregado al destinatario)
+   read      → ✓✓ azul      (leído)
+   ================================================================ */
+function _buildTickHtml(msg) {
+  // Compatibilidad con mensajes anteriores que usan msg.read
+  const status = msg.status || (msg.read ? 'read' : 'delivered');
+
+  if (status === 'pending') {
+    return `<span class="chat-bubble-tick tick-pending" title="Enviando...">
+      <i class="fas fa-clock"></i>
+    </span>`;
+  }
+  if (status === 'sent') {
+    return `<span class="chat-bubble-tick tick-sent" title="Enviado">
+      <i class="fas fa-check"></i>
+    </span>`;
+  }
+  if (status === 'delivered') {
+    return `<span class="chat-bubble-tick tick-delivered" title="Entregado">
+      <i class="fas fa-check-double"></i>
+    </span>`;
+  }
+  // read
+  return `<span class="chat-bubble-tick tick-read" title="Leído">
+    <i class="fas fa-check-double"></i>
+  </span>`;
+}
+
+/* ================================================================
+   CHAT: DIVISOR REDIMENSIONABLE — RANGO AMPLIADO
+   Min: 200px  |  Max: 65% del viewport
+   ================================================================ */
+// Parchar el resizer existente para ampliar los límites
+(function patchWaResizer() {
+  document.addEventListener('DOMContentLoaded', () => {
+    const handle  = document.getElementById('waResizeHandle');
+    const sidebar = document.querySelector('.wa-sidebar');
+    if (!handle || !sidebar) return;
+
+    // Eliminar listeners anteriores clonando el nodo
+    const newHandle = handle.cloneNode(true);
+    handle.parentNode.replaceChild(newHandle, handle);
+
+    let startX = 0, startW = 0, dragging = false;
+
+    function clamp(val) {
+      const min = 200;
+      const max = Math.round(window.innerWidth * 0.65);
+      return Math.max(min, Math.min(max, val));
+    }
+
+    function onMouseMove(e) {
+      if (!dragging) return;
+      const newW = clamp(startW + (e.clientX - startX));
+      sidebar.style.width    = newW + 'px';
+      sidebar.style.minWidth = newW + 'px';
+      sidebar.style.maxWidth = newW + 'px';
+    }
+
+    function onMouseUp() {
+      if (!dragging) return;
+      dragging = false;
+      newHandle.classList.remove('resizing');
+      document.body.style.cursor     = '';
+      document.body.style.userSelect = '';
+      document.removeEventListener('mousemove', onMouseMove);
+      document.removeEventListener('mouseup',   onMouseUp);
+    }
+
+    newHandle.addEventListener('mousedown', (e) => {
+      if (window.innerWidth < 769) return;
+      dragging = true;
+      startX   = e.clientX;
+      startW   = sidebar.offsetWidth;
+      newHandle.classList.add('resizing');
+      document.body.style.cursor     = 'col-resize';
+      document.body.style.userSelect = 'none';
+      document.addEventListener('mousemove', onMouseMove);
+      document.addEventListener('mouseup',   onMouseUp);
+      e.preventDefault();
+    });
+  });
+})();
