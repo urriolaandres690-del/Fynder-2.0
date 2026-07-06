@@ -5159,6 +5159,7 @@ function settGoSection(id, btn) {
   if (id === 'herramientas')   settSyncHerramientas();
   if (id === 'idioma')         settSyncIdioma();
   if (id === 'amigos')         settSyncAmigos();
+  if (id === 'mensajes')       settSyncMensajesSection();
 }
 
 /** Helper para navegar desde dentro del contenido (sin referencia al botón) */
