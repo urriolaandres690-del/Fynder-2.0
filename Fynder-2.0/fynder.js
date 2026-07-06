@@ -7408,11 +7408,13 @@ function _getSmartReply(userText, cat, bizName, biz) {
     const catP = {
       restaurantes: [`Platos desde $5 hasta $25 🍽️. ¿Quieres la carta completa?`, `Menú del día $8 (sopa + plato + bebida). ¿Algo en especial?`, `Opciones para todos los presupuestos. ¿Qué prefieres?`],
       belleza:      [`Corte $15 💇, tinte $45, manicure $12, pedicure $18. ¿Qué servicio?`, `¿Corte, color o tratamiento? Te doy el precio exacto 💅`, `Paquete básica dama $20 (corte+lavado). ¿Quieres más info?`],
-      salud:        [`Consulta general $40, especialistas desde $60 🩺. ¿Tienes seguro?`, `Varía según especialista. ¿Qué tipo de consulta necesitas?`],
-      tecnologia:   [`Diagnóstico gratis 🔧. Pantalla desde $35, batería $20, software $15. ¿Qué equipo?`, `Depende del daño. ¿Es celular, laptop o tablet?`],
-      hogar:        [`Visita diagnóstico sin costo 🏠. Trabajos desde $30. ¿Qué reparas?`, `Presupuesto gratis y sin compromiso. ¿Qué trabajo necesitas?`],
-      turismo:      [`Tours desde $35/persona 🗺️. Grupos con descuento. ¿Para cuántos?`, `Paquetes desde $50 con transporte y guía. ¿Qué destino?`],
-      transporte:   [`Depende del destino 🚗. ¿Punto de salida y llegada?`, `Aeropuerto desde $20. ¿A dónde vas?`],
+      salud:        [`Consulta general $40, especialistas desde $60 🩺. ¿Tienes seguro médico? Eso puede bajar el costo.`, `Varía según especialista. ¿Necesitas medicina general, pediatría, nutrición u otra especialidad?`, `Los exámenes de laboratorio arrancan desde $15. ¿Qué examen necesitas?`],
+      tecnologia:   [`Diagnóstico gratis 🔧. Pantalla desde $35, batería $20, software $15. ¿Qué equipo tienes?`, `Depende del daño. ¿Es celular, laptop o tablet? Te doy el precio exacto.`, `Reparaciones con garantía de 3 meses. ¿Cuál es el problema de tu dispositivo? 💻`],
+      hogar:        [`Visita de diagnóstico sin costo 🏠. Trabajos desde $30. ¿Qué necesitas reparar?`, `Presupuesto gratis y sin compromiso. ¿Es plomería, electricidad, pintura u otro?`, `Precios justos y mano de obra garantizada. ¿Nos describes el trabajo? 🔨`],
+      turismo:      [`Tours desde $35/persona 🗺️. Grupos de 5+ tienen 15% de descuento. ¿Para cuántos son?`, `Paquetes desde $50 con transporte, guía y entrada. ¿Qué destino te interesa?`, `Tour de medio día $35, día completo $65 incluyendo almuerzo. ¿Cuál prefieres? ✈️`],
+      transporte:   [`Depende del destino 🚗. ¿Punto de salida y llegada para cotizarte?`, `Aeropuerto desde $20, zonas urbanas desde $8. ¿A dónde necesitas ir?`, `Tarifa plana para rutas frecuentes. ¿Cuál es tu ruta habitual? 🛫`],
+      ropa:         [`Prendas desde $10 hasta $80 según marca y estilo 👗. ¿Buscas algo casual, formal o sport?`, `Tenemos ropa para todos los presupuestos. ¿Qué tipo de prenda buscas?`, `Esta semana hay piezas con hasta 30% de descuento. ¿Quieres que te mostremos las ofertas? 🏷️`],
+      deportes:     [`Equipos desde $15 hasta $200 según deporte y marca ⚽. ¿Qué deporte practicas?`, `Zapatillas desde $35, ropa deportiva desde $15. ¿Tienes presupuesto definido?`, `Suplementos, ropa y equipamiento. ¿Qué necesitas exactamente? 💪`],
     };
     return _pick(catP[cat] || [`Precios varían según el servicio 💰. ¿Qué necesitas exactamente?`, `Con gusto cotizamos. ¿Qué producto o servicio te interesa?`]);
   }
