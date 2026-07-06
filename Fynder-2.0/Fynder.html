@@ -3455,12 +3455,33 @@
     <div class="wa-sidebar-header">
       <h2 class="wa-sidebar-title">Chats</h2>
       <div class="wa-sidebar-header-right">
-        <button class="msg-icon-btn" title="Nuevo chat" onclick="goPage('directory')">
+        <button class="msg-icon-btn" title="Nuevo chat" onclick="openNewChatModal()">
           <i class="fas fa-pen-to-square"></i>
         </button>
-        <button class="msg-icon-btn" id="msgSettingsBtn" title="Ajustes" onclick="openMsgSettings()">
-          <i class="fas fa-ellipsis-vertical"></i>
-        </button>
+        <div class="msg-header-menu-wrap" id="msgHeaderMenuWrap">
+          <button class="msg-icon-btn" id="msgSettingsBtn" title="Más opciones" onclick="toggleMsgHeaderMenu()">
+            <i class="fas fa-ellipsis-vertical"></i>
+          </button>
+          <div class="msg-header-dropdown" id="msgHeaderDropdown" style="display:none">
+            <button class="msg-hdd-item" onclick="msgMarkAllRead();closeMsgHeaderMenu()">
+              <i class="fas fa-check-double"></i> Marcar todo como leído
+            </button>
+            <button class="msg-hdd-item" onclick="msgSortChats('recent');closeMsgHeaderMenu()">
+              <i class="fas fa-arrow-down-wide-short"></i> Ordenar por recientes
+            </button>
+            <button class="msg-hdd-item" onclick="msgSortChats('unread');closeMsgHeaderMenu()">
+              <i class="fas fa-envelope"></i> Ordenar por no leídos
+            </button>
+            <div class="msg-hdd-separator"></div>
+            <button class="msg-hdd-item" onclick="msgClearAllChats();closeMsgHeaderMenu()">
+              <i class="fas fa-broom"></i> Limpiar historial
+            </button>
+            <div class="msg-hdd-separator"></div>
+            <button class="msg-hdd-item" onclick="closeMsgHeaderMenu();openMsgSettings()">
+              <i class="fas fa-gear"></i> Ajustes de mensajes
+            </button>
+          </div>
+        </div>
       </div>
     </div>
 
