@@ -9128,6 +9128,127 @@ section.fyl-section-alt > *:last-child { padding-bottom: 72px; }
   gap: 8px;
   transition: all .2s;
 }
+
+/* ── Herramientas tipo Chrome en el menú ── */
+.mobile-menu-tool-item {
+  display: flex !important;
+  align-items: center !important;
+  gap: 12px !important;
+  padding: 12px 14px !important;
+  border-radius: 10px !important;
+  background: none !important;
+  border: none !important;
+  cursor: pointer !important;
+  color: var(--fg) !important;
+  font-size: .875rem !important;
+  font-weight: 500 !important;
+  font-family: 'Inter', sans-serif !important;
+  text-align: left !important;
+  width: 100% !important;
+  transition: background .15s, color .15s !important;
+}
+.mobile-menu-tool-item > i:first-child {
+  width: 18px !important;
+  color: var(--muted) !important;
+  font-size: .9rem !important;
+  flex-shrink: 0 !important;
+}
+.mobile-menu-tool-item > span {
+  flex: 1 !important;
+}
+.mobile-menu-tool-item:hover {
+  background: var(--teal-light) !important;
+  color: var(--primary) !important;
+}
+.mobile-menu-tool-item:hover > i { color: var(--primary) !important; }
+
+/* Ítem con submenú */
+.mobile-menu-has-sub .mobile-sub-arrow {
+  font-size: .7rem !important;
+  color: var(--muted) !important;
+  transition: transform .25s !important;
+  width: auto !important;
+}
+.mobile-menu-has-sub.sub-open .mobile-sub-arrow {
+  transform: rotate(90deg) !important;
+}
+
+/* Submenú desplegable */
+.mobile-submenu {
+  display: none;
+  flex-direction: column;
+  gap: 0;
+  padding: 0 0 4px 34px;
+  animation: submenuIn .2s ease;
+}
+.mobile-submenu.open { display: flex; }
+@keyframes submenuIn {
+  from { opacity: 0; transform: translateY(-6px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.mobile-submenu button {
+  padding: 10px 14px !important;
+  font-size: .8125rem !important;
+  font-weight: 400 !important;
+  color: var(--muted) !important;
+  border-radius: 8px !important;
+  background: none !important;
+  border: none !important;
+  cursor: pointer !important;
+  display: flex !important;
+  align-items: center !important;
+  gap: 10px !important;
+  text-align: left !important;
+  width: 100% !important;
+  transition: background .12s, color .12s !important;
+}
+.mobile-submenu button i {
+  width: 15px !important;
+  font-size: .8rem !important;
+  color: var(--muted) !important;
+}
+.mobile-submenu button:hover {
+  background: var(--teal-light) !important;
+  color: var(--primary) !important;
+}
+.mobile-submenu button:hover i { color: var(--primary) !important; }
+
+/* Ítem de salir (peligro) */
+.mobile-menu-tool-danger {
+  color: #EF4444 !important;
+}
+.mobile-menu-tool-danger > i:first-child { color: #EF4444 !important; }
+.mobile-menu-tool-danger:hover {
+  background: #FEF2F2 !important;
+  color: #DC2626 !important;
+}
+
+/* Footer "Gestionado por tu organización" */
+.mobile-menu-org-footer {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 14px;
+  font-size: .78rem;
+  color: var(--muted);
+  font-family: 'Inter', sans-serif;
+  pointer-events: none;
+  user-select: none;
+}
+.mobile-menu-org-footer i {
+  font-size: .85rem;
+  color: var(--muted);
+  flex-shrink: 0;
+}
+
+/* Dark mode para los nuevos elementos */
+[data-theme="dark"] .mobile-menu-tool-item { color: var(--fg) !important; }
+[data-theme="dark"] .mobile-menu-tool-item:hover { background: rgba(103,184,180,.1) !important; }
+[data-theme="dark"] .mobile-menu-tool-danger { color: #F87171 !important; }
+[data-theme="dark"] .mobile-menu-tool-danger > i:first-child { color: #F87171 !important; }
+[data-theme="dark"] .mobile-menu-tool-danger:hover { background: rgba(239,68,68,.1) !important; }
+[data-theme="dark"] .mobile-submenu button { color: var(--muted) !important; }
+[data-theme="dark"] .mobile-submenu button:hover { background: rgba(103,184,180,.1) !important; color: var(--primary) !important; }
 .mobile-action-login {
   background: none;
   border: 1.5px solid var(--border);
