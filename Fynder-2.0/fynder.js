@@ -2472,6 +2472,9 @@ function toggleMobileMenu() {
     if (burger) burger.classList.add('open');
     document.body.style.overflow = 'hidden';
     updateMobileMenuActions();
+    // Mostrar/ocultar botón Salir según sesión
+    const salirBtn = document.getElementById('mobileMenuSalirBtn');
+    if (salirBtn) salirBtn.style.display = localStorage.getItem('fynderLogged') ? '' : 'none';
     setTimeout(_applyDrawerAvatarBg, 10);
   }
 }
