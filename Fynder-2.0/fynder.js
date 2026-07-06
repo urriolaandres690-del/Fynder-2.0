@@ -7190,7 +7190,7 @@ function msgClearAllChats() {
   if (!confirm('¿Limpiar todo el historial de chats? Esta acción no se puede deshacer.')) return;
   const convs = _getConversations();
   convs.forEach(c => {
-    localStorage.removeItem('fynderMsgs_' + c.bizId);
+    localStorage.removeItem('fynderChat_' + c.id);
   });
   _saveConversations([]);
   renderConversations();
