@@ -7494,12 +7494,17 @@ function _getSmartReply(userText, cat, bizName, biz) {
 
   if (intents.includes('menu_productos')) {
     const catM = {
-      restaurantes: [`Entradas, platos fuertes y postres 🍽️. ¿Especialidades del día?`, `Menú del día $10 (sopa+plato+bebida). ¿O à la carte? 🥗`],
-      belleza:      [`Cortes, tintes, manicure, pedicure y maquillaje 💅. ¿Qué te interesa?`, `Servicio completo dama y caballero. ¿Qué buscas? ✨`],
-      tecnologia:   [`Pantallas, baterías, cámaras, teclados y software 🔧. ¿Qué equipo?`, `Celulares, laptops, tablets y PCs 💻. ¿Cuál es tu caso?`],
-      salud:        [`Consultas, exámenes y procedimientos ambulatorios 🏥. ¿Qué tipo de atención?`],
+      restaurantes: [`Entradas, sopas, platos fuertes, postres y bebidas 🍽️. ¿Quieres que te cuente las especialidades del día?`, `Menú del día $10 (sopa+plato+bebida). También tenemos à la carte 🥗. ¿Qué prefieres?`, `Opciones vegetarianas, carnes, mariscos y pastas. ¿Alguna preferencia o restricción alimentaria?`],
+      belleza:      [`Cortes, tintes, alisados, manicure, pedicure, maquillaje y tratamientos capilares 💅. ¿Qué te interesa?`, `Servicio completo para dama y caballero. ¿Buscas algo específico? ✨`, `También hacemos extensiones, cejas y depilación 🌟. ¿Qué servicio necesitas?`],
+      tecnologia:   [`Reparamos pantallas, baterías, cámaras, puertos, teclados y problemas de software 🔧. ¿Qué equipo?`, `Celulares, laptops, tablets y PCs 💻. También vendemos accesorios y repuestos originales.`, `Soporte técnico a domicilio, mantenimiento preventivo y recuperación de datos ⚙️. ¿Cuál es tu necesidad?`],
+      salud:        [`Medicina general, pediatría, cardiología, nutrición, fisioterapia y más 🏥. ¿Qué especialidad necesitas?`, `También hacemos exámenes de laboratorio, rayos X y electrocardiogramas 🩺. ¿Qué estás buscando?`, `Consultas presenciales y virtuales disponibles 📅. ¿Cuál prefieres?`],
+      hogar:        [`Plomería, electricidad, pintura, carpintería, aires acondicionados y remodelaciones 🏠. ¿Qué necesitas?`, `También hacemos impermeabilizaciones, soldadura y trabajos de aluminio y vidrio 🔨. ¿Tienes algún trabajo específico?`],
+      turismo:      [`City tours, tours de aventura, ecoturismo, tours culturales y paquetes de varios días 🗺️. ¿Qué tipo de experiencia buscas?`, `Tours en grupos o privados, con transporte y guía incluido ✈️. ¿Para cuántas personas?`, `Excursiones de medio día, día completo y paquetes todo incluido 🌍. ¿Cuánto tiempo tienes?`],
+      transporte:   [`Traslados al aeropuerto, tours en la ciudad, transporte escolar y ejecutivo 🚗. ¿Qué necesitas?`, `Sedanes, SUVs, minivans y buses para grupos 🚐. ¿Cuántas personas son?`, `También hacemos mudanzas locales y transporte de carga 📦. ¿Para qué lo necesitas?`],
+      ropa:         [`Ropa casual, formal, sport, para ocasiones especiales y accesorios 👗. ¿Qué estilo buscas?`, `Tenemos dama, caballero y niños. ¿Para quién es? 👕`, `Nueva colección disponible: jeans, blusas, vestidos, zapatos y carteras 🛍️. ¿Qué necesitas?`],
+      deportes:     [`Ropa deportiva, calzado, equipamiento para fútbol, natación, gimnasio, running y más ⚽. ¿Qué deporte?`, `Suplementos, proteínas, vitaminas y accesorios fitness 💪. ¿Qué buscas?`, `Marcas originales: Nike, Adidas, Under Armour y más 🏋️. ¿Tienes marca preferida?`],
     };
-    return _pick(catM[cat] || [`En ${bizName} tenemos variedad. ¿Qué buscas exactamente? 😊`, `¡Cuéntanos qué necesitas y te orientamos! 🌟`]);
+    return _pick(catM[cat] || [`En ${bizName} tenemos amplia variedad. ¿Qué buscas exactamente? 😊`, `¡Cuéntanos qué necesitas y te orientamos! 🌟`]);
   }
 
   if (intents.includes('saludo')) return _pick([
