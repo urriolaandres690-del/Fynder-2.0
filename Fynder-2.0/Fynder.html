@@ -4153,6 +4153,75 @@
       <section class="sett-section" id="sett-mensajes">
         <h2 class="sett-section-title">Mensajes</h2>
 
+        <!-- Grupo: seguridad y privacidad del chat -->
+        <div class="sett-group">
+          <div class="sett-row" onclick="showToast('Los mensajes y las llamadas están cifrados de extremo a extremo.')">
+            <div class="sett-row-left">
+              <div class="sett-row-icon" style="background:#E6F5F4;color:#67B8B4"><i class="fas fa-lock"></i></div>
+              <div>
+                <span class="sett-row-label">Cifrado</span>
+                <span class="sett-row-sub">Los mensajes y las llamadas están cifrados de extremo a extremo</span>
+              </div>
+            </div>
+            <i class="fas fa-chevron-right sett-row-arrow"></i>
+          </div>
+          <div class="sett-row" onclick="showToast('Mensajes temporales: próximamente')">
+            <div class="sett-row-left">
+              <div class="sett-row-icon" style="background:#FEF9EE;color:#F4D35E"><i class="fas fa-clock-rotate-left"></i></div>
+              <div>
+                <span class="sett-row-label">Mensajes temporales</span>
+                <span class="sett-row-sub" id="settMsgTempLabel">Desactivados</span>
+              </div>
+            </div>
+            <i class="fas fa-chevron-right sett-row-arrow"></i>
+          </div>
+          <div class="sett-row">
+            <div class="sett-row-left">
+              <div class="sett-row-icon" style="background:#EEF2FF;color:#2F5BB7"><i class="fas fa-comment-slash"></i></div>
+              <div>
+                <span class="sett-row-label">Restringir chat</span>
+                <span class="sett-row-sub">Restringe y oculta chats en este dispositivo</span>
+              </div>
+            </div>
+            <button class="sett-toggle" id="settRestringirToggle" onclick="settToggleSetting('restringirChat','settRestringirToggle')"></button>
+          </div>
+          <div class="sett-row">
+            <div class="sett-row-left">
+              <div class="sett-row-icon" style="background:#F5F3FF;color:#8B5CF6"><i class="fas fa-shield-halved"></i></div>
+              <div>
+                <span class="sett-row-label">Privacidad avanzada del chat</span>
+                <span class="sett-row-sub" id="settPrivAdvLabel">Desactivada</span>
+              </div>
+            </div>
+            <button class="sett-toggle" id="settPrivAdvToggle" onclick="settToggleMsgPriv()"></button>
+          </div>
+        </div>
+
+        <!-- Grupo: idioma y traducción -->
+        <div class="sett-group">
+          <div class="sett-row" onclick="settGoSection('idioma', document.querySelector('[data-section=idioma]'))">
+            <div class="sett-row-left">
+              <div class="sett-row-icon" style="background:#F0F9FF;color:#0EA5E9"><i class="fas fa-microphone-lines"></i></div>
+              <div>
+                <span class="sett-row-label">Transcripciones</span>
+                <span class="sett-row-sub" id="settTranscripcionLabel">Español</span>
+              </div>
+            </div>
+            <i class="fas fa-chevron-right sett-row-arrow"></i>
+          </div>
+          <div class="sett-row">
+            <div class="sett-row-left">
+              <div class="sett-row-icon" style="background:#F0FEFE;color:#67B8B4"><i class="fas fa-language"></i></div>
+              <div>
+                <span class="sett-row-label">Traducir mensajes</span>
+                <span class="sett-row-sub">Traduce automáticamente los mensajes recibidos</span>
+              </div>
+            </div>
+            <button class="sett-toggle" id="settTraducirToggle" onclick="settToggleSetting('traducirMensajes','settTraducirToggle')"></button>
+          </div>
+        </div>
+
+        <!-- Grupo: gestión de chats -->
         <div class="sett-group">
           <div class="sett-row sett-row-btn" onclick="exportChats()">
             <div class="sett-row-left">
