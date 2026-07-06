@@ -5954,8 +5954,7 @@ function msgFriend(id, name) {
 }
 
 // ══════════════════════════════════════════════════════════════════════════════
-// ══════════════════════════════════════════════════════════════════════════════
-// IDIOMA / TRADUCCIÓN
+// IDIOMA / TRADUCCIÓN — Sistema propio con diccionario
 // ══════════════════════════════════════════════════════════════════════════════
 
 const LANG_NAMES = {
@@ -5965,14 +5964,204 @@ const LANG_NAMES = {
 };
 
 function _detectBrowserLang() {
-  const lang = (navigator.language || navigator.userLanguage || 'es').slice(0, 2).toLowerCase();
+  const lang = (navigator.language || navigator.userLanguage || 'es').slice(0,2).toLowerCase();
   return LANG_NAMES[lang] ? lang : 'es';
 }
-
 function _langFlag(code) {
-  const flags = { es:'🇪🇸', en:'🇺🇸', fr:'🇫🇷', pt:'🇧🇷', de:'🇩🇪',
-                  it:'🇮🇹', zh:'🇨🇳', ja:'🇯🇵', ko:'🇰🇷', ar:'🇸🇦', ru:'🇷🇺' };
-  return flags[code] || '🌐';
+  const f = {es:'🇪🇸',en:'🇺🇸',fr:'🇫🇷',pt:'🇧🇷',de:'🇩🇪',it:'🇮🇹',zh:'🇨🇳',ja:'🇯🇵',ko:'🇰🇷',ar:'🇸🇦',ru:'🇷🇺'};
+  return f[code] || '🌐';
+}
+
+// ── Diccionario de traducciones ──────────────────────────────────────────────
+const I18N = {
+  // Nav
+  'nav.home':        { es:'Inicio',      en:'Home',       fr:'Accueil',    pt:'Início',    de:'Startseite' },
+  'nav.directory':   { es:'Directorio',  en:'Directory',  fr:'Annuaire',   pt:'Diretório', de:'Verzeichnis' },
+  'nav.saved':       { es:'Guardados',   en:'Saved',      fr:'Enregistrés',pt:'Salvos',    de:'Gespeichert' },
+  'nav.messages':    { es:'Mensajes',    en:'Messages',   fr:'Messages',   pt:'Mensagens', de:'Nachrichten' },
+  'nav.login':       { es:'Iniciar sesión', en:'Sign in', fr:'Connexion',  pt:'Entrar',    de:'Anmelden' },
+  'nav.register':    { es:'Registrar negocio', en:'Register business', fr:'Enregistrer entreprise', pt:'Registrar negócio', de:'Unternehmen registrieren' },
+  // Hero
+  'hero.pill':       { es:'Descubre negocios cerca de ti', en:'Discover businesses near you', fr:'Découvrez les entreprises près de vous', pt:'Descubra negócios perto de você', de:'Entdecke Unternehmen in deiner Nähe' },
+  'hero.title1':     { es:'Encuentra los mejores', en:'Find the best', fr:'Trouvez les meilleurs', pt:'Encontre os melhores', de:'Finde die besten' },
+  'hero.title2':     { es:'negocios locales', en:'local businesses', fr:'commerces locaux', pt:'negócios locais', de:'lokalen Unternehmen' },
+  'hero.desc':       { es:'FYNDER conecta personas con emprendedores y comercios de su comunidad. Descubre, explora y apoya a los negocios que hacen grande tu ciudad.', en:'FYNDER connects people with entrepreneurs and businesses in their community. Discover, explore and support the businesses that make your city great.', fr:'FYNDER connecte les personnes avec les entrepreneurs et les commerces de leur communauté.', pt:'FYNDER conecta pessoas com empreendedores e comércios de sua comunidade.', de:'FYNDER verbindet Menschen mit Unternehmern und Betrieben in ihrer Gemeinde.' },
+  'hero.search.ph':  { es:'Ej: "Pasteles", "Peluquería"...', en:'E.g. "Cakes", "Barbershop"...', fr:'Ex: "Gâteaux", "Coiffeur"...', pt:'Ex: "Bolos", "Barbearia"...', de:'Z.B. "Kuchen", "Friseur"...' },
+  'hero.search.btn': { es:'Buscar', en:'Search', fr:'Rechercher', pt:'Buscar', de:'Suchen' },
+  'hero.popular':    { es:'Popular:', en:'Popular:', fr:'Populaire:', pt:'Popular:', de:'Beliebt:' },
+  // Sections
+  'sec.categories.label': { es:'Explorar por categoría', en:'Browse by category', fr:'Parcourir par catégorie', pt:'Explorar por categoria', de:'Nach Kategorie durchsuchen' },
+  'sec.categories.title': { es:'¿Qué estás buscando?', en:'What are you looking for?', fr:'Que cherchez-vous?', pt:'O que você está procurando?', de:'Was suchst du?' },
+  'sec.categories.all':   { es:'Ver todas', en:'See all', fr:'Voir tout', pt:'Ver todas', de:'Alle anzeigen' },
+  'sec.featured.label':   { es:'Selección destacada', en:'Featured selection', fr:'Sélection vedette', pt:'Seleção em destaque', de:'Empfohlene Auswahl' },
+  'sec.featured.title':   { es:'Negocios Destacados', en:'Featured Businesses', fr:'Entreprises en vedette', pt:'Negócios em Destaque', de:'Empfohlene Unternehmen' },
+  'sec.featured.all':     { es:'Ver todos', en:'See all', fr:'Voir tout', pt:'Ver todos', de:'Alle anzeigen' },
+  'sec.popular.title':    { es:'Más Populares', en:'Most Popular', fr:'Les Plus Populaires', pt:'Mais Populares', de:'Am Beliebtesten' },
+  // How it works
+  'how.label':  { es:'Simple y rápido', en:'Simple and fast', fr:'Simple et rapide', pt:'Simples e rápido', de:'Einfach und schnell' },
+  'how.title':  { es:'¿Cómo funciona FYNDER?', en:'How does FYNDER work?', fr:'Comment fonctionne FYNDER?', pt:'Como funciona o FYNDER?', de:'Wie funktioniert FYNDER?' },
+  'how.sub':    { es:'En tres simples pasos conectas con los mejores negocios de tu comunidad.', en:'In three simple steps you connect with the best businesses in your community.', fr:'En trois étapes simples, connectez-vous avec les meilleures entreprises.', pt:'Em três etapas simples você se conecta com os melhores negócios.', de:'In drei einfachen Schritten verbindest du dich mit den besten Unternehmen.' },
+  'how.step1.title': { es:'Busca lo que necesitas', en:'Search what you need', fr:'Recherchez ce dont vous avez besoin', pt:'Busque o que você precisa', de:'Suche was du brauchst' },
+  'how.step1.desc':  { es:'Ingresa el producto, servicio o categoría que estás buscando en nuestro buscador inteligente.', en:'Enter the product, service or category you are looking for in our smart search.', fr:'Entrez le produit, service ou catégorie que vous recherchez.', pt:'Insira o produto, serviço ou categoria que está procurando.', de:'Gib das Produkt, die Dienstleistung oder Kategorie in unsere intelligente Suche ein.' },
+  'how.step2.title': { es:'Descubre negocios cercanos', en:'Discover nearby businesses', fr:'Découvrez les entreprises à proximité', pt:'Descubra negócios próximos', de:'Entdecke nahegelegene Unternehmen' },
+  'how.step2.desc':  { es:'Explora el directorio de negocios locales con información completa: horarios, contacto y ubicación.', en:'Explore the local business directory with complete information: hours, contact and location.', fr:'Explorez le répertoire des entreprises locales avec des informations complètes.', pt:'Explore o diretório de negócios locais com informações completas.', de:'Erkunde das Verzeichnis lokaler Unternehmen mit vollständigen Informationen.' },
+  'how.step3.title': { es:'Conecta y apoya', en:'Connect and support', fr:'Connectez et soutenez', pt:'Conecte e apoie', de:'Verbinden und unterstützen' },
+  'how.step3.desc':  { es:'Contacta directamente al negocio, guárdalo en favoritos y comparte con amigos y familia.', en:'Contact the business directly, save it to favorites and share with friends and family.', fr:'Contactez directement l\'entreprise, enregistrez-la et partagez.', pt:'Contate diretamente o negócio, salve nos favoritos e compartilhe.', de:'Kontaktiere das Unternehmen direkt, speichere es und teile es.' },
+  // CTA
+  'cta.title1':  { es:'¿Tienes un negocio?', en:'Do you have a business?', fr:'Vous avez une entreprise?', pt:'Você tem um negócio?', de:'Haben Sie ein Unternehmen?' },
+  'cta.title2':  { es:'Únete a Fynder gratis', en:'Join Fynder for free', fr:'Rejoignez Fynder gratuitement', pt:'Junte-se ao Fynder gratuitamente', de:'Trete Fynder kostenlos bei' },
+  'cta.desc':    { es:'Registra tu negocio hoy y llega a miles de clientes potenciales en tu comunidad. Sin comisiones, sin costos ocultos.', en:'Register your business today and reach thousands of potential customers in your community. No commissions, no hidden costs.', fr:'Enregistrez votre entreprise aujourd\'hui et atteignez des milliers de clients potentiels.', pt:'Registre seu negócio hoje e alcance milhares de clientes potenciais.', de:'Registriere dein Unternehmen heute und erreiche Tausende potenzieller Kunden.' },
+  'cta.btn1':    { es:'Registrar mi negocio', en:'Register my business', fr:'Enregistrer mon entreprise', pt:'Registrar meu negócio', de:'Mein Unternehmen registrieren' },
+  'cta.btn2':    { es:'Saber más', en:'Learn more', fr:'En savoir plus', pt:'Saiba mais', de:'Mehr erfahren' },
+  'cta.perk1':   { es:'100% gratuito', en:'100% free', fr:'100% gratuit', pt:'100% gratuito', de:'100% kostenlos' },
+  'cta.perk2':   { es:'Activación inmediata', en:'Instant activation', fr:'Activation immédiate', pt:'Ativação imediata', de:'Sofortige Aktivierung' },
+  'cta.perk3':   { es:'Miles de usuarios', en:'Thousands of users', fr:'Des milliers d\'utilisateurs', pt:'Milhares de usuários', de:'Tausende von Nutzern' },
+  // Directory
+  'dir.title':       { es:'Directorio de Negocios', en:'Business Directory', fr:'Annuaire des entreprises', pt:'Diretório de Negócios', de:'Unternehmensverzeichnis' },
+  'dir.search.ph':   { es:'Buscar negocios...', en:'Search businesses...', fr:'Rechercher des entreprises...', pt:'Buscar negócios...', de:'Unternehmen suchen...' },
+  'dir.all':         { es:'Todos', en:'All', fr:'Tous', pt:'Todos', de:'Alle' },
+  'dir.sort.recent': { es:'Más recientes', en:'Most recent', fr:'Plus récents', pt:'Mais recentes', de:'Neueste' },
+  'dir.sort.rating': { es:'Mejor valorados', en:'Top rated', fr:'Mieux notés', pt:'Melhor avaliados', de:'Bestbewertet' },
+  'dir.sort.popular':{ es:'Más populares', en:'Most popular', fr:'Plus populaires', pt:'Mais populares', de:'Beliebteste' },
+  // Business card
+  'biz.reviews': { es:'reseñas', en:'reviews', fr:'avis', pt:'avaliações', de:'Bewertungen' },
+  'biz.open':    { es:'Abierto', en:'Open', fr:'Ouvert', pt:'Aberto', de:'Geöffnet' },
+  'biz.closed':  { es:'Cerrado', en:'Closed', fr:'Fermé', pt:'Fechado', de:'Geschlossen' },
+  'biz.new':     { es:'Nuevo', en:'New', fr:'Nouveau', pt:'Novo', de:'Neu' },
+  'biz.featured':{ es:'Destacado', en:'Featured', fr:'Vedette', pt:'Destaque', de:'Empfohlen' },
+  'biz.viewprofile': { es:'Ver perfil', en:'View profile', fr:'Voir le profil', pt:'Ver perfil', de:'Profil anzeigen' },
+  'biz.contact': { es:'Contactar', en:'Contact', fr:'Contacter', pt:'Contatar', de:'Kontaktieren' },
+  'biz.save':    { es:'Guardar', en:'Save', fr:'Enregistrer', pt:'Salvar', de:'Speichern' },
+  // Settings
+  'sett.title':     { es:'Ajustes', en:'Settings', fr:'Paramètres', pt:'Configurações', de:'Einstellungen' },
+  'sett.lang.title':{ es:'Idioma', en:'Language', fr:'Langue', pt:'Idioma', de:'Sprache' },
+  'sett.lang.label':{ es:'Idioma de la interfaz', en:'Interface language', fr:'Langue de l\'interface', pt:'Idioma da interface', de:'Oberflächensprache' },
+  // Misc
+  'search.placeholder': { es:'Buscar un chat...', en:'Search a chat...', fr:'Rechercher un chat...', pt:'Buscar um chat...', de:'Chat suchen...' },
+  'msg.new':   { es:'Nuevo mensaje', en:'New message', fr:'Nouveau message', pt:'Nova mensagem', de:'Neue Nachricht' },
+  'empty.fav': { es:'Sin favoritos', en:'No favorites', fr:'Pas de favoris', pt:'Sem favoritos', de:'Keine Favoriten' },
+  'empty.fav.sub': { es:'Guarda tus chats favoritos aquí.', en:'Save your favorite chats here.', fr:'Enregistrez vos chats favoris ici.', pt:'Salve seus chats favoritos aqui.', de:'Speichere deine Lieblingschats hier.' },
+  'chat.write': { es:'Escribe un mensaje...', en:'Write a message...', fr:'Écrivez un message...', pt:'Escreva uma mensagem...', de:'Nachricht schreiben...' },
+  'notif.title': { es:'Notificaciones', en:'Notifications', fr:'Notifications', pt:'Notificações', de:'Benachrichtigungen' },
+  'tab.all':     { es:'Todos', en:'All', fr:'Tous', pt:'Todos', de:'Alle' },
+  'tab.fav':     { es:'Favoritos', en:'Favorites', fr:'Favoris', pt:'Favoritos', de:'Favoriten' },
+};
+
+/** Obtiene la traducción de una clave para el idioma activo */
+function t(key) {
+  const lang = localStorage.getItem('fynderLang') || 'es';
+  const entry = I18N[key];
+  if (!entry) return key;
+  return entry[lang] || entry['es'] || key;
+}
+
+/** Aplica todas las traducciones con data-i18n al DOM */
+function _applyI18N() {
+  const lang = localStorage.getItem('fynderLang') || 'es';
+  document.querySelectorAll('[data-i18n]').forEach(el => {
+    const key = el.getAttribute('data-i18n');
+    const translation = I18N[key]?.[lang] || I18N[key]?.['es'];
+    if (!translation) return;
+    if (el.tagName === 'INPUT' || el.tagName === 'TEXTAREA') {
+      el.placeholder = translation;
+    } else {
+      el.textContent = translation;
+    }
+  });
+  document.querySelectorAll('[data-i18n-ph]').forEach(el => {
+    const key = el.getAttribute('data-i18n-ph');
+    const translation = I18N[key]?.[lang] || I18N[key]?.['es'];
+    if (translation) el.placeholder = translation;
+  });
+  // Cambiar lang del html
+  document.documentElement.lang = lang;
+}
+
+/** Aplica el idioma: guarda, actualiza UI, aplica diccionario */
+function settApplyLanguage(langCode) {
+  localStorage.setItem('fynderLang', langCode);
+
+  const sel = document.getElementById('settLangSelect');
+  if (sel) sel.value = langCode;
+
+  const nowRow = document.getElementById('settTranslateNowRow');
+  const nowSub = document.getElementById('settTranslateNowSub');
+  if (nowRow) nowRow.style.display = langCode !== 'es' ? '' : 'none';
+  if (nowSub) nowSub.textContent = `Idioma activo: ${LANG_NAMES[langCode] || 'Español'}`;
+
+  _renderPreferredLangs(langCode);
+  _applyI18N();
+
+  showToast(`${_langFlag(langCode)} Idioma cambiado a ${LANG_NAMES[langCode] || langCode}`);
+}
+
+function _initAutoTranslate() {
+  const autoOn = localStorage.getItem('fynderAutoTranslate') === '1';
+  const saved  = localStorage.getItem('fynderLang') || (autoOn ? _detectBrowserLang() : 'es');
+  _applyI18N();
+  if (autoOn && saved !== 'es') {
+    localStorage.setItem('fynderLang', saved);
+  }
+}
+
+function settSyncIdioma() {
+  const browserLang = _detectBrowserLang();
+  const saved  = localStorage.getItem('fynderLang') || browserLang;
+  const autoOn = localStorage.getItem('fynderAutoTranslate') === '1';
+
+  const sel = document.getElementById('settLangSelect');
+  if (sel) sel.value = LANG_NAMES[saved] ? saved : 'es';
+
+  const sub = document.getElementById('settLangDetectedSub');
+  if (sub) sub.textContent = `Idioma del sistema: ${LANG_NAMES[browserLang] || 'Español'}`;
+
+  const toggle = document.getElementById('settAutoTranslateToggle');
+  if (toggle) toggle.classList.toggle('on', autoOn);
+
+  const nowRow = document.getElementById('settTranslateNowRow');
+  const nowSub = document.getElementById('settTranslateNowSub');
+  if (nowRow) nowRow.style.display = saved !== 'es' ? '' : 'none';
+  if (nowSub) nowSub.textContent = `Idioma activo: ${LANG_NAMES[saved] || 'Español'}`;
+
+  _renderPreferredLangs(saved);
+}
+
+function _renderPreferredLangs(current) {
+  const cont = document.getElementById('settPreferredLangs');
+  if (!cont) return;
+  const browserLang = _detectBrowserLang();
+  const langs = [...new Set([current, browserLang, 'es'])].slice(0, 3);
+  cont.innerHTML = langs.map((l, i) => `
+    <div class="sett-row" onclick="settApplyLanguage('${l}')" style="cursor:pointer">
+      <div class="sett-row-left">
+        <div class="sett-row-icon" style="background:#F8FAFC;color:var(--fg);font-size:1.1rem">${_langFlag(l)}</div>
+        <div>
+          <span class="sett-row-label">${LANG_NAMES[l] || l}</span>
+          <span class="sett-row-sub">${i===0?'Idioma activo':i===1?'Idioma del sistema':'Predeterminado'}</span>
+        </div>
+      </div>
+      ${l===current?'<i class="fas fa-check" style="color:var(--primary)"></i>':'<i class="fas fa-chevron-right sett-row-arrow"></i>'}
+    </div>`).join('');
+}
+
+function settToggleAutoTranslate() {
+  const isOn   = localStorage.getItem('fynderAutoTranslate') === '1';
+  const newVal = !isOn;
+  localStorage.setItem('fynderAutoTranslate', newVal ? '1' : '0');
+  const btn = document.getElementById('settAutoTranslateToggle');
+  if (btn) btn.classList.toggle('on', newVal);
+  if (newVal) {
+    const detected = _detectBrowserLang();
+    if (detected !== 'es') settApplyLanguage(detected);
+    else showToast(`✅ Traducción automática activada`);
+  } else {
+    showToast('Traducción automática desactivada');
+  }
+}
+
+function settTranslateNow() {
+  const lang = localStorage.getItem('fynderLang') || _detectBrowserLang();
+  settApplyLanguage(lang);
 }
 
 /**
