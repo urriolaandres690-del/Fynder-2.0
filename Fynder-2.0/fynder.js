@@ -321,8 +321,23 @@ function goPage(p){
     if(p==='about')     initAboutPage();
     if(p==='map')       initMap();
     if(p==='settings')  initSettingsPage();
-    if(p==='messages')  { if(typeof msgSwitchTab==='function') msgSwitchTab('chats'); if(typeof updateMsgBadge==='function') updateMsgBadge(); }
+    if(p==='messages')  {
+      if(typeof msgSwitchTab==='function') msgSwitchTab('chats');
+      if(typeof updateMsgBadge==='function') updateMsgBadge();
+      // En desktop, mostrar welcome si no hay chat activo
+      if(window.innerWidth >= 769 && !_activeChatBizId) {
+        const welcome  = document.getElementById('waWelcome');
+        const chatArea = document.getElementById('waChatArea');
+        if(welcome)  welcome.style.display  = 'flex';
+        if(chatArea) chatArea.style.display = 'none';
+      }
+    }
     if(p!=='messages' && p!=='chat') { if(typeof updateMsgBadge==='function') updateMsgBadge(); }
+
+    // En desktop: la página messages no oculta el navbar
+    if(p==='messages' && window.innerWidth >= 769) {
+      navbar.style.display = 'block';
+    }
 }
 
 function goBack(){
