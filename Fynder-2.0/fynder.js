@@ -5078,6 +5078,7 @@ function settGoSection(id, btn) {
   if (id === 'datos')          settSyncStorage();
   if (id === 'rendimiento')    settSyncRendimiento();
   if (id === 'sistema')        settSyncSistema();
+  if (id === 'herramientas')   settSyncHerramientas();
 }
 
 /** Inicializa la página cada vez que se navega a ella */
@@ -5322,6 +5323,36 @@ function settFilterSections(q) {
   document.querySelectorAll('#page-settings .sett-nav-divider').forEach(d => {
     d.style.display = query ? 'none' : '';
   });
+}
+
+// ── HERRAMIENTAS ─────────────────────────────────────────────────────────────
+
+function settSyncHerramientas() {
+  // Cerrar todos los expandibles al entrar a la sección
+  document.querySelectorAll('#sett-herramientas .sett-expandable').forEach(e => e.classList.remove('open'));
+  document.querySelectorAll('#sett-herramientas .sett-row-expandable').forEach(r => r.classList.remove('expanded'));
+}
+
+/** Abre/cierra un bloque expandible dentro de ajustes */
+function settToggleExpand(id, row) {
+  const panel = document.getElementById(id);
+  if (!panel) return;
+  const isOpen = panel.classList.contains('open');
+
+  // Cerrar los demás del mismo grupo
+  const parentSection = row.closest('.sett-section');
+  if (parentSection) {
+    parentSection.querySelectorAll('.sett-expandable.open').forEach(p => {
+      if (p !== panel) {
+        p.classList.remove('open');
+        const sibRow = p.previousElementSibling;
+        if (sibRow) sibRow.classList.remove('expanded');
+      }
+    });
+  }
+
+  panel.classList.toggle('open', !isOpen);
+  row.classList.toggle('expanded', !isOpen);
 }
 
 // ── RENDIMIENTO ───────────────────────────────────────────────────────────────
