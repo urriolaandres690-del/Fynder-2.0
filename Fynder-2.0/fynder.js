@@ -3911,6 +3911,26 @@ function openChat(bizId, biz) {
     goPage('chat');
   }
 
+  // Simular que el negocio lee los mensajes al abrir el chat
+  setTimeout(() => {
+    const allMsgs = _getMsgs(bizId);
+    let changed = false;
+    allMsgs.forEach(m => {
+      if (m.from === 'user' && m.status !== 'read') {
+        m.status = 'read';
+        m.read   = true;
+        changed  = true;
+      }
+    });
+    if (changed) {
+      _saveMsgs(bizId, allMsgs);
+      if (_activeChatBizId === bizId) {
+        if (window.innerWidth >= 769) renderChatMessages(bizId);
+        else renderChatMessagesMobile(bizId);
+      }
+    }
+  }, 1200);
+
   // Aplicar ajustes guardados
   _loadMsgSettings();
   if (_msgSettings.bubbleColor) _applyChatBubbleColor(_msgSettings.bubbleColor);
