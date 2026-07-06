@@ -6097,3 +6097,463 @@ function toggleEmojiPickerMobile() {
     buildEmojiPicker();
   }
 }
+
+
+/* ================================================================
+   CHAT: DIVISOR REDIMENSIONABLE (sidebar ↔ área principal)
+   ================================================================ */
+(function initWaResizer() {
+  document.addEventListener('DOMContentLoaded', () => {
+    const handle  = document.getElementById('waResizeHandle');
+    const sidebar = document.querySelector('.wa-sidebar');
+    if (!handle || !sidebar) return;
+
+    let startX = 0, startW = 0, dragging = false;
+
+    function onMouseMove(e) {
+      if (!dragging) return;
+      const delta = e.clientX - startX;
+      const newW  = Math.max(260, Math.min(560, startW + delta));
+      sidebar.style.width = newW + 'px';
+    }
+
+    function onMouseUp() {
+      if (!dragging) return;
+      dragging = false;
+      handle.classList.remove('resizing');
+      document.body.style.cursor = '';
+      document.body.style.userSelect = '';
+      document.removeEventListener('mousemove', onMouseMove);
+      document.removeEventListener('mouseup', onMouseUp);
+    }
+
+    handle.addEventListener('mousedown', (e) => {
+      if (window.innerWidth < 769) return;
+      dragging = true;
+      startX   = e.clientX;
+      startW   = sidebar.offsetWidth;
+      handle.classList.add('resizing');
+      document.body.style.cursor    = 'col-resize';
+      document.body.style.userSelect = 'none';
+      document.addEventListener('mousemove', onMouseMove);
+      document.addEventListener('mouseup', onMouseUp);
+      e.preventDefault();
+    });
+  });
+})();
+
+/* ================================================================
+   CHAT: BOTÓN ENVIAR / MICRÓFONO (toggle según haya texto)
+   ================================================================ */
+function chatInputChange() {
+  const input   = document.getElementById('chatInput');
+  const sendBtn = document.getElementById('chatSendBtn');
+  const micBtn  = document.getElementById('chatMicBtn');
+  if (!input || !sendBtn || !micBtn) return;
+  const hasText = input.value.trim().length > 0;
+  sendBtn.style.display = hasText ? '' : 'none';
+  micBtn.style.display  = hasText ? 'none' : '';
+}
+
+// Inicializar el estado del botón al abrir un chat
+(function patchChatOpen() {
+  document.addEventListener('DOMContentLoaded', () => {
+    // Esconder send, mostrar mic al inicio (sin texto)
+    const sendBtn = document.getElementById('chatSendBtn');
+    const micBtn  = document.getElementById('chatMicBtn');
+    if (sendBtn) sendBtn.style.display = 'none';
+    if (micBtn)  micBtn.style.display  = '';
+  });
+})();
+
+/* ================================================================
+   CHAT: MENÚ DE ADJUNTAR
+   ================================================================ */
+let _attachMenuOpen = false;
+
+function toggleAttachMenu() {
+  const menu = document.getElementById('chatAttachMenu');
+  if (!menu) return;
+  _attachMenuOpen = !_attachMenuOpen;
+  menu.classList.toggle('open', _attachMenuOpen);
+}
+
+// Cerrar al hacer click fuera
+document.addEventListener('click', (e) => {
+  const wrap = document.getElementById('chatAttachWrap');
+  if (wrap && !wrap.contains(e.target)) {
+    const menu = document.getElementById('chatAttachMenu');
+    if (menu) menu.classList.remove('open');
+    _attachMenuOpen = false;
+  }
+});
+
+/* ================================================================
+   CHAT: ENVIAR ARCHIVOS ADJUNTOS
+   ================================================================ */
+function handleFileAttach(input, type) {
+  if (!input.files || !input.files.length) return;
+  if (!_activeChatBizId) { showToast('Selecciona un chat primero'); return; }
+  if (!localStorage.getItem('fynderLogged')) { showToast('Inicia sesión para enviar archivos'); return; }
+
+  // Cerrar menú
+  const menu = document.getElementById('chatAttachMenu');
+  if (menu) menu.classList.remove('open');
+  _attachMenuOpen = false;
+
+  Array.from(input.files).forEach(file => {
+    const reader = new FileReader();
+    reader.onload = (ev) => {
+      const dataUrl = ev.target.result;
+      const now = new Date();
+      const msg = {
+        id:      Date.now() + Math.random(),
+        from:    'user',
+        text:    '',
+        time:    _fmtTime(now),
+        date:    _fmtDate(now),
+        read:    false,
+        attach:  {
+          type:  type,
+          name:  file.name,
+          size:  file.size,
+          mime:  file.type,
+          data:  dataUrl
+        }
+      };
+      const msgs = _getMsgs(_activeChatBizId);
+      msgs.push(msg);
+      _saveMsgs(_activeChatBizId, msgs);
+      _updateConvLastMsg(_activeChatBizId,
+        type === 'media'  ? '📷 Imagen/Video' :
+        type === 'audio'  ? '🎵 Audio' : '📄 Documento',
+        msg.time
+      );
+      renderConversations();
+      renderChatMessages(_activeChatBizId);
+    };
+    reader.readAsDataURL(file);
+  });
+
+  // Limpiar el input para permitir volver a seleccionar el mismo archivo
+  input.value = '';
+}
+
+// Parchear _renderMsgsInto para mostrar archivos adjuntos
+(function patchRenderMsgsInto() {
+  const _orig = window._renderMsgsInto;
+  // Sobreescribir directamente en el renderizador existente inyectando HTML de adjunto
+  // Lo hacemos reemplazando la función global
+  const _origRender = _renderMsgsInto;
+  window._renderMsgsInto = function(container, bizId) {
+    if (!container) return;
+    const msgs = _getMsgs(bizId);
+    let html = '';
+    let prevDate = '';
+    let prevFrom = '';
+
+    msgs.forEach((msg, i) => {
+      const isOut = (msg.from === 'user');
+      const isIn  = !isOut;
+
+      if (msg.date && msg.date !== prevDate) {
+        html += `<div class="chat-date-sep">${msg.date}</div>`;
+        prevDate = msg.date;
+      }
+
+      const nextMsg         = msgs[i + 1];
+      const isLastInGroup   = !nextMsg  || nextMsg.from  !== msg.from;
+      const isFirstInGroup  = prevFrom !== msg.from;
+
+      const biz = BUSINESSES.find(b => String(b.id) === String(bizId));
+      const bizInitial  = biz ? (biz.name || '?')[0].toUpperCase() : '?';
+      const bizAvaHtml  = biz && biz.image ? `<img src="${biz.image}" alt="">` : bizInitial;
+      const bizAvaBg    = biz ? _avatarColor(biz.name) : '#4a4d55';
+
+      let avaHtml = '';
+      if (isIn) {
+        avaHtml = isFirstInGroup
+          ? `<div class="chat-msg-ava" style="${biz && !biz.image ? 'background:'+bizAvaBg : ''}">${bizAvaHtml}</div>`
+          : `<div class="chat-msg-ava" style="visibility:hidden"></div>`;
+      }
+
+      let bubbleClass = 'chat-bubble';
+      if (isIn  && isLastInGroup) bubbleClass += ' chat-bubble-tail-in';
+      if (!isIn && isLastInGroup) bubbleClass += ' chat-bubble-tail-out';
+
+      const tickClass = msg.read ? 'read' : 'sent';
+      const ticks = isOut ? `<span class="chat-bubble-tick ${tickClass}"><i class="fas fa-check-double"></i></span>` : '';
+
+      // Contenido del bubble (texto o adjunto)
+      let content = '';
+      if (msg.attach) {
+        const a = msg.attach;
+        if (a.type === 'media') {
+          if (a.mime && a.mime.startsWith('video/')) {
+            content = `<video class="chat-bubble-video" controls src="${a.data}"></video>`;
+          } else {
+            // imagen
+            content = `<img class="chat-bubble-img" src="${a.data}" alt="${escapeHtml(a.name)}" onclick="_openImgLightbox('${a.data}','${escapeHtml(a.name)}')">`;
+          }
+        } else if (a.type === 'audio') {
+          const uid = 'aud_' + Date.now() + '_' + i;
+          content = `
+            <div class="chat-bubble-audio">
+              <button class="chat-bubble-audio-play" onclick="_playBubbleAudio('${uid}',this)" id="playBtn_${uid}">
+                <i class="fas fa-play"></i>
+              </button>
+              <audio id="${uid}" src="${a.data}" onended="_audioBubbleEnded('${uid}')"></audio>
+              <div class="chat-bubble-audio-bar" onclick="_seekBubbleAudio(event,'${uid}')">
+                <div class="chat-bubble-audio-progress" id="prog_${uid}"></div>
+              </div>
+              <span class="chat-bubble-audio-dur" id="dur_${uid}">0:00</span>
+            </div>`;
+        } else {
+          // documento
+          const sizeKb = a.size ? Math.round(a.size / 1024) + ' KB' : '';
+          const icon = _docIcon(a.mime);
+          content = `
+            <div class="chat-bubble-file">
+              <div class="chat-bubble-file-icon"><i class="${icon}"></i></div>
+              <div class="chat-bubble-file-info">
+                <div class="chat-bubble-file-name">${escapeHtml(a.name)}</div>
+                <div class="chat-bubble-file-size">${sizeKb}</div>
+              </div>
+              <a href="${a.data}" download="${escapeHtml(a.name)}" style="color:inherit;font-size:.85rem;" title="Descargar"><i class="fas fa-download"></i></a>
+            </div>`;
+        }
+      } else {
+        content = escapeHtml(msg.text);
+      }
+
+      html += `
+        <div class="${isIn ? 'chat-msg-row in' : 'chat-msg-row out'}">
+          ${isIn ? avaHtml : ''}
+          <div>
+            <div class="${bubbleClass}">
+              ${content}
+              <div class="chat-bubble-meta">
+                <span class="chat-bubble-time">${msg.time || ''}</span>
+                ${ticks}
+              </div>
+            </div>
+          </div>
+        </div>`;
+      prevFrom = msg.from;
+    });
+
+    container.innerHTML = html;
+    requestAnimationFrame(() => { container.scrollTop = container.scrollHeight; });
+
+    // Iniciar duración de audios
+    container.querySelectorAll('.chat-bubble-audio audio').forEach(audio => {
+      const id = audio.id;
+      audio.addEventListener('loadedmetadata', () => {
+        const dur = document.getElementById('dur_' + id);
+        if (dur) dur.textContent = _fmtAudioTime(audio.duration);
+      });
+      audio.addEventListener('timeupdate', () => {
+        const prog = document.getElementById('prog_' + id);
+        const dur  = document.getElementById('dur_' + id);
+        if (prog && audio.duration) prog.style.width = (audio.currentTime / audio.duration * 100) + '%';
+        if (dur) dur.textContent = _fmtAudioTime(audio.currentTime);
+      });
+    });
+  };
+})();
+
+function _docIcon(mime) {
+  if (!mime) return 'fas fa-file';
+  if (mime.includes('pdf'))   return 'fas fa-file-pdf';
+  if (mime.includes('word') || mime.includes('document')) return 'fas fa-file-word';
+  if (mime.includes('sheet') || mime.includes('excel'))   return 'fas fa-file-excel';
+  if (mime.includes('presentation') || mime.includes('powerpoint')) return 'fas fa-file-powerpoint';
+  if (mime.includes('zip') || mime.includes('rar'))       return 'fas fa-file-zipper';
+  if (mime.includes('text')) return 'fas fa-file-lines';
+  return 'fas fa-file';
+}
+
+function _fmtAudioTime(secs) {
+  if (!isFinite(secs)) return '0:00';
+  const m = Math.floor(secs / 60);
+  const s = Math.floor(secs % 60);
+  return m + ':' + String(s).padStart(2, '0');
+}
+
+function _playBubbleAudio(id, btn) {
+  const audio = document.getElementById(id);
+  if (!audio) return;
+  if (audio.paused) {
+    // Pausar cualquier otro audio en reproducción
+    document.querySelectorAll('.chat-bubble-audio audio').forEach(a => {
+      if (a !== audio && !a.paused) {
+        a.pause();
+        const b = document.getElementById('playBtn_' + a.id);
+        if (b) b.innerHTML = '<i class="fas fa-play"></i>';
+      }
+    });
+    audio.play();
+    btn.innerHTML = '<i class="fas fa-pause"></i>';
+  } else {
+    audio.pause();
+    btn.innerHTML = '<i class="fas fa-play"></i>';
+  }
+}
+
+function _audioBubbleEnded(id) {
+  const btn = document.getElementById('playBtn_' + id);
+  if (btn) btn.innerHTML = '<i class="fas fa-play"></i>';
+  const prog = document.getElementById('prog_' + id);
+  if (prog) prog.style.width = '0%';
+}
+
+function _seekBubbleAudio(event, id) {
+  const audio = document.getElementById(id);
+  const bar   = event.currentTarget;
+  if (!audio || !bar) return;
+  const rect = bar.getBoundingClientRect();
+  const ratio = (event.clientX - rect.left) / rect.width;
+  audio.currentTime = ratio * audio.duration;
+}
+
+function _openImgLightbox(src, caption) {
+  const overlay = document.createElement('div');
+  overlay.style.cssText = 'position:fixed;inset:0;z-index:9999;background:rgba(0,0,0,.9);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;cursor:zoom-out;';
+  overlay.onclick = () => overlay.remove();
+  overlay.innerHTML = `
+    <img src="${src}" style="max-width:92vw;max-height:82dvh;border-radius:12px;object-fit:contain;box-shadow:0 8px 40px rgba(0,0,0,.6);" loading="lazy" onclick="event.stopPropagation()">
+    <p style="color:rgba(255,255,255,.6);font-size:.8rem;font-family:'Inter',sans-serif;margin:0;">${caption} · Clic para cerrar</p>`;
+  document.body.appendChild(overlay);
+}
+
+/* ================================================================
+   CHAT: GRABACIÓN DE AUDIO (micrófono)
+   ================================================================ */
+let _mediaRecorder  = null;
+let _audioChunks    = [];
+let _recordTimer    = null;
+let _recordSeconds  = 0;
+let _isRecording    = false;
+
+function toggleAudioRecord() {
+  if (_isRecording) {
+    stopAndSendAudio();
+  } else {
+    startAudioRecord();
+  }
+}
+
+async function startAudioRecord() {
+  if (!_activeChatBizId) { showToast('Selecciona un chat primero'); return; }
+  if (!localStorage.getItem('fynderLogged')) { showToast('Inicia sesión para enviar audios'); return; }
+
+  try {
+    const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+    _audioChunks = [];
+    _mediaRecorder = new MediaRecorder(stream);
+    _mediaRecorder.ondataavailable = (e) => { if (e.data.size > 0) _audioChunks.push(e.data); };
+    _mediaRecorder.onstop = _onRecordStop;
+    _mediaRecorder.start();
+    _isRecording = true;
+
+    // Mostrar barra de grabación
+    const micBtn    = document.getElementById('chatMicBtn');
+    const inputBar  = document.querySelector('.chat-input-bar.wa-input-bar');
+    const recordBar = document.getElementById('chatRecordBar');
+    if (micBtn)   micBtn.classList.add('chat-mic-recording');
+    if (inputBar) inputBar.style.display = 'none';
+    if (recordBar) recordBar.style.display = 'flex';
+
+    // Temporizador
+    _recordSeconds = 0;
+    _updateRecordTime();
+    _recordTimer = setInterval(() => {
+      _recordSeconds++;
+      _updateRecordTime();
+      // Límite de 5 minutos
+      if (_recordSeconds >= 300) stopAndSendAudio();
+    }, 1000);
+
+  } catch (err) {
+    if (err.name === 'NotAllowedError' || err.name === 'PermissionDeniedError') {
+      showToast('Permiso de micrófono denegado. Actívalo en la configuración del navegador.');
+    } else {
+      showToast('No se pudo acceder al micrófono: ' + err.message);
+    }
+  }
+}
+
+function stopAndSendAudio() {
+  if (!_mediaRecorder || !_isRecording) return;
+  _isRecording = false;
+  clearInterval(_recordTimer);
+  _mediaRecorder.stop();
+  // Detener pistas del stream
+  if (_mediaRecorder.stream) {
+    _mediaRecorder.stream.getTracks().forEach(t => t.stop());
+  }
+  _hideRecordBar();
+}
+
+function cancelAudioRecord() {
+  if (_mediaRecorder && _isRecording) {
+    _isRecording = false;
+    clearInterval(_recordTimer);
+    _mediaRecorder.onstop = null; // no enviar
+    _mediaRecorder.stop();
+    if (_mediaRecorder.stream) {
+      _mediaRecorder.stream.getTracks().forEach(t => t.stop());
+    }
+  }
+  _audioChunks = [];
+  _hideRecordBar();
+  showToast('Grabación cancelada');
+}
+
+function _hideRecordBar() {
+  const micBtn    = document.getElementById('chatMicBtn');
+  const inputBar  = document.querySelector('.chat-input-bar.wa-input-bar');
+  const recordBar = document.getElementById('chatRecordBar');
+  if (micBtn)   micBtn.classList.remove('chat-mic-recording');
+  if (inputBar) inputBar.style.display = '';
+  if (recordBar) recordBar.style.display = 'none';
+  _updateRecordTime();
+}
+
+function _updateRecordTime() {
+  const el = document.getElementById('chatRecordTime');
+  if (el) el.textContent = _fmtAudioTime(_recordSeconds);
+}
+
+function _onRecordStop() {
+  if (!_isRecording && _audioChunks.length === 0) return; // cancelado
+  const blob  = new Blob(_audioChunks, { type: 'audio/webm' });
+  const reader = new FileReader();
+  reader.onload = (ev) => {
+    const dataUrl = ev.target.result;
+    const now = new Date();
+    const msg = {
+      id:   Date.now(),
+      from: 'user',
+      text: '',
+      time: _fmtTime(now),
+      date: _fmtDate(now),
+      read: false,
+      attach: {
+        type: 'audio',
+        name: 'Audio_' + _fmtTime(now).replace(':','') + '.webm',
+        size: blob.size,
+        mime: 'audio/webm',
+        data: dataUrl
+      }
+    };
+    const msgs = _getMsgs(_activeChatBizId);
+    msgs.push(msg);
+    _saveMsgs(_activeChatBizId, msgs);
+    _updateConvLastMsg(_activeChatBizId, '🎤 Audio', msg.time);
+    renderConversations();
+    renderChatMessages(_activeChatBizId);
+  };
+  reader.readAsDataURL(blob);
+  _audioChunks = [];
+}
