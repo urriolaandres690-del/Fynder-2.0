@@ -3978,36 +3978,40 @@ function _renderMsgsInto(container, bizId) {
   requestAnimationFrame(() => { container.scrollTop = container.scrollHeight; });
 }
 
-// ---- Enviar mensaje ----
+// ---- Enviar mensaje (desktop: #chatInput) ----
 function sendChatMessage() {
-  const input = document.getElementById('chatInput');
-  if (!input || !_activeChatBizId) return;
+  _doSendMessage('chatInput', _activeChatBizId, renderChatMessages);
+}
+
+// ---- Enviar mensaje (móvil: #chatInputMobile) ----
+function sendChatMessageMobile() {
+  _doSendMessage('chatInputMobile', _activeChatBizId, renderChatMessagesMobile);
+}
+
+function _doSendMessage(inputId, bizId, renderFn) {
+  const input = document.getElementById(inputId);
+  if (!input || !bizId) return;
   const text = input.value.trim();
   if (!text) return;
 
-  const logged = !!localStorage.getItem('fynderLogged');
-  if (!logged) { showToast('Inicia sesión para enviar mensajes'); return; }
+  if (!localStorage.getItem('fynderLogged')) {
+    showToast('Inicia sesión para enviar mensajes'); return;
+  }
 
   const now = new Date();
-  const msg = {
-    id: Date.now(),
-    from: 'user',
-    text,
-    time: _fmtTime(now),
-    date: _fmtDate(now),
-    read: false
-  };
+  const msg = { id: Date.now(), from: 'user', text,
+    time: _fmtTime(now), date: _fmtDate(now), read: false };
 
-  const msgs = _getMsgs(_activeChatBizId);
+  const msgs = _getMsgs(bizId);
   msgs.push(msg);
-  _saveMsgs(_activeChatBizId, msgs);
-  _updateConvLastMsg(_activeChatBizId, text, msg.time);
+  _saveMsgs(bizId, msgs);
+  _updateConvLastMsg(bizId, text, msg.time);
+  renderConversations();
 
   input.value = '';
-  renderChatMessages(_activeChatBizId);
+  renderFn(bizId);
 
-  // Respuesta automática del negocio después de 1.2s
-  setTimeout(() => _bizAutoReply(_activeChatBizId), 1200);
+  setTimeout(() => _bizAutoReply(bizId, renderFn), 1200);
 }
 
 // ---- Respuesta automática del negocio ----
