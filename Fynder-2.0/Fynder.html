@@ -3759,6 +3759,103 @@
 
     </div><!-- /wa-chat-area -->
 
+    <!-- ═══ PANEL DE INFO DEL CHAT (estilo WA Web — se abre lateralmente) ═══ -->
+    <div class="wa-info-panel" id="waChatInfoPanel">
+
+      <!-- Header del panel -->
+      <div class="wa-info-panel-header">
+        <button class="chat-back-btn" onclick="closeWaChatInfoPanel()" title="Cerrar">
+          <i class="fas fa-arrow-left"></i>
+        </button>
+        <span class="wa-info-panel-title">Info. del contacto</span>
+        <button class="chat-icon-btn" onclick="toggleCproMenu(document.getElementById('waCproMenuBtn'))" title="Más opciones" id="waCproMenuBtn">
+          <i class="fas fa-ellipsis-vertical"></i>
+        </button>
+      </div>
+
+      <!-- Menú contextual del panel -->
+      <div class="wa-chat-ctx-menu cpro-ctx-menu" id="waCproCtxMenu" style="display:none">
+        <button onclick="cproShareProfile();closeWaCproMenu()"><i class="fas fa-share-nodes"></i> Compartir perfil</button>
+        <button onclick="openModal(_activeChatBizId);closeWaCproMenu()"><i class="fas fa-store"></i> Ver ficha del negocio</button>
+        <button onclick="toggleFav(_activeChatBizId);closeWaCproMenu()"><i class="fas fa-heart"></i> Guardar en favoritos</button>
+        <div class="wa-ctx-divider"></div>
+        <button onclick="deleteChatHistory();closeWaCproMenu()" style="color:#ef4444"><i class="fas fa-trash-can"></i> Borrar historial</button>
+        <button onclick="blockBiz();closeWaCproMenu()" style="color:#ef4444"><i class="fas fa-ban"></i> Bloquear negocio</button>
+      </div>
+
+      <!-- Scroll body del panel -->
+      <div class="wa-info-panel-body">
+
+        <!-- Hero: avatar + nombre + teléfono -->
+        <div class="cpro-hero">
+          <div class="cpro-avatar" id="waCproAvatar"></div>
+          <h2 class="cpro-name" id="waCproName">—</h2>
+          <p class="cpro-phone" id="waCproPhone"></p>
+        </div>
+
+        <!-- Acciones: Llamar / Ver mapa / Buscar -->
+        <div class="cpro-actions">
+          <button class="cpro-action-btn" id="waCproCallBtn">
+            <div class="cpro-action-icon"><i class="fas fa-phone"></i></div>
+            <span>Llamar</span>
+          </button>
+          <button class="cpro-action-btn" onclick="openChatProfileMap()">
+            <div class="cpro-action-icon"><i class="fas fa-map-location-dot"></i></div>
+            <span>Ver mapa</span>
+          </button>
+          <button class="cpro-action-btn" onclick="waChatSearch()">
+            <div class="cpro-action-icon"><i class="fas fa-magnifying-glass"></i></div>
+            <span>Buscar</span>
+          </button>
+        </div>
+
+        <!-- Fotos -->
+        <div class="cpro-section">
+          <div class="cpro-section-header">
+            <span class="cpro-section-label">Archivos y fotos</span>
+            <span class="cpro-section-count" id="waCproMediaCount" onclick="openPhotoLightbox()" style="cursor:pointer">2 ›</span>
+          </div>
+          <div class="cpro-media-strip" id="waCproMediaStrip"></div>
+        </div>
+
+        <!-- Info del negocio -->
+        <div class="cpro-settings-list" id="waCproInfoList"></div>
+
+        <!-- Acciones de chat -->
+        <div class="cpro-settings-list cpro-danger-section">
+          <div class="cpro-settings-item" onclick="openModal(_activeChatBizId)" style="cursor:pointer">
+            <div class="cpro-settings-icon"><i class="fas fa-store"></i></div>
+            <div class="cpro-settings-text">
+              <span class="cpro-settings-title">Ver ficha del negocio</span>
+              <span class="cpro-settings-sub">Reseñas, horarios y más</span>
+            </div>
+            <i class="fas fa-chevron-right cpro-settings-arrow"></i>
+          </div>
+          <div class="cpro-settings-item" onclick="cproWhatsApp()" style="cursor:pointer">
+            <div class="cpro-settings-icon" style="background:rgba(37,211,102,.15)"><i class="fab fa-whatsapp" style="color:#25d366"></i></div>
+            <div class="cpro-settings-text">
+              <span class="cpro-settings-title">Contactar por WhatsApp</span>
+            </div>
+            <i class="fas fa-chevron-right cpro-settings-arrow"></i>
+          </div>
+          <div class="cpro-settings-item cpro-settings-item-danger" onclick="deleteChatHistory()">
+            <div class="cpro-settings-icon cpro-icon-danger"><i class="fas fa-trash-can"></i></div>
+            <div class="cpro-settings-text">
+              <span class="cpro-settings-title cpro-danger-txt">Borrar historial</span>
+            </div>
+          </div>
+          <div class="cpro-settings-item cpro-settings-item-danger" onclick="blockBiz()">
+            <div class="cpro-settings-icon cpro-icon-danger"><i class="fas fa-ban"></i></div>
+            <div class="cpro-settings-text">
+              <span class="cpro-settings-title cpro-danger-txt">Bloquear negocio</span>
+            </div>
+          </div>
+        </div>
+
+      </div><!-- /wa-info-panel-body -->
+
+    </div><!-- /waChatInfoPanel -->
+
   </div><!-- /wa-main -->
 
   <!-- Modal: Nuevo Chat -->
