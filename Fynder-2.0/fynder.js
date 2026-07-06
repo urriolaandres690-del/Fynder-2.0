@@ -5427,6 +5427,43 @@ function settSyncMsgUI() {
   });
 }
 
+/** Sincroniza los toggles y labels de la sección de ajustes de Mensajes */
+function settSyncMensajesSection() {
+  // Restringir chat
+  const restBtn = document.getElementById('settRestringirToggle');
+  if (restBtn) restBtn.classList.toggle('on', localStorage.getItem('fynder_restringirChat') === '1');
+
+  // Privacidad avanzada
+  const privBtn = document.getElementById('settPrivAdvToggle');
+  const privVal = localStorage.getItem('fynder_privAvanzada') === '1';
+  if (privBtn) privBtn.classList.toggle('on', privVal);
+  const privLabel = document.getElementById('settPrivAdvLabel');
+  if (privLabel) privLabel.textContent = privVal ? 'Activada' : 'Desactivada';
+
+  // Traducir mensajes
+  const tradBtn = document.getElementById('settTraducirToggle');
+  if (tradBtn) tradBtn.classList.toggle('on', localStorage.getItem('fynder_traducirMensajes') === '1');
+
+  // Idioma de transcripciones
+  const transcLabel = document.getElementById('settTranscripcionLabel');
+  if (transcLabel) {
+    const lang = localStorage.getItem('fynder_transcripcionLang') || 'Español';
+    transcLabel.textContent = lang;
+  }
+}
+
+/** Toggle especial para privacidad avanzada (actualiza el label) */
+function settToggleMsgPriv() {
+  const currentVal = localStorage.getItem('fynder_privAvanzada') === '1';
+  const newVal = !currentVal;
+  localStorage.setItem('fynder_privAvanzada', newVal ? '1' : '0');
+  const btn = document.getElementById('settPrivAdvToggle');
+  if (btn) btn.classList.toggle('on', newVal);
+  const label = document.getElementById('settPrivAdvLabel');
+  if (label) label.textContent = newVal ? 'Activada' : 'Desactivada';
+  showToast(newVal ? 'Privacidad avanzada activada' : 'Privacidad avanzada desactivada');
+}
+
 /** Filtro de búsqueda en el sidebar */
 function settFilterSections(q) {
   const query = q.toLowerCase().trim();
