@@ -6098,12 +6098,9 @@ function waCloseChat() {
 
 /** Filtra la lista de conversaciones por texto */
 function filterConversations(q) {
-  const query = q.toLowerCase().trim();
-  document.querySelectorAll('#msgChatList .msg-chat-item').forEach(item => {
-    const name = (item.querySelector('.msg-chat-name')?.textContent || '').toLowerCase();
-    const prev = (item.querySelector('.msg-chat-preview')?.textContent || '').toLowerCase();
-    item.style.display = (!query || name.includes(query) || prev.includes(query)) ? '' : 'none';
-  });
+  // Guardar el query activo y re-renderizar respetándolo
+  _convSearchQuery = (q || '').trim().toLowerCase();
+  renderConversations();
 }
 
 /** Toggle emoji picker para el input móvil */
