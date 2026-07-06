@@ -6484,6 +6484,7 @@ function submitFeedback() {
 function waCloseChat() {
   if (window.innerWidth >= 769) {
     _activeChatBizId = null;
+    closeWaChatInfoPanel(); // Cerrar panel de info si estaba abierto
     const welcome  = document.getElementById('waWelcome');
     const chatArea = document.getElementById('waChatArea');
     if (welcome)  welcome.style.display  = 'flex';
