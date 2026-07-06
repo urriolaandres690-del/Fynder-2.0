@@ -5487,13 +5487,20 @@ function setChatFontSize(size, label) {
   _loadMsgSettings();
   _msgSettings.fontSize = size;
   _saveMsgSettings();
+  
+  // Aplicar tamaño
   _applyChatFontSize(size);
+  
+  // Actualizar label en el panel de mensajes
   const fontSubEl = document.getElementById('settingFontSub');
   if (fontSubEl) fontSubEl.textContent = label;
-  document.querySelectorAll('.msg-font-btn').forEach((btn, i) => {
+  
+  // Actualizar TODOS los botones de tamaño (panel de mensajes Y página de ajustes)
+  document.querySelectorAll('.msg-font-btn, .sett-font-btn').forEach((btn, i) => {
     const sizes = ['small','normal','large'];
     btn.classList.toggle('active', sizes[i] === size);
   });
+  
   showToast('Tamaño actualizado');
 }
 
@@ -5865,12 +5872,27 @@ function settClearData() {
 /** Sincroniza los controles de apariencia del panel de mensajes cuando se cambian desde Ajustes */
 function settSyncMsgUI() {
   _loadMsgSettings();
+  
+  // Sincronizar dots de color (panel de mensajes)
   document.querySelectorAll('.msg-color-dot').forEach(d => {
     d.classList.toggle('active', d.dataset.color === _msgSettings.bubbleColor);
   });
+  
+  // Sincronizar dots de color (página de ajustes)
+  document.querySelectorAll('.sett-color-dot').forEach(d => {
+    d.classList.toggle('active', d.dataset.color === _msgSettings.bubbleColor);
+  });
+  
+  // Sincronizar botones de fuente (panel de mensajes)
   document.querySelectorAll('.msg-font-btn').forEach((btn, i) => {
     const sizes = ['small', 'normal', 'large'];
-    btn.classList.toggle('active', sizes[i] === _msgSettings.fontSize);
+    btn.classList.toggle('active', sizes[i] === (_msgSettings.fontSize || 'normal'));
+  });
+  
+  // Sincronizar botones de fuente (página de ajustes)
+  document.querySelectorAll('.sett-font-btn').forEach((btn, i) => {
+    const sizes = ['small', 'normal', 'large'];
+    btn.classList.toggle('active', sizes[i] === (_msgSettings.fontSize || 'normal'));
   });
 }
 
