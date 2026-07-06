@@ -12135,9 +12135,9 @@ body:has(#page-fynder.active) #navbar:not(.scrolled) .nav-dots-btn:hover {
    LAYOUT WHATSAPP WEB – DESKTOP (≥769px)
    ================================================================ */
 @media (min-width: 769px) {
-  /* La página ocupa todo menos el navbar global */
+  /* La página ocupa TODO — el navbar está oculto en mensajes */
   .msg-page.active {
-    padding-top: 64px;
+    padding-top: 0;
     flex-direction: row;
   }
 
