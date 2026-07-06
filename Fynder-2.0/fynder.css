@@ -13482,11 +13482,6 @@ body:has(#page-fynder.active) #navbar:not(.scrolled) .nav-dots-btn:hover {
 [data-theme="dark"] .chat-bubble-time { color: rgba(255,255,255,.45); }
 .chat-msg-row.out .chat-bubble-time { color: rgba(255,255,255,.7); }
 
-.chat-bubble-tick { font-size: .68rem; }
-.chat-bubble-tick.sent { color: rgba(0,0,0,.3); }
-.chat-bubble-tick.read { color: var(--msg-tick-read); }
-[data-theme="dark"] .chat-bubble-tick.sent { color: rgba(255,255,255,.4); }
-
 /* Avatar del negocio en mensajes */
 .chat-msg-ava {
   width: 30px; height: 30px;
