@@ -3905,9 +3905,20 @@ function openChat(bizId, biz) {
   if (_msgSettings.fontSize)    _applyChatFontSize(_msgSettings.fontSize);
 }
 
-// ---- Renderizar mensajes ----
+// ---- Renderizar mensajes (desktop: #chatMessages) ----
 function renderChatMessages(bizId) {
   const container = document.getElementById('chatMessages');
+  _renderMsgsInto(container, bizId);
+}
+
+// ---- Renderizar mensajes (móvil: #chatMessagesMobile) ----
+function renderChatMessagesMobile(bizId) {
+  const container = document.getElementById('chatMessagesMobile');
+  _renderMsgsInto(container, bizId);
+}
+
+// ---- Renderizador compartido ----
+function _renderMsgsInto(container, bizId) {
   if (!container) return;
   const msgs = _getMsgs(bizId);
 
@@ -3919,46 +3930,36 @@ function renderChatMessages(bizId) {
     const isOut = (msg.from === 'user');
     const isIn  = !isOut;
 
-    // Separador de fecha
     if (msg.date && msg.date !== prevDate) {
       html += `<div class="chat-date-sep">${msg.date}</div>`;
       prevDate = msg.date;
     }
 
-    // Determinar si es el último mensaje de un grupo (para el rabillo de la burbuja)
     const nextMsg  = msgs[i + 1];
-    const isLastInGroup = !nextMsg || nextMsg.from !== msg.from;
+    const isLastInGroup  = !nextMsg  || nextMsg.from  !== msg.from;
     const isFirstInGroup = prevFrom !== msg.from;
 
     const biz = BUSINESSES.find(b => String(b.id) === String(bizId));
     const bizInitial = biz ? (biz.name || '?')[0].toUpperCase() : '?';
-    const bizAvaHtml = biz && biz.image
-      ? `<img src="${biz.image}" alt="">`
-      : bizInitial;
-    const bizAvaBg = biz ? _avatarColor(biz.name) : '#4a4d55';
+    const bizAvaHtml = biz && biz.image ? `<img src="${biz.image}" alt="">` : bizInitial;
+    const bizAvaBg   = biz ? _avatarColor(biz.name) : '#4a4d55';
 
-    // Avatar solo en el primer mensaje de cada grupo entrante
     let avaHtml = '';
     if (isIn) {
-      if (isFirstInGroup) {
-        avaHtml = `<div class="chat-msg-ava" style="${biz && !biz.image ? 'background:'+bizAvaBg : ''}">${bizAvaHtml}</div>`;
-      } else {
-        avaHtml = `<div class="chat-msg-ava" style="visibility:hidden"></div>`;
-      }
+      avaHtml = isFirstInGroup
+        ? `<div class="chat-msg-ava" style="${biz && !biz.image ? 'background:'+bizAvaBg : ''}">${bizAvaHtml}</div>`
+        : `<div class="chat-msg-ava" style="visibility:hidden"></div>`;
     }
 
-    // Rabillo solo en el último mensaje del grupo
     let bubbleClass = 'chat-bubble';
-    if (isIn && isLastInGroup)  bubbleClass += ' chat-bubble-tail-in';
+    if (isIn  && isLastInGroup) bubbleClass += ' chat-bubble-tail-in';
     if (!isIn && isLastInGroup) bubbleClass += ' chat-bubble-tail-out';
 
     const tickClass = msg.read ? 'read' : 'sent';
     const ticks = isOut ? `<span class="chat-bubble-tick ${tickClass}"><i class="fas fa-check-double"></i></span>` : '';
 
-    const rowClass = isIn ? 'chat-msg-row in' : 'chat-msg-row out';
-
     html += `
-      <div class="${rowClass}">
+      <div class="${isIn ? 'chat-msg-row in' : 'chat-msg-row out'}">
         ${isIn ? avaHtml : ''}
         <div>
           <div class="${bubbleClass}">
@@ -3974,7 +3975,6 @@ function renderChatMessages(bizId) {
   });
 
   container.innerHTML = html;
-  // Scroll al final
   requestAnimationFrame(() => { container.scrollTop = container.scrollHeight; });
 }
 
