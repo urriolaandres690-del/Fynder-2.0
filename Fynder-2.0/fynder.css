@@ -15890,3 +15890,249 @@ mark.msg-search-mark {
   border-radius: 3px;
   padding: 0 1px;
 }
+
+/* ================================================================
+   SECCIÓN PATROCINADORES — página About
+   ================================================================ */
+
+.about-sponsors-section {
+  position: relative;
+  overflow: hidden;
+  padding: 64px 0;
+}
+
+.about-sponsors-glow {
+  position: absolute;
+  top: -80px; left: 50%;
+  transform: translateX(-50%);
+  width: 600px; height: 300px;
+  background: radial-gradient(ellipse, rgba(103,184,180,.12) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+.about-sponsors-title span {
+  background: linear-gradient(135deg, #F4D35E, #F97316);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.about-sponsors-sub {
+  color: var(--text-light, #64748b);
+  font-size: .95rem;
+  max-width: 540px;
+  margin: 0 auto 48px;
+  text-align: center;
+  line-height: 1.65;
+}
+
+.about-sponsors-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 28px;
+  max-width: 860px;
+  margin: 0 auto;
+}
+
+/* ── Tarjeta de patrocinador ── */
+.about-sponsor-card {
+  position: relative;
+  background: var(--card-bg, #fff);
+  border: 1px solid var(--border, #e2e8f0);
+  border-radius: 20px;
+  padding: 32px 28px 28px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  overflow: hidden;
+  transition: transform .25s, box-shadow .25s;
+}
+
+.about-sponsor-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 20px 48px rgba(0,0,0,.12);
+}
+
+[data-theme="dark"] .about-sponsor-card {
+  background: #1a2332;
+  border-color: rgba(255,255,255,.08);
+}
+
+.about-sponsor-glow {
+  position: absolute;
+  top: -40px; right: -40px;
+  width: 160px; height: 160px;
+  border-radius: 50%;
+  opacity: .18;
+  pointer-events: none;
+}
+.about-sponsor-glow.bg-gold { background: radial-gradient(circle, #F4D35E, #F97316); }
+.about-sponsor-glow.bg-teal { background: radial-gradient(circle, #67B8B4, #2F5BB7); }
+
+/* Badge */
+.about-sponsor-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: .7rem;
+  font-weight: 700;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  color: #92611a;
+  background: linear-gradient(135deg, #FEF3C7, #FDE68A);
+  border: 1px solid #F4D35E;
+  padding: 4px 12px;
+  border-radius: 100px;
+  width: fit-content;
+}
+
+.about-sponsor-badge-teal {
+  color: #1a6560;
+  background: linear-gradient(135deg, #CCFBF1, #99F6E4);
+  border-color: #67B8B4;
+}
+
+/* Logo */
+.about-sponsor-logo-wrap {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.about-sponsor-logo-bg {
+  width: 64px; height: 64px;
+  border-radius: 16px;
+  background: linear-gradient(135deg, #1a3a6b, #0d2347);
+  display: flex; align-items: center; justify-content: center;
+  box-shadow: 0 4px 16px rgba(26,58,107,.35);
+  flex-shrink: 0;
+}
+
+.about-sponsor-logo-teal {
+  background: linear-gradient(135deg, #0f4c47, #67B8B4);
+  box-shadow: 0 4px 16px rgba(103,184,180,.35);
+}
+
+.about-sponsor-logo-letters {
+  font-size: 1.5rem;
+  font-weight: 900;
+  color: #fff;
+  letter-spacing: -.02em;
+  font-family: 'Poppins', sans-serif;
+}
+
+/* Info */
+.about-sponsor-info {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  flex: 1;
+}
+
+.about-sponsor-name {
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--text-main, #0f172a);
+  margin: 0;
+  font-family: 'Poppins', sans-serif;
+}
+
+[data-theme="dark"] .about-sponsor-name { color: #e2e8f0; }
+
+.about-sponsor-country {
+  font-size: .78rem;
+  color: var(--text-light, #64748b);
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  margin: 0;
+}
+
+.about-sponsor-country i { color: #F97316; font-size: .7rem; }
+
+.about-sponsor-desc {
+  font-size: .875rem;
+  color: var(--text-light, #64748b);
+  line-height: 1.6;
+  margin: 0;
+}
+
+.about-sponsor-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 4px;
+}
+
+.about-sponsor-tags span {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-size: .72rem;
+  font-weight: 600;
+  color: #2F5BB7;
+  background: #EEF2FF;
+  padding: 3px 10px;
+  border-radius: 100px;
+  border: 1px solid #c7d2fe;
+}
+
+[data-theme="dark"] .about-sponsor-tags span {
+  color: #93c5fd;
+  background: rgba(47,91,183,.2);
+  border-color: rgba(47,91,183,.3);
+}
+
+/* Botón */
+.about-sponsor-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 11px 20px;
+  border-radius: 12px;
+  font-size: .875rem;
+  font-weight: 600;
+  font-family: 'Poppins', sans-serif;
+  text-decoration: none;
+  transition: all .2s;
+  background: linear-gradient(135deg, #1a3a6b, #2F5BB7);
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  width: 100%;
+  margin-top: 4px;
+  box-shadow: 0 4px 12px rgba(47,91,183,.3);
+}
+
+.about-sponsor-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(47,91,183,.4);
+  color: #fff;
+  text-decoration: none;
+}
+
+.about-sponsor-btn-teal {
+  background: linear-gradient(135deg, #0f4c47, #67B8B4);
+  box-shadow: 0 4px 12px rgba(103,184,180,.3);
+}
+
+.about-sponsor-btn-teal:hover {
+  box-shadow: 0 8px 20px rgba(103,184,180,.45);
+}
+
+/* Divider decorativo entre secciones */
+.about-sponsors-section::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 50%;
+  transform: translateX(-50%);
+  width: 80px; height: 3px;
+  background: linear-gradient(90deg, #F4D35E, #F97316);
+  border-radius: 100px;
+}
+
+@media (max-width: 600px) {
+  .about-sponsors-grid { grid-template-columns: 1fr; }
+  .about-sponsor-card  { padding: 24px 20px; }
+}
