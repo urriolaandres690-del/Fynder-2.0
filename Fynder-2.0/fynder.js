@@ -5201,6 +5201,10 @@ function settSyncAccount() {
     const bizList = JSON.parse(localStorage.getItem('fynderBusinesses') || '[]');
     planEl.textContent = bizList[0]?.plan || 'Free';
   }
+  // Sincronizar modo invisible
+  _syncInvisibleSetting();
+  // Sincronizar conteo de amigos
+  _updateFriendCount();
 }
 
 /** Cierra sesión correctamente usando la función centralizada */
