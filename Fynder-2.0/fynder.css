@@ -13756,6 +13756,74 @@ body:has(#page-fynder.active) #navbar:not(.scrolled) .nav-dots-btn:hover {
 }
 
 /* ================================================================
+   PANEL LATERAL DE INFO DEL CHAT (desktop, estilo WA Web)
+   ================================================================ */
+
+.wa-info-panel {
+  width: 0;
+  flex-shrink: 0;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  background: var(--msg-bg2);
+  border-left: 1px solid var(--msg-border);
+  transition: width .28s cubic-bezier(.4,0,.2,1);
+  position: relative;
+  color: var(--msg-text);
+  font-family: 'Inter', sans-serif;
+}
+
+.wa-info-panel.open {
+  width: 340px;
+}
+
+/* En pantallas más pequeñas que abren el panel, reducir un poco */
+@media (max-width: 1100px) {
+  .wa-info-panel.open { width: 300px; }
+}
+
+/* Ocultar en móvil — allí se usa page-chat-profile */
+@media (max-width: 768px) {
+  .wa-info-panel { display: none !important; }
+}
+
+.wa-info-panel-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 0 12px;
+  height: 56px;
+  background: var(--msg-bg);
+  border-bottom: 1px solid var(--msg-border);
+  flex-shrink: 0;
+  position: sticky;
+  top: 0;
+  z-index: 2;
+}
+
+.wa-info-panel-title {
+  flex: 1;
+  font-size: .9375rem;
+  font-weight: 600;
+  color: var(--msg-title);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.wa-info-panel-body {
+  flex: 1;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+  overscroll-behavior: contain;
+}
+
+/* Cuando el panel está abierto, comprimir ligeramente el área de chat */
+.wa-main.info-panel-open .wa-chat-area {
+  /* El área de chat ya es flex:1 — el panel toma su ancho fijo */
+}
+
+/* ================================================================
    PÁGINA: PERFIL DEL NEGOCIO (desde chat) – estilo WhatsApp dark
    ================================================================ */
 
