@@ -14370,6 +14370,136 @@ body:has(#page-fynder.active) #navbar:not(.scrolled) .nav-settings-btn:hover {
   }
 }
 
+/* ── Ajustes: Amigos & Idioma ── */
+.sett-friend-search {
+  flex: 1;
+  border: none;
+  outline: none;
+  background: transparent;
+  font-size: .875rem;
+  color: var(--fg);
+  font-family: 'Inter', sans-serif;
+  padding: 4px 0;
+}
+.sett-friend-search::placeholder { color: var(--muted); }
+
+.sett-empty-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  padding: 28px 16px;
+  color: var(--muted);
+  font-size: .8125rem;
+}
+.sett-empty-state i { font-size: 1.6rem; opacity: .4; }
+
+.sett-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 18px;
+  height: 18px;
+  padding: 0 5px;
+  border-radius: 99px;
+  background: #EF4444;
+  color: #fff;
+  font-size: .65rem;
+  font-weight: 700;
+  margin-left: 6px;
+  vertical-align: middle;
+}
+
+/* Fila de amigo */
+.sett-friend-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 18px;
+  border-bottom: 1px solid var(--border);
+  transition: background .15s;
+}
+.sett-friend-row:last-child { border-bottom: none; }
+.sett-friend-row:hover { background: #F8FAFC; }
+[data-theme="dark"] .sett-friend-row:hover { background: rgba(255,255,255,.04); }
+.sett-friend-avatar {
+  width: 38px; height: 38px;
+  border-radius: 50%;
+  background: var(--primary);
+  color: #fff;
+  display: flex; align-items: center; justify-content: center;
+  font-weight: 700;
+  font-size: .9rem;
+  font-family: 'Poppins', sans-serif;
+  flex-shrink: 0;
+}
+.sett-friend-info { flex: 1; min-width: 0; }
+.sett-friend-name { font-size: .875rem; font-weight: 600; color: var(--fg); display: block; }
+.sett-friend-email { font-size: .75rem; color: var(--muted); display: block; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.sett-friend-status {
+  width: 8px; height: 8px;
+  border-radius: 50%;
+  background: #10B981;
+  flex-shrink: 0;
+  box-shadow: 0 0 0 2px #fff;
+}
+.sett-friend-status.offline { background: #9CA3AF; }
+[data-theme="dark"] .sett-friend-status { box-shadow: 0 0 0 2px var(--card); }
+.sett-friend-actions { display: flex; gap: 6px; }
+.sett-friend-btn {
+  padding: 5px 10px;
+  border-radius: 8px;
+  border: 1.5px solid var(--border);
+  background: transparent;
+  color: var(--muted);
+  font-size: .72rem;
+  cursor: pointer;
+  font-family: 'Inter', sans-serif;
+  transition: all .15s;
+}
+.sett-friend-btn:hover { border-color: var(--primary); color: var(--primary); background: var(--teal-light); }
+.sett-friend-btn.danger:hover { border-color: #EF4444; color: #EF4444; background: #FEF2F2; }
+
+/* Solicitud de amistad */
+.sett-req-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 18px;
+  border-bottom: 1px solid var(--border);
+}
+.sett-req-row:last-child { border-bottom: none; }
+.sett-req-accept {
+  padding: 5px 12px;
+  border-radius: 8px;
+  border: none;
+  background: var(--primary);
+  color: #fff;
+  font-size: .75rem;
+  font-weight: 600;
+  cursor: pointer;
+  font-family: 'Inter', sans-serif;
+  transition: background .15s;
+}
+.sett-req-accept:hover { background: var(--primary-d); }
+.sett-req-decline {
+  padding: 5px 10px;
+  border-radius: 8px;
+  border: 1.5px solid var(--border);
+  background: transparent;
+  color: var(--muted);
+  font-size: .75rem;
+  cursor: pointer;
+  font-family: 'Inter', sans-serif;
+  transition: all .15s;
+}
+.sett-req-decline:hover { border-color: #EF4444; color: #EF4444; }
+
+/* Ocultar barra de Google Translate */
+.goog-te-banner-frame, .skiptranslate { display: none !important; }
+body { top: 0 !important; }
+.goog-te-gadget { display: none !important; }
+
 /* Fila expandible en ajustes */
 .sett-row-expandable { cursor: pointer; }
 .sett-expand-arrow {
