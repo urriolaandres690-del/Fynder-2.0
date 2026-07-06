@@ -3408,23 +3408,55 @@
      ================================================================ -->
 <div id="page-messages" class="page msg-page">
 
-  <!-- ═══ COLUMNA IZQUIERDA (lista de chats) ═══ -->
+  <!-- ═══ RAIL DE ÍCONOS IZQUIERDO (estilo WhatsApp) ═══ -->
+  <div class="wa-icon-rail" id="waIconRail">
+
+    <!-- Logo Fynder arriba -->
+    <button class="wa-rail-logo" onclick="goPage('home')" title="Volver a inicio">
+      <div class="wa-rail-logo-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="white" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg>
+      </div>
+    </button>
+
+    <!-- Íconos de navegación -->
+    <div class="wa-rail-nav">
+      <button class="wa-rail-btn active" id="railBtnChats" onclick="waRailSwitch('chats',this)" title="Chats">
+        <i class="fas fa-comment-dots"></i>
+        <span class="wa-rail-badge" id="railBadgeChats" style="display:none"></span>
+      </button>
+      <button class="wa-rail-btn" id="railBtnNotif" onclick="waRailSwitch('notif',this)" title="Notificaciones">
+        <i class="fas fa-bell"></i>
+        <span class="wa-rail-badge" id="railBadgeNotif" style="display:none"></span>
+      </button>
+      <button class="wa-rail-btn" id="railBtnBookmarks" onclick="waRailSwitch('bookmarks',this)" title="Favoritos">
+        <i class="fas fa-star"></i>
+      </button>
+      <button class="wa-rail-btn" onclick="goPage('directory')" title="Explorar negocios">
+        <i class="fas fa-compass"></i>
+      </button>
+    </div>
+
+    <!-- Íconos de abajo -->
+    <div class="wa-rail-bottom">
+      <button class="wa-rail-btn" onclick="goPage('settings')" title="Ajustes">
+        <i class="fas fa-gear"></i>
+      </button>
+      <button class="wa-rail-btn wa-rail-avatar-btn" id="waRailAvatar" onclick="goPage('profile')" title="Mi perfil">
+        <i class="fas fa-user-circle"></i>
+      </button>
+    </div>
+
+  </div><!-- /wa-icon-rail -->
+
+  <!-- ═══ COLUMNA DE CHATS (lista de chats) ═══ -->
   <div class="wa-sidebar">
 
     <!-- Header sidebar -->
     <div class="wa-sidebar-header">
-      <div class="wa-sidebar-header-left">
-        <button class="chat-back-btn wa-back-home" onclick="goPage('home')" title="Volver">
-          <i class="fas fa-arrow-left"></i>
-        </button>
-        <h2 class="wa-sidebar-title">Chats</h2>
-      </div>
+      <h2 class="wa-sidebar-title">Chats</h2>
       <div class="wa-sidebar-header-right">
         <button class="msg-icon-btn" title="Nuevo chat" onclick="goPage('directory')">
           <i class="fas fa-pen-to-square"></i>
-        </button>
-        <button class="msg-icon-btn" id="msgTabNotif" onclick="msgSwitchSection('notif')" title="Notificaciones">
-          <i class="fas fa-bell"></i>
         </button>
         <button class="msg-icon-btn" id="msgSettingsBtn" title="Ajustes" onclick="openMsgSettings()">
           <i class="fas fa-ellipsis-vertical"></i>
@@ -3494,18 +3526,6 @@
       </div>
 
     </div><!-- /msg-body -->
-
-    <!-- Bottom Nav (solo móvil) -->
-    <nav class="msg-bottom-nav">
-      <button class="msg-bnav-btn" onclick="goPage('home')"><i class="fas fa-house"></i><span>Inicio</span></button>
-      <button class="msg-bnav-btn" onclick="goPage('favorites')"><i class="fas fa-heart"></i><span>Guardados</span></button>
-      <button class="msg-bnav-btn" onclick="goPage('directory')"><i class="fas fa-compass"></i><span>Explorar</span></button>
-      <button class="msg-bnav-btn" onclick="goPage('profile')"><i class="fas fa-user"></i><span>Perfil</span></button>
-      <button class="msg-bnav-btn active" onclick="goPage('messages')">
-        <i class="fas fa-comment-dots"></i><span>Mensajes</span>
-        <span class="msg-bnav-badge" id="msgBnavBadge" style="display:none"></span>
-      </button>
-    </nav>
 
   </div><!-- /wa-sidebar -->
 
