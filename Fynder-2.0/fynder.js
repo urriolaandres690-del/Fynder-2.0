@@ -4201,6 +4201,8 @@ function msgSwitchSection(section) {
   document.getElementById('msgPanelNotif')    .classList.toggle('active', section === 'notif');
   document.getElementById('msgTabChats')    .classList.remove('active');
   document.getElementById('msgTabBookmarks').classList.remove('active');
+  const tabNotif = document.getElementById('msgTabNotif');
+  if (tabNotif) tabNotif.classList.toggle('active', section === 'notif');
   if (section === 'notif') renderNotifications();
 }
 
