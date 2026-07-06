@@ -4015,8 +4015,8 @@ function _doSendMessage(inputId, bizId, renderFn) {
 }
 
 // ---- Respuesta automática del negocio ----
-function _bizAutoReply(bizId) {
-  if (_activeChatBizId !== bizId) return; // usuario ya cambió de chat
+function _bizAutoReply(bizId, renderFn) {
+  if (_activeChatBizId !== bizId) return;
   const replies = [
     '¡Gracias por escribirnos! 😊 Estaremos encantados de ayudarte.',
     'Claro, con gusto te atendemos. ¿Cuéntanos más detalles?',
@@ -4032,7 +4032,14 @@ function _bizAutoReply(bizId) {
   msgs.push(msg);
   _saveMsgs(bizId, msgs);
   _updateConvLastMsg(bizId, text, msg.time);
-  renderChatMessages(bizId);
+  renderConversations();
+  // Usa la función de render pasada, o detecta cuál aplica
+  if (renderFn) {
+    renderFn(bizId);
+  } else {
+    if (window.innerWidth >= 769) renderChatMessages(bizId);
+    else renderChatMessagesMobile(bizId);
+  }
 }
 
 // ---- Renderizar lista de conversaciones ----
