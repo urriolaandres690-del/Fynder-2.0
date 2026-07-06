@@ -6768,3 +6768,130 @@ function clearThisChat() {
   renderChatMessages(_activeChatBizId);
   showToast('Mensajes borrados');
 }
+
+/* ================================================================
+   CHAT PROFILE: botones funcionales
+   ================================================================ */
+
+/** Flecha atrás — vuelve al chat si estaba activo, si no a mensajes */
+function cproGoBack() {
+  if (_activeChatBizId) {
+    if (window.innerWidth >= 769) {
+      goPage('messages');
+    } else {
+      goPage('chat');
+    }
+  } else {
+    goPage('messages');
+  }
+}
+
+/** Llamar al negocio */
+function cproCall() {
+  if (!_activeChatBizId) return;
+  const biz = BUSINESSES.find(b => String(b.id) === String(_activeChatBizId));
+  if (!biz) return;
+  const phone = biz.phone || biz.whatsapp;
+  if (phone) {
+    const clean = String(phone).replace(/[\s\-\(\)]/g, '');
+    window.location.href = 'tel:' + clean;
+  } else {
+    showToast('Este negocio no tiene número de teléfono registrado 📵');
+  }
+}
+
+/** Buscar en el chat activo */
+function cproSearchInChat() {
+  const q = prompt('Buscar en el chat con ' + (document.getElementById('cproName')?.textContent || 'este negocio') + ':');
+  if (!q || !q.trim() || !_activeChatBizId) return;
+  const term = q.trim().toLowerCase();
+  const msgs = _getMsgs(_activeChatBizId);
+  const matches = msgs.filter(m => m.text && m.text.toLowerCase().includes(term));
+  if (!matches.length) {
+    showToast(`No se encontraron mensajes con "${q}"`);
+    return;
+  }
+  showToast(`${matches.length} mensaje${matches.length > 1 ? 's' : ''} encontrado${matches.length > 1 ? 's' : ''}`);
+  // Volver al chat y resaltar
+  cproGoBack();
+  setTimeout(() => {
+    const bubbles = document.querySelectorAll('#chatMessages .chat-bubble');
+    bubbles.forEach(b => {
+      b.style.outline = b.textContent.toLowerCase().includes(term)
+        ? '2px solid var(--msg-accent)'
+        : '';
+    });
+    const first = document.querySelector('#chatMessages .chat-bubble[style*="outline"]');
+    if (first) first.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    setTimeout(() => {
+      document.querySelectorAll('#chatMessages .chat-bubble').forEach(b => b.style.outline = '');
+    }, 3500);
+  }, 350);
+}
+
+/** Ver mapa — con fallback a address si no hay mapQuery */
+function openChatProfileMap() {
+  if (!_activeChatBizId) return;
+  const biz = BUSINESSES.find(b => String(b.id) === String(_activeChatBizId));
+  if (!biz) { showToast('Negocio no encontrado'); return; }
+  const query = biz.mapQuery || biz.address;
+  if (query) {
+    window.open('https://maps.google.com/?q=' + encodeURIComponent(query.replace(/\+/g, ' ')), '_blank');
+  } else {
+    showToast('Ubicación no disponible para este negocio 📍');
+  }
+}
+
+/** Contactar por WhatsApp */
+function cproWhatsApp() {
+  if (!_activeChatBizId) return;
+  const biz = BUSINESSES.find(b => String(b.id) === String(_activeChatBizId));
+  if (!biz) return;
+  const wa = biz.whatsapp || biz.phone;
+  if (wa) {
+    const clean = String(wa).replace(/[\s\-\(\)\+]/g, '');
+    window.open('https://wa.me/' + clean, '_blank');
+  } else {
+    showToast('WhatsApp no disponible para este negocio');
+  }
+}
+
+/** Compartir el perfil del negocio */
+function cproShareProfile() {
+  if (!_activeChatBizId) return;
+  const biz = BUSINESSES.find(b => String(b.id) === String(_activeChatBizId));
+  const name = biz ? biz.name : 'este negocio';
+  const text = `¡Descubrí ${name} en Fynder! 🚀 Encuéntralo en la app.`;
+  if (navigator.share) {
+    navigator.share({ title: name, text: text, url: window.location.href })
+      .catch(() => {});
+  } else {
+    navigator.clipboard.writeText(text).then(() => {
+      showToast('¡Enlace copiado al portapapeles! 📋');
+    }).catch(() => {
+      showToast('No se pudo compartir en este navegador');
+    });
+  }
+}
+
+/** Menú contextual del ⋮ del perfil */
+let _cproMenuOpen = false;
+function toggleCproMenu(btn) {
+  const menu = document.getElementById('cproCtxMenu');
+  if (!menu) return;
+  _cproMenuOpen = !_cproMenuOpen;
+  menu.style.display = _cproMenuOpen ? 'flex' : 'none';
+}
+function closeCproMenu() {
+  const menu = document.getElementById('cproCtxMenu');
+  if (menu) menu.style.display = 'none';
+  _cproMenuOpen = false;
+}
+// Cerrar al hacer click fuera
+document.addEventListener('click', (e) => {
+  const menu = document.getElementById('cproCtxMenu');
+  const btn  = document.getElementById('cproMenuBtn');
+  if (!menu || menu.style.display === 'none') return;
+  if (btn && btn.contains(e.target)) return;
+  if (!menu.contains(e.target)) closeCproMenu();
+});
