@@ -4026,6 +4026,7 @@ function _doSendMessage(inputId, bizId, renderFn) {
   // Simular progresión de estados: pending → sent → delivered → read
   setTimeout(() => _advanceMsgStatus(bizId, msg.id, 'sent',      renderFn), 400);
   setTimeout(() => _advanceMsgStatus(bizId, msg.id, 'delivered', renderFn), 900);
+  setTimeout(() => _advanceMsgStatus(bizId, msg.id, 'read',      renderFn), 2200);
   setTimeout(() => _bizAutoReply(bizId, renderFn), 1400);
 }
 
