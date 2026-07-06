@@ -4811,22 +4811,79 @@ function _populateChatProfilePage(biz) {
 /* Construye las filas de info comunes a ambos destinos */
 function _buildCproInfoRows(biz) {
   const rows = [];
-  if (biz.address) rows.push({ icon: 'fa-location-dot', title: biz.address,     sub: biz.category || '' });
-  if (biz.hours)   rows.push({ icon: 'fa-clock',        title: biz.hours,        sub: 'Horario' });
-  if (biz.phone)   rows.push({ icon: 'fa-phone',        title: biz.phone,        sub: 'Teléfono' });
-  if (biz.website) rows.push({ icon: 'fa-globe',        title: biz.website,      sub: 'Sitio web' });
-  if (biz.instagram) rows.push({ icon: 'fa-instagram',  title: biz.instagram,    sub: 'Instagram' });
-  if (biz.facebook)  rows.push({ icon: 'fa-facebook',   title: biz.facebook,     sub: 'Facebook' });
-  if (biz.description) rows.push({ icon: 'fa-circle-info', title: biz.description, sub: 'Descripción' });
-  if (biz.rating)  rows.push({ icon: 'fa-star',         title: `${biz.rating} ⭐  (${biz.reviews || 0} reseñas)`, sub: 'Valoración' });
+  
+  // Dirección - hace click para abrir en mapa
+  if (biz.address) rows.push({ 
+    icon: 'fa-location-dot', 
+    title: biz.address, 
+    sub: biz.category || '',
+    action: `onclick="openChatProfileMap()" style="cursor:pointer"`
+  });
+  
+  // Horario - solo informativo
+  if (biz.hours) rows.push({ 
+    icon: 'fa-clock', 
+    title: biz.hours, 
+    sub: 'Horario',
+    action: ''
+  });
+  
+  // Teléfono - hace click para llamar
+  if (biz.phone) rows.push({ 
+    icon: 'fa-phone', 
+    title: biz.phone, 
+    sub: 'Teléfono',
+    action: `onclick="window.location.href='tel:${biz.phone.replace(/\\s/g,'')}'" style="cursor:pointer"`
+  });
+  
+  // Sitio web - hace click para abrir
+  if (biz.website) rows.push({ 
+    icon: 'fa-globe', 
+    title: biz.website, 
+    sub: 'Sitio web',
+    action: `onclick="window.open('${biz.website.startsWith('http') ? biz.website : 'https://' + biz.website}','_blank')" style="cursor:pointer"`
+  });
+  
+  // Instagram - hace click para abrir
+  if (biz.instagram) rows.push({ 
+    icon: 'fa-instagram', 
+    title: biz.instagram, 
+    sub: 'Instagram',
+    action: `onclick="window.open('https://instagram.com/${biz.instagram.replace('@','')}','_blank')" style="cursor:pointer"`
+  });
+  
+  // Facebook - hace click para abrir
+  if (biz.facebook) rows.push({ 
+    icon: 'fa-facebook', 
+    title: biz.facebook, 
+    sub: 'Facebook',
+    action: `onclick="window.open('${biz.facebook.startsWith('http') ? biz.facebook : 'https://facebook.com/' + biz.facebook}','_blank')" style="cursor:pointer"`
+  });
+  
+  // Descripción - solo informativo
+  if (biz.description) rows.push({ 
+    icon: 'fa-circle-info', 
+    title: biz.description, 
+    sub: 'Descripción',
+    action: ''
+  });
+  
+  // Valoración - hace click para abrir el modal con reseñas
+  if (biz.rating) rows.push({ 
+    icon: 'fa-star', 
+    title: `${biz.rating} ⭐  (${biz.reviews || 0} reseñas)`, 
+    sub: 'Valoración',
+    action: `onclick="openModal('${biz.id}');setTimeout(()=>document.getElementById('modalTabReviews')?.click(),100)" style="cursor:pointer"`
+  });
 
   return rows.map(r => `
-    <div class="cpro-settings-item">
+    <div class="cpro-settings-item" ${r.action}>
       <div class="cpro-settings-icon"><i class="fas ${r.icon}"></i></div>
       <div class="cpro-settings-text">
         <span class="cpro-settings-title">${escapeHtml(r.title)}</span>
         ${r.sub ? `<span class="cpro-settings-sub">${escapeHtml(r.sub)}</span>` : ''}
       </div>
+      ${r.action ? '<i class="fas fa-chevron-right cpro-settings-arrow"></i>' : ''}
     </div>`).join('');
 }
 
