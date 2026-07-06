@@ -5142,21 +5142,31 @@ function settSyncNotif() {
   if (readT) readT.classList.toggle('on', _msgSettings.read);
 }
 
-/** Toggle genérico de preferencias de mensajes */
+/** Toggle genérico de preferencias de mensajes/ajustes */
 function settToggleSetting(key, btnId) {
-  _loadMsgSettings();
-  _msgSettings[key] = !_msgSettings[key];
-  _saveMsgSettings();
+  // Claves de mensajes (legacy _msgSettings)
+  const msgKeys = ['notif', 'sound', 'read'];
+  if (msgKeys.includes(key)) {
+    _loadMsgSettings();
+    _msgSettings[key] = !_msgSettings[key];
+    _saveMsgSettings();
+    const btn = document.getElementById(btnId);
+    if (btn) btn.classList.toggle('on', _msgSettings[key]);
+    const mirror = { notif: 'settingNotifToggle', sound: 'settingSoundToggle', read: 'settingReadToggle' };
+    const mirrorEl = document.getElementById(mirror[key]);
+    if (mirrorEl) mirrorEl.classList.toggle('on', _msgSettings[key]);
+    showToast(_msgSettings[key] ? 'Activado' : 'Desactivado');
+    return;
+  }
 
+  // Claves de ajustes generales (localStorage fynder_key)
+  const lsKey = 'fynder_' + key;
   const btn = document.getElementById(btnId);
-  if (btn) btn.classList.toggle('on', _msgSettings[key]);
-
-  // Mantener sincronizado el panel de mensajes si estaba abierto
-  const mirror = { notif: 'settingNotifToggle', sound: 'settingSoundToggle', read: 'settingReadToggle' };
-  const mirrorEl = document.getElementById(mirror[key]);
-  if (mirrorEl) mirrorEl.classList.toggle('on', _msgSettings[key]);
-
-  showToast(_msgSettings[key] ? 'Activado' : 'Desactivado');
+  const currentVal = btn ? btn.classList.contains('on') : localStorage.getItem(lsKey) === '1';
+  const newVal = !currentVal;
+  localStorage.setItem(lsKey, newVal ? '1' : '0');
+  if (btn) btn.classList.toggle('on', newVal);
+  showToast(newVal ? 'Activado' : 'Desactivado');
 }
 
 // ── ACCESIBILIDAD ───────────────────────────────────────────────────────────
