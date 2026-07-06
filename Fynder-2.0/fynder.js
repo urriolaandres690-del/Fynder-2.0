@@ -4895,15 +4895,33 @@ function msgCtxDeleteChat() {
 
 /* Actualizar renderConversations para usar openMsgCtxMenu */
 // (Sobreescribe la función anterior con la nueva que pasa bizId al menú)
+
+/** Query activo del buscador de chats — se mantiene entre renders */
+let _convSearchQuery = '';
+
 function renderConversations() {
-  const convs = _getConversations();
+  let convs = _getConversations();
   const list  = document.getElementById('msgChatList');
   const empty = document.getElementById('msgEmptyChats');
   if (!list) return;
 
+  // Aplicar filtro de búsqueda
+  if (_convSearchQuery) {
+    const q = _convSearchQuery;
+    convs = convs.filter(c =>
+      (c.name    || '').toLowerCase().includes(q) ||
+      (c.lastMsg || '').toLowerCase().includes(q)
+    );
+  }
+
   if (convs.length === 0) {
-    list.innerHTML = '';
-    if (empty) empty.classList.remove('hide');
+    list.innerHTML = _convSearchQuery
+      ? `<div class="msg-search-empty"><i class="fas fa-magnifying-glass"></i><p>Sin resultados para "<b>${escapeHtml(_convSearchQuery)}</b>"</p></div>`
+      : '';
+    if (empty) {
+      if (_convSearchQuery) empty.classList.add('hide');
+      else empty.classList.remove('hide');
+    }
     return;
   }
   if (empty) empty.classList.add('hide');
@@ -4922,6 +4940,17 @@ function renderConversations() {
       ? `<span class="msg-chat-bookmark-dot" title="Marcado"><i class="fas fa-bookmark" style="font-size:.6rem;color:#F4D35E"></i></span>`
       : '';
 
+    // Preview: resaltar término buscado
+    let preview = escapeHtml(c.lastMsg || 'Toca para ver el chat');
+    if (_convSearchQuery && c.lastMsg) {
+      const idx = c.lastMsg.toLowerCase().indexOf(_convSearchQuery);
+      if (idx > -1) {
+        const raw = escapeHtml(c.lastMsg);
+        const esc = escapeHtml(_convSearchQuery);
+        preview = raw.replace(new RegExp(esc, 'gi'), m => `<mark class="msg-search-mark">${m}</mark>`);
+      }
+    }
+
     return `
       <div class="msg-chat-item" onclick="openChatById('${c.id}')">
         <div class="msg-chat-avatar-wrap">
@@ -4933,7 +4962,7 @@ function renderConversations() {
             <span class="msg-chat-name">${escapeHtml(c.name)}${starBadge}</span>
             <span class="msg-chat-time">${c.lastTime || ''}</span>
           </div>
-          <span class="msg-chat-preview">${escapeHtml(c.lastMsg || 'Toca para ver el chat')}</span>
+          <span class="msg-chat-preview">${preview}</span>
         </div>
         <div class="msg-chat-actions">
           ${unread}
