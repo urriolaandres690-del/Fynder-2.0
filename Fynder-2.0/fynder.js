@@ -4090,27 +4090,46 @@ function renderConversations() {
 // ---- Abrir chat por ID ----
 function openChatById(bizId) {
   const biz = BUSINESSES.find(b => String(b.id) === String(bizId));
-  // Limpiar unread
   let convs = _getConversations();
   const conv = convs.find(c => String(c.id) === String(bizId));
   if (conv) { conv.unread = 0; _saveConversations(convs); }
   updateMsgBadge();
-  if (biz) { openChat(bizId, biz); }
-  else {
-    // La conversación existe pero el negocio fue eliminado de demo
+
+  if (biz) {
+    openChat(bizId, biz);
+  } else {
+    // Negocio no encontrado — mostrar igualmente
     _activeChatBizId = String(bizId);
-    const nameEl = document.getElementById('chatHeaderName');
-    const subEl  = document.getElementById('chatHeaderSub');
-    const avaEl  = document.getElementById('chatHeaderAvatar');
-    if (nameEl) nameEl.textContent = conv ? conv.name : 'Negocio';
-    if (subEl)  subEl.textContent  = conv ? (conv.cat || 'Negocio local') : 'Negocio local';
-    if (avaEl)  {
-      avaEl.innerHTML = '';
-      avaEl.textContent = (conv ? conv.name : 'N')[0].toUpperCase();
-      avaEl.style.background = _avatarColor(conv ? conv.name : 'N');
+    const isDesktop = window.innerWidth >= 769;
+
+    function _fill(nameId, subId, avaId) {
+      const nameEl = document.getElementById(nameId);
+      const subEl  = document.getElementById(subId);
+      const avaEl  = document.getElementById(avaId);
+      if (nameEl) nameEl.textContent = conv ? conv.name : 'Negocio';
+      if (subEl)  subEl.textContent  = conv ? (conv.cat || 'Negocio local') : 'Negocio local';
+      if (avaEl)  {
+        avaEl.innerHTML = '';
+        avaEl.textContent = (conv ? conv.name : 'N')[0].toUpperCase();
+        avaEl.style.background = _avatarColor(conv ? conv.name : 'N');
+      }
     }
-    renderChatMessages(bizId);
-    goPage('chat');
+
+    if (isDesktop) {
+      _fill('chatHeaderName','chatHeaderSub','chatHeaderAvatar');
+      const welcome  = document.getElementById('waWelcome');
+      const chatArea = document.getElementById('waChatArea');
+      if (welcome)  welcome.style.display  = 'none';
+      if (chatArea) chatArea.style.display = 'flex';
+      renderChatMessages(bizId);
+      document.querySelectorAll('.msg-chat-item').forEach(el => el.classList.remove('wa-active'));
+      const activeItem = document.querySelector(`.msg-chat-item[data-biz-id="${bizId}"]`);
+      if (activeItem) activeItem.classList.add('wa-active');
+    } else {
+      _fill('chatHeaderNameMobile','chatHeaderSubMobile','chatHeaderAvatarMobile');
+      renderChatMessagesMobile(bizId);
+      goPage('chat');
+    }
   }
 }
 
