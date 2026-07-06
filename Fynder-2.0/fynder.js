@@ -6583,14 +6583,25 @@ function _gtTranslateTo(langCode) {
  */
 function _gtApplyViaCookie(langCode) {
   try {
+    if (!langCode || langCode === 'es') {
+      _gtRemoveTranslation();
+      return;
+    }
+
     // Establecer cookie de Google Translate
     const domain = location.hostname || 'localhost';
     document.cookie = `googtrans=/es/${langCode}; path=/; domain=${domain}`;
     document.cookie = `googtrans=/es/${langCode}; path=/`;
-    showToast(`${_langFlag(langCode)} Aplicando ${LANG_NAMES[langCode]}...`);
+    
+    // También establecer googtrans (sin barra) que usa GT en algunos navegadores
+    document.cookie = `googtrans=es|${langCode}; path=/`;
+    
+    showToast(`${_langFlag(langCode)} Aplicando ${LANG_NAMES[langCode]}... La página se recargará.`);
+    
     // Recargar para que la cookie surta efecto
-    setTimeout(() => location.reload(), 600);
+    setTimeout(() => location.reload(), 800);
   } catch(e) {
+    console.error('Error aplicando traducción:', e);
     showToast('No se pudo cargar el traductor. Verifica tu conexión a internet.');
   }
 }
