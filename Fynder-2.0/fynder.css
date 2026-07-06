@@ -16136,3 +16136,46 @@ mark.msg-search-mark {
   .about-sponsors-grid { grid-template-columns: 1fr; }
   .about-sponsor-card  { padding: 24px 20px; }
 }
+
+/* ── Handle fbgsantiago ── */
+.about-sponsor-handle {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  padding: 9px 14px;
+  background: linear-gradient(135deg, rgba(244,211,94,.12), rgba(249,115,22,.08));
+  border: 1px solid rgba(244,211,94,.3);
+  border-radius: 10px;
+  font-family: 'Poppins', sans-serif;
+}
+
+.about-sponsor-handle i {
+  color: #F4D35E;
+  font-size: .8rem;
+  flex-shrink: 0;
+}
+
+.about-sponsor-handle span:first-of-type {
+  font-size: .82rem;
+  font-weight: 700;
+  color: #F4D35E;
+  letter-spacing: .01em;
+}
+
+.about-sponsor-handle-full {
+  font-size: .75rem !important;
+  font-weight: 400 !important;
+  color: var(--text-light, #64748b) !important;
+  letter-spacing: 0 !important;
+}
+
+[data-theme="dark"] .about-sponsor-handle {
+  background: linear-gradient(135deg, rgba(244,211,94,.08), rgba(249,115,22,.05));
+  border-color: rgba(244,211,94,.2);
+}
+
+/* ── Logo Supérate (estrella dorada) ── */
+.about-sponsor-logo-superate {
+  background: linear-gradient(135deg, #e8a000, #f7c520, #f5a623) !important;
+  box-shadow: 0 4px 16px rgba(247,197,32,.45) !important;
+}
