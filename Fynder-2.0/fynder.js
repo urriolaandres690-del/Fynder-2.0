@@ -5324,8 +5324,6 @@ function settSyncSistema() {
       el.classList.toggle('on', isOn);
     }
   });
-}
-
   const btn = document.getElementById('settEnergySaverToggle');
   const isOn = btn && btn.classList.contains('on');
   if (btn) btn.classList.toggle('on', !isOn);
