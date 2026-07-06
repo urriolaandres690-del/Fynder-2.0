@@ -6052,3 +6052,48 @@ function submitFeedback() {
   closeFeedbackModal();
   showToast('¡Gracias por tu opinión! 🙌');
 }
+
+// ── LAYOUT WHATSAPP WEB ──────────────────────────────────────────────────────
+
+/** Cierra el chat en desktop y muestra la pantalla de bienvenida */
+function waCloseChat() {
+  if (window.innerWidth >= 769) {
+    _activeChatBizId = null;
+    const welcome  = document.getElementById('waWelcome');
+    const chatArea = document.getElementById('waChatArea');
+    if (welcome)  welcome.style.display  = 'flex';
+    if (chatArea) chatArea.style.display = 'none';
+    document.querySelectorAll('.msg-chat-item').forEach(el => el.classList.remove('wa-active'));
+  } else {
+    goPage('messages');
+  }
+}
+
+/** Filtra la lista de conversaciones por texto */
+function filterConversations(q) {
+  const query = q.toLowerCase().trim();
+  document.querySelectorAll('#msgChatList .msg-chat-item').forEach(item => {
+    const name = (item.querySelector('.msg-chat-name')?.textContent || '').toLowerCase();
+    const prev = (item.querySelector('.msg-chat-preview')?.textContent || '').toLowerCase();
+    item.style.display = (!query || name.includes(query) || prev.includes(query)) ? '' : 'none';
+  });
+}
+
+/** Toggle emoji picker para el input móvil */
+function toggleEmojiPickerMobile() {
+  // Redirigir al mismo picker, pero al cerrar insertar en chatInputMobile
+  const picker  = document.getElementById('emojiPicker');
+  const overlay = document.getElementById('emojiOverlay');
+  if (!picker) return;
+  const isOpen = picker.classList.contains('open');
+  if (isOpen) {
+    picker.classList.remove('open');
+    overlay.classList.remove('open');
+    _emojiTargetId = 'chatInput';
+  } else {
+    _emojiTargetId = 'chatInputMobile';
+    picker.classList.add('open');
+    overlay.classList.add('open');
+    buildEmojiPicker();
+  }
+}
