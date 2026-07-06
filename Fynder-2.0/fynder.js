@@ -5027,6 +5027,8 @@ function settGoSection(id, btn) {
   if (id === 'privacidad')     settSyncNotif();   // read toggle vive aquí también
   if (id === 'accesibilidad')  settSyncAccessibility();
   if (id === 'datos')          settSyncStorage();
+  if (id === 'rendimiento')    settSyncRendimiento();
+  if (id === 'sistema')        settSyncSistema();
 }
 
 /** Inicializa la página cada vez que se navega a ella */
