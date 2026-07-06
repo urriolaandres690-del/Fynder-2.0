@@ -4677,7 +4677,78 @@ document.addEventListener('DOMContentLoaded', () => {
 function openChatProfile() {
   if (!_activeChatBizId) return;
   const biz = BUSINESSES.find(b => String(b.id) === String(_activeChatBizId));
+  const isDesktop = window.innerWidth >= 769;
 
+  if (isDesktop) {
+    // ── Desktop: abrir panel lateral de info ──
+    _populateChatInfoPanel(biz);
+    const panel = document.getElementById('waChatInfoPanel');
+    if (panel) panel.classList.add('open');
+    return;
+  }
+
+  // ── Móvil: navegar a la página chat-profile ──
+  _populateChatProfilePage(biz);
+  goPage('chat-profile');
+}
+
+/* Rellena el panel lateral de info (desktop) */
+function _populateChatInfoPanel(biz) {
+  // Avatar
+  const avaEl = document.getElementById('waCproAvatar');
+  if (avaEl) {
+    if (biz && (biz.logo || biz.image)) {
+      avaEl.innerHTML = `<img src="${biz.logo || biz.image}" alt="${biz ? biz.name : ''}">`;
+      avaEl.style.background = '';
+    } else {
+      avaEl.innerHTML = '';
+      const initial = biz ? (biz.name || '?')[0].toUpperCase() : '?';
+      avaEl.textContent = initial;
+      avaEl.style.background = _avatarColor(biz ? biz.name : '');
+    }
+  }
+  // Nombre y teléfono
+  const nameEl  = document.getElementById('waCproName');
+  const phoneEl = document.getElementById('waCproPhone');
+  if (nameEl)  nameEl.textContent  = biz ? biz.name  : '—';
+  if (phoneEl) phoneEl.textContent = biz && biz.phone ? biz.phone : '';
+
+  // Botón llamar
+  const callBtn = document.getElementById('waCproCallBtn');
+  if (callBtn) {
+    if (biz && biz.phone) {
+      callBtn.onclick = () => { window.location.href = 'tel:' + biz.phone.replace(/\s/g,''); };
+    } else {
+      callBtn.onclick = () => showToast('Teléfono no disponible');
+    }
+  }
+
+  // Media strip
+  const strip   = document.getElementById('waCproMediaStrip');
+  const countEl = document.getElementById('waCproMediaCount');
+  if (strip) {
+    const imgs = [];
+    if (biz && biz.logo)  imgs.push(biz.logo);
+    if (biz && biz.image) imgs.push(biz.image);
+    strip.innerHTML = imgs.map(url =>
+      `<img class="cpro-media-thumb" src="${url}" alt="" loading="lazy">`
+    ).join('');
+    if (countEl) {
+      countEl.textContent = imgs.length + ' ›';
+      countEl.onclick = openPhotoLightbox;
+      countEl.style.cursor = 'pointer';
+    }
+  }
+
+  // Lista de info
+  const infoList = document.getElementById('waCproInfoList');
+  if (infoList && biz) {
+    infoList.innerHTML = _buildCproInfoRows(biz);
+  }
+}
+
+/* Rellena la página de perfil (móvil) */
+function _populateChatProfilePage(biz) {
   // Título del header
   const titleEl = document.getElementById('cproHeaderTitle');
   if (titleEl) titleEl.textContent = biz ? biz.name : 'Información';
@@ -4690,7 +4761,7 @@ function openChatProfile() {
       avaEl.style.background = '';
     } else {
       avaEl.innerHTML = '';
-      const initial = biz ? (biz.name||'?')[0].toUpperCase() : '?';
+      const initial = biz ? (biz.name || '?')[0].toUpperCase() : '?';
       avaEl.textContent = initial;
       avaEl.style.background = _avatarColor(biz ? biz.name : '');
     }
@@ -4710,9 +4781,9 @@ function openChatProfile() {
     callBtn.onclick = () => showToast('Teléfono no disponible');
   }
 
-  // Media strip (logo + imagen del negocio)
-  const strip     = document.getElementById('cproMediaStrip');
-  const countEl   = document.getElementById('cproMediaCount');
+  // Media strip
+  const strip   = document.getElementById('cproMediaStrip');
+  const countEl = document.getElementById('cproMediaCount');
   if (strip) {
     const imgs = [];
     if (biz && biz.logo)  imgs.push(biz.logo);
@@ -4727,64 +4798,45 @@ function openChatProfile() {
     }
   }
 
-  // Lista de info (settings-list)
+  // Lista de info
   const infoList = document.getElementById('cproInfoList');
   if (infoList && biz) {
-    const rows = [];
-
-    if (biz.address) rows.push({
-      icon: 'fa-location-dot',
-      title: biz.address,
-      sub:   biz.category || ''
-    });
-    if (biz.hours) rows.push({
-      icon: 'fa-clock',
-      title: biz.hours,
-      sub:   'Horario'
-    });
-    if (biz.phone) rows.push({
-      icon: 'fa-phone',
-      title: biz.phone,
-      sub:   'Teléfono'
-    });
-    if (biz.website) rows.push({
-      icon: 'fa-globe',
-      title: biz.website,
-      sub:   'Sitio web'
-    });
-    if (biz.instagram) rows.push({
-      icon: 'fa-instagram',
-      title: biz.instagram,
-      sub:   'Instagram'
-    });
-    if (biz.facebook) rows.push({
-      icon: 'fa-facebook',
-      title: biz.facebook,
-      sub:   'Facebook'
-    });
-    if (biz.description) rows.push({
-      icon: 'fa-circle-info',
-      title: biz.description,
-      sub:   'Descripción'
-    });
-    if (biz.rating) rows.push({
-      icon: 'fa-star',
-      title: `${biz.rating} ⭐  (${biz.reviews || 0} reseñas)`,
-      sub:   'Valoración'
-    });
-
-    infoList.innerHTML = rows.map(r => `
-      <div class="cpro-settings-item">
-        <div class="cpro-settings-icon"><i class="fas ${r.icon}"></i></div>
-        <div class="cpro-settings-text">
-          <span class="cpro-settings-title">${escapeHtml(r.title)}</span>
-          ${r.sub ? `<span class="cpro-settings-sub">${escapeHtml(r.sub)}</span>` : ''}
-        </div>
-      </div>`).join('');
+    infoList.innerHTML = _buildCproInfoRows(biz);
   }
+}
 
-  // Agregar 'chat-profile-page' a noNavPages y mostrar
-  goPage('chat-profile');
+/* Construye las filas de info comunes a ambos destinos */
+function _buildCproInfoRows(biz) {
+  const rows = [];
+  if (biz.address) rows.push({ icon: 'fa-location-dot', title: biz.address,     sub: biz.category || '' });
+  if (biz.hours)   rows.push({ icon: 'fa-clock',        title: biz.hours,        sub: 'Horario' });
+  if (biz.phone)   rows.push({ icon: 'fa-phone',        title: biz.phone,        sub: 'Teléfono' });
+  if (biz.website) rows.push({ icon: 'fa-globe',        title: biz.website,      sub: 'Sitio web' });
+  if (biz.instagram) rows.push({ icon: 'fa-instagram',  title: biz.instagram,    sub: 'Instagram' });
+  if (biz.facebook)  rows.push({ icon: 'fa-facebook',   title: biz.facebook,     sub: 'Facebook' });
+  if (biz.description) rows.push({ icon: 'fa-circle-info', title: biz.description, sub: 'Descripción' });
+  if (biz.rating)  rows.push({ icon: 'fa-star',         title: `${biz.rating} ⭐  (${biz.reviews || 0} reseñas)`, sub: 'Valoración' });
+
+  return rows.map(r => `
+    <div class="cpro-settings-item">
+      <div class="cpro-settings-icon"><i class="fas ${r.icon}"></i></div>
+      <div class="cpro-settings-text">
+        <span class="cpro-settings-title">${escapeHtml(r.title)}</span>
+        ${r.sub ? `<span class="cpro-settings-sub">${escapeHtml(r.sub)}</span>` : ''}
+      </div>
+    </div>`).join('');
+}
+
+/* Cierra el panel lateral de info */
+function closeWaChatInfoPanel() {
+  const panel = document.getElementById('waChatInfoPanel');
+  if (panel) panel.classList.remove('open');
+}
+
+/* Cierra el menú contextual del panel */
+function closeWaCproMenu() {
+  const menu = document.getElementById('waCproCtxMenu');
+  if (menu) menu.style.display = 'none';
 }
 
 function openChatProfileMap() {
