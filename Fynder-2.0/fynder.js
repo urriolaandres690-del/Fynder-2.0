@@ -4347,6 +4347,20 @@ function _hideNotifBanner() {
   if (banner) banner.style.display = 'none';
 }
 
+/* ── Modal de ajustes administrados por la organización ── */
+function showOrgInfoModal() {
+  const modal = document.getElementById('orgInfoModal');
+  if (modal) modal.classList.add('open');
+}
+function closeOrgInfoModal() {
+  const modal = document.getElementById('orgInfoModal');
+  if (modal) modal.classList.remove('open');
+}
+// Cerrar con Escape
+document.addEventListener('keydown', e => {
+  if (e.key === 'Escape') closeOrgInfoModal();
+});
+
 /** Formatea una fecha para las notificaciones (relativa al presente real) */
 function _fmtNotifDate(ts) {
   const diff = Date.now() - ts;
