@@ -6609,17 +6609,23 @@ function _gtApplyViaCookie(langCode) {
 /** Quita la traducción restaurando el idioma original */
 function _gtRemoveTranslation() {
   // Limpiar cookies de Google Translate
+  const domain = location.hostname || 'localhost';
   document.cookie = 'googtrans=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;';
-  document.cookie = `googtrans=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/; domain=${location.hostname}`;
+  document.cookie = `googtrans=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/; domain=${domain}`;
+  document.cookie = 'googtrans=es|es; path=/';
 
   const combo = document.querySelector('.goog-te-combo');
   if (combo) {
     combo.value = 'es';
     combo.dispatchEvent(new Event('change'));
+    showToast('🇪🇸 Idioma restaurado a Español');
     return;
   }
 
   // Si no hay combo disponible, recargar para quitar traducción
+  showToast('🇪🇸 Restaurando idioma español...');
+  setTimeout(() => location.reload(), 600);
+}
   const hasCookie = document.cookie.includes('googtrans');
   if (!hasCookie) {
     // Ya está limpio, solo notificar
