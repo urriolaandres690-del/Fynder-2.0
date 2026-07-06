@@ -13826,11 +13826,6 @@ body:has(#page-fynder.active) #navbar:not(.scrolled) .nav-dots-btn:hover {
   overscroll-behavior: contain;
 }
 
-/* Cuando el panel está abierto, comprimir ligeramente el área de chat */
-.wa-main.info-panel-open .wa-chat-area {
-  /* El área de chat ya es flex:1 — el panel toma su ancho fijo */
-}
-
 /* ================================================================
    PÁGINA: PERFIL DEL NEGOCIO (desde chat) – estilo WhatsApp dark
    ================================================================ */
