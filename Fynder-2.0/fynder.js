@@ -6626,13 +6626,6 @@ function _gtRemoveTranslation() {
   showToast('🇪🇸 Restaurando idioma español...');
   setTimeout(() => location.reload(), 600);
 }
-  const hasCookie = document.cookie.includes('googtrans');
-  if (!hasCookie) {
-    // Ya está limpio, solo notificar
-  } else {
-    setTimeout(() => location.reload(), 400);
-  }
-}
 
 /** Inicializa la traducción automática al cargar si está activada */
 function _initAutoTranslate() {
