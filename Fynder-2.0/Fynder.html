@@ -138,47 +138,6 @@
 
     <div class="mobile-menu-divider"></div>
 
-    <!-- Grupo: herramientas tipo Chrome -->
-    <button class="mobile-menu-tool-item" onclick="closeMobileMenu();mobileTranslate()">
-      <i class="fas fa-language"></i>
-      <span>Traducir...</span>
-    </button>
-
-    <button class="mobile-menu-tool-item mobile-menu-has-sub" onclick="toggleMobileSubMenu('sub-buscar',this)">
-      <i class="fas fa-magnifying-glass-plus"></i>
-      <span>Buscar y editar</span>
-      <i class="fas fa-chevron-right mobile-sub-arrow" id="arrow-sub-buscar"></i>
-    </button>
-    <div class="mobile-submenu" id="sub-buscar">
-      <button onclick="closeMobileMenu();goPage('directory')"><i class="fas fa-magnifying-glass"></i> Buscar negocios</button>
-      <button onclick="closeMobileMenu();goPage('business')"><i class="fas fa-pen-to-square"></i> Editar mi negocio</button>
-      <button onclick="closeMobileMenu();goPage('profile')"><i class="fas fa-user-pen"></i> Editar perfil</button>
-    </div>
-
-    <button class="mobile-menu-tool-item mobile-menu-has-sub" onclick="toggleMobileSubMenu('sub-compartir',this)">
-      <i class="fas fa-share-nodes"></i>
-      <span>Enviar, guardar y compartir</span>
-      <i class="fas fa-chevron-right mobile-sub-arrow" id="arrow-sub-compartir"></i>
-    </button>
-    <div class="mobile-submenu" id="sub-compartir">
-      <button onclick="closeMobileMenu();mobileShare()"><i class="fas fa-share"></i> Compartir página</button>
-      <button onclick="closeMobileMenu();goPage('favorites')"><i class="fas fa-bookmark"></i> Ver guardados</button>
-      <button onclick="closeMobileMenu();mobileCopyLink()"><i class="fas fa-link"></i> Copiar enlace</button>
-    </div>
-
-    <button class="mobile-menu-tool-item mobile-menu-has-sub" onclick="toggleMobileSubMenu('sub-herramientas',this)">
-      <i class="fas fa-toolbox"></i>
-      <span>Más herramientas</span>
-      <i class="fas fa-chevron-right mobile-sub-arrow" id="arrow-sub-herramientas"></i>
-    </button>
-    <div class="mobile-submenu" id="sub-herramientas">
-      <button onclick="closeMobileMenu();goPage('map')"><i class="fas fa-map-location-dot"></i> Mapa de negocios</button>
-      <button onclick="closeMobileMenu();goPage('plans')"><i class="fas fa-gem"></i> Planes premium</button>
-      <button onclick="closeMobileMenu();goPage('blog')"><i class="fas fa-newspaper"></i> Blog</button>
-    </div>
-
-    <div class="mobile-menu-divider"></div>
-
     <button class="mobile-menu-tool-item mobile-menu-has-sub" onclick="toggleMobileSubMenu('sub-ayuda',this)">
       <i class="fas fa-circle-question"></i>
       <span>Ayuda</span>
