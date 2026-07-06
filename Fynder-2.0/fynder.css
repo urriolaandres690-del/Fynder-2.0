@@ -12141,6 +12141,10 @@ body:has(#page-fynder.active) #navbar:not(.scrolled) .nav-dots-btn:hover {
     flex-direction: row;
   }
 
+  /* Rail + sidebar + main */
+  .wa-icon-rail { display: flex; }
+  .wa-sidebar   { display: flex; }
+
   /* La chat-page separada no existe en desktop */
   .chat-mobile-only { display: none !important; }
 
