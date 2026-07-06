@@ -3463,7 +3463,7 @@
           <p class="msg-notif-banner-title">Activa las notificaciones</p>
           <p class="msg-notif-banner-sub">¡Mantente al tanto de las actualizaciones sobre negocios, mensajes y ofertas!</p>
         </div>
-        <button class="msg-notif-banner-allow" onclick="requestNotifPermission()">
+        <button class="msg-notif-banner-allow" id="notifBannerBtn" onclick="handleNotifBannerClick(this)">
           <i class="fas fa-bell"></i> Activar
         </button>
         <button class="msg-notif-banner-close" onclick="this.closest('.msg-notif-banner').style.display='none'"><i class="fas fa-xmark"></i></button>
