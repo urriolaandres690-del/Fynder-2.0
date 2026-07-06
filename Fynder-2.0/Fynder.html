@@ -1212,7 +1212,136 @@
           </button>
         </div>
 
+        <!-- 3 botones de acción del perfil (estilo TikTok) -->
+        <div class="profile-top-btns">
+          <button class="profile-top-btn" onclick="openProfileViews()" title="Visualizaciones del perfil">
+            <i class="fas fa-chart-bar"></i>
+          </button>
+          <button class="profile-top-btn" onclick="openProfileShare()" title="Compartir perfil">
+            <i class="fas fa-share-nodes"></i>
+          </button>
+          <button class="profile-top-btn" onclick="openProfileMenu()" title="Más opciones">
+            <i class="fas fa-bars"></i>
+          </button>
+        </div>
+
       </div>
+    </div>
+
+    <!-- ══ MODAL: Visualizaciones del perfil ══ -->
+    <div class="prof-modal-overlay" id="profileViewsOverlay" onclick="closeProfileViews()"></div>
+    <div class="prof-modal prof-views-modal" id="profileViewsModal">
+      <div class="prof-modal-header">
+        <button class="prof-modal-back" onclick="closeProfileViews()"><i class="fas fa-arrow-left"></i></button>
+        <span class="prof-modal-title">Visualizaciones del perfil</span>
+        <button class="prof-modal-icon" onclick="goPage('settings')"><i class="fas fa-gear"></i></button>
+      </div>
+      <div class="prof-modal-body" id="profileViewsBody">
+        <div class="prof-views-stat">
+          <span class="prof-views-num" id="profileViewsCount">0</span>
+          <span class="prof-views-label">personas vieron tu perfil en los últimos 30 días</span>
+        </div>
+        <div class="prof-views-list" id="profileViewsList">
+          <!-- generado por JS -->
+        </div>
+        <p class="prof-views-info">Aquí se mostrarán las personas que activaron el historial de espectadores y vieron tu perfil en los últimos 30 días. También podrán ver que viste su perfil. Puedes desactivar esta opción en cualquier momento.</p>
+      </div>
+    </div>
+
+    <!-- ══ MODAL: Compartir perfil ══ -->
+    <div class="prof-modal-overlay" id="profileShareOverlay" onclick="closeProfileShare()"></div>
+    <div class="prof-modal prof-share-modal" id="profileShareModal">
+      <div class="prof-modal-header">
+        <button class="prof-modal-back" onclick="closeProfileShare()"><i class="fas fa-arrow-left"></i></button>
+        <span class="prof-modal-title">Compartir perfil</span>
+        <button class="prof-modal-icon" onclick="downloadQR()" title="Descargar QR"><i class="fas fa-download"></i></button>
+      </div>
+      <div class="prof-modal-body prof-share-body">
+        <div class="prof-share-card">
+          <div class="prof-share-avatar" id="shareAvatar"></div>
+          <h3 class="prof-share-name" id="shareNameText">—</h3>
+          <p class="prof-share-handle" id="shareHandleText">@usuario</p>
+          <div class="prof-share-qr-wrap">
+            <canvas id="profileQRCanvas" width="220" height="220"></canvas>
+          </div>
+          <div class="prof-share-logo"><i class="fas fa-bolt"></i> Fynder</div>
+        </div>
+        <div class="prof-share-actions">
+          <button class="prof-share-btn" onclick="copyProfileLink()">
+            <i class="fas fa-link"></i>
+            <span>Copiar enlace</span>
+          </button>
+          <button class="prof-share-btn" onclick="shareProfileLink()">
+            <i class="fas fa-share-from-square"></i>
+            <span>Compartir enlace</span>
+          </button>
+        </div>
+        <p class="prof-share-hint">Pulsa sobre el fondo para cambiar el estilo</p>
+      </div>
+    </div>
+
+    <!-- ══ DRAWER: Menú del perfil (estilo TikTok) ══ -->
+    <div class="prof-modal-overlay" id="profileMenuOverlay" onclick="closeProfileMenu()"></div>
+    <div class="prof-drawer" id="profileMenuDrawer">
+      <div class="prof-drawer-handle"></div>
+
+      <div class="prof-drawer-section-label">Recursos</div>
+      <div class="prof-drawer-group">
+        <button class="prof-drawer-item" onclick="closeProfileMenu();goPage('dashboard')">
+          <div class="prof-drawer-icon"><i class="fas fa-chart-line"></i></div>
+          <span>Panel de control</span>
+          <i class="fas fa-chevron-right prof-drawer-arrow"></i>
+        </button>
+      </div>
+
+      <div class="prof-drawer-section-label">Herramientas personales</div>
+      <div class="prof-drawer-group">
+        <button class="prof-drawer-item" onclick="closeProfileMenu();openProfileViews()">
+          <div class="prof-drawer-icon"><i class="fas fa-eye"></i></div>
+          <span>Visualizaciones del perfil</span>
+          <i class="fas fa-chevron-right prof-drawer-arrow"></i>
+        </button>
+        <button class="prof-drawer-item" onclick="closeProfileMenu();openProfileShare()">
+          <div class="prof-drawer-icon"><i class="fas fa-qrcode"></i></div>
+          <span>Tu código QR</span>
+          <i class="fas fa-chevron-right prof-drawer-arrow"></i>
+        </button>
+        <button class="prof-drawer-item" onclick="closeProfileMenu();goPage('favorites')">
+          <div class="prof-drawer-icon"><i class="fas fa-heart"></i></div>
+          <span>Negocios guardados</span>
+          <i class="fas fa-chevron-right prof-drawer-arrow"></i>
+        </button>
+      </div>
+
+      <div class="prof-drawer-section-label">Ajustes y privacidad</div>
+      <div class="prof-drawer-group">
+        <button class="prof-drawer-item" onclick="closeProfileMenu();goPage('settings')">
+          <div class="prof-drawer-icon"><i class="fas fa-gear"></i></div>
+          <span>Ajustes y privacidad</span>
+          <i class="fas fa-chevron-right prof-drawer-arrow"></i>
+        </button>
+        <button class="prof-drawer-item" onclick="closeProfileMenu();goPage('support')">
+          <div class="prof-drawer-icon"><i class="fas fa-circle-question"></i></div>
+          <span>Centro de ayuda</span>
+          <i class="fas fa-chevron-right prof-drawer-arrow"></i>
+        </button>
+        <button class="prof-drawer-item" onclick="closeProfileMenu();goPage('terms')">
+          <div class="prof-drawer-icon"><i class="fas fa-shield-halved"></i></div>
+          <span>Términos y políticas</span>
+          <i class="fas fa-chevron-right prof-drawer-arrow"></i>
+        </button>
+      </div>
+
+      <div class="prof-drawer-section-label">Inicio de sesión</div>
+      <div class="prof-drawer-group">
+        <button class="prof-drawer-item prof-drawer-danger" onclick="closeProfileMenu();logout()">
+          <div class="prof-drawer-icon prof-drawer-icon-danger"><i class="fas fa-right-from-bracket"></i></div>
+          <span>Cerrar sesión</span>
+          <i class="fas fa-chevron-right prof-drawer-arrow"></i>
+        </button>
+      </div>
+
+      <p class="prof-drawer-version">Fynder v2.0</p>
     </div>
 
     <!-- Panel de opciones de foto (oculto por defecto) -->
