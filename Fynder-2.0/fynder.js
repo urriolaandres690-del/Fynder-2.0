@@ -5457,13 +5457,19 @@ function setChatBubbleColor(color, name, btn) {
   _loadMsgSettings();
   _msgSettings.bubbleColor = color;
   _saveMsgSettings();
+  
   // Actualizar CSS en tiempo real
   _applyChatBubbleColor(color);
-  // Actualizar UI
-  document.querySelectorAll('.msg-color-dot').forEach(d => d.classList.remove('active'));
-  if (btn) btn.classList.add('active');
+  
+  // Actualizar TODOS los dots de color (panel de mensajes Y página de ajustes)
+  document.querySelectorAll('.msg-color-dot, .sett-color-dot').forEach(d => {
+    d.classList.toggle('active', d.dataset.color === color);
+  });
+  
+  // Actualizar label en el panel de mensajes
   const colorSubEl = document.getElementById('settingColorSub');
   if (colorSubEl) colorSubEl.textContent = name;
+  
   showToast('Color actualizado');
 }
 
