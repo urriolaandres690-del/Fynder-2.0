@@ -12222,7 +12222,7 @@ body:has(#page-fynder.active) #navbar:not(.scrolled) .nav-dots-btn:hover {
   .wa-main {
     flex: 1;
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     height: 100%;
     overflow: hidden;
     position: relative;
@@ -12288,6 +12288,8 @@ body:has(#page-fynder.active) #navbar:not(.scrolled) .nav-dots-btn:hover {
 
   /* Área de chat activa */
   .wa-chat-area {
+    flex: 1;
+    min-width: 0;
     display: flex;
     flex-direction: column;
     height: 100%;
