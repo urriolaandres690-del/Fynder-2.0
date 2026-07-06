@@ -1116,8 +1116,151 @@
 </div> 
 
 <!-- Página: Perfil -->
-<div id="page-profile" class="page" style="min-height:100vh;background:#F8FAFC;padding-top:80px;padding-bottom:64px">
-  <div class="profile-inner">
+<div id="page-profile" class="page tiktok-profile-page">
+  
+  <!-- Header con botones de acción -->
+  <div class="tt-profile-header">
+    <button class="tt-header-btn" onclick="goPage('home')" title="Volver">
+      <i class="fas fa-arrow-left"></i>
+    </button>
+    <h2 class="tt-header-title">Perfil</h2>
+    <button class="tt-header-btn" onclick="openProfileMenu()" title="Más opciones">
+      <i class="fas fa-ellipsis-vertical"></i>
+    </button>
+  </div>
+
+  <!-- Contenido principal -->
+  <div class="tt-profile-content">
+    
+    <!-- Avatar y portada -->
+    <div class="tt-profile-hero">
+      <div class="tt-cover" id="ttCover">
+        <button class="tt-cover-upload-btn" onclick="uploadCover()" title="Subir portada">
+          <i class="fas fa-upload"></i> Subir imagen
+        </button>
+        <button class="tt-cover-photo-btn" onclick="takeCoverPhoto()" title="Tomar foto">
+          <i class="fas fa-camera"></i> Tomar foto
+        </button>
+      </div>
+      
+      <div class="tt-avatar-wrap">
+        <div class="tt-avatar" id="ttAvatar" onclick="changeAvatar()">
+          <div class="tt-avatar-edit-icon">
+            <i class="fas fa-camera"></i>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Nombre y usuario -->
+    <div class="tt-profile-info">
+      <h1 class="tt-profile-name" id="ttProfileName">Joss</h1>
+      <p class="tt-profile-username" id="ttProfileUsername">@x_x.joss06</p>
+    </div>
+
+    <!-- Estadísticas -->
+    <div class="tt-stats">
+      <div class="tt-stat-item" onclick="showFollowing()">
+        <strong id="ttFollowingCount">0</strong>
+        <span>Siguiendo</span>
+      </div>
+      <div class="tt-stat-item" onclick="showFollowers()">
+        <strong id="ttFollowersCount">0</strong>
+        <span>Seguidores</span>
+      </div>
+      <div class="tt-stat-item" onclick="showLikes()">
+        <strong id="ttLikesCount">0</strong>
+        <span>Me gusta</span>
+      </div>
+    </div>
+
+    <!-- Botón añadir descripción -->
+    <button class="tt-add-bio-btn" onclick="editBio()">
+      <i class="fas fa-plus"></i> Agregar descripción
+    </button>
+
+    <!-- Descripción (si existe) -->
+    <div class="tt-bio" id="ttBio" style="display:none" onclick="editBio()">
+      <p id="ttBioText"></p>
+    </div>
+
+    <!-- Menú principal tipo TikTok -->
+    <div class="tt-menu">
+      
+      <!-- Recursos -->
+      <div class="tt-menu-section">
+        <div class="tt-menu-section-title">Recursos</div>
+        <div class="tt-menu-item" onclick="showBalance()">
+          <div class="tt-menu-icon"><i class="fas fa-wallet"></i></div>
+          <span>Saldo</span>
+          <i class="fas fa-chevron-right tt-menu-arrow"></i>
+        </div>
+      </div>
+
+      <!-- Herramientas personales -->
+      <div class="tt-menu-section">
+        <div class="tt-menu-section-title">Herramientas personales</div>
+        
+        <div class="tt-menu-item" onclick="showActivityCenter()">
+          <div class="tt-menu-icon"><i class="fas fa-clock"></i></div>
+          <span>Centro de actividades</span>
+          <i class="fas fa-chevron-right tt-menu-arrow"></i>
+        </div>
+        
+        <div class="tt-menu-item" onclick="showOfflineVideos()">
+          <div class="tt-menu-icon"><i class="fas fa-cloud-arrow-down"></i></div>
+          <span>Videos sin conexión</span>
+          <i class="fas fa-chevron-right tt-menu-arrow"></i>
+        </div>
+        
+        <div class="tt-menu-item" onclick="showQRCode()">
+          <div class="tt-menu-icon"><i class="fas fa-qrcode"></i></div>
+          <span>Tu código QR</span>
+          <i class="fas fa-chevron-right tt-menu-arrow"></i>
+        </div>
+        
+        <div class="tt-menu-item" onclick="showProfileViews()">
+          <div class="tt-menu-icon"><i class="fas fa-eye"></i></div>
+          <span>Visualizaciones del perfil</span>
+          <span class="tt-menu-badge">6</span>
+          <i class="fas fa-chevron-right tt-menu-arrow"></i>
+        </div>
+      </div>
+
+      <!-- Herramientas de creación -->
+      <div class="tt-menu-section">
+        <div class="tt-menu-section-title">Herramientas de creación y negocios</div>
+        
+        <div class="tt-menu-item" onclick="goPage('dashboard')">
+          <div class="tt-menu-icon"><i class="fas fa-video"></i></div>
+          <span>Fynder Studio</span>
+          <i class="fas fa-chevron-right tt-menu-arrow"></i>
+        </div>
+      </div>
+
+      <!-- Ajustes y privacidad -->
+      <div class="tt-menu-section">
+        <div class="tt-menu-item" onclick="goPage('settings')">
+          <div class="tt-menu-icon"><i class="fas fa-gear"></i></div>
+          <span>Ajustes y privacidad</span>
+          <i class="fas fa-chevron-right tt-menu-arrow"></i>
+        </div>
+      </div>
+
+      <!-- Cerrar sesión -->
+      <div class="tt-menu-section">
+        <div class="tt-menu-item tt-menu-item-danger" onclick="logout()">
+          <div class="tt-menu-icon"><i class="fas fa-right-from-bracket"></i></div>
+          <span>Cerrar sesión</span>
+          <i class="fas fa-chevron-right tt-menu-arrow"></i>
+        </div>
+      </div>
+
+    </div><!-- /tt-menu -->
+
+  </div><!-- /tt-profile-content -->
+
+</div><!-- /page-profile -->
 
     <!-- Cabecera con portada + avatar -->
     <div class="profile-cover-wrap">
