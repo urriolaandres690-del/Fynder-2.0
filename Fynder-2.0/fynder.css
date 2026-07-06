@@ -16316,3 +16316,375 @@ mark.msg-search-mark {
 .goog-te-banner-frame.skiptranslate { display: none !important; }
 body { top: 0 !important; }
 iframe.goog-te-menu-frame { box-shadow: 0 4px 20px rgba(0,0,0,.15) !important; border-radius: 8px !important; }
+
+
+/* ================================================================
+   PROFILE PAGE - ESTILO TIKTOK
+   ================================================================ */
+
+.tiktok-profile-page {
+  min-height: 100vh;
+  background: var(--msg-bg2, #F8FAFC);
+  padding-top: 0;
+  padding-bottom: 80px;
+}
+
+/* Header fijo */
+.tt-profile-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 56px;
+  background: var(--msg-bg, #fff);
+  border-bottom: 1px solid var(--msg-border, #e5e7eb);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 16px;
+  z-index: 100;
+}
+
+.tt-header-btn {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: none;
+  background: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  color: var(--msg-text, #1f2937);
+  font-size: 1.125rem;
+  transition: background .15s;
+}
+
+.tt-header-btn:hover {
+  background: var(--msg-surface, #f3f4f6);
+}
+
+.tt-header-title {
+  flex: 1;
+  text-align: center;
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--msg-title, #111827);
+  margin: 0;
+}
+
+/* Contenido principal */
+.tt-profile-content {
+  padding-top: 56px;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+/* Hero con portada y avatar */
+.tt-profile-hero {
+  position: relative;
+  height: 200px;
+  margin-bottom: 64px;
+}
+
+.tt-cover {
+  height: 180px;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  position: relative;
+  overflow: hidden;
+}
+
+.tt-cover-upload-btn,
+.tt-cover-photo-btn {
+  position: absolute;
+  bottom: 12px;
+  padding: 6px 14px;
+  border-radius: 8px;
+  border: none;
+  background: rgba(0,0,0,.6);
+  backdrop-filter: blur(8px);
+  color: #fff;
+  font-size: .75rem;
+  font-weight: 500;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  transition: background .2s, transform .2s;
+  opacity: 0;
+}
+
+.tt-cover-upload-btn {
+  right: 12px;
+}
+
+.tt-cover-photo-btn {
+  right: 144px;
+}
+
+.tt-cover:hover .tt-cover-upload-btn,
+.tt-cover:hover .tt-cover-photo-btn {
+  opacity: 1;
+}
+
+.tt-cover-upload-btn:hover,
+.tt-cover-photo-btn:hover {
+  background: rgba(0,0,0,.8);
+  transform: scale(1.05);
+}
+
+.tt-avatar-wrap {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.tt-avatar {
+  width: 96px;
+  height: 96px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  border: 4px solid var(--msg-bg, #fff);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2rem;
+  font-weight: 700;
+  color: #fff;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(0,0,0,.15);
+}
+
+.tt-avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.tt-avatar-edit-icon {
+  position: absolute;
+  bottom: 2px;
+  right: 2px;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: var(--msg-accent, #67B8B4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: .7rem;
+  color: #fff;
+  box-shadow: 0 2px 6px rgba(0,0,0,.2);
+}
+
+/* Info del perfil */
+.tt-profile-info {
+  text-align: center;
+  padding: 0 20px;
+  margin-bottom: 16px;
+}
+
+.tt-profile-name {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--msg-title, #111827);
+  margin: 0 0 4px;
+}
+
+.tt-profile-username {
+  font-size: .9375rem;
+  color: var(--msg-muted, #6b7280);
+  margin: 0;
+}
+
+/* Estadísticas */
+.tt-stats {
+  display: flex;
+  justify-content: center;
+  gap: 32px;
+  padding: 16px 20px;
+  margin-bottom: 12px;
+}
+
+.tt-stat-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  cursor: pointer;
+  transition: transform .15s;
+}
+
+.tt-stat-item:hover {
+  transform: scale(1.05);
+}
+
+.tt-stat-item strong {
+  font-size: 1.125rem;
+  font-weight: 700;
+  color: var(--msg-title, #111827);
+}
+
+.tt-stat-item span {
+  font-size: .875rem;
+  color: var(--msg-muted, #6b7280);
+}
+
+/* Botón añadir bio */
+.tt-add-bio-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  width: calc(100% - 40px);
+  margin: 0 20px 20px;
+  padding: 12px;
+  border-radius: 8px;
+  border: 1px dashed var(--msg-border, #e5e7eb);
+  background: none;
+  color: var(--msg-muted, #6b7280);
+  font-size: .875rem;
+  cursor: pointer;
+  transition: all .2s;
+}
+
+.tt-add-bio-btn:hover {
+  background: var(--msg-surface, #f3f4f6);
+  border-color: var(--msg-accent, #67B8B4);
+  color: var(--msg-accent, #67B8B4);
+}
+
+/* Bio (descripción) */
+.tt-bio {
+  padding: 0 20px 20px;
+  text-align: center;
+  cursor: pointer;
+}
+
+.tt-bio p {
+  color: var(--msg-text, #374151);
+  font-size: .9375rem;
+  line-height: 1.5;
+  margin: 0;
+}
+
+/* Menú */
+.tt-menu {
+  padding: 0 20px;
+}
+
+.tt-menu-section {
+  margin-bottom: 24px;
+}
+
+.tt-menu-section-title {
+  font-size: .75rem;
+  font-weight: 600;
+  color: var(--msg-muted, #9ca3af);
+  text-transform: uppercase;
+  letter-spacing: .05em;
+  margin-bottom: 8px;
+  padding: 0 12px;
+}
+
+.tt-menu-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 14px 12px;
+  border-radius: 12px;
+  background: var(--msg-bg, #fff);
+  border: 1px solid var(--msg-border, #e5e7eb);
+  cursor: pointer;
+  transition: all .15s;
+  margin-bottom: 8px;
+  position: relative;
+}
+
+.tt-menu-item:hover {
+  background: var(--msg-surface, #f8f9fa);
+  border-color: var(--msg-accent, #67B8B4);
+  transform: translateX(4px);
+}
+
+.tt-menu-item-danger {
+  border-color: rgba(239,68,68,.2);
+}
+
+.tt-menu-item-danger:hover {
+  background: rgba(239,68,68,.05);
+  border-color: #ef4444;
+}
+
+.tt-menu-item-danger .tt-menu-icon {
+  background: rgba(239,68,68,.1);
+  color: #ef4444;
+}
+
+.tt-menu-icon {
+  width: 36px;
+  height: 36px;
+  border-radius: 10px;
+  background: var(--msg-surface, #f3f4f6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1rem;
+  color: var(--msg-accent, #67B8B4);
+  flex-shrink: 0;
+}
+
+.tt-menu-item span {
+  flex: 1;
+  font-size: .9375rem;
+  font-weight: 500;
+  color: var(--msg-text, #374151);
+}
+
+.tt-menu-arrow {
+  font-size: .75rem;
+  color: var(--msg-muted, #9ca3af);
+  flex-shrink: 0;
+}
+
+.tt-menu-badge {
+  padding: 2px 8px;
+  border-radius: 99px;
+  background: #ef4444;
+  color: #fff;
+  font-size: .75rem;
+  font-weight: 600;
+}
+
+/* Dark mode */
+[data-theme="dark"] .tiktok-profile-page {
+  background: #0a0a0a;
+}
+
+[data-theme="dark"] .tt-profile-header {
+  background: #1a1a1a;
+  border-bottom-color: #2a2a2a;
+}
+
+[data-theme="dark"] .tt-header-btn {
+  color: #e5e7eb;
+}
+
+[data-theme="dark"] .tt-header-btn:hover {
+  background: #2a2a2a;
+}
+
+[data-theme="dark"] .tt-menu-item {
+  background: #1a1a1a;
+  border-color: #2a2a2a;
+}
+
+[data-theme="dark"] .tt-menu-item:hover {
+  background: #252525;
+}
+
+[data-theme="dark"] .tt-avatar {
+  border-color: #1a1a1a;
+}
