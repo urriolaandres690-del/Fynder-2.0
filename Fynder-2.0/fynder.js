@@ -5283,11 +5283,24 @@ function _saveMsgSettings() {
 function openMsgSettings() {
   _loadMsgSettings();
 
-  // Sync toggles
+  // Sync toggles de notif / sonido / leído
   ['notif','sound','read'].forEach(k => {
     const el = document.getElementById('setting' + k.charAt(0).toUpperCase() + k.slice(1) + 'Toggle');
-    if (el) el.classList.toggle('on', _msgSettings[k]);
+    if (el) el.classList.toggle('on', _msgSettings[k] !== false);
   });
+
+  // Sync toggle de "en línea"
+  const onlineToggle = document.getElementById('settingOnlineToggle');
+  if (onlineToggle) onlineToggle.classList.toggle('on', _msgSettings.online !== false);
+
+  // Sync toggle de tema oscuro
+  const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+  const themeToggle = document.getElementById('settingThemeToggle');
+  const themeIcon   = document.getElementById('settingThemeIcon');
+  const themeSub    = document.getElementById('settingThemeSub');
+  if (themeToggle) themeToggle.classList.toggle('on', isDark);
+  if (themeIcon) themeIcon.innerHTML = isDark ? '<i class="fas fa-moon"></i>' : '<i class="fas fa-sun"></i>';
+  if (themeSub) themeSub.textContent = isDark ? 'Tema actual: oscuro' : 'Tema actual: claro';
 
   // Sync color dots
   document.querySelectorAll('.msg-color-dot').forEach(dot => {
@@ -5302,13 +5315,35 @@ function openMsgSettings() {
   // Sync font buttons
   document.querySelectorAll('.msg-font-btn').forEach((btn, i) => {
     const sizes = ['small','normal','large'];
-    btn.classList.toggle('active', sizes[i] === _msgSettings.fontSize);
+    btn.classList.toggle('active', sizes[i] === (_msgSettings.fontSize || 'normal'));
   });
 
   // Sync color sub
-  const colorNames = { '#7b3838':'Rojo oscuro','#1e4d7b':'Azul oscuro','#1a5c34':'Verde oscuro','#5b2d82':'Morado','#7a4a1a':'Naranja','#2b5c5c':'Verde azulado' };
+  const colorNames = {
+    '#67B8B4':'Teal Fynder',
+    '#7b3838':'Rojo oscuro',
+    '#1e4d7b':'Azul oscuro',
+    '#1a5c34':'Verde oscuro',
+    '#5b2d82':'Morado',
+    '#7a4a1a':'Naranja',
+    '#2b5c5c':'Verde azulado'
+  };
   const colorSubEl = document.getElementById('settingColorSub');
   if (colorSubEl) colorSubEl.textContent = colorNames[_msgSettings.bubbleColor] || 'Personalizado';
+
+  // Sync wallpaper dots
+  const wpNames = {
+    default: 'Por defecto',
+    dots: 'Patrón de puntos',
+    gradient: 'Gradiente',
+    dark: 'Oscuro total',
+    nature: 'Verde natural'
+  };
+  document.querySelectorAll('.msg-wallpaper-dot').forEach(dot => {
+    dot.classList.toggle('active', dot.dataset.wp === (_msgSettings.wallpaper || 'default'));
+  });
+  const wpSubEl = document.getElementById('settingWallpaperSub');
+  if (wpSubEl) wpSubEl.textContent = wpNames[_msgSettings.wallpaper || 'default'] || 'Por defecto';
 
   document.getElementById('msgSettingsOverlay').classList.add('open');
   document.getElementById('msgSettingsPanel').classList.add('open');
