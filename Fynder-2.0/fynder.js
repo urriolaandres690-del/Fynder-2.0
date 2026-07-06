@@ -4874,13 +4874,29 @@ function openChatProfileMap() {
 function deleteChatHistory() {
   if (!_activeChatBizId) return;
   if (!confirm('¿Borrar todo el historial de este chat?')) return;
+  
   localStorage.removeItem('fynderChat_' + _activeChatBizId);
+  
   // Actualizar conversación
   let convs = _getConversations();
   const idx = convs.findIndex(c => String(c.id) === String(_activeChatBizId));
-  if (idx > -1) { convs[idx].lastMsg = ''; convs[idx].lastTime = ''; _saveConversations(convs); }
+  if (idx > -1) { 
+    convs[idx].lastMsg = ''; 
+    convs[idx].lastTime = ''; 
+    _saveConversations(convs); 
+  }
+  
   showToast('Historial borrado');
-  goPage('chat');
+  
+  // En desktop: recargar mensajes del chat activo
+  const isDesktop = window.innerWidth >= 769;
+  if (isDesktop) {
+    closeWaChatInfoPanel();
+    renderChatMessages();
+    renderConversations();
+  } else {
+    goPage('chat');
+  }
 }
 
 function blockBiz() {
