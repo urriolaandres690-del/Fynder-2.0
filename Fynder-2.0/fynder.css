@@ -13234,6 +13234,56 @@ body:has(#page-fynder.active) #navbar:not(.scrolled) .nav-dots-btn:hover {
 .chat-bubble-meta {
   display: flex;
   align-items: center;
+  gap: 4px;
+  justify-content: flex-end;
+  margin-top: 3px;
+  line-height: 1;
+}
+.chat-bubble-time {
+  font-size: .68rem;
+  color: rgba(255,255,255,.65);
+}
+.in .chat-bubble-time { color: var(--msg-muted); }
+
+/* ── Ticks estilo WhatsApp ── */
+.chat-bubble-tick {
+  font-size: .72rem;
+  display: inline-flex;
+  align-items: center;
+  line-height: 1;
+  flex-shrink: 0;
+}
+
+/* Reloj — enviando / sin conexión */
+.chat-bubble-tick.tick-pending {
+  color: rgba(255,255,255,.5);
+  font-size: .65rem;
+}
+.in .chat-bubble-tick.tick-pending { color: var(--msg-muted); }
+
+/* Un gancho gris — llegó al servidor */
+.chat-bubble-tick.tick-sent {
+  color: rgba(255,255,255,.55);
+}
+.in .chat-bubble-tick.tick-sent { color: var(--msg-muted); }
+
+/* Doble gancho gris — entregado */
+.chat-bubble-tick.tick-delivered {
+  color: rgba(255,255,255,.55);
+}
+.in .chat-bubble-tick.tick-delivered { color: var(--msg-muted); }
+
+/* Doble gancho azul — leído */
+.chat-bubble-tick.tick-read {
+  color: #53bdeb;   /* azul WhatsApp */
+}
+
+/* Compatibilidad con clases antiguas */
+.chat-bubble-tick.sent    { color: rgba(255,255,255,.45); }
+.chat-bubble-tick.read    { color: var(--msg-tick-read); }
+[data-theme="dark"] .chat-bubble-tick.sent { color: rgba(255,255,255,.4); }
+[data-theme="dark"] .chat-bubble-tick.tick-read { color: #53bdeb; }
+  align-items: center;
   gap: 3px;
   justify-content: flex-end;
   margin-top: 3px;
