@@ -7526,13 +7526,6 @@ function _getSmartReply(userText, cat, bizName, biz) {
     ropa:         [`¿Casual, formal, sport o para una ocasión especial? 👗`, `¿Cuál es tu talla? Verificamos disponibilidad 👕`, `¿Es para regalo? Empaque especial sin costo adicional 🎁`, `Nueva colección disponible. ¿Quieres ver fotos? 📸`],
     deportes:     [`¿Qué deporte practicas o qué equipo necesitas? 🏋️`, `¿Eres principiante o tienes experiencia? Así te recomendamos mejor 🎽`, `Marcas originales con garantía. ¿Tienes marca preferida? ⚽`, `También medimos tu pisada gratis para el calzado correcto 👟`],
   };
-    tecnologia:   [`¿Qué equipo necesitas reparar? 💻`, `Diagnóstico gratis 🔧. ¿Lo traes hoy?`, `¿Hardware o software? ⚙️`],
-    hogar:        [`¿Qué trabajo necesitas? 🏠`, `Presupuesto sin costo 🔨. ¿Describimos el trabajo?`],
-    turismo:      [`¿Tours, paquetes o experiencias? ✈️`, `¿Para cuántas personas y qué fecha? 🗓️`],
-    transporte:   [`¿Fecha y destino? 🚗`, `¿Aeropuerto, tour o ruta especial? 🛫`],
-    ropa:         [`¿Casual, formal o sport? 👗`, `¿Cuál es tu talla? Verificamos 👕`, `¿Es para regalo? Empaque sin costo 🎁`],
-    deportes:     [`¿Qué deporte practicas? 🏋️`, `¿Principiante o con experiencia? 🎽`, `Marcas originales con garantía ⚽`],
-  };
 
   return _pick(catFb[cat] || [
     `¡Gracias por escribir a ${bizName}! 😊 ¿En qué podemos ayudarte?`,
