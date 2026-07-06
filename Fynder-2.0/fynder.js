@@ -4076,15 +4076,17 @@ function _bizAutoReply(bizId, renderFn) {
     }
   });
 
-  const replies = [
-    '¡Gracias por escribirnos! 😊 Estaremos encantados de ayudarte.',
-    'Claro, con gusto te atendemos. ¿Cuéntanos más detalles?',
-    '¡Hola! Recibimos tu mensaje. Te respondemos a la brevedad.',
-    'Gracias por contactarnos. ¿En qué podemos servirte hoy?',
-    '¡Qué bueno saber de ti! Dinos cómo podemos ayudarte.',
-    'Entendido, ya tomamos nota. Te enviamos la información en un momento.'
-  ];
-  const text = replies[Math.floor(Math.random() * replies.length)];
+  // Obtener el último mensaje del usuario para responder con contexto
+  const userMsgs = msgs.filter(m => m.from === 'user');
+  const lastUserText = userMsgs.length > 0
+    ? (userMsgs[userMsgs.length - 1].text || '').toLowerCase()
+    : '';
+
+  const biz = BUSINESSES.find(b => String(b.id) === String(bizId));
+  const cat = biz ? (biz.categoryId || biz.category || '').toLowerCase() : '';
+  const bizName = biz ? biz.name : 'nosotros';
+
+  const text = _getSmartReply(lastUserText, cat, bizName, biz);
   const now  = new Date();
   const reply = { id: Date.now(), from: 'biz', text, time: _fmtTime(now), date: _fmtDate(now) };
   msgs.push(reply);
