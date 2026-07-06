@@ -5571,4 +5571,331 @@ document.addEventListener('DOMContentLoaded', () => {
   if (localStorage.getItem('fynderReduceMotion')) {
     document.documentElement.setAttribute('data-reduce-motion', '1');
   }
+  // Auto-traducción al iniciar
+  _initAutoTranslate();
 });
+
+// ══════════════════════════════════════════════════════════════════════════════
+// MODO INVISIBLE
+// ══════════════════════════════════════════════════════════════════════════════
+
+function settToggleInvisible() {
+  const isOn = localStorage.getItem('fynderInvisible') === '1';
+  const newVal = !isOn;
+  localStorage.setItem('fynderInvisible', newVal ? '1' : '0');
+
+  const btn = document.getElementById('settInvisibleToggle');
+  const sub = document.getElementById('settInvisibleSub');
+  if (btn) btn.classList.toggle('on', newVal);
+  if (sub) sub.textContent = newVal
+    ? 'Estás invisible — nadie ve que estás en línea'
+    : 'Los demás ven que estás en línea';
+  showToast(newVal ? '🕵️ Modo invisible activado' : '👁️ Modo invisible desactivado');
+
+  // Aplicar indicador visual de estado
+  _applyInvisibleMode(newVal);
+}
+
+function _applyInvisibleMode(invisible) {
+  // Oculta o muestra el indicador verde de "en línea" en el avatar del navbar
+  const onlineDots = document.querySelectorAll('.online-dot, .user-online-badge');
+  onlineDots.forEach(d => d.style.display = invisible ? 'none' : '');
+}
+
+function _syncInvisibleSetting() {
+  const isOn = localStorage.getItem('fynderInvisible') === '1';
+  const btn = document.getElementById('settInvisibleToggle');
+  const sub = document.getElementById('settInvisibleSub');
+  if (btn) btn.classList.toggle('on', isOn);
+  if (sub) sub.textContent = isOn
+    ? 'Estás invisible — nadie ve que estás en línea'
+    : 'Los demás ven que estás en línea';
+  _applyInvisibleMode(isOn);
+}
+
+// ══════════════════════════════════════════════════════════════════════════════
+// AMIGOS
+// ══════════════════════════════════════════════════════════════════════════════
+
+function _getFriends()        { return JSON.parse(localStorage.getItem('fynderFriends')  || '[]'); }
+function _getFriendRequests() { return JSON.parse(localStorage.getItem('fynderFriendReqs') || '[]'); }
+function _saveFriends(arr)    { localStorage.setItem('fynderFriends', JSON.stringify(arr)); }
+function _saveFriendReqs(arr) { localStorage.setItem('fynderFriendReqs', JSON.stringify(arr)); }
+
+/** Inicializa datos de demo para amigos si no hay ninguno */
+function _seedFriendsDemo() {
+  if (_getFriends().length > 0) return;
+  const demo = [
+    { id:'f1', name:'Ana García',    email:'ana@ejemplo.com',    online:true  },
+    { id:'f2', name:'Carlos López',  email:'carlos@ejemplo.com', online:false },
+    { id:'f3', name:'María Pérez',   email:'maria@ejemplo.com',  online:true  },
+  ];
+  _saveFriends(demo);
+  const req = [
+    { id:'r1', name:'Juan Rodríguez', email:'juan@ejemplo.com' },
+  ];
+  _saveFriendReqs(req);
+}
+
+function settSyncAmigos() {
+  _seedFriendsDemo();
+  _renderFriendRequests();
+  _renderFriendList();
+  _updateFriendCount();
+}
+
+function _updateFriendCount() {
+  const friends = _getFriends();
+  const reqs    = _getFriendRequests();
+  const total   = document.getElementById('settFriendTotal');
+  if (total) total.textContent = `(${friends.length})`;
+
+  const badge = document.getElementById('settFriendReqBadge');
+  if (badge) {
+    badge.textContent = reqs.length;
+    badge.style.display = reqs.length > 0 ? 'inline-flex' : 'none';
+  }
+
+  // Actualizar sub en "Tú y Fynder"
+  const sub = document.getElementById('settFriendCountSub');
+  if (sub) sub.textContent = friends.length > 0 ? `${friends.length} amigo${friends.length !== 1 ? 's' : ''}` : 'Ver lista de amigos';
+}
+
+function _renderFriendRequests() {
+  const cont = document.getElementById('settFriendRequests');
+  if (!cont) return;
+  const reqs = _getFriendRequests();
+  if (reqs.length === 0) {
+    cont.innerHTML = '<div class="sett-empty-state"><i class="fas fa-user-check"></i><span>Sin solicitudes pendientes</span></div>';
+    return;
+  }
+  cont.innerHTML = reqs.map(r => `
+    <div class="sett-req-row" id="req-${r.id}">
+      <div class="sett-friend-avatar" style="background:#2F5BB7">${r.name[0].toUpperCase()}</div>
+      <div class="sett-friend-info">
+        <span class="sett-friend-name">${r.name}</span>
+        <span class="sett-friend-email">${r.email}</span>
+      </div>
+      <div class="sett-friend-actions">
+        <button class="sett-req-accept" onclick="acceptFriendReq('${r.id}')"><i class="fas fa-check"></i> Aceptar</button>
+        <button class="sett-req-decline" onclick="declineFriendReq('${r.id}')"><i class="fas fa-xmark"></i></button>
+      </div>
+    </div>`).join('');
+}
+
+function _renderFriendList(filter) {
+  const cont = document.getElementById('settFriendList');
+  if (!cont) return;
+  let friends = _getFriends();
+  if (filter) friends = friends.filter(f =>
+    f.name.toLowerCase().includes(filter) || (f.email || '').toLowerCase().includes(filter));
+
+  if (friends.length === 0) {
+    cont.innerHTML = filter
+      ? '<div class="sett-empty-state"><i class="fas fa-magnifying-glass"></i><span>Sin resultados</span></div>'
+      : '<div class="sett-empty-state"><i class="fas fa-user-group"></i><span>Aún no tienes amigos agregados</span></div>';
+    return;
+  }
+  cont.innerHTML = friends.map(f => `
+    <div class="sett-friend-row" id="fr-${f.id}">
+      <div class="sett-friend-avatar">${f.name[0].toUpperCase()}</div>
+      <div class="sett-friend-status ${f.online ? '' : 'offline'}"></div>
+      <div class="sett-friend-info">
+        <span class="sett-friend-name">${f.name}</span>
+        <span class="sett-friend-email">${f.online ? '🟢 En línea' : '⚫ Desconectado'} · ${f.email}</span>
+      </div>
+      <div class="sett-friend-actions">
+        <button class="sett-friend-btn" onclick="msgFriend('${f.id}','${f.name}')"><i class="fas fa-comment-dots"></i> Mensaje</button>
+        <button class="sett-friend-btn danger" onclick="removeFriend('${f.id}')"><i class="fas fa-user-minus"></i></button>
+      </div>
+    </div>`).join('');
+}
+
+function settSearchFriends(q) {
+  _renderFriendList(q.toLowerCase().trim() || undefined);
+}
+
+function acceptFriendReq(id) {
+  const reqs    = _getFriendRequests();
+  const idx     = reqs.findIndex(r => r.id === id);
+  if (idx === -1) return;
+  const [req]   = reqs.splice(idx, 1);
+  _saveFriendReqs(reqs);
+  const friends = _getFriends();
+  friends.push({ id: req.id, name: req.name, email: req.email, online: false });
+  _saveFriends(friends);
+  _renderFriendRequests();
+  _renderFriendList();
+  _updateFriendCount();
+  showToast(`✅ ¡Ahora eres amigo de ${req.name}!`);
+}
+
+function declineFriendReq(id) {
+  const reqs = _getFriendRequests().filter(r => r.id !== id);
+  _saveFriendReqs(reqs);
+  _renderFriendRequests();
+  _updateFriendCount();
+  showToast('Solicitud rechazada');
+}
+
+function removeFriend(id) {
+  const friends = _getFriends();
+  const f = friends.find(x => x.id === id);
+  if (!f) return;
+  if (!confirm(`¿Eliminar a ${f.name} de tus amigos?`)) return;
+  _saveFriends(friends.filter(x => x.id !== id));
+  _renderFriendList();
+  _updateFriendCount();
+  showToast(`${f.name} eliminado de tus amigos`);
+}
+
+function msgFriend(id, name) {
+  showToast(`💬 Abriendo chat con ${name}...`);
+  setTimeout(() => goPage('messages'), 600);
+}
+
+// ══════════════════════════════════════════════════════════════════════════════
+// IDIOMA / TRADUCCIÓN
+// ══════════════════════════════════════════════════════════════════════════════
+
+// Mapa de códigos de idioma a etiquetas
+const LANG_NAMES = {
+  es:'Español', en:'English', fr:'Français', pt:'Português',
+  de:'Deutsch', it:'Italiano', zh:'中文', ja:'日本語', ko:'한국어',
+  ar:'العربية', ru:'Русский'
+};
+
+/** Detecta el idioma del navegador (primeros 2 chars) */
+function _detectBrowserLang() {
+  const lang = (navigator.language || navigator.userLanguage || 'es').slice(0, 2).toLowerCase();
+  return LANG_NAMES[lang] ? lang : 'es';
+}
+
+/** Inicializa la traducción automática al cargar si está activada */
+function _initAutoTranslate() {
+  const autoOn = localStorage.getItem('fynderAutoTranslate') === '1';
+  if (!autoOn) return;
+  const saved = localStorage.getItem('fynderLang') || _detectBrowserLang();
+  if (saved !== 'es') {
+    // Esperar a que Google Translate esté listo
+    const tries = setInterval(() => {
+      const el = document.querySelector('.goog-te-combo');
+      if (el) {
+        clearInterval(tries);
+        el.value = saved;
+        el.dispatchEvent(new Event('change'));
+      }
+    }, 300);
+    // Cancelar tras 5s
+    setTimeout(() => clearInterval(tries), 5000);
+  }
+}
+
+function settSyncIdioma() {
+  const browserLang = _detectBrowserLang();
+  const saved = localStorage.getItem('fynderLang') || browserLang;
+  const autoOn = localStorage.getItem('fynderAutoTranslate') === '1';
+
+  // Selector
+  const sel = document.getElementById('settLangSelect');
+  if (sel) sel.value = LANG_NAMES[saved] ? saved : 'es';
+
+  // Sub detectado
+  const sub = document.getElementById('settLangDetectedSub');
+  if (sub) sub.textContent = `Idioma del sistema: ${LANG_NAMES[browserLang] || 'Español'}`;
+
+  // Toggle auto
+  const toggle = document.getElementById('settAutoTranslateToggle');
+  if (toggle) toggle.classList.toggle('on', autoOn);
+
+  // Fila "traducir ahora"
+  const nowRow = document.getElementById('settTranslateNowRow');
+  const nowSub = document.getElementById('settTranslateNowSub');
+  if (nowRow) nowRow.style.display = saved !== 'es' ? '' : 'none';
+  if (nowSub) nowSub.textContent = `Traducir al ${LANG_NAMES[saved] || 'Español'}`;
+
+  // Lista de idiomas preferidos
+  _renderPreferredLangs(saved);
+}
+
+function _renderPreferredLangs(current) {
+  const cont = document.getElementById('settPreferredLangs');
+  if (!cont) return;
+  const browserLang = _detectBrowserLang();
+  const langs = [...new Set([current, browserLang, 'es'])].slice(0, 3);
+  cont.innerHTML = langs.map((l, i) => `
+    <div class="sett-row" onclick="settApplyLanguage('${l}')">
+      <div class="sett-row-left">
+        <div class="sett-row-icon" style="background:#F8FAFC;color:var(--fg);font-size:1.1rem;font-family:serif">${_langFlag(l)}</div>
+        <div>
+          <span class="sett-row-label">${LANG_NAMES[l] || l}</span>
+          <span class="sett-row-sub">${i === 0 ? 'Idioma activo' : i === 1 ? 'Idioma del sistema' : 'Predeterminado'}</span>
+        </div>
+      </div>
+      ${l === current ? '<i class="fas fa-check" style="color:var(--primary)"></i>' : '<i class="fas fa-chevron-right sett-row-arrow"></i>'}
+    </div>`).join('');
+}
+
+function _langFlag(code) {
+  const flags = { es:'🇪🇸', en:'🇺🇸', fr:'🇫🇷', pt:'🇧🇷', de:'🇩🇪',
+                  it:'🇮🇹', zh:'🇨🇳', ja:'🇯🇵', ko:'🇰🇷', ar:'🇸🇦', ru:'🇷🇺' };
+  return flags[code] || '🌐';
+}
+
+/** Aplica el idioma seleccionado usando Google Translate */
+function settApplyLanguage(langCode) {
+  localStorage.setItem('fynderLang', langCode);
+
+  const sel = document.getElementById('settLangSelect');
+  if (sel) sel.value = langCode;
+
+  const nowRow = document.getElementById('settTranslateNowRow');
+  if (nowRow) nowRow.style.display = langCode !== 'es' ? '' : 'none';
+
+  _renderPreferredLangs(langCode);
+
+  if (langCode === 'es') {
+    // Restaurar idioma original — recargar sin traducción
+    const frame = document.querySelector('.goog-te-combo');
+    if (frame) { frame.value = 'es'; frame.dispatchEvent(new Event('change')); }
+    showToast('🇪🇸 Idioma cambiado a Español');
+    return;
+  }
+
+  // Usar Google Translate widget
+  const combo = document.querySelector('.goog-te-combo');
+  if (combo) {
+    combo.value = langCode;
+    combo.dispatchEvent(new Event('change'));
+    showToast(`${_langFlag(langCode)} Traduciendo a ${LANG_NAMES[langCode]}...`);
+  } else {
+    // Widget no listo aún — usar URL redirect
+    showToast(`${_langFlag(langCode)} Abriendo traductor...`);
+    setTimeout(() => {
+      window.location.href = `https://translate.google.com/translate?sl=es&tl=${langCode}&u=${encodeURIComponent(location.href)}`;
+    }, 500);
+  }
+}
+
+function settToggleAutoTranslate() {
+  const isOn = localStorage.getItem('fynderAutoTranslate') === '1';
+  const newVal = !isOn;
+  localStorage.setItem('fynderAutoTranslate', newVal ? '1' : '0');
+
+  const btn = document.getElementById('settAutoTranslateToggle');
+  if (btn) btn.classList.toggle('on', newVal);
+
+  if (newVal) {
+    const detected = _detectBrowserLang();
+    const saved = localStorage.getItem('fynderLang') || detected;
+    showToast(`✅ Traducción automática activada — Idioma detectado: ${LANG_NAMES[detected]}`);
+    if (saved !== 'es') settApplyLanguage(saved);
+  } else {
+    showToast('Traducción automática desactivada');
+  }
+}
+
+function settTranslateNow() {
+  const lang = localStorage.getItem('fynderLang') || _detectBrowserLang();
+  settApplyLanguage(lang);
+}
