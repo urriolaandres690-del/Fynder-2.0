@@ -5949,3 +5949,40 @@ function settTranslateNow() {
   const lang = localStorage.getItem('fynderLang') || _detectBrowserLang();
   settApplyLanguage(lang);
 }
+
+// ── FEEDBACK MODAL ───────────────────────────────────────────────────────────
+
+let _feedbackStar = 0;
+
+function openFeedbackModal() {
+  _feedbackStar = 0;
+  const txt = document.getElementById('feedbackText');
+  if (txt) txt.value = '';
+  document.querySelectorAll('.feedback-star-btn').forEach(b => b.classList.remove('selected'));
+  const m = document.getElementById('feedbackModal');
+  if (m) m.classList.add('open');
+}
+
+function closeFeedbackModal() {
+  const m = document.getElementById('feedbackModal');
+  if (m) m.classList.remove('open');
+}
+
+function setFeedbackStar(n) {
+  _feedbackStar = n;
+  document.querySelectorAll('.feedback-star-btn').forEach((b, i) => {
+    b.classList.toggle('selected', i < n);
+  });
+}
+
+function submitFeedback() {
+  const txt = (document.getElementById('feedbackText')?.value || '').trim();
+  if (!_feedbackStar) { showToast('Elige una valoración primero 😊'); return; }
+  // Guardamos localmente (en un proyecto real iría a un servidor)
+  const entry = { stars: _feedbackStar, text: txt, date: new Date().toLocaleDateString('es') };
+  const prev = JSON.parse(localStorage.getItem('fynderFeedback') || '[]');
+  prev.push(entry);
+  localStorage.setItem('fynderFeedback', JSON.stringify(prev));
+  closeFeedbackModal();
+  showToast('¡Gracias por tu opinión! 🙌');
+}
