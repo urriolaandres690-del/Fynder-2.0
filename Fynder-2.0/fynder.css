@@ -12233,11 +12233,15 @@ body:has(#page-fynder.active) #navbar:not(.scrolled) .nav-dots-btn:hover {
   .wa-main::before {
     content: '';
     position: absolute;
-    inset: 0;
+    top: 0; left: 0;
+    /* Solo cubre el área de chat, no el panel de info */
+    right: 0;
+    bottom: 0;
     background-image: radial-gradient(var(--msg-border) 1px, transparent 1px);
     background-size: 28px 28px;
     pointer-events: none;
     opacity: .4;
+    z-index: 0;
   }
 
   /* Pantalla de bienvenida */
