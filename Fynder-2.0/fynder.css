@@ -13998,9 +13998,20 @@ body:has(#page-fynder.active) #navbar:not(.scrolled) .nav-dots-btn:hover {
   padding: 16px 16px;
   border-bottom: 1px solid var(--msg-border);
   cursor: default;
+  transition: background .15s;
 }
 .cpro-settings-item:last-child { border-bottom: none; }
-.cpro-settings-item-danger { cursor: pointer; transition: background .15s; }
+/* Items con acción tienen cursor pointer y hover */
+.cpro-settings-item[onclick] {
+  cursor: pointer;
+}
+.cpro-settings-item[onclick]:hover {
+  background: var(--msg-surface);
+}
+.cpro-settings-item[onclick]:active {
+  background: var(--msg-surface2, rgba(0,0,0,.08));
+}
+.cpro-settings-item-danger { cursor: pointer; }
 .cpro-settings-item-danger:hover { background: rgba(239,68,68,.06); }
 .cpro-settings-icon {
   width: 34px; height: 34px;
