@@ -15618,3 +15618,48 @@ body { top: 0 !important; }
 
 /* Ocultar el bottom-nav antiguo siempre (lo reemplaza el rail) */
 .msg-bottom-nav { display: none !important; }
+
+/* ================================================================
+   AJUSTES DEL CHAT: wallpapers y mejoras visuales
+   ================================================================ */
+
+/* Dots de fondo del chat */
+.msg-settings-wallpapers {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+.msg-wallpaper-dot {
+  width: 28px; height: 28px;
+  border-radius: 50%;
+  border: 2px solid transparent;
+  cursor: pointer;
+  transition: transform .15s, border-color .15s;
+  flex-shrink: 0;
+}
+.msg-wallpaper-dot:hover  { transform: scale(1.15); }
+.msg-wallpaper-dot.active { border-color: var(--msg-accent); box-shadow: 0 0 0 2px rgba(103,184,180,.4); }
+
+/* Fondos de chat */
+.chat-messages.wp-dots {
+  background-image: radial-gradient(rgba(103,184,180,.15) 1.5px, transparent 1.5px) !important;
+  background-size: 22px 22px !important;
+}
+.chat-messages.wp-gradient {
+  background: linear-gradient(160deg, rgba(30,143,139,.12) 0%, rgba(47,91,183,.12) 100%) !important;
+}
+.chat-messages.wp-dark {
+  background: #0a0a0a !important;
+}
+.chat-messages.wp-nature {
+  background-image:
+    radial-gradient(rgba(34,197,94,.08) 1px, transparent 1px),
+    radial-gradient(rgba(34,197,94,.05) 1px, transparent 1px) !important;
+  background-size: 20px 20px, 40px 40px !important;
+  background-position: 0 0, 10px 10px !important;
+}
+
+/* Animación de entrada del panel de ajustes de chat mejorada */
+.msg-settings-panel {
+  border-radius: 0 16px 16px 0;  /* esquinas redondeadas en el lado derecho */
+}
