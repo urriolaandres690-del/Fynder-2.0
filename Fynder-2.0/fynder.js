@@ -5323,10 +5323,97 @@ function toggleMsgSetting(key) {
   _loadMsgSettings();
   _msgSettings[key] = !_msgSettings[key];
   _saveMsgSettings();
-  const idMap = { notif:'settingNotifToggle', sound:'settingSoundToggle', read:'settingReadToggle' };
+  const idMap = { notif:'settingNotifToggle', sound:'settingSoundToggle', read:'settingReadToggle', online:'settingOnlineToggle' };
   const el = document.getElementById(idMap[key]);
   if (el) el.classList.toggle('on', _msgSettings[key]);
   showToast(_msgSettings[key] ? 'Activado' : 'Desactivado');
+}
+
+function msgToggleSetting(key, toggleId) {
+  toggleMsgSetting(key);
+}
+
+function msgToggleTheme() {
+  const current = document.documentElement.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+  document.documentElement.setAttribute('data-theme', current);
+  localStorage.setItem('fynderTheme', current);
+  
+  const icon = document.getElementById('settingThemeIcon');
+  const sub = document.getElementById('settingThemeSub');
+  const toggle = document.getElementById('settingThemeToggle');
+  
+  if (current === 'dark') {
+    if (icon) icon.innerHTML = '<i class="fas fa-moon"></i>';
+    if (sub) sub.textContent = 'Tema actual: oscuro';
+    if (toggle) toggle.classList.add('on');
+  } else {
+    if (icon) icon.innerHTML = '<i class="fas fa-sun"></i>';
+    if (sub) sub.textContent = 'Tema actual: claro';
+    if (toggle) toggle.classList.remove('on');
+  }
+  
+  showToast(`Tema ${current === 'dark' ? 'oscuro' : 'claro'} activado`);
+}
+
+function setChatWallpaper(wp, btn) {
+  _loadMsgSettings();
+  _msgSettings.wallpaper = wp;
+  _saveMsgSettings();
+  _applyChatWallpaper(wp);
+  
+  // Actualizar UI
+  document.querySelectorAll('.msg-wallpaper-dot').forEach(d => d.classList.remove('active'));
+  if (btn) btn.classList.add('active');
+  
+  const names = { 
+    default: 'Por defecto', 
+    dots: 'Patrón de puntos', 
+    gradient: 'Gradiente', 
+    dark: 'Oscuro total', 
+    nature: 'Verde natural' 
+  };
+  
+  const subEl = document.getElementById('settingWallpaperSub');
+  if (subEl) subEl.textContent = names[wp] || 'Por defecto';
+  
+  showToast('Fondo actualizado');
+}
+
+function _applyChatWallpaper(wp) {
+  const msgs = document.querySelector('.wa-chat-area .chat-messages');
+  if (!msgs) return;
+  
+  ['wp-default', 'wp-dots', 'wp-gradient', 'wp-dark', 'wp-nature'].forEach(c => msgs.classList.remove(c));
+  msgs.classList.add('wp-' + wp);
+}
+
+function clearAllChats() {
+  if (!confirm('¿Borrar TODOS los chats y conversaciones? Esta acción no se puede deshacer.')) return;
+  
+  // Borrar todos los chats del localStorage
+  const keys = Object.keys(localStorage);
+  keys.forEach(key => {
+    if (key.startsWith('fynderChat_')) {
+      localStorage.removeItem(key);
+    }
+  });
+  
+  // Limpiar conversaciones
+  _saveConversations([]);
+  
+  showToast('Todos los chats han sido borrados');
+  closeMsgSettings();
+  
+  // Actualizar UI
+  renderConversations();
+  
+  // Si estaba en un chat, cerrar
+  const isDesktop = window.innerWidth >= 769;
+  if (isDesktop) {
+    waCloseChat();
+  } else {
+    goPage('messages');
+  }
 }
 
 function setChatBubbleColor(color, name, btn) {
