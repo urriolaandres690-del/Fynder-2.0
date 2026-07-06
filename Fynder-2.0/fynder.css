@@ -13283,21 +13283,6 @@ body:has(#page-fynder.active) #navbar:not(.scrolled) .nav-dots-btn:hover {
 .chat-bubble-tick.read    { color: var(--msg-tick-read); }
 [data-theme="dark"] .chat-bubble-tick.sent { color: rgba(255,255,255,.4); }
 [data-theme="dark"] .chat-bubble-tick.tick-read { color: #53bdeb; }
-  align-items: center;
-  gap: 3px;
-  justify-content: flex-end;
-  margin-top: 3px;
-}
-.chat-bubble-time {
-  font-size: .65rem;
-  color: rgba(255,255,255,.5);
-}
-.chat-bubble-tick {
-  font-size: .7rem;
-  color: rgba(255,255,255,.45);
-}
-.chat-bubble-tick.sent   { color: rgba(255,255,255,.45); }
-.chat-bubble-tick.read   { color: #67B8B4; }
 
 /* Mensaje "solo del negocio" sin avatar para mensajes consecutivos */
 .chat-msg-row.in.no-ava .chat-msg-ava { visibility: hidden; }
