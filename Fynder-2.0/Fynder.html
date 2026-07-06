@@ -4442,6 +4442,33 @@
   </div>
 </div>
 
+<!-- Modal: Ajustes administrados por la organización -->
+<div class="org-modal-overlay" id="orgInfoModal" onclick="if(event.target===this)closeOrgInfoModal()">
+  <div class="org-modal-box">
+    <div class="org-modal-header">
+      <div class="org-modal-icon"><i class="fas fa-building-columns"></i></div>
+      <div>
+        <h3 class="org-modal-title">Ajustes administrados</h3>
+        <p class="org-modal-sub">Gestionado por Fynder</p>
+      </div>
+      <button class="org-modal-close" onclick="closeOrgInfoModal()"><i class="fas fa-xmark"></i></button>
+    </div>
+    <div class="org-modal-body">
+      <p>Algunos ajustes de esta aplicación están controlados por la organización que la gestiona. Esto significa que:</p>
+      <ul class="org-modal-list">
+        <li><i class="fas fa-lock"></i> Ciertos ajustes pueden estar bloqueados o predefinidos</li>
+        <li><i class="fas fa-shield-halved"></i> Las políticas de privacidad y seguridad son aplicadas automáticamente</li>
+        <li><i class="fas fa-rotate"></i> Algunos valores se restablecen al valor organizacional al cerrar sesión</li>
+        <li><i class="fas fa-circle-info"></i> Los ajustes que puedes modificar son los marcados sin candado</li>
+      </ul>
+      <p class="org-modal-note">Para más información sobre las políticas aplicadas, visita la sección de <button class="sett-org-link" onclick="closeOrgInfoModal();goPage('privacy')">Política de privacidad</button>.</p>
+    </div>
+    <div class="org-modal-footer">
+      <button class="org-modal-btn" onclick="closeOrgInfoModal()">Entendido</button>
+    </div>
+  </div>
+</div>
+
 </body>
 
 </html>
