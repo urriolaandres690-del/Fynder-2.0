@@ -5258,9 +5258,63 @@ function settFilterSections(q) {
     const text = btn.textContent.toLowerCase();
     btn.style.display = (!query || text.includes(query)) ? '' : 'none';
   });
-  document.querySelector('#page-settings .sett-nav-divider').style.display =
-    query ? 'none' : '';
+  document.querySelectorAll('#page-settings .sett-nav-divider').forEach(d => {
+    d.style.display = query ? 'none' : '';
+  });
 }
+
+// ── RENDIMIENTO ───────────────────────────────────────────────────────────────
+
+function settToggleEnergySaver() {
+  const btn = document.getElementById('settEnergySaverToggle');
+  const isOn = btn && btn.classList.contains('on');
+  if (btn) btn.classList.toggle('on', !isOn);
+  localStorage.setItem('fynderEnergySaver', !isOn ? '1' : '');
+  showToast(!isOn ? 'Ahorro de energía activado' : 'Ahorro de energía desactivado');
+}
+
+function settSelectEnergyMode(mode) {
+  const d1 = document.getElementById('settEnergyOpt1');
+  const d2 = document.getElementById('settEnergyOpt2');
+  if (d1) d1.classList.toggle('active', mode === 1);
+  if (d2) d2.classList.toggle('active', mode === 2);
+  localStorage.setItem('fynderEnergyMode', mode);
+}
+
+function settSelectPreloadMode(mode) {
+  const d1 = document.getElementById('settPreloadOpt1');
+  const d2 = document.getElementById('settPreloadOpt2');
+  if (d1) d1.classList.toggle('active', mode === 1);
+  if (d2) d2.classList.toggle('active', mode === 2);
+  localStorage.setItem('fynderPreloadMode', mode);
+  showToast(mode === 1 ? 'Precarga ampliada activada' : 'Precarga estándar activada');
+}
+
+// ── RESTABLECER ───────────────────────────────────────────────────────────────
+
+function settResetConfig() {
+  if (!confirm('¿Restaurar todos los ajustes a sus valores predeterminados?\n\nTus datos de cuenta y negocios no se verán afectados.')) return;
+
+  // Eliminar solo claves de ajustes (no datos de cuenta)
+  const keepKeys = ['fynderUser', 'fynderLogged', 'fynderBusinesses', 'fynderChats'];
+  const toRemove = [];
+  for (let i = 0; i < localStorage.length; i++) {
+    const k = localStorage.key(i);
+    if (k && k.startsWith('fynder') && !keepKeys.includes(k)) toRemove.push(k);
+  }
+  toRemove.forEach(k => localStorage.removeItem(k));
+
+  // Restaurar tema claro
+  document.documentElement.removeAttribute('data-theme');
+  document.documentElement.style.fontSize = '16px';
+  document.documentElement.removeAttribute('data-reduce-motion');
+
+  showToast('✅ Ajustes restablecidos a valores predeterminados');
+  // Recargar la sección actual
+  const btn = document.querySelector('#page-settings .sett-nav-item.active');
+  if (btn) settGoSection(btn.dataset.section, btn);
+}
+
 
 // ── INICIALIZACIÓN ────────────────────────────────────────────────────────────
 
