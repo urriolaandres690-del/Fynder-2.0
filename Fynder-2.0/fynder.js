@@ -4182,6 +4182,11 @@ function msgConvMenu(bizId) {
 
 // ---- Tab switch ----
 function msgSwitchTab(tab) {
+  // Limpiar búsqueda al cambiar de tab
+  _convSearchQuery = '';
+  const searchInput = document.getElementById('msgSearchInput');
+  if (searchInput) searchInput.value = '';
+
   // Actualizar botones
   document.getElementById('msgTabChats')    .classList.toggle('active', tab === 'chats');
   document.getElementById('msgTabBookmarks').classList.toggle('active', tab === 'bookmarks');
