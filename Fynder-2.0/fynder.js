@@ -4256,6 +4256,7 @@ async function requestNotifPermission() {
   if (Notification.permission === 'granted') {
     showToast('¡Las notificaciones ya están activadas!');
     _hideNotifBanner();
+    _setNotifBtnActivated();
     return;
   }
   if (Notification.permission === 'denied') {
@@ -4264,8 +4265,9 @@ async function requestNotifPermission() {
   }
   const perm = await Notification.requestPermission();
   if (perm === 'granted') {
+    _setNotifBtnActivated();
     showToast('✅ ¡Notificaciones activadas!');
-    _hideNotifBanner();
+    setTimeout(() => _hideNotifBanner(), 1200);
     pushNotification({
       type: 'welcome',
       title: '¡Bienvenido a Fynder!',
@@ -4273,7 +4275,69 @@ async function requestNotifPermission() {
       icon: '🎉'
     });
     renderNotifications();
+    settSyncNotif(); // actualiza el estado en ajustes también
   } else {
+    showToast('Notificaciones no activadas');
+  }
+}
+
+/** Marca el botón del banner como "Activado" visualmente */
+function _setNotifBtnActivated() {
+  const btn = document.getElementById('notifBannerBtn');
+  if (btn) {
+    btn.innerHTML = '<i class="fas fa-bell"></i> Activado';
+    btn.classList.add('activated');
+  }
+  // Ajustes: actualizar el botón y estado
+  const settBtn = document.getElementById('settNotifActivarBtn');
+  if (settBtn) {
+    settBtn.textContent = '✓ Activado';
+    settBtn.style.background = '#10B981';
+    settBtn.style.color = '#fff';
+    settBtn.style.borderColor = '#10B981';
+    settBtn.disabled = true;
+  }
+}
+
+/** Manejador del botón "Activar" del banner — actualiza UI antes de la promesa */
+async function handleNotifBannerClick(btn) {
+  if (!('Notification' in window)) {
+    showToast('Tu navegador no soporta notificaciones');
+    return;
+  }
+  if (Notification.permission === 'granted') {
+    btn.innerHTML = '<i class="fas fa-bell"></i> Activado';
+    btn.classList.add('activated');
+    showToast('¡Las notificaciones ya están activadas!');
+    setTimeout(() => _hideNotifBanner(), 1200);
+    return;
+  }
+  if (Notification.permission === 'denied') {
+    showToast('Notificaciones bloqueadas. Actívalas desde la configuración del navegador.');
+    return;
+  }
+  // Mostrar estado de carga
+  btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Activando...';
+  btn.disabled = true;
+  const perm = await Notification.requestPermission();
+  if (perm === 'granted') {
+    btn.innerHTML = '<i class="fas fa-bell"></i> Activado';
+    btn.classList.add('activated');
+    btn.disabled = false;
+    showToast('✅ ¡Notificaciones activadas!');
+    setTimeout(() => _hideNotifBanner(), 1500);
+    pushNotification({
+      type: 'welcome',
+      title: '¡Bienvenido a Fynder!',
+      body: 'Ahora recibirás actualizaciones sobre negocios y ofertas.',
+      icon: '🎉'
+    });
+    renderNotifications();
+    settSyncNotif();
+  } else {
+    btn.innerHTML = '<i class="fas fa-bell-slash"></i> Bloqueado';
+    btn.style.background = '#EF4444';
+    btn.disabled = false;
     showToast('Notificaciones no activadas');
   }
 }
