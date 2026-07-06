@@ -5161,6 +5161,12 @@ function settGoSection(id, btn) {
   if (id === 'amigos')         settSyncAmigos();
 }
 
+/** Helper para navegar desde dentro del contenido (sin referencia al botón) */
+function settGoToSection(id) {
+  const btn = document.querySelector(`#page-settings .sett-nav-item[data-section="${id}"]`);
+  settGoSection(id, btn);
+}
+
 /** Inicializa la página cada vez que se navega a ella */
 function initSettingsPage() {
   // Activar sección "cuenta" por defecto
