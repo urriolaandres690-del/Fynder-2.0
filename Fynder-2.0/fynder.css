@@ -12312,6 +12312,9 @@ body:has(#page-fynder.active) #navbar:not(.scrolled) .nav-dots-btn:hover {
   }
   .wa-input-bar .chat-input { border-radius: 26px; padding: 11px 18px; }
 
+  /* Botón back: en desktop muestra la flecha (cierra el chat activo y muestra welcome) */
+  .wa-chat-back-btn { display: flex; }
+
   /* Botón back solo en móvil dentro del chat area desktop */
   .wa-chat-back-mobile { display: none; }
 
