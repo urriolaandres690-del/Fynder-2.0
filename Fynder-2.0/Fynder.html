@@ -3451,91 +3451,138 @@
       </button>
     </div>
 
-  <!-- Contenido principal -->
-  <div class="msg-body" id="msgBody">
+    <!-- Lista de chats (panels) -->
+    <div class="msg-body" id="msgBody">
 
-    <!-- Panel: Chats -->
-    <div id="msgPanelChats" class="msg-panel active">
-      <div id="msgChatList" class="msg-chat-list">
-        <!-- Rellenado por JS -->
-      </div>
-      <!-- Estado vacío -->
-      <div id="msgEmptyChats" class="msg-empty hide">
-        <div class="msg-empty-icon">
-          <i class="fas fa-comment-dots"></i>
+      <!-- Panel: Chats -->
+      <div id="msgPanelChats" class="msg-panel active">
+        <div id="msgChatList" class="msg-chat-list"></div>
+        <div id="msgEmptyChats" class="msg-empty hide">
+          <div class="msg-empty-icon"><i class="fas fa-comment-dots"></i></div>
+          <p class="msg-empty-title">Sin mensajes</p>
+          <p class="msg-empty-sub">Chatea con un negocio desde su perfil.</p>
+          <button class="msg-empty-btn" onclick="goPage('directory')">
+            <i class="fas fa-compass"></i> Explorar negocios
+          </button>
         </div>
-        <p class="msg-empty-title">Sin mensajes</p>
-        <p class="msg-empty-sub">Empieza a chatear con un negocio desde su perfil.</p>
-        <button class="msg-empty-btn" onclick="goPage('directory')">
-          <i class="fas fa-compass"></i> Explorar negocios
+      </div>
+
+      <!-- Panel: Marcadores -->
+      <div id="msgPanelBookmarks" class="msg-panel">
+        <div id="msgBookmarkList" class="msg-chat-list"></div>
+        <div id="msgEmptyBookmarks" class="msg-empty">
+          <div class="msg-empty-icon"><i class="fas fa-bookmark"></i></div>
+          <p class="msg-empty-title">Sin favoritos</p>
+          <p class="msg-empty-sub">Guarda tus chats favoritos aquí.</p>
+        </div>
+      </div>
+
+      <!-- Panel: Notificaciones -->
+      <div id="msgPanelNotif" class="msg-panel">
+        <div class="msg-notif-banner" id="msgNotifBanner">
+          <div class="msg-notif-banner-icon"><i class="fas fa-bell"></i></div>
+          <div class="msg-notif-banner-text">
+            <p class="msg-notif-banner-title">Activa las notificaciones</p>
+            <p class="msg-notif-banner-sub">Mantente al tanto de novedades y mensajes.</p>
+          </div>
+          <button class="msg-notif-banner-allow" id="notifBannerBtn" onclick="handleNotifBannerClick(this)">
+            <i class="fas fa-bell"></i> Activar
+          </button>
+          <button class="msg-notif-banner-close" onclick="this.closest('.msg-notif-banner').style.display='none'"><i class="fas fa-xmark"></i></button>
+        </div>
+        <div id="msgNotifList" class="msg-notif-list"></div>
+      </div>
+
+    </div><!-- /msg-body -->
+
+    <!-- Bottom Nav (solo móvil) -->
+    <nav class="msg-bottom-nav">
+      <button class="msg-bnav-btn" onclick="goPage('home')"><i class="fas fa-house"></i><span>Inicio</span></button>
+      <button class="msg-bnav-btn" onclick="goPage('favorites')"><i class="fas fa-heart"></i><span>Guardados</span></button>
+      <button class="msg-bnav-btn" onclick="goPage('directory')"><i class="fas fa-compass"></i><span>Explorar</span></button>
+      <button class="msg-bnav-btn" onclick="goPage('profile')"><i class="fas fa-user"></i><span>Perfil</span></button>
+      <button class="msg-bnav-btn active" onclick="goPage('messages')">
+        <i class="fas fa-comment-dots"></i><span>Mensajes</span>
+        <span class="msg-bnav-badge" id="msgBnavBadge" style="display:none"></span>
+      </button>
+    </nav>
+
+  </div><!-- /wa-sidebar -->
+
+  <!-- ═══ COLUMNA DERECHA (chat activo) — solo desktop ═══ -->
+  <div class="wa-main" id="waMain">
+
+    <!-- Pantalla de bienvenida cuando no hay chat seleccionado -->
+    <div class="wa-welcome" id="waWelcome">
+      <div class="wa-welcome-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" width="80" height="80" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
+        </svg>
+      </div>
+      <h3 class="wa-welcome-title">Fynder Mensajes</h3>
+      <p class="wa-welcome-sub">Selecciona un chat para comenzar a conversar con negocios locales.</p>
+      <button class="wa-welcome-btn" onclick="goPage('directory')">
+        <i class="fas fa-compass"></i> Explorar negocios
+      </button>
+    </div>
+
+    <!-- Área de chat (se muestra cuando hay chat activo) -->
+    <div class="wa-chat-area" id="waChatArea" style="display:none">
+
+      <!-- Header del chat -->
+      <div class="chat-header wa-chat-header">
+        <button class="chat-back-btn wa-chat-back-mobile" onclick="waCloseChat()" title="Volver">
+          <i class="fas fa-arrow-left"></i>
+        </button>
+        <div class="chat-header-ava-wrap" onclick="openChatProfile()">
+          <div class="chat-header-avatar" id="chatHeaderAvatar"></div>
+          <span class="chat-header-online" id="chatHeaderOnline"></span>
+        </div>
+        <div class="chat-header-info" onclick="openChatProfile()" style="cursor:pointer">
+          <span class="chat-header-name" id="chatHeaderName">—</span>
+          <span class="chat-header-sub" id="chatHeaderSub">Negocio local</span>
+        </div>
+        <div class="wa-chat-header-actions">
+          <button class="chat-icon-btn" onclick="showToast('Videollamada próximamente')" title="Videollamada">
+            <i class="fas fa-video"></i>
+          </button>
+          <button class="chat-icon-btn" id="waChatCallBtn" title="Llamar">
+            <i class="fas fa-phone"></i>
+          </button>
+          <button class="chat-icon-btn" onclick="openChatProfile()" title="Ver perfil">
+            <i class="fas fa-magnifying-glass"></i>
+          </button>
+          <button class="chat-icon-btn" onclick="openChatProfile()" title="Más opciones">
+            <i class="fas fa-ellipsis-vertical"></i>
+          </button>
+        </div>
+      </div>
+
+      <!-- Mensajes -->
+      <div class="chat-messages" id="chatMessages"></div>
+
+      <!-- Input de mensaje -->
+      <div class="chat-input-bar wa-input-bar">
+        <button class="chat-emoji-btn" id="chatEmojiBtn" onclick="toggleEmojiPicker()">
+          <i class="fas fa-face-smile"></i>
+        </button>
+        <button class="chat-emoji-btn" onclick="showToast('Adjuntar archivos próximamente')" title="Adjuntar">
+          <i class="fas fa-paperclip"></i>
+        </button>
+        <input type="text" id="chatInput" class="chat-input"
+          placeholder="Escribe un mensaje..."
+          onkeydown="if(event.key==='Enter')sendChatMessage()"
+          autocomplete="off" />
+        <button class="chat-send-btn" onclick="sendChatMessage()" id="chatSendBtn">
+          <i class="fas fa-paper-plane"></i>
         </button>
       </div>
-    </div>
 
-    <!-- Panel: Marcadores -->
-    <div id="msgPanelBookmarks" class="msg-panel">
-      <div id="msgBookmarkList" class="msg-chat-list">
-        <!-- Rellenado por JS -->
-      </div>
-      <!-- Estado vacío marcadores -->
-      <div id="msgEmptyBookmarks" class="msg-empty">
-        <div class="msg-empty-icon">
-          <svg xmlns="http://www.w3.org/2000/svg" width="52" height="52" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
-            <path d="M8 9h8M8 13h5"/>
-            <path d="M19 11h2a1 1 0 0 1 1 1v9"/>
-          </svg>
-        </div>
-        <p class="msg-empty-title">Sin marcadores</p>
-        <p class="msg-empty-sub">Guarda aquí tus chats favoritos para encontrarlos más rápido.</p>
-      </div>
-    </div>
+    </div><!-- /wa-chat-area -->
 
-    <!-- Panel: Notificaciones -->
-    <div id="msgPanelNotif" class="msg-panel">
-      <div class="msg-notif-banner" id="msgNotifBanner">
-        <div class="msg-notif-banner-icon"><i class="fas fa-bell"></i></div>
-        <div class="msg-notif-banner-text">
-          <p class="msg-notif-banner-title">Activa las notificaciones</p>
-          <p class="msg-notif-banner-sub">¡Mantente al tanto de las actualizaciones sobre negocios, mensajes y ofertas!</p>
-        </div>
-        <button class="msg-notif-banner-allow" id="notifBannerBtn" onclick="handleNotifBannerClick(this)">
-          <i class="fas fa-bell"></i> Activar
-        </button>
-        <button class="msg-notif-banner-close" onclick="this.closest('.msg-notif-banner').style.display='none'"><i class="fas fa-xmark"></i></button>
-      </div>
-      <div id="msgNotifList" class="msg-notif-list">
-        <!-- Rellenado por JS -->
-      </div>
-    </div>
+  </div><!-- /wa-main -->
 
-  </div>
-
-  <!-- Bottom Nav -->
-  <nav class="msg-bottom-nav">
-    <button class="msg-bnav-btn" onclick="goPage('home')">
-      <i class="fas fa-house"></i>
-      <span>Inicio</span>
-    </button>
-    <button class="msg-bnav-btn" onclick="goPage('favorites')">
-      <i class="fas fa-heart"></i>
-      <span>Guardados</span>
-    </button>
-    <button class="msg-bnav-btn" onclick="goPage('directory')">
-      <i class="fas fa-compass"></i>
-      <span>Explorar</span>
-    </button>
-    <button class="msg-bnav-btn" onclick="goPage('profile')">
-      <i class="fas fa-user"></i>
-      <span>Perfil</span>
-    </button>
-    <button class="msg-bnav-btn active" onclick="goPage('messages')">
-      <i class="fas fa-comment-dots"></i>
-      <span class="msg-bnav-label">Mensajes</span>
-      <span class="msg-bnav-badge" id="msgBnavBadge" style="display:none"></span>
-    </button>
-  </nav>
-</div>
+</div><!-- /page-messages -->
 
 <!-- ================================================================
      OVERLAY: MENÚ CONTEXTUAL DE CHAT (⋮)
