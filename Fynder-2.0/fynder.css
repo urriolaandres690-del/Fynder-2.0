@@ -12100,10 +12100,11 @@ body:has(#page-fynder.active) #navbar:not(.scrolled) .nav-dots-btn:hover {
 }
 
 /* ---- Página raíz ---- */
-.msg-page,
-.chat-page {
+/* ================================================================
+   LAYOUT BASE – página de mensajes
+   ================================================================ */
+.msg-page {
   display: none;
-  flex-direction: column;
   height: 100dvh;
   background: var(--msg-bg);
   color: var(--msg-text);
@@ -12113,53 +12114,233 @@ body:has(#page-fynder.active) #navbar:not(.scrolled) .nav-dots-btn:hover {
   inset: 0;
   z-index: 10;
 }
-.msg-page.active,
-.chat-page.active {
-  display: flex;
+.msg-page.active { display: flex; flex-direction: column; }
+
+/* chat-page solo se usa en móvil (la página separada legacy) */
+.chat-page {
+  display: none;
+  flex-direction: column;
+  height: 100dvh;
+  background: var(--msg-bg2);
+  color: var(--msg-text);
+  font-family: 'Inter', sans-serif;
+  overflow: hidden;
+  position: fixed;
+  inset: 0;
+  z-index: 10;
+}
+.chat-page.active { display: flex; }
+
+/* ================================================================
+   LAYOUT WHATSAPP WEB – DESKTOP (≥769px)
+   ================================================================ */
+@media (min-width: 769px) {
+  /* La página ocupa todo menos el navbar global */
+  .msg-page.active {
+    padding-top: 64px;
+    flex-direction: row;
+  }
+
+  /* La chat-page separada no existe en desktop */
+  .chat-mobile-only { display: none !important; }
+
+  /* ── Sidebar izquierdo ── */
+  .wa-sidebar {
+    width: 380px;
+    min-width: 320px;
+    max-width: 420px;
+    flex-shrink: 0;
+    display: flex;
+    flex-direction: column;
+    border-right: 1px solid var(--msg-border);
+    background: var(--msg-bg);
+    height: 100%;
+    overflow: hidden;
+  }
+
+  .wa-sidebar-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 14px 16px 10px;
+    background: var(--msg-bg);
+    flex-shrink: 0;
+  }
+  .wa-sidebar-header-left { display: flex; align-items: center; gap: 12px; }
+  .wa-sidebar-header-right { display: flex; align-items: center; gap: 4px; }
+  .wa-sidebar-title {
+    font-family: 'Poppins', sans-serif;
+    font-size: 1.15rem;
+    font-weight: 700;
+    color: var(--msg-title);
+    margin: 0;
+  }
+  .wa-back-home { color: var(--msg-muted); }
+
+  /* Buscador */
+  .wa-search-bar {
+    position: relative;
+    padding: 6px 12px 10px;
+    flex-shrink: 0;
+  }
+  .wa-search-icon {
+    position: absolute;
+    left: 24px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--msg-muted);
+    font-size: .8rem;
+    pointer-events: none;
+  }
+  .wa-search-input {
+    width: 100%;
+    background: var(--msg-surface);
+    border: 1px solid var(--msg-border);
+    border-radius: 22px;
+    padding: 9px 16px 9px 36px;
+    color: var(--msg-text);
+    font-size: .875rem;
+    font-family: 'Inter', sans-serif;
+    outline: none;
+    transition: border-color .2s;
+  }
+  .wa-search-input:focus { border-color: var(--msg-accent); }
+  .wa-search-input::placeholder { color: var(--msg-muted); }
+
+  /* msg-body dentro del sidebar scrollea */
+  .wa-sidebar .msg-body { flex: 1; overflow: hidden; }
+  .wa-sidebar .msg-panel.active { height: 100%; overflow-y: auto; }
+
+  /* Bottom nav oculto en desktop */
+  .msg-bottom-nav { display: none; }
+
+  /* ── Área principal (chat activo) ── */
+  .wa-main {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    overflow: hidden;
+    position: relative;
+    background: var(--msg-bg2);
+  }
+
+  /* Fondo tipo WhatsApp con patrón sutil */
+  .wa-main::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: radial-gradient(var(--msg-border) 1px, transparent 1px);
+    background-size: 28px 28px;
+    pointer-events: none;
+    opacity: .4;
+  }
+
+  /* Pantalla de bienvenida */
+  .wa-welcome {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    text-align: center;
+    padding: 40px;
+    gap: 16px;
+    position: relative;
+    z-index: 1;
+  }
+  .wa-welcome-icon {
+    width: 120px; height: 120px;
+    border-radius: 50%;
+    background: var(--msg-surface);
+    border: 2px solid var(--msg-border);
+    display: flex; align-items: center; justify-content: center;
+    color: var(--msg-muted);
+    margin-bottom: 8px;
+  }
+  .wa-welcome-title {
+    font-family: 'Poppins', sans-serif;
+    font-size: 1.5rem; font-weight: 700;
+    color: var(--msg-title); margin: 0;
+  }
+  .wa-welcome-sub {
+    font-size: .9375rem; color: var(--msg-muted);
+    max-width: 340px; line-height: 1.6; margin: 0;
+  }
+  .wa-welcome-btn {
+    margin-top: 8px;
+    padding: 11px 28px;
+    border-radius: 22px;
+    border: none;
+    background: var(--msg-accent);
+    color: #fff;
+    font-size: .875rem; font-weight: 600;
+    font-family: 'Inter', sans-serif;
+    cursor: pointer;
+    display: flex; align-items: center; gap: 8px;
+    transition: background .2s, transform .15s;
+  }
+  .wa-welcome-btn:hover { background: #5aa6a2; transform: translateY(-2px); }
+
+  /* Área de chat activa */
+  .wa-chat-area {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    position: relative;
+    z-index: 1;
+  }
+  .wa-chat-area .chat-header {
+    background: var(--msg-bg);
+    border-bottom: 1px solid var(--msg-border);
+    padding: 0 20px;
+    height: 60px;
+    flex-shrink: 0;
+  }
+  .wa-chat-header-actions { display: flex; align-items: center; gap: 4px; }
+  .wa-chat-area .chat-messages {
+    flex: 1;
+    overflow-y: auto;
+    padding: 20px 15%;
+    background: transparent;
+  }
+  .wa-chat-area .chat-input-bar {
+    background: var(--msg-bg);
+    border-top: 1px solid var(--msg-border);
+    padding: 12px 20px;
+    flex-shrink: 0;
+  }
+  .wa-input-bar .chat-input { border-radius: 26px; padding: 11px 18px; }
+
+  /* Botón back solo en móvil dentro del chat area desktop */
+  .wa-chat-back-mobile { display: none; }
+
+  /* Chat item activo en la lista */
+  .msg-chat-item.wa-active {
+    background: var(--msg-surface);
+    border-left: 3px solid var(--msg-accent);
+  }
 }
 
-/* En desktop: layout de pantalla completa tipo WhatsApp Web */
-@media (min-width: 769px) {
-  .msg-page.active,
-  .chat-page.active {
-    background: var(--msg-bg);
-    align-items: stretch;
+/* ── Móvil: sidebar ocupa toda la pantalla, wa-main oculto ── */
+@media (max-width: 768px) {
+  .msg-page.active {
     flex-direction: column;
   }
-
-  .msg-page.active .msg-header,
-  .msg-page.active .msg-tabs,
-  .msg-page.active .msg-body,
-  .msg-page.active .msg-bottom-nav,
-  .chat-page.active .chat-header,
-  .chat-page.active .chat-messages,
-  .chat-page.active .chat-input-bar {
+  .wa-sidebar {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    overflow: hidden;
     width: 100%;
-    max-width: 100%;
-    align-self: stretch;
   }
+  .wa-sidebar-header { display: none; } /* en móvil se usa el msg-header original */
+  .wa-search-bar { display: none; }    /* opcional: mostrar si se quiere */
+  .wa-main { display: none; }         /* el chat en móvil usa page-chat */
+  .chat-mobile-only { display: flex; }
 
-  /* Ampliar el contenido al ancho completo */
-  .msg-page.active .msg-header,
-  .msg-page.active .msg-tabs,
-  .msg-page.active .msg-bottom-nav,
-  .chat-page.active .chat-header,
-  .chat-page.active .chat-input-bar {
-    padding-left: clamp(16px, 5vw, 80px);
-    padding-right: clamp(16px, 5vw, 80px);
-  }
-
-  .msg-page.active .msg-body,
-  .chat-page.active .chat-messages {
-    max-width: 900px;
-    width: 100%;
-    align-self: center;
-  }
-
-  .msg-page.active::after,
-  .chat-page.active::after {
-    content: none;
-  }
+  /* Mostrar msg-bottom-nav */
+  .msg-bottom-nav { display: flex; }
 }
 
 /* ================================================================
