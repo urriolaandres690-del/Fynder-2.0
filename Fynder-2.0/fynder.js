@@ -293,7 +293,7 @@ function goPage(p){
     currentPage = p;
 
     const navbar  = document.getElementById('navbar');
-    const noNavPages = ['login','register','terms','privacy','messages','chat','chat-profile'];
+    const noNavPages = ['login','register','terms','privacy','messages','chat','chat-profile','profile'];
     navbar.style.display = noNavPages.includes(p) ? 'none' : 'block';
 
     // Actualizar el botón "Volver" de las páginas legales con el destino correcto
