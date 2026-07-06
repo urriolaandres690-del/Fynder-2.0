@@ -13776,7 +13776,7 @@ body:has(#page-fynder.active) #navbar:not(.scrolled) .nav-dots-btn:hover {
   background: var(--msg-bg2);
   border-left: 1px solid var(--msg-border);
   transition: width .28s cubic-bezier(.4,0,.2,1);
-  position: relative;
+  position: relative; /* Para el posicionamiento del menú contextual */
   color: var(--msg-text);
   font-family: 'Inter', sans-serif;
 }
