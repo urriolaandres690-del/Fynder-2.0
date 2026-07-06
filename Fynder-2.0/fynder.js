@@ -7369,22 +7369,160 @@ function _detectIntent(t) {
 }
 
 function _getSmartReply(userText, cat, bizName, biz) {
-  // Normalizar: minúsculas, sin acentos
-  const t = userText
-    .toLowerCase()
-    .normalize('NFD')
-    .replace(/[\u0300-\u036f]/g, '');
-  const tOrig = userText.toLowerCase(); // también buscar con acentos
+  // Normalizar: minúsculas, quitar acentos para la detección
+  const t = userText.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'');
+  const tOrig = userText.toLowerCase();
 
-  // ── Saludos ──
-  if (/\b(hola|buenas|buenos|saludos|hey|hi|buen día|buenas tardes|buenas noches)\b/.test(t)) {
-    return _pick([
-      `¡Hola! 👋 Bienvenido a ${bizName}. ¿En qué podemos ayudarte hoy?`,
-      `¡Buenas! 😊 Gracias por contactar a ${bizName}. ¿Cómo podemos servirte?`,
-      `¡Hola! Un gusto saludarte. Estamos aquí para atenderte. ¿Qué necesitas?`,
-      `¡Bienvenido! 🌟 En ${bizName} estamos para lo que necesites.`
-    ]);
+  const intents = [...new Set([..._detectIntent(t), ..._detectIntent(tOrig)])];
+
+  const hours  = biz && biz.hours   ? biz.hours   : 'Lun–Sáb 8:00am – 6:00pm';
+  const addr   = biz && biz.address ? biz.address : 'nuestra dirección en el perfil';
+  const phone  = biz && biz.phone   ? biz.phone   : 'disponible en nuestro perfil';
+  const ig     = biz && biz.instagram ? biz.instagram : '@' + bizName.toLowerCase().replace(/\s/g,'_');
+
+  // ── Prioridad: intenciones específicas primero ──
+
+  if (intents.includes('cambio_devolucion')) return _pick([
+    `¡Por supuesto! En ${bizName} aceptamos cambios 😊. ¿Tienes el comprobante de compra?`,
+    `Claro, para el cambio necesitamos el artículo y el recibo. ¿Lo tienes a mano?`,
+    `Sin problema. ¿Qué talla o modelo diferente necesitas? Lo gestionamos ya 🔄`,
+    `Pasa por ${addr} con el artículo y el recibo. ¿Hay algo específico que prefieras de cambio?`,
+    `¡Tranquilo/a! Lo resolvemos. ¿Fue un problema de talla, color o el artículo vino defectuoso?`,
+  ]);
+
+  if (intents.includes('producto_danado')) return _pick([
+    `¡Lamentamos eso! 😟 Si vino defectuoso tiene garantía. ¿Qué falla exactamente?`,
+    `Eso no debería pasar. Cubrimos productos defectuosos sin costo. ¿Cuándo lo compraste?`,
+    `Entendemos. ¿El daño fue al recibirlo o después de usarlo? Eso nos ayuda con la garantía 🔧`,
+    `Por favor tráenos el producto y lo revisamos o reemplazamos. ¿Cuándo puedes venir?`,
+  ]);
+
+  if (intents.includes('queja')) return _pick([
+    `Lamentamos mucho lo ocurrido 😔. ¿Nos cuentas en detalle qué pasó para resolverlo?`,
+    `Gracias por decírnoslo, es la única forma de mejorar. ¿Cómo podemos compensarte?`,
+    `Lo tomamos muy en serio 🙏. ¿Tienes fecha o número de pedido para revisarlo?`,
+    `Disculpa el inconveniente. Vamos a revisar tu caso de inmediato. ¿Más detalles?`,
+  ]);
+
+  if (intents.includes('precio')) {
+    const catP = {
+      restaurantes: [`Platos desde $5 hasta $25 🍽️. ¿Quieres la carta completa?`, `Menú del día $8 (sopa + plato + bebida). ¿Algo en especial?`, `Opciones para todos los presupuestos. ¿Qué prefieres?`],
+      belleza:      [`Corte $15 💇, tinte $45, manicure $12, pedicure $18. ¿Qué servicio?`, `¿Corte, color o tratamiento? Te doy el precio exacto 💅`, `Paquete básica dama $20 (corte+lavado). ¿Quieres más info?`],
+      salud:        [`Consulta general $40, especialistas desde $60 🩺. ¿Tienes seguro?`, `Varía según especialista. ¿Qué tipo de consulta necesitas?`],
+      tecnologia:   [`Diagnóstico gratis 🔧. Pantalla desde $35, batería $20, software $15. ¿Qué equipo?`, `Depende del daño. ¿Es celular, laptop o tablet?`],
+      hogar:        [`Visita diagnóstico sin costo 🏠. Trabajos desde $30. ¿Qué reparas?`, `Presupuesto gratis y sin compromiso. ¿Qué trabajo necesitas?`],
+      turismo:      [`Tours desde $35/persona 🗺️. Grupos con descuento. ¿Para cuántos?`, `Paquetes desde $50 con transporte y guía. ¿Qué destino?`],
+      transporte:   [`Depende del destino 🚗. ¿Punto de salida y llegada?`, `Aeropuerto desde $20. ¿A dónde vas?`],
+    };
+    return _pick(catP[cat] || [`Precios varían según el servicio 💰. ¿Qué necesitas exactamente?`, `Con gusto cotizamos. ¿Qué producto o servicio te interesa?`]);
   }
+
+  if (intents.includes('horario')) return _pick([
+    `Nuestro horario es ${hours} ⏰. ¿Algún día en especial que te convenga?`,
+    `Atendemos ${hours}. Para citas puedes reservar con anticipación 📅`,
+    `Disponibles ${hours}. ¿Necesitas agendar algo? 🗓️`,
+  ]);
+
+  if (intents.includes('ubicacion')) return _pick([
+    `Estamos en ${addr} 📍. ¿Vienes en carro o transporte público?`,
+    `Nos encuentras en ${addr}. Búscanos en Google Maps como "${bizName}" 🗺️`,
+    `Dirección: ${addr}. ¿Necesitas que te expliquemos la ruta? 📌`,
+  ]);
+
+  if (intents.includes('cita')) return _pick([
+    `¡Agendamos! ¿Qué fecha y hora te viene bien? 📅`,
+    `Con gusto. ¿Para cuántas personas y qué día prefieres? 🗓️`,
+    `Tenemos disponibilidad esta semana. ¿Mañana o pasado? ⏰`,
+    `¿Prefieres mañana, tarde o noche? Apartamos tu espacio ✅`,
+    `Para la cita: ¿nombre y servicio que deseas? 😊`,
+  ]);
+
+  if (intents.includes('delivery')) return _pick([
+    `¡Sí hacemos entregas! 🛵 30–45 min aprox. ¿Cuál es tu dirección?`,
+    `Delivery dentro de la ciudad 📦. ¿Dónde estás?`,
+    `Envío gratis en compras mayores a $20 🎉. ¿Tu ubicación?`,
+  ]);
+
+  if (intents.includes('pago')) return _pick([
+    `Efectivo, tarjeta débito/crédito y transferencias 💳. ¿Cuál prefieres?`,
+    `Visa, Mastercard, efectivo y Yappy 📱. ¡El método que quieras!`,
+    `Todos los métodos: efectivo, tarjeta y digital ✅. ¿Necesitas factura?`,
+  ]);
+
+  if (intents.includes('descuento')) return _pick([
+    `¡Sí tenemos promos! 🎉 Esta semana 20% de descuento.`,
+    `Clientes nuevos: 15% off en su primera compra 🌟. ¿Es tu primera vez?`,
+    `2 servicios por el precio de 1 los martes 🔥. ¿Te apuntas?`,
+  ]);
+
+  if (intents.includes('tiempo')) {
+    const catT = {
+      tecnologia:   [`Básicas en el día ⚡, complejas 24–48h. ¿Qué tiene tu equipo?`],
+      restaurantes: [`En mesa: 15–20 min ⏱️. Delivery: 30–45 min.`],
+      belleza:      [`Corte 30 min, tinte 2h, manicure 1h 💅. ¿Qué servicio?`],
+      hogar:        [`Trabajos pequeños: mismo día ⚡. Grandes: 2–5 días. ¿Qué necesitas?`],
+      transporte:   [`Confirmamos el vehículo en 15 min 🚗. ¿Para cuándo?`],
+    };
+    return _pick(catT[cat] || [`Depende del servicio. ¿Más detalles? ⏱️`, `Trabajamos rápido. ¿Qué tan urgente es? ⚡`]);
+  }
+
+  if (intents.includes('contacto')) return _pick([
+    `Llámanos al ${phone} 📞. También atendemos aquí en Fynder.`,
+    `Número: ${phone}. ¿Prefieres que te contactemos? 📲`,
+    `¡Escríbenos aquí! O si prefieres llamar: ${phone} ☎️`,
+    `Instagram: ${ig} 📸. Teléfono: ${phone}.`,
+  ]);
+
+  if (intents.includes('gracias')) return _pick([
+    `¡A ti por preferirnos! 🙏 ¡Hasta pronto!`,
+    `¡Gracias a ti! 😊 Que tengas un excelente día.`,
+    `¡De nada! Tu satisfacción es nuestra prioridad ⭐`,
+    `Es un honor servirte. ¡Siempre estamos aquí! 💚`,
+  ]);
+
+  if (intents.includes('disponibilidad')) return _pick([
+    `¡Sí tenemos disponibilidad! ✅ ¿Para qué fecha?`,
+    `Déjame verificar. ¿Qué es lo que buscas exactamente? 🔍`,
+    `Sí contamos con eso. ¿Lo apartamos ahora? 📦`,
+  ]);
+
+  if (intents.includes('menu_productos')) {
+    const catM = {
+      restaurantes: [`Entradas, platos fuertes y postres 🍽️. ¿Especialidades del día?`, `Menú del día $10 (sopa+plato+bebida). ¿O à la carte? 🥗`],
+      belleza:      [`Cortes, tintes, manicure, pedicure y maquillaje 💅. ¿Qué te interesa?`, `Servicio completo dama y caballero. ¿Qué buscas? ✨`],
+      tecnologia:   [`Pantallas, baterías, cámaras, teclados y software 🔧. ¿Qué equipo?`, `Celulares, laptops, tablets y PCs 💻. ¿Cuál es tu caso?`],
+      salud:        [`Consultas, exámenes y procedimientos ambulatorios 🏥. ¿Qué tipo de atención?`],
+    };
+    return _pick(catM[cat] || [`En ${bizName} tenemos variedad. ¿Qué buscas exactamente? 😊`, `¡Cuéntanos qué necesitas y te orientamos! 🌟`]);
+  }
+
+  if (intents.includes('saludo')) return _pick([
+    `¡Hola! 👋 Bienvenido a ${bizName}. ¿En qué podemos ayudarte?`,
+    `¡Buenas! 😊 Gracias por contactar a ${bizName}. ¿Cómo servirte?`,
+    `¡Hola! Un gusto. Estamos para atenderte. ¿Qué necesitas?`,
+    `¡Bienvenido! 🌟 En ${bizName} estamos para lo que necesites.`,
+  ]);
+
+  // ── Fallback por categoría ──
+  const catFb = {
+    restaurantes: [`¿Mesa, para llevar o delivery? 🍽️`, `¿Alguna preferencia de comida? 😋`, `¿Celebrando algo? ¡Preparamos algo especial! 🎂`],
+    belleza:      [`¿Cambio de look o mantenimiento? ✨`, `¿Primera vez? Consulta inicial gratis 💇`, `¿Viste algo en Instagram? Tráenos la foto 📸`],
+    salud:        [`¿Consulta, examen o tratamiento? 🏥`, `¿Emergencia o consulta programada? 🚑`],
+    tecnologia:   [`¿Qué equipo necesitas reparar? 💻`, `Diagnóstico gratis 🔧. ¿Lo traes hoy?`, `¿Hardware o software? ⚙️`],
+    hogar:        [`¿Qué trabajo necesitas? 🏠`, `Presupuesto sin costo 🔨. ¿Describimos el trabajo?`],
+    turismo:      [`¿Tours, paquetes o experiencias? ✈️`, `¿Para cuántas personas y qué fecha? 🗓️`],
+    transporte:   [`¿Fecha y destino? 🚗`, `¿Aeropuerto, tour o ruta especial? 🛫`],
+    ropa:         [`¿Casual, formal o sport? 👗`, `¿Cuál es tu talla? Verificamos 👕`, `¿Es para regalo? Empaque sin costo 🎁`],
+    deportes:     [`¿Qué deporte practicas? 🏋️`, `¿Principiante o con experiencia? 🎽`, `Marcas originales con garantía ⚽`],
+  };
+
+  return _pick(catFb[cat] || [
+    `¡Gracias por escribir a ${bizName}! 😊 ¿En qué podemos ayudarte?`,
+    `Recibimos tu mensaje. ¿Puedes contarnos más? 🙏`,
+    `¡Con gusto te atendemos! ¿Qué necesitas exactamente?`,
+    `Estamos aquí para ayudarte ✅. ¿Cuéntanos?`,
+  ]);
+}
 
   // ── Precios / tarifas ──
   if (/\b(precio|costo|cuánto|cuanto|tarifa|valor|cobran|cobra|rate|presupuesto)\b/.test(t)) {
