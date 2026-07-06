@@ -4051,7 +4051,7 @@ function renderConversations() {
 
   if (convs.length === 0) {
     list.innerHTML = '';
-    if (empty) { empty.classList.remove('hide'); }
+    if (empty) empty.classList.remove('hide');
     return;
   }
   if (empty) empty.classList.add('hide');
@@ -4063,8 +4063,9 @@ function renderConversations() {
       ? `<img src="${c.image}" alt="${c.name}" loading="lazy">`
       : `<span style="color:#fff;font-size:1.1rem;font-weight:700;font-family:'Poppins',sans-serif">${initial}</span>`;
     const unread  = c.unread > 0 ? `<span class="msg-chat-unread">${c.unread}</span>` : '';
+    const isActive = String(c.id) === String(_activeChatBizId);
     return `
-      <div class="msg-chat-item" onclick="openChatById('${c.id}')">
+      <div class="msg-chat-item${isActive ? ' wa-active' : ''}" data-biz-id="${c.id}" onclick="openChatById('${c.id}')">
         <div class="msg-chat-avatar-wrap">
           <div class="msg-chat-avatar" style="background:${bg}">${avatar}</div>
           <span class="msg-chat-online"></span>
