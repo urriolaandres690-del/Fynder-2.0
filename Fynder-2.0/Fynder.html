@@ -3706,32 +3706,52 @@
 <div class="msg-settings-overlay" id="msgSettingsOverlay" onclick="closeMsgSettings()"></div>
 <div class="msg-settings-panel" id="msgSettingsPanel">
   <div class="msg-settings-header">
-    <h3 class="msg-settings-title">Ajustes de mensajes</h3>
+    <div style="display:flex;align-items:center;gap:10px;">
+      <div style="width:32px;height:32px;border-radius:10px;background:rgba(103,184,180,.15);display:flex;align-items:center;justify-content:center;color:var(--msg-accent);font-size:.9rem;"><i class="fas fa-gear"></i></div>
+      <h3 class="msg-settings-title">Ajustes del chat</h3>
+    </div>
     <button class="msg-icon-btn" onclick="closeMsgSettings()"><i class="fas fa-xmark"></i></button>
   </div>
   <div class="msg-settings-body">
-    <div class="msg-settings-section-title">Notificaciones</div>
-    <div class="msg-settings-item">
-      <div class="msg-settings-item-left">
-        <div class="msg-settings-icon"><i class="fas fa-bell"></i></div>
-        <div><span class="msg-settings-label">Notificaciones de chat</span><span class="msg-settings-sub">Nuevos mensajes de negocios</span></div>
-      </div>
-      <button class="msg-settings-toggle on" id="settingNotifToggle" onclick="toggleMsgSetting('notif')"></button>
-    </div>
-    <div class="msg-settings-item">
-      <div class="msg-settings-item-left">
-        <div class="msg-settings-icon"><i class="fas fa-volume-high"></i></div>
-        <div><span class="msg-settings-label">Sonido</span><span class="msg-settings-sub">Sonido al recibir mensajes</span></div>
-      </div>
-      <button class="msg-settings-toggle" id="settingSoundToggle" onclick="toggleMsgSetting('sound')"></button>
-    </div>
+
+    <!-- ── APARIENCIA ── -->
     <div class="msg-settings-section-title">Apariencia</div>
+
+    <!-- Modo oscuro / día -->
+    <div class="msg-settings-item">
+      <div class="msg-settings-item-left">
+        <div class="msg-settings-icon" id="settingThemeIcon"><i class="fas fa-moon"></i></div>
+        <div>
+          <span class="msg-settings-label">Modo oscuro</span>
+          <span class="msg-settings-sub" id="settingThemeSub">Tema actual: oscuro</span>
+        </div>
+      </div>
+      <button class="msg-settings-toggle" id="settingThemeToggle" onclick="msgToggleTheme()"></button>
+    </div>
+
+    <!-- Fondo del chat -->
+    <div class="msg-settings-item">
+      <div class="msg-settings-item-left">
+        <div class="msg-settings-icon"><i class="fas fa-image"></i></div>
+        <div><span class="msg-settings-label">Fondo del chat</span><span class="msg-settings-sub" id="settingWallpaperSub">Patrón por defecto</span></div>
+      </div>
+      <div class="msg-settings-wallpapers" id="settingWallpapers">
+        <button class="msg-wallpaper-dot active" data-wp="default"  style="background:var(--msg-bg2)"        onclick="setChatWallpaper('default',this)"  title="Por defecto"></button>
+        <button class="msg-wallpaper-dot"        data-wp="dots"     style="background:#1a2a3a"               onclick="setChatWallpaper('dots',this)"     title="Puntos"></button>
+        <button class="msg-wallpaper-dot"        data-wp="gradient" style="background:linear-gradient(135deg,#1E8F8B,#2F5BB7)" onclick="setChatWallpaper('gradient',this)" title="Gradiente"></button>
+        <button class="msg-wallpaper-dot"        data-wp="dark"     style="background:#111"                  onclick="setChatWallpaper('dark',this)"     title="Oscuro total"></button>
+        <button class="msg-wallpaper-dot"        data-wp="nature"   style="background:#1a3a1a"               onclick="setChatWallpaper('nature',this)"   title="Verde"></button>
+      </div>
+    </div>
+
+    <!-- Color de burbujas -->
     <div class="msg-settings-item">
       <div class="msg-settings-item-left">
         <div class="msg-settings-icon"><i class="fas fa-palette"></i></div>
-        <div><span class="msg-settings-label">Color de mis mensajes</span><span class="msg-settings-sub" id="settingColorSub">Teal</span></div>
+        <div><span class="msg-settings-label">Color de mis mensajes</span><span class="msg-settings-sub" id="settingColorSub">Verde oscuro</span></div>
       </div>
       <div class="msg-settings-colors" id="settingColors">
+        <button class="msg-color-dot" data-color="#67B8B4" style="background:#67B8B4" onclick="setChatBubbleColor('#67B8B4','Teal Fynder',this)"></button>
         <button class="msg-color-dot" data-color="#7b3838" style="background:#7b3838" onclick="setChatBubbleColor('#7b3838','Rojo oscuro',this)"></button>
         <button class="msg-color-dot" data-color="#1e4d7b" style="background:#1e4d7b" onclick="setChatBubbleColor('#1e4d7b','Azul oscuro',this)"></button>
         <button class="msg-color-dot active" data-color="#1a5c34" style="background:#1a5c34" onclick="setChatBubbleColor('#1a5c34','Verde oscuro',this)"></button>
@@ -3740,6 +3760,8 @@
         <button class="msg-color-dot" data-color="#2b5c5c" style="background:#2b5c5c" onclick="setChatBubbleColor('#2b5c5c','Verde azulado',this)"></button>
       </div>
     </div>
+
+    <!-- Tamaño de texto -->
     <div class="msg-settings-item">
       <div class="msg-settings-item-left">
         <div class="msg-settings-icon"><i class="fas fa-text-height"></i></div>
@@ -3751,19 +3773,54 @@
         <button class="msg-font-btn" onclick="setChatFontSize('large','Grande')">A</button>
       </div>
     </div>
+
+    <!-- ── NOTIFICACIONES ── -->
+    <div class="msg-settings-section-title">Notificaciones</div>
+    <div class="msg-settings-item">
+      <div class="msg-settings-item-left">
+        <div class="msg-settings-icon"><i class="fas fa-bell"></i></div>
+        <div><span class="msg-settings-label">Notificaciones de chat</span><span class="msg-settings-sub">Nuevos mensajes</span></div>
+      </div>
+      <button class="msg-settings-toggle on" id="settingNotifToggle" onclick="toggleMsgSetting('notif')"></button>
+    </div>
+    <div class="msg-settings-item">
+      <div class="msg-settings-item-left">
+        <div class="msg-settings-icon"><i class="fas fa-volume-high"></i></div>
+        <div><span class="msg-settings-label">Sonido</span><span class="msg-settings-sub">Sonido al recibir mensajes</span></div>
+      </div>
+      <button class="msg-settings-toggle" id="settingSoundToggle" onclick="toggleMsgSetting('sound')"></button>
+    </div>
+
+    <!-- ── PRIVACIDAD ── -->
     <div class="msg-settings-section-title">Privacidad</div>
     <div class="msg-settings-item">
       <div class="msg-settings-item-left">
-        <div class="msg-settings-icon"><i class="fas fa-eye-slash"></i></div>
-        <div><span class="msg-settings-label">Confirmación de lectura</span><span class="msg-settings-sub">Mostrar ticks de leído</span></div>
+        <div class="msg-settings-icon"><i class="fas fa-check-double"></i></div>
+        <div><span class="msg-settings-label">Confirmación de lectura</span><span class="msg-settings-sub">Mostrar ticks azules</span></div>
       </div>
       <button class="msg-settings-toggle on" id="settingReadToggle" onclick="toggleMsgSetting('read')"></button>
     </div>
+    <div class="msg-settings-item">
+      <div class="msg-settings-item-left">
+        <div class="msg-settings-icon"><i class="fas fa-circle-dot"></i></div>
+        <div><span class="msg-settings-label">Estado "en línea"</span><span class="msg-settings-sub">Mostrar cuando estás activo</span></div>
+      </div>
+      <button class="msg-settings-toggle on" id="settingOnlineToggle" onclick="msgToggleSetting('online','settingOnlineToggle')"></button>
+    </div>
+
+    <!-- ── DATOS ── -->
     <div class="msg-settings-section-title">Datos</div>
     <div class="msg-settings-item msg-settings-item-btn" onclick="exportChats()">
       <div class="msg-settings-item-left">
         <div class="msg-settings-icon"><i class="fas fa-file-export"></i></div>
         <div><span class="msg-settings-label">Exportar conversaciones</span><span class="msg-settings-sub">Descargar como .txt</span></div>
+      </div>
+      <i class="fas fa-chevron-right msg-settings-chevron"></i>
+    </div>
+    <div class="msg-settings-item msg-settings-item-btn" onclick="settGoSection('mensajes',null);closeMsgSettings();goPage('settings')">
+      <div class="msg-settings-item-left">
+        <div class="msg-settings-icon"><i class="fas fa-sliders"></i></div>
+        <div><span class="msg-settings-label">Ajustes avanzados</span><span class="msg-settings-sub">Más opciones en Configuración</span></div>
       </div>
       <i class="fas fa-chevron-right msg-settings-chevron"></i>
     </div>
@@ -3774,6 +3831,7 @@
       </div>
       <i class="fas fa-chevron-right msg-settings-chevron"></i>
     </div>
+
   </div>
 </div>
 
