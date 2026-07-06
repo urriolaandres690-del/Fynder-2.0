@@ -6412,16 +6412,24 @@ function settApplyLanguage(langCode) {
   if (nowSub) nowSub.textContent = `Idioma activo: ${LANG_NAMES[langCode] || 'Español'}`;
 
   _renderPreferredLangs(langCode);
-  _applyI18N(); // Aplica traducciones del diccionario interno
+  _applyI18N();
 
-  // Si no es español, usar Google Translate para traducir toda la página
-  if (langCode !== 'es') {
-    _gtTranslateTo(langCode);
-  } else {
-    _gtRemoveTranslation();
+  // Intentar usar el combo de Google Translate primero (sin recargar)
+  const combo = document.querySelector('.goog-te-combo');
+  if (combo) {
+    combo.value = langCode;
+    combo.dispatchEvent(new Event('change'));
+    showToast(`${_langFlag(langCode)} Idioma cambiado a ${LANG_NAMES[langCode] || langCode}`);
+    return;
   }
 
-  showToast(`${_langFlag(langCode)} Idioma cambiado a ${LANG_NAMES[langCode] || langCode}`);
+  // Si no hay combo disponible: usar cookie + recarga (funciona con servidor web)
+  if (langCode !== 'es') {
+    _gtApplyViaCookie(langCode);
+  } else {
+    _gtRemoveTranslation();
+    showToast(`🇪🇸 Idioma restaurado a Español`);
+  }
 }
 
 function _initAutoTranslate() {
