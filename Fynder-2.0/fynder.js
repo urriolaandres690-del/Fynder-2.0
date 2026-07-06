@@ -7516,9 +7516,16 @@ function _getSmartReply(userText, cat, bizName, biz) {
 
   // ── Fallback por categoría ──
   const catFb = {
-    restaurantes: [`¿Mesa, para llevar o delivery? 🍽️`, `¿Alguna preferencia de comida? 😋`, `¿Celebrando algo? ¡Preparamos algo especial! 🎂`],
-    belleza:      [`¿Cambio de look o mantenimiento? ✨`, `¿Primera vez? Consulta inicial gratis 💇`, `¿Viste algo en Instagram? Tráenos la foto 📸`],
-    salud:        [`¿Consulta, examen o tratamiento? 🏥`, `¿Emergencia o consulta programada? 🚑`],
+    restaurantes: [`¿Mesa, para llevar o delivery? 🍽️`, `¿Alguna preferencia de comida? Recomendamos las especialidades 😋`, `¿Celebrando algo especial? Preparamos algo personalizado 🎂`, `Tenemos sección vegetariana y sin gluten. ¿Tienes alguna restricción? 🥗`],
+    belleza:      [`¿Cambio de look o mantenimiento? Cuéntanos tu idea ✨`, `¿Primera vez? Consulta inicial gratis 💇`, `¿Viste algo en Instagram? Tráenos la foto y lo recreamos 📸`, `Productos profesionales libres de químicos agresivos 🌿`],
+    salud:        [`¿Consulta, examen o tratamiento? 🏥 Cuéntanos para orientarte.`, `¿Es emergencia o consulta programada? Te orientamos 🚑`, `Trae tu carnet de seguro si tienes. Trabajamos con varias aseguradoras 📋`],
+    tecnologia:   [`¿Qué equipo necesitas reparar o qué servicio buscas? 💻`, `Diagnóstico gratuito y sin compromiso 🔧. ¿Lo traes hoy?`, `¿Hardware, software o necesitas un accesorio? ⚙️`, `¿Cayó al agua, pantalla rota o no enciende? Cuéntanos los síntomas 📱`],
+    hogar:        [`¿Qué trabajo necesitas en tu hogar? 🏠 Estamos para ayudarte.`, `Presupuesto sin costo. ¿Describimos el trabajo o mandamos técnico? 📋`, `Plomería, electricidad, pintura y remodelaciones 🔨. ¿Qué necesitas?`],
+    turismo:      [`¿Tours locales, paquetes o experiencias de aventura? ✈️`, `¿Para cuántas personas y en qué fecha planeas el viaje? 🗓️`, `Guías bilingües y transporte incluido. ¿Qué destino te interesa? 🗺️`],
+    transporte:   [`¿Para qué fecha y destino necesitas el servicio? 🚗`, `¿Aeropuerto, excursión o ruta específica? Cuéntanos 🛫`, `Sedanes, SUVs y vans disponibles. ¿Cuántas personas son? 🚐`],
+    ropa:         [`¿Casual, formal, sport o para una ocasión especial? 👗`, `¿Cuál es tu talla? Verificamos disponibilidad 👕`, `¿Es para regalo? Empaque especial sin costo adicional 🎁`, `Nueva colección disponible. ¿Quieres ver fotos? 📸`],
+    deportes:     [`¿Qué deporte practicas o qué equipo necesitas? 🏋️`, `¿Eres principiante o tienes experiencia? Así te recomendamos mejor 🎽`, `Marcas originales con garantía. ¿Tienes marca preferida? ⚽`, `También medimos tu pisada gratis para el calzado correcto 👟`],
+  };
     tecnologia:   [`¿Qué equipo necesitas reparar? 💻`, `Diagnóstico gratis 🔧. ¿Lo traes hoy?`, `¿Hardware o software? ⚙️`],
     hogar:        [`¿Qué trabajo necesitas? 🏠`, `Presupuesto sin costo 🔨. ¿Describimos el trabajo?`],
     turismo:      [`¿Tours, paquetes o experiencias? ✈️`, `¿Para cuántas personas y qué fecha? 🗓️`],
