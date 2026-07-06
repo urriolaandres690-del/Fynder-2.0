@@ -3679,6 +3679,20 @@
 
   </div><!-- /wa-main -->
 
+  <!-- Modal: Nuevo Chat -->
+  <div class="msg-newchat-overlay" id="newChatOverlay" onclick="closeNewChatModal()" style="display:none"></div>
+  <div class="msg-newchat-modal" id="newChatModal" style="display:none">
+    <div class="msg-newchat-header">
+      <button class="msg-newchat-back" onclick="closeNewChatModal()"><i class="fas fa-arrow-left"></i></button>
+      <h3>Nuevo chat</h3>
+    </div>
+    <div class="msg-newchat-search-wrap">
+      <i class="fas fa-magnifying-glass"></i>
+      <input type="text" id="newChatSearchInput" placeholder="Buscar un negocio..." oninput="filterNewChatList(this.value)" autocomplete="off">
+    </div>
+    <div class="msg-newchat-list" id="newChatList"></div>
+  </div>
+
 </div><!-- /page-messages -->
 
 <!-- ================================================================
