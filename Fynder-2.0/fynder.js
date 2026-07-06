@@ -5252,11 +5252,34 @@ function settSyncNotif() {
     }
   }
 
-  // Botón "Activar": ocultarlo si ya están concedidas o bloqueadas
+  // Botón "Activar": cambiar texto/estado según permiso
   const activarBtn = document.getElementById('settNotifActivarBtn');
   if (activarBtn) {
     const perm = ('Notification' in window) ? Notification.permission : 'unsupported';
-    activarBtn.style.display = (perm === 'granted' || perm === 'unsupported') ? 'none' : '';
+    if (perm === 'granted') {
+      activarBtn.textContent = '✓ Activado';
+      activarBtn.style.background = '#10B981';
+      activarBtn.style.color = '#fff';
+      activarBtn.style.borderColor = '#10B981';
+      activarBtn.disabled = true;
+      activarBtn.onclick = null;
+    } else if (perm === 'denied') {
+      activarBtn.textContent = '🚫 Bloqueado';
+      activarBtn.style.background = '';
+      activarBtn.style.color = '#EF4444';
+      activarBtn.style.borderColor = '#EF4444';
+      activarBtn.disabled = true;
+      activarBtn.onclick = null;
+    } else if (perm === 'unsupported') {
+      activarBtn.style.display = 'none';
+    } else {
+      activarBtn.textContent = 'Activar';
+      activarBtn.style.background = '';
+      activarBtn.style.color = '';
+      activarBtn.style.borderColor = '';
+      activarBtn.disabled = false;
+      activarBtn.onclick = () => handleNotifBannerClick(activarBtn).then(() => settSyncNotif());
+    }
   }
 
   // Toggles de notificaciones de chat y sonido
