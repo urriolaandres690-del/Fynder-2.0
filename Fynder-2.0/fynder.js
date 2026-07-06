@@ -1046,54 +1046,58 @@ function loadProfile(){
         return;
     }
 
-    // Cabecera: nombre y email
+    // ──── PERFIL NUEVO ESTILO TIKTOK ────
+    const ttName = document.getElementById("ttProfileName");
+    const ttUsername = document.getElementById("ttProfileUsername");
+    const ttAvatar = document.getElementById("ttAvatar");
+    
+    if(ttName) ttName.textContent = user.name;
+    if(ttUsername) ttUsername.textContent = `@${user.email.split('@')[0]}`;
+    
+    // Avatar
+    if(ttAvatar){
+        const stored = localStorage.getItem("fynderAvatarPhoto");
+        if(stored){
+            ttAvatar.innerHTML = `<img src="${stored}" alt="Avatar"><div class="tt-avatar-edit-icon"><i class="fas fa-camera"></i></div>`;
+        } else {
+            const initials = user.name ? user.name[0].toUpperCase() : '?';
+            ttAvatar.innerHTML = `${initials}<div class="tt-avatar-edit-icon"><i class="fas fa-camera"></i></div>`;
+        }
+    }
+    
+    // Estadísticas (valores de ejemplo)
+    const ttFollowing = document.getElementById("ttFollowingCount");
+    const ttFollowers = document.getElementById("ttFollowersCount");
+    const ttLikes = document.getElementById("ttLikesCount");
+    if(ttFollowing) ttFollowing.textContent = localStorage.getItem("fynderFollowingCount") || "0";
+    if(ttFollowers) ttFollowers.textContent = localStorage.getItem("fynderFollowersCount") || "0";
+    if(ttLikes) ttLikes.textContent = localStorage.getItem("fynderLikesCount") || "0";
+    
+    // Bio
+    const bio = localStorage.getItem("fynderUserBio");
+    const ttBio = document.getElementById("ttBio");
+    const ttBioText = document.getElementById("ttBioText");
+    const addBioBtn = document.querySelector(".tt-add-bio-btn");
+    if(bio && ttBio && ttBioText){
+        ttBioText.textContent = bio;
+        ttBio.style.display = 'block';
+        if(addBioBtn) addBioBtn.style.display = 'none';
+    } else if(ttBio && addBioBtn){
+        ttBio.style.display = 'none';
+        addBioBtn.style.display = 'flex';
+    }
+
+    // ──── PERFIL ANTIGUO (mantener compatibilidad) ────
     const pname  = document.getElementById("profileName");
     const pemail = document.getElementById("profileEmail");
     if(pname)  pname.textContent  = user.name;
     if(pemail) pemail.textContent = user.email;
 
-    // Avatar y portada
     applyAvatarDisplay();
     applyProfileCover();
 
-    // Ciudad badge
-    const cityBadge = document.getElementById("profileCityBadge");
-    const cityLabel = document.getElementById("profileCityLabel");
-    if(cityBadge && cityLabel && user.city){
-        cityLabel.textContent = user.city;
-        cityBadge.style.display = 'inline-flex';
-    } else if(cityBadge){
-        cityBadge.style.display = 'none';
-    }
-
-    // Estado
     const savedStatus = localStorage.getItem("fynderUserStatus") || "active";
     applyStatusUI(savedStatus);
-
-    // Campos del formulario
-    const eName  = document.getElementById("profileEditName");
-    const eEmail = document.getElementById("profileEditEmail");
-    const ePhone = document.getElementById("profileEditPhone");
-    const eCity  = document.getElementById("profileEditCity");
-    const eBio   = document.getElementById("profileEditBio");
-    if(eName)  eName.value  = user.name  || '';
-    if(eEmail) eEmail.value = user.email || '';
-    if(ePhone) ePhone.value = user.phone || '';
-    if(eCity)  eCity.value  = user.city  || '';
-    if(eBio){
-        eBio.value = user.bio || '';
-        updateBioCount();
-        // Evitar duplicar el listener
-        eBio.oninput = updateBioCount;
-    }
-
-    // Estadísticas
-    const sf = document.getElementById("statFavs");
-    const sb = document.getElementById("statBiz");
-    if(sf) sf.textContent = favorites.size;
-    if(sb) sb.textContent = JSON.parse(localStorage.getItem("fynderBusinesses")||"[]").length;
-
-    hideAvatarOptions();
 }
 
 /* ── Avatar ── */
