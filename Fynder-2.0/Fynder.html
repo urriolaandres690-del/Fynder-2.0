@@ -3625,7 +3625,7 @@
 </div>
 
 <!-- ================================================================
-     PANEL: AJUSTES DE MENSAJES (desliza desde arriba)
+     PANEL: AJUSTES DE MENSAJES
      ================================================================ -->
 <div class="msg-settings-overlay" id="msgSettingsOverlay" onclick="closeMsgSettings()"></div>
 <div class="msg-settings-panel" id="msgSettingsPanel">
@@ -3634,44 +3634,31 @@
     <button class="msg-icon-btn" onclick="closeMsgSettings()"><i class="fas fa-xmark"></i></button>
   </div>
   <div class="msg-settings-body">
-
-    <!-- Notificaciones -->
     <div class="msg-settings-section-title">Notificaciones</div>
     <div class="msg-settings-item">
       <div class="msg-settings-item-left">
         <div class="msg-settings-icon"><i class="fas fa-bell"></i></div>
-        <div>
-          <span class="msg-settings-label">Notificaciones de chat</span>
-          <span class="msg-settings-sub">Nuevos mensajes de negocios</span>
-        </div>
+        <div><span class="msg-settings-label">Notificaciones de chat</span><span class="msg-settings-sub">Nuevos mensajes de negocios</span></div>
       </div>
       <button class="msg-settings-toggle on" id="settingNotifToggle" onclick="toggleMsgSetting('notif')"></button>
     </div>
     <div class="msg-settings-item">
       <div class="msg-settings-item-left">
         <div class="msg-settings-icon"><i class="fas fa-volume-high"></i></div>
-        <div>
-          <span class="msg-settings-label">Sonido</span>
-          <span class="msg-settings-sub">Sonido al recibir mensajes</span>
-        </div>
+        <div><span class="msg-settings-label">Sonido</span><span class="msg-settings-sub">Sonido al recibir mensajes</span></div>
       </div>
       <button class="msg-settings-toggle" id="settingSoundToggle" onclick="toggleMsgSetting('sound')"></button>
     </div>
-
-    <!-- Apariencia -->
     <div class="msg-settings-section-title">Apariencia</div>
     <div class="msg-settings-item">
       <div class="msg-settings-item-left">
         <div class="msg-settings-icon"><i class="fas fa-palette"></i></div>
-        <div>
-          <span class="msg-settings-label">Color de mis mensajes</span>
-          <span class="msg-settings-sub" id="settingColorSub">Rojo oscuro</span>
-        </div>
+        <div><span class="msg-settings-label">Color de mis mensajes</span><span class="msg-settings-sub" id="settingColorSub">Teal</span></div>
       </div>
       <div class="msg-settings-colors" id="settingColors">
-        <button class="msg-color-dot active" data-color="#7b3838" style="background:#7b3838" onclick="setChatBubbleColor('#7b3838','Rojo oscuro',this)"></button>
+        <button class="msg-color-dot" data-color="#7b3838" style="background:#7b3838" onclick="setChatBubbleColor('#7b3838','Rojo oscuro',this)"></button>
         <button class="msg-color-dot" data-color="#1e4d7b" style="background:#1e4d7b" onclick="setChatBubbleColor('#1e4d7b','Azul oscuro',this)"></button>
-        <button class="msg-color-dot" data-color="#1a5c34" style="background:#1a5c34" onclick="setChatBubbleColor('#1a5c34','Verde oscuro',this)"></button>
+        <button class="msg-color-dot active" data-color="#1a5c34" style="background:#1a5c34" onclick="setChatBubbleColor('#1a5c34','Verde oscuro',this)"></button>
         <button class="msg-color-dot" data-color="#5b2d82" style="background:#5b2d82" onclick="setChatBubbleColor('#5b2d82','Morado',this)"></button>
         <button class="msg-color-dot" data-color="#7a4a1a" style="background:#7a4a1a" onclick="setChatBubbleColor('#7a4a1a','Naranja',this)"></button>
         <button class="msg-color-dot" data-color="#2b5c5c" style="background:#2b5c5c" onclick="setChatBubbleColor('#2b5c5c','Verde azulado',this)"></button>
@@ -3680,10 +3667,7 @@
     <div class="msg-settings-item">
       <div class="msg-settings-item-left">
         <div class="msg-settings-icon"><i class="fas fa-text-height"></i></div>
-        <div>
-          <span class="msg-settings-label">Tamaño de texto</span>
-          <span class="msg-settings-sub" id="settingFontSub">Normal</span>
-        </div>
+        <div><span class="msg-settings-label">Tamaño de texto</span><span class="msg-settings-sub" id="settingFontSub">Normal</span></div>
       </div>
       <div class="msg-settings-font-btns">
         <button class="msg-font-btn" onclick="setChatFontSize('small','Pequeño')">A</button>
@@ -3691,50 +3675,36 @@
         <button class="msg-font-btn" onclick="setChatFontSize('large','Grande')">A</button>
       </div>
     </div>
-
-    <!-- Privacidad -->
     <div class="msg-settings-section-title">Privacidad</div>
     <div class="msg-settings-item">
       <div class="msg-settings-item-left">
         <div class="msg-settings-icon"><i class="fas fa-eye-slash"></i></div>
-        <div>
-          <span class="msg-settings-label">Confirmación de lectura</span>
-          <span class="msg-settings-sub">Mostrar ticks de leído</span>
-        </div>
+        <div><span class="msg-settings-label">Confirmación de lectura</span><span class="msg-settings-sub">Mostrar ticks de leído</span></div>
       </div>
       <button class="msg-settings-toggle on" id="settingReadToggle" onclick="toggleMsgSetting('read')"></button>
     </div>
-
-    <!-- Datos -->
     <div class="msg-settings-section-title">Datos</div>
     <div class="msg-settings-item msg-settings-item-btn" onclick="exportChats()">
       <div class="msg-settings-item-left">
         <div class="msg-settings-icon"><i class="fas fa-file-export"></i></div>
-        <div>
-          <span class="msg-settings-label">Exportar conversaciones</span>
-          <span class="msg-settings-sub">Descargar como .txt</span>
-        </div>
+        <div><span class="msg-settings-label">Exportar conversaciones</span><span class="msg-settings-sub">Descargar como .txt</span></div>
       </div>
       <i class="fas fa-chevron-right msg-settings-chevron"></i>
     </div>
     <div class="msg-settings-item msg-settings-item-btn msg-settings-item-danger" onclick="clearAllChats()">
       <div class="msg-settings-item-left">
         <div class="msg-settings-icon msg-settings-icon-danger"><i class="fas fa-trash-can"></i></div>
-        <div>
-          <span class="msg-settings-label msg-settings-danger-txt">Borrar todos los chats</span>
-          <span class="msg-settings-sub">Esta acción no se puede deshacer</span>
-        </div>
+        <div><span class="msg-settings-label msg-settings-danger-txt">Borrar todos los chats</span><span class="msg-settings-sub">Esta acción no se puede deshacer</span></div>
       </div>
       <i class="fas fa-chevron-right msg-settings-chevron"></i>
     </div>
-
   </div>
 </div>
 
 <!-- ================================================================
-     PÁGINA: CHAT INDIVIDUAL
+     PÁGINA: CHAT INDIVIDUAL (solo móvil — desktop usa wa-chat-area)
      ================================================================ -->
-<div id="page-chat" class="page chat-page">
+<div id="page-chat" class="page chat-page chat-mobile-only">
 
   <!-- Header del chat -->
   <div class="chat-header">
@@ -3742,37 +3712,36 @@
       <i class="fas fa-arrow-left"></i>
     </button>
     <div class="chat-header-ava-wrap" onclick="openChatProfile()">
-      <div class="chat-header-avatar" id="chatHeaderAvatar"></div>
-      <span class="chat-header-online" id="chatHeaderOnline"></span>
+      <div class="chat-header-avatar" id="chatHeaderAvatarMobile"></div>
+      <span class="chat-header-online" id="chatHeaderOnlineMobile"></span>
     </div>
     <div class="chat-header-info" onclick="openChatProfile()" style="cursor:pointer">
-      <span class="chat-header-name" id="chatHeaderName">—</span>
-      <span class="chat-header-sub" id="chatHeaderSub">Negocio local</span>
+      <span class="chat-header-name" id="chatHeaderNameMobile">—</span>
+      <span class="chat-header-sub" id="chatHeaderSubMobile">Negocio local</span>
     </div>
-    <button class="chat-icon-btn" onclick="openChatProfile()" title="Ver perfil">
-      <i class="fas fa-ellipsis"></i>
-    </button>
+    <div style="display:flex;gap:4px">
+      <button class="chat-icon-btn" onclick="showToast('Llamada próximamente')" title="Llamar">
+        <i class="fas fa-phone"></i>
+      </button>
+      <button class="chat-icon-btn" onclick="openChatProfile()" title="Ver perfil">
+        <i class="fas fa-ellipsis-vertical"></i>
+      </button>
+    </div>
   </div>
 
   <!-- Mensajes -->
-  <div class="chat-messages" id="chatMessages">
-    <!-- Rellenado por JS -->
-  </div>
+  <div class="chat-messages" id="chatMessagesMobile"></div>
 
   <!-- Input de mensaje -->
   <div class="chat-input-bar">
-    <button class="chat-emoji-btn" id="chatEmojiBtn" onclick="toggleEmojiPicker()">
+    <button class="chat-emoji-btn" id="chatEmojiBtnMobile" onclick="toggleEmojiPickerMobile()">
       <i class="fas fa-face-smile"></i>
     </button>
-    <input
-      type="text"
-      id="chatInput"
-      class="chat-input"
-      placeholder="Mensaje privado..."
-      onkeydown="if(event.key==='Enter')sendChatMessage()"
-      autocomplete="off"
-    />
-    <button class="chat-send-btn" onclick="sendChatMessage()" id="chatSendBtn">
+    <input type="text" id="chatInputMobile" class="chat-input"
+      placeholder="Escribe un mensaje..."
+      onkeydown="if(event.key==='Enter')sendChatMessageMobile()"
+      autocomplete="off" />
+    <button class="chat-send-btn" onclick="sendChatMessageMobile()">
       <i class="fas fa-paper-plane"></i>
     </button>
   </div>
