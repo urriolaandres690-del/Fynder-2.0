@@ -6399,7 +6399,7 @@ function _applyI18N() {
   document.documentElement.lang = lang;
 }
 
-/** Aplica el idioma: guarda, actualiza UI, aplica diccionario */
+/** Aplica el idioma: guarda, actualiza UI, traduce con Google Translate */
 function settApplyLanguage(langCode) {
   localStorage.setItem('fynderLang', langCode);
 
@@ -6412,7 +6412,14 @@ function settApplyLanguage(langCode) {
   if (nowSub) nowSub.textContent = `Idioma activo: ${LANG_NAMES[langCode] || 'Español'}`;
 
   _renderPreferredLangs(langCode);
-  _applyI18N();
+  _applyI18N(); // Aplica traducciones del diccionario interno
+
+  // Si no es español, usar Google Translate para traducir toda la página
+  if (langCode !== 'es') {
+    _gtTranslateTo(langCode);
+  } else {
+    _gtRemoveTranslation();
+  }
 
   showToast(`${_langFlag(langCode)} Idioma cambiado a ${LANG_NAMES[langCode] || langCode}`);
 }
