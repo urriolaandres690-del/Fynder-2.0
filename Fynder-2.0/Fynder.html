@@ -144,7 +144,15 @@
     <button onclick="closeMobileMenu();goPage('plans')"><i class="fas fa-gem"></i> Planes</button>
     <button onclick="closeMobileMenu();goPage('about')"><i class="fas fa-circle-info"></i> Sobre Fynder</button>
     <button onclick="closeMobileMenu();goPage('fynder')"><i class="fas fa-bolt"></i> Saber más</button>
-    <button onclick="closeMobileMenu();goPage('blog')"><i class="fas fa-newspaper"></i> Blog</button>
+    <button class="mobile-menu-tool-item mobile-menu-has-sub" onclick="toggleMobileSubMenu('sub-blog',this)">
+      <i class="fas fa-newspaper"></i>
+      <span>Blog</span>
+      <i class="fas fa-chevron-right mobile-sub-arrow" id="arrow-sub-blog"></i>
+    </button>
+    <div class="mobile-submenu" id="sub-blog">
+      <button onclick="closeMobileMenu();goPage('blog')"><i class="fas fa-bell"></i> Novedades</button>
+      <button onclick="closeMobileMenu();openFeedbackModal()"><i class="fas fa-bullhorn"></i> Dar tu opinión</button>
+    </div>
     <button onclick="closeMobileMenu();goPage('support')"><i class="fas fa-headset"></i> Soporte</button>
     <button onclick="closeMobileMenu();goPage('map')"><i class="fas fa-map-location-dot"></i> Mapa de negocios</button>
 
