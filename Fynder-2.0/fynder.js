@@ -3832,53 +3832,73 @@ function openChat(bizId, biz) {
     _saveConversations(convs);
   }
 
-  // Header del chat
-  const nameEl  = document.getElementById('chatHeaderName');
-  const subEl   = document.getElementById('chatHeaderSub');
-  const avaEl   = document.getElementById('chatHeaderAvatar');
-  const onlineEl = document.getElementById('chatHeaderOnline');
-  if (nameEl) nameEl.textContent = biz.name;
-  if (subEl)  {
-    subEl.textContent = 'en línea';
-    subEl.classList.add('online');
-  }
-  if (onlineEl) onlineEl.classList.add('visible');
-  if (avaEl)  {
-    if (biz.image) {
-      avaEl.innerHTML = `<img src="${biz.image}" alt="${biz.name}" loading="lazy">`;
-    } else {
-      avaEl.innerHTML = '';
-      avaEl.textContent = (biz.name || '?')[0].toUpperCase();
-      avaEl.style.background = _avatarColor(biz.name);
+  // Helper: rellena los elementos de header por ID
+  function _fillHeader(nameId, subId, avaId, onlineId) {
+    const nameEl   = document.getElementById(nameId);
+    const subEl    = document.getElementById(subId);
+    const avaEl    = document.getElementById(avaId);
+    const onlineEl = document.getElementById(onlineId);
+    if (nameEl) nameEl.textContent = biz.name;
+    if (subEl)  { subEl.textContent = 'en línea'; subEl.classList.add('online'); }
+    if (onlineEl) onlineEl.classList.add('visible');
+    if (avaEl) {
+      if (biz.image) {
+        avaEl.innerHTML = `<img src="${biz.image}" alt="${biz.name}" loading="lazy">`;
+        avaEl.style.background = '';
+      } else {
+        avaEl.innerHTML = '';
+        avaEl.textContent = (biz.name || '?')[0].toUpperCase();
+        avaEl.style.background = _avatarColor(biz.name);
+      }
     }
   }
 
-  // Si no tiene mensajes, agregar un mensaje de bienvenida del negocio
+  // Rellena header del área desktop (wa-chat-area) y del page-chat móvil
+  _fillHeader('chatHeaderName','chatHeaderSub','chatHeaderAvatar','chatHeaderOnline');
+  _fillHeader('chatHeaderNameMobile','chatHeaderSubMobile','chatHeaderAvatarMobile','chatHeaderOnlineMobile');
+
+  // Botón llamar desktop
+  const callBtn = document.getElementById('waChatCallBtn');
+  if (callBtn) {
+    callBtn.onclick = biz.phone
+      ? () => { window.location.href = 'tel:' + biz.phone.replace(/\s/g,''); }
+      : () => showToast('Teléfono no disponible');
+  }
+
+  // Si no tiene mensajes, agregar mensaje de bienvenida
   let msgs = _getMsgs(bizId);
   if (msgs.length === 0) {
     const welcomeMsg = {
-      id: Date.now(),
-      from: 'biz',
+      id: Date.now(), from: 'biz',
       text: `¡Hola! 👋 Bienvenido a ${biz.name}. ¿En qué podemos ayudarte?`,
-      time: _fmtTime(new Date()),
-      date: _fmtDate(new Date())
+      time: _fmtTime(new Date()), date: _fmtDate(new Date())
     };
     msgs = [welcomeMsg];
     _saveMsgs(bizId, msgs);
-    // Actualizar conversación con el último mensaje
     _updateConvLastMsg(bizId, welcomeMsg.text, welcomeMsg.time);
-    // Notificación: primer contacto con el negocio
-    pushNotification({
-      type:  'chat',
-      title: biz.name,
-      body:  welcomeMsg.text.length > 80 ? welcomeMsg.text.slice(0, 80) + '…' : welcomeMsg.text,
-      bizId: biz.id,
-      image: biz.image || null
-    });
+    pushNotification({ type:'chat', title:biz.name,
+      body: welcomeMsg.text.slice(0,80)+(welcomeMsg.text.length>80?'…':''),
+      bizId:biz.id, image:biz.image||null });
   }
 
-  renderChatMessages(bizId);
-  goPage('chat');
+  const isDesktop = window.innerWidth >= 769;
+  if (isDesktop) {
+    // Layout WA Web: mostrar wa-chat-area dentro de page-messages
+    const welcome  = document.getElementById('waWelcome');
+    const chatArea = document.getElementById('waChatArea');
+    if (welcome)  welcome.style.display  = 'none';
+    if (chatArea) chatArea.style.display = 'flex';
+    renderChatMessages(bizId);   // renderiza en #chatMessages (desktop)
+    // Marcar activo en la lista
+    document.querySelectorAll('.msg-chat-item').forEach(el => el.classList.remove('wa-active'));
+    const activeItem = document.querySelector(`.msg-chat-item[data-biz-id="${bizId}"]`);
+    if (activeItem) activeItem.classList.add('wa-active');
+  } else {
+    // Móvil: renderiza en #chatMessagesMobile y navega a page-chat
+    renderChatMessagesMobile(bizId);
+    goPage('chat');
+  }
+
   // Aplicar ajustes guardados
   _loadMsgSettings();
   if (_msgSettings.bubbleColor) _applyChatBubbleColor(_msgSettings.bubbleColor);
