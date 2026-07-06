@@ -6050,16 +6050,6 @@ label.avatar-option-btn:hover { background: var(--teal-light); border-color: rgb
 [data-theme="dark"] #page-profile  { background: var(--bg) !important; }
 [data-theme="dark"] .profile-card  { background: var(--card); border-color: rgba(255,255,255,.07); }
 [data-theme="dark"] .profile-card-title { color: var(--fg); }
-
-/* Ocultar navbar en la página de perfil */
-body:has(#page-profile.active) #navbar {
-  display: none;
-}
-
-/* La página de perfil debe ocupar toda la pantalla sin espacio del navbar */
-body:has(#page-profile.active) #page-profile {
-  padding-top: 0 !important;
-}
 [data-theme="dark"] .profile-cover-wrap { background: var(--card); border-color: rgba(255,255,255,.07); }
 [data-theme="dark"] .profile-header     { background: var(--card); }
 [data-theme="dark"] .profile-name       { color: var(--fg); }
