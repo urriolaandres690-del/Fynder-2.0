@@ -13369,7 +13369,7 @@ body:has(#page-fynder.active) #navbar:not(.scrolled) .nav-dots-btn:hover {
 }
 
 /* ================================================================
-   RESPONSIVE – mensajes
+   RESPONSIVE – mensajes (ya manejado en el bloque de layout WA)
    ================================================================ */
 @media (max-width: 768px) {
   .msg-page,
@@ -13377,29 +13377,6 @@ body:has(#page-fynder.active) #navbar:not(.scrolled) .nav-dots-btn:hover {
     position: fixed;
     inset: 0;
     z-index: 50;
-  }
-}
-
-/* En desktop: ocultar bottom nav (el navbar superior ya tiene la navegación)
-   y ajustar el padding top para que no tape el navbar global */
-@media (min-width: 769px) {
-  .msg-page.active,
-  .chat-page.active {
-    padding-top: 64px; /* altura del navbar global */
-  }
-  .msg-bottom-nav {
-    display: none;
-  }
-  /* El chat también se beneficia de un ancho máximo cómodo centrado */
-  .chat-page.active .chat-messages {
-    max-width: 900px;
-    margin: 0 auto;
-    width: 100%;
-  }
-  .chat-page.active .chat-input-bar {
-    max-width: 900px;
-    width: 100%;
-    margin: 0 auto;
   }
 }
 
