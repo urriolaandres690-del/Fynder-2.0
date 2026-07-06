@@ -15448,3 +15448,20 @@ body { top: 0 !important; }
   background: var(--msg-border);
   margin: 4px 8px;
 }
+
+/* ================================================================
+   CHAT PROFILE: menú contextual del ⋮ y ajustes varios
+   ================================================================ */
+.chat-profile-page {
+  position: relative; /* para el menú absoluto */
+}
+.cpro-ctx-menu {
+  top: 56px;
+  right: 12px;
+}
+.cpro-settings-arrow {
+  font-size: .75rem;
+  color: var(--msg-muted);
+  margin-left: auto;
+  flex-shrink: 0;
+}
