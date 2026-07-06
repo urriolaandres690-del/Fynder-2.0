@@ -5157,6 +5157,8 @@ function settGoSection(id, btn) {
   if (id === 'rendimiento')    settSyncRendimiento();
   if (id === 'sistema')        settSyncSistema();
   if (id === 'herramientas')   settSyncHerramientas();
+  if (id === 'idioma')         settSyncIdioma();
+  if (id === 'amigos')         settSyncAmigos();
 }
 
 /** Inicializa la página cada vez que se navega a ella */
