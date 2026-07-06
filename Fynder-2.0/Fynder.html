@@ -3570,18 +3570,18 @@
     <!-- Buscador -->
     <div class="wa-search-bar">
       <i class="fas fa-magnifying-glass wa-search-icon"></i>
-      <input type="text" class="wa-search-input" id="msgSearchInput" placeholder="Buscar un chat..." oninput="filterConversations(this.value)" autocomplete="off">
+      <input type="text" class="wa-search-input" id="msgSearchInput" data-i18n-ph="search.placeholder" placeholder="Buscar un chat..." oninput="filterConversations(this.value)" autocomplete="off">
     </div>
 
     <!-- Tabs Chats / Marcadores -->
     <div class="msg-tabs">
-      <button class="msg-tabs-btn active" id="msgTabChats" onclick="msgSwitchTab('chats')">
+      <button class="msg-tabs-btn active" id="msgTabChats" onclick="msgSwitchTab('chats')" data-i18n="tab.all">
         Todos<span class="msg-tab-dot" id="msgChatsDot"></span>
       </button>
-      <button class="msg-tabs-btn" id="msgTabBookmarks" onclick="msgSwitchTab('bookmarks')">
+      <button class="msg-tabs-btn" id="msgTabBookmarks" onclick="msgSwitchTab('bookmarks')" data-i18n="tab.fav">
         Favoritos
       </button>
-      <button class="msg-tabs-btn" id="msgTabNotif" onclick="msgSwitchSection('notif')">
+      <button class="msg-tabs-btn" id="msgTabNotif" onclick="msgSwitchSection('notif')" data-i18n="notif.title">
         Notificaciones<span id="msgNotifTabDot"></span>
       </button>
     </div>
