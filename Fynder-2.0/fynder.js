@@ -6572,6 +6572,17 @@ function _gtLoadAndTranslate(langCode) {
 }
 
 /**
+ * Traduce la página al idioma especificado usando Google Translate
+ */
+function _gtTranslateTo(langCode) {
+  if (langCode === 'es') {
+    _gtRemoveTranslation();
+    return;
+  }
+  _gtApplyViaCookie(langCode);
+}
+
+/**
  * Aplica la traducción inyectando la cookie de Google Translate
  * y recargando la página (método más compatible con archivos locales)
  */
