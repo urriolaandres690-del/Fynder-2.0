@@ -4834,13 +4834,32 @@ function _buildCproInfoRows(biz) {
 function closeWaChatInfoPanel() {
   const panel = document.getElementById('waChatInfoPanel');
   if (panel) panel.classList.remove('open');
+  closeWaCproMenu(); // Cerrar menú si estaba abierto
 }
 
-/* Cierra el menú contextual del panel */
+/* Abre/Cierra el menú contextual del panel lateral */
+let _waCproMenuOpen = false;
+function toggleWaCproMenu(btn) {
+  const menu = document.getElementById('waCproCtxMenu');
+  if (!menu) return;
+  _waCproMenuOpen = !_waCproMenuOpen;
+  menu.style.display = _waCproMenuOpen ? 'flex' : 'none';
+}
+
 function closeWaCproMenu() {
   const menu = document.getElementById('waCproCtxMenu');
   if (menu) menu.style.display = 'none';
+  _waCproMenuOpen = false;
 }
+
+// Cerrar el menú del panel de info al hacer click fuera
+document.addEventListener('click', (e) => {
+  const menu = document.getElementById('waCproCtxMenu');
+  const btn  = document.getElementById('waCproMenuBtn');
+  if (!menu || menu.style.display === 'none') return;
+  if (btn && btn.contains(e.target)) return;
+  if (!menu.contains(e.target)) closeWaCproMenu();
+});
 
 function openChatProfileMap() {
   if (!_activeChatBizId) return;
