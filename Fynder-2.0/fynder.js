@@ -8160,3 +8160,95 @@ function _getSmartReply(userText, cat, bizName, biz) {
     `Estamos aquí para ayudarte ✅. ¿Cuéntanos?`,
   ]);
 }
+
+
+// ──── FUNCIONES DEL PERFIL ESTILO TIKTOK ──────────────────────────────────────
+
+function editBio() {
+  const current = localStorage.getItem("fynderUserBio") || '';
+  const newBio = prompt('Escribe tu descripción:', current);
+  if (newBio !== null) {
+    localStorage.setItem("fynderUserBio", newBio.trim());
+    loadProfile();
+    showToast('Descripción actualizada');
+  }
+}
+
+function showFollowing() {
+  showToast('Función "Siguiendo" próximamente');
+}
+
+function showFollowers() {
+  showToast('Función "Seguidores" próximamente');
+}
+
+function showLikes() {
+  showToast('Función "Me gusta" próximamente');
+}
+
+function showBalance() {
+  showToast('Saldo: $0.00');
+}
+
+function showActivityCenter() {
+  showToast('Centro de actividades próximamente');
+}
+
+function showOfflineVideos() {
+  showToast('Videos sin conexión próximamente');
+}
+
+function showQRCode() {
+  showToast('Tu código QR próximamente');
+}
+
+function showProfileViews() {
+  showToast('Visualizaciones del perfil: 6 personas vieron tu perfil en los últimos 30 días');
+}
+
+function openProfileMenu() {
+  showToast('Menú del perfil próximamente');
+}
+
+function uploadCover() {
+  const input = document.createElement('input');
+  input.type = 'file';
+  input.accept = 'image/*';
+  input.onchange = (e) => {
+    const file = e.target.files[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onload = (ev) => {
+        localStorage.setItem('fynderProfileCover', ev.target.result);
+        const cover = document.getElementById('ttCover');
+        if (cover) cover.style.backgroundImage = `url(${ev.target.result})`;
+        showToast('Portada actualizada');
+      };
+      reader.readAsDataURL(file);
+    }
+  };
+  input.click();
+}
+
+function takeCoverPhoto() {
+  showToast('Función de cámara próximamente');
+}
+
+function changeAvatar() {
+  const input = document.createElement('input');
+  input.type = 'file';
+  input.accept = 'image/*';
+  input.onchange = (e) => {
+    const file = e.target.files[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onload = (ev) => {
+        localStorage.setItem('fynderAvatarPhoto', ev.target.result);
+        loadProfile();
+        showToast('Avatar actualizado');
+      };
+      reader.readAsDataURL(file);
+    }
+  };
+  input.click();
+}
