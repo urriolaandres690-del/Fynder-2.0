@@ -3837,6 +3837,9 @@ function openChatFromModal() {
 function openChat(bizId, biz) {
   _activeChatBizId = String(bizId);
 
+  // Cerrar el panel de info si estaba abierto (nuevo chat seleccionado)
+  closeWaChatInfoPanel();
+
   // Asegurar que la conversación existe
   let convs = _getConversations();
   if (!convs.find(c => String(c.id) === String(bizId))) {
