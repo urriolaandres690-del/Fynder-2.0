@@ -3983,6 +3983,102 @@
         </div>
       </section>
 
+      <!-- ── IDIOMA ── -->
+      <section class="sett-section" id="sett-idioma">
+        <h2 class="sett-section-title">Idioma</h2>
+
+        <div class="sett-group-label">Idioma preferido</div>
+        <div class="sett-group">
+          <div class="sett-row" style="flex-wrap:wrap;gap:12px">
+            <div class="sett-row-left">
+              <div class="sett-row-icon" style="background:#EEF2FF;color:#2F5BB7"><i class="fas fa-globe"></i></div>
+              <div>
+                <span class="sett-row-label">Idioma de la interfaz</span>
+                <span class="sett-row-sub" id="settLangDetectedSub">Detectando idioma del sistema...</span>
+              </div>
+            </div>
+            <select class="sett-select" id="settLangSelect" onchange="settApplyLanguage(this.value)" style="min-width:160px">
+              <option value="es">🇪🇸 Español</option>
+              <option value="en">🇺🇸 English</option>
+              <option value="fr">🇫🇷 Français</option>
+              <option value="pt">🇧🇷 Português</option>
+              <option value="de">🇩🇪 Deutsch</option>
+              <option value="it">🇮🇹 Italiano</option>
+              <option value="zh">🇨🇳 中文</option>
+              <option value="ja">🇯🇵 日本語</option>
+              <option value="ko">🇰🇷 한국어</option>
+              <option value="ar">🇸🇦 العربية</option>
+              <option value="ru">🇷🇺 Русский</option>
+            </select>
+          </div>
+          <div class="sett-row">
+            <div class="sett-row-left">
+              <div class="sett-row-icon" style="background:#F0FEFE;color:#67B8B4"><i class="fas fa-wand-magic-sparkles"></i></div>
+              <div>
+                <span class="sett-row-label">Traducción automática</span>
+                <span class="sett-row-sub">Traducir según el idioma de tu dispositivo</span>
+              </div>
+            </div>
+            <button class="sett-toggle" id="settAutoTranslateToggle" onclick="settToggleAutoTranslate()"></button>
+          </div>
+          <div class="sett-row" id="settTranslateNowRow" style="display:none">
+            <div class="sett-row-left">
+              <div class="sett-row-icon" style="background:#EEF2FF;color:#2F5BB7"><i class="fas fa-language"></i></div>
+              <div>
+                <span class="sett-row-label">Traducir página ahora</span>
+                <span class="sett-row-sub" id="settTranslateNowSub">Abre el traductor para esta página</span>
+              </div>
+            </div>
+            <button class="sett-btn-sm" onclick="settTranslateNow()"><i class="fas fa-arrow-right"></i> Traducir</button>
+          </div>
+        </div>
+
+        <!-- Widget oculto de Google Translate -->
+        <div id="google_translate_element" style="display:none"></div>
+
+        <div class="sett-group-label">Idiomas preferidos</div>
+        <div class="sett-group" id="settPreferredLangs">
+          <!-- Rellenado por JS -->
+        </div>
+
+        <div class="sett-restore-info">
+          <i class="fas fa-circle-info"></i>
+          <p>La traducción automática usa el motor de Google Translate. Al activarla, la página se adapta al idioma de tu navegador automáticamente al cargar.</p>
+        </div>
+      </section>
+
+      <!-- ── AMIGOS ── -->
+      <section class="sett-section" id="sett-amigos">
+        <h2 class="sett-section-title">Mis amigos</h2>
+
+        <div class="sett-group-label">Buscar amigos</div>
+        <div class="sett-group">
+          <div class="sett-row" style="padding:12px 18px">
+            <div class="sett-row-left" style="flex:1">
+              <div class="sett-row-icon" style="background:#E6F5F4;color:#67B8B4"><i class="fas fa-magnifying-glass"></i></div>
+              <input type="text" class="sett-friend-search" id="settFriendSearch"
+                placeholder="Buscar por nombre o email..."
+                oninput="settSearchFriends(this.value)">
+            </div>
+          </div>
+        </div>
+
+        <div class="sett-group-label">Solicitudes recibidas <span class="sett-badge" id="settFriendReqBadge" style="display:none">0</span></div>
+        <div class="sett-group" id="settFriendRequests">
+          <div class="sett-empty-state"><i class="fas fa-user-check"></i><span>Sin solicitudes pendientes</span></div>
+        </div>
+
+        <div class="sett-group-label">Mis amigos <span id="settFriendTotal" style="color:var(--muted);font-weight:400"></span></div>
+        <div class="sett-group" id="settFriendList">
+          <div class="sett-empty-state"><i class="fas fa-user-group"></i><span>Aún no tienes amigos agregados</span></div>
+        </div>
+
+        <div class="sett-restore-info">
+          <i class="fas fa-circle-info"></i>
+          <p>Los amigos pueden ver tu perfil y tus negocios favoritos. Puedes eliminar amigos en cualquier momento.</p>
+        </div>
+      </section>
+
       <!-- ── NOTIFICACIONES ── -->
       <section class="sett-section" id="sett-notificaciones">
         <h2 class="sett-section-title">Notificaciones</h2>
