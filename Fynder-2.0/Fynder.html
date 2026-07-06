@@ -4233,6 +4233,96 @@
         </div>
       </section>
 
+      <!-- ── HERRAMIENTAS ── -->
+      <section class="sett-section" id="sett-herramientas">
+        <h2 class="sett-section-title">Herramientas</h2>
+
+        <div class="sett-group">
+
+          <!-- Traducir -->
+          <div class="sett-row" onclick="mobileTranslate()">
+            <div class="sett-row-left">
+              <div class="sett-row-icon" style="background:#EEF2FF;color:#2F5BB7"><i class="fas fa-language"></i></div>
+              <div>
+                <span class="sett-row-label">Traducir...</span>
+                <span class="sett-row-sub">Traduce esta página con Google Translate</span>
+              </div>
+            </div>
+            <i class="fas fa-arrow-up-right-from-square sett-row-arrow"></i>
+          </div>
+
+          <!-- Buscar y editar -->
+          <div class="sett-row sett-row-expandable" onclick="settToggleExpand('sett-exp-buscar', this)">
+            <div class="sett-row-left">
+              <div class="sett-row-icon" style="background:#F0FEFE;color:#67B8B4"><i class="fas fa-magnifying-glass-plus"></i></div>
+              <div>
+                <span class="sett-row-label">Buscar y editar</span>
+                <span class="sett-row-sub">Buscar negocios, editar perfil o negocio</span>
+              </div>
+            </div>
+            <i class="fas fa-chevron-right sett-row-arrow sett-expand-arrow" id="arr-sett-exp-buscar"></i>
+          </div>
+          <div class="sett-expandable" id="sett-exp-buscar">
+            <button class="sett-sub-item" onclick="goPage('directory')">
+              <i class="fas fa-magnifying-glass"></i> Buscar negocios
+            </button>
+            <button class="sett-sub-item" onclick="goPage('business')">
+              <i class="fas fa-pen-to-square"></i> Editar mi negocio
+            </button>
+            <button class="sett-sub-item" onclick="goPage('profile')">
+              <i class="fas fa-user-pen"></i> Editar perfil
+            </button>
+          </div>
+
+          <!-- Enviar, guardar y compartir -->
+          <div class="sett-row sett-row-expandable" onclick="settToggleExpand('sett-exp-compartir', this)">
+            <div class="sett-row-left">
+              <div class="sett-row-icon" style="background:#FFF7ED;color:#F97316"><i class="fas fa-share-nodes"></i></div>
+              <div>
+                <span class="sett-row-label">Enviar, guardar y compartir</span>
+                <span class="sett-row-sub">Compartir, guardar y copiar enlaces</span>
+              </div>
+            </div>
+            <i class="fas fa-chevron-right sett-row-arrow sett-expand-arrow" id="arr-sett-exp-compartir"></i>
+          </div>
+          <div class="sett-expandable" id="sett-exp-compartir">
+            <button class="sett-sub-item" onclick="mobileShare()">
+              <i class="fas fa-share"></i> Compartir página
+            </button>
+            <button class="sett-sub-item" onclick="goPage('favorites')">
+              <i class="fas fa-bookmark"></i> Ver guardados
+            </button>
+            <button class="sett-sub-item" onclick="mobileCopyLink()">
+              <i class="fas fa-link"></i> Copiar enlace
+            </button>
+          </div>
+
+          <!-- Más herramientas -->
+          <div class="sett-row sett-row-expandable" onclick="settToggleExpand('sett-exp-masherr', this)">
+            <div class="sett-row-left">
+              <div class="sett-row-icon" style="background:#F3F4F6;color:#6B7280"><i class="fas fa-toolbox"></i></div>
+              <div>
+                <span class="sett-row-label">Más herramientas</span>
+                <span class="sett-row-sub">Mapa, planes y blog</span>
+              </div>
+            </div>
+            <i class="fas fa-chevron-right sett-row-arrow sett-expand-arrow" id="arr-sett-exp-masherr"></i>
+          </div>
+          <div class="sett-expandable" id="sett-exp-masherr">
+            <button class="sett-sub-item" onclick="goPage('map')">
+              <i class="fas fa-map-location-dot"></i> Mapa de negocios
+            </button>
+            <button class="sett-sub-item" onclick="goPage('plans')">
+              <i class="fas fa-gem"></i> Planes premium
+            </button>
+            <button class="sett-sub-item" onclick="goPage('blog')">
+              <i class="fas fa-newspaper"></i> Blog
+            </button>
+          </div>
+
+        </div>
+      </section>
+
       <!-- ── SISTEMA ── -->
       <section class="sett-section" id="sett-sistema">
         <h2 class="sett-section-title">Sistema</h2>
