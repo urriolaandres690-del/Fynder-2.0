@@ -6488,11 +6488,6 @@ function settToggleAutoTranslate() {
   }
 }
 
-function settTranslateNow() {
-  const lang = localStorage.getItem('fynderLang') || _detectBrowserLang();
-  settApplyLanguage(lang);
-}
-
 /**
  * Aplica traducción usando la cookie de Google Translate.
  * Esto traduce la página in-place igual que el botón "Traducir" de Chrome,
