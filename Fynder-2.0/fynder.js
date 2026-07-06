@@ -2482,6 +2482,52 @@ function closeMobileMenu() {
   const burger = document.getElementById('navHamburger');
   if (burger) burger.classList.remove('open');
   document.body.style.overflow = '';
+  // Cerrar también todos los submenús
+  document.querySelectorAll('.mobile-submenu.open').forEach(s => s.classList.remove('open'));
+  document.querySelectorAll('.mobile-menu-has-sub.sub-open').forEach(b => b.classList.remove('sub-open'));
+}
+
+/** Despliega/colapsa un submenú en el menú móvil */
+function toggleMobileSubMenu(id, btn) {
+  const sub = document.getElementById(id);
+  if (!sub) return;
+  const isOpen = sub.classList.contains('open');
+  // Cerrar todos los demás
+  document.querySelectorAll('.mobile-submenu.open').forEach(s => { if (s !== sub) s.classList.remove('open'); });
+  document.querySelectorAll('.mobile-menu-has-sub.sub-open').forEach(b => { if (b !== btn) b.classList.remove('sub-open'); });
+  sub.classList.toggle('open', !isOpen);
+  if (btn) btn.classList.toggle('sub-open', !isOpen);
+}
+
+/** Traducir página (usa Web Share o navigator.language como fallback) */
+function mobileTranslate() {
+  const url = `https://translate.google.com/translate?hl=es&sl=auto&tl=es&u=${encodeURIComponent(location.href)}`;
+  window.open(url, '_blank');
+}
+
+/** Compartir página actual */
+async function mobileShare() {
+  const data = { title: 'Fynder – Descubre Negocios Locales', url: location.href };
+  try {
+    if (navigator.share) {
+      await navigator.share(data);
+    } else {
+      await navigator.clipboard.writeText(location.href);
+      showToast('🔗 Enlace copiado al portapapeles');
+    }
+  } catch {
+    showToast('No se pudo compartir');
+  }
+}
+
+/** Copiar enlace al portapapeles */
+async function mobileCopyLink() {
+  try {
+    await navigator.clipboard.writeText(location.href);
+    showToast('🔗 Enlace copiado');
+  } catch {
+    showToast('No se pudo copiar el enlace');
+  }
 }
 
 // cerrar menu al navegar
