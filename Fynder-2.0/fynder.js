@@ -5267,7 +5267,55 @@ function settFilterSections(q) {
 
 // ── RENDIMIENTO ───────────────────────────────────────────────────────────────
 
-function settToggleEnergySaver() {
+function settSyncRendimiento() {
+  // Sincronizar toggles de rendimiento desde localStorage
+  const toggleMap = {
+    perfAlerts:  'settPerfAlertsToggle',
+    inactiveTabs:'settInactiveTabsToggle',
+    memSaver:    'settMemSaverToggle',
+    preload:     'settPreloadToggle',
+  };
+  Object.entries(toggleMap).forEach(([key, id]) => {
+    const el = document.getElementById(id);
+    if (el) {
+      const saved = localStorage.getItem('fynder_' + key);
+      // Default: activado excepto memSaver
+      const defaultOn = key !== 'memSaver';
+      const isOn = saved !== null ? saved === '1' : defaultOn;
+      el.classList.toggle('on', isOn);
+    }
+  });
+
+  // Ahorro de energía
+  const energyBtn = document.getElementById('settEnergySaverToggle');
+  if (energyBtn) energyBtn.classList.toggle('on', localStorage.getItem('fynderEnergySaver') === '1');
+
+  // Modo de energía
+  const eMode = parseInt(localStorage.getItem('fynderEnergyMode') || '1');
+  settSelectEnergyMode(eMode);
+
+  // Modo de precarga
+  const pMode = parseInt(localStorage.getItem('fynderPreloadMode') || '2');
+  settSelectPreloadMode(pMode);
+}
+
+function settSyncSistema() {
+  const sysToggles = {
+    bgRun:    'settBgRunToggle',
+    hwAccel:  'settHwAccelToggle',
+    sysNotif: 'settSysNotifToggle',
+    localAI:  'settLocalAIToggle',
+  };
+  Object.entries(sysToggles).forEach(([key, id]) => {
+    const el = document.getElementById(id);
+    if (el) {
+      const saved = localStorage.getItem('fynder_' + key);
+      const isOn = saved !== null ? saved === '1' : true; // todos on por defecto
+      el.classList.toggle('on', isOn);
+    }
+  });
+}
+
   const btn = document.getElementById('settEnergySaverToggle');
   const isOn = btn && btn.classList.contains('on');
   if (btn) btn.classList.toggle('on', !isOn);
