@@ -334,10 +334,7 @@ function goPage(p){
     }
     if(p!=='messages' && p!=='chat') { if(typeof updateMsgBadge==='function') updateMsgBadge(); }
 
-    // En desktop: la página messages no oculta el navbar
-    if(p==='messages' && window.innerWidth >= 769) {
-      navbar.style.display = 'block';
-    }
+    // La página de mensajes siempre oculta el navbar (tiene su propio header)
 }
 
 function goBack(){
