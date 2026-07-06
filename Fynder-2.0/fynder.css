@@ -12533,9 +12533,156 @@ body:has(#page-fynder.active) #navbar:not(.scrolled) .nav-dots-btn:hover {
   gap: 6px;
   white-space: nowrap;
   font-family: 'Inter', sans-serif;
-  transition: background .2s;
+  transition: background .2s, transform .15s;
 }
 .msg-notif-banner-allow:hover { background: #5aa6a2; }
+.msg-notif-banner-allow:active { transform: scale(.96); }
+
+/* Estado "Activado" del botón de notificaciones */
+.msg-notif-banner-allow.activated {
+  background: #10B981;
+  cursor: default;
+  pointer-events: none;
+}
+.msg-notif-banner-allow.activated i { animation: bellRing .5s ease; }
+@keyframes bellRing {
+  0%,100% { transform: rotate(0); }
+  20%      { transform: rotate(-15deg); }
+  40%      { transform: rotate(15deg); }
+  60%      { transform: rotate(-10deg); }
+  80%      { transform: rotate(8deg); }
+}
+
+/* ── Modal de ajustes administrados ── */
+.org-modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,.45);
+  backdrop-filter: blur(4px);
+  z-index: 9999;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  animation: orgOverlayIn .2s ease;
+}
+.org-modal-overlay.open { display: flex; }
+@keyframes orgOverlayIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+.org-modal-box {
+  background: var(--card);
+  border-radius: 20px;
+  box-shadow: 0 20px 60px rgba(0,0,0,.3);
+  max-width: 480px;
+  width: 100%;
+  overflow: hidden;
+  animation: orgBoxIn .22s cubic-bezier(.34,1.56,.64,1);
+  border: 1px solid var(--border);
+}
+@keyframes orgBoxIn {
+  from { opacity: 0; transform: scale(.92) translateY(10px); }
+  to   { opacity: 1; transform: scale(1)   translateY(0); }
+}
+.org-modal-header {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 20px 20px 16px;
+  border-bottom: 1px solid var(--border);
+}
+.org-modal-icon {
+  width: 44px; height: 44px;
+  border-radius: 14px;
+  background: var(--teal-light);
+  color: var(--primary);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1.1rem;
+  flex-shrink: 0;
+}
+.org-modal-title {
+  font-family: 'Poppins', sans-serif;
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--fg);
+  margin: 0 0 2px;
+}
+.org-modal-sub {
+  font-size: .78rem;
+  color: var(--muted);
+  margin: 0;
+}
+.org-modal-close {
+  margin-left: auto;
+  background: none;
+  border: none;
+  color: var(--muted);
+  font-size: 1rem;
+  cursor: pointer;
+  padding: 8px;
+  border-radius: 10px;
+  transition: background .15s, color .15s;
+}
+.org-modal-close:hover { background: #F1F5F9; color: var(--fg); }
+.org-modal-body {
+  padding: 20px;
+  font-size: .875rem;
+  color: var(--fg);
+  line-height: 1.7;
+}
+.org-modal-body p { margin: 0 0 14px; }
+.org-modal-body p:last-child { margin-bottom: 0; }
+.org-modal-list {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.org-modal-list li {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  font-size: .8375rem;
+  color: var(--fg);
+}
+.org-modal-list li i {
+  color: var(--primary);
+  width: 16px;
+  flex-shrink: 0;
+  margin-top: 3px;
+}
+.org-modal-note { color: var(--muted); font-size: .8125rem !important; }
+.org-modal-footer {
+  padding: 14px 20px 20px;
+  display: flex;
+  justify-content: flex-end;
+}
+.org-modal-btn {
+  padding: 9px 24px;
+  border-radius: 12px;
+  border: none;
+  background: var(--primary);
+  color: #fff;
+  font-size: .875rem;
+  font-weight: 600;
+  font-family: 'Poppins', sans-serif;
+  cursor: pointer;
+  transition: background .2s, transform .15s;
+}
+.org-modal-btn:hover { background: var(--primary-d); }
+.org-modal-btn:active { transform: scale(.97); }
+
+/* Dark mode para el modal */
+[data-theme="dark"] .org-modal-box      { background: #1E293B; border-color: rgba(255,255,255,.08); }
+[data-theme="dark"] .org-modal-header   { border-bottom-color: rgba(255,255,255,.07); }
+[data-theme="dark"] .org-modal-icon     { background: rgba(103,184,180,.12); }
+[data-theme="dark"] .org-modal-title    { color: var(--fg); }
+[data-theme="dark"] .org-modal-close:hover { background: rgba(255,255,255,.08); color: var(--fg); }
+[data-theme="dark"] .org-modal-list li  { color: var(--fg); }
+[data-theme="dark"] .org-modal-note     { color: var(--muted); }
 .msg-notif-banner-close {
   flex-shrink: 0;
   background: none;
