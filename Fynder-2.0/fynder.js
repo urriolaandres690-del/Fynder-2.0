@@ -6666,3 +6666,105 @@ function _buildTickHtml(msg) {
     });
   });
 })();
+
+/* ================================================================
+   CHAT HEADER: funciones de los botones
+   ================================================================ */
+
+/** Llamar al teléfono del negocio si está disponible */
+function waChatCall() {
+  if (!_activeChatBizId) return;
+  const biz = BUSINESSES.find(b => String(b.id) === String(_activeChatBizId));
+  if (!biz) return;
+  const phone = biz.phone || biz.whatsapp || biz.contact;
+  if (phone) {
+    const clean = String(phone).replace(/\D/g, '');
+    window.open('tel:+' + clean, '_self');
+  } else {
+    showToast('Este negocio no tiene número de teléfono registrado 📵');
+  }
+}
+
+/** Abrir/cerrar el menú contextual del header del chat */
+let _waChatCtxOpen = false;
+function toggleWaChatMenu(btn) {
+  const menu = document.getElementById('waChatCtxMenu');
+  if (!menu) return;
+  _waChatCtxOpen = !_waChatCtxOpen;
+  menu.style.display = _waChatCtxOpen ? 'flex' : 'none';
+}
+function closeWaChatMenu() {
+  const menu = document.getElementById('waChatCtxMenu');
+  if (menu) menu.style.display = 'none';
+  _waChatCtxOpen = false;
+}
+// Cerrar al hacer click fuera
+document.addEventListener('click', (e) => {
+  const menu = document.getElementById('waChatCtxMenu');
+  if (!menu || menu.style.display === 'none') return;
+  const area = document.getElementById('waChatArea');
+  if (area && !area.querySelector('.wa-chat-header-actions').contains(e.target) && !menu.contains(e.target)) {
+    closeWaChatMenu();
+  }
+});
+
+/** Búsqueda dentro del chat (resalta mensajes que contienen el texto) */
+function waChatSearch() {
+  const q = prompt('Buscar en el chat:');
+  if (!q || !q.trim()) return;
+  const term = q.trim().toLowerCase();
+  const bubbles = document.querySelectorAll('#chatMessages .chat-bubble');
+  let found = 0;
+  bubbles.forEach(b => {
+    const txt = b.textContent.toLowerCase();
+    b.style.outline = txt.includes(term) ? '2px solid var(--msg-accent)' : '';
+    if (txt.includes(term)) found++;
+  });
+  if (found === 0) {
+    showToast('No se encontraron mensajes con "' + q + '"');
+  } else {
+    showToast(`${found} mensaje${found > 1 ? 's' : ''} encontrado${found > 1 ? 's' : ''}`);
+    // Scroll al primero encontrado
+    const first = document.querySelector('#chatMessages .chat-bubble[style*="outline"]');
+    if (first) first.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    // Limpiar resaltado después de 3 segundos
+    setTimeout(() => {
+      document.querySelectorAll('#chatMessages .chat-bubble').forEach(b => b.style.outline = '');
+    }, 3000);
+  }
+}
+
+/** Exportar solo el chat activo */
+function exportThisChat() {
+  if (!_activeChatBizId) return;
+  const biz  = BUSINESSES.find(b => String(b.id) === String(_activeChatBizId));
+  const name = biz ? biz.name : 'Negocio';
+  const msgs = _getMsgs(_activeChatBizId);
+  if (!msgs.length) { showToast('No hay mensajes para exportar'); return; }
+  let txt = `Chat con ${name} — Fynder\n${'='.repeat(40)}\n\n`;
+  msgs.forEach(m => {
+    const who = m.from === 'user' ? 'Yo' : name;
+    txt += `[${m.date} ${m.time}] ${who}: ${m.text || (m.attach ? '[Archivo adjunto]' : '')}\n`;
+  });
+  const blob = new Blob([txt], { type: 'text/plain;charset=utf-8' });
+  const url  = URL.createObjectURL(blob);
+  const a    = document.createElement('a');
+  a.href = url; a.download = `chat-${name.replace(/\s+/g,'-')}.txt`; a.click();
+  URL.revokeObjectURL(url);
+  showToast('Chat exportado ✅');
+}
+
+/** Borrar mensajes del chat activo */
+function clearThisChat() {
+  if (!_activeChatBizId) return;
+  const biz  = BUSINESSES.find(b => String(b.id) === String(_activeChatBizId));
+  const name = biz ? biz.name : 'este negocio';
+  if (!confirm(`¿Borrar todos los mensajes con ${name}?`)) return;
+  _saveMsgs(_activeChatBizId, []);
+  const convs = _getConversations();
+  const idx   = convs.findIndex(c => String(c.id) === String(_activeChatBizId));
+  if (idx > -1) { convs[idx].lastMsg = ''; convs[idx].lastTime = ''; _saveConversations(convs); }
+  renderConversations();
+  renderChatMessages(_activeChatBizId);
+  showToast('Mensajes borrados');
+}
