@@ -4184,6 +4184,8 @@ function msgSwitchTab(tab) {
   // Actualizar botones
   document.getElementById('msgTabChats')    .classList.toggle('active', tab === 'chats');
   document.getElementById('msgTabBookmarks').classList.toggle('active', tab === 'bookmarks');
+  const tabNotif = document.getElementById('msgTabNotif');
+  if (tabNotif) tabNotif.classList.remove('active');
 
   // Mostrar panel
   document.getElementById('msgPanelChats')    .classList.toggle('active', tab === 'chats');
