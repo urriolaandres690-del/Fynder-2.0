@@ -4014,8 +4014,9 @@ function _doSendMessage(inputId, bizId, renderFn) {
   }
 
   const now = new Date();
+  // status: 'pending' → 'sent' → 'delivered' → 'read'
   const msg = { id: Date.now(), from: 'user', text,
-    time: _fmtTime(now), date: _fmtDate(now), read: false };
+    time: _fmtTime(now), date: _fmtDate(now), read: false, status: 'pending' };
 
   const msgs = _getMsgs(bizId);
   msgs.push(msg);
@@ -4026,7 +4027,21 @@ function _doSendMessage(inputId, bizId, renderFn) {
   input.value = '';
   renderFn(bizId);
 
-  setTimeout(() => _bizAutoReply(bizId, renderFn), 1200);
+  // Simular progresión de estados: pending → sent → delivered → read
+  setTimeout(() => _advanceMsgStatus(bizId, msg.id, 'sent',      renderFn), 400);
+  setTimeout(() => _advanceMsgStatus(bizId, msg.id, 'delivered', renderFn), 900);
+  setTimeout(() => _bizAutoReply(bizId, renderFn), 1400);
+}
+
+/** Avanza el estado de un mensaje y re-renderiza */
+function _advanceMsgStatus(bizId, msgId, newStatus, renderFn) {
+  const msgs = _getMsgs(bizId);
+  const m = msgs.find(x => x.id === msgId);
+  if (!m) return;
+  m.status = newStatus;
+  if (newStatus === 'read') m.read = true;
+  _saveMsgs(bizId, msgs);
+  if (_activeChatBizId === bizId && renderFn) renderFn(bizId);
 }
 
 // ---- Respuesta automática del negocio ----
