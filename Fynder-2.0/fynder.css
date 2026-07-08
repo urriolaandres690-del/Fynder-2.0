@@ -16856,3 +16856,15 @@ iframe.goog-te-menu-frame { box-shadow: 0 4px 20px rgba(0,0,0,.15) !important; b
   overflow-x: visible !important;
   padding-bottom: 20px;
 }
+
+
+/* El row no debe cortar el botón de carita que sale por los lados */
+.chat-msg-row {
+  overflow: visible !important;
+}
+
+/* En mensajes de audio el bubble es más alto, centrar verticalmente */
+.chat-msg-row .chat-bubble-audio ~ .chat-react-trigger,
+.chat-msg-row:has(.chat-bubble-audio) .chat-react-trigger {
+  top: 50%;
+}
