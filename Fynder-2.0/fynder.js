@@ -7575,6 +7575,13 @@ function toggleWaChatMenu(btn) {
   if (!menu) return;
   _waChatCtxOpen = !_waChatCtxOpen;
   menu.style.display = _waChatCtxOpen ? 'flex' : 'none';
+  // Actualizar label de silencio según estado actual
+  if (_waChatCtxOpen && _activeChatBizId) {
+    const muted = JSON.parse(localStorage.getItem('fynderMutedChats') || '[]');
+    const isMuted = muted.includes(String(_activeChatBizId));
+    const muteBtn = document.getElementById('waChatMuteBtn');
+    if (muteBtn) muteBtn.innerHTML = `<i class="fas fa-bell${isMuted ? '' : '-slash'}"></i> ${isMuted ? 'Activar notificaciones' : 'Silenciar notificaciones'}`;
+  }
 }
 function closeWaChatMenu() {
   const menu = document.getElementById('waChatCtxMenu');
