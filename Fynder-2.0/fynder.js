@@ -535,56 +535,82 @@ function renderModalReviews(bizId, cat){
   const staticList=REVIEWS[bizId]||[];
   const userComments=_getBizComments(bizId);
   const color=cat?.color||'#67B8B4';
-
-  // Construir el HTML de reseñas estáticas
-  const staticHTML=staticList.map(r=>{
-    const filled=r.stars;
-    const stars=[1,2,3,4,5].map(i=>`<svg style="width:13px;height:13px;fill:${i<=filled?'#F4D35E':'#E5E7EB'};flex-shrink:0" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>`).join('');
-    return `<div class="review-card">
-      <div class="review-header">
-        <div class="review-avatar" style="background:linear-gradient(135deg,${color},#2F5BB7)">${r.avatar}</div>
-        <div class="review-meta">
-          <span class="review-name">${r.name}</span>
-          <div class="review-stars">${stars}</div>
-        </div>
-        <span class="review-date">${r.date}</span>
-      </div>
-      <p class="review-text">${r.text}</p>
-    </div>`;
-  }).join('');
-
-  // Construir el HTML de reseñas de usuario (mismo estilo review-card, sin estrellas)
   const logged=!!localStorage.getItem('fynderLogged');
   const user=JSON.parse(localStorage.getItem('fynderUser')||'null');
-  const userHTML=userComments.slice().reverse().map(c=>{
-    const isOwn=logged&&user&&c.userId===(user.email||user.name);
-    let avStyle;
-    if(c.avatarPhoto) {
-      avStyle=`background:transparent;overflow:hidden;padding:0`;
-      var avInner=`<img src="${c.avatarPhoto}" style="width:100%;height:100%;object-fit:cover;border-radius:50%;display:block" alt="av">`;
-    } else if(c.avatarPreset) {
-      avStyle=`background:#F0FEFE;font-size:1rem`;
-      var avInner=c.avatarPreset;
-    } else {
-      const bg=c.avatarInitBg||ART_COMMENT_COLORS[c.colorIdx||0];
-      avStyle=`background:${bg};font-weight:700;font-size:.875rem;color:#fff;font-family:'Poppins',sans-serif`;
-      var avInner=c.initial;
+
+  // Convertir fecha "mar 2026" / "10 jul. 2025" a timestamp para ordenar
+  const _MONTHS={'ene':0,'feb':1,'mar':2,'abr':3,'may':4,'jun':5,'jul':6,'ago':7,'sep':8,'oct':9,'nov':10,'dic':11};
+  function _dateToTs(dateStr) {
+    if(!dateStr) return 0;
+    const parts = dateStr.toLowerCase().replace('.','').split(/\s+/);
+    if(parts.length === 2) { // "mar 2026"
+      const m = _MONTHS[parts[0]] ?? 0;
+      return new Date(parseInt(parts[1]), m, 1).getTime();
     }
-    return `<div class="review-card" id="bizc-${c.id}">
-      <div class="review-header">
-        <div class="review-avatar" style="${avStyle}">${avInner}</div>
-        <div class="review-meta">
-          <span class="review-name">${c.name}</span>
-          <div class="review-stars">${c.stars ? [1,2,3,4,5].map(i=>`<svg style="width:13px;height:13px;fill:${i<=c.stars?'#F4D35E':'#E5E7EB'};flex-shrink:0" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>`).join('') : ''}</div>
+    if(parts.length === 3) { // "10 jul 2025"
+      const m = _MONTHS[parts[1]] ?? 0;
+      return new Date(parseInt(parts[2]), m, parseInt(parts[0])).getTime();
+    }
+    return 0;
+  }
+
+  // Unificar todas las reseñas en un solo array normalizado
+  const allReviews = [
+    ...staticList.map(r => ({ type:'static', data:r, ts: _dateToTs(r.date) })),
+    ...userComments.map(c => ({ type:'user',   data:c, ts: parseInt(c.id) || _dateToTs(c.date) }))
+  ];
+
+  // Ordenar por fecha más reciente primero
+  allReviews.sort((a, b) => b.ts - a.ts);
+
+  const reviewsHTML = allReviews.map(item => {
+    if(item.type === 'static') {
+      const r = item.data;
+      const filled = r.stars;
+      const stars = [1,2,3,4,5].map(i=>`<svg style="width:13px;height:13px;fill:${i<=filled?'#F4D35E':'#E5E7EB'};flex-shrink:0" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>`).join('');
+      return `<div class="review-card">
+        <div class="review-header">
+          <div class="review-avatar" style="background:linear-gradient(135deg,${color},#2F5BB7)">${r.avatar}</div>
+          <div class="review-meta">
+            <span class="review-name">${r.name}</span>
+            <div class="review-stars">${stars}</div>
+          </div>
+          <span class="review-date">${r.date}</span>
         </div>
-        <span class="review-date">${c.date}</span>
-        ${isOwn?`<button onclick="deleteBizComment('${bizId}','${c.id}')" title="Eliminar" style="background:none;border:none;cursor:pointer;color:#94A3B8;font-size:.75rem;padding:2px 4px;margin-left:4px"><i class="fas fa-trash-alt"></i></button>`:''}
-      </div>
-      <p class="review-text">${escapeHtml(c.text)}</p>
-    </div>`;
+        <p class="review-text">${r.text}</p>
+      </div>`;
+    } else {
+      const c = item.data;
+      const isOwn = logged && user && c.userId === (user.email||user.name);
+      let avStyle, avInner;
+      if(c.avatarPhoto) {
+        avStyle=`background:transparent;overflow:hidden;padding:0`;
+        avInner=`<img src="${c.avatarPhoto}" style="width:100%;height:100%;object-fit:cover;border-radius:50%;display:block" alt="av">`;
+      } else if(c.avatarPreset) {
+        avStyle=`background:#F0FEFE;font-size:1rem`;
+        avInner=c.avatarPreset;
+      } else {
+        const bg=c.avatarInitBg||ART_COMMENT_COLORS[c.colorIdx||0];
+        avStyle=`background:${bg};font-weight:700;font-size:.875rem;color:#fff;font-family:'Poppins',sans-serif`;
+        avInner=c.initial;
+      }
+      const starsHTML = c.stars ? [1,2,3,4,5].map(i=>`<svg style="width:13px;height:13px;fill:${i<=c.stars?'#F4D35E':'#E5E7EB'};flex-shrink:0" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>`).join('') : '';
+      return `<div class="review-card" id="bizc-${c.id}">
+        <div class="review-header">
+          <div class="review-avatar" style="${avStyle}">${avInner}</div>
+          <div class="review-meta">
+            <span class="review-name">${c.name}</span>
+            <div class="review-stars">${starsHTML}</div>
+          </div>
+          <span class="review-date">${c.date}</span>
+          ${isOwn?`<button onclick="deleteBizComment('${bizId}','${c.id}')" title="Eliminar" style="background:none;border:none;cursor:pointer;color:#94A3B8;font-size:.75rem;padding:2px 4px;margin-left:4px"><i class="fas fa-trash-alt"></i></button>`:''}
+        </div>
+        <p class="review-text">${escapeHtml(c.text)}</p>
+      </div>`;
+    }
   }).join('');
 
-  const totalCount=staticList.length+userComments.length;
+  const totalCount = allReviews.length;
 
   wrap.innerHTML=`
     <p class="modal-section-title">Reseñas de clientes (${totalCount})</p>
