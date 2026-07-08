@@ -8602,6 +8602,43 @@ function _getSmartReply(userText, cat, bizName, biz) {
     return _pick(subM[sub] || catM[cat] || [`En ${bizName} tenemos amplia variedad. ¿Qué buscas? 😊`, `¡Cuéntanos qué necesitas y te orientamos! 🌟`]);
   }
 
+  if (intents.includes('confirmacion')) {
+    const subConf = {
+      pasteleria:   [`¡Perfecto! 🎂 ¿Confirmas la fecha y el diseño? Te envío el presupuesto.`, `¡Genial! ¿Me dices para cuántas personas y el sabor que prefieres? 🍰`],
+      panaderia:    [`¡Listo! 🥐 ¿Para qué hora pasas a recogerlo?`, `¡Entendido! Déjame anotar el pedido. ¿Cuántas unidades? 🍞`],
+      heladeria:    [`¡Dale! 🍦 ¿Cuántas bolas y de qué sabores?`, `¡Perfecto! ¿Lo comes aquí o lo llevas? 🌈`],
+      sushi_ramen:  [`¡Listo! 🍱 ¿Quieres la mesa ahora o hacemos el pedido para delivery?`, `¡Genial! ¿Cuántas personas son? Te organizo el combo ideal 🥢`],
+      pizzeria:     [`¡Va! 🍕 ¿Para comer aquí o llevás? Y el tamaño, ¿grande o mediana?`, `¡Perfecto! ¿Qué ingredientes le ponemos? 🧀`],
+      hamburgueseria:[`¡Dale! 🍔 ¿Cuántas burgers son y con qué salsa?`, `¡Claro! ¿Papas fritas incluidas o algo diferente de acompañante? 🥤`],
+      mariscos:     [`¡Perfecto! 🐟 ¿Lo comes aquí o lo llevamos a domicilio?`, `¡Genial! ¿Quieres que te prepare la mesa con vista al mar? 🌊`],
+      dental:       [`¡Listo! 🦷 ¿Confirmas el día y la hora? ¿Es consulta inicial o tienes tratamiento en curso?`, `¡Perfecto! ¿Tienes alguna alergia a medicamentos que debamos saber? 🩺`],
+      spa:          [`¡Agendado! 💆 ¿Confirmas el día y a qué nombre quedo la cita?`, `¡Genial! ¿Tienes alguna zona de tensión específica que debamos trabajar? 🌸`],
+      gym:          [`¡Excelente! 💪 ¿Cuándo quieres empezar? Te asignamos un entrenador.`, `¡Perfecto! ¿Tienes alguna condición física que debamos considerar? 🏋️`],
+    };
+    return _pick(subConf[sub] || [
+      `¡Perfecto! 😊 ¿Con qué continuamos?`,
+      `¡Genial! ¿Necesitas algo más?`,
+      `¡Entendido! ¿Algo más en lo que podamos ayudarte? ✅`,
+      `¡De acuerdo! ¿Confirmamos los detalles? 🙏`,
+    ]);
+  }
+
+  if (intents.includes('preferencia_comida')) {
+    const subPref = {
+      pasteleria:   [`¡Sin problema! Trabajamos con opciones sin gluten y sin lactosa. ¿Para cuántas personas es? 🎂`, `Usamos ingredientes naturales y podemos adaptar la receta a tus necesidades 🌿. ¿Qué necesitas evitar?`],
+      panaderia:    [`Tenemos pan artesanal sin gluten y opciones integrales 🍞. ¿Qué buscas exactamente?`, `Pan sin gluten disponible con pedido previo de 24h. ¿Lo necesitas para cuándo? 😊`],
+      sushi_ramen:  [`¡Sin gluten en la mayoría de rolls! Indicamos cuáles llevan soya. ¿Tienes celiaquía? 🥢`, `Opciones sin mariscos disponibles. Ramen de pollo es perfecto para eso 🍜. ¿Lo vemos?`],
+      vegano:       [`¡Aquí todo es tuyo! 🌱 Vegano, sin gluten, sin soya a petición. ¿Qué prefieres?`, `Menú 100% plant-based. ¿Tienes alguna alergia específica además? 😊`],
+      mexicano:     [`¡Sin picante sin problema! Salsas aparte siempre 🌮. ¿Qué relleno prefieres?`, `Opción vegetariana: tacos de frijoles, champiñones o nopales 🥑. ¿Te interesa?`],
+      mariscos:     [`Si tienes alergia a mariscos podemos preparar platos solo de pescado 🐟. ¿Cuál prefieres?`, `El ceviche de corvina es perfecto si quieres evitar mariscos 🌊. ¿Lo pedimos?`],
+    };
+    return _pick(subPref[sub] || [
+      `¡Sin problema! Nos adaptamos a tus preferencias 😊. ¿Qué necesitas evitar?`,
+      `Tenemos opciones para diferentes necesidades alimentarias 🌿. ¿Cuéntanos más?`,
+      `Siempre buscamos que disfrutes sin preocupaciones 🙏. ¿Qué restricción tienes?`,
+    ]);
+  }
+
   if (intents.includes('saludo')) return _pick([
     `¡Hola! 👋 Bienvenido a ${bizName}. ¿En qué podemos ayudarte?`,
     `¡Buenas! 😊 Gracias por contactar a ${bizName}. ¿Cómo servirte?`,
