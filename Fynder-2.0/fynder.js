@@ -8667,38 +8667,63 @@ function _getSmartReply(userText, cat, bizName, biz) {
 
   if (intents.includes('confirmacion')) {
     const subConf = {
-      pasteleria:   [`¡Perfecto! 🎂 ¿Confirmas la fecha y el diseño? Te envío el presupuesto.`, `¡Genial! ¿Me dices para cuántas personas y el sabor que prefieres? 🍰`],
-      panaderia:    [`¡Listo! 🥐 ¿Para qué hora pasas a recogerlo?`, `¡Entendido! Déjame anotar el pedido. ¿Cuántas unidades? 🍞`],
-      heladeria:    [`¡Dale! 🍦 ¿Cuántas bolas y de qué sabores?`, `¡Perfecto! ¿Lo comes aquí o lo llevas? 🌈`],
-      sushi_ramen:  [`¡Listo! 🍱 ¿Quieres la mesa ahora o hacemos el pedido para delivery?`, `¡Genial! ¿Cuántas personas son? Te organizo el combo ideal 🥢`],
-      pizzeria:     [`¡Va! 🍕 ¿Para comer aquí o llevás? Y el tamaño, ¿grande o mediana?`, `¡Perfecto! ¿Qué ingredientes le ponemos? 🧀`],
-      hamburgueseria:[`¡Dale! 🍔 ¿Cuántas burgers son y con qué salsa?`, `¡Claro! ¿Papas fritas incluidas o algo diferente de acompañante? 🥤`],
-      mariscos:     [`¡Perfecto! 🐟 ¿Lo comes aquí o lo llevamos a domicilio?`, `¡Genial! ¿Quieres que te prepare la mesa con vista al mar? 🌊`],
-      dental:       [`¡Listo! 🦷 ¿Confirmas el día y la hora? ¿Es consulta inicial o tienes tratamiento en curso?`, `¡Perfecto! ¿Tienes alguna alergia a medicamentos que debamos saber? 🩺`],
-      spa:          [`¡Agendado! 💆 ¿Confirmas el día y a qué nombre quedo la cita?`, `¡Genial! ¿Tienes alguna zona de tensión específica que debamos trabajar? 🌸`],
-      gym:          [`¡Excelente! 💪 ¿Cuándo quieres empezar? Te asignamos un entrenador.`, `¡Perfecto! ¿Tienes alguna condición física que debamos considerar? 🏋️`],
+      pasteleria:   [`¡Perfecto! 🎂 ¿Confirmas la fecha y el diseño? Te envío el presupuesto.`, `¡Genial! ¿Me dices para cuántas personas y el sabor que prefieres? 🍰`, `¡Anotado! ¿Algún detalle especial de decoración? ✨`],
+      panaderia:    [`¡Listo! 🥐 ¿Para qué hora pasas a recogerlo?`, `¡Entendido! Déjame anotar el pedido. ¿Cuántas unidades? 🍞`, `¡Genial! ¿Lo pagas al recoger o lo apartamos con adelanto? 💳`],
+      heladeria:    [`¡Dale! 🍦 ¿Cuántas bolas y de qué sabores?`, `¡Perfecto! ¿Lo comes aquí o lo llevas? 🌈`, `¡Vamos! ¿Con toppings o al natural? 🥥`],
+      sushi_ramen:  [`¡Listo! 🍱 ¿Quieres la mesa ahora o hacemos el pedido para delivery?`, `¡Genial! ¿Cuántas personas son? Te organizo el combo ideal 🥢`, `¡Perfecto! ¿Algo sin mariscos en el grupo? Lo preparamos sin problema 🍜`],
+      pizzeria:     [`¡Va! 🍕 ¿Para comer aquí o llevas? ¿Grande o mediana?`, `¡Perfecto! ¿Qué ingredientes le ponemos? 🧀`, `¡Hecho! ¿Con orilla rellena de queso o normal? 🔥`],
+      hamburgueseria:[`¡Dale! 🍔 ¿Cuántas burgers y con qué salsa?`, `¡Claro! ¿Papas fritas o aros de cebolla de acompañante? 🥤`, `¡Genial! ¿Puntos de cocción: bien cocida o término medio? 🥩`],
+      mariscos:     [`¡Perfecto! 🐟 ¿Lo comes aquí o lo llevamos a domicilio?`, `¡Genial! ¿Quieres la mesa con vista al mar? 🌊`, `¡Anotado! ¿Algún mariscos que no comas o alergia? 🦐`],
+      mexicano:     [`¡Órale! 🌮 ¿Cuántos tacos y de qué relleno?`, `¡Listo! ¿Salsa suave, picante o extra picante? 🌶️`, `¡Perfecto! ¿Para llevar o comes aquí? 😋`],
+      parrilla:     [`¡Fuego! 🔥 ¿Cuántas personas y qué cortes prefieres?`, `¡Genial! ¿Término medio, tres cuartos o bien cocido? 🥩`, `¡Anotado! ¿Con ensalada o papas fritas de acompañante? 🍷`],
+      vegano:       [`¡Qué bien! 🌱 ¿Para comer aquí o te lo llevamos?`, `¡Perfecto! ¿Tienes alguna alergia adicional que deba saber? 🥗`, `¡Genial! ¿Lo quieres sin soya también? 😊`],
+      brunch:       [`¡Reservado! 🥞 ¿A nombre de quién y cuántas personas?`, `¡Perfecto! ¿Con o sin mimosas? 🥂`, `¡Listo! ¿Prefieres mesa interior o terraza? 🌅`],
+      empanadas:    [`¡Anoté! 🫓 ¿Cuántas de cada relleno?`, `¡Genial! ¿Fritas o al horno? 😋`, `¡Perfecto! ¿Para llevar o comes aquí? Con salsa casera incluida 🌶️`],
+      jugos:        [`¡Va! 🥤 ¿Tamaño pequeño, mediano o grande?`, `¡Listo! ¿Con o sin hielo y azúcar? 🌿`, `¡Perfecto! ¿Añadimos un shot de jengibre? ⚡`],
+      cafeteria:    [`¡Genial! ☕ ¿Para tomar aquí o para llevar?`, `¡Listo! ¿Con leche de vaca, almendras o avena? 🥛`, `¡Perfecto! ¿Caliente o frío? ❄️`],
+      tailandes:    [`¡Sabrosón! 🍜 ¿Nivel de picante del 1 al 5?`, `¡Genial! ¿Para cuántas personas es? 🇹🇭`, `¡Perfecto! ¿Arroz jazmín o fideos de arroz de acompañante? 🌺`],
+      dental:       [`¡Listo! 🦷 ¿Confirmas día y hora? ¿Consulta inicial o tratamiento en curso?`, `¡Perfecto! ¿Tienes alergia a medicamentos? 🩺`, `¡Agendado! Te llegará un recordatorio. ¿A ese mismo número? 📱`],
+      spa:          [`¡Agendado! 💆 ¿A nombre de quién y día preferido?`, `¡Genial! ¿Zona de tensión específica a trabajar? 🌸`, `¡Perfecto! ¿Aromaterapia incluida o sesión estándar? 🕯️`],
+      gym:          [`¡Excelente! 💪 ¿Cuándo empiezas? Te asignamos entrenador.`, `¡Perfecto! ¿Objetivo: bajar de peso, ganar músculo o resistencia? 🏋️`, `¡Genial! ¿Mañana o tarde prefieres entrenar? 🧘`],
+      mecanica:     [`¡Listo! 🔧 ¿Lo traes hoy o mañana? ¿Año y modelo del vehículo?`, `¡Entendido! ¿Gasolina o diesel? Para tener los repuestos listos ⚙️`, `¡Perfecto! Te esperamos. ¿Necesitas que te llevemos mientras lo revisamos? 🚗`],
+      tours:        [`¡Genial! 🗺️ ¿Para cuántas personas y qué fecha?`, `¡Anotado! ¿Español o inglés el tour? 🌍`, `¡Perfecto! ¿Transporte incluido desde tu hotel? ✈️`],
+      fotografia:   [`¡Genial! 📸 ¿Fecha, hora y tipo de sesión?`, `¡Perfecto! ¿En estudio o locación externa? 🖼️`, `¡Listo! ¿Cuántas personas en la sesión? 📷`],
+      transporte_ejecutivo:[`¡Confirmado! 🚗 ¿Dirección de recogida y destino?`, `¡Perfecto! ¿A qué hora te recogemos? 🛫`, `¡Listo! ¿Cuántas personas? Asignamos el vehículo adecuado 🚐`],
     };
     return _pick(subConf[sub] || [
       `¡Perfecto! 😊 ¿Con qué continuamos?`,
       `¡Genial! ¿Necesitas algo más?`,
       `¡Entendido! ¿Algo más en lo que podamos ayudarte? ✅`,
       `¡De acuerdo! ¿Confirmamos los detalles? 🙏`,
+      `¡Hecho! ¿Hay algo más que quieras saber? 💬`,
+      `¡Listo! Quedamos atentos a cualquier otra pregunta 😊`,
     ]);
   }
 
   if (intents.includes('preferencia_comida')) {
     const subPref = {
-      pasteleria:   [`¡Sin problema! Trabajamos con opciones sin gluten y sin lactosa. ¿Para cuántas personas es? 🎂`, `Usamos ingredientes naturales y podemos adaptar la receta a tus necesidades 🌿. ¿Qué necesitas evitar?`],
-      panaderia:    [`Tenemos pan artesanal sin gluten y opciones integrales 🍞. ¿Qué buscas exactamente?`, `Pan sin gluten disponible con pedido previo de 24h. ¿Lo necesitas para cuándo? 😊`],
-      sushi_ramen:  [`¡Sin gluten en la mayoría de rolls! Indicamos cuáles llevan soya. ¿Tienes celiaquía? 🥢`, `Opciones sin mariscos disponibles. Ramen de pollo es perfecto para eso 🍜. ¿Lo vemos?`],
-      vegano:       [`¡Aquí todo es tuyo! 🌱 Vegano, sin gluten, sin soya a petición. ¿Qué prefieres?`, `Menú 100% plant-based. ¿Tienes alguna alergia específica además? 😊`],
-      mexicano:     [`¡Sin picante sin problema! Salsas aparte siempre 🌮. ¿Qué relleno prefieres?`, `Opción vegetariana: tacos de frijoles, champiñones o nopales 🥑. ¿Te interesa?`],
-      mariscos:     [`Si tienes alergia a mariscos podemos preparar platos solo de pescado 🐟. ¿Cuál prefieres?`, `El ceviche de corvina es perfecto si quieres evitar mariscos 🌊. ¿Lo pedimos?`],
+      pasteleria:   [`¡Sin problema! Trabajamos con opciones sin gluten y sin lactosa 🎂. ¿Para cuántas personas?`, `Adaptamos la receta a tus necesidades 🌿. ¿Qué ingredientes debemos evitar?`, `Tortas sin gluten y sin azúcar disponibles. ¿Es por salud o preferencia? 😊`],
+      panaderia:    [`Pan artesanal sin gluten disponible con pedido 24h previo 🍞. ¿Para cuándo?`, `También hacemos pan integral, de semillas y sin sal. ¿Cuál buscas? 🌾`, `Pan sin lactosa también disponible. ¿Qué restricción tienes? 😊`],
+      sushi_ramen:  [`La mayoría de rolls no llevan gluten. ¿Tienes celiaquía? 🥢`, `Ramen sin mariscos: caldo de pollo disponible. ¿Lo preparamos así? 🍜`, `Sin soya en varios platos. Indicamos cuáles al momento 🌿`],
+      vegano:       [`¡Aquí todo es tuyo! 🌱 Vegano, sin gluten, sin soya a petición.`, `Menú 100% plant-based. ¿Alergia adicional? 😊`, `Sin lácteos, sin huevo, sin gluten si lo necesitas. Todo flexible 🌿`],
+      mexicano:     [`¡Salsas aparte siempre! Sin picante sin problema 🌮. ¿Qué relleno?`, `Opción veggie: frijoles, champiñones o nopales 🥑. ¿Te interesa?`, `Sin cilantro si no te gusta. Personalizamos cada pedido 😄`],
+      mariscos:     [`Solo pescado sin mariscos es posible 🐟. ¿Corvina o pargo?`, `Ceviche de solo corvina para quien evita mariscos 🌊. ¿Lo pedimos?`, `Indicamos alérgenos en cada plato. ¿Tienes alergia específica? 🦐`],
+      hamburgueseria:[`Sin gluten: pan sin gluten disponible bajo pedido 🍔. ¿Lo solicitamos?`, `Sin lactosa: sin queso ni mayonesa. ¿Qué le dejamos? 🥬`, `Burger vegetariana también disponible. ¿La prefieres? 🌱`],
+      parrilla:     [`Cortes solo de res, sin cerdo si lo necesitas 🥩. ¿Cuál prefieres?`, `Sin acompañamiento con lácteos disponible. ¿Alguna restricción más? 🌿`, `Sin sal añadida en los cortes si lo pides. ¿Es por salud? 😊`],
+      cafeteria:    [`Leche de almendras, avena o coco disponibles ☕. ¿Cuál prefieres?`, `Sin azúcar en todos los cafés. ¿Con edulcorante o solo? 🌿`, `Repostería sin gluten disponible. ¿Tienes celiaquía? 🥐`],
+      tailandes:    [`Sin picante: preparamos con cero chile. ¿Lo prefieres así? 🌺`, `Sin mariscos en curry y Pad Thai posible 🍜. ¿Lo confirmamos?`, `Sin cacahuetes disponible. ¿Alergia a nueces? 🥜`],
+      brunch:       [`Sin gluten: pancakes y waffles de avena disponibles 🥞. ¿Los pedimos?`, `Sin lácteos: leche de avena en todo. ¿Te parece? 🌱`, `Opciones sin gluten y veganas marcadas en el menú. ¿Tenemos alguna restricción específica? 😊`],
+      jugos:        [`Todo sin azúcar añadida por defecto 🥤. ¿Sin endulzante también?`, `Sin frutas que no te gusten. Dime cuáles y las omitimos 🌿`, `Opción sin proteína en polvo si lo prefieres. ¿Cómo lo quieres? 😊`],
+      dulceria:     [`Dulces sin azúcar refinada disponibles. ¿Es por diabetes? 🍬`, `Sin gluten en algunos productos. ¿Cuáles necesitas? 😊`, `Endulzados con panela o stevia. ¿Cuál prefieres? 🌿`],
+      gym:          [`Rutinas adaptadas para lesiones o condiciones físicas 💪. ¿Cuál es la tuya?`, `Sin impacto si tienes problemas articulares. ¿Qué área te molesta? 🏋️`, `Planes para principiantes sin experiencia previa. ¿Nunca has ido al gym? 🧘`],
+      spa:          [`Aceites sin perfume para pieles sensibles 💆. ¿Lo indicamos?`, `Sin presión fuerte si tienes alguna condición. ¿Nos comentas? 🌸`, `Tratamientos sin gluten y sin parabenos disponibles. ¿Cuál es tu preferencia? 🕯️`],
     };
     return _pick(subPref[sub] || [
       `¡Sin problema! Nos adaptamos a tus preferencias 😊. ¿Qué necesitas evitar?`,
-      `Tenemos opciones para diferentes necesidades alimentarias 🌿. ¿Cuéntanos más?`,
+      `Tenemos opciones para diferentes necesidades alimentarias 🌿. ¿Cuéntanos?`,
       `Siempre buscamos que disfrutes sin preocupaciones 🙏. ¿Qué restricción tienes?`,
+      `Personalizamos para ti. ¿Qué debemos tener en cuenta? ✅`,
+      `Tu comodidad primero 😊. ¿Alergia, intolerancia o preferencia personal?`,
     ]);
   }
 
