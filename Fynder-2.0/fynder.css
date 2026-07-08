@@ -16542,3 +16542,251 @@ mark.msg-search-mark {
 .goog-te-banner-frame.skiptranslate { display: none !important; }
 body { top: 0 !important; }
 iframe.goog-te-menu-frame { box-shadow: 0 4px 20px rgba(0,0,0,.15) !important; border-radius: 8px !important; }
+
+
+/* ================================================================
+   CHAT: REACCIONES Y MENÚ CONTEXTUAL
+   ================================================================ */
+
+/* Wrapper del mensaje para posicionar la barra de reacciones */
+.chat-msg-row {
+  position: relative;
+}
+
+/* Barra de reacciones rápidas (aparece al hover) */
+.chat-reaction-bar {
+  position: absolute;
+  bottom: calc(100% + 4px);
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  background: var(--surface, #fff);
+  border: 1px solid rgba(0,0,0,.1);
+  border-radius: 24px;
+  padding: 5px 8px;
+  box-shadow: 0 4px 20px rgba(0,0,0,.15);
+  opacity: 0;
+  pointer-events: none;
+  transform: scale(.85) translateY(4px);
+  transition: opacity .18s ease, transform .18s ease;
+  z-index: 200;
+  white-space: nowrap;
+}
+[data-theme="dark"] .chat-reaction-bar {
+  background: #2a2d35;
+  border-color: rgba(255,255,255,.12);
+  box-shadow: 0 4px 20px rgba(0,0,0,.4);
+}
+.chat-msg-row:hover .chat-reaction-bar,
+.chat-reaction-bar.visible {
+  opacity: 1;
+  pointer-events: auto;
+  transform: scale(1) translateY(0);
+}
+
+/* Posición según lado del mensaje */
+.chat-msg-row.out .chat-reaction-bar { right: 0; }
+.chat-msg-row.in  .chat-reaction-bar { left: 0; }
+
+/* Botón "+" para más emojis */
+.chat-reaction-bar .react-more {
+  width: 30px; height: 30px;
+  border-radius: 50%;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1rem;
+  color: var(--fg-muted, #888);
+  transition: background .15s;
+}
+.chat-reaction-bar .react-more:hover { background: rgba(0,0,0,.08); }
+
+/* Botones de emoji individuales */
+.chat-reaction-btn {
+  width: 32px; height: 32px;
+  border-radius: 50%;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  font-size: 1.2rem;
+  display: flex; align-items: center; justify-content: center;
+  transition: background .15s, transform .15s;
+  position: relative;
+}
+.chat-reaction-btn:hover {
+  background: rgba(0,0,0,.08);
+  transform: scale(1.3);
+}
+.chat-reaction-btn.reacted {
+  background: rgba(103,184,180,.18);
+}
+
+/* Badge de reacción en el bubble */
+.chat-bubble-reactions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+  margin-top: 4px;
+}
+.chat-bubble-reaction-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
+  background: var(--surface, #fff);
+  border: 1.5px solid rgba(0,0,0,.1);
+  border-radius: 12px;
+  padding: 2px 7px 2px 5px;
+  font-size: .8rem;
+  cursor: pointer;
+  transition: background .15s, transform .12s;
+  box-shadow: 0 1px 4px rgba(0,0,0,.08);
+}
+[data-theme="dark"] .chat-bubble-reaction-badge {
+  background: #2a2d35;
+  border-color: rgba(255,255,255,.14);
+}
+.chat-bubble-reaction-badge:hover { background: rgba(103,184,180,.15); transform: scale(1.08); }
+.chat-bubble-reaction-badge.mine  { border-color: var(--primary, #67b8b4); background: rgba(103,184,180,.12); }
+.chat-bubble-reaction-badge .react-count { font-size: .7rem; color: var(--fg-muted, #888); font-weight: 600; }
+
+/* Menú contextual del mensaje */
+#msgBubbleCtxMenu {
+  position: fixed;
+  z-index: 9999;
+  background: var(--surface, #fff);
+  border: 1px solid rgba(0,0,0,.1);
+  border-radius: 14px;
+  box-shadow: 0 8px 32px rgba(0,0,0,.18);
+  padding: 6px 0;
+  min-width: 180px;
+  opacity: 0;
+  pointer-events: none;
+  transform: scale(.9);
+  transform-origin: top left;
+  transition: opacity .15s ease, transform .15s ease;
+}
+[data-theme="dark"] #msgBubbleCtxMenu {
+  background: #1e2128;
+  border-color: rgba(255,255,255,.1);
+  box-shadow: 0 8px 32px rgba(0,0,0,.5);
+}
+#msgBubbleCtxMenu.open {
+  opacity: 1;
+  pointer-events: auto;
+  transform: scale(1);
+}
+
+/* Barra de emojis rápidos dentro del menú */
+#msgBubbleCtxMenu .ctx-reaction-strip {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  padding: 6px 10px 8px;
+  border-bottom: 1px solid rgba(0,0,0,.08);
+}
+[data-theme="dark"] #msgBubbleCtxMenu .ctx-reaction-strip {
+  border-bottom-color: rgba(255,255,255,.08);
+}
+#msgBubbleCtxMenu .ctx-reaction-strip .chat-reaction-btn { font-size: 1.3rem; }
+
+/* Ítem del menú contextual */
+.ctx-menu-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 16px;
+  cursor: pointer;
+  font-size: .875rem;
+  color: var(--fg, #1a1a1a);
+  transition: background .13s;
+  user-select: none;
+}
+[data-theme="dark"] .ctx-menu-item { color: #e0e0e0; }
+.ctx-menu-item:hover { background: rgba(0,0,0,.05); }
+[data-theme="dark"] .ctx-menu-item:hover { background: rgba(255,255,255,.06); }
+.ctx-menu-item i { width: 18px; text-align: center; font-size: .9rem; color: var(--fg-muted, #888); }
+.ctx-menu-item.danger { color: #ef4444; }
+.ctx-menu-item.danger i { color: #ef4444; }
+.ctx-menu-item.danger:hover { background: rgba(239,68,68,.08); }
+.ctx-menu-separator {
+  height: 1px;
+  background: rgba(0,0,0,.07);
+  margin: 4px 0;
+}
+[data-theme="dark"] .ctx-menu-separator { background: rgba(255,255,255,.07); }
+
+/* Mensaje con highlight (al responder/fijar) */
+.chat-bubble.highlighted {
+  outline: 2px solid var(--primary, #67b8b4);
+  outline-offset: 2px;
+  animation: bubbleHighlight .6s ease forwards;
+}
+@keyframes bubbleHighlight {
+  0%   { outline-color: var(--primary, #67b8b4); background: rgba(103,184,180,.18); }
+  100% { outline-color: transparent; }
+}
+
+/* Indicador de mensaje "fijado" en el bubble */
+.chat-bubble-pinned-icon {
+  font-size: .65rem;
+  color: var(--primary, #67b8b4);
+  margin-left: 4px;
+  vertical-align: middle;
+}
+
+/* Indicador de mensaje "destacado" en el bubble */
+.chat-bubble-starred-icon {
+  font-size: .65rem;
+  color: #f59e0b;
+  margin-left: 4px;
+  vertical-align: middle;
+}
+
+/* Barra de respuesta (quote) */
+.chat-reply-bar {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--surface, #f5f5f5);
+  border-left: 3px solid var(--primary, #67b8b4);
+  border-radius: 0 8px 8px 0;
+  padding: 6px 10px;
+  margin: 0 8px 6px;
+  font-size: .8rem;
+  color: var(--fg-muted, #666);
+  animation: slideDown .2s ease;
+}
+[data-theme="dark"] .chat-reply-bar {
+  background: rgba(255,255,255,.06);
+}
+.chat-reply-bar .reply-text {
+  flex: 1;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.chat-reply-bar .reply-close {
+  background: none; border: none; cursor: pointer;
+  color: var(--fg-muted, #888); font-size: .85rem; padding: 2px;
+}
+@keyframes slideDown {
+  from { opacity: 0; transform: translateY(-6px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* Burbuja con cita (reply quote inside bubble) */
+.chat-bubble-quote {
+  background: rgba(0,0,0,.07);
+  border-left: 3px solid var(--primary, #67b8b4);
+  border-radius: 6px;
+  padding: 5px 8px;
+  margin-bottom: 5px;
+  font-size: .78rem;
+  opacity: .85;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+[data-theme="dark"] .chat-bubble-quote { background: rgba(255,255,255,.08); }
+.chat-msg-row.out .chat-bubble-quote { border-left-color: rgba(255,255,255,.7); }
