@@ -597,15 +597,23 @@ function renderModalReviews(bizId, cat){
       <div style="display:flex;gap:10px;align-items:flex-start">
         <div style="flex-shrink:0;margin-top:2px">${_getUserAvatarHTML(36)}</div>
         <div style="flex:1">
-          <textarea id="bizCommentInput" placeholder="Escribe tu reseña..." maxlength="400" rows="2"
-            class="biz-review-textarea"
-            style="width:100%;padding:10px 14px;border:1.5px solid var(--border);border-radius:14px;font-family:'Inter',sans-serif;font-size:.875rem;color:var(--fg);background:var(--bg);resize:none;outline:none;box-sizing:border-box;transition:border-color .2s"
-            onfocus="this.style.borderColor='var(--primary)'" onblur="this.style.borderColor='var(--border)'"
-          ></textarea>
-          <div style="display:flex;justify-content:flex-end;margin-top:8px">
-            <button onclick="submitBizComment('${bizId}')" style="padding:9px 20px;border-radius:12px;border:none;background:var(--primary);color:#fff;font-family:'Poppins',sans-serif;font-size:.8125rem;font-weight:600;cursor:pointer;display:inline-flex;align-items:center;gap:6px">
-              <i class="fas fa-paper-plane"></i> Publicar reseña
-            </button>
+          <div class="biz-review-form-box">
+            <div class="biz-review-form-title"><i class="fas fa-star" style="color:var(--primary)"></i> Aportar reseña</div>
+            <div class="biz-review-star-row" id="bizStarPicker" data-val="0">
+              ${[1,2,3,4,5].map(i=>`<button type="button" class="biz-star-btn" data-star="${i}" onclick="setBizStar(${i})" onmouseenter="hoverBizStar(${i})" onmouseleave="resetBizStarHover()" aria-label="${i} estrellas">
+                <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+              </button>`).join('')}
+              <span class="biz-star-label" id="bizStarLabel">Selecciona tu puntuación</span>
+            </div>
+            <textarea id="bizCommentInput" placeholder="Escribe tu reseña..." maxlength="400" rows="2"
+              class="biz-review-textarea"
+              onfocus="this.style.borderColor='var(--primary)'" onblur="this.style.borderColor='var(--border)'"
+            ></textarea>
+            <div style="display:flex;justify-content:flex-end;margin-top:8px">
+              <button onclick="submitBizComment('${bizId}')" class="biz-review-submit-btn">
+                <i class="fas fa-paper-plane"></i> Publicar reseña
+              </button>
+            </div>
           </div>
         </div>
       </div>
