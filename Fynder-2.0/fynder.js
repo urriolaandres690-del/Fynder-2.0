@@ -8504,18 +8504,31 @@ function _getSmartReply(userText, cat, bizName, biz) {
   ]);
 
   if (intents.includes('tiempo')) {
-    const catT = {
-      tecnologia:   [`Reparaciones básicas en el día ⚡, complejas en 24–48h. ¿Qué tiene tu equipo?`, `Pantalla: 2h. Batería: 1h. Software: mismo día 🔧. ¿Cuál es tu caso?`],
-      restaurantes: [`En mesa: 15–20 min ⏱️. Delivery: 30–45 min. ¿Para cuándo lo necesitas?`, `Si reservas con anticipación garantizamos tu mesa al llegar 🍽️`],
-      belleza:      [`Corte 30 min, tinte 2h, manicure 1h, pedicure 1h 💅. ¿Qué servicio te interesa?`, `Para no esperar, ¿agendamos una cita y garantizamos tu hora? 📅`],
-      hogar:        [`Trabajos pequeños: mismo día ⚡. Remodelaciones: 2–7 días. ¿Qué necesitas?`, `Técnicos disponibles hoy si es urgente. ¿Cuál es el trabajo? 🔨`],
-      transporte:   [`Confirmamos el vehículo en 15 min 🚗. Llegamos en 20–30 min. ¿Para cuándo?`, `Traslado al aeropuerto: llegar 30 min antes de tu vuelo 🛫. ¿A qué hora sales?`],
-      turismo:      [`Tours de medio día: 4–5h. Día completo: 8–10h 🗺️. ¿Cuánto tiempo tienes disponible?`, `Los tours salen por la mañana. ¿Cuántos días estarás en la ciudad? ✈️`],
-      salud:        [`Consultas con cita: espera máx 15 min 🩺. Sin cita según disponibilidad.`, `Exámenes de laboratorio listos en 24–48h. Urgentes en el día 🏥. ¿Qué examen necesitas?`],
-      ropa:         [`Encuentras lo que buscas al instante 👗. ¿Tienes una ocasión específica próximamente?`, `Si necesitas algo con urgencia tenemos disponibilidad inmediata en tienda 🏪`],
-      deportes:     [`Los artículos están disponibles de inmediato ⚽. ¿Qué equipo necesitas?`, `Entregas a domicilio en 24–48h si lo prefieres 📦. ¿Cuándo lo necesitas?`],
+    const subT = {
+      pasteleria:   [`Tortas personalizadas necesitan 48–72h de anticipación 🎂. ¿Para cuándo la necesitas?`, `Pedidos con menos de 48h dependen de disponibilidad. ¿Cuándo es la fecha? 📅`],
+      panaderia:    [`El pan está listo cada mañana desde las 7am 🥐. ¿Necesitas algo para hoy?`, `Pedidos especiales con 24h de anticipación. ¿Para cuándo? 🍞`],
+      heladeria:    [`Estamos listos apenas abres la puerta 🍦. Sin espera. ¿Vienes hoy?`, `Los pedidos para eventos los preparamos en 24h. ¿Es para una fiesta? 🎉`],
+      sushi_ramen:  [`Ramen 10–15 min, sushi rolls 15–20 min 🍜. ¿Estás en el local o pides delivery?`, `Delivery 35–50 min según zona. ¿Cuál es tu dirección? 🛵`],
+      pizzeria:     [`Pizza al horno de leña: 20–25 min 🍕. Vale la espera. ¿La pides aquí o delivery?`, `Delivery 40–50 min, en el local 20–25 min. ¿Cómo prefieres? 🚴`],
+      hamburgueseria:[`Burger lista en 12–15 min ⏱️. Sin prisa, con calidad. ¿Para comer aquí o llevas?`, `Para pedidos grandes (+5 burgers) avisa con 20 min. ¿Cuántas necesitas? 🍔`],
+      mariscos:     [`Ceviche: inmediato, cocinados 20–30 min 🐟. ¿Qué pediste?`, `Delivery de mariscos 40–50 min para que llegue fresco. ¿Tu dirección? 🛵`],
+      vegano:       [`Bowls listos en 10–15 min 🥗. Todo fresco. ¿Estás en el local?`, `Delivery 30–40 min. Todo preparado al momento, sin precocidos 🌱`],
+      cafeteria:    [`Espresso en 2 min, cold brew listo en barra ☕. ¿Vienes a quedarte o para llevar?`, `Desayunos en 5–8 min. ¿A qué hora llegas? ⏰`],
+      dental:       [`Consulta regular: puntual con cita. Sin cita según disponibilidad 🦷. ¿Agendamos?`, `Emergencias dentales atendemos el mismo día 🚨. ¿Es urgente?`],
+      spa:          [`Masaje: 60 o 90 min. Facial: 60–75 min 💆. ¿Cuánto tiempo tienes?`, `Agenda con 24h de anticipación para garantizarte el horario 🌸. ¿Qué día prefieres?`],
+      gym:          [`Puedes venir cualquier día en horario ${hours} 💪. ¿Cuándo quieres empezar?`, `Clases de spinning 45 min, yoga 60 min, zumba 50 min 🧘. ¿Cuál te interesa?`],
+      mecanica:     [`Cambio de aceite: 30 min ⚡. Frenos: 2–3h. Diagnóstico: 30–45 min. ¿Qué tiene tu carro?`, `Si es urgente puede venir sin cita y atendemos por orden de llegada 🔧. ¿Lo traes hoy?`],
     };
-    return _pick(catT[cat] || [`Depende del servicio. ¿Nos das más detalles? ⏱️`, `Trabajamos rápido y con calidad. ¿Qué tan urgente es? ⚡`]);
+    const catT = {
+      tecnologia:   [`Reparaciones básicas en el día ⚡, complejas 24–48h. ¿Qué tiene tu equipo?`, `Pantalla: 2h. Batería: 1h. Software: mismo día 🔧. ¿Cuál es tu caso?`],
+      restaurantes: [`En mesa: 15–20 min ⏱️. Delivery: 30–45 min. ¿Para cuándo lo necesitas?`, `Si reservas garantizamos tu mesa al llegar 🍽️`],
+      belleza:      [`Corte 30 min, tinte 2h, manicure 1h 💅. ¿Qué servicio te interesa?`, `¿Agendamos cita para garantizarte la hora? 📅`],
+      hogar:        [`Trabajos pequeños: mismo día ⚡. Remodelaciones: 2–7 días. ¿Qué necesitas?`, `Técnicos disponibles hoy si es urgente 🔨. ¿Cuál es el trabajo?`],
+      transporte:   [`Confirmamos el vehículo en 15 min 🚗. Llegamos en 20–30 min. ¿Para cuándo?`, `Traslado al aeropuerto: te recogemos con 30 min de anticipación 🛫`],
+      turismo:      [`Tours de medio día: 4–5h. Día completo: 8–10h 🗺️. ¿Cuánto tiempo tienes?`, `Los tours salen por la mañana. ¿Cuántos días estarás? ✈️`],
+      salud:        [`Consultas con cita: espera máx 15 min 🩺. Sin cita según disponibilidad.`, `Exámenes de laboratorio listos en 24–48h. Urgentes en el día 🏥`],
+    };
+    return _pick(subT[sub] || catT[cat] || [`Depende del servicio. ¿Nos das más detalles? ⏱️`, `Trabajamos rápido. ¿Qué tan urgente es? ⚡`]);
   }
 
   if (intents.includes('contacto')) return _pick([
