@@ -8768,10 +8768,9 @@ function dismissReplyBar() {
 // ---- Parche al renderizador: agrega reacciones, iconos de fijado/destacado,
 //      y event listeners para hover-bar y menú contextual ----
 (function patchRenderForReactions() {
-  // Esperamos a que el DOM y el JS base estén listos
-  document.addEventListener('DOMContentLoaded', () => {
-    const _origRender = window._renderMsgsInto;
-    if (!_origRender) return;
+  // Se ejecuta inmediatamente (el IIFE de patchRenderMsgsInto ya sobreescribió _renderMsgsInto)
+  const _origRender = window._renderMsgsInto;
+  if (!_origRender) return;
 
     window._renderMsgsInto = function(container, bizId) {
       // Llamar al renderizador original (que ya incluye adjuntos)
