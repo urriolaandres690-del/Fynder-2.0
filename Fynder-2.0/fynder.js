@@ -796,6 +796,42 @@ function submitBizComment(bizId){
   showToast('¡Reseña publicada! ⭐');
 }
 
+/* ── Like en reseñas de negocios ── */
+function likeBizComment(bizId, commentId, btn) {
+  const likedKey = 'fynderBizRevLikes_' + bizId;
+  const liked = JSON.parse(localStorage.getItem(likedKey) || '[]');
+  const comments = _getBizComments(bizId);
+  const idx = comments.findIndex(c => c.id === commentId);
+  if(idx === -1) return;
+
+  if(liked.includes(commentId)) {
+    // quitar like
+    comments[idx].likes = Math.max(0, (comments[idx].likes || 0) - 1);
+    liked.splice(liked.indexOf(commentId), 1);
+    if(btn) btn.classList.remove('liked');
+  } else {
+    // dar like
+    comments[idx].likes = (comments[idx].likes || 0) + 1;
+    liked.push(commentId);
+    if(btn) {
+      btn.classList.add('liked');
+      btn.classList.add('like-pop');
+      setTimeout(() => btn && btn.classList.remove('like-pop'), 350);
+    }
+  }
+  localStorage.setItem(likedKey, JSON.stringify(liked));
+  _saveBizComments(bizId, comments);
+  // Actualizar solo el contador sin re-renderizar todo
+  if(btn) {
+    const countEl = btn.querySelector('.review-like-count');
+    if(countEl) countEl.textContent = comments[idx].likes;
+  }
+  // Re-renderizar para reordenar por likes
+  const b = BUSINESSES.find(x => String(x.id) === String(bizId));
+  const cat = b ? CATEGORIES.find(c => c.id === b.categoryId) : null;
+  renderModalReviews(bizId, cat);
+}
+
 /* ── Star picker para reseñas ── */
 let _bizStarVal = 0;
 const _starLabels = ['','Muy malo','Regular','Bueno','Muy bueno','Excelente'];
