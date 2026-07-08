@@ -2750,6 +2750,7 @@ body{
 .biz-input-wrap textarea:hover {
   border-color: #CBD5E1 !important;
   background: #fff !important;
+  color: #1F2937 !important;
 }
 
 .biz-input-wrap input:focus,
@@ -2757,6 +2758,7 @@ body{
 .biz-input-wrap textarea:focus {
   border-color: var(--primary) !important;
   background: #fff !important;
+  color: #1F2937 !important;
   box-shadow: 0 0 0 3.5px rgba(103,184,180,.18) !important;
 }
 
@@ -6058,7 +6060,21 @@ label.avatar-option-btn:hover { background: var(--teal-light); border-color: rgb
 [data-theme="dark"] .biz-input-wrap        { background: rgba(255,255,255,.05); border-color: rgba(255,255,255,.1); }
 [data-theme="dark"] .biz-input-wrap input,
 [data-theme="dark"] .biz-input-wrap textarea,
-[data-theme="dark"] .biz-input-wrap select { background: var(--card); color: var(--fg); }
+[data-theme="dark"] .biz-input-wrap select { background: var(--card) !important; color: var(--fg) !important; }
+
+[data-theme="dark"] .biz-input-wrap input:hover,
+[data-theme="dark"] .biz-input-wrap select:hover,
+[data-theme="dark"] .biz-input-wrap textarea:hover {
+  background: var(--card) !important;
+  color: var(--fg) !important;
+}
+
+[data-theme="dark"] .biz-input-wrap input:focus,
+[data-theme="dark"] .biz-input-wrap select:focus,
+[data-theme="dark"] .biz-input-wrap textarea:focus {
+  background: var(--card) !important;
+  color: var(--fg) !important;
+}
 
 /* opciones del select: forzar colores legibles en todos los temas */
 select option {
