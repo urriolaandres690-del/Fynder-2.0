@@ -8772,92 +8772,103 @@ function dismissReplyBar() {
   const _origRender = window._renderMsgsInto;
   if (!_origRender) return;
 
-    window._renderMsgsInto = function(container, bizId) {
-      // Llamar al renderizador original (que ya incluye adjuntos)
-      _origRender.call(this, container, bizId);
+  window._renderMsgsInto = function(container, bizId) {
+    // Llamar al renderizador original (que ya incluye adjuntos)
+    _origRender.call(this, container, bizId);
 
-      // Post-proceso: inyectar reacciones, iconos y event listeners en cada row
-      const msgs = _getMsgs(bizId);
-      container.querySelectorAll('.chat-msg-row').forEach((row, i) => {
-        const msg = msgs[i];
-        if (!msg) return;
-        const isOut = msg.from === 'user';
-        const bubble = row.querySelector('.chat-bubble');
-        if (!bubble) return;
+    // Post-proceso: inyectar reacciones, iconos y event listeners en cada row
+    const msgs = _getMsgs(bizId);
+    container.querySelectorAll('.chat-msg-row').forEach((row, i) => {
+      const msg = msgs[i];
+      if (!msg) return;
+      const isOut = msg.from === 'user';
+      const bubble = row.querySelector('.chat-bubble');
+      if (!bubble) return;
 
-        // 1. Ícono de fijado
-        if (msg.pinned) {
-          const meta = bubble.querySelector('.chat-bubble-meta');
-          if (meta && !meta.querySelector('.chat-bubble-pinned-icon')) {
-            const pin = document.createElement('span');
-            pin.className = 'chat-bubble-pinned-icon';
-            pin.innerHTML = '<i class="fas fa-thumbtack"></i>';
-            pin.title = 'Fijado';
-            meta.insertBefore(pin, meta.firstChild);
-          }
+      // 1. Ícono de fijado
+      if (msg.pinned) {
+        const meta = bubble.querySelector('.chat-bubble-meta');
+        if (meta && !meta.querySelector('.chat-bubble-pinned-icon')) {
+          const pin = document.createElement('span');
+          pin.className = 'chat-bubble-pinned-icon';
+          pin.innerHTML = '<i class="fas fa-thumbtack"></i>';
+          pin.title = 'Fijado';
+          meta.insertBefore(pin, meta.firstChild);
         }
+      }
 
-        // 2. Ícono de destacado
-        if (msg.starred) {
-          const meta = bubble.querySelector('.chat-bubble-meta');
-          if (meta && !meta.querySelector('.chat-bubble-starred-icon')) {
-            const star = document.createElement('span');
-            star.className = 'chat-bubble-starred-icon';
-            star.innerHTML = '<i class="fas fa-star"></i>';
-            star.title = 'Destacado';
-            meta.insertBefore(star, meta.firstChild);
-          }
+      // 2. Ícono de destacado
+      if (msg.starred) {
+        const meta = bubble.querySelector('.chat-bubble-meta');
+        if (meta && !meta.querySelector('.chat-bubble-starred-icon')) {
+          const star = document.createElement('span');
+          star.className = 'chat-bubble-starred-icon';
+          star.innerHTML = '<i class="fas fa-star"></i>';
+          star.title = 'Destacado';
+          meta.insertBefore(star, meta.firstChild);
         }
+      }
 
-        // 3. Cita (reply quote)
-        if (msg.quoteText && !bubble.querySelector('.chat-bubble-quote')) {
-          const quote = document.createElement('div');
-          quote.className = 'chat-bubble-quote';
-          quote.textContent = msg.quoteText;
-          bubble.insertBefore(quote, bubble.firstChild);
-        }
+      // 3. Cita (reply quote)
+      if (msg.quoteText && !bubble.querySelector('.chat-bubble-quote')) {
+        const quote = document.createElement('div');
+        quote.className = 'chat-bubble-quote';
+        quote.textContent = msg.quoteText;
+        bubble.insertBefore(quote, bubble.firstChild);
+      }
 
-        // 4. Badges de reacciones (debajo del bubble)
-        const existing = row.querySelector('.chat-bubble-reactions');
-        if (existing) existing.remove();
-        const badgesHTML = _buildReactionBadgesHTML(bizId, msg.id);
-        if (badgesHTML) {
-          const wrapper = row.querySelector('div') || row;
-          wrapper.insertAdjacentHTML('beforeend', badgesHTML);
-        }
+      // 4. Badges de reacciones — pegados a la esquina inferior del bubble
+      // Envolvemos el bubble en .chat-bubble-wrap si aún no está envuelto
+      let wrap = bubble.closest('.chat-bubble-wrap');
+      if (!wrap) {
+        wrap = document.createElement('div');
+        wrap.className = 'chat-bubble-wrap';
+        bubble.parentNode.insertBefore(wrap, bubble);
+        wrap.appendChild(bubble);
+      }
 
-        // 5. Barra de reacciones rápidas al hover
-        if (!row.querySelector('.chat-reaction-bar')) {
-          const bar = document.createElement('div');
-          bar.className = 'chat-reaction-bar';
-          const reactions = _getReactions(bizId);
-          const mine = reactions[msg.id] && reactions[msg.id]['__mine__'];
-          bar.innerHTML = QUICK_REACTIONS.map(em => {
-            const reacted = mine === em ? 'reacted' : '';
-            return `<button class="chat-reaction-btn ${reacted}"
-              onclick="event.stopPropagation();toggleMsgReaction('${bizId}','${msg.id}','${em}')"
-              title="${em}">${em}</button>`;
-          }).join('') +
-          `<button class="react-more"
-            onclick="event.stopPropagation();openMsgBubbleCtxMenu(event,'${bizId}','${msg.id}',${isOut})"
-            title="Más opciones">⋯</button>`;
-          row.appendChild(bar);
-        }
+      // Limpiar badges anteriores
+      wrap.querySelectorAll('.chat-bubble-reactions').forEach(el => el.remove());
+      row.classList.remove('has-reactions');
 
-        // 6. Clic derecho → menú contextual
-        row.addEventListener('contextmenu', (e) => {
-          openMsgBubbleCtxMenu(e, bizId, msg.id, isOut);
-        }, { once: false });
+      const badgesHTML = _buildReactionBadgesHTML(bizId, msg.id);
+      if (badgesHTML) {
+        wrap.insertAdjacentHTML('beforeend', badgesHTML);
+        row.classList.add('has-reactions');
+      }
 
-        // 7. Long press (móvil) → menú contextual
-        let _lpTimer = null;
-        row.addEventListener('touchstart', (e) => {
-          _lpTimer = setTimeout(() => openMsgBubbleCtxMenu(e, bizId, msg.id, isOut), 500);
-        }, { passive: true });
-        row.addEventListener('touchend', () => clearTimeout(_lpTimer));
-        row.addEventListener('touchmove', () => clearTimeout(_lpTimer));
+      // 5. Barra de reacciones rápidas al hover (solo una por row)
+      if (!row.querySelector('.chat-reaction-bar')) {
+        const bar = document.createElement('div');
+        bar.className = 'chat-reaction-bar';
+        const reactions = _getReactions(bizId);
+        const mine = reactions[msg.id] && reactions[msg.id]['__mine__'];
+        bar.innerHTML = QUICK_REACTIONS.map(em => {
+          const reacted = mine === em ? 'reacted' : '';
+          return `<button class="chat-reaction-btn ${reacted}"
+            onclick="event.stopPropagation();toggleMsgReaction('${bizId}','${msg.id}','${em}')"
+            title="${em}">${em}</button>`;
+        }).join('') +
+        `<button class="react-more"
+          onclick="event.stopPropagation();openMsgBubbleCtxMenu(event,'${bizId}','${msg.id}',${isOut})"
+          title="Más opciones">⋯</button>`;
+        row.appendChild(bar);
+      }
+
+      // 6. Clic derecho → menú contextual
+      row.addEventListener('contextmenu', (e) => {
+        openMsgBubbleCtxMenu(e, bizId, msg.id, isOut);
       });
-    };
+
+      // 7. Long press (móvil) → menú contextual
+      let _lpTimer = null;
+      row.addEventListener('touchstart', (e) => {
+        _lpTimer = setTimeout(() => openMsgBubbleCtxMenu(e, bizId, msg.id, isOut), 500);
+      }, { passive: true });
+      row.addEventListener('touchend',  () => clearTimeout(_lpTimer));
+      row.addEventListener('touchmove', () => clearTimeout(_lpTimer));
+    });
+  };
 })();
 
 // ---- Cerrar menú al hacer clic fuera ----
