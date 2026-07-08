@@ -16729,28 +16729,27 @@ iframe.goog-te-menu-frame { box-shadow: 0 4px 20px rgba(0,0,0,.15) !important; b
   align-items: center;
   justify-content: space-between;
   gap: 2px;
-  padding: 10px 12px 10px;
+  padding: 8px 10px;
   background: #252a30;
   border-bottom: 1px solid rgba(255,255,255,.07);
 }
 #msgBubbleCtxMenu .ctx-reaction-strip .chat-reaction-btn {
-  font-size: 1.75rem;
-  width: 46px; height: 46px;
+  font-size: 1.3rem;
+  width: 36px; height: 36px;
   border-radius: 50%;
   transition: transform .18s cubic-bezier(.34,1.56,.64,1), background .12s;
 }
 #msgBubbleCtxMenu .ctx-reaction-strip .chat-reaction-btn:hover {
   background: rgba(255,255,255,.13);
-  transform: scale(1.45);
+  transform: scale(1.35);
 }
 /* Botón "+" en la tira del menú */
 #msgBubbleCtxMenu .ctx-reaction-strip .react-more {
-  width: 36px; height: 36px;
+  width: 32px; height: 32px;
   border-radius: 50%;
   background: #3a3f48;
-  color: #fff;
-  font-size: 1.15rem;
-  font-weight: 400;
+  color: #d0d4da;
+  font-size: 1rem;
   border: none;
   cursor: pointer;
   display: flex; align-items: center; justify-content: center;
@@ -16758,7 +16757,7 @@ iframe.goog-te-menu-frame { box-shadow: 0 4px 20px rgba(0,0,0,.15) !important; b
   flex-shrink: 0;
 }
 #msgBubbleCtxMenu .ctx-reaction-strip .react-more:hover {
-  background: #4a5060;
+  background: #505660;
   transform: scale(1.1);
 }
 
