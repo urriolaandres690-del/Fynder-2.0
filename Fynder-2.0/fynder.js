@@ -1994,6 +1994,11 @@ function likeComment(articleId, commentId, btn) {
     comments[idx].likes = (comments[idx].likes || 0) + 1;
     liked.push(commentId);
     localStorage.setItem(likedKey, JSON.stringify(liked));
+    // Animación del corazón al dar like
+    if(btn) {
+      btn.classList.add('like-pop');
+      setTimeout(() => btn.classList.remove('like-pop'), 350);
+    }
   }
   _saveArticleComments(articleId, comments);
   renderArticleComments(articleId);
