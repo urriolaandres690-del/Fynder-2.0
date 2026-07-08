@@ -16590,16 +16590,16 @@ iframe.goog-te-menu-frame { box-shadow: 0 4px 20px rgba(0,0,0,.15) !important; b
   position: fixed;
   display: flex;
   align-items: center;
-  gap: 2px;
-  background: #1e2328;
-  border: none;
+  gap: 0;
+  background: #111418;
+  border: 1.5px solid rgba(255,255,255,.08);
   border-radius: 999px;
-  padding: 6px 10px;
-  box-shadow: 0 6px 24px rgba(0,0,0,.55);
+  padding: 5px 6px 5px 8px;
+  box-shadow: 0 8px 28px rgba(0,0,0,.7);
   opacity: 0;
   pointer-events: none;
-  transform: scale(.8) translateY(6px);
-  transition: opacity .16s ease, transform .16s cubic-bezier(.34,1.56,.64,1);
+  transform: scale(.75) translateY(8px);
+  transition: opacity .18s ease, transform .2s cubic-bezier(.34,1.56,.64,1);
   z-index: 9990;
   white-space: nowrap;
 }
@@ -16609,40 +16609,42 @@ iframe.goog-te-menu-frame { box-shadow: 0 4px 20px rgba(0,0,0,.15) !important; b
   transform: scale(1) translateY(0);
 }
 
-/* Botones de emoji en la barra */
+/* Botones de emoji en la barra — grandes y sin fondo por defecto */
 .chat-reaction-btn {
-  width: 40px; height: 40px;
+  width: 46px; height: 46px;
   border-radius: 50%;
   border: none;
   background: transparent;
   cursor: pointer;
-  font-size: 1.5rem;
+  font-size: 1.75rem;
   line-height: 1;
   display: flex; align-items: center; justify-content: center;
-  transition: transform .15s, background .12s;
+  transition: transform .15s cubic-bezier(.34,1.56,.64,1);
+  flex-shrink: 0;
 }
 .chat-reaction-btn:hover {
-  transform: scale(1.35);
-  background: rgba(255,255,255,.1);
+  transform: scale(1.4) translateY(-3px);
 }
-.chat-reaction-btn.reacted { opacity: .5; }
+.chat-reaction-btn.reacted {
+  opacity: .45;
+}
 
-/* Botón "+" al final de la barra — círculo gris oscuro estilo WhatsApp */
+/* Botón "+" — círculo gris oscuro bien definido */
 .chat-reaction-bar .react-more {
-  width: 36px; height: 36px;
+  width: 40px; height: 40px;
   border-radius: 50%;
   border: none;
   background: #3a3f48;
   cursor: pointer;
   display: flex; align-items: center; justify-content: center;
-  font-size: 1.15rem;
-  font-weight: 400;
-  color: #fff;
+  font-size: 1.3rem;
+  color: #d0d4da;
   transition: background .12s, transform .12s;
   flex-shrink: 0;
+  margin-left: 2px;
 }
 .chat-reaction-bar .react-more:hover {
-  background: #4a5060;
+  background: #505660;
   transform: scale(1.1);
 }
 
