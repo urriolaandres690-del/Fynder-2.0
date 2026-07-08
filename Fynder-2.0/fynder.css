@@ -16559,11 +16559,47 @@ iframe.goog-te-menu-frame { box-shadow: 0 4px 20px rgba(0,0,0,.15) !important; b
   margin-bottom: 18px;
 }
 
-/* ── Barra de reacciones rápidas (solo visible al hover) ─────────── */
-.chat-reaction-bar {
+/* ── Botón de reacción rápida (carita al lado del bubble) ─────────── */
+/* Aparece flotando al costado del mensaje al hacer hover */
+.chat-react-trigger {
   position: absolute;
-  /* se muestra ENCIMA del bubble, flotando */
-  bottom: calc(100% + 6px);
+  top: 50%;
+  transform: translateY(-50%);
+  width: 28px; height: 28px;
+  border-radius: 50%;
+  border: none;
+  background: var(--surface, #fff);
+  box-shadow: 0 1px 6px rgba(0,0,0,.18);
+  cursor: pointer;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1rem;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity .15s, transform .15s;
+  z-index: 100;
+}
+[data-theme="dark"] .chat-react-trigger {
+  background: #2a2d35;
+  box-shadow: 0 1px 6px rgba(0,0,0,.45);
+}
+/* Mostrar al hover del row */
+.chat-msg-row:hover .chat-react-trigger {
+  opacity: 1;
+  pointer-events: auto;
+}
+.chat-react-trigger:hover {
+  transform: translateY(-50%) scale(1.15);
+  background: #f0f0f0;
+}
+[data-theme="dark"] .chat-react-trigger:hover { background: #363a42; }
+
+/* Posición: mensajes entrantes → a la derecha del bubble; salientes → a la izquierda */
+.chat-msg-row.in  .chat-react-trigger { left:  auto; right: -34px; }
+.chat-msg-row.out .chat-react-trigger { right: auto; left:  -34px; }
+
+/* ── Barra de reacciones rápidas (desplegable al hacer clic en la carita) ── */
+.chat-reaction-bar {
+  position: fixed; /* fixed para que no se corte por overflow */
   display: flex;
   align-items: center;
   gap: 1px;
@@ -16571,27 +16607,24 @@ iframe.goog-te-menu-frame { box-shadow: 0 4px 20px rgba(0,0,0,.15) !important; b
   border: 1px solid rgba(0,0,0,.1);
   border-radius: 999px;
   padding: 4px 6px;
-  box-shadow: 0 4px 18px rgba(0,0,0,.18);
+  box-shadow: 0 4px 18px rgba(0,0,0,.2);
   opacity: 0;
   pointer-events: none;
   transform: scale(.8) translateY(6px);
   transition: opacity .16s ease, transform .16s ease;
-  z-index: 200;
+  z-index: 9990;
   white-space: nowrap;
 }
 [data-theme="dark"] .chat-reaction-bar {
   background: #2a2d35;
   border-color: rgba(255,255,255,.12);
-  box-shadow: 0 4px 20px rgba(0,0,0,.45);
+  box-shadow: 0 4px 20px rgba(0,0,0,.5);
 }
-.chat-msg-row:hover .chat-reaction-bar {
+.chat-reaction-bar.open {
   opacity: 1;
   pointer-events: auto;
   transform: scale(1) translateY(0);
 }
-/* posición izq/der según lado */
-.chat-msg-row.out .chat-reaction-bar { right: 4px; }
-.chat-msg-row.in  .chat-reaction-bar { left: 38px; } /* desplazado por el avatar */
 
 /* Botones de emoji en la barra */
 .chat-reaction-btn {
