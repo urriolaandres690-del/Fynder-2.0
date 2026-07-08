@@ -8858,7 +8858,6 @@ function dismissReplyBar() {
         row.addEventListener('touchmove', () => clearTimeout(_lpTimer));
       });
     };
-  });
 })();
 
 // ---- Cerrar menú al hacer clic fuera ----
