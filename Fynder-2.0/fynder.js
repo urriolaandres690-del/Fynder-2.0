@@ -732,6 +732,9 @@ function submitBizComment(bizId){
   const ta=document.getElementById('bizCommentInput');
   const text=ta?ta.value.trim():'';
   if(!text||text.length<2){showToast('Escribe algo antes de publicar.','error');return;}
+  const picker=document.getElementById('bizStarPicker');
+  const stars=picker?parseInt(picker.dataset.val||'0'):0;
+  if(!stars){showToast('Selecciona una puntuación de 1 a 5 estrellas.','error');return;}
   const logged=!!localStorage.getItem('fynderLogged');
   const user=JSON.parse(localStorage.getItem('fynderUser')||'null');
   const name=logged&&user?user.name:'Visitante';
@@ -743,10 +746,12 @@ function submitBizComment(bizId){
   const colorIdx=Math.floor(Math.random()*ART_COMMENT_COLORS.length);
   const now=new Date();
   const dateStr=now.toLocaleDateString('es-ES',{day:'numeric',month:'short',year:'numeric'});
-  const comment={id:Date.now().toString(),name,initial,userId,colorIdx,avatarPhoto,avatarPreset,avatarInitBg,text,date:dateStr};
+  const comment={id:Date.now().toString(),name,initial,userId,colorIdx,avatarPhoto,avatarPreset,avatarInitBg,text,stars,date:dateStr};
   const comments=_getBizComments(bizId);
   comments.push(comment);
   _saveBizComments(bizId,comments);
+  // Resetear estado de estrellas
+  _bizStarVal=0;
   // Re-renderizar usando el bizId almacenado
   const b=BUSINESSES.find(x=>x.id===bizId)||BUSINESSES.find(x=>x.id===modalBusinessId);
   const cat=b?CATEGORIES.find(c=>c.id===b.categoryId):null;
