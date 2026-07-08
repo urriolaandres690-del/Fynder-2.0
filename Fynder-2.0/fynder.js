@@ -8727,7 +8727,8 @@ function chatCtxAction(action) {
     }
 
     case 'select': {
-      showToast('Selección de mensajes: próximamente', 'info');
+      // Entrar en modo selección y marcar este mensaje
+      enterSelectMode(bizId, msgId);
       break;
     }
 
@@ -8737,12 +8738,8 @@ function chatCtxAction(action) {
     }
 
     case 'delete': {
-      if (confirm('¿Eliminar este mensaje?')) {
-        const updated = msgs.filter(m => String(m.id) !== String(msgId));
-        _saveMsgs(bizId, updated);
-        if (typeof renderChatMessages === 'function') renderChatMessages(bizId);
-        showToast('Mensaje eliminado');
-      }
+      // Abrir modal estilo WhatsApp
+      openDeleteMsgModal(bizId, msgId);
       break;
     }
   }
