@@ -8423,18 +8423,46 @@ function _getSmartReply(userText, cat, bizName, biz) {
   ]);
 
   if (intents.includes('precio')) {
+    const subP = {
+      pasteleria:  [`Tortas personalizadas desde $35 🎂. Mini tortas $15. ¿Para cuántas personas?`, `Pasteles artesanales desde $25. ¿Es para alguna ocasión especial? 🎉`, `Cupcakes $2 c/u, tortas desde $35. ¿Qué decoración tienes en mente? 🍰`],
+      panaderia:   [`Pan del día $1–$3, baguettes $2.50, postres $3–$8 🥐. ¿Qué buscas?`, `Desayunos completos desde $5. Croissants y bollería freshita cada mañana ☕`, `Pedidos especiales de pan artesanal disponibles. ¿Cuántas piezas necesitas? 🍞`],
+      heladeria:   [`Bola sencilla $1.50, doble $2.50, copa especial $4 🍦. ¿Quieres conocer los sabores disponibles?`, `Paletas y helados desde $1.50. Combinaciones ilimitadas 🌈. ¿Cuál te llama la atención?`, `Todo entre $1.50 y $6. Sin colorantes artificiales 😋. ¿Qué sabor tropicaL prefieres?`],
+      sushi_ramen: [`Rolls desde $8, combos desde $15 🍱. ¿Prefieres sushi, ramen o fusión?`, `Ramen desde $10, sushi sets desde $18 con 12 piezas 🍜. ¿Cuántas personas van a comer?`, `Menú ejecutivo de almuerzo $12 (roll + sopa + bebida) 🥢. ¿Es para hoy?`],
+      pizzeria:    [`Pizzas personales $8, medianas $14, grandes $20 🍕. ¿Cuántas personas son?`, `Con horno de leña el sabor no tiene precio 🔥. Grandes $20 con ingredientes premium. ¿Cuál prefieres?`, `Promo: 2 pizzas grandes $35 esta semana 🎉. ¿Qué ingredientes te gustan?`],
+      hamburgueseria:[`Hamburguesas desde $8 hasta $16 según el tamaño 🍔. ¿Prefieres clásica o gourmet?`, `Combo (burger+papas+bebida) $12. ¿Qué adicionamos? 😄`, `Burgers artesanales $10–$16 con pan casero. ¿Con queso extra o doble carne? 🧀`],
+      mariscos:    [`Ceviche $10, corvina al ajillo $18, mixto de mariscos $22 🦐. ¿Para cuántos?`, `Platos fuertes de mariscos $15–$35. Frescos del Pacífico 🌊. ¿Qué prefieres?`, `Combo ceviche + corvina para 2 personas $30. ¿Lo apartamos? 🐟`],
+      mexicano:    [`Tacos $2.50 c/u, burritos $7, quesadillas $8 🌮. ¿Cuántos quieres?`, `Combo 3 tacos + bebida $8.50. Rellenos a escoger 🔥. ¿Cuál prefieres?`, `Todo entre $2.50 y $12. Salsas caseras incluidas 🌶️. ¿Qué tan picante te gusta?`],
+      parrilla:    [`Bife de chorizo $22, asado de tira $18, entraña $20 🥩. ¿Para cuántas personas?`, `Tabla parrillera para 2 personas $38. Para 4 personas $65. ¿Alguna celebración? 🍷`, `Cortes premium con 30 días de maduración. ¿Lo prefieres término medio o bien cocido? 🔥`],
+      vegano:      [`Bowls desde $10, wraps $9, postres sin azúcar desde $4 🥗. ¿Tienes alguna alergia?`, `Menú completo (entrada+plato+bebida) $15 sin gluten ni lácteos 🌱. ¿Te interesa?`, `Hamburguesas de plantas $10. Sabor sin culpa 😄. ¿Primera vez aquí?`],
+      brunch:      [`Pancakes $8, huevos benedictinos $10, waffles $9 🥞. ¿Con mimosa +$4?`, `Brunch completo $18 (entrada+plato+bebida). Solo sábados y domingos 🌅. ¿Ya tienes reserva?`, `Todo entre $8 y $18. El mejor brunch de la ciudad 🎉. ¿Para cuántas personas?`],
+      empanadas:   [`Empanadas desde $1.50 c/u. Docena $15. Más de 20 rellenos 🫓. ¿Qué relleno prefieres?`, `Individuales $1.50, combo 6 unidades $8 con bebida 😋. ¿Para llevar o en el local?`, `Pedidos de eventos: docenas desde $14. ¿Para cuántas personas necesitas? 🎉`],
+      jugos:       [`Jugos naturales $3, smoothies $5, acai bowl $8 🥤. ¿Qué necesitas hoy?`, `Shots de bienestar $2 c/u. Combos desde $6 🌿. ¿Buscas energía o desintoxicarte?`, `Todo fresco del día, sin azúcar añadida. Desde $3 😊. ¿Tienes alguna fruta favorita?`],
+      cafeteria:   [`Espresso $1.50, americano $2, cappuccino $3, cold brew $4 ☕. ¿Cómo te gusta el café?`, `Desayuno completo $7 (café+croissant+jugo). ¿Lo probaste? 🥐`, `Granos de origen único, métodos alternativos. Desde $2.50. ¿Eres fan del V60? ☕`],
+      tailandes:   [`Pad Thai $11, curry verde $13, tom yum $9 🍜. ¿Cuántas personas son?`, `Combo almuerzo $14 (plato+arroz+bebida). Solo mediodía 🌺. ¿Es para hoy?`, `Platos principales $10–$18. Auténtico estilo Chiang Mai 🇹🇭. ¿Con qué nivel de picante?`],
+      asiatico:    [`Platos desde $9. Wok, dim sum y sopas asiáticas 🥢. ¿Qué cocina prefieres hoy?`, `Menú variado China, Japón, Vietnam. Desde $9 hasta $18 🌏. ¿Para cuántos?`, `Dim sum para 2 $15. Baos $3 c/u. Pho $10 🍲. ¿Qué te antoja?`],
+      panameno:    [`Sancocho $8, arroz con pollo $9, ropa vieja $10 🇵🇦. ¿Cuántas personas son?`, `Menú del día $8 (sopa+plato+fresco). Sabor de casa 🏡. ¿Lo apartamos?`, `Comida criolla auténtica desde $7. Nada de congelados 😋. ¿Qué plato se te antoja?`],
+      dulceria:    [`Dulces desde $0.50 c/u. Cajas regalo desde $15 🎁. ¿Para qué ocasión?`, `Alfajores $2, cocadas $1, polvorones $1.50. ¿Quieres una caja surtida? 🍬`, `Pedidos al por mayor con descuento. ¿Para evento o regalo? 🎊`],
+      dental:      [`Limpieza $60, blanqueamiento $180, ortodoncia desde $800 🦷. ¿Tienes seguro médico?`, `Consulta de revisión $40. Presupuesto sin compromiso. ¿Cuándo quieres venir? 😁`, `Implantes desde $800 por pieza, con garantía de 5 años. ¿Tienes alguna consulta específica? 🩺`],
+      spa:         [`Masaje relajante 60 min $55, 90 min $80 💆. ¿Alguna zona de tensión específica?`, `Facial completo $65. Paquete spa día completo $120 🌸. ¿Es para un regalo?`, `Primer masaje 15% OFF. Desde $55. ¿Lo agendamos para esta semana? ✨`],
+      gym:         [`Mensualidad $35, trimestral $90, anual $300 💪. ¿Tienes experiencia en el gimnasio?`, `Plan estudiantil $25/mes. Incluye clases de spinning y yoga 🧘. ¿Eres estudiante?`, `Prueba gratis 3 días sin compromiso 🎉. ¿Cuándo puedes venir?`],
+      mecanica:    [`Cambio de aceite $25, diagnóstico computarizado $15 🔧. ¿Qué tiene tu vehículo?`, `Frenos completos desde $80. Suspensión desde $60. ¿Cuál es el modelo del carro? 🚗`, `Diagnóstico gratuito esta semana. ¿Lo traes hoy o mañana? ⚙️`],
+      transporte_ejecutivo:[`Aeropuerto desde $25, zonas urbanas desde $15 🚗. ¿Para cuándo y a dónde?`, `Tarifa fija al aeropuerto $30, sin sorpresas 🛫. ¿A qué hora es tu vuelo?`, `Servicio 24h. ¿Necesitas traslado o tour privado? Te cotizamos ya 📱`],
+      tours:       [`City tour $35/persona, Canal de Panamá $45 🗺️. ¿Para cuántos van?`, `Tour Casco Viejo + Canal $55 con guía bilingüe ✈️. ¿Cuándo llegas a la ciudad?`, `Grupos de 5+ personas 15% OFF. ¿Cuántos van en total? 🌍`],
+      fotografia:  [`Sesión de retratos $80/h, eventos $150/h 📸. ¿Qué tipo de sesión necesitas?`, `Paquete familiar $100 (1h + 20 fotos editadas). ¿Para cuándo? 📷`, `Edición profesional incluida en todos los paquetes. ¿Cuál es el evento? ✨`],
+      redes:       [`Instalación de cámaras desde $120 por cámara 🔒. ¿Cuántas necesitas?`, `Redes empresariales desde $200 según el tamaño. ¿Es para casa u oficina? 🖥️`, `Diagnóstico de red gratis. Mantenimiento mensual $50. ¿Cuántos equipos tienes? 💻`],
+    };
     const catP = {
       restaurantes: [`Platos desde $5 hasta $25 🍽️. ¿Quieres la carta completa?`, `Menú del día $8 (sopa + plato + bebida). ¿Algo en especial?`, `Opciones para todos los presupuestos. ¿Qué prefieres?`],
       belleza:      [`Corte $15 💇, tinte $45, manicure $12, pedicure $18. ¿Qué servicio?`, `¿Corte, color o tratamiento? Te doy el precio exacto 💅`, `Paquete básica dama $20 (corte+lavado). ¿Quieres más info?`],
-      salud:        [`Consulta general $40, especialistas desde $60 🩺. ¿Tienes seguro médico? Eso puede bajar el costo.`, `Varía según especialista. ¿Necesitas medicina general, pediatría, nutrición u otra especialidad?`, `Los exámenes de laboratorio arrancan desde $15. ¿Qué examen necesitas?`],
-      tecnologia:   [`Diagnóstico gratis 🔧. Pantalla desde $35, batería $20, software $15. ¿Qué equipo tienes?`, `Depende del daño. ¿Es celular, laptop o tablet? Te doy el precio exacto.`, `Reparaciones con garantía de 3 meses. ¿Cuál es el problema de tu dispositivo? 💻`],
-      hogar:        [`Visita de diagnóstico sin costo 🏠. Trabajos desde $30. ¿Qué necesitas reparar?`, `Presupuesto gratis y sin compromiso. ¿Es plomería, electricidad, pintura u otro?`, `Precios justos y mano de obra garantizada. ¿Nos describes el trabajo? 🔨`],
-      turismo:      [`Tours desde $35/persona 🗺️. Grupos de 5+ tienen 15% de descuento. ¿Para cuántos son?`, `Paquetes desde $50 con transporte, guía y entrada. ¿Qué destino te interesa?`, `Tour de medio día $35, día completo $65 incluyendo almuerzo. ¿Cuál prefieres? ✈️`],
-      transporte:   [`Depende del destino 🚗. ¿Punto de salida y llegada para cotizarte?`, `Aeropuerto desde $20, zonas urbanas desde $8. ¿A dónde necesitas ir?`, `Tarifa plana para rutas frecuentes. ¿Cuál es tu ruta habitual? 🛫`],
-      ropa:         [`Prendas desde $10 hasta $80 según marca y estilo 👗. ¿Buscas algo casual, formal o sport?`, `Tenemos ropa para todos los presupuestos. ¿Qué tipo de prenda buscas?`, `Esta semana hay piezas con hasta 30% de descuento. ¿Quieres que te mostremos las ofertas? 🏷️`],
-      deportes:     [`Equipos desde $15 hasta $200 según deporte y marca ⚽. ¿Qué deporte practicas?`, `Zapatillas desde $35, ropa deportiva desde $15. ¿Tienes presupuesto definido?`, `Suplementos, ropa y equipamiento. ¿Qué necesitas exactamente? 💪`],
+      salud:        [`Consulta general $40, especialistas desde $60 🩺. ¿Tienes seguro médico?`, `Los exámenes de laboratorio arrancan desde $15. ¿Qué examen necesitas?`],
+      tecnologia:   [`Diagnóstico gratis 🔧. Pantalla desde $35, batería $20. ¿Qué equipo tienes?`, `Reparaciones con garantía de 3 meses. ¿Cuál es el problema? 💻`],
+      hogar:        [`Visita de diagnóstico sin costo 🏠. Trabajos desde $30. ¿Qué necesitas?`, `Presupuesto gratis y sin compromiso. ¿Cuál es el trabajo? 🔨`],
+      turismo:      [`Tours desde $35/persona 🗺️. Grupos 5+ tienen 15% de descuento.`, `Paquetes desde $50 con transporte y guía. ¿Qué destino? ✈️`],
+      transporte:   [`Aeropuerto desde $20, zonas urbanas desde $8 🚗. ¿A dónde vas?`],
+      ropa:         [`Prendas desde $10 hasta $80 👗. ¿Qué tipo de prenda buscas?`, `Esta semana hasta 30% de descuento. ¿Quieres ver las ofertas? 🏷️`],
+      deportes:     [`Equipos desde $15 ⚽. ¿Qué deporte practicas?`, `Zapatillas desde $35, ropa deportiva desde $15. ¿Tienes presupuesto? 💪`],
     };
-    return _pick(catP[cat] || [`Precios varían según el servicio 💰. ¿Qué necesitas exactamente?`, `Con gusto cotizamos. ¿Qué producto o servicio te interesa?`]);
+    return _pick(subP[sub] || catP[cat] || [`Precios varían según el servicio 💰. ¿Qué necesitas exactamente?`, `Con gusto cotizamos. ¿Qué te interesa?`]);
   }
 
   if (intents.includes('horario')) return _pick([
