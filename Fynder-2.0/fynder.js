@@ -556,12 +556,16 @@ function renderModalReviews(bizId, cat){
 
   // Unificar todas las reseñas en un solo array normalizado
   const allReviews = [
-    ...staticList.map(r => ({ type:'static', data:r, ts: _dateToTs(r.date) })),
-    ...userComments.map(c => ({ type:'user',   data:c, ts: parseInt(c.id) || _dateToTs(c.date) }))
+    ...staticList.map(r => ({ type:'static', data:r, ts: _dateToTs(r.date), likes: r.likes || 0 })),
+    ...userComments.map(c => ({ type:'user',   data:c, ts: parseInt(c.id) || _dateToTs(c.date), likes: c.likes || 0 }))
   ];
 
-  // Ordenar por fecha más reciente primero
-  allReviews.sort((a, b) => b.ts - a.ts);
+  // Ordenar: primero por likes DESC, empate por fecha más reciente
+  allReviews.sort((a, b) => {
+    const likeDiff = b.likes - a.likes;
+    if(likeDiff !== 0) return likeDiff;
+    return b.ts - a.ts;
+  });
 
   const reviewsHTML = allReviews.map(item => {
     if(item.type === 'static') {
