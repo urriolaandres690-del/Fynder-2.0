@@ -572,6 +572,12 @@ function renderModalReviews(bizId, cat){
       const r = item.data;
       const filled = r.stars;
       const stars = [1,2,3,4,5].map(i=>`<svg style="width:13px;height:13px;fill:${i<=filled?'#F4D35E':'#E5E7EB'};flex-shrink:0" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>`).join('');
+      // Generar/recuperar likes para reseña estática
+      const sid = _staticReviewId(bizId, r);
+      const sLikes = _getStaticReviewLikes(sid, r);
+      const sLikedKey = 'fynderStaticRevLiked_' + bizId;
+      const sLiked = JSON.parse(localStorage.getItem(sLikedKey) || '[]');
+      const sIsLiked = sLiked.includes(sid);
       return `<div class="review-card">
         <div class="review-header">
           <div class="review-avatar" style="background:linear-gradient(135deg,${color},#2F5BB7)">${r.avatar}</div>
@@ -582,6 +588,11 @@ function renderModalReviews(bizId, cat){
           <span class="review-date">${r.date}</span>
         </div>
         <p class="review-text">${r.text}</p>
+        <div class="review-actions">
+          <button class="review-like-btn${sIsLiked ? ' liked' : ''}" onclick="likeStaticReview('${bizId}','${sid}',this)">
+            <i class="fas fa-heart"></i> <span class="review-like-count">${sLikes}</span>
+          </button>
+        </div>
       </div>`;
     } else {
       const c = item.data;
