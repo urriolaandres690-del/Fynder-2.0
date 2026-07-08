@@ -9036,3 +9036,229 @@ document.addEventListener('keydown', (e) => {
     }
   }
 });
+
+
+/* ================================================================
+   ELIMINAR MENSAJE ESTILO WHATSAPP
+   Modal con "Eliminar para todos" / "Eliminar para mí"
+   ================================================================ */
+
+let _deleteMsgBizId = null;
+let _deleteMsgId    = null;
+
+function openDeleteMsgModal(bizId, msgId) {
+  _deleteMsgBizId = bizId;
+  _deleteMsgId    = msgId;
+  const overlay = document.getElementById('deleteMsgOverlay');
+  const modal   = document.getElementById('deleteMsgModal');
+  if (!overlay || !modal) return;
+  overlay.style.display = 'block';
+  modal.style.display   = 'block';
+}
+
+function closeDeleteMsgModal() {
+  const overlay = document.getElementById('deleteMsgOverlay');
+  const modal   = document.getElementById('deleteMsgModal');
+  if (overlay) overlay.style.display = 'none';
+  if (modal)   modal.style.display   = 'none';
+  _deleteMsgBizId = null;
+  _deleteMsgId    = null;
+}
+
+function confirmDeleteMsg(type) {
+  const bizId = _deleteMsgBizId;
+  const msgId = _deleteMsgId;
+  closeDeleteMsgModal();
+  if (!bizId || !msgId) return;
+
+  const msgs = _getMsgs(bizId);
+  const msg  = msgs.find(m => String(m.id) === String(msgId));
+  if (!msg) return;
+
+  if (type === 'me') {
+    // Solo para mí: marcar como hidden, no se renderiza
+    msg.deletedForMe = true;
+    _saveMsgs(bizId, msgs);
+    showToast('Mensaje eliminado');
+  } else {
+    // Para todos: reemplazar contenido con aviso
+    msg.deletedForAll = true;
+    msg.text  = '';
+    msg.attach = null;
+    _saveMsgs(bizId, msgs);
+    showToast('Mensaje eliminado para todos');
+  }
+
+  // Re-renderizar
+  const _rf = window.innerWidth >= 769 ? renderChatMessages : renderChatMessagesMobile;
+  if (typeof _rf === 'function') _rf(bizId);
+}
+
+/* ================================================================
+   MODO SELECCIÓN DE MENSAJES
+   Checkboxes + barra inferior con "X seleccionados"
+   ================================================================ */
+
+let _selectModeBizId  = null;
+const _selectedMsgIds = new Set();
+
+function enterSelectMode(bizId, firstMsgId) {
+  _selectModeBizId = bizId;
+  _selectedMsgIds.clear();
+  if (firstMsgId) _selectedMsgIds.add(String(firstMsgId));
+
+  document.body.classList.add('select-mode');
+  _renderSelectCheckboxes(bizId);
+  _updateSelectBar();
+  document.getElementById('msgSelectBar').style.display = 'flex';
+}
+
+function exitSelectMode() {
+  document.body.classList.remove('select-mode');
+  _selectedMsgIds.clear();
+  _selectModeBizId = null;
+
+  // Quitar checkboxes del DOM
+  document.querySelectorAll('.msg-checkbox').forEach(el => el.remove());
+  document.querySelectorAll('.chat-msg-row').forEach(r => r.classList.remove('selected-msg'));
+  document.getElementById('msgSelectBar').style.display = 'none';
+}
+
+function _renderSelectCheckboxes(bizId) {
+  const msgs = _getMsgs(bizId);
+  const containers = [
+    document.getElementById('chatMessages'),
+    document.getElementById('chatMessagesMobile')
+  ];
+  containers.forEach(container => {
+    if (!container) return;
+    container.querySelectorAll('.chat-msg-row').forEach((row, i) => {
+      if (row.querySelector('.msg-checkbox')) return;
+      const msg = msgs[i];
+      if (!msg) return;
+      const cb = document.createElement('input');
+      cb.type  = 'checkbox';
+      cb.className = 'msg-checkbox';
+      cb.checked   = _selectedMsgIds.has(String(msg.id));
+      cb.addEventListener('change', () => {
+        if (cb.checked) {
+          _selectedMsgIds.add(String(msg.id));
+          row.classList.add('selected-msg');
+        } else {
+          _selectedMsgIds.delete(String(msg.id));
+          row.classList.remove('selected-msg');
+        }
+        _updateSelectBar();
+      });
+      if (row.classList.contains('out')) {
+        row.appendChild(cb);
+      } else {
+        row.insertBefore(cb, row.firstChild);
+      }
+      // Marcar si ya estaba seleccionado
+      if (_selectedMsgIds.has(String(msg.id))) row.classList.add('selected-msg');
+    });
+  });
+}
+
+function _updateSelectBar() {
+  const n = _selectedMsgIds.size;
+  const countEl = document.getElementById('msgSelectCount');
+  if (countEl) countEl.textContent = `${n} seleccionado${n !== 1 ? 's' : ''}`;
+  // Habilitar/deshabilitar botones según si hay selección
+  document.querySelectorAll('.msg-select-action').forEach(btn => {
+    btn.style.opacity = n > 0 ? '1' : '.35';
+    btn.disabled = n === 0;
+  });
+}
+
+function deleteSelectedMsgs() {
+  if (!_selectModeBizId || !_selectedMsgIds.size) return;
+  openDeleteMsgModal(_selectModeBizId, [..._selectedMsgIds][0]);
+  // Sobreescribir temporalmente confirmDeleteMsg para manejar múltiples mensajes
+  const _origConfirm = window.confirmDeleteMsg;
+  window.confirmDeleteMsg = function(type) {
+    window.confirmDeleteMsg = _origConfirm;
+    const bizId = _deleteMsgBizId;
+    closeDeleteMsgModal();
+    if (!bizId) return;
+    const msgs = _getMsgs(bizId);
+    _selectedMsgIds.forEach(mid => {
+      const m = msgs.find(x => String(x.id) === String(mid));
+      if (!m) return;
+      if (type === 'me') {
+        m.deletedForMe = true;
+      } else {
+        m.deletedForAll = true;
+        m.text  = '';
+        m.attach = null;
+      }
+    });
+    _saveMsgs(bizId, msgs);
+    showToast(type === 'me' ? 'Mensajes eliminados' : 'Mensajes eliminados para todos');
+    exitSelectMode();
+    const _rf = window.innerWidth >= 769 ? renderChatMessages : renderChatMessagesMobile;
+    if (typeof _rf === 'function') _rf(bizId);
+  };
+}
+
+function shareSelectedMsgs() {
+  if (!_selectedMsgIds.size) return;
+  const bizId = _selectModeBizId;
+  const msgs  = _getMsgs(bizId);
+  const texts = [..._selectedMsgIds].map(mid => {
+    const m = msgs.find(x => String(x.id) === String(mid));
+    if (!m || m.deletedForMe || m.deletedForAll) return null;
+    const who = m.from === 'user' ? 'Yo' : 'Negocio';
+    return `[${m.time}] ${who}: ${m.text || '[Adjunto]'}`;
+  }).filter(Boolean);
+
+  const shareText = texts.join('\n');
+  if (navigator.share) {
+    navigator.share({ text: shareText }).catch(() => {});
+  } else if (navigator.clipboard) {
+    navigator.clipboard.writeText(shareText);
+    showToast(`${_selectedMsgIds.size} mensaje${_selectedMsgIds.size !== 1 ? 's' : ''} copiado${_selectedMsgIds.size !== 1 ? 's' : ''}`);
+  }
+  exitSelectMode();
+}
+
+// Parche al renderizador para omitir mensajes eliminados para mí
+// y mostrar el bubble especial para "eliminado para todos"
+(function patchRenderForDeleted() {
+  const _prev = window._renderMsgsInto;
+  if (!_prev) return;
+  window._renderMsgsInto = function(container, bizId) {
+    // Filtrar temporalmente los deletedForMe antes de renderizar
+    const _origGet = window._getMsgs;
+    window._getMsgs = function(id) {
+      const all = _origGet(id);
+      return all.filter(m => !m.deletedForMe);
+    };
+    _prev.call(this, container, bizId);
+    window._getMsgs = _origGet;
+
+    // Marcar bubbles deletedForAll con clase especial
+    const allMsgs = _origGet(bizId).filter(m => !m.deletedForMe);
+    container.querySelectorAll('.chat-msg-row').forEach((row, i) => {
+      const msg = allMsgs[i];
+      if (!msg || !msg.deletedForAll) return;
+      const bubble = row.querySelector('.chat-bubble');
+      if (!bubble) return;
+      bubble.classList.add('deleted-for-all');
+      // Reemplazar contenido con el aviso
+      const isOut = msg.from === 'user';
+      const icon  = isOut ? '🚫' : '🚫';
+      const label = isOut ? 'Eliminaste este mensaje.' : 'Se eliminó este mensaje.';
+      // Preservar solo la meta (tiempo + ticks)
+      const meta = bubble.querySelector('.chat-bubble-meta');
+      bubble.innerHTML = `<span style="opacity:.7">${icon} ${label}</span>`;
+      if (meta) bubble.appendChild(meta);
+    });
+
+    // Re-aplicar checkboxes si estamos en modo selección
+    if (document.body.classList.contains('select-mode') && _selectModeBizId === bizId) {
+      _renderSelectCheckboxes(bizId);
+    }
+  };
+})();
