@@ -8843,9 +8843,25 @@ function dismissReplyBar() {
         btn.innerHTML = '😊';
         btn.addEventListener('click', (e) => {
           e.stopPropagation();
-          _openReactionBar(e, bizId, msg.id, isOut);
+          // Marcar como "pinned" para que no desaparezca mientras la barra está abierta
+          btn.classList.add('pinned');
+          _openReactionBar(e, bizId, msg.id, isOut, () => btn.classList.remove('pinned'));
         });
         row.appendChild(btn);
+      }
+
+      // 5b. Botón chevron ∨ dentro del bubble (abre menú contextual completo)
+      let wrapForChevron = bubble.closest('.chat-bubble-wrap') || bubble.parentElement;
+      if (wrapForChevron && !wrapForChevron.querySelector('.chat-bubble-menu-btn')) {
+        const chevron = document.createElement('button');
+        chevron.className = 'chat-bubble-menu-btn';
+        chevron.title = 'Opciones';
+        chevron.innerHTML = '<i class="fas fa-chevron-down"></i>';
+        chevron.addEventListener('click', (e) => {
+          e.stopPropagation();
+          openMsgBubbleCtxMenu(e, bizId, msg.id, isOut);
+        });
+        wrapForChevron.appendChild(chevron);
       }
 
       // 6. Clic derecho → menú contextual
