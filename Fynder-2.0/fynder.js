@@ -7642,14 +7642,58 @@ function clearThisChat() {
   if (!_activeChatBizId) return;
   const biz  = BUSINESSES.find(b => String(b.id) === String(_activeChatBizId));
   const name = biz ? biz.name : 'este negocio';
-  if (!confirm(`¿Borrar todos los mensajes con ${name}?`)) return;
+  if (!confirm(`¿Vaciar todos los mensajes con ${name}?`)) return;
   _saveMsgs(_activeChatBizId, []);
   const convs = _getConversations();
   const idx   = convs.findIndex(c => String(c.id) === String(_activeChatBizId));
   if (idx > -1) { convs[idx].lastMsg = ''; convs[idx].lastTime = ''; _saveConversations(convs); }
   renderConversations();
   renderChatMessages(_activeChatBizId);
-  showToast('Mensajes borrados');
+  showToast('Chat vaciado');
+}
+
+/** Eliminar la conversación completa (quita de la lista) */
+function deleteThisConversation() {
+  if (!_activeChatBizId) return;
+  const biz  = BUSINESSES.find(b => String(b.id) === String(_activeChatBizId));
+  const name = biz ? biz.name : 'este negocio';
+  if (!confirm(`¿Eliminar el chat con ${name}? Se borrarán todos los mensajes.`)) return;
+  // Borrar mensajes y conversación
+  _saveMsgs(_activeChatBizId, []);
+  const convs = _getConversations().filter(c => String(c.id) !== String(_activeChatBizId));
+  _saveConversations(convs);
+  _activeChatBizId = null;
+  // Volver a la pantalla de bienvenida del chat
+  const welcome  = document.getElementById('waWelcome');
+  const chatArea = document.getElementById('waChatArea');
+  if (welcome)  welcome.style.display  = 'flex';
+  if (chatArea) chatArea.style.display = 'none';
+  renderConversations();
+  updateMsgBadge();
+  showToast('Chat eliminado');
+}
+
+/** Silenciar / activar notificaciones del chat activo */
+function toggleChatMute() {
+  if (!_activeChatBizId) return;
+  const key    = 'fynderMutedChats';
+  const muted  = JSON.parse(localStorage.getItem(key) || '[]');
+  const id     = String(_activeChatBizId);
+  const isMuted = muted.includes(id);
+  if (isMuted) {
+    localStorage.setItem(key, JSON.stringify(muted.filter(x => x !== id)));
+    showToast('Notificaciones activadas 🔔');
+  } else {
+    muted.push(id);
+    localStorage.setItem(key, JSON.stringify(muted));
+    showToast('Notificaciones silenciadas 🔕');
+  }
+  // Actualizar label del botón si está visible
+  const btn = document.getElementById('waChatMuteBtn');
+  if (btn) {
+    const nowMuted = !isMuted;
+    btn.innerHTML = `<i class="fas fa-bell${nowMuted ? '' : '-slash'}"></i> ${nowMuted ? 'Activar notificaciones' : 'Silenciar notificaciones'}`;
+  }
 }
 
 /* ================================================================
