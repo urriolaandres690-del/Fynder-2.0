@@ -8237,6 +8237,63 @@ function _pick(arr) {
 }
 
 /**
+ * Detecta el subtipo específico de un negocio basándose en sus tags y descripción.
+ * Devuelve una clave como "panaderia", "sushi", "heladeria", etc.
+ */
+function _getBizSubtype(biz) {
+  if (!biz) return 'general';
+  const haystack = ((biz.tags || []).join(' ') + ' ' + (biz.description || '') + ' ' + (biz.name || '')).toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'');
+
+  // Restaurantes - subtipos
+  if (/paste|torta|reposteria|cheesecake|macaron|bizcocho/.test(haystack)) return 'pasteleria';
+  if (/pan |panaderia|baguette|croissant|hojaldre|bolleria/.test(haystack)) return 'panaderia';
+  if (/heladeria|helado|sorbete|gelato/.test(haystack)) return 'heladeria';
+  if (/sushi|ramen|japones|nikkei|sashimi|noodle|tonkotsu|miso/.test(haystack)) return 'sushi_ramen';
+  if (/pizza|italiana|napolitano|horno de lena/.test(haystack)) return 'pizzeria';
+  if (/hamburguesa|burger|gourmet burger/.test(haystack)) return 'hamburgueseria';
+  if (/mariscos|ceviche|pescado|corvina|camaron|langosta|tiradito/.test(haystack)) return 'mariscos';
+  if (/tacos|burrito|mexicano|quesadilla|al pastor/.test(haystack)) return 'mexicano';
+  if (/carne|asado|parrilla|bife|costilla|asador|steak/.test(haystack)) return 'parrilla';
+  if (/vegano|vegetariano|plant|bowl veggie/.test(haystack)) return 'vegano';
+  if (/tailandes|thai|pad thai|curry verde|tom yum/.test(haystack)) return 'tailandes';
+  if (/crepe|wafle|pancake|brunch|huevo benedicto|mimosa/.test(haystack)) return 'brunch';
+  if (/empanada/.test(haystack)) return 'empanadas';
+  if (/smoothie|jugo natural|acai|superalimento/.test(haystack)) return 'jugos';
+  if (/cafe|coffee|barista|espresso|americano|cold brew/.test(haystack)) return 'cafeteria';
+  if (/asiatico|wok|dim sum|pho|bao|fusion asiatica/.test(haystack)) return 'asiatico';
+  if (/panameno|sancocho|patacon|tembleque|bienmesabe|cocina criolla/.test(haystack)) return 'panameno';
+  if (/dulce |dulceria|alfajor|cocada|polvoron|dulce de leche/.test(haystack)) return 'dulceria';
+
+  // Belleza - subtipos
+  if (/manicure|pedicure|nail|unas/.test(haystack)) return 'nail';
+  if (/masaje|spa|facial|aromaterapia|bienestar|relajante/.test(haystack)) return 'spa';
+  if (/tatuaje|tattoo|piercing/.test(haystack)) return 'tattoo';
+  if (/barberia|barber|fade|afeitado/.test(haystack)) return 'barberia';
+
+  // Salud - subtipos
+  if (/dental|odontolog|ortodoncia|blanqueamiento|implante/.test(haystack)) return 'dental';
+  if (/gym|gimnasio|fitness|crossfit|spinning|zumba/.test(haystack)) return 'gym';
+  if (/optica|lentes|gafas|vision/.test(haystack)) return 'optica';
+
+  // Tecnología - subtipos
+  if (/red|redes|camara de seguridad|cctv|servidor/.test(haystack)) return 'redes';
+
+  // Transporte - subtipos
+  if (/mecanica|taller|frenos|aceite|suspension|diagnostico/.test(haystack)) return 'mecanica';
+  if (/ejecutivo|aeropuerto|premium|chofer/.test(haystack)) return 'transporte_ejecutivo';
+
+  // Hogar - subtipos
+  if (/libreria|libro|literatura|comic|lectura/.test(haystack)) return 'libreria';
+  if (/ferreteria|herramienta|construccion|plomeria/.test(haystack)) return 'ferreteria';
+
+  // Turismo - subtipos
+  if (/fotografia|retrato|sesion|estudio foto/.test(haystack)) return 'fotografia';
+  if (/tour|guia|excursion|canal|casco viejo/.test(haystack)) return 'tours';
+
+  return 'general';
+}
+
+/**
  * Detecta la intención del usuario usando múltiples señales:
  * palabras clave, frases completas, contexto negativo ("no me quedó"),
  * verbos de acción ("cambiar", "devolver") y variantes coloquiales.
