@@ -759,8 +759,32 @@ function submitBizComment(bizId){
   showToast('¡Reseña publicada! ⭐');
 }
 
-function deleteBizComment(bizId,commentId){
-  _saveBizComments(bizId,_getBizComments(bizId).filter(c=>c.id!==commentId));
+/* ── Star picker para reseñas ── */
+let _bizStarVal = 0;
+const _starLabels = ['','Muy malo','Regular','Bueno','Muy bueno','Excelente'];
+
+function _updateBizStars(hovered, selected) {
+  const btns = document.querySelectorAll('#bizStarPicker .biz-star-btn');
+  const active = hovered || selected || 0;
+  btns.forEach((btn, i) => {
+    const filled = i < active;
+    btn.classList.toggle('filled', filled);
+  });
+  const label = document.getElementById('bizStarLabel');
+  if (label) label.textContent = hovered ? _starLabels[hovered] : (selected ? _starLabels[selected] : 'Selecciona tu puntuación');
+}
+
+function setBizStar(val) {
+  _bizStarVal = val;
+  const picker = document.getElementById('bizStarPicker');
+  if (picker) picker.dataset.val = val;
+  _updateBizStars(0, val);
+}
+
+function hoverBizStar(val) { _updateBizStars(val, _bizStarVal); }
+function resetBizStarHover() { _updateBizStars(0, _bizStarVal); }
+
+function deleteBizComment(bizId,commentId){  _saveBizComments(bizId,_getBizComments(bizId).filter(c=>c.id!==commentId));
   const b=BUSINESSES.find(x=>x.id===bizId)||BUSINESSES.find(x=>x.id===modalBusinessId);
   const cat=b?CATEGORIES.find(c=>c.id===b.categoryId):null;
   renderModalReviews(bizId,cat);
