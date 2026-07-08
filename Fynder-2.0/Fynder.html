@@ -3687,11 +3687,16 @@
 
       <!-- Menú contextual del header del chat -->
       <div class="wa-chat-ctx-menu" id="waChatCtxMenu" style="display:none">
-        <button onclick="openChatProfile();closeWaChatMenu()"><i class="fas fa-user"></i> Ver perfil del negocio</button>
-        <button onclick="waChatSearch();closeWaChatMenu()"><i class="fas fa-magnifying-glass"></i> Buscar en el chat</button>
+        <button onclick="openChatProfile();closeWaChatMenu()"><i class="fas fa-circle-info"></i> Info. del contacto</button>
+        <button onclick="waChatSearch();closeWaChatMenu()"><i class="fas fa-magnifying-glass"></i> Buscar</button>
+        <button onclick="toggleChatMute();closeWaChatMenu()" id="waChatMuteBtn"><i class="fas fa-bell-slash"></i> Silenciar notificaciones</button>
+        <div class="wa-ctx-divider"></div>
+        <button onclick="toggleFav(_activeChatBizId);closeWaChatMenu()"><i class="fas fa-heart"></i> Guardar en favoritos</button>
         <button onclick="exportThisChat();closeWaChatMenu()"><i class="fas fa-download"></i> Exportar chat</button>
         <div class="wa-ctx-divider"></div>
-        <button onclick="clearThisChat();closeWaChatMenu()" style="color:#ef4444"><i class="fas fa-trash"></i> Borrar mensajes</button>
+        <button onclick="clearThisChat();closeWaChatMenu()" style="color:#ef4444"><i class="fas fa-broom"></i> Vaciar chat</button>
+        <button onclick="deleteThisConversation();closeWaChatMenu()" style="color:#ef4444"><i class="fas fa-trash"></i> Eliminar chat</button>
+        <button onclick="blockBiz();closeWaChatMenu()" style="color:#ef4444"><i class="fas fa-ban"></i> Bloquear negocio</button>
       </div>
 
       <!-- Mensajes -->
