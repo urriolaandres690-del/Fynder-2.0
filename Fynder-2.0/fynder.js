@@ -8382,6 +8382,18 @@ function _detectIntent(t) {
     intents.push('disponibilidad');
   }
 
+  // ── CONFIRMACIONES / RESPUESTAS CORTAS ──
+  if (/^(si|sí|no|ok|dale|listo|perfecto|claro|va|venga|bueno|está bien|esta bien|entendido|de acuerdo|acepto|confirmo|confirmado|correcto|exacto|así es|eso es)$/.test(t.trim())) {
+    intents.push('confirmacion');
+  }
+
+  // ── PREFERENCIAS DE COMIDA / INGREDIENTES (para restaurantes) ──
+  if (/(sin gluten|sin lactosa|sin azucar|sin carne|sin mariscos|sin nueces|vegetariano|vegano|celiaco|intolerante|alergico|alergia|pan|panes|carne|pollo|res|cerdo|mariscos|verduras|ensalada|picante|no picante|suave|sin sal|saludable|light|keto|paleo)/.test(t)) {
+    if (!intents.includes('menu_productos') && !intents.includes('precio')) {
+      intents.push('preferencia_comida');
+    }
+  }
+
   return intents;
 }
 
