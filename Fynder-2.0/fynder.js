@@ -4158,6 +4158,8 @@ function openChatById(bizId) {
   const conv = convs.find(c => String(c.id) === String(bizId));
   if (conv) { conv.unread = 0; _saveConversations(convs); }
   updateMsgBadge();
+  // Limpiar notificaciones de este negocio al abrir el chat
+  clearNotifsByBizId(bizId);
 
   if (biz) {
     openChat(bizId, biz);
