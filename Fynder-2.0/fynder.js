@@ -3903,9 +3903,6 @@ function openChat(bizId, biz) {
     const chatArea = document.getElementById('waChatArea');
     if (welcome)  welcome.style.display  = 'none';
     if (chatArea) chatArea.style.display = 'flex';
-    // Navegar a la pu00e1gina de mensajes si no estamos ya en ella
-    goPage('messages');
-    renderConversations();
     renderChatMessages(bizId);   // renderiza en #chatMessages (desktop)
     // Marcar activo en la lista
     document.querySelectorAll('.msg-chat-item').forEach(el => el.classList.remove('wa-active'));
