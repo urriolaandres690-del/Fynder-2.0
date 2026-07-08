@@ -8405,10 +8405,12 @@ function _detectIntent(t) {
   return intents;
 }
 
-function _getSmartReply(userText, cat, bizName, biz) {
+function _getSmartReply(userText, cat, bizName, biz, lastBizText = '') {
   // Normalizar: minúsculas, quitar acentos para la detección
   const t = userText.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'');
   const tOrig = userText.toLowerCase();
+  // Contexto del último mensaje del bot (para responder "sí/no" coherentemente)
+  const prevBot = (lastBizText || '').toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'');
 
   const intents = [...new Set([..._detectIntent(t), ..._detectIntent(tOrig)])];
 
