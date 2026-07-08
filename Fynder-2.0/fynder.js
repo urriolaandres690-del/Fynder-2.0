@@ -8949,7 +8949,11 @@ function _openReactionBar(triggerEvent, bizId, msgId, isOut, onClose) {
 
 function _closeReactionBar() {
   const bar = document.getElementById('globalReactionBar');
-  if (bar) bar.classList.remove('open');
+  if (bar) {
+    if (typeof bar._onClose === 'function') bar._onClose();
+    bar._onClose = null;
+    bar.classList.remove('open');
+  }
   _reactBarBizId = null;
   _reactBarMsgId = null;
 }
