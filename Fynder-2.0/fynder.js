@@ -8835,21 +8835,6 @@ function dismissReplyBar() {
         row.classList.add('has-reactions');
       }
 
-      // 5. Botón de carita 😊 al costado — solo uno por row
-      if (!row.querySelector('.chat-react-trigger')) {
-        const btn = document.createElement('button');
-        btn.className = 'chat-react-trigger';
-        btn.title = 'Reaccionar';
-        btn.innerHTML = '😊';
-        btn.addEventListener('click', (e) => {
-          e.stopPropagation();
-          // Marcar como "pinned" para que no desaparezca mientras la barra está abierta
-          btn.classList.add('pinned');
-          _openReactionBar(e, bizId, msg.id, isOut, () => btn.classList.remove('pinned'));
-        });
-        row.appendChild(btn);
-      }
-
       // 5b. Botón chevron ∨ dentro del bubble (abre menú contextual completo)
       let wrapForChevron = bubble.closest('.chat-bubble-wrap') || bubble.parentElement;
       if (wrapForChevron && !wrapForChevron.querySelector('.chat-bubble-menu-btn')) {
