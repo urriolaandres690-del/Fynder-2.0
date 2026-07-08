@@ -3715,21 +3715,59 @@
             <i class="fas fa-paperclip"></i>
           </button>
           <div class="chat-attach-menu" id="chatAttachMenu">
-            <label class="chat-attach-item" title="Imagen o video">
-              <i class="fas fa-image" style="color:#7C3AED"></i>
-              <span>Imagen/Video</span>
+
+            <!-- Documento -->
+            <label class="chat-attach-item">
+              <div class="chat-attach-icon" style="background:#1A56DB">
+                <i class="fas fa-file-lines"></i>
+              </div>
+              <span>Documento</span>
+              <input type="file" accept=".pdf,.doc,.docx,.xls,.xlsx,.ppt,.pptx,.txt,.zip,.rar,.csv" multiple style="display:none" onchange="handleFileAttach(this,'doc')">
+            </label>
+
+            <!-- Fotos y videos -->
+            <label class="chat-attach-item">
+              <div class="chat-attach-icon" style="background:#7C3AED">
+                <i class="fas fa-images"></i>
+              </div>
+              <span>Fotos y videos</span>
               <input type="file" accept="image/*,video/*" multiple style="display:none" onchange="handleFileAttach(this,'media')">
             </label>
-            <label class="chat-attach-item" title="Documento">
-              <i class="fas fa-file-lines" style="color:#2563EB"></i>
-              <span>Documento</span>
-              <input type="file" accept=".pdf,.doc,.docx,.xls,.xlsx,.ppt,.pptx,.txt,.zip,.rar" multiple style="display:none" onchange="handleFileAttach(this,'doc')">
+
+            <!-- Cámara -->
+            <label class="chat-attach-item">
+              <div class="chat-attach-icon" style="background:#DC2626">
+                <i class="fas fa-camera"></i>
+              </div>
+              <span>Cámara</span>
+              <input type="file" accept="image/*" capture="environment" style="display:none" onchange="handleFileAttach(this,'media')">
             </label>
-            <label class="chat-attach-item" title="Audio">
-              <i class="fas fa-music" style="color:#059669"></i>
+
+            <!-- Audio -->
+            <label class="chat-attach-item">
+              <div class="chat-attach-icon" style="background:#D97706">
+                <i class="fas fa-headphones"></i>
+              </div>
               <span>Audio</span>
               <input type="file" accept="audio/*" multiple style="display:none" onchange="handleFileAttach(this,'audio')">
             </label>
+
+            <!-- Ubicación -->
+            <button class="chat-attach-item" onclick="sendChatLocation();toggleAttachMenu()">
+              <div class="chat-attach-icon" style="background:#059669">
+                <i class="fas fa-location-dot"></i>
+              </div>
+              <span>Ubicación</span>
+            </button>
+
+            <!-- Contacto -->
+            <button class="chat-attach-item" onclick="sendChatContact();toggleAttachMenu()">
+              <div class="chat-attach-icon" style="background:#0284C7">
+                <i class="fas fa-user"></i>
+              </div>
+              <span>Contacto</span>
+            </button>
+
           </div>
         </div>
 
