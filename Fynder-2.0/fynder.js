@@ -8569,6 +8569,9 @@ function openMsgBubbleCtxMenu(event, bizId, msgId, isOut) {
   event.preventDefault();
   event.stopPropagation();
 
+  // Cerrar la barra de reacciones si estaba abierta
+  _closeReactionBar();
+
   _ctxBizId = bizId;
   _ctxMsgId = msgId;
   _ctxIsOut = isOut;
