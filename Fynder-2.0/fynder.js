@@ -8488,3 +8488,387 @@ function _getSmartReply(userText, cat, bizName, biz) {
     `Estamos aquí para ayudarte ✅. ¿Cuéntanos?`,
   ]);
 }
+
+
+/* ================================================================
+   CHAT: REACCIONES Y MENÚ CONTEXTUAL DE MENSAJES
+   ================================================================ */
+
+// Emojis de reacción rápida (mismos que WhatsApp)
+const QUICK_REACTIONS = ['👍','❤️','😂','😮','😢','🙏'];
+
+// Estado interno del contexto activo
+let _ctxBizId  = null;   // bizId del chat activo
+let _ctxMsgId  = null;   // id del mensaje sobre el que se abrió el menú
+let _ctxIsOut  = false;  // si el mensaje es del usuario (outgoing)
+
+// ---- Guardar / leer reacciones en localStorage ----
+function _getReactions(bizId) {
+  try { return JSON.parse(localStorage.getItem('fynderReactions_' + bizId) || '{}'); }
+  catch(e) { return {}; }
+}
+function _saveReactions(bizId, obj) {
+  localStorage.setItem('fynderReactions_' + bizId, JSON.stringify(obj));
+}
+
+// ---- Añadir/quitar reacción a un mensaje ----
+function toggleMsgReaction(bizId, msgId, emoji) {
+  const reactions = _getReactions(bizId);
+  if (!reactions[msgId]) reactions[msgId] = {};
+  const mine = reactions[msgId]['__mine__'];
+  if (mine === emoji) {
+    // quitar
+    delete reactions[msgId]['__mine__'];
+    if (reactions[msgId][emoji]) {
+      reactions[msgId][emoji]--;
+      if (reactions[msgId][emoji] <= 0) delete reactions[msgId][emoji];
+    }
+  } else {
+    // quitar anterior si existía
+    if (mine) {
+      if (reactions[msgId][mine]) {
+        reactions[msgId][mine]--;
+        if (reactions[msgId][mine] <= 0) delete reactions[msgId][mine];
+      }
+    }
+    // agregar nueva
+    reactions[msgId]['__mine__'] = emoji;
+    reactions[msgId][emoji] = (reactions[msgId][emoji] || 0) + 1;
+  }
+  _saveReactions(bizId, reactions);
+
+  // Cerrar menú y re-renderizar
+  closeMsgBubbleCtxMenu();
+  if (typeof renderChatMessages === 'function' && _activeChatBizId === bizId) {
+    renderChatMessages(bizId);
+  }
+}
+
+// ---- Construir HTML de badges de reacción para un mensaje ----
+function _buildReactionBadgesHTML(bizId, msgId) {
+  const reactions = _getReactions(bizId);
+  const msgReacts = reactions[msgId];
+  if (!msgReacts) return '';
+  const mine = msgReacts['__mine__'];
+  const badges = Object.entries(msgReacts)
+    .filter(([k]) => k !== '__mine__')
+    .map(([emoji, count]) => {
+      const isMine = mine === emoji ? 'mine' : '';
+      return `<button class="chat-bubble-reaction-badge ${isMine}"
+        onclick="toggleMsgReaction('${bizId}','${msgId}','${emoji}')"
+        title="${isMine ? 'Quitar reacción' : 'Reaccionar'}">
+        ${emoji}<span class="react-count">${count > 1 ? count : ''}</span>
+      </button>`;
+    });
+  if (!badges.length) return '';
+  return `<div class="chat-bubble-reactions">${badges.join('')}</div>`;
+}
+
+// ---- Abrir menú contextual de burbuja ----
+function openMsgBubbleCtxMenu(event, bizId, msgId, isOut) {
+  event.preventDefault();
+  event.stopPropagation();
+
+  _ctxBizId = bizId;
+  _ctxMsgId = msgId;
+  _ctxIsOut = isOut;
+
+  // Construir tira de reacciones
+  const strip = document.getElementById('ctxReactionStrip');
+  if (strip) {
+    const reactions = _getReactions(bizId);
+    const mine = reactions[msgId] && reactions[msgId]['__mine__'];
+    strip.innerHTML = QUICK_REACTIONS.map(em => {
+      const reacted = mine === em ? 'reacted' : '';
+      return `<button class="chat-reaction-btn ${reacted}"
+        onclick="toggleMsgReaction('${bizId}','${msgId}','${em}')"
+        title="${em}">${em}</button>`;
+    }).join('') +
+    `<button class="react-more" onclick="closeMsgBubbleCtxMenu()" title="Cerrar">✕</button>`;
+  }
+
+  // Actualizar etiqueta "Fijar" según estado actual
+  const msgs = _getMsgs(bizId);
+  const msg  = msgs.find(m => String(m.id) === String(msgId));
+  const pinItem = document.querySelector('#msgBubbleCtxMenu .ctx-menu-item[onclick*="pin"]');
+  if (pinItem && msg) {
+    pinItem.innerHTML = msg.pinned
+      ? `<i class="fas fa-thumbtack"></i> Desfijar`
+      : `<i class="fas fa-thumbtack"></i> Fijar`;
+  }
+  const starItem = document.querySelector('#msgBubbleCtxMenu .ctx-menu-item[onclick*="star"]');
+  if (starItem && msg) {
+    starItem.innerHTML = msg.starred
+      ? `<i class="fas fa-star" style="color:#f59e0b"></i> Quitar destacado`
+      : `<i class="fas fa-star"></i> Destacar`;
+  }
+
+  // Posicionamiento
+  const menu = document.getElementById('msgBubbleCtxMenu');
+  if (!menu) return;
+  menu.classList.remove('open');
+
+  const x = event.clientX || (event.touches && event.touches[0].clientX) || 0;
+  const y = event.clientY || (event.touches && event.touches[0].clientY) || 0;
+
+  // Poner provisionalmente para medir tamaño
+  menu.style.left = x + 'px';
+  menu.style.top  = y + 'px';
+  menu.classList.add('open');
+
+  // Ajustar para que no se salga del viewport
+  requestAnimationFrame(() => {
+    const rect = menu.getBoundingClientRect();
+    const vw = window.innerWidth;
+    const vh = window.innerHeight;
+    let finalX = x;
+    let finalY = y;
+    if (finalX + rect.width > vw - 8)  finalX = vw - rect.width - 8;
+    if (finalY + rect.height > vh - 8) finalY = vh - rect.height - 8;
+    if (finalX < 8) finalX = 8;
+    if (finalY < 8) finalY = 8;
+    menu.style.left = finalX + 'px';
+    menu.style.top  = finalY  + 'px';
+    menu.style.transformOrigin = isOut ? 'top right' : 'top left';
+  });
+}
+
+// ---- Cerrar menú contextual ----
+function closeMsgBubbleCtxMenu() {
+  const menu = document.getElementById('msgBubbleCtxMenu');
+  if (menu) menu.classList.remove('open');
+  _ctxBizId = null;
+  _ctxMsgId = null;
+}
+
+// ---- Ejecutar acción del menú ----
+function chatCtxAction(action) {
+  const bizId = _ctxBizId;
+  const msgId = _ctxMsgId;
+  closeMsgBubbleCtxMenu();
+  if (!bizId || !msgId) return;
+
+  const msgs = _getMsgs(bizId);
+  const msg  = msgs.find(m => String(m.id) === String(msgId));
+  if (!msg && action !== 'select') return;
+
+  switch (action) {
+
+    case 'reply': {
+      // Mostrar barra de respuesta sobre el input
+      const bar = _getOrCreateReplyBar();
+      if (bar) {
+        const preview = msg.text
+          ? msg.text.slice(0, 60) + (msg.text.length > 60 ? '…' : '')
+          : (msg.attach ? '📎 Adjunto' : '');
+        bar.dataset.quoteId   = msgId;
+        bar.dataset.quoteBizId = bizId;
+        bar.querySelector('.reply-text').textContent = preview;
+        bar.style.display = 'flex';
+        // Foco al input
+        const inp = document.getElementById('chatInput') || document.getElementById('chatInputMobile');
+        if (inp) inp.focus();
+      }
+      break;
+    }
+
+    case 'copy': {
+      const text = msg.text || (msg.attach ? msg.attach.name : '');
+      if (text) {
+        if (navigator.clipboard) {
+          navigator.clipboard.writeText(text).then(() => showToast('Mensaje copiado'));
+        } else {
+          // fallback
+          const ta = document.createElement('textarea');
+          ta.value = text;
+          document.body.appendChild(ta);
+          ta.select();
+          document.execCommand('copy');
+          document.body.removeChild(ta);
+          showToast('Mensaje copiado');
+        }
+      }
+      break;
+    }
+
+    case 'forward': {
+      const text = msg.text || '';
+      // Abrir nueva conversación o simplemente copiar — mostramos toast informativo
+      showToast('Mensaje copiado para reenviar', 'info');
+      if (navigator.clipboard && text) navigator.clipboard.writeText(text);
+      break;
+    }
+
+    case 'pin': {
+      msg.pinned = !msg.pinned;
+      _saveMsgs(bizId, msgs);
+      showToast(msg.pinned ? '📌 Mensaje fijado' : 'Mensaje desfijado');
+      if (typeof renderChatMessages === 'function') renderChatMessages(bizId);
+      break;
+    }
+
+    case 'star': {
+      msg.starred = !msg.starred;
+      _saveMsgs(bizId, msgs);
+      showToast(msg.starred ? '⭐ Mensaje destacado' : 'Destacado eliminado');
+      if (typeof renderChatMessages === 'function') renderChatMessages(bizId);
+      break;
+    }
+
+    case 'select': {
+      showToast('Selección de mensajes: próximamente', 'info');
+      break;
+    }
+
+    case 'report': {
+      showToast('Mensaje reportado', 'info');
+      break;
+    }
+
+    case 'delete': {
+      if (confirm('¿Eliminar este mensaje?')) {
+        const updated = msgs.filter(m => String(m.id) !== String(msgId));
+        _saveMsgs(bizId, updated);
+        if (typeof renderChatMessages === 'function') renderChatMessages(bizId);
+        showToast('Mensaje eliminado');
+      }
+      break;
+    }
+  }
+}
+
+// ---- Barra de respuesta (reply bar) ----
+function _getOrCreateReplyBar() {
+  // Buscar input container del chat activo
+  const inputWrap = document.querySelector('.chat-input-bar') ||
+                    document.querySelector('.wa-input-bar')   ||
+                    document.querySelector('#chatInputWrap');
+  if (!inputWrap) return null;
+  let bar = document.getElementById('chatReplyBar');
+  if (!bar) {
+    bar = document.createElement('div');
+    bar.id = 'chatReplyBar';
+    bar.className = 'chat-reply-bar';
+    bar.style.display = 'none';
+    bar.innerHTML = `<i class="fas fa-reply" style="color:var(--primary);font-size:.85rem;flex-shrink:0"></i>
+      <span class="reply-text"></span>
+      <button class="reply-close" onclick="dismissReplyBar()" title="Cancelar">
+        <i class="fas fa-times"></i>
+      </button>`;
+    inputWrap.insertBefore(bar, inputWrap.firstChild);
+  }
+  return bar;
+}
+
+function dismissReplyBar() {
+  const bar = document.getElementById('chatReplyBar');
+  if (bar) { bar.style.display = 'none'; bar.dataset.quoteId = ''; }
+}
+
+// ---- Parche al renderizador: agrega reacciones, iconos de fijado/destacado,
+//      y event listeners para hover-bar y menú contextual ----
+(function patchRenderForReactions() {
+  // Esperamos a que el DOM y el JS base estén listos
+  document.addEventListener('DOMContentLoaded', () => {
+    const _origRender = window._renderMsgsInto;
+    if (!_origRender) return;
+
+    window._renderMsgsInto = function(container, bizId) {
+      // Llamar al renderizador original (que ya incluye adjuntos)
+      _origRender.call(this, container, bizId);
+
+      // Post-proceso: inyectar reacciones, iconos y event listeners en cada row
+      const msgs = _getMsgs(bizId);
+      container.querySelectorAll('.chat-msg-row').forEach((row, i) => {
+        const msg = msgs[i];
+        if (!msg) return;
+        const isOut = msg.from === 'user';
+        const bubble = row.querySelector('.chat-bubble');
+        if (!bubble) return;
+
+        // 1. Ícono de fijado
+        if (msg.pinned) {
+          const meta = bubble.querySelector('.chat-bubble-meta');
+          if (meta && !meta.querySelector('.chat-bubble-pinned-icon')) {
+            const pin = document.createElement('span');
+            pin.className = 'chat-bubble-pinned-icon';
+            pin.innerHTML = '<i class="fas fa-thumbtack"></i>';
+            pin.title = 'Fijado';
+            meta.insertBefore(pin, meta.firstChild);
+          }
+        }
+
+        // 2. Ícono de destacado
+        if (msg.starred) {
+          const meta = bubble.querySelector('.chat-bubble-meta');
+          if (meta && !meta.querySelector('.chat-bubble-starred-icon')) {
+            const star = document.createElement('span');
+            star.className = 'chat-bubble-starred-icon';
+            star.innerHTML = '<i class="fas fa-star"></i>';
+            star.title = 'Destacado';
+            meta.insertBefore(star, meta.firstChild);
+          }
+        }
+
+        // 3. Cita (reply quote)
+        if (msg.quoteText && !bubble.querySelector('.chat-bubble-quote')) {
+          const quote = document.createElement('div');
+          quote.className = 'chat-bubble-quote';
+          quote.textContent = msg.quoteText;
+          bubble.insertBefore(quote, bubble.firstChild);
+        }
+
+        // 4. Badges de reacciones (debajo del bubble)
+        const existing = row.querySelector('.chat-bubble-reactions');
+        if (existing) existing.remove();
+        const badgesHTML = _buildReactionBadgesHTML(bizId, msg.id);
+        if (badgesHTML) {
+          const wrapper = row.querySelector('div') || row;
+          wrapper.insertAdjacentHTML('beforeend', badgesHTML);
+        }
+
+        // 5. Barra de reacciones rápidas al hover
+        if (!row.querySelector('.chat-reaction-bar')) {
+          const bar = document.createElement('div');
+          bar.className = 'chat-reaction-bar';
+          const reactions = _getReactions(bizId);
+          const mine = reactions[msg.id] && reactions[msg.id]['__mine__'];
+          bar.innerHTML = QUICK_REACTIONS.map(em => {
+            const reacted = mine === em ? 'reacted' : '';
+            return `<button class="chat-reaction-btn ${reacted}"
+              onclick="event.stopPropagation();toggleMsgReaction('${bizId}','${msg.id}','${em}')"
+              title="${em}">${em}</button>`;
+          }).join('') +
+          `<button class="react-more"
+            onclick="event.stopPropagation();openMsgBubbleCtxMenu(event,'${bizId}','${msg.id}',${isOut})"
+            title="Más opciones">⋯</button>`;
+          row.appendChild(bar);
+        }
+
+        // 6. Clic derecho → menú contextual
+        row.addEventListener('contextmenu', (e) => {
+          openMsgBubbleCtxMenu(e, bizId, msg.id, isOut);
+        }, { once: false });
+
+        // 7. Long press (móvil) → menú contextual
+        let _lpTimer = null;
+        row.addEventListener('touchstart', (e) => {
+          _lpTimer = setTimeout(() => openMsgBubbleCtxMenu(e, bizId, msg.id, isOut), 500);
+        }, { passive: true });
+        row.addEventListener('touchend', () => clearTimeout(_lpTimer));
+        row.addEventListener('touchmove', () => clearTimeout(_lpTimer));
+      });
+    };
+  });
+})();
+
+// ---- Cerrar menú al hacer clic fuera ----
+document.addEventListener('click', (e) => {
+  const menu = document.getElementById('msgBubbleCtxMenu');
+  if (menu && menu.classList.contains('open') && !menu.contains(e.target)) {
+    closeMsgBubbleCtxMenu();
+  }
+});
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'Escape') closeMsgBubbleCtxMenu();
+});
