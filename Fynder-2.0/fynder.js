@@ -8396,6 +8396,7 @@ function _getSmartReply(userText, cat, bizName, biz) {
   const addr   = biz && biz.address ? biz.address : 'nuestra dirección en el perfil';
   const phone  = biz && biz.phone   ? biz.phone   : 'disponible en nuestro perfil';
   const ig     = biz && biz.instagram ? biz.instagram : '@' + bizName.toLowerCase().replace(/\s/g,'_');
+  const sub    = _getBizSubtype(biz);
 
   // ── Prioridad: intenciones específicas primero ──
 
