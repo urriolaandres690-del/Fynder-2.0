@@ -556,8 +556,11 @@ function renderModalReviews(bizId, cat){
 
   // Unificar todas las reseñas en un solo array normalizado
   const allReviews = [
-    ...staticList.map(r => ({ type:'static', data:r, ts: _dateToTs(r.date), likes: r.likes || 0 })),
-    ...userComments.map(c => ({ type:'user',   data:c, ts: parseInt(c.id) || _dateToTs(c.date), likes: c.likes || 0 }))
+    ...staticList.map(r => {
+      const sid = _staticReviewId(bizId, r);
+      return { type:'static', data:r, ts: _dateToTs(r.date), likes: _getStaticReviewLikes(sid, r) };
+    }),
+    ...userComments.map(c => ({ type:'user', data:c, ts: parseInt(c.id) || _dateToTs(c.date), likes: c.likes || 0 }))
   ];
 
   // Ordenar: primero por likes DESC, empate por fecha más reciente
