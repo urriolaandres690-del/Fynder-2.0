@@ -4235,6 +4235,7 @@ function _doSendMessage(inputId, bizId, renderFn) {
   renderConversations();
 
   input.value = '';
+  chatInputChange(); // restaurar botón mic después de enviar
   renderFn(bizId);
 
   // Simular progresión de estados: pending → sent → delivered → read
