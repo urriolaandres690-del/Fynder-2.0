@@ -5167,8 +5167,34 @@
   </div>
 </div>
 
-<!-- Menú contextual de burbuja de chat -->
-<div id="msgBubbleCtxMenu" role="menu" aria-label="Opciones del mensaje">
+<!-- Modal: eliminar mensaje estilo WhatsApp -->
+<div id="deleteMsgOverlay" class="del-msg-overlay" style="display:none" onclick="closDeleteMsgModal()"></div>
+<div id="deleteMsgModal" class="del-msg-modal" style="display:none">
+  <p class="del-msg-title">¿Quieres eliminar este mensaje?</p>
+  <button class="del-msg-btn del-msg-everyone" onclick="confirmDeleteMsg('all')">Eliminar para todos</button>
+  <button class="del-msg-btn del-msg-me"       onclick="confirmDeleteMsg('me')">Eliminar para mí</button>
+  <button class="del-msg-btn del-msg-cancel"   onclick="closDeleteMsgModal()">Cancelar</button>
+</div>
+
+<!-- Barra inferior de selección de mensajes -->
+<div id="msgSelectBar" class="msg-select-bar" style="display:none">
+  <button class="msg-select-close" onclick="exitSelectMode()" title="Cancelar">
+    <i class="fas fa-times"></i>
+  </button>
+  <span class="msg-select-count" id="msgSelectCount">0 seleccionados</span>
+  <div class="msg-select-actions">
+    <button class="msg-select-action" onclick="shareSelectedMsgs()" title="Compartir">
+      <i class="fas fa-share-nodes"></i>
+    </button>
+    <button class="msg-select-action danger" onclick="deleteSelectedMsgs()" title="Eliminar">
+      <i class="fas fa-trash"></i>
+    </button>
+  </div>
+</div>
+
+</body>
+
+</html>
   <!-- Tira de reacciones rápidas -->
   <div class="ctx-reaction-strip" id="ctxReactionStrip"></div>
   <!-- Opciones -->
