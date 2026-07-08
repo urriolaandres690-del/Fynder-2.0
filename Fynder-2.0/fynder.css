@@ -16811,3 +16811,15 @@ iframe.goog-te-menu-frame { box-shadow: 0 4px 20px rgba(0,0,0,.15) !important; b
 }
 [data-theme="dark"] .chat-bubble-quote { background: rgba(255,255,255,.08); }
 .chat-msg-row.out .chat-bubble-quote { border-left-color: rgba(255,255,255,.7); }
+
+
+/* Asegura que los badges posicionados absolutamente no se corten */
+.chat-messages {
+  overflow-x: visible !important;
+  padding-bottom: 20px;
+}
+/* El contenedor de mensajes del chat WA también */
+.wa-chat-messages {
+  overflow-x: visible !important;
+  padding-bottom: 20px;
+}
