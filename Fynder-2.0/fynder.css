@@ -6058,7 +6058,13 @@ label.avatar-option-btn:hover { background: var(--teal-light); border-color: rgb
 [data-theme="dark"] .biz-input-wrap        { background: rgba(255,255,255,.05); border-color: rgba(255,255,255,.1); }
 [data-theme="dark"] .biz-input-wrap input,
 [data-theme="dark"] .biz-input-wrap textarea,
-[data-theme="dark"] .biz-input-wrap select { background: var(--card); color: var(--fg); }
+[data-theme="dark"] .biz-input-wrap select { background: var(--card) !important; color: var(--fg) !important; border-color: rgba(255,255,255,.1) !important; }
+[data-theme="dark"] .biz-input-wrap input:hover,
+[data-theme="dark"] .biz-input-wrap textarea:hover,
+[data-theme="dark"] .biz-input-wrap select:hover { background: rgba(255,255,255,.07) !important; border-color: rgba(255,255,255,.2) !important; }
+[data-theme="dark"] .biz-input-wrap input:focus,
+[data-theme="dark"] .biz-input-wrap textarea:focus,
+[data-theme="dark"] .biz-input-wrap select:focus { background: rgba(255,255,255,.07) !important; border-color: var(--primary) !important; }
 
 /* opciones del select: forzar colores legibles en todos los temas */
 select option {
