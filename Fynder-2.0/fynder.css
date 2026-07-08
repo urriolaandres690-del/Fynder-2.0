@@ -16559,58 +16559,6 @@ iframe.goog-te-menu-frame { box-shadow: 0 4px 20px rgba(0,0,0,.15) !important; b
   margin-bottom: 18px;
 }
 
-/* ── Botón de reacción rápida (carita al lado del bubble) ─────────── */
-.chat-react-trigger {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  width: 30px; height: 30px;
-  border-radius: 50%;
-  border: none;
-  background: var(--surface, #fff);
-  box-shadow: 0 1px 6px rgba(0,0,0,.18);
-  cursor: pointer;
-  display: flex; align-items: center; justify-content: center;
-  font-size: 1rem;
-  /* oculto por defecto */
-  opacity: 0;
-  pointer-events: none;
-  transition: opacity .12s, transform .12s;
-  z-index: 100;
-}
-[data-theme="dark"] .chat-react-trigger {
-  background: #2a2d35;
-  box-shadow: 0 1px 6px rgba(0,0,0,.45);
-}
-
-/* Mostrar al hover del row O cuando el botón mismo está en hover/focus */
-.chat-msg-row:hover .chat-react-trigger,
-.chat-react-trigger:hover,
-.chat-react-trigger.pinned {           /* se mantiene abierto mientras la barra está activa */
-  opacity: 1;
-  pointer-events: auto;
-}
-.chat-react-trigger:hover {
-  transform: translateY(-50%) scale(1.15);
-  background: #f0f0f0;
-}
-[data-theme="dark"] .chat-react-trigger:hover { background: #363a42; }
-
-/* Puente invisible entre el bubble y el botón para que el hover no se corte */
-.chat-react-trigger::before {
-  content: '';
-  position: absolute;
-  /* cubre el gap de 34px entre el botón y el bubble */
-  top: 0; bottom: 0;
-  width: 44px;
-}
-.chat-msg-row.in  .chat-react-trigger::before { left: 100%; }
-.chat-msg-row.out .chat-react-trigger::before { right: 100%; }
-
-/* Posición: mensajes entrantes → derecha del bubble; salientes → izquierda */
-.chat-msg-row.in  .chat-react-trigger { left: auto; right: -38px; }
-.chat-msg-row.out .chat-react-trigger { right: auto; left: -38px; }
-
 /* ── Botón chevron ∨ dentro del bubble (esquina superior derecha al hover) ── */
 .chat-bubble-menu-btn {
   position: absolute;
