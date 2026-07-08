@@ -4329,6 +4329,16 @@ function pushNotification({ type = 'info', title, body, icon = '🔔', bizId = n
   }
 }
 
+/** Elimina todas las notificaciones de un negocio específico */
+function clearNotifsByBizId(bizId) {
+  const notifs = _getNotifications().filter(n => String(n.bizId) !== String(bizId));
+  _saveNotifications(notifs);
+  updateNotifBadge();
+  // Si el tab de notificaciones está visible, re-renderizar
+  const tabNotif = document.getElementById('msgTabNotif');
+  if (tabNotif && tabNotif.classList.contains('active')) renderNotifications();
+}
+
 /** Marca todas las notificaciones como leídas */
 function markAllNotifsRead() {
   const notifs = _getNotifications().map(n => ({ ...n, read: true }));
