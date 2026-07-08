@@ -15634,18 +15634,18 @@ body { top: 0 !important; }
 }
 .chat-attach-menu {
   position: absolute;
-  bottom: calc(100% + 10px);
+  bottom: calc(100% + 12px);
   left: 50%;
   transform: translateX(-50%) scale(.95);
-  background: var(--msg-surface, #fff);
+  background: var(--msg-bg, #111b21);
   border: 1px solid var(--msg-border);
-  border-radius: 14px;
-  padding: 6px;
-  box-shadow: 0 8px 28px rgba(0,0,0,.18);
+  border-radius: 16px;
+  padding: 8px;
+  box-shadow: 0 8px 32px rgba(0,0,0,.30);
   display: none;
   flex-direction: column;
   gap: 2px;
-  min-width: 150px;
+  min-width: 180px;
   z-index: 20;
   opacity: 0;
   transition: opacity .15s, transform .15s;
@@ -15658,18 +15658,72 @@ body { top: 0 !important; }
 .chat-attach-item {
   display: flex;
   align-items: center;
-  gap: 10px;
-  padding: 9px 12px;
-  border-radius: 10px;
+  gap: 12px;
+  padding: 10px 14px;
+  border-radius: 12px;
   cursor: pointer;
-  font-size: .85rem;
-  color: var(--msg-text);
+  font-size: .875rem;
+  color: var(--msg-title, #e9edef);
   font-family: 'Inter', sans-serif;
   transition: background .15s;
   user-select: none;
+  background: none;
+  border: none;
+  width: 100%;
+  text-align: left;
 }
-.chat-attach-item:hover { background: var(--msg-surface2); }
-.chat-attach-item i { font-size: 1.1rem; width: 20px; text-align: center; }
+.chat-attach-item:hover { background: var(--msg-surface, rgba(255,255,255,.06)); }
+.chat-attach-icon {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  font-size: .95rem;
+  flex-shrink: 0;
+}
+
+/* ── Burbujas de ubicación y contacto ── */
+.chat-bubble-location {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  cursor: pointer;
+  min-width: 180px;
+}
+.chat-bubble-location-map {
+  width: 44px; height: 44px;
+  border-radius: 10px;
+  background: linear-gradient(135deg, #059669, #10B981);
+  display: flex; align-items: center; justify-content: center;
+  color: #fff; font-size: 1.2rem;
+  flex-shrink: 0;
+}
+.chat-bubble-location-label {
+  display: flex; flex-direction: column; gap: 2px;
+  font-size: .8rem;
+}
+.chat-bubble-contact {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-width: 180px;
+}
+.chat-bubble-contact-av {
+  width: 40px; height: 40px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #0284C7, #2F5BB7);
+  color: #fff;
+  display: flex; align-items: center; justify-content: center;
+  font-weight: 700; font-size: 1rem; flex-shrink: 0;
+}
+.chat-bubble-contact-info {
+  display: flex; flex-direction: column; gap: 2px; flex: 1; min-width: 0;
+}
+.chat-bubble-contact-name  { font-weight: 600; font-size: .875rem; }
+.chat-bubble-contact-sub   { font-size: .75rem; opacity: .65; }
 
 /* ================================================================
    CHAT: INPUT BAR estilo WhatsApp — micrófono
