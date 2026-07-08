@@ -8584,7 +8584,7 @@ function openMsgBubbleCtxMenu(event, bizId, msgId, isOut) {
     strip.innerHTML = QUICK_REACTIONS.map(em => {
       const reacted = mine === em ? 'reacted' : '';
       return `<button class="chat-reaction-btn ${reacted}"
-        onclick="toggleMsgReaction('${bizId}','${msgId}','${em}')"
+        onclick="toggleMsgReaction('${bizId}','${msgId}','${em}');closeMsgBubbleCtxMenu();"
         title="${em}">${em}</button>`;
     }).join('') +
     `<button class="react-more" onclick="closeMsgBubbleCtxMenu()" title="Cerrar">✕</button>`;
