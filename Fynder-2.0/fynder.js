@@ -8418,8 +8418,11 @@ function _getSmartReply(userText, cat, bizName, biz) {
     `¡Por supuesto! En ${bizName} aceptamos cambios 😊. ¿Tienes el comprobante de compra?`,
     `Claro, para el cambio necesitamos el artículo y el recibo. ¿Lo tienes a mano?`,
     `Sin problema. ¿Qué talla o modelo diferente necesitas? Lo gestionamos ya 🔄`,
-    `Pasa por ${addr} con el artículo y el recibo. ¿Hay algo específico que prefieras de cambio?`,
-    `¡Tranquilo/a! Lo resolvemos. ¿Fue un problema de talla, color o el artículo vino defectuoso?`,
+    `Pasa por ${addr} con el artículo y el recibo. ¿Hay algo específico que prefieras?`,
+    `¡Tranquilo/a! Lo resolvemos. ¿Fue un problema de talla, color o vino defectuoso?`,
+    `Los cambios los procesamos en 24h. ¿Tienes el ticket de compra? 🧾`,
+    `Sin costo adicional si es por defecto de fábrica. ¿Qué pasó exactamente? 🔄`,
+    `¿Prefieres cambio por otro producto o reembolso? Ambas opciones disponibles 💳`,
   ]);
 
   if (intents.includes('producto_danado')) return _pick([
@@ -8427,6 +8430,10 @@ function _getSmartReply(userText, cat, bizName, biz) {
     `Eso no debería pasar. Cubrimos productos defectuosos sin costo. ¿Cuándo lo compraste?`,
     `Entendemos. ¿El daño fue al recibirlo o después de usarlo? Eso nos ayuda con la garantía 🔧`,
     `Por favor tráenos el producto y lo revisamos o reemplazamos. ¿Cuándo puedes venir?`,
+    `Toma foto del daño y compártela por aquí 📸. Así aceleramos el proceso.`,
+    `¿Tienes el número de orden o factura? Lo revisamos ahora mismo 🧾`,
+    `Garantía cubre defectos de fábrica hasta 6 meses. ¿En qué estado llegó? 🔍`,
+    `Lo sentimos mucho. Tu satisfacción es lo más importante 🙏. ¿Lo resolvemos hoy?`,
   ]);
 
   if (intents.includes('queja')) return _pick([
@@ -8434,6 +8441,10 @@ function _getSmartReply(userText, cat, bizName, biz) {
     `Gracias por decírnoslo, es la única forma de mejorar. ¿Cómo podemos compensarte?`,
     `Lo tomamos muy en serio 🙏. ¿Tienes fecha o número de pedido para revisarlo?`,
     `Disculpa el inconveniente. Vamos a revisar tu caso de inmediato. ¿Más detalles?`,
+    `Tu opinión es muy importante para nosotros. ¿Qué podríamos hacer diferente? 💬`,
+    `Pedimos disculpas sinceras. ¿Podemos llamarte para resolver esto personalmente? 📞`,
+    `Queremos convertir esta experiencia negativa en positiva. ¿Nos das la oportunidad? 🌟`,
+    `Escalamos tu caso de inmediato. ¿Cuál es el mejor horario para contactarte? ⏰`,
   ]);
 
   if (intents.includes('precio')) {
