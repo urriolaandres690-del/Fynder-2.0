@@ -6137,6 +6137,10 @@ label.avatar-option-btn:hover { background: var(--teal-light); border-color: rgb
 }
 [data-theme="dark"] .reviews-list textarea::placeholder,
 [data-theme="dark"] .biz-review-textarea::placeholder { color: rgba(148,163,184,.6) !important; }
+[data-theme="dark"] .biz-review-form-box { background: rgba(255,255,255,.04); border-color: rgba(255,255,255,.08); }
+[data-theme="dark"] .biz-star-btn svg { fill: rgba(255,255,255,.15); }
+[data-theme="dark"] .biz-star-btn.filled svg,
+[data-theme="dark"] .biz-star-btn:hover svg { fill: #F4D35E; }
 
 /* perfil modo oscuro */
 [data-theme="dark"] #page-profile  { background: var(--bg) !important; }
