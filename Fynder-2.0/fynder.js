@@ -9016,5 +9016,13 @@ document.addEventListener('click', (e) => {
   }
 });
 document.addEventListener('keydown', (e) => {
-  if (e.key === 'Escape') closeMsgBubbleCtxMenu();
+  if (e.key === 'Escape') {
+    closeMsgBubbleCtxMenu();
+    // Si el picker estaba en modo reacción, restaurar insertEmoji
+    if (_reactionPickerBizId && window._prevInsertEmoji) {
+      window.insertEmoji = window._prevInsertEmoji;
+      _reactionPickerBizId = null;
+      _reactionPickerMsgId = null;
+    }
+  }
 });

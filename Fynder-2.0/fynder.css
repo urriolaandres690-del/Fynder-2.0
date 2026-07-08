@@ -16753,6 +16753,14 @@ iframe.goog-te-menu-frame { box-shadow: 0 4px 20px rgba(0,0,0,.15) !important; b
   border-bottom-color: rgba(255,255,255,.08);
 }
 #msgBubbleCtxMenu .ctx-reaction-strip .chat-reaction-btn { font-size: 1.3rem; }
+#msgBubbleCtxMenu .ctx-reaction-strip .react-more {
+  background: #3a3d45;
+  color: #fff;
+  width: 32px; height: 32px;
+}
+[data-theme="light"] #msgBubbleCtxMenu .ctx-reaction-strip .react-more {
+  background: #555;
+}
 
 /* Ítem del menú contextual */
 .ctx-menu-item {
