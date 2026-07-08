@@ -16920,9 +16920,3 @@ iframe.goog-te-menu-frame { box-shadow: 0 4px 20px rgba(0,0,0,.15) !important; b
 .chat-msg-row {
   overflow: visible !important;
 }
-
-/* En mensajes de audio el bubble es más alto, centrar verticalmente */
-.chat-msg-row .chat-bubble-audio ~ .chat-react-trigger,
-.chat-msg-row:has(.chat-bubble-audio) .chat-react-trigger {
-  top: 50%;
-}
