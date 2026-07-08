@@ -16702,26 +16702,25 @@ iframe.goog-te-menu-frame { box-shadow: 0 4px 20px rgba(0,0,0,.15) !important; b
   min-width: 8px;
 }
 
-/* Menú contextual del mensaje */
+/* ================================================================
+   MENÚ CONTEXTUAL DE MENSAJE — ESTILO WHATSAPP DARK
+   ================================================================ */
 #msgBubbleCtxMenu {
   position: fixed;
   z-index: 9999;
-  background: var(--surface, #fff);
-  border: 1px solid rgba(0,0,0,.1);
-  border-radius: 14px;
-  box-shadow: 0 8px 32px rgba(0,0,0,.18);
-  padding: 6px 0;
-  min-width: 180px;
+  /* fondo oscuro como WhatsApp, funciona en ambos temas */
+  background: #1e2328;
+  border: none;
+  border-radius: 18px;
+  box-shadow: 0 12px 40px rgba(0,0,0,.55);
+  padding: 0;
+  min-width: 220px;
   opacity: 0;
   pointer-events: none;
-  transform: scale(.9);
+  transform: scale(.88);
   transform-origin: top left;
-  transition: opacity .15s ease, transform .15s ease;
-}
-[data-theme="dark"] #msgBubbleCtxMenu {
-  background: #1e2128;
-  border-color: rgba(255,255,255,.1);
-  box-shadow: 0 8px 32px rgba(0,0,0,.5);
+  transition: opacity .18s ease, transform .18s cubic-bezier(.34,1.56,.64,1);
+  overflow: hidden;
 }
 #msgBubbleCtxMenu.open {
   opacity: 1;
@@ -16729,52 +16728,93 @@ iframe.goog-te-menu-frame { box-shadow: 0 4px 20px rgba(0,0,0,.15) !important; b
   transform: scale(1);
 }
 
-/* Barra de emojis rápidos dentro del menú */
+/* ── Tira de emojis rápidos ── */
 #msgBubbleCtxMenu .ctx-reaction-strip {
   display: flex;
   align-items: center;
+  justify-content: space-between;
   gap: 2px;
-  padding: 6px 10px 8px;
-  border-bottom: 1px solid rgba(0,0,0,.08);
+  padding: 10px 12px 10px;
+  background: #252a30;
+  border-bottom: 1px solid rgba(255,255,255,.07);
 }
-[data-theme="dark"] #msgBubbleCtxMenu .ctx-reaction-strip {
-  border-bottom-color: rgba(255,255,255,.08);
+#msgBubbleCtxMenu .ctx-reaction-strip .chat-reaction-btn {
+  font-size: 1.5rem;
+  width: 40px; height: 40px;
+  border-radius: 50%;
+  transition: transform .15s, background .12s;
 }
-#msgBubbleCtxMenu .ctx-reaction-strip .chat-reaction-btn { font-size: 1.3rem; }
+#msgBubbleCtxMenu .ctx-reaction-strip .chat-reaction-btn:hover {
+  background: rgba(255,255,255,.1);
+  transform: scale(1.35);
+}
+/* Botón "+" en la tira del menú */
 #msgBubbleCtxMenu .ctx-reaction-strip .react-more {
-  background: #3a3d45;
+  width: 36px; height: 36px;
+  border-radius: 50%;
+  background: #3a3f48;
   color: #fff;
-  width: 32px; height: 32px;
+  font-size: 1.15rem;
+  font-weight: 400;
+  border: none;
+  cursor: pointer;
+  display: flex; align-items: center; justify-content: center;
+  transition: background .12s, transform .12s;
+  flex-shrink: 0;
 }
-[data-theme="light"] #msgBubbleCtxMenu .ctx-reaction-strip .react-more {
-  background: #555;
+#msgBubbleCtxMenu .ctx-reaction-strip .react-more:hover {
+  background: #4a5060;
+  transform: scale(1.1);
 }
 
-/* Ítem del menú contextual */
+/* ── Ítems del menú ── */
 .ctx-menu-item {
   display: flex;
   align-items: center;
-  gap: 10px;
-  padding: 10px 16px;
+  gap: 14px;
+  padding: 13px 18px;
   cursor: pointer;
-  font-size: .875rem;
-  color: var(--fg, #1a1a1a);
-  transition: background .13s;
+  font-size: 1rem;
+  font-weight: 400;
+  color: #e8e8e8;
+  transition: background .12s;
   user-select: none;
+  letter-spacing: .01em;
 }
-[data-theme="dark"] .ctx-menu-item { color: #e0e0e0; }
-.ctx-menu-item:hover { background: rgba(0,0,0,.05); }
-[data-theme="dark"] .ctx-menu-item:hover { background: rgba(255,255,255,.06); }
-.ctx-menu-item i { width: 18px; text-align: center; font-size: .9rem; color: var(--fg-muted, #888); }
-.ctx-menu-item.danger { color: #ef4444; }
-.ctx-menu-item.danger i { color: #ef4444; }
-.ctx-menu-item.danger:hover { background: rgba(239,68,68,.08); }
+.ctx-menu-item:first-of-type { margin-top: 2px; }
+.ctx-menu-item:hover { background: rgba(255,255,255,.07); }
+
+/* Ícono de cada ítem */
+.ctx-menu-item i {
+  width: 20px;
+  text-align: center;
+  font-size: 1rem;
+  color: #b0b8c4;
+  flex-shrink: 0;
+}
+
+/* "Responder" — borde verde resaltado como en la imagen */
+.ctx-menu-item[onclick*="reply"] {
+  margin: 8px 10px 4px;
+  border: 1.5px solid #25d366;
+  border-radius: 10px;
+  padding: 11px 14px;
+  color: #fff;
+}
+.ctx-menu-item[onclick*="reply"] i { color: #fff; }
+.ctx-menu-item[onclick*="reply"]:hover { background: rgba(37,211,102,.1); }
+
+/* Danger */
+.ctx-menu-item.danger { color: #ff6b6b; }
+.ctx-menu-item.danger i { color: #ff6b6b; }
+.ctx-menu-item.danger:hover { background: rgba(239,68,68,.1); }
+
+/* Separador */
 .ctx-menu-separator {
   height: 1px;
-  background: rgba(0,0,0,.07);
+  background: rgba(255,255,255,.07);
   margin: 4px 0;
 }
-[data-theme="dark"] .ctx-menu-separator { background: rgba(255,255,255,.07); }
 
 /* Mensaje con highlight (al responder/fijar) */
 .chat-bubble.highlighted {
