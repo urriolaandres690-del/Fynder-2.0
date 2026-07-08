@@ -575,7 +575,7 @@ function renderModalReviews(bizId, cat){
         <div class="review-avatar" style="${avStyle}">${avInner}</div>
         <div class="review-meta">
           <span class="review-name">${c.name}</span>
-          <div class="review-stars" style="height:14px"></div>
+          <div class="review-stars">${c.stars ? [1,2,3,4,5].map(i=>`<svg style="width:13px;height:13px;fill:${i<=c.stars?'#F4D35E':'#E5E7EB'};flex-shrink:0" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>`).join('') : ''}</div>
         </div>
         <span class="review-date">${c.date}</span>
         ${isOwn?`<button onclick="deleteBizComment('${bizId}','${c.id}')" title="Eliminar" style="background:none;border:none;cursor:pointer;color:#94A3B8;font-size:.75rem;padding:2px 4px;margin-left:4px"><i class="fas fa-trash-alt"></i></button>`:''}
