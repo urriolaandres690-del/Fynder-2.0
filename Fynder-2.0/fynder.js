@@ -8896,8 +8896,8 @@ function _openReactionBar(triggerEvent, bizId, msgId, isOut) {
       title="${em}">${em}</button>`;
   }).join('') +
   `<button class="react-more"
-    onclick="event.stopPropagation();_closeReactionBar();openMsgBubbleCtxMenu(event,'${bizId}','${msgId}',${isOut});"
-    title="Más opciones">⋯</button>`;
+    onclick="event.stopPropagation();_closeReactionBar();openReactionEmojiPicker('${bizId}','${msgId}');"
+    title="Más emojis">+</button>`;
 
   // Posicionar encima del botón que la disparó
   bar.classList.remove('open');
