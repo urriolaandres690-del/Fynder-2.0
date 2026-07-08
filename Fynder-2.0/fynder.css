@@ -16619,11 +16619,12 @@ iframe.goog-te-menu-frame { box-shadow: 0 4px 20px rgba(0,0,0,.15) !important; b
   font-size: 1.75rem;
   line-height: 1;
   display: flex; align-items: center; justify-content: center;
-  transition: transform .15s cubic-bezier(.34,1.56,.64,1);
+  transition: transform .18s cubic-bezier(.34,1.56,.64,1), background .12s;
   flex-shrink: 0;
 }
 .chat-reaction-btn:hover {
-  transform: scale(1.4) translateY(-3px);
+  transform: scale(1.45);
+  background: rgba(255,255,255,.13);
 }
 .chat-reaction-btn.reacted {
   opacity: .45;
