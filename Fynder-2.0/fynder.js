@@ -958,6 +958,40 @@ function buildCategories(){
   }).join('');
 } 
 
+/**
+ * Habilita arrastre con mouse (drag-to-scroll) en un carrusel horizontal.
+ * @param {string} id - id del elemento con overflow-x:auto
+ */
+function _initCarouselDrag(id) {
+  const el = document.getElementById(id);
+  if (!el) return;
+  let isDown = false, startX = 0, scrollLeft = 0, moved = false;
+
+  el.addEventListener('mousedown', e => {
+    isDown = true; moved = false;
+    startX = e.pageX - el.offsetLeft;
+    scrollLeft = el.scrollLeft;
+    el.classList.add('is-dragging');
+  });
+  el.addEventListener('mouseleave', () => { isDown = false; el.classList.remove('is-dragging'); });
+  el.addEventListener('mouseup', e => {
+    isDown = false;
+    el.classList.remove('is-dragging');
+    // Si se movió más de 5px no disparar el click de la tarjeta
+    if (moved) e.stopPropagation();
+  });
+  el.addEventListener('mousemove', e => {
+    if (!isDown) return;
+    e.preventDefault();
+    const x = e.pageX - el.offsetLeft;
+    const walk = (x - startX) * 1.4;
+    if (Math.abs(walk) > 5) moved = true;
+    el.scrollLeft = scrollLeft - walk;
+  });
+  // Evitar que el click se dispare tras un drag
+  el.addEventListener('click', e => { if (moved) { e.stopPropagation(); moved = false; } }, true);
+}
+
 function buildHome(){
   document.getElementById('featuredGrid').innerHTML=BUSINESSES.filter(b=>b.isFeatured).map(gridCardHTML).join('');
   document.getElementById('popularList').innerHTML=BUSINESSES.filter(b=>b.isPopular).slice(0,4).map(listCardHTML).join('');
