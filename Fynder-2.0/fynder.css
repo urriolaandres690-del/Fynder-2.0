@@ -6058,13 +6058,7 @@ label.avatar-option-btn:hover { background: var(--teal-light); border-color: rgb
 [data-theme="dark"] .biz-input-wrap        { background: rgba(255,255,255,.05); border-color: rgba(255,255,255,.1); }
 [data-theme="dark"] .biz-input-wrap input,
 [data-theme="dark"] .biz-input-wrap textarea,
-[data-theme="dark"] .biz-input-wrap select { background: var(--card) !important; color: var(--fg) !important; border-color: rgba(255,255,255,.1) !important; }
-[data-theme="dark"] .biz-input-wrap input:hover,
-[data-theme="dark"] .biz-input-wrap textarea:hover,
-[data-theme="dark"] .biz-input-wrap select:hover { background: rgba(255,255,255,.07) !important; border-color: rgba(255,255,255,.2) !important; }
-[data-theme="dark"] .biz-input-wrap input:focus,
-[data-theme="dark"] .biz-input-wrap textarea:focus,
-[data-theme="dark"] .biz-input-wrap select:focus { background: rgba(255,255,255,.07) !important; border-color: var(--primary) !important; }
+[data-theme="dark"] .biz-input-wrap select { background: var(--card); color: var(--fg); }
 
 /* opciones del select: forzar colores legibles en todos los temas */
 select option {
@@ -6083,9 +6077,6 @@ select option {
 }
 [data-theme="dark"] .biz-input-wrap input::placeholder,
 [data-theme="dark"] .biz-input-wrap textarea::placeholder { color: var(--muted); }
-[data-theme="dark"] .biz-input-wrap select {
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%2394A3B8' stroke-width='2.5'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E") !important;
-}
 [data-theme="dark"] .status-option  { background: rgba(255,255,255,.04); border-color: rgba(255,255,255,.08); }
 [data-theme="dark"] .status-option.active { border-color: var(--primary); }
 [data-theme="dark"] .status-label   { color: var(--fg); }
