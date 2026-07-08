@@ -8768,15 +8768,12 @@ function dismissReplyBar() {
 // ---- Parche al renderizador: agrega reacciones, iconos de fijado/destacado,
 //      y event listeners para hover-bar y menú contextual ----
 (function patchRenderForReactions() {
-  // Se ejecuta inmediatamente (el IIFE de patchRenderMsgsInto ya sobreescribió _renderMsgsInto)
   const _origRender = window._renderMsgsInto;
   if (!_origRender) return;
 
   window._renderMsgsInto = function(container, bizId) {
-    // Llamar al renderizador original (que ya incluye adjuntos)
     _origRender.call(this, container, bizId);
 
-    // Post-proceso: inyectar reacciones, iconos y event listeners en cada row
     const msgs = _getMsgs(bizId);
     container.querySelectorAll('.chat-msg-row').forEach((row, i) => {
       const msg = msgs[i];
@@ -8817,8 +8814,7 @@ function dismissReplyBar() {
         bubble.insertBefore(quote, bubble.firstChild);
       }
 
-      // 4. Badges de reacciones — pegados a la esquina inferior del bubble
-      // Envolvemos el bubble en .chat-bubble-wrap si aún no está envuelto
+      // 4. Badges de reacciones — envolver bubble en .chat-bubble-wrap
       let wrap = bubble.closest('.chat-bubble-wrap');
       if (!wrap) {
         wrap = document.createElement('div');
@@ -8826,33 +8822,25 @@ function dismissReplyBar() {
         bubble.parentNode.insertBefore(wrap, bubble);
         wrap.appendChild(bubble);
       }
-
-      // Limpiar badges anteriores
       wrap.querySelectorAll('.chat-bubble-reactions').forEach(el => el.remove());
       row.classList.remove('has-reactions');
-
       const badgesHTML = _buildReactionBadgesHTML(bizId, msg.id);
       if (badgesHTML) {
         wrap.insertAdjacentHTML('beforeend', badgesHTML);
         row.classList.add('has-reactions');
       }
 
-      // 5. Barra de reacciones rápidas al hover (solo una por row)
-      if (!row.querySelector('.chat-reaction-bar')) {
-        const bar = document.createElement('div');
-        bar.className = 'chat-reaction-bar';
-        const reactions = _getReactions(bizId);
-        const mine = reactions[msg.id] && reactions[msg.id]['__mine__'];
-        bar.innerHTML = QUICK_REACTIONS.map(em => {
-          const reacted = mine === em ? 'reacted' : '';
-          return `<button class="chat-reaction-btn ${reacted}"
-            onclick="event.stopPropagation();toggleMsgReaction('${bizId}','${msg.id}','${em}')"
-            title="${em}">${em}</button>`;
-        }).join('') +
-        `<button class="react-more"
-          onclick="event.stopPropagation();openMsgBubbleCtxMenu(event,'${bizId}','${msg.id}',${isOut})"
-          title="Más opciones">⋯</button>`;
-        row.appendChild(bar);
+      // 5. Botón de carita 😊 al costado — solo uno por row
+      if (!row.querySelector('.chat-react-trigger')) {
+        const btn = document.createElement('button');
+        btn.className = 'chat-react-trigger';
+        btn.title = 'Reaccionar';
+        btn.innerHTML = '😊';
+        btn.addEventListener('click', (e) => {
+          e.stopPropagation();
+          _openReactionBar(e, bizId, msg.id, isOut);
+        });
+        row.appendChild(btn);
       }
 
       // 6. Clic derecho → menú contextual
@@ -8870,6 +8858,78 @@ function dismissReplyBar() {
     });
   };
 })();
+
+// ── Barra de reacciones flotante global (shared, one instance) ──────────────
+let _reactBarBizId = null;
+let _reactBarMsgId = null;
+
+function _getOrCreateReactBar() {
+  let bar = document.getElementById('globalReactionBar');
+  if (!bar) {
+    bar = document.createElement('div');
+    bar.id = 'globalReactionBar';
+    bar.className = 'chat-reaction-bar';
+    document.body.appendChild(bar);
+    // Cerrar al hacer clic fuera de la barra
+    document.addEventListener('click', (e) => {
+      if (!bar.contains(e.target)) _closeReactionBar();
+    }, true);
+  }
+  return bar;
+}
+
+function _openReactionBar(triggerEvent, bizId, msgId, isOut) {
+  const bar = _getOrCreateReactBar();
+  _reactBarBizId = bizId;
+  _reactBarMsgId = msgId;
+
+  const reactions = _getReactions(bizId);
+  const mine = reactions[msgId] && reactions[msgId]['__mine__'];
+
+  bar.innerHTML = QUICK_REACTIONS.map(em => {
+    const reacted = mine === em ? 'reacted' : '';
+    return `<button class="chat-reaction-btn ${reacted}"
+      onclick="event.stopPropagation();toggleMsgReaction('${bizId}','${msgId}','${em}');_closeReactionBar();"
+      title="${em}">${em}</button>`;
+  }).join('') +
+  `<button class="react-more"
+    onclick="event.stopPropagation();_closeReactionBar();openMsgBubbleCtxMenu(event,'${bizId}','${msgId}',${isOut});"
+    title="Más opciones">⋯</button>`;
+
+  // Posicionar encima del botón que la disparó
+  bar.classList.remove('open');
+  bar.style.visibility = 'hidden';
+  bar.classList.add('open');
+
+  requestAnimationFrame(() => {
+    const btnRect = triggerEvent.currentTarget
+      ? triggerEvent.currentTarget.getBoundingClientRect()
+      : { left: triggerEvent.clientX, top: triggerEvent.clientY, width: 0, height: 0 };
+    const barRect = bar.getBoundingClientRect();
+    const vw = window.innerWidth;
+
+    let x = isOut
+      ? btnRect.left - barRect.width + btnRect.width + 8
+      : btnRect.left - 8;
+    let y = btnRect.top - barRect.height - 8;
+
+    // ajustar para no salirse del viewport
+    if (x + barRect.width > vw - 8) x = vw - barRect.width - 8;
+    if (x < 8) x = 8;
+    if (y < 8) y = btnRect.bottom + 8;
+
+    bar.style.left       = x + 'px';
+    bar.style.top        = y + 'px';
+    bar.style.visibility = '';
+  });
+}
+
+function _closeReactionBar() {
+  const bar = document.getElementById('globalReactionBar');
+  if (bar) bar.classList.remove('open');
+  _reactBarBizId = null;
+  _reactBarMsgId = null;
+}
 
 // ---- Cerrar menú al hacer clic fuera ----
 document.addEventListener('click', (e) => {
