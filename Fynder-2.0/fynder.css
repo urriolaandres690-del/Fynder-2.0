@@ -16733,14 +16733,14 @@ iframe.goog-te-menu-frame { box-shadow: 0 4px 20px rgba(0,0,0,.15) !important; b
   border-bottom: 1px solid rgba(255,255,255,.07);
 }
 #msgBubbleCtxMenu .ctx-reaction-strip .chat-reaction-btn {
-  font-size: 1.5rem;
-  width: 40px; height: 40px;
+  font-size: 1.75rem;
+  width: 46px; height: 46px;
   border-radius: 50%;
-  transition: transform .15s, background .12s;
+  transition: transform .15s cubic-bezier(.34,1.56,.64,1), background .12s;
 }
 #msgBubbleCtxMenu .ctx-reaction-strip .chat-reaction-btn:hover {
   background: rgba(255,255,255,.1);
-  transform: scale(1.35);
+  transform: scale(1.4) translateY(-3px);
 }
 /* Botón "+" en la tira del menú */
 #msgBubbleCtxMenu .ctx-reaction-strip .react-more {
