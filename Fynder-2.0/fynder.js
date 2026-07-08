@@ -1,246 +1,246 @@
-const CATEGORIES=[{id:"restaurantes",label:"Restaurantes",color:"#EF4444",bg:"#FEF2F2",svg:'<svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 2v7c0 1.1.9 2 2 2h4a2 2 0 0 0 2-2V2"/><path d="M7 2v20"/><path d="M21 15V2a5 5 0 0 0-5 5v6c0 1.1.9 2 2 2h3Zm0 0v7"/></svg>'},{id:"salud",label:"Salud",color:"#10B981",bg:"#ECFDF5",svg:'<svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/></svg>'},{id:"belleza",label:"Belleza",color:"#EC4899",bg:"#FDF2F8",svg:'<svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 3 6 6 6-6"/><path d="M20 21H4"/><path d="M4 21V12a9 9 0 0 1 16 0v9"/></svg>'},{id:"transporte",label:"Transporte",color:"#F97316",bg:"#FFF7ED",svg:'<svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 17H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v7a2 2 0 0 1-2 2z"/><circle cx="7" cy="17" r="2"/><circle cx="17" cy="17" r="2"/></svg>'},{id:"turismo",label:"Turismo",color:"#8B5CF6",bg:"#F5F3FF",svg:'<svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17.8 19.2 16 11l3.5-3.5C21 6 21 4 19 2c-2-2-4-2-5.5-.5L10 5 1.8 6.2l3.5 3.5L2 12l4.8 1.2 1.2 4.8 2.2-3.3 3.8 3.8Z"/><path d="m5 15-1 5h5"/></svg>'},{id:"hogar",label:"Hogar",color:"#6B7280",bg:"#F3F4F6",svg:'<svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>'},{id:"tecnologia",label:"Tecnología",color:"#2F5BB7",bg:"#EEF2FF",svg:'<svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"/><path d="M16.5 3.5a2.12 2.12 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg>'},{id:"ropa",label:"Ropa",color:"#67B8B4",bg:"#F0FEFE",svg:'<svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" x2="21" y1="6" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>'},{id:"deportes",label:"Deportes",color:"#0EA5E9",bg:"#F0F9FF",svg:'<svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M4.93 4.93c4.43 4.43 4.43 10.21 0 14.64"/><path d="M19.07 4.93c-4.43 4.43-4.43 10.21 0 14.64"/><path d="M2 12h20"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>'}]; 
+ï»¿const CATEGORIES=[{id:"restaurantes",label:"Restaurantes",color:"#EF4444",bg:"#FEF2F2",svg:'<svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 2v7c0 1.1.9 2 2 2h4a2 2 0 0 0 2-2V2"/><path d="M7 2v20"/><path d="M21 15V2a5 5 0 0 0-5 5v6c0 1.1.9 2 2 2h3Zm0 0v7"/></svg>'},{id:"salud",label:"Salud",color:"#10B981",bg:"#ECFDF5",svg:'<svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/></svg>'},{id:"belleza",label:"Belleza",color:"#EC4899",bg:"#FDF2F8",svg:'<svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 3 6 6 6-6"/><path d="M20 21H4"/><path d="M4 21V12a9 9 0 0 1 16 0v9"/></svg>'},{id:"transporte",label:"Transporte",color:"#F97316",bg:"#FFF7ED",svg:'<svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 17H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v7a2 2 0 0 1-2 2z"/><circle cx="7" cy="17" r="2"/><circle cx="17" cy="17" r="2"/></svg>'},{id:"turismo",label:"Turismo",color:"#8B5CF6",bg:"#F5F3FF",svg:'<svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17.8 19.2 16 11l3.5-3.5C21 6 21 4 19 2c-2-2-4-2-5.5-.5L10 5 1.8 6.2l3.5 3.5L2 12l4.8 1.2 1.2 4.8 2.2-3.3 3.8 3.8Z"/><path d="m5 15-1 5h5"/></svg>'},{id:"hogar",label:"Hogar",color:"#6B7280",bg:"#F3F4F6",svg:'<svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>'},{id:"tecnologia",label:"Tecnologï¿½a",color:"#2F5BB7",bg:"#EEF2FF",svg:'<svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"/><path d="M16.5 3.5a2.12 2.12 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg>'},{id:"ropa",label:"Ropa",color:"#67B8B4",bg:"#F0FEFE",svg:'<svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" x2="21" y1="6" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>'},{id:"deportes",label:"Deportes",color:"#0EA5E9",bg:"#F0F9FF",svg:'<svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M4.93 4.93c4.43 4.43 4.43 10.21 0 14.64"/><path d="M19.07 4.93c-4.43 4.43-4.43 10.21 0 14.64"/><path d="M2 12h20"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>'}]; 
 
 const REVIEWS={
-"1":[{name:"Claudia R.",avatar:"C",stars:5,date:"mar 2026",text:"¡Increíble! Pedí la torta de bodas y superó todas mis expectativas. La decoración fue exactamente como la pedí y el sabor…simplemente delicioso. Todos los invitados preguntaron dónde la compramos."},
-{name:"Andrés M.",avatar:"A",stars:5,date:"feb 2026",text:"Llevo comprando aquí 3 años. Cada pastel es una obra de arte. El de tres leches es el mejor que he probado en mi vida. Muy recomendado."},
-{name:"Patricia V.",avatar:"P",stars:4,date:"ene 2026",text:"Excelente atención y calidad. El único detalle es que a veces el tiempo de espera es largo porque son muy solicitados, pero vale totalmente la pena."}],
-"2":[{name:"Sofía L.",avatar:"S",stars:5,date:"abr 2026",text:"El mejor salón que he visitado. Las chicas son muy profesionales y mi coloración quedó perfecta. El ambiente es muy relajante. Ya agendé mi próxima cita."},
-{name:"Valeria T.",avatar:"V",stars:4,date:"mar 2026",text:"Buen servicio, los precios son razonables. El manicure me duró casi 3 semanas. Solo bajé una estrella porque el estacionamiento es complicado."},
-{name:"Daniela F.",avatar:"D",stars:5,date:"feb 2026",text:"Vine por primera vez y quedé enamorada. El corte que me hicieron es exactamente el que quería. Super recomendado para tratamientos capilares."}],
-"3":[{name:"Marco A.",avatar:"M",stars:5,date:"may 2026",text:"Repararon mi laptop en menos de 2 horas y a un precio justo. El técnico explicó exactamente qué tenía el equipo. Ya lo recomendé a toda mi familia."},
-{name:"Luis G.",avatar:"L",stars:4,date:"abr 2026",text:"Buen servicio. Mi celular quedó como nuevo después del cambio de pantalla. Tienen los repuestos originales, lo cual es difícil de encontrar en otros lados."},
-{name:"Karla P.",avatar:"K",stars:3,date:"mar 2026",text:"El servicio es bueno pero tuve que esperar más de lo prometido. Al final quedé satisfecha con el resultado, solo que la comunicación puede mejorar."}],
-"4":[{name:"Roberto N.",avatar:"R",stars:5,date:"jun 2026",text:"Mi café favorito sin duda. El americano es perfecto y los desayunos son abundantes y deliciosos. El lugar es acogedor y el WiFi excelente para trabajar."},
-{name:"Isabela C.",avatar:"I",stars:5,date:"may 2026",text:"Vengo casi todos los días. El personal siempre está de buen humor y recuerdan tu pedido habitual. El sandwich de pavo es simplemente adictivo."},
-{name:"Camilo R.",avatar:"C",stars:5,date:"may 2026",text:"Ambiente increíble, café de primera calidad y precios muy justos. Es raro encontrar un lugar así en el centro histórico. ¡No lo cambio por nada!"}],
-"5":[{name:"María E.",avatar:"M",stars:5,date:"abr 2026",text:"El pan de masa madre es el mejor de la ciudad. Llego temprano porque se acaba rápido. Los brownies son una perdición total. Lugar muy familiar y cálido."},
+"1":[{name:"Claudia R.",avatar:"C",stars:5,date:"mar 2026",text:"ï¿½Increï¿½ble! Pedï¿½ la torta de bodas y superï¿½ todas mis expectativas. La decoraciï¿½n fue exactamente como la pedï¿½ y el saborï¿½simplemente delicioso. Todos los invitados preguntaron dï¿½nde la compramos."},
+{name:"Andrï¿½s M.",avatar:"A",stars:5,date:"feb 2026",text:"Llevo comprando aquï¿½ 3 aï¿½os. Cada pastel es una obra de arte. El de tres leches es el mejor que he probado en mi vida. Muy recomendado."},
+{name:"Patricia V.",avatar:"P",stars:4,date:"ene 2026",text:"Excelente atenciï¿½n y calidad. El ï¿½nico detalle es que a veces el tiempo de espera es largo porque son muy solicitados, pero vale totalmente la pena."}],
+"2":[{name:"Sofï¿½a L.",avatar:"S",stars:5,date:"abr 2026",text:"El mejor salï¿½n que he visitado. Las chicas son muy profesionales y mi coloraciï¿½n quedï¿½ perfecta. El ambiente es muy relajante. Ya agendï¿½ mi prï¿½xima cita."},
+{name:"Valeria T.",avatar:"V",stars:4,date:"mar 2026",text:"Buen servicio, los precios son razonables. El manicure me durï¿½ casi 3 semanas. Solo bajï¿½ una estrella porque el estacionamiento es complicado."},
+{name:"Daniela F.",avatar:"D",stars:5,date:"feb 2026",text:"Vine por primera vez y quedï¿½ enamorada. El corte que me hicieron es exactamente el que querï¿½a. Super recomendado para tratamientos capilares."}],
+"3":[{name:"Marco A.",avatar:"M",stars:5,date:"may 2026",text:"Repararon mi laptop en menos de 2 horas y a un precio justo. El tï¿½cnico explicï¿½ exactamente quï¿½ tenï¿½a el equipo. Ya lo recomendï¿½ a toda mi familia."},
+{name:"Luis G.",avatar:"L",stars:4,date:"abr 2026",text:"Buen servicio. Mi celular quedï¿½ como nuevo despuï¿½s del cambio de pantalla. Tienen los repuestos originales, lo cual es difï¿½cil de encontrar en otros lados."},
+{name:"Karla P.",avatar:"K",stars:3,date:"mar 2026",text:"El servicio es bueno pero tuve que esperar mï¿½s de lo prometido. Al final quedï¿½ satisfecha con el resultado, solo que la comunicaciï¿½n puede mejorar."}],
+"4":[{name:"Roberto N.",avatar:"R",stars:5,date:"jun 2026",text:"Mi cafï¿½ favorito sin duda. El americano es perfecto y los desayunos son abundantes y deliciosos. El lugar es acogedor y el WiFi excelente para trabajar."},
+{name:"Isabela C.",avatar:"I",stars:5,date:"may 2026",text:"Vengo casi todos los dï¿½as. El personal siempre estï¿½ de buen humor y recuerdan tu pedido habitual. El sandwich de pavo es simplemente adictivo."},
+{name:"Camilo R.",avatar:"C",stars:5,date:"may 2026",text:"Ambiente increï¿½ble, cafï¿½ de primera calidad y precios muy justos. Es raro encontrar un lugar asï¿½ en el centro histï¿½rico. ï¿½No lo cambio por nada!"}],
+"5":[{name:"Marï¿½a E.",avatar:"M",stars:5,date:"abr 2026",text:"El pan de masa madre es el mejor de la ciudad. Llego temprano porque se acaba rï¿½pido. Los brownies son una perdiciï¿½n total. Lugar muy familiar y cï¿½lido."},
 {name:"Jorge S.",avatar:"J",stars:4,date:"mar 2026",text:"Muy buenos productos artesanales. Las galletas de avena son mis favoritas. A veces se quedan sin stock de ciertos productos, pero eso habla de lo buenos que son."},
-{name:"Lucía B.",avatar:"L",stars:5,date:"feb 2026",text:"Descubrí este lugar hace 2 meses y ya no puedo vivir sin su pan. La dueña es encantadora y siempre tiene algo nuevo para probar."}],
-"6":[{name:"Dr. Fernando H.",avatar:"F",stars:5,date:"may 2026",text:"Excelente clínica. Llevé a mis hijos al pediatra y el trato fue impecable. Las instalaciones están muy limpias y el personal es muy profesional."},
-{name:"Ana P.",avatar:"A",stars:4,date:"abr 2026",text:"Buena atención médica. La nutricionista me dio un plan muy personalizado. Los tiempos de espera son razonables y el precio de la consulta es accesible."},
-{name:"Teresa M.",avatar:"T",stars:5,date:"mar 2026",text:"La fisioterapia me ayudó muchísimo con mi lesión de rodilla. El especialista es muy paciente y explica todo con claridad. Totalmente recomendado."}],
-"7":[{name:"Gabriela O.",avatar:"G",stars:5,date:"jun 2026",text:"¡Me encanta esta tienda! Siempre encuentro algo bonito y a buen precio. La ropa es de buena calidad y el surtido cambia frecuentemente. Mi lugar favorito para shoppear."},
-{name:"Melissa V.",avatar:"M",stars:4,date:"may 2026",text:"Bonita ropa y buenos precios. Compré un vestido precioso para una boda. Solo quisiera que tuvieran más tallas disponibles en algunas prendas."},
-{name:"Paola A.",avatar:"P",stars:5,date:"abr 2026",text:"La mejor boutique del área. Las vendedoras te asesoran muy bien y no te presionan para comprar. Volveré pronto a ver las novedades."}],
-"8":[{name:"Carmen L.",avatar:"C",stars:5,date:"jun 2026",text:"El cheesecake de frutos rojos es lo mejor que he comido en años. Todo es fresco y natural. Ya hice mi pedido para el cumpleaños de mi mamá."},
-{name:"Ricardo V.",avatar:"R",stars:5,date:"may 2026",text:"Los macarons son perfectos, suaves por dentro y crujientes por fuera. Los pedí como regalo y todos quedaron fascinados. Precio justo por la calidad."},
-{name:"Natalia G.",avatar:"N",stars:4,date:"abr 2026",text:"Muy buenos postres, ingredientes naturales que se notan en el sabor. La atención es muy amable. El único detalle es que los tiempos de entrega a veces se extienden."}],
-"9":[{name:"Carlos M.",avatar:"C",stars:5,date:"jun 2026",text:"El mejor sushi de la ciudad. El salmón es fresco y las porciones son generosas. El ambiente es tranquilo y perfecto para una cena especial."},
-{name:"Andrea F.",avatar:"A",stars:5,date:"may 2026",text:"Descubrí este restaurante hace poco y ya es mi favorito. Los rolls de camarón están increíbles. El servicio es rápido y muy amable."},
-{name:"Pablo S.",avatar:"P",stars:4,date:"may 2026",text:"Muy buena comida japonesa auténtica. El ramen es espectacular. Precios un poco altos pero la calidad lo justifica completamente."}],
-"10":[{name:"Diana R.",avatar:"D",stars:5,date:"may 2026",text:"¡Me encanta este spa! El masaje relajante fue la mejor decisión de la semana. Las terapistas son profesionales y el ambiente es de lujo. Ya tengo mi cita del próximo mes."},
-{name:"Fernanda C.",avatar:"F",stars:5,date:"abr 2026",text:"Vine por mi cumpleaños y me trataron increíble. El facial me dejó la piel radiante. Los productos que usan son de primera calidad. 100% recomendado."},
-{name:"Stephanie V.",avatar:"S",stars:4,date:"mar 2026",text:"Excelente servicio y ambiente muy relajante. Solo quisiera que tuvieran más opciones de horario porque siempre están llenos. Vale la pena reservar con anticipación."}],
-"11":[{name:"Miguel A.",avatar:"M",stars:4,date:"may 2026",text:"Buena ferretería, tienen casi todo lo que uno necesita. Los precios son competitivos y el personal te orienta bien. Encontré piezas que no pude hallar en ningún otro lado."},
-{name:"Roberto L.",avatar:"R",stars:5,date:"abr 2026",text:"Llevo años comprando aquí. La atención es excelente y siempre tienen en stock lo que busco. Don Ramón conoce cada producto al dedillo."},
-{name:"Héctor M.",avatar:"H",stars:4,date:"mar 2026",text:"Buen lugar, muy surtido. Compré herramientas para la remodelación y quedé satisfecho. A veces la espera en la caja es un poco larga."}],
-"12":[{name:"Laura T.",avatar:"L",stars:5,date:"jun 2026",text:"¡Los helados artesanales son una maravilla! El sabor de guayaba es único. Las porciones son generosas y los precios muy accesibles. Perfecto para las tardes calurosas."},
-{name:"Alejandro P.",avatar:"A",stars:5,date:"may 2026",text:"El mejor helado de la zona sin duda. Prueben el de maracuyá con chocolate, es una combinación increíble. El local es muy limpio y el servicio rápido."},
+{name:"Lucï¿½a B.",avatar:"L",stars:5,date:"feb 2026",text:"Descubrï¿½ este lugar hace 2 meses y ya no puedo vivir sin su pan. La dueï¿½a es encantadora y siempre tiene algo nuevo para probar."}],
+"6":[{name:"Dr. Fernando H.",avatar:"F",stars:5,date:"may 2026",text:"Excelente clï¿½nica. Llevï¿½ a mis hijos al pediatra y el trato fue impecable. Las instalaciones estï¿½n muy limpias y el personal es muy profesional."},
+{name:"Ana P.",avatar:"A",stars:4,date:"abr 2026",text:"Buena atenciï¿½n mï¿½dica. La nutricionista me dio un plan muy personalizado. Los tiempos de espera son razonables y el precio de la consulta es accesible."},
+{name:"Teresa M.",avatar:"T",stars:5,date:"mar 2026",text:"La fisioterapia me ayudï¿½ muchï¿½simo con mi lesiï¿½n de rodilla. El especialista es muy paciente y explica todo con claridad. Totalmente recomendado."}],
+"7":[{name:"Gabriela O.",avatar:"G",stars:5,date:"jun 2026",text:"ï¿½Me encanta esta tienda! Siempre encuentro algo bonito y a buen precio. La ropa es de buena calidad y el surtido cambia frecuentemente. Mi lugar favorito para shoppear."},
+{name:"Melissa V.",avatar:"M",stars:4,date:"may 2026",text:"Bonita ropa y buenos precios. Comprï¿½ un vestido precioso para una boda. Solo quisiera que tuvieran mï¿½s tallas disponibles en algunas prendas."},
+{name:"Paola A.",avatar:"P",stars:5,date:"abr 2026",text:"La mejor boutique del ï¿½rea. Las vendedoras te asesoran muy bien y no te presionan para comprar. Volverï¿½ pronto a ver las novedades."}],
+"8":[{name:"Carmen L.",avatar:"C",stars:5,date:"jun 2026",text:"El cheesecake de frutos rojos es lo mejor que he comido en aï¿½os. Todo es fresco y natural. Ya hice mi pedido para el cumpleaï¿½os de mi mamï¿½."},
+{name:"Ricardo V.",avatar:"R",stars:5,date:"may 2026",text:"Los macarons son perfectos, suaves por dentro y crujientes por fuera. Los pedï¿½ como regalo y todos quedaron fascinados. Precio justo por la calidad."},
+{name:"Natalia G.",avatar:"N",stars:4,date:"abr 2026",text:"Muy buenos postres, ingredientes naturales que se notan en el sabor. La atenciï¿½n es muy amable. El ï¿½nico detalle es que los tiempos de entrega a veces se extienden."}],
+"9":[{name:"Carlos M.",avatar:"C",stars:5,date:"jun 2026",text:"El mejor sushi de la ciudad. El salmï¿½n es fresco y las porciones son generosas. El ambiente es tranquilo y perfecto para una cena especial."},
+{name:"Andrea F.",avatar:"A",stars:5,date:"may 2026",text:"Descubrï¿½ este restaurante hace poco y ya es mi favorito. Los rolls de camarï¿½n estï¿½n increï¿½bles. El servicio es rï¿½pido y muy amable."},
+{name:"Pablo S.",avatar:"P",stars:4,date:"may 2026",text:"Muy buena comida japonesa autï¿½ntica. El ramen es espectacular. Precios un poco altos pero la calidad lo justifica completamente."}],
+"10":[{name:"Diana R.",avatar:"D",stars:5,date:"may 2026",text:"ï¿½Me encanta este spa! El masaje relajante fue la mejor decisiï¿½n de la semana. Las terapistas son profesionales y el ambiente es de lujo. Ya tengo mi cita del prï¿½ximo mes."},
+{name:"Fernanda C.",avatar:"F",stars:5,date:"abr 2026",text:"Vine por mi cumpleaï¿½os y me trataron increï¿½ble. El facial me dejï¿½ la piel radiante. Los productos que usan son de primera calidad. 100% recomendado."},
+{name:"Stephanie V.",avatar:"S",stars:4,date:"mar 2026",text:"Excelente servicio y ambiente muy relajante. Solo quisiera que tuvieran mï¿½s opciones de horario porque siempre estï¿½n llenos. Vale la pena reservar con anticipaciï¿½n."}],
+"11":[{name:"Miguel A.",avatar:"M",stars:4,date:"may 2026",text:"Buena ferreterï¿½a, tienen casi todo lo que uno necesita. Los precios son competitivos y el personal te orienta bien. Encontrï¿½ piezas que no pude hallar en ningï¿½n otro lado."},
+{name:"Roberto L.",avatar:"R",stars:5,date:"abr 2026",text:"Llevo aï¿½os comprando aquï¿½. La atenciï¿½n es excelente y siempre tienen en stock lo que busco. Don Ramï¿½n conoce cada producto al dedillo."},
+{name:"Hï¿½ctor M.",avatar:"H",stars:4,date:"mar 2026",text:"Buen lugar, muy surtido. Comprï¿½ herramientas para la remodelaciï¿½n y quedï¿½ satisfecho. A veces la espera en la caja es un poco larga."}],
+"12":[{name:"Laura T.",avatar:"L",stars:5,date:"jun 2026",text:"ï¿½Los helados artesanales son una maravilla! El sabor de guayaba es ï¿½nico. Las porciones son generosas y los precios muy accesibles. Perfecto para las tardes calurosas."},
+{name:"Alejandro P.",avatar:"A",stars:5,date:"may 2026",text:"El mejor helado de la zona sin duda. Prueben el de maracuyï¿½ con chocolate, es una combinaciï¿½n increï¿½ble. El local es muy limpio y el servicio rï¿½pido."},
 {name:"Isabella M.",avatar:"I",stars:5,date:"abr 2026",text:"Vengo todos los fines de semana con mis hijos. Los sabores son originales y creativos. Me alegra apoyar un negocio local tan bueno."}],
-"13":[{name:"Ramón V.",avatar:"R",stars:4,date:"may 2026",text:"Buen taller mecánico. Me arreglaron los frenos a buen precio y en el tiempo prometido. El mecánico explica bien qué le pasa al carro."},
-{name:"Enrique S.",avatar:"E",stars:5,date:"abr 2026",text:"El mejor taller del barrio. Honesto y eficiente. Llevé mi camioneta con un problema eléctrico que otros talleres no pudieron resolver y aquí lo solventaron."},
-{name:"Oscar B.",avatar:"O",stars:3,date:"mar 2026",text:"Servicio aceptable. El trabajo quedó bien pero tardó más de lo esperado. Los precios están bien. Lo recomendaría para servicios sencillos."}],
-"14":[{name:"Elena C.",avatar:"E",stars:5,date:"jun 2026",text:"La mejor librería independiente de la ciudad. Siempre encuentro libros que no salen en las librerías grandes. El personal recomienda muy bien. Me encanta el rincón de lectura."},
-{name:"Tomás R.",avatar:"T",stars:5,date:"may 2026",text:"Lugar mágico para los amantes de los libros. Tienen una sección de autores latinoamericanos increíble. Los eventos literarios que organizan son fantásticos."},
-{name:"Mariana F.",avatar:"M",stars:4,date:"abr 2026",text:"Buena selección de libros y muy buen ambiente. Los precios son razonables. Quisiera que ampliaran el horario los domingos para poder ir más seguido."}],
-"15":[{name:"Jaime L.",avatar:"J",stars:5,date:"jun 2026",text:"El mejor tour de la ciudad, guías muy preparados y apasionados. Aprendí más en 3 horas con ellos que en años de vivir aquí. Super recomendado para turistas y locales."},
-{name:"Sophie K.",avatar:"S",stars:5,date:"may 2026",text:"Excelente experiencia. El tour del casco histórico fue fascinante. El guía habla español e inglés perfectamente. Sin duda lo mejor que hice en mi visita."},
-{name:"Natalia V.",avatar:"N",stars:4,date:"abr 2026",text:"Muy buen tour, bien organizado y con mucha información histórica. Hubiera preferido un poco más de tiempo en algunos lugares pero en general fue excelente."}],
-"16":[{name:"Kevin M.",avatar:"K",stars:5,date:"jun 2026",text:"Excelente gimnasio. Los equipos son modernos y están siempre en buen estado. El entrenador de crossfit es increíble, muy motivador. Ya noto los resultados después de 2 meses."},
-{name:"Priscila A.",avatar:"P",stars:5,date:"may 2026",text:"Me encanta la clase de yoga por las mañanas. El ambiente es muy tranquilo y el instructor es muy paciente. Las instalaciones siempre limpias y bien iluminadas."},
-{name:"Mauricio G.",avatar:"M",stars:4,date:"abr 2026",text:"Buen gym, bien equipado y con buenas clases. El único inconveniente es que a veces las clases de spinning se llenan muy rápido y es difícil conseguir lugar."}],
-"17":[{name:"Valeria S.",avatar:"V",stars:5,date:"may 2026",text:"Hicimos la sesión de fotos de compromiso y quedamos absolutamente fascinados. El fotógrafo captó momentos únicos que atesoraremos para siempre. Super profesional."},
-{name:"David R.",avatar:"D",stars:5,date:"abr 2026",text:"Usamos el servicio para fotografía de productos de nuestra empresa. Las fotos quedaron increíbles, justo lo que necesitábamos para nuestra tienda en línea. 100% recomendado."},
-{name:"Mariela C.",avatar:"M",stars:4,date:"mar 2026",text:"Muy buen trabajo. Las fotos familiares quedaron preciosas. El tiempo de entrega de las fotos editadas fue de 5 días, un poco más de lo prometido pero el resultado valió la espera."}],
-"18":[{name:"Abuela Rosa",avatar:"A",stars:5,date:"jun 2026",text:"El sancocho me recordó exactamente al de mi mamá. Los ingredientes son frescos y el sazón es perfecto. Este restaurante mantiene viva la gastronomía panameña tradicional."},
+"13":[{name:"Ramï¿½n V.",avatar:"R",stars:4,date:"may 2026",text:"Buen taller mecï¿½nico. Me arreglaron los frenos a buen precio y en el tiempo prometido. El mecï¿½nico explica bien quï¿½ le pasa al carro."},
+{name:"Enrique S.",avatar:"E",stars:5,date:"abr 2026",text:"El mejor taller del barrio. Honesto y eficiente. Llevï¿½ mi camioneta con un problema elï¿½ctrico que otros talleres no pudieron resolver y aquï¿½ lo solventaron."},
+{name:"Oscar B.",avatar:"O",stars:3,date:"mar 2026",text:"Servicio aceptable. El trabajo quedï¿½ bien pero tardï¿½ mï¿½s de lo esperado. Los precios estï¿½n bien. Lo recomendarï¿½a para servicios sencillos."}],
+"14":[{name:"Elena C.",avatar:"E",stars:5,date:"jun 2026",text:"La mejor librerï¿½a independiente de la ciudad. Siempre encuentro libros que no salen en las librerï¿½as grandes. El personal recomienda muy bien. Me encanta el rincï¿½n de lectura."},
+{name:"Tomï¿½s R.",avatar:"T",stars:5,date:"may 2026",text:"Lugar mï¿½gico para los amantes de los libros. Tienen una secciï¿½n de autores latinoamericanos increï¿½ble. Los eventos literarios que organizan son fantï¿½sticos."},
+{name:"Mariana F.",avatar:"M",stars:4,date:"abr 2026",text:"Buena selecciï¿½n de libros y muy buen ambiente. Los precios son razonables. Quisiera que ampliaran el horario los domingos para poder ir mï¿½s seguido."}],
+"15":[{name:"Jaime L.",avatar:"J",stars:5,date:"jun 2026",text:"El mejor tour de la ciudad, guï¿½as muy preparados y apasionados. Aprendï¿½ mï¿½s en 3 horas con ellos que en aï¿½os de vivir aquï¿½. Super recomendado para turistas y locales."},
+{name:"Sophie K.",avatar:"S",stars:5,date:"may 2026",text:"Excelente experiencia. El tour del casco histï¿½rico fue fascinante. El guï¿½a habla espaï¿½ol e inglï¿½s perfectamente. Sin duda lo mejor que hice en mi visita."},
+{name:"Natalia V.",avatar:"N",stars:4,date:"abr 2026",text:"Muy buen tour, bien organizado y con mucha informaciï¿½n histï¿½rica. Hubiera preferido un poco mï¿½s de tiempo en algunos lugares pero en general fue excelente."}],
+"16":[{name:"Kevin M.",avatar:"K",stars:5,date:"jun 2026",text:"Excelente gimnasio. Los equipos son modernos y estï¿½n siempre en buen estado. El entrenador de crossfit es increï¿½ble, muy motivador. Ya noto los resultados despuï¿½s de 2 meses."},
+{name:"Priscila A.",avatar:"P",stars:5,date:"may 2026",text:"Me encanta la clase de yoga por las maï¿½anas. El ambiente es muy tranquilo y el instructor es muy paciente. Las instalaciones siempre limpias y bien iluminadas."},
+{name:"Mauricio G.",avatar:"M",stars:4,date:"abr 2026",text:"Buen gym, bien equipado y con buenas clases. El ï¿½nico inconveniente es que a veces las clases de spinning se llenan muy rï¿½pido y es difï¿½cil conseguir lugar."}],
+"17":[{name:"Valeria S.",avatar:"V",stars:5,date:"may 2026",text:"Hicimos la sesiï¿½n de fotos de compromiso y quedamos absolutamente fascinados. El fotï¿½grafo captï¿½ momentos ï¿½nicos que atesoraremos para siempre. Super profesional."},
+{name:"David R.",avatar:"D",stars:5,date:"abr 2026",text:"Usamos el servicio para fotografï¿½a de productos de nuestra empresa. Las fotos quedaron increï¿½bles, justo lo que necesitï¿½bamos para nuestra tienda en lï¿½nea. 100% recomendado."},
+{name:"Mariela C.",avatar:"M",stars:4,date:"mar 2026",text:"Muy buen trabajo. Las fotos familiares quedaron preciosas. El tiempo de entrega de las fotos editadas fue de 5 dï¿½as, un poco mï¿½s de lo prometido pero el resultado valiï¿½ la espera."}],
+"18":[{name:"Abuela Rosa",avatar:"A",stars:5,date:"jun 2026",text:"El sancocho me recordï¿½ exactamente al de mi mamï¿½. Los ingredientes son frescos y el sazï¿½n es perfecto. Este restaurante mantiene viva la gastronomï¿½a panameï¿½a tradicional."},
 {name:"Ernesto V.",avatar:"E",stars:5,date:"may 2026",text:"El arroz con pollo es el mejor de la ciudad. Porciones generosas y precio muy justo. El ambiente es familiar y acogedor. Ya es mi lugar habitual para el almuerzo."},
-{name:"Sandra M.",avatar:"S",stars:5,date:"abr 2026",text:"Los patacones con carne estaban divinos. Todo fresco, todo casero, todo sabroso. Difícil encontrar cocina panameña auténtica así. Lugar imprescindible."}],
-"19":[{name:"Rodrigo F.",avatar:"R",stars:4,date:"may 2026",text:"Buen servicio de soporte técnico. Arreglaron la red de mi oficina en una sola visita. Saben lo que hacen y los precios son razonables. Los volveré a contratar."},
-{name:"Carolina V.",avatar:"C",stars:5,date:"abr 2026",text:"Instalaron las cámaras de seguridad en mi local de forma profesional y rápida. Explican bien cómo usar el sistema y dan soporte post-venta. Muy recomendados."},
-{name:"Arturo P.",avatar:"A",stars:3,date:"mar 2026",text:"El trabajo técnico estuvo bien. Tardaron un poco más de lo estimado pero al final entregaron lo prometido. Buena comunicación durante el proceso."}],
-"20":[{name:"Rebeca H.",avatar:"R",stars:5,date:"jun 2026",text:"La mejor boutique de la ciudad sin duda. Encontré el vestido perfecto para mi graduación. La estilista fue increíble ayudándome a elegir. Definitivamente regreso."},
-{name:"Fernanda L.",avatar:"F",stars:5,date:"may 2026",text:"Ropa de muy buena calidad y diseños hermosos. El servicio de estilismo personal es un plus que no esperaba y me encantó. Precios altos pero justificados por la calidad."},
-{name:"Monica S.",avatar:"M",stars:4,date:"abr 2026",text:"Bonita tienda con ropa exclusiva. Compré un conjunto precioso. Las vendedoras son muy amables y te ayudan a combinar. Quisiera más opciones de tallas."}],
-"21":[{name:"Ejecutivo A.",avatar:"E",stars:5,date:"jun 2026",text:"Uso este servicio para todos mis traslados al aeropuerto. Siempre puntuales, los vehículos impecables y los choferes muy profesionales. Sin duda el mejor transporte ejecutivo."},
-{name:"María G.",avatar:"M",stars:5,date:"may 2026",text:"Los usé para el traslado de mi boda. Todo perfecto, vehículos decorados según mis instrucciones y el chofer fue extremadamente amable. Superaron todas mis expectativas."},
-{name:"Licda. Torres",avatar:"L",stars:4,date:"abr 2026",text:"Servicio confiable para viajes de negocios. Siempre a tiempo, vehículos cómodos. Solo quisiera que la app para reservas fuera un poco más intuitiva."}],
-"22":[{name:"Brenda C.",avatar:"B",stars:5,date:"jun 2026",text:"La mejor clínica dental que he visitado. El Dr. fue muy amable y paciente explicando cada procedimiento. La ortodoncia quedó perfecta después de 18 meses. ¡Los recomiendo con los ojos cerrados!"},
+{name:"Sandra M.",avatar:"S",stars:5,date:"abr 2026",text:"Los patacones con carne estaban divinos. Todo fresco, todo casero, todo sabroso. Difï¿½cil encontrar cocina panameï¿½a autï¿½ntica asï¿½. Lugar imprescindible."}],
+"19":[{name:"Rodrigo F.",avatar:"R",stars:4,date:"may 2026",text:"Buen servicio de soporte tï¿½cnico. Arreglaron la red de mi oficina en una sola visita. Saben lo que hacen y los precios son razonables. Los volverï¿½ a contratar."},
+{name:"Carolina V.",avatar:"C",stars:5,date:"abr 2026",text:"Instalaron las cï¿½maras de seguridad en mi local de forma profesional y rï¿½pida. Explican bien cï¿½mo usar el sistema y dan soporte post-venta. Muy recomendados."},
+{name:"Arturo P.",avatar:"A",stars:3,date:"mar 2026",text:"El trabajo tï¿½cnico estuvo bien. Tardaron un poco mï¿½s de lo estimado pero al final entregaron lo prometido. Buena comunicaciï¿½n durante el proceso."}],
+"20":[{name:"Rebeca H.",avatar:"R",stars:5,date:"jun 2026",text:"La mejor boutique de la ciudad sin duda. Encontrï¿½ el vestido perfecto para mi graduaciï¿½n. La estilista fue increï¿½ble ayudï¿½ndome a elegir. Definitivamente regreso."},
+{name:"Fernanda L.",avatar:"F",stars:5,date:"may 2026",text:"Ropa de muy buena calidad y diseï¿½os hermosos. El servicio de estilismo personal es un plus que no esperaba y me encantï¿½. Precios altos pero justificados por la calidad."},
+{name:"Monica S.",avatar:"M",stars:4,date:"abr 2026",text:"Bonita tienda con ropa exclusiva. Comprï¿½ un conjunto precioso. Las vendedoras son muy amables y te ayudan a combinar. Quisiera mï¿½s opciones de tallas."}],
+"21":[{name:"Ejecutivo A.",avatar:"E",stars:5,date:"jun 2026",text:"Uso este servicio para todos mis traslados al aeropuerto. Siempre puntuales, los vehï¿½culos impecables y los choferes muy profesionales. Sin duda el mejor transporte ejecutivo."},
+{name:"Marï¿½a G.",avatar:"M",stars:5,date:"may 2026",text:"Los usï¿½ para el traslado de mi boda. Todo perfecto, vehï¿½culos decorados segï¿½n mis instrucciones y el chofer fue extremadamente amable. Superaron todas mis expectativas."},
+{name:"Licda. Torres",avatar:"L",stars:4,date:"abr 2026",text:"Servicio confiable para viajes de negocios. Siempre a tiempo, vehï¿½culos cï¿½modos. Solo quisiera que la app para reservas fuera un poco mï¿½s intuitiva."}],
+"22":[{name:"Brenda C.",avatar:"B",stars:5,date:"jun 2026",text:"La mejor clï¿½nica dental que he visitado. El Dr. fue muy amable y paciente explicando cada procedimiento. La ortodoncia quedï¿½ perfecta despuï¿½s de 18 meses. ï¿½Los recomiendo con los ojos cerrados!"},
 {name:"Fernando S.",avatar:"F",stars:5,date:"may 2026",text:"Vine para blanqueamiento dental y el resultado fue espectacular. Mucho mejor que kits caseros. El equipo es muy profesional y las instalaciones de primer nivel."},
-{name:"Lorena V.",avatar:"L",stars:4,date:"abr 2026",text:"Excelente atención. Me hicieron un implante dental y el procedimiento fue muy cómodo gracias a la tecnología que usan. Precio alto pero se entiende por la calidad del servicio."}],
-"300":[{name:"Jorge L.",avatar:"J",stars:5,date:"jun 2026",text:"Rapidísimos. Necesitaba un documento urgente y llegaron en 30 minutos. El precio es justo y el motorista muy amable. Ya los uso para todos mis envíos."},
-{name:"Rosario M.",avatar:"R",stars:4,date:"may 2026",text:"Muy buen servicio de mensajería. Me avisaron en tiempo real el estado del envío. Solo quisiera que cubrieran más zonas fuera del área metropolitana."},
-{name:"Iván S.",avatar:"I",stars:5,date:"abr 2026",text:"Los mejores para domicilios de última milla. Siempre puntuales y con buena actitud. Los recomiendo para pequeños negocios que necesitan entregas diarias."}],
-"301":[{name:"Lcdo. Rivera",avatar:"L",stars:5,date:"jun 2026",text:"Contratamos el bus para una excursión escolar y fue excelente. El chofer fue muy profesional y el autobús estaba en perfectas condiciones con el aire bien frío."},
-{name:"Empresa Logística X",avatar:"E",stars:4,date:"may 2026",text:"Usamos el charter para un evento corporativo. Cumplieron con el horario y la capacidad prometida. Buen trato al cliente. Los volveremos a contratar."},
-{name:"Patricia G.",avatar:"P",stars:5,date:"abr 2026",text:"Perfectos para la excursión de la iglesia. El bus grande, limpio y el señor chofer muy paciente con todos. Los precios están muy bien para grupos."}],
-"302":[{name:"Turista Alemán",avatar:"T",stars:5,date:"jun 2026",text:"Excelente servicio. Llegaron exactamente a la hora al aeropuerto. El conductor hablaba algo de inglés, lo que me ayudó mucho. Muy recomendado para turistas."},
+{name:"Lorena V.",avatar:"L",stars:4,date:"abr 2026",text:"Excelente atenciï¿½n. Me hicieron un implante dental y el procedimiento fue muy cï¿½modo gracias a la tecnologï¿½a que usan. Precio alto pero se entiende por la calidad del servicio."}],
+"300":[{name:"Jorge L.",avatar:"J",stars:5,date:"jun 2026",text:"Rapidï¿½simos. Necesitaba un documento urgente y llegaron en 30 minutos. El precio es justo y el motorista muy amable. Ya los uso para todos mis envï¿½os."},
+{name:"Rosario M.",avatar:"R",stars:4,date:"may 2026",text:"Muy buen servicio de mensajerï¿½a. Me avisaron en tiempo real el estado del envï¿½o. Solo quisiera que cubrieran mï¿½s zonas fuera del ï¿½rea metropolitana."},
+{name:"Ivï¿½n S.",avatar:"I",stars:5,date:"abr 2026",text:"Los mejores para domicilios de ï¿½ltima milla. Siempre puntuales y con buena actitud. Los recomiendo para pequeï¿½os negocios que necesitan entregas diarias."}],
+"301":[{name:"Lcdo. Rivera",avatar:"L",stars:5,date:"jun 2026",text:"Contratamos el bus para una excursiï¿½n escolar y fue excelente. El chofer fue muy profesional y el autobï¿½s estaba en perfectas condiciones con el aire bien frï¿½o."},
+{name:"Empresa Logï¿½stica X",avatar:"E",stars:4,date:"may 2026",text:"Usamos el charter para un evento corporativo. Cumplieron con el horario y la capacidad prometida. Buen trato al cliente. Los volveremos a contratar."},
+{name:"Patricia G.",avatar:"P",stars:5,date:"abr 2026",text:"Perfectos para la excursiï¿½n de la iglesia. El bus grande, limpio y el seï¿½or chofer muy paciente con todos. Los precios estï¿½n muy bien para grupos."}],
+"302":[{name:"Turista Alemï¿½n",avatar:"T",stars:5,date:"jun 2026",text:"Excelente servicio. Llegaron exactamente a la hora al aeropuerto. El conductor hablaba algo de inglï¿½s, lo que me ayudï¿½ mucho. Muy recomendado para turistas."},
 {name:"Claudia R.",avatar:"C",stars:5,date:"may 2026",text:"Uso Taxi Seguro todas las semanas. Siempre puntuales, los autos limpios y los choferes con uniforme. Me siento segura viajando sola de noche con ellos."},
-{name:"Marcos V.",avatar:"M",stars:4,date:"abr 2026",text:"Buen servicio, tarifa al aeropuerto muy razonable. La app para reservar podría ser más rápida pero el servicio en si es de primera calidad."}],
-"303":[{name:"Familia Ochoa",avatar:"F",stars:4,date:"jun 2026",text:"Mudanza de casa completa sin ningún daño. Empacaron todo con cuidado y el camión llegó puntual. Tomó más tiempo de lo estimado pero el resultado fue excelente."},
-{name:"Empresa ABC",avatar:"E",stars:5,date:"may 2026",text:"Mudamos toda la oficina en un solo día con ellos. Profesionales, organizados y cuidadosos con los equipos. Sin duda los mejores para mudanzas empresariales."},
-{name:"Héctor B.",avatar:"H",stars:3,date:"mar 2026",text:"El trabajo quedó bien pero la comunicación previa fue un poco lenta. Al final entregaron en el tiempo acordado y sin daños. Precio competitivo."}],
-"304":[{name:"Ejecutiva Martínez",avatar:"E",stars:5,date:"jun 2026",text:"El auto estaba impecable esperándome en el aeropuerto. El proceso de recogida y devolución fue rápido. El precio fue el mejor que encontré. Definitivamente regreso."},
-{name:"Familia Rodríguez",avatar:"F",stars:5,date:"may 2026",text:"Alquilamos un SUV para recorrer el interior del país. Sin problemas, bien equipado y el seguro incluido nos dio mucha tranquilidad. 100% recomendado."},
-{name:"Tourista Carlos",avatar:"T",stars:4,date:"abr 2026",text:"Buen servicio de alquiler. El carro estaba en buen estado y el precio fue justo. Solo tardaron un poco en el papeleo inicial pero todo salió bien."}],
-"305":[{name:"Ingrid H.",avatar:"I",stars:5,date:"jun 2026",text:"El tour al Canal fue lo mejor de mi viaje a Panamá. El guía explicó todo de forma fascinante. Ver las esclusas en acción es impresionante. No se lo pierdan."},
-{name:"Familia Peralta",avatar:"F",stars:5,date:"may 2026",text:"Llevamos a los niños y quedaron maravillados. El guía fue muy dinámico y los mantuvo atentos todo el tiempo. El museo interactivo es excelente."},
-{name:"Prof. Williams",avatar:"P",stars:5,date:"abr 2026",text:"Perfecto para grupos académicos. El guía bilingüe dominaba perfectamente la historia del Canal. Una experiencia educativa incomparable."}],
-"306":[{name:"Andrea V.",avatar:"A",stars:5,date:"jun 2026",text:"Tres días navegando en velero por San Blas. Las aguas más cristalinas que he visto en mi vida. La convivencia con la comunidad Guna fue única e irrepetible."},
+{name:"Marcos V.",avatar:"M",stars:4,date:"abr 2026",text:"Buen servicio, tarifa al aeropuerto muy razonable. La app para reservar podrï¿½a ser mï¿½s rï¿½pida pero el servicio en si es de primera calidad."}],
+"303":[{name:"Familia Ochoa",avatar:"F",stars:4,date:"jun 2026",text:"Mudanza de casa completa sin ningï¿½n daï¿½o. Empacaron todo con cuidado y el camiï¿½n llegï¿½ puntual. Tomï¿½ mï¿½s tiempo de lo estimado pero el resultado fue excelente."},
+{name:"Empresa ABC",avatar:"E",stars:5,date:"may 2026",text:"Mudamos toda la oficina en un solo dï¿½a con ellos. Profesionales, organizados y cuidadosos con los equipos. Sin duda los mejores para mudanzas empresariales."},
+{name:"Hï¿½ctor B.",avatar:"H",stars:3,date:"mar 2026",text:"El trabajo quedï¿½ bien pero la comunicaciï¿½n previa fue un poco lenta. Al final entregaron en el tiempo acordado y sin daï¿½os. Precio competitivo."}],
+"304":[{name:"Ejecutiva Martï¿½nez",avatar:"E",stars:5,date:"jun 2026",text:"El auto estaba impecable esperï¿½ndome en el aeropuerto. El proceso de recogida y devoluciï¿½n fue rï¿½pido. El precio fue el mejor que encontrï¿½. Definitivamente regreso."},
+{name:"Familia Rodrï¿½guez",avatar:"F",stars:5,date:"may 2026",text:"Alquilamos un SUV para recorrer el interior del paï¿½s. Sin problemas, bien equipado y el seguro incluido nos dio mucha tranquilidad. 100% recomendado."},
+{name:"Tourista Carlos",avatar:"T",stars:4,date:"abr 2026",text:"Buen servicio de alquiler. El carro estaba en buen estado y el precio fue justo. Solo tardaron un poco en el papeleo inicial pero todo saliï¿½ bien."}],
+"305":[{name:"Ingrid H.",avatar:"I",stars:5,date:"jun 2026",text:"El tour al Canal fue lo mejor de mi viaje a Panamï¿½. El guï¿½a explicï¿½ todo de forma fascinante. Ver las esclusas en acciï¿½n es impresionante. No se lo pierdan."},
+{name:"Familia Peralta",avatar:"F",stars:5,date:"may 2026",text:"Llevamos a los niï¿½os y quedaron maravillados. El guï¿½a fue muy dinï¿½mico y los mantuvo atentos todo el tiempo. El museo interactivo es excelente."},
+{name:"Prof. Williams",avatar:"P",stars:5,date:"abr 2026",text:"Perfecto para grupos acadï¿½micos. El guï¿½a bilingï¿½e dominaba perfectamente la historia del Canal. Una experiencia educativa incomparable."}],
+"306":[{name:"Andrea V.",avatar:"A",stars:5,date:"jun 2026",text:"Tres dï¿½as navegando en velero por San Blas. Las aguas mï¿½s cristalinas que he visto en mi vida. La convivencia con la comunidad Guna fue ï¿½nica e irrepetible."},
 {name:"Mochilero Europeo",avatar:"M",stars:5,date:"may 2026",text:"Best experience in Panama! The Guna people were amazing, the water was unreal. The team was very professional and the boat was comfortable. Worth every penny."},
-{name:"Pareja Luna de Miel",avatar:"P",stars:4,date:"abr 2026",text:"Increíble luna de miel en San Blas. Las islas son un paraíso. Solo deberían mejorar la comunicación previa al viaje, pero la experiencia en sí fue perfecta."}],
-"307":[{name:"Birdwatcher Carlos",avatar:"B",stars:5,date:"jun 2026",text:"Avistamos más de 60 especies en un solo día en Soberanía. El guía naturalista conoce cada rincón del parque. Una joya para los amantes de la naturaleza."},
-{name:"Fernanda P.",avatar:"F",stars:5,date:"may 2026",text:"El kayak en el Lago Gatún fue mágico. Ver el Canal desde el agua rodeada de selva es una experiencia que no olvidaré. Los guías son muy seguros y preparados."},
-{name:"Grupo Scout",avatar:"G",stars:4,date:"abr 2026",text:"Excelente experiencia para nuestro grupo de jóvenes. El sendero del Camino de Cruces es histórico y hermoso. Muy recomendado para educación ambiental."}],
-"308":[{name:"Turista Española",avatar:"T",stars:5,date:"jun 2026",text:"El mejor tour a pie que he hecho en Latinoamérica. El guía era un apasionado del Casco Viejo, cada esquina tiene una historia increíble. Grupo pequeño, perfecto."},
-{name:"Estudiante Historia",avatar:"E",stars:5,date:"may 2026",text:"Como estudiante de historia, este tour fue extraordinario. La profundidad histórica y arquitectónica que maneja el guía es impresionante. Totalmente recomendado."},
+{name:"Pareja Luna de Miel",avatar:"P",stars:4,date:"abr 2026",text:"Increï¿½ble luna de miel en San Blas. Las islas son un paraï¿½so. Solo deberï¿½an mejorar la comunicaciï¿½n previa al viaje, pero la experiencia en sï¿½ fue perfecta."}],
+"307":[{name:"Birdwatcher Carlos",avatar:"B",stars:5,date:"jun 2026",text:"Avistamos mï¿½s de 60 especies en un solo dï¿½a en Soberanï¿½a. El guï¿½a naturalista conoce cada rincï¿½n del parque. Una joya para los amantes de la naturaleza."},
+{name:"Fernanda P.",avatar:"F",stars:5,date:"may 2026",text:"El kayak en el Lago Gatï¿½n fue mï¿½gico. Ver el Canal desde el agua rodeada de selva es una experiencia que no olvidarï¿½. Los guï¿½as son muy seguros y preparados."},
+{name:"Grupo Scout",avatar:"G",stars:4,date:"abr 2026",text:"Excelente experiencia para nuestro grupo de jï¿½venes. El sendero del Camino de Cruces es histï¿½rico y hermoso. Muy recomendado para educaciï¿½n ambiental."}],
+"308":[{name:"Turista Espaï¿½ola",avatar:"T",stars:5,date:"jun 2026",text:"El mejor tour a pie que he hecho en Latinoamï¿½rica. El guï¿½a era un apasionado del Casco Viejo, cada esquina tiene una historia increï¿½ble. Grupo pequeï¿½o, perfecto."},
+{name:"Estudiante Historia",avatar:"E",stars:5,date:"may 2026",text:"Como estudiante de historia, este tour fue extraordinario. La profundidad histï¿½rica y arquitectï¿½nica que maneja el guï¿½a es impresionante. Totalmente recomendado."},
 {name:"Pareja Canadiense",avatar:"P",stars:5,date:"abr 2026",text:"We loved every minute of this walking tour. The guide was passionate and knowledgeable. The Casco Viejo is beautiful and this tour helped us truly appreciate it."}],
-"309":[{name:"Aventurero Sebastián",avatar:"A",stars:5,date:"jun 2026",text:"Ver el amanecer desde la cima del Barú con vista a los dos océanos fue un momento que me cambió la vida. El guía fue fundamental para llegar seguros a la cima."},
-{name:"Atleta Patricia",avatar:"A",stars:5,date:"may 2026",text:"Reto físico pero absolutamente vale la pena. El equipo que proveen es de buena calidad y el guía motiva en los momentos difíciles. Una experiencia de vida."},
-{name:"Turista Mexicano",avatar:"T",stars:4,date:"abr 2026",text:"Magnífica experiencia. El frío en la cima sorprende pero el paisaje lo recompensa. Ir bien preparado con ropa abrigada. El guía fue excelente."}],
-"310":[{name:"Novia Feliz",avatar:"N",stars:5,date:"jun 2026",text:"Mi vestido de novia quedó exactamente como lo soñé. La costurera tiene un talento increíble y mucha paciencia con los cambios. Todas las invitadas preguntaron dónde lo hice."},
-{name:"Ejecutiva Rosa",avatar:"E",stars:5,date:"may 2026",text:"Me confeccionaron un traje sastre a medida que quedó perfecto. El ajuste es impecable y la tela de excelente calidad. Precio muy justo por el trabajo."},
-{name:"Susana M.",avatar:"S",stars:4,date:"abr 2026",text:"Arreglaron varios vestidos y quedaron como nuevos. Muy buena mano con las costuras y arreglos de precisión. Solo el tiempo de entrega fue un poco largo."}],
-"311":[{name:"Futbolista Amateur",avatar:"F",stars:5,date:"jun 2026",text:"Encontré todo el equipo de fútbol que necesitaba a buen precio. El personal me asesoró muy bien para elegir los tacos correctos según el terreno. Excelente servicio."},
-{name:"Runner María",avatar:"R",stars:5,date:"may 2026",text:"Las zapatillas de running que compré son perfectas. Me midieron la pisada antes de recomendar el modelo. Eso marca la diferencia frente a otras tiendas."},
-{name:"Padre de Familia",avatar:"P",stars:4,date:"abr 2026",text:"Buena tienda deportiva con variedad de marcas. Los precios son competitivos. Compré equipamiento de natación para mis hijos y quedé muy satisfecho."}],
-"312":[{name:"Mamá Orgullosa",avatar:"M",stars:5,date:"jun 2026",text:"Compré la pollera de mi hija para el desfile aquí. La calidad es extraordinaria y los tembleques son preciosos. Esta tienda es un tesoro cultural de Panamá."},
-{name:"Turista Admirada",avatar:"T",stars:5,date:"may 2026",text:"Vine a comprar un recuerdo de Panamá y me llevé una montuna preciosa. La señora de la tienda me explicó la historia de cada prenda. Lugar único y especial."},
-{name:"Profesora de Folclore",avatar:"P",stars:5,date:"abr 2026",text:"La mejor tienda de trajes típicos del país. Auténticos, bien elaborados y a precios justos. Recomiendo esta tienda a todos mis estudiantes de danza folclórica."}],
-"313":[{name:"Mamá Beatriz",avatar:"M",stars:5,date:"jun 2026",text:"Encontré todo para mis tres hijos en un solo lugar. Ropa bonita, buen precio y muchas tallas. Los uniformes escolares son de excelente calidad y duran todo el año."},
-{name:"Abuela Feliz",avatar:"A",stars:4,date:"may 2026",text:"Muy buena tienda para niños. Compré conjuntos de fiesta para mis nietos y quedaron adorables. Buena atención aunque en días de quincena hay mucha gente."},
-{name:"Papá Moderno",avatar:"P",stars:5,date:"abr 2026",text:"Perfecto para comprar ropa de marca para los niños sin gastar una fortuna. Los precios son muy razonables y la calidad muy buena. Regreso cada temporada."}],
-"314":[{name:"Fashionista Indie",avatar:"F",stars:5,date:"jun 2026",text:"¡Lugar increíble! Encontré una chaqueta de los 80s que está en perfectas condiciones. Precio súper accesible y la selección es muy bien curada. Mi tienda favorita."},
-{name:"Estudiante Arte",avatar:"E",stars:5,date:"may 2026",text:"Para los amantes de la moda alternativa este lugar es un paraíso. Todo está bien organizado por décadas y los precios son imbatibles. Sostenibilidad en su máxima expresión."},
-{name:"Bloguera Moda",avatar:"B",stars:4,date:"abr 2026",text:"Buenísima selección de prendas vintage. Encontré piezas únicas para mis publicaciones. Solo falta un poco más de variedad en calzado retro."}],
-"315":[{name:"Joven Programador",avatar:"J",stars:5,date:"jun 2026",text:"Tomé el curso de Python desde cero y en 3 meses estoy haciendo proyectos reales. Los instructores son muy pacientes y el material está muy bien estructurado."},
-{name:"Mamá de Niño Curioso",avatar:"M",stars:5,date:"may 2026",text:"Mi hijo de 10 años ama el curso de robótica. Llega a casa emocionado cada semana. Los instructores saben cómo enseñar a niños de manera divertida y efectiva."},
-{name:"Profesional Reconvertido",avatar:"P",stars:4,date:"abr 2026",text:"Tomé el bootcamp de desarrollo web para cambiar de carrera. La metodología es muy práctica. Me consiguieron una pasantía al terminar. Vale totalmente la inversión."}],
-"316":[{name:"Ingeniero Luis",avatar:"I",stars:5,date:"jun 2026",text:"Mandé a hacer un prototipo para mi proyecto de tesis y quedó perfecto. La precisión de la impresión fue increíble. Entregaron antes de lo prometido."},
-{name:"Diseñadora Industrial",avatar:"D",stars:5,date:"may 2026",text:"Excelente servicio para prototipos de producto. La calidad en resina es muy alta y los tiempos son razonables. Ya sé dónde venir para todos mis proyectos."},
-{name:"Coleccionista Figuras",avatar:"C",stars:4,date:"abr 2026",text:"Hice una figura personalizada de mi mascota y quedó adorable. El nivel de detalle es muy bueno. Para pedidos pequeños el precio unitario es un poco alto."}],
-"317":[{name:"Propietario Smart",avatar:"P",stars:5,date:"jun 2026",text:"Automatizaron toda mi casa en un fin de semana. La integración con Google Home es perfecta. Ahora controlo todo desde el celular. El equipo fue muy profesional."},
-{name:"Empresa Condominios",avatar:"E",stars:5,date:"may 2026",text:"Instalaron el sistema de control de acceso en 40 unidades. Trabajo impecable, sin interrupciones y en tiempo récord. Los propietarios están muy satisfechos."},
-{name:"Tech Entusiasta",avatar:"T",stars:4,date:"abr 2026",text:"Muy buen servicio de instalación. Los técnicos conocen bien los productos y la programación fue precisa. Solo quisiera más opciones de marcas de gama media."}],
-"318":[{name:"Gamer Profesional",avatar:"G",stars:5,date:"jun 2026",text:"Me armaron la PC de mis sueños dentro de mi presupuesto. Los componentes son de primera y la optimización que hicieron fue excelente. Rinde más de lo esperado."},
-{name:"Diseñadora Gráfica",avatar:"D",stars:5,date:"may 2026",text:"Mi PC para diseño renderiza proyectos en la mitad del tiempo que antes. Saben exactamente qué componentes elegir para cada uso. Garantía cumplida al pie de la letra."},
-{name:"Estudiante Ingeniería",avatar:"E",stars:4,date:"abr 2026",text:"Buena asesoría para armar una PC de trabajo con presupuesto limitado. El resultado superó mis expectativas. La garantía en mano de obra me dio mucha confianza."}],
-"319":[{name:"Gerente TI",avatar:"G",stars:5,date:"jun 2026",text:"La auditoría de seguridad que realizaron fue muy exhaustiva. Encontraron vulnerabilidades que nuestro equipo interno no había detectado. Servicio de primer nivel."},
-{name:"Dueño PYME",avatar:"D",stars:5,date:"may 2026",text:"Gracias a su capacitación, nuestros empleados ahora identifican intentos de phishing. Inversión pequeña que puede evitar pérdidas enormes. Muy recomendados."},
-{name:"CTO Startup",avatar:"C",stars:4,date:"abr 2026",text:"Excelente consultoría. Los informes técnicos son muy claros y accionables. El precio es alto pero acorde al nivel de especialización. Certificación ISO 27001 lograda."}],
-"320":[{name:"Nuevo Propietario",avatar:"N",stars:5,date:"jun 2026",text:"Amoblaron mi apartamento nuevo de principio a fin. El asesor de interiores tuvo un gusto increíble y respetó mi presupuesto. El resultado es de revista."},
-{name:"Pareja Recién Casada",avatar:"P",stars:5,date:"may 2026",text:"Compramos toda la sala y el comedor aquí. Calidad excepcional y el diseño es moderno y funcional. La entrega e instalación fue puntual y profesional."},
-{name:"Decoradora Independiente",avatar:"D",stars:4,date:"abr 2026",text:"Buena selección de muebles y accesorios. Los muebles a medida que pedí tardaron un poco más de lo prometido pero el resultado final fue perfecto para el espacio."}],
-"321":[{name:"Jardinerita Apasionada",avatar:"J",stars:5,date:"jun 2026",text:"Compraron y plantaron todo mi jardín en dos días. Quedó increíble, con plantas tropicales hermosas. El mantenimiento mensual mantiene todo perfecto todo el año."},
-{name:"Condominio Las Palmas",avatar:"C",stars:5,date:"may 2026",text:"Diseñaron las áreas verdes de nuestro condominio y el resultado fue espectacular. Los residentes están encantados. El equipo es muy profesional y creativo."},
-{name:"Ama de Casa",avatar:"A",stars:4,date:"abr 2026",text:"Compré varias plantas tropicales y todas están creciendo muy bien. El personal me enseñó cómo cuidarlas correctamente. Buen vivero con precios accesibles."}],
-"322":[{name:"Recién Casados",avatar:"R",stars:5,date:"jun 2026",text:"Equipamos toda nuestra cocina aquí. La lavadora y la refrigeradora son excelentes. El financiamiento a 24 meses sin intereses fue clave para nuestra decisión."},
-{name:"Propietario Apartamento",avatar:"P",stars:4,date:"may 2026",text:"Buena tienda de electrodomésticos. Variedad de marcas y modelos. El técnico que vino a instalar la lavadora fue muy profesional. Entrega el mismo día de la compra."},
-{name:"Ama de Casa Organizada",avatar:"A",stars:5,date:"abr 2026",text:"La licuadora y el microondas que compré son de excelente calidad. El precio fue el mejor que encontré en la ciudad. El servicio posventa funcionó perfecto cuando tuve una duda."}],
-"323":[{name:"Remodelador Óscar",avatar:"R",stars:4,date:"jun 2026",text:"Buena variedad de pinturas y colores. El personal me ayudó a elegir el acabado correcto para cada ambiente. El servicio de pintura a domicilio quedó excelente."},
-{name:"Decoradora Carmen",avatar:"D",stars:5,date:"may 2026",text:"Las mezclas personalizadas de color son increíbles. Llevé una foto y lograron el tono exacto que buscaba. Servicio muy profesional y sin manchas en los pisos."},
-{name:"Propietario Local",avatar:"P",stars:3,date:"abr 2026",text:"El trabajo de pintura del local quedó bien pero tardó más de lo acordado. La calidad de la pintura es buena y el precio fue razonable. Comunicación mejorable."}],
-"324":[{name:"Familia Segura",avatar:"F",stars:5,date:"jun 2026",text:"Instalaron el sistema de alarma y cámaras en mi casa y me siento mucho más tranquila. La respuesta ante una prueba de emergencia fue inmediata. Excelente servicio."},
-{name:"Administrador Edificio",avatar:"A",stars:5,date:"may 2026",text:"Instalaron el control de acceso en todo el edificio. Los residentes están muy conformes. El monitoreo 24/7 ya detectó un incidente y respondieron en minutos."},
-{name:"Empresario Prudente",avatar:"E",stars:4,date:"abr 2026",text:"Buen sistema de seguridad para mi local. La instalación fue rápida y sin daños en las paredes. El precio mensual del monitoreo es razonable por la tranquilidad que da."}]
+"309":[{name:"Aventurero Sebastiï¿½n",avatar:"A",stars:5,date:"jun 2026",text:"Ver el amanecer desde la cima del Barï¿½ con vista a los dos ocï¿½anos fue un momento que me cambiï¿½ la vida. El guï¿½a fue fundamental para llegar seguros a la cima."},
+{name:"Atleta Patricia",avatar:"A",stars:5,date:"may 2026",text:"Reto fï¿½sico pero absolutamente vale la pena. El equipo que proveen es de buena calidad y el guï¿½a motiva en los momentos difï¿½ciles. Una experiencia de vida."},
+{name:"Turista Mexicano",avatar:"T",stars:4,date:"abr 2026",text:"Magnï¿½fica experiencia. El frï¿½o en la cima sorprende pero el paisaje lo recompensa. Ir bien preparado con ropa abrigada. El guï¿½a fue excelente."}],
+"310":[{name:"Novia Feliz",avatar:"N",stars:5,date:"jun 2026",text:"Mi vestido de novia quedï¿½ exactamente como lo soï¿½ï¿½. La costurera tiene un talento increï¿½ble y mucha paciencia con los cambios. Todas las invitadas preguntaron dï¿½nde lo hice."},
+{name:"Ejecutiva Rosa",avatar:"E",stars:5,date:"may 2026",text:"Me confeccionaron un traje sastre a medida que quedï¿½ perfecto. El ajuste es impecable y la tela de excelente calidad. Precio muy justo por el trabajo."},
+{name:"Susana M.",avatar:"S",stars:4,date:"abr 2026",text:"Arreglaron varios vestidos y quedaron como nuevos. Muy buena mano con las costuras y arreglos de precisiï¿½n. Solo el tiempo de entrega fue un poco largo."}],
+"311":[{name:"Futbolista Amateur",avatar:"F",stars:5,date:"jun 2026",text:"Encontrï¿½ todo el equipo de fï¿½tbol que necesitaba a buen precio. El personal me asesorï¿½ muy bien para elegir los tacos correctos segï¿½n el terreno. Excelente servicio."},
+{name:"Runner Marï¿½a",avatar:"R",stars:5,date:"may 2026",text:"Las zapatillas de running que comprï¿½ son perfectas. Me midieron la pisada antes de recomendar el modelo. Eso marca la diferencia frente a otras tiendas."},
+{name:"Padre de Familia",avatar:"P",stars:4,date:"abr 2026",text:"Buena tienda deportiva con variedad de marcas. Los precios son competitivos. Comprï¿½ equipamiento de nataciï¿½n para mis hijos y quedï¿½ muy satisfecho."}],
+"312":[{name:"Mamï¿½ Orgullosa",avatar:"M",stars:5,date:"jun 2026",text:"Comprï¿½ la pollera de mi hija para el desfile aquï¿½. La calidad es extraordinaria y los tembleques son preciosos. Esta tienda es un tesoro cultural de Panamï¿½."},
+{name:"Turista Admirada",avatar:"T",stars:5,date:"may 2026",text:"Vine a comprar un recuerdo de Panamï¿½ y me llevï¿½ una montuna preciosa. La seï¿½ora de la tienda me explicï¿½ la historia de cada prenda. Lugar ï¿½nico y especial."},
+{name:"Profesora de Folclore",avatar:"P",stars:5,date:"abr 2026",text:"La mejor tienda de trajes tï¿½picos del paï¿½s. Autï¿½nticos, bien elaborados y a precios justos. Recomiendo esta tienda a todos mis estudiantes de danza folclï¿½rica."}],
+"313":[{name:"Mamï¿½ Beatriz",avatar:"M",stars:5,date:"jun 2026",text:"Encontrï¿½ todo para mis tres hijos en un solo lugar. Ropa bonita, buen precio y muchas tallas. Los uniformes escolares son de excelente calidad y duran todo el aï¿½o."},
+{name:"Abuela Feliz",avatar:"A",stars:4,date:"may 2026",text:"Muy buena tienda para niï¿½os. Comprï¿½ conjuntos de fiesta para mis nietos y quedaron adorables. Buena atenciï¿½n aunque en dï¿½as de quincena hay mucha gente."},
+{name:"Papï¿½ Moderno",avatar:"P",stars:5,date:"abr 2026",text:"Perfecto para comprar ropa de marca para los niï¿½os sin gastar una fortuna. Los precios son muy razonables y la calidad muy buena. Regreso cada temporada."}],
+"314":[{name:"Fashionista Indie",avatar:"F",stars:5,date:"jun 2026",text:"ï¿½Lugar increï¿½ble! Encontrï¿½ una chaqueta de los 80s que estï¿½ en perfectas condiciones. Precio sï¿½per accesible y la selecciï¿½n es muy bien curada. Mi tienda favorita."},
+{name:"Estudiante Arte",avatar:"E",stars:5,date:"may 2026",text:"Para los amantes de la moda alternativa este lugar es un paraï¿½so. Todo estï¿½ bien organizado por dï¿½cadas y los precios son imbatibles. Sostenibilidad en su mï¿½xima expresiï¿½n."},
+{name:"Bloguera Moda",avatar:"B",stars:4,date:"abr 2026",text:"Buenï¿½sima selecciï¿½n de prendas vintage. Encontrï¿½ piezas ï¿½nicas para mis publicaciones. Solo falta un poco mï¿½s de variedad en calzado retro."}],
+"315":[{name:"Joven Programador",avatar:"J",stars:5,date:"jun 2026",text:"Tomï¿½ el curso de Python desde cero y en 3 meses estoy haciendo proyectos reales. Los instructores son muy pacientes y el material estï¿½ muy bien estructurado."},
+{name:"Mamï¿½ de Niï¿½o Curioso",avatar:"M",stars:5,date:"may 2026",text:"Mi hijo de 10 aï¿½os ama el curso de robï¿½tica. Llega a casa emocionado cada semana. Los instructores saben cï¿½mo enseï¿½ar a niï¿½os de manera divertida y efectiva."},
+{name:"Profesional Reconvertido",avatar:"P",stars:4,date:"abr 2026",text:"Tomï¿½ el bootcamp de desarrollo web para cambiar de carrera. La metodologï¿½a es muy prï¿½ctica. Me consiguieron una pasantï¿½a al terminar. Vale totalmente la inversiï¿½n."}],
+"316":[{name:"Ingeniero Luis",avatar:"I",stars:5,date:"jun 2026",text:"Mandï¿½ a hacer un prototipo para mi proyecto de tesis y quedï¿½ perfecto. La precisiï¿½n de la impresiï¿½n fue increï¿½ble. Entregaron antes de lo prometido."},
+{name:"Diseï¿½adora Industrial",avatar:"D",stars:5,date:"may 2026",text:"Excelente servicio para prototipos de producto. La calidad en resina es muy alta y los tiempos son razonables. Ya sï¿½ dï¿½nde venir para todos mis proyectos."},
+{name:"Coleccionista Figuras",avatar:"C",stars:4,date:"abr 2026",text:"Hice una figura personalizada de mi mascota y quedï¿½ adorable. El nivel de detalle es muy bueno. Para pedidos pequeï¿½os el precio unitario es un poco alto."}],
+"317":[{name:"Propietario Smart",avatar:"P",stars:5,date:"jun 2026",text:"Automatizaron toda mi casa en un fin de semana. La integraciï¿½n con Google Home es perfecta. Ahora controlo todo desde el celular. El equipo fue muy profesional."},
+{name:"Empresa Condominios",avatar:"E",stars:5,date:"may 2026",text:"Instalaron el sistema de control de acceso en 40 unidades. Trabajo impecable, sin interrupciones y en tiempo rï¿½cord. Los propietarios estï¿½n muy satisfechos."},
+{name:"Tech Entusiasta",avatar:"T",stars:4,date:"abr 2026",text:"Muy buen servicio de instalaciï¿½n. Los tï¿½cnicos conocen bien los productos y la programaciï¿½n fue precisa. Solo quisiera mï¿½s opciones de marcas de gama media."}],
+"318":[{name:"Gamer Profesional",avatar:"G",stars:5,date:"jun 2026",text:"Me armaron la PC de mis sueï¿½os dentro de mi presupuesto. Los componentes son de primera y la optimizaciï¿½n que hicieron fue excelente. Rinde mï¿½s de lo esperado."},
+{name:"Diseï¿½adora Grï¿½fica",avatar:"D",stars:5,date:"may 2026",text:"Mi PC para diseï¿½o renderiza proyectos en la mitad del tiempo que antes. Saben exactamente quï¿½ componentes elegir para cada uso. Garantï¿½a cumplida al pie de la letra."},
+{name:"Estudiante Ingenierï¿½a",avatar:"E",stars:4,date:"abr 2026",text:"Buena asesorï¿½a para armar una PC de trabajo con presupuesto limitado. El resultado superï¿½ mis expectativas. La garantï¿½a en mano de obra me dio mucha confianza."}],
+"319":[{name:"Gerente TI",avatar:"G",stars:5,date:"jun 2026",text:"La auditorï¿½a de seguridad que realizaron fue muy exhaustiva. Encontraron vulnerabilidades que nuestro equipo interno no habï¿½a detectado. Servicio de primer nivel."},
+{name:"Dueï¿½o PYME",avatar:"D",stars:5,date:"may 2026",text:"Gracias a su capacitaciï¿½n, nuestros empleados ahora identifican intentos de phishing. Inversiï¿½n pequeï¿½a que puede evitar pï¿½rdidas enormes. Muy recomendados."},
+{name:"CTO Startup",avatar:"C",stars:4,date:"abr 2026",text:"Excelente consultorï¿½a. Los informes tï¿½cnicos son muy claros y accionables. El precio es alto pero acorde al nivel de especializaciï¿½n. Certificaciï¿½n ISO 27001 lograda."}],
+"320":[{name:"Nuevo Propietario",avatar:"N",stars:5,date:"jun 2026",text:"Amoblaron mi apartamento nuevo de principio a fin. El asesor de interiores tuvo un gusto increï¿½ble y respetï¿½ mi presupuesto. El resultado es de revista."},
+{name:"Pareja Reciï¿½n Casada",avatar:"P",stars:5,date:"may 2026",text:"Compramos toda la sala y el comedor aquï¿½. Calidad excepcional y el diseï¿½o es moderno y funcional. La entrega e instalaciï¿½n fue puntual y profesional."},
+{name:"Decoradora Independiente",avatar:"D",stars:4,date:"abr 2026",text:"Buena selecciï¿½n de muebles y accesorios. Los muebles a medida que pedï¿½ tardaron un poco mï¿½s de lo prometido pero el resultado final fue perfecto para el espacio."}],
+"321":[{name:"Jardinerita Apasionada",avatar:"J",stars:5,date:"jun 2026",text:"Compraron y plantaron todo mi jardï¿½n en dos dï¿½as. Quedï¿½ increï¿½ble, con plantas tropicales hermosas. El mantenimiento mensual mantiene todo perfecto todo el aï¿½o."},
+{name:"Condominio Las Palmas",avatar:"C",stars:5,date:"may 2026",text:"Diseï¿½aron las ï¿½reas verdes de nuestro condominio y el resultado fue espectacular. Los residentes estï¿½n encantados. El equipo es muy profesional y creativo."},
+{name:"Ama de Casa",avatar:"A",stars:4,date:"abr 2026",text:"Comprï¿½ varias plantas tropicales y todas estï¿½n creciendo muy bien. El personal me enseï¿½ï¿½ cï¿½mo cuidarlas correctamente. Buen vivero con precios accesibles."}],
+"322":[{name:"Reciï¿½n Casados",avatar:"R",stars:5,date:"jun 2026",text:"Equipamos toda nuestra cocina aquï¿½. La lavadora y la refrigeradora son excelentes. El financiamiento a 24 meses sin intereses fue clave para nuestra decisiï¿½n."},
+{name:"Propietario Apartamento",avatar:"P",stars:4,date:"may 2026",text:"Buena tienda de electrodomï¿½sticos. Variedad de marcas y modelos. El tï¿½cnico que vino a instalar la lavadora fue muy profesional. Entrega el mismo dï¿½a de la compra."},
+{name:"Ama de Casa Organizada",avatar:"A",stars:5,date:"abr 2026",text:"La licuadora y el microondas que comprï¿½ son de excelente calidad. El precio fue el mejor que encontrï¿½ en la ciudad. El servicio posventa funcionï¿½ perfecto cuando tuve una duda."}],
+"323":[{name:"Remodelador ï¿½scar",avatar:"R",stars:4,date:"jun 2026",text:"Buena variedad de pinturas y colores. El personal me ayudï¿½ a elegir el acabado correcto para cada ambiente. El servicio de pintura a domicilio quedï¿½ excelente."},
+{name:"Decoradora Carmen",avatar:"D",stars:5,date:"may 2026",text:"Las mezclas personalizadas de color son increï¿½bles. Llevï¿½ una foto y lograron el tono exacto que buscaba. Servicio muy profesional y sin manchas en los pisos."},
+{name:"Propietario Local",avatar:"P",stars:3,date:"abr 2026",text:"El trabajo de pintura del local quedï¿½ bien pero tardï¿½ mï¿½s de lo acordado. La calidad de la pintura es buena y el precio fue razonable. Comunicaciï¿½n mejorable."}],
+"324":[{name:"Familia Segura",avatar:"F",stars:5,date:"jun 2026",text:"Instalaron el sistema de alarma y cï¿½maras en mi casa y me siento mucho mï¿½s tranquila. La respuesta ante una prueba de emergencia fue inmediata. Excelente servicio."},
+{name:"Administrador Edificio",avatar:"A",stars:5,date:"may 2026",text:"Instalaron el control de acceso en todo el edificio. Los residentes estï¿½n muy conformes. El monitoreo 24/7 ya detectï¿½ un incidente y respondieron en minutos."},
+{name:"Empresario Prudente",avatar:"E",stars:4,date:"abr 2026",text:"Buen sistema de seguridad para mi local. La instalaciï¿½n fue rï¿½pida y sin daï¿½os en las paredes. El precio mensual del monitoreo es razonable por la tranquilidad que da."}]
 };
 
 const BUSINESSES=[
 /* -- RESTAURANTES (38) -- */
-{id:"1",name:"Pastelería Luna",category:"Restaurantes",categoryId:"restaurantes",description:"Pasteles artesanales elaborados con ingredientes frescos y locales. Especialidad en tortas personalizadas para bodas, cumpleaños y eventos especiales. Cada pieza es una obra de arte comestible.",address:"Calle Principal 45, Centro",hours:"Lun–Sáb 8:00am – 8:00pm",rating:4.9,reviews:312,image:"https://images.unsplash.com/photo-1483695028939-5bb13f8648b0?w=700&h=450&fit=crop&auto=format",logo:"https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=80&h=80&fit=crop&auto=format",phone:"+507 6234-5678",instagram:"@pasteleria_luna",facebook:"PasteleriaLuna",tags:["Pasteles","Tortas","Repostería","Personalizado"],isNew:false,isFeatured:true,isPopular:true,deal:{label:"20% OFF",desc:"En tortas personalizadas",color:"#EF4444"},mapQuery:"Calle+Principal+45+Centro"},{id:"2",name:"Salón Belleza Mía",category:"Belleza",categoryId:"belleza",description:"Tu espacio de transformación personal. Ofrecemos cortes, coloración, tratamientos capilares, manicure y pedicure con los mejores productos del mercado.",address:"Av. Las Flores 120, Zona Rosa",hours:"Mar–Dom 9:00am – 7:00pm",rating:4.7,reviews:198,image:"https://images.unsplash.com/photo-1540555700478-4be289fbecef?w=700&h=450&fit=crop&auto=format",logo:"https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?w=80&h=80&fit=crop&auto=format",phone:"+507 6345-6789",instagram:"@belleza_mia_salon",tags:["Cortes","Coloración","Manicure","Spa"],isNew:true,isFeatured:true,deal:{label:"2×1",desc:"Manicure + pedicure",color:"#EC4899"},mapQuery:"Avenida+Las+Flores+120+Zona+Rosa"},
-{id:"3",name:"TechPoint",category:"Tecnología",categoryId:"tecnologia",description:"Venta y reparación de dispositivos electrónicos. Smartphones, laptops, tablets y accesorios. Servicio técnico certificado con garantía extendida.",address:"Centro Comercial Plaza, Local 32",hours:"Lun–Sáb 9:00am – 6:00pm",rating:4.5,reviews:87,image:"https://images.unsplash.com/photo-1611532736597-de2d4265fba3?w=700&h=450&fit=crop&auto=format",logo:"https://images.unsplash.com/photo-1565211604822-2641d0b081a6?w=80&h=80&fit=crop&auto=format",phone:"+507 6456-7890",website:"techpoint.local",facebook:"TechPointStore",tags:["Reparación","Smartphones","Laptops","Accesorios"],isPopular:true,mapQuery:"Centro+Comercial+Plaza+Panama"},
-{id:"5",name:"Dulce Hogar",category:"Restaurantes",categoryId:"restaurantes",description:"Panadería y repostería artesanal con recetas tradicionales de abuela. Pan fresco cada mañana, galletas, brownies y postres caseros que enamoran.",address:"Barrio El Jardín, Calle 3 #12",hours:"Lun–Sáb 7:00am – 6:00pm",rating:4.6,reviews:156,image:"https://images.unsplash.com/photo-1568254183919-78a4f43a2877?w=700&h=450&fit=crop&auto=format",logo:"https://images.unsplash.com/photo-1509440159596-0249088772ff?w=80&h=80&fit=crop&auto=format",phone:"+507 6678-9012",facebook:"DulceHogarBakery",tags:["Pan","Galletas","Postres","Artesanal"],isNew:true,mapQuery:"Barrio+El+Jardin+Calle+3"},
-{id:"6",name:"Clínica Salud Total",category:"Salud",categoryId:"salud",description:"Atención médica integral con especialistas en medicina general, pediatría, nutrición y fisioterapia. Consultas presenciales y telemedicina disponible.",address:"Av. Salud 200, Col. Médica",hours:"Lun–Vie 8:00am – 5:00pm",rating:4.4,reviews:73,image:"https://images.unsplash.com/photo-1578474846511-04ba529f0b88?w=700&h=450&fit=crop&auto=format",logo:"https://images.unsplash.com/photo-1559757175-5700dde675bc?w=80&h=80&fit=crop&auto=format",phone:"+507 6789-0123",website:"saludtotal.med",tags:["Médicos","Pediatría","Nutrición","Telemedicina"],isFeatured:true,mapQuery:"Avenida+Salud+200+Panama"},
-{id:"7",name:"ModaUrbana",category:"Ropa",categoryId:"ropa",description:"Boutique de moda contemporánea con las últimas tendencias para hombre y mujer. Diseños exclusivos, marcas locales y ropa importada a precios accesibles.",address:"Paseo Comercial, Local 45-B",hours:"Lun–Sáb 10:00am – 8:00pm",rating:4.3,reviews:64,image:"https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=700&h=450&fit=crop&auto=format",logo:"https://images.unsplash.com/photo-1523381210434-271e8be1f52b?w=80&h=80&fit=crop&auto=format",phone:"+507 6890-1234",instagram:"@modaurbana_oficial",tags:["Moda","Ropa","Boutique","Tendencias"],isNew:true,isPopular:true,mapQuery:"Paseo+Comercial+Panama"},
-{id:"8",name:"Repostería María",category:"Restaurantes",categoryId:"restaurantes",description:"Postres y pasteles personalizados para toda ocasión. Especialidad en cheesecakes, macarons y tartas de temporada con ingredientes 100% naturales.",address:"Col. Las Palmas, Blvd. Norte 67",hours:"Mar–Dom 10:00am – 7:00pm",rating:4.8,reviews:241,image:"https://images.unsplash.com/photo-1537047902294-62a40c20a6ae?w=700&h=450&fit=crop&auto=format",logo:"https://images.unsplash.com/photo-1486887396153-fa416526c108?w=80&h=80&fit=crop&auto=format",phone:"+507 6901-2345",instagram:"@reposteria_maria",facebook:"ReposteriaMaria",tags:["Pasteles","Cheesecake","Macarons","Natural"],isFeatured:true,isPopular:true,mapQuery:"Blvd+Norte+67+Panama"},
-{id:"9",name:"Sushi Nikkei",category:"Restaurantes",categoryId:"restaurantes",description:"Auténtica fusión nikkei con ingredientes frescos del mercado. Rolls creativos, sashimi premium y ramen artesanal en un ambiente íntimo y moderno.",address:"Calle 50, Miraflores, Local 8",hours:"Mar–Dom 12:00pm – 10:00pm",rating:4.7,reviews:189,image:"https://images.unsplash.com/photo-1579584425555-c3ce17fd4351?w=700&h=450&fit=crop&auto=format",logo:"https://images.unsplash.com/photo-1569050467447-ce54b3bbc37d?w=80&h=80&fit=crop&auto=format",phone:"+507 6312-4567",instagram:"@sushi_nikkei_ptv",tags:["Sushi","Ramen","Japonés","Fusión"],isFeatured:true,isNew:false,mapQuery:"Calle+50+Miraflores+Panama"},
-{id:"10",name:"Spa Serenidad",category:"Salud",categoryId:"salud",description:"Centro de bienestar integral con masajes relajantes, faciales, tratamientos corporales y aromaterapia. Un oasis de paz en el corazón de la ciudad.",address:"Vía Argentina 33, El Cangrejo",hours:"Lun–Sáb 9:00am – 8:00pm",rating:4.9,reviews:276,image:"https://images.unsplash.com/photo-1544161515-4ab6ce6db874?w=700&h=450&fit=crop&auto=format",logo:"https://images.unsplash.com/photo-1544991060-b42da24bef4b?w=80&h=80&fit=crop&auto=format",phone:"+507 6423-8901",instagram:"@spa_serenidad",website:"spaserenidad.com",tags:["Masajes","Faciales","Bienestar","Aromaterapia"],isFeatured:true,isPopular:true,deal:{label:"15% OFF",desc:"Primer masaje relajante",color:"#10B981"},mapQuery:"Via+Argentina+33+El+Cangrejo+Panama"},
-{id:"11",name:"Ferretería El Maestro",category:"Hogar",categoryId:"hogar",description:"Todo para tu hogar y construcción. Herramientas eléctricas y manuales, materiales de construcción, plomería y electricidad. Asesoramiento personalizado.",address:"Av. Balboa 78, Bella Vista",hours:"Lun–Sáb 7:00am – 7:00pm",rating:4.3,reviews:94,image:"https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=700&h=450&fit=crop&auto=format",logo:"https://images.unsplash.com/photo-1530124566582-a618bc2615dc?w=80&h=80&fit=crop&auto=format",phone:"+507 6534-2109",facebook:"FerreteriaElMaestro",tags:["Herramientas","Construcción","Plomería","Electricidad"],mapQuery:"Avenida+Balboa+78+Bella+Vista+Panama"},
-{id:"12",name:"Heladería Tropical",category:"Restaurantes",categoryId:"restaurantes",description:"Helados artesanales con frutas tropicales de temporada. Más de 30 sabores únicos como maracuyá, guanábana, tamarindo y carambola. Sin colorantes artificiales.",address:"Calle Uruguay 15, San Felipe",hours:"Todos los días 11:00am – 10:00pm",rating:4.8,reviews:332,image:"https://images.unsplash.com/photo-1563805042-7684c019e1cb?w=700&h=450&fit=crop&auto=format",logo:"https://images.unsplash.com/photo-1551248429-40975aa4de74?w=80&h=80&fit=crop&auto=format",phone:"+507 6645-3210",instagram:"@heladeria_tropical",facebook:"HeleaderiaLaTropical",tags:["Helados","Artesanal","Tropical","Natural"],isNew:true,isPopular:true,mapQuery:"Calle+Uruguay+15+San+Felipe+Panama"},
-{id:"13",name:"Taller Auto Express",category:"Transporte",categoryId:"transporte",description:"Taller mecánico de confianza para todo tipo de vehículos. Diagnóstico computarizado, frenos, suspensión, cambio de aceite y mantenimiento general.",address:"Tumba Muerto, Calle F #23",hours:"Lun–Sáb 7:30am – 5:30pm",rating:4.2,reviews:118,image:"https://images.unsplash.com/photo-1619642751034-765dfdf7c58e?w=700&h=450&fit=crop&auto=format",logo:"https://images.unsplash.com/photo-1542826391-ee6a9f1f93c4?w=80&h=80&fit=crop&auto=format",phone:"+507 6756-4321",facebook:"AutoExpressTaller",tags:["Mecánica","Frenos","Diagnóstico","Mantenimiento"],mapQuery:"Tumba+Muerto+Panama"},
-{id:"14",name:"Librería Imaginarium",category:"Hogar",categoryId:"hogar",description:"Librería independiente especializada en literatura latinoamericana, ciencia ficción y cómics. Eventos literarios mensuales y club de lectura activo.",address:"Av. Federico Boyd 44, Paitilla",hours:"Mar–Dom 10:00am – 8:00pm",rating:4.7,reviews:143,image:"https://images.unsplash.com/photo-1507842217343-583bb7270b66?w=700&h=450&fit=crop&auto=format",logo:"https://images.unsplash.com/photo-1481627834876-b7833e8f5570?w=80&h=80&fit=crop&auto=format",phone:"+507 6867-5432",instagram:"@imaginarium_libros",website:"librosimagines.com",tags:["Libros","Literatura","Cómics","Eventos"],isNew:true,mapQuery:"Avenida+Federico+Boyd+44+Paitilla+Panama"},
-{id:"15",name:"City Tours Panamá",category:"Turismo",categoryId:"turismo",description:"Recorridos guiados por el casco histórico, el Canal y los barrios más emblemáticos. Tours en español e inglés. Grupos pequeños para una experiencia personalizada.",address:"Plaza de Francia, Casco Viejo",hours:"Todos los días 8:00am – 6:00pm",rating:4.8,reviews:267,image:"https://images.unsplash.com/photo-1548707309-dcebeab9ea9b?w=700&h=450&fit=crop&auto=format",logo:"https://images.unsplash.com/photo-1526778548025-fa2f459cd5c1?w=80&h=80&fit=crop&auto=format",phone:"+507 6978-6543",instagram:"@citytours_pty",website:"citytourspty.com",tags:["Tours","Historia","Canal","Casco Viejo"],isFeatured:true,isPopular:true,deal:{label:"30% OFF",desc:"Tours de fin de semana",color:"#8B5CF6"},mapQuery:"Plaza+de+Francia+Casco+Viejo+Panama"},
-{id:"16",name:"GymFit Centro",category:"Salud",categoryId:"salud",description:"Gimnasio moderno con equipos de última generación. Clases de spinning, yoga, zumba y crossfit. Entrenadores certificados y planes nutricionales personalizados.",address:"Calle 42, Bella Vista, Edificio Sport",hours:"Lun–Vie 5:00am – 10:00pm, Sáb–Dom 7:00am – 8:00pm",rating:4.5,reviews:201,image:"https://images.unsplash.com/photo-1534438327276-14e5300c3a48?w=700&h=450&fit=crop&auto=format",logo:"https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=80&h=80&fit=crop&auto=format",phone:"+507 6089-7654",instagram:"@gymfit_centro",facebook:"GymFitCentro",tags:["Gym","Crossfit","Yoga","Nutrición"],isNew:true,isPopular:true,deal:{label:"Mes gratis",desc:"Con inscripción anual",color:"#0EA5E9"},mapQuery:"Calle+42+Bella+Vista+Panama"},
-{id:"17",name:"Estudio Foto&Arte",category:"Turismo",categoryId:"turismo",description:"Estudio profesional de fotografía para retratos, eventos empresariales, sesiones familiares y productos. Edición profesional incluida en todos los paquetes.",address:"Calle Manuel Espinosa 12, San Francisco",hours:"Lun–Sáb 9:00am – 6:00pm",rating:4.6,reviews:88,image:"https://images.unsplash.com/photo-1516035069371-29a1b244cc32?w=700&h=450&fit=crop&auto=format",logo:"https://images.unsplash.com/photo-1452802447250-470a88ac82bc?w=80&h=80&fit=crop&auto=format",phone:"+507 6190-8765",instagram:"@fotoarte_pty",website:"fotoartestudio.com",tags:["Fotografía","Retratos","Eventos","Edición"],mapQuery:"Calle+Manuel+Espinosa+12+San+Francisco+Panama"},
-{id:"18",name:"Cocina de la Abuela",category:"Restaurantes",categoryId:"restaurantes",description:"Restaurante familiar con recetas auténticas panameñas. Sancocho de gallina, arroz con pollo, patacones y postres caseros como el tembleque y la bienmesabe.",address:"Calle 10, El Chorrillo, Local 5",hours:"Lun–Dom 11:00am – 9:00pm",rating:4.7,reviews:348,image:"https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=700&h=450&fit=crop&auto=format",logo:"https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=80&h=80&fit=crop&auto=format",phone:"+507 6201-9876",facebook:"CocinaAbuelapty",tags:["Panameño","Sancocho","Familiar","Casero"],isPopular:true,mapQuery:"Calle+10+El+Chorrillo+Panama"},
-{id:"19",name:"Computec Soluciones",category:"Tecnología",categoryId:"tecnologia",description:"Servicio técnico especializado en computadoras, redes empresariales e instalación de cámaras de seguridad. Atención a domicilio disponible en toda la ciudad.",address:"Av. Ricardo J. Alfaro, Torres del Sol, Of. 3B",hours:"Lun–Vie 8:00am – 6:00pm, Sáb 9:00am – 2:00pm",rating:4.4,reviews:76,image:"https://images.unsplash.com/photo-1588702547919-26089e690ecc?w=700&h=450&fit=crop&auto=format",logo:"https://images.unsplash.com/photo-1461749280684-dccba630e2f6?w=80&h=80&fit=crop&auto=format",phone:"+507 6312-0987",instagram:"@computec_pty",facebook:"ComputecSoluciones",tags:["Computadoras","Redes","Cámaras","Domicilio"],isNew:true,mapQuery:"Avenida+Ricardo+Alfaro+Panama"},
-{id:"20",name:"Boutique Xclusive",category:"Ropa",categoryId:"ropa",description:"Ropa de diseñador local y marcas internacionales seleccionadas. Prendas exclusivas para mujer con servicio de estilismo personal incluido en cada compra.",address:"Mall Via Veneto, Local 112, El Dorado",hours:"Lun–Dom 10:00am – 9:00pm",rating:4.5,reviews:112,image:"https://images.unsplash.com/photo-1567401893414-76b7b1e5a7a5?w=700&h=450&fit=crop&auto=format",logo:"https://images.unsplash.com/photo-1490481651871-ab68de25d43d?w=80&h=80&fit=crop&auto=format",phone:"+507 6423-1098",instagram:"@boutique_xclusive",tags:["Diseñador","Exclusivo","Mujer","Estilismo"],isPopular:true,mapQuery:"Mall+Via+Veneto+El+Dorado+Panama"},
-{id:"21",name:"Transporte Ejecutivo GTR",category:"Transporte",categoryId:"transporte",description:"Servicio de transporte privado premium para ejecutivos, aeropuerto y eventos. Flota de vehículos modernos, choferes certificados y puntualidad garantizada.",address:"Punta Pacífica, Torre Global, Piso 1",hours:"Todos los días 24 horas",rating:4.6,reviews:159,image:"https://images.unsplash.com/photo-1449965408869-eaa3f722e40d?w=700&h=450&fit=crop&auto=format",logo:"https://images.unsplash.com/photo-1503376780353-7e6692767b70?w=80&h=80&fit=crop&auto=format",phone:"+507 6534-2109",instagram:"@gtr_panama",website:"gtrtransporte.com",tags:["Ejecutivo","Aeropuerto","Premium","24 horas"],isFeatured:true,mapQuery:"Punta+Pacifica+Panama"},
-{id:"22",name:"Clínica Dental Sonrisas",category:"Salud",categoryId:"salud",description:"Odontología estética y general. Ortodoncia, blanqueamiento, implantes y limpiezas profesionales. Tecnología digital para diagnósticos precisos sin radiación innecesaria.",address:"Calle 50, San Francisco, Edificio Médico, Piso 3",hours:"Lun–Vie 8:00am – 6:00pm, Sáb 9:00am – 1:00pm",rating:4.8,reviews:183,image:"https://images.unsplash.com/photo-1629909613654-28e377c37b09?w=700&h=450&fit=crop&auto=format",logo:"https://images.unsplash.com/photo-1559757175-5700dde675bc?w=80&h=80&fit=crop&auto=format",phone:"+507 6645-3210",instagram:"@clinica_sonrisas",website:"clinicasonrisas.com",tags:["Dental","Ortodoncia","Estética","Implantes"],isNew:true,isFeatured:true,mapQuery:"Calle+50+San+Francisco+Panama"},
-/* -- RESTAURANTES adicionales (ids 23–53) -- */
-{id:"23",name:"Tacos & Burritos",category:"Restaurantes",categoryId:"restaurantes",description:"Auténtica comida mexicana callejera con ingredientes frescos. Tacos de carne asada, al pastor, burritos y quesadillas con salsas caseras de distintos niveles de picante.",address:"Calle 48, El Cangrejo, Local 7",hours:"Mar–Dom 11:00am – 10:00pm",rating:4.5,reviews:203,image:"https://images.unsplash.com/photo-1565299585323-38d6b0865b47?w=700&h=450&fit=crop&auto=format",logo:"https://images.unsplash.com/photo-1551504734-5ee1c4a1479b?w=80&h=80&fit=crop&auto=format",phone:"+507 6711-2233",instagram:"@tacos_burritos_pty",tags:["Mexicano","Tacos","Burritos","Picante"],isPopular:true,mapQuery:"Calle+48+El+Cangrejo+Panama"},
-{id:"24",name:"Pizzería Napoli",category:"Restaurantes",categoryId:"restaurantes",description:"Pizza artesanal al horno de leña con masa madre fermentada 48 horas. Ingredientes importados de Italia y tomates San Marzano. Ambiente familiar y acogedor.",address:"Av. Balboa 112, Bella Vista",hours:"Lun–Dom 12:00pm – 11:00pm",rating:4.7,reviews:289,image:"https://images.unsplash.com/photo-1513104890138-7c749659a591?w=700&h=450&fit=crop&auto=format",logo:"https://images.unsplash.com/photo-1571997478779-2adcbbe9ab2f?w=80&h=80&fit=crop&auto=format",phone:"+507 6722-3344",instagram:"@napoli_pty",facebook:"PizzeriaNapoliPanama",tags:["Pizza","Italiana","Horno de Leña","Artesanal"],isFeatured:true,isPopular:true,deal:{label:"Pizza gratis",desc:"Comprando 2 pizzas grandes",color:"#F97316"},mapQuery:"Avenida+Balboa+112+Bella+Vista+Panama"},
-{id:"25",name:"Burger House",category:"Restaurantes",categoryId:"restaurantes",description:"Hamburguesas gourmet con carne de res 100% nacional. Panes artesanales, quesos importados y salsas secretas. Papas fritas con especias y batidos artesanales.",address:"Calle Uruguay 88, San Felipe",hours:"Lun–Dom 11:00am – 11:00pm",rating:4.6,reviews:341,image:"https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=700&h=450&fit=crop&auto=format",logo:"https://images.unsplash.com/photo-1550547660-d9450f859349?w=80&h=80&fit=crop&auto=format",phone:"+507 6733-4455",instagram:"@burgerhouse_pty",tags:["Hamburguesas","Gourmet","Batidos","Papas"],isPopular:true,mapQuery:"Calle+Uruguay+88+San+Felipe+Panama"},
-{id:"26",name:"Mariscos El Puerto",category:"Restaurantes",categoryId:"restaurantes",description:"Mariscos frescos del día directamente del Pacífico. Ceviche, corvina al ajillo, camarones en salsa y langosta. Vista al mar y ambiente tropical inigualable.",address:"Calzada de Amador, Local 4",hours:"Mar–Dom 12:00pm – 10:00pm",rating:4.8,reviews:267,image:"https://images.unsplash.com/photo-1615141982883-c7ad0e69fd62?w=700&h=450&fit=crop&auto=format",logo:"https://images.unsplash.com/photo-1563612116625-3012372fccce?w=80&h=80&fit=crop&auto=format",phone:"+507 6744-5566",instagram:"@mariscos_elpuerto",facebook:"MariscosElPuerto",tags:["Mariscos","Ceviche","Corvina","Vista al Mar"],isFeatured:true,isPopular:true,mapQuery:"Calzada+de+Amador+Panama"},
-{id:"27",name:"Ramen Tokio",category:"Restaurantes",categoryId:"restaurantes",description:"Ramen auténtico con caldos preparados durante 18 horas. Tonkotsu, shoyu y miso con noodles frescos, chashu de cerdo y huevo marinado. Para los amantes del ramen serio.",address:"Calle 49 Este, Bella Vista, Local 2",hours:"Mar–Dom 12:00pm – 10:00pm",rating:4.6,reviews:178,image:"https://images.unsplash.com/photo-1569718212165-3a8278d5f624?w=700&h=450&fit=crop&auto=format",logo:"https://images.unsplash.com/photo-1611143669185-af224c5e3252?w=80&h=80&fit=crop&auto=format",phone:"+507 6755-6677",instagram:"@ramen_tokio_pty",tags:["Ramen","Japonés","Tonkotsu","Noodles"],isNew:true,mapQuery:"Calle+49+Este+Bella+Vista+Panama"},
-{id:"28",name:"El Asador Argentino",category:"Restaurantes",categoryId:"restaurantes",description:"Cortes premium de carne argentina al carbón. Asado de tira, bife de chorizo, entraña y costillas. Vinos argentinos seleccionados y empanadas caseras de entrada.",address:"Calle 53, Marbella, Local 8",hours:"Lun–Dom 12:00pm – 11:00pm",rating:4.7,reviews:312,image:"https://images.unsplash.com/photo-1544025162-d76694265947?w=700&h=450&fit=crop&auto=format",logo:"https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=80&h=80&fit=crop&auto=format",phone:"+507 6766-7788",instagram:"@asador_argentino_pty",facebook:"AsadorArgentinoPanama",tags:["Carne","Argentina","Parrilla","Vinos"],isFeatured:true,isPopular:true,mapQuery:"Calle+53+Marbella+Panama"},
-{id:"29",name:"Veggie Garden",category:"Restaurantes",categoryId:"restaurantes",description:"Restaurante vegano y vegetariano con opciones creativas y nutritivas. Bowls, wraps, hamburguesas de plantas y postres sin azúcar refinada. Ambiente zen y tranquilo.",address:"Calle Samuel Lewis, Obarrio, Local 3",hours:"Lun–Sáb 8:00am – 9:00pm",rating:4.4,reviews:134,image:"https://images.unsplash.com/photo-1512621776951-a57141f2eefd?w=700&h=450&fit=crop&auto=format",logo:"https://images.unsplash.com/photo-1498579150354-977475b7ea0b?w=80&h=80&fit=crop&auto=format",phone:"+507 6777-8899",instagram:"@veggie_garden_pty",tags:["Vegano","Vegetariano","Saludable","Bowls"],isNew:true,mapQuery:"Calle+Samuel+Lewis+Obarrio+Panama"},
-{id:"31",name:"Thai Orchid",category:"Restaurantes",categoryId:"restaurantes",description:"Gastronomía tailandesa auténtica con recetas de la región de Chiang Mai. Pad Thai, curry verde, tom yum y mango sticky rice. Sabores asiáticos únicos en Panamá.",address:"Calle 52, El Carmen, Local 11",hours:"Mar–Dom 12:00pm – 10:00pm",rating:4.5,reviews:156,image:"https://images.unsplash.com/photo-1562565652-a0d8f0c59eb4?w=700&h=450&fit=crop&auto=format",logo:"https://images.unsplash.com/photo-1547592166-23ac45744acd?w=80&h=80&fit=crop&auto=format",phone:"+507 6799-0011",instagram:"@thai_orchid_pty",tags:["Tailandés","Pad Thai","Curry","Asiático"],mapQuery:"Calle+52+El+Carmen+Panama"},
-{id:"33",name:"Crepes & Co.",category:"Restaurantes",categoryId:"restaurantes",description:"Crêperie francesa con más de 40 variedades dulces y saladas. Ingredientes premium, masa artesanal y rellenos creativos. Ideal para desayuno, brunch o postre.",address:"Calle Uruguay 22, Casco Viejo",hours:"Miér–Lun 8:00am – 9:00pm",rating:4.4,reviews:167,image:"https://images.unsplash.com/photo-1519676867240-f03562e64548?w=700&h=450&fit=crop&auto=format",logo:"https://images.unsplash.com/photo-1565958011703-44f9829ba187?w=80&h=80&fit=crop&auto=format",phone:"+507 6811-2233",instagram:"@crepes_co_pty",tags:["Crepes","Francés","Brunch","Postres"],isNew:true,mapQuery:"Calle+Uruguay+22+Casco+Viejo+Panama"},
-{id:"34",name:"Cevichería Pacífico",category:"Restaurantes",categoryId:"restaurantes",description:"Ceviches y tiraditos estilo peruano-panameño. Leche de tigre de autor, mixto de mariscos y corvina marinada. Fresco, picante y lleno de sabor del océano.",address:"Av. Nacional, Costa del Este, Local 9",hours:"Lun–Dom 11:00am – 9:00pm",rating:4.7,reviews:234,image:"https://images.unsplash.com/photo-1535399831218-d5bd36d1a6b3?w=700&h=450&fit=crop&auto=format",logo:"https://images.unsplash.com/photo-1563612116625-3012372fccce?w=80&h=80&fit=crop&auto=format",phone:"+507 6822-3344",instagram:"@cevicheria_pacifico",tags:["Ceviche","Mariscos","Peruano","Fresco"],isFeatured:true,mapQuery:"Costa+del+Este+Panama"},
-{id:"35",name:"Panadería La Baguette",category:"Restaurantes",categoryId:"restaurantes",description:"Panadería francesa con croissants, baguettes y viennoiseries recién horneados cada mañana. Café de especialidad y sándwiches gourmet para el desayuno y almuerzo.",address:"Calle 57, Obarrio, Local 1",hours:"Lun–Sáb 6:30am – 7:00pm",rating:4.6,reviews:189,image:"https://images.unsplash.com/photo-1509440159596-0249088772ff?w=700&h=450&fit=crop&auto=format",logo:"https://images.unsplash.com/photo-1486427944299-d1955d23e34d?w=80&h=80&fit=crop&auto=format",phone:"+507 6833-4455",instagram:"@labaguette_pty",tags:["Pan","Croissants","Francés","Café"],isNew:true,mapQuery:"Calle+57+Obarrio+Panama"},
-{id:"36",name:"Steak & Wine",category:"Restaurantes",categoryId:"restaurantes",description:"Restaurante de carnes y vinos con ambiente íntimo y elegante. Cortes de res certificados, selección de vinos del nuevo y viejo mundo y postres de autor.",address:"Punta Pacífica, Centro Comercial Multiplaza, Nivel 2",hours:"Lun–Dom 12:00pm – 11:30pm",rating:4.8,reviews:221,image:"https://images.unsplash.com/photo-1558030006-450675393462?w=700&h=450&fit=crop&auto=format",logo:"https://images.unsplash.com/photo-1544025162-d76694265947?w=80&h=80&fit=crop&auto=format",phone:"+507 6844-5566",instagram:"@steak_wine_pty",website:"steakwinepty.com",tags:["Carne","Vinos","Elegante","Gourmet"],isFeatured:true,mapQuery:"Multiplaza+Panama"},
-{id:"37",name:"Brunch Club",category:"Restaurantes",categoryId:"restaurantes",description:"El mejor brunch de la ciudad los fines de semana. Pancakes, huevos benedictinos, waffles, smoothie bowls y mimosas. Reservaciones los sábados y domingos.",address:"Calle 56 Este, El Carmen",hours:"Sáb–Dom 8:00am – 3:00pm",rating:4.7,reviews:298,image:"https://images.unsplash.com/photo-1533089860892-a7c6f0a88666?w=700&h=450&fit=crop&auto=format",logo:"https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=80&h=80&fit=crop&auto=format",phone:"+507 6855-6677",instagram:"@brunchclub_pty",tags:["Brunch","Pancakes","Fin de Semana","Mimosas"],isPopular:true,mapQuery:"Calle+56+Este+El+Carmen+Panama"},
-{id:"38",name:"Empanadas La Villa",category:"Restaurantes",categoryId:"restaurantes",description:"Empanadas artesanales colombianas y panameñas. Más de 20 rellenos distintos: pollo, res, champiñones, queso y dulces. Perfectas para llevar o comer en el local.",address:"Tumba Muerto, Calle 2 #45",hours:"Lun–Dom 8:00am – 8:00pm",rating:4.4,reviews:267,image:"https://images.unsplash.com/photo-1601050690597-df0568f70950?w=700&h=450&fit=crop&auto=format",logo:"https://images.unsplash.com/photo-1565299585323-38d6b0865b47?w=80&h=80&fit=crop&auto=format",phone:"+507 6866-7788",facebook:"EmpanadasLaVilla",tags:["Empanadas","Colombiano","Artesanal","Para Llevar"],isNew:true,mapQuery:"Tumba+Muerto+Panama"},
-{id:"39",name:"Smoothie Bar Verde",category:"Restaurantes",categoryId:"restaurantes",description:"Jugos naturales, smoothies, acai bowls y shots de bienestar. Todo sin azúcar añadida, con frutas frescas y superalimentos. Energía natural para tu día.",address:"Calle 50 y 61, San Francisco, Local 3",hours:"Lun–Sáb 7:00am – 7:00pm",rating:4.5,reviews:143,image:"https://images.unsplash.com/photo-1570696516188-ade861b84a49?w=700&h=450&fit=crop&auto=format",logo:"https://images.unsplash.com/photo-1512621776951-a57141f2eefd?w=80&h=80&fit=crop&auto=format",phone:"+507 6877-8899",instagram:"@smoothie_verde_pty",tags:["Jugos","Smoothies","Acai","Saludable"],mapQuery:"Calle+50+San+Francisco+Panama"},
-{id:"41",name:"Wok Asian Kitchen",category:"Restaurantes",categoryId:"restaurantes",description:"Cocina asiática fusión con platos de China, Japón, Tailandia y Vietnam. Wok al fuego vivo, dim sum, pho y baos rellenos. Ambiente urbano y moderno.",address:"Calle 50, Torre Delta, Local B",hours:"Lun–Dom 11:00am – 10:00pm",rating:4.4,reviews:178,image:"https://images.unsplash.com/photo-1526318896980-cf78c088247c?w=700&h=450&fit=crop&auto=format",logo:"https://images.unsplash.com/photo-1547592166-23ac45744acd?w=80&h=80&fit=crop&auto=format",phone:"+507 6899-0011",instagram:"@wok_asian_pty",tags:["Asiático","Wok","Dim Sum","Fusión"],mapQuery:"Calle+50+Torre+Delta+Panama"},
-{id:"43",name:"Café Literario",category:"Restaurantes",categoryId:"restaurantes",description:"Café boutique con biblioteca interior. Café de origen único, tés artesanales y repostería fina. Eventos culturales semanales, lecturas y exposiciones de arte.",address:"Casco Viejo, Plaza Herrera #3",hours:"Mar–Dom 8:00am – 8:00pm",rating:4.7,reviews:134,image:"https://images.unsplash.com/photo-1463797221720-6b07e6426c24?w=700&h=450&fit=crop&auto=format",logo:"https://images.unsplash.com/photo-1587241321921-91a834d6d191?w=80&h=80&fit=crop&auto=format",phone:"+507 6911-2233",instagram:"@cafe_literario_pty",tags:["Café","Libros","Cultural","Repostería"],isFeatured:true,mapQuery:"Plaza+Herrera+Casco+Viejo+Panama"},
-{id:"45",name:"Parrilla del Mar",category:"Restaurantes",categoryId:"restaurantes",description:"Pescados y mariscos a la parrilla con sazón caribeño. Pargo entero, langostinos al ajillo y pulpo a la brasa. Vistas al océano y música en vivo los viernes.",address:"Amador Causeway, Isla Perico, Local 7",hours:"Mar–Dom 12:00pm – 11:00pm",rating:4.8,reviews:243,image:"https://images.unsplash.com/photo-1615141982883-c7ad0e69fd62?w=700&h=450&fit=crop&auto=format",logo:"https://images.unsplash.com/photo-1563612116625-3012372fccce?w=80&h=80&fit=crop&auto=format",phone:"+507 6933-4455",instagram:"@parrilla_delmar",facebook:"ParrillaDelMarPty",tags:["Mariscos","Parrilla","Vista al Mar","Pargo"],isFeatured:true,isPopular:true,mapQuery:"Amador+Causeway+Panama"},
-{id:"46",name:"Dulcería La Canela",category:"Restaurantes",categoryId:"restaurantes",description:"Dulces artesanales panameños y latinoamericanos. Alfajores, cocadas, polvorones, dulce de leche y tamales dulces. Ideal para regalos y celebraciones especiales.",address:"Santa Ana, Calle 12 #56",hours:"Lun–Sáb 8:00am – 7:00pm",rating:4.4,reviews:167,image:"https://images.unsplash.com/photo-1558326567-98ae2405596b?w=700&h=450&fit=crop&auto=format",logo:"https://images.unsplash.com/photo-1483695028939-5bb13f8648b0?w=80&h=80&fit=crop&auto=format",phone:"+507 6944-5566",facebook:"DulceriaLaCanela",tags:["Dulces","Artesanal","Panameño","Regalos"],mapQuery:"Santa+Ana+Panama"},
-{id:"49",name:"Café Azul",category:"Restaurantes",categoryId:"restaurantes",description:"Coffee shop especializado en métodos de extracción alternativos: V60, aeropress, chemex y cold brew. Baristas certificados y granos de origen sostenible.",address:"Av. Ricardo J. Alfaro, Local 22",hours:"Lun–Sáb 7:00am – 8:00pm",rating:4.7,reviews:156,image:"https://images.unsplash.com/photo-1498804103079-a6351b050096?w=700&h=450&fit=crop&auto=format",logo:"https://images.unsplash.com/photo-1587241321921-91a834d6d191?w=80&h=80&fit=crop&auto=format",phone:"+507 6977-8899",instagram:"@cafe_azul_pty",tags:["Café","Specialty Coffee","V60","Cold Brew"],isFeatured:true,mapQuery:"Avenida+Ricardo+Alfaro+Panama"},
-{id:"51",name:"Restaurante Árabe Habibi",category:"Restaurantes",categoryId:"restaurantes",description:"Cocina árabe del Medio Oriente. Hummus casero, falafel, shawarma, kabab y baklava. Música árabe en vivo los jueves. Ideal para grupos y celebraciones.",address:"Calle 50, Los Ángeles, Local 6",hours:"Lun–Dom 12:00pm – 10:30pm",rating:4.4,reviews:143,image:"https://images.unsplash.com/photo-1542574271-7f3b92e6c821?w=700&h=450&fit=crop&auto=format",logo:"https://images.unsplash.com/photo-1478144592103-25e218a04891?w=80&h=80&fit=crop&auto=format",phone:"+507 6999-0011",facebook:"RestHabibiPty",tags:["Árabe","Shawarma","Hummus","Falafel"],mapQuery:"Calle+50+Los+Angeles+Panama"},
-{id:"53",name:"Sandwichería Express",category:"Restaurantes",categoryId:"restaurantes",description:"Sándwiches artesanales rápidos y deliciosos. Pan horneado a diario, jamón y quesos importados, vegetales frescos y salsas caseras. El almuerzo ideal en 5 minutos.",address:"Av. España, Punta Pacífica, Local 2",hours:"Lun–Vie 7:00am – 5:00pm",rating:4.3,reviews:189,image:"https://images.unsplash.com/photo-1553909489-cd47e0907980?w=700&h=450&fit=crop&auto=format",logo:"https://images.unsplash.com/photo-1619546813926-a78fa6372cd2?w=80&h=80&fit=crop&auto=format",phone:"+507 6012-2233",facebook:"SandwicheriaExpress",tags:["Sándwiches","Rápido","Almuerzo","Artesanal"],mapQuery:"Avenida+Espana+Punta+Pacifica+Panama"},
-/* -- BELLEZA (19 total, ids 61–78) -- */
-{id:"61",name:"Studio Glam",category:"Belleza",categoryId:"belleza",description:"Salón de belleza de alta gama con especialistas en coloración, extensiones y tratamientos de keratina brasileña. Ambiente lujoso y personalizado para cada clienta.",address:"Calle 50, Marbella, Torre HSBC, Local 2",hours:"Mar–Sáb 9:00am – 7:00pm",rating:4.8,reviews:167,image:"https://images.unsplash.com/photo-1560066984-138dadb4c035?w=700&h=450&fit=crop&auto=format",logo:"https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?w=80&h=80&fit=crop&auto=format",phone:"+507 6100-1122",instagram:"@studio_glam_pty",tags:["Coloración","Keratina","Extensiones","Premium"],isFeatured:true,mapQuery:"Calle+50+Marbella+Panama"},
-{id:"63",name:"Barbería El Caballero",category:"Belleza",categoryId:"belleza",description:"Barbería clásica para hombres modernos. Cortes de cabello, afeitado con navaja, arreglo de barba y tratamientos capilares masculinos. Ambiente retro y relajado.",address:"Calle 47, Bella Vista, Local 3",hours:"Lun–Sáb 9:00am – 7:00pm",rating:4.6,reviews:198,image:"https://images.unsplash.com/photo-1503951914875-452162b0f3f1?w=700&h=450&fit=crop&auto=format",logo:"https://images.unsplash.com/photo-1621605815971-fbc98d665033?w=80&h=80&fit=crop&auto=format",phone:"+507 6122-3344",instagram:"@barberia_elcaballero",tags:["Barbería","Hombres","Navaja","Barba"],isPopular:true,mapQuery:"Calle+47+Bella+Vista+Panama"},
-{id:"65",name:"Centro Estética Renova",category:"Belleza",categoryId:"belleza",description:"Tratamientos estéticos faciales y corporales. Limpieza profunda, hidratación, radiofrecuencia y depilación láser. Profesionales certificados y equipos de última tecnología.",address:"Calle 50, Las Mercedes, Edificio Banco General, Local 1",hours:"Lun–Vie 9:00am – 6:00pm, Sáb 9:00am – 3:00pm",rating:4.5,reviews:145,image:"https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?w=700&h=450&fit=crop&auto=format",logo:"https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?w=80&h=80&fit=crop&auto=format",phone:"+507 6144-5566",website:"estrenova.com",tags:["Estética","Facial","Láser","Radiofrecuencia"],mapQuery:"Calle+50+Las+Mercedes+Panama"},
-{id:"66",name:"Peluquería Infantil Ricitos",category:"Belleza",categoryId:"belleza",description:"Salón especializado en cortes para niños y niñas de 0 a 12 años. Ambiente divertido con juguetes y pantallas. Los mejores cortadores con paciencia y amor.",address:"El Dorado, Centro Comercial, Local 34",hours:"Mar–Dom 10:00am – 6:00pm",rating:4.8,reviews:267,image:"https://images.unsplash.com/photo-1512290923902-8a9f81dc236c?w=700&h=450&fit=crop&auto=format",logo:"https://images.unsplash.com/photo-1595871151608-bc7abd1caca3?w=80&h=80&fit=crop&auto=format",phone:"+507 6155-6677",facebook:"RicitosPeluqueriaInfantil",tags:["Niños","Cortes Infantiles","Familiar","Divertido"],isPopular:true,mapQuery:"El+Dorado+Panama"},
-{id:"78",name:"Beauty Express",category:"Belleza",categoryId:"belleza",description:"Servicios de belleza rápidos y asequibles. Manicure, pedicure básico, tinte express y cortes sencillos sin cita. La solución perfecta para quienes tienen poco tiempo.",address:"Av. José Agustín Arango, Tocumen, Local 3",hours:"Lun–Dom 9:00am – 8:00pm",rating:4.2,reviews:234,image:"https://images.unsplash.com/photo-1540555700478-4be289fbecef?w=700&h=450&fit=crop&auto=format",logo:"https://images.unsplash.com/photo-1595871151608-bc7abd1caca3?w=80&h=80&fit=crop&auto=format",phone:"+507 6277-8899",facebook:"BeautyExpressPanama",tags:["Express","Sin Cita","Manicure","Asequible"],isPopular:true,mapQuery:"Tocumen+Panama"},
-/* -- TRANSPORTE (12 total, ids 80–89) -- */
-/* -- TURISMO (15 total, ids 90–101) -- */
-{id:"93",name:"Bocas Adventure",category:"Turismo",categoryId:"turismo",description:"Paquetes de aventura en Bocas del Toro. Snorkel, kayak, pesca, tour en lancha por los cayos y delfines. La experiencia caribeña panameña más completa.",address:"Bocas del Toro, Isla Colón (agencia en el centro)",hours:"Lun–Dom 7:00am – 6:00pm",rating:4.8,reviews:234,image:"https://images.unsplash.com/photo-1544551763-46a013bb70d5?w=700&h=450&fit=crop&auto=format",logo:"https://images.unsplash.com/photo-1526778548025-fa2f459cd5c1?w=80&h=80&fit=crop&auto=format",phone:"+507 6433-4455",instagram:"@bocas_adventure",website:"bocasadventure.com",tags:["Bocas del Toro","Snorkel","Kayak","Caribe"],isFeatured:true,isPopular:true,mapQuery:"Bocas+del+Toro+Panama"},
-{id:"96",name:"Playa Los Destinos",category:"Turismo",categoryId:"turismo",description:"Agencia de viajes especializada en destinos de playa en Panamá y el Caribe. Paquetes a San Blas, Bocas, Contadora y Colón. Todo incluido con transporte.",address:"Av. Samuel Lewis, Piso 3, Of. 301",hours:"Lun–Vie 9:00am – 6:00pm",rating:4.5,reviews:134,image:"https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=700&h=450&fit=crop&auto=format",logo:"https://images.unsplash.com/photo-1526778548025-fa2f459cd5c1?w=80&h=80&fit=crop&auto=format",phone:"+507 6466-7788",instagram:"@playa_losdestinos",website:"playalosdestinos.com",tags:["Agencia","San Blas","Contadora","Todo Incluido"],isFeatured:true,mapQuery:"Avenida+Samuel+Lewis+Panama"},
+{id:"1",name:"Pastelerï¿½a Luna",category:"Restaurantes",categoryId:"restaurantes",description:"Pasteles artesanales elaborados con ingredientes frescos y locales. Especialidad en tortas personalizadas para bodas, cumpleaï¿½os y eventos especiales. Cada pieza es una obra de arte comestible.",address:"Calle Principal 45, Centro",hours:"Lunï¿½Sï¿½b 8:00am ï¿½ 8:00pm",rating:4.9,reviews:312,image:"https://images.unsplash.com/photo-1483695028939-5bb13f8648b0?w=700&h=450&fit=crop&auto=format",logo:"https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=80&h=80&fit=crop&auto=format",phone:"+507 6234-5678",instagram:"@pasteleria_luna",facebook:"PasteleriaLuna",tags:["Pasteles","Tortas","Reposterï¿½a","Personalizado"],isNew:false,isFeatured:true,isPopular:true,deal:{label:"20% OFF",desc:"En tortas personalizadas",color:"#EF4444"},mapQuery:"Calle+Principal+45+Centro"},{id:"2",name:"Salï¿½n Belleza Mï¿½a",category:"Belleza",categoryId:"belleza",description:"Tu espacio de transformaciï¿½n personal. Ofrecemos cortes, coloraciï¿½n, tratamientos capilares, manicure y pedicure con los mejores productos del mercado.",address:"Av. Las Flores 120, Zona Rosa",hours:"Marï¿½Dom 9:00am ï¿½ 7:00pm",rating:4.7,reviews:198,image:"https://images.unsplash.com/photo-1540555700478-4be289fbecef?w=700&h=450&fit=crop&auto=format",logo:"https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?w=80&h=80&fit=crop&auto=format",phone:"+507 6345-6789",instagram:"@belleza_mia_salon",tags:["Cortes","Coloraciï¿½n","Manicure","Spa"],isNew:true,isFeatured:true,deal:{label:"2ï¿½1",desc:"Manicure + pedicure",color:"#EC4899"},mapQuery:"Avenida+Las+Flores+120+Zona+Rosa"},
+{id:"3",name:"TechPoint",category:"Tecnologï¿½a",categoryId:"tecnologia",description:"Venta y reparaciï¿½n de dispositivos electrï¿½nicos. Smartphones, laptops, tablets y accesorios. Servicio tï¿½cnico certificado con garantï¿½a extendida.",address:"Centro Comercial Plaza, Local 32",hours:"Lunï¿½Sï¿½b 9:00am ï¿½ 6:00pm",rating:4.5,reviews:87,image:"https://images.unsplash.com/photo-1611532736597-de2d4265fba3?w=700&h=450&fit=crop&auto=format",logo:"https://images.unsplash.com/photo-1565211604822-2641d0b081a6?w=80&h=80&fit=crop&auto=format",phone:"+507 6456-7890",website:"techpoint.local",facebook:"TechPointStore",tags:["Reparaciï¿½n","Smartphones","Laptops","Accesorios"],isPopular:true,mapQuery:"Centro+Comercial+Plaza+Panama"},
+{id:"5",name:"Dulce Hogar",category:"Restaurantes",categoryId:"restaurantes",description:"Panaderï¿½a y reposterï¿½a artesanal con recetas tradicionales de abuela. Pan fresco cada maï¿½ana, galletas, brownies y postres caseros que enamoran.",address:"Barrio El Jardï¿½n, Calle 3 #12",hours:"Lunï¿½Sï¿½b 7:00am ï¿½ 6:00pm",rating:4.6,reviews:156,image:"https://images.unsplash.com/photo-1568254183919-78a4f43a2877?w=700&h=450&fit=crop&auto=format",logo:"https://images.unsplash.com/photo-1509440159596-0249088772ff?w=80&h=80&fit=crop&auto=format",phone:"+507 6678-9012",facebook:"DulceHogarBakery",tags:["Pan","Galletas","Postres","Artesanal"],isNew:true,mapQuery:"Barrio+El+Jardin+Calle+3"},
+{id:"6",name:"Clï¿½nica Salud Total",category:"Salud",categoryId:"salud",description:"Atenciï¿½n mï¿½dica integral con especialistas en medicina general, pediatrï¿½a, nutriciï¿½n y fisioterapia. Consultas presenciales y telemedicina disponible.",address:"Av. Salud 200, Col. Mï¿½dica",hours:"Lunï¿½Vie 8:00am ï¿½ 5:00pm",rating:4.4,reviews:73,image:"https://images.unsplash.com/photo-1578474846511-04ba529f0b88?w=700&h=450&fit=crop&auto=format",logo:"https://images.unsplash.com/photo-1559757175-5700dde675bc?w=80&h=80&fit=crop&auto=format",phone:"+507 6789-0123",website:"saludtotal.med",tags:["Mï¿½dicos","Pediatrï¿½a","Nutriciï¿½n","Telemedicina"],isFeatured:true,mapQuery:"Avenida+Salud+200+Panama"},
+{id:"7",name:"ModaUrbana",category:"Ropa",categoryId:"ropa",description:"Boutique de moda contemporï¿½nea con las ï¿½ltimas tendencias para hombre y mujer. Diseï¿½os exclusivos, marcas locales y ropa importada a precios accesibles.",address:"Paseo Comercial, Local 45-B",hours:"Lunï¿½Sï¿½b 10:00am ï¿½ 8:00pm",rating:4.3,reviews:64,image:"https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=700&h=450&fit=crop&auto=format",logo:"https://images.unsplash.com/photo-1523381210434-271e8be1f52b?w=80&h=80&fit=crop&auto=format",phone:"+507 6890-1234",instagram:"@modaurbana_oficial",tags:["Moda","Ropa","Boutique","Tendencias"],isNew:true,isPopular:true,mapQuery:"Paseo+Comercial+Panama"},
+{id:"8",name:"Reposterï¿½a Marï¿½a",category:"Restaurantes",categoryId:"restaurantes",description:"Postres y pasteles personalizados para toda ocasiï¿½n. Especialidad en cheesecakes, macarons y tartas de temporada con ingredientes 100% naturales.",address:"Col. Las Palmas, Blvd. Norte 67",hours:"Marï¿½Dom 10:00am ï¿½ 7:00pm",rating:4.8,reviews:241,image:"https://images.unsplash.com/photo-1537047902294-62a40c20a6ae?w=700&h=450&fit=crop&auto=format",logo:"https://images.unsplash.com/photo-1486887396153-fa416526c108?w=80&h=80&fit=crop&auto=format",phone:"+507 6901-2345",instagram:"@reposteria_maria",facebook:"ReposteriaMaria",tags:["Pasteles","Cheesecake","Macarons","Natural"],isFeatured:true,isPopular:true,mapQuery:"Blvd+Norte+67+Panama"},
+{id:"9",name:"Sushi Nikkei",category:"Restaurantes",categoryId:"restaurantes",description:"Autï¿½ntica fusiï¿½n nikkei con ingredientes frescos del mercado. Rolls creativos, sashimi premium y ramen artesanal en un ambiente ï¿½ntimo y moderno.",address:"Calle 50, Miraflores, Local 8",hours:"Marï¿½Dom 12:00pm ï¿½ 10:00pm",rating:4.7,reviews:189,image:"https://images.unsplash.com/photo-1579584425555-c3ce17fd4351?w=700&h=450&fit=crop&auto=format",logo:"https://images.unsplash.com/photo-1569050467447-ce54b3bbc37d?w=80&h=80&fit=crop&auto=format",phone:"+507 6312-4567",instagram:"@sushi_nikkei_ptv",tags:["Sushi","Ramen","Japonï¿½s","Fusiï¿½n"],isFeatured:true,isNew:false,mapQuery:"Calle+50+Miraflores+Panama"},
+{id:"10",name:"Spa Serenidad",category:"Salud",categoryId:"salud",description:"Centro de bienestar integral con masajes relajantes, faciales, tratamientos corporales y aromaterapia. Un oasis de paz en el corazï¿½n de la ciudad.",address:"Vï¿½a Argentina 33, El Cangrejo",hours:"Lunï¿½Sï¿½b 9:00am ï¿½ 8:00pm",rating:4.9,reviews:276,image:"https://images.unsplash.com/photo-1544161515-4ab6ce6db874?w=700&h=450&fit=crop&auto=format",logo:"https://images.unsplash.com/photo-1544991060-b42da24bef4b?w=80&h=80&fit=crop&auto=format",phone:"+507 6423-8901",instagram:"@spa_serenidad",website:"spaserenidad.com",tags:["Masajes","Faciales","Bienestar","Aromaterapia"],isFeatured:true,isPopular:true,deal:{label:"15% OFF",desc:"Primer masaje relajante",color:"#10B981"},mapQuery:"Via+Argentina+33+El+Cangrejo+Panama"},
+{id:"11",name:"Ferreterï¿½a El Maestro",category:"Hogar",categoryId:"hogar",description:"Todo para tu hogar y construcciï¿½n. Herramientas elï¿½ctricas y manuales, materiales de construcciï¿½n, plomerï¿½a y electricidad. Asesoramiento personalizado.",address:"Av. Balboa 78, Bella Vista",hours:"Lunï¿½Sï¿½b 7:00am ï¿½ 7:00pm",rating:4.3,reviews:94,image:"https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=700&h=450&fit=crop&auto=format",logo:"https://images.unsplash.com/photo-1530124566582-a618bc2615dc?w=80&h=80&fit=crop&auto=format",phone:"+507 6534-2109",facebook:"FerreteriaElMaestro",tags:["Herramientas","Construcciï¿½n","Plomerï¿½a","Electricidad"],mapQuery:"Avenida+Balboa+78+Bella+Vista+Panama"},
+{id:"12",name:"Heladerï¿½a Tropical",category:"Restaurantes",categoryId:"restaurantes",description:"Helados artesanales con frutas tropicales de temporada. Mï¿½s de 30 sabores ï¿½nicos como maracuyï¿½, guanï¿½bana, tamarindo y carambola. Sin colorantes artificiales.",address:"Calle Uruguay 15, San Felipe",hours:"Todos los dï¿½as 11:00am ï¿½ 10:00pm",rating:4.8,reviews:332,image:"https://images.unsplash.com/photo-1563805042-7684c019e1cb?w=700&h=450&fit=crop&auto=format",logo:"https://images.unsplash.com/photo-1551248429-40975aa4de74?w=80&h=80&fit=crop&auto=format",phone:"+507 6645-3210",instagram:"@heladeria_tropical",facebook:"HeleaderiaLaTropical",tags:["Helados","Artesanal","Tropical","Natural"],isNew:true,isPopular:true,mapQuery:"Calle+Uruguay+15+San+Felipe+Panama"},
+{id:"13",name:"Taller Auto Express",category:"Transporte",categoryId:"transporte",description:"Taller mecï¿½nico de confianza para todo tipo de vehï¿½culos. Diagnï¿½stico computarizado, frenos, suspensiï¿½n, cambio de aceite y mantenimiento general.",address:"Tumba Muerto, Calle F #23",hours:"Lunï¿½Sï¿½b 7:30am ï¿½ 5:30pm",rating:4.2,reviews:118,image:"https://images.unsplash.com/photo-1619642751034-765dfdf7c58e?w=700&h=450&fit=crop&auto=format",logo:"https://images.unsplash.com/photo-1542826391-ee6a9f1f93c4?w=80&h=80&fit=crop&auto=format",phone:"+507 6756-4321",facebook:"AutoExpressTaller",tags:["Mecï¿½nica","Frenos","Diagnï¿½stico","Mantenimiento"],mapQuery:"Tumba+Muerto+Panama"},
+{id:"14",name:"Librerï¿½a Imaginarium",category:"Hogar",categoryId:"hogar",description:"Librerï¿½a independiente especializada en literatura latinoamericana, ciencia ficciï¿½n y cï¿½mics. Eventos literarios mensuales y club de lectura activo.",address:"Av. Federico Boyd 44, Paitilla",hours:"Marï¿½Dom 10:00am ï¿½ 8:00pm",rating:4.7,reviews:143,image:"https://images.unsplash.com/photo-1507842217343-583bb7270b66?w=700&h=450&fit=crop&auto=format",logo:"https://images.unsplash.com/photo-1481627834876-b7833e8f5570?w=80&h=80&fit=crop&auto=format",phone:"+507 6867-5432",instagram:"@imaginarium_libros",website:"librosimagines.com",tags:["Libros","Literatura","Cï¿½mics","Eventos"],isNew:true,mapQuery:"Avenida+Federico+Boyd+44+Paitilla+Panama"},
+{id:"15",name:"City Tours Panamï¿½",category:"Turismo",categoryId:"turismo",description:"Recorridos guiados por el casco histï¿½rico, el Canal y los barrios mï¿½s emblemï¿½ticos. Tours en espaï¿½ol e inglï¿½s. Grupos pequeï¿½os para una experiencia personalizada.",address:"Plaza de Francia, Casco Viejo",hours:"Todos los dï¿½as 8:00am ï¿½ 6:00pm",rating:4.8,reviews:267,image:"https://images.unsplash.com/photo-1548707309-dcebeab9ea9b?w=700&h=450&fit=crop&auto=format",logo:"https://images.unsplash.com/photo-1526778548025-fa2f459cd5c1?w=80&h=80&fit=crop&auto=format",phone:"+507 6978-6543",instagram:"@citytours_pty",website:"citytourspty.com",tags:["Tours","Historia","Canal","Casco Viejo"],isFeatured:true,isPopular:true,deal:{label:"30% OFF",desc:"Tours de fin de semana",color:"#8B5CF6"},mapQuery:"Plaza+de+Francia+Casco+Viejo+Panama"},
+{id:"16",name:"GymFit Centro",category:"Salud",categoryId:"salud",description:"Gimnasio moderno con equipos de ï¿½ltima generaciï¿½n. Clases de spinning, yoga, zumba y crossfit. Entrenadores certificados y planes nutricionales personalizados.",address:"Calle 42, Bella Vista, Edificio Sport",hours:"Lunï¿½Vie 5:00am ï¿½ 10:00pm, Sï¿½bï¿½Dom 7:00am ï¿½ 8:00pm",rating:4.5,reviews:201,image:"https://images.unsplash.com/photo-1534438327276-14e5300c3a48?w=700&h=450&fit=crop&auto=format",logo:"https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=80&h=80&fit=crop&auto=format",phone:"+507 6089-7654",instagram:"@gymfit_centro",facebook:"GymFitCentro",tags:["Gym","Crossfit","Yoga","Nutriciï¿½n"],isNew:true,isPopular:true,deal:{label:"Mes gratis",desc:"Con inscripciï¿½n anual",color:"#0EA5E9"},mapQuery:"Calle+42+Bella+Vista+Panama"},
+{id:"17",name:"Estudio Foto&Arte",category:"Turismo",categoryId:"turismo",description:"Estudio profesional de fotografï¿½a para retratos, eventos empresariales, sesiones familiares y productos. Ediciï¿½n profesional incluida en todos los paquetes.",address:"Calle Manuel Espinosa 12, San Francisco",hours:"Lunï¿½Sï¿½b 9:00am ï¿½ 6:00pm",rating:4.6,reviews:88,image:"https://images.unsplash.com/photo-1516035069371-29a1b244cc32?w=700&h=450&fit=crop&auto=format",logo:"https://images.unsplash.com/photo-1452802447250-470a88ac82bc?w=80&h=80&fit=crop&auto=format",phone:"+507 6190-8765",instagram:"@fotoarte_pty",website:"fotoartestudio.com",tags:["Fotografï¿½a","Retratos","Eventos","Ediciï¿½n"],mapQuery:"Calle+Manuel+Espinosa+12+San+Francisco+Panama"},
+{id:"18",name:"Cocina de la Abuela",category:"Restaurantes",categoryId:"restaurantes",description:"Restaurante familiar con recetas autï¿½nticas panameï¿½as. Sancocho de gallina, arroz con pollo, patacones y postres caseros como el tembleque y la bienmesabe.",address:"Calle 10, El Chorrillo, Local 5",hours:"Lunï¿½Dom 11:00am ï¿½ 9:00pm",rating:4.7,reviews:348,image:"https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=700&h=450&fit=crop&auto=format",logo:"https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=80&h=80&fit=crop&auto=format",phone:"+507 6201-9876",facebook:"CocinaAbuelapty",tags:["Panameï¿½o","Sancocho","Familiar","Casero"],isPopular:true,mapQuery:"Calle+10+El+Chorrillo+Panama"},
+{id:"19",name:"Computec Soluciones",category:"Tecnologï¿½a",categoryId:"tecnologia",description:"Servicio tï¿½cnico especializado en computadoras, redes empresariales e instalaciï¿½n de cï¿½maras de seguridad. Atenciï¿½n a domicilio disponible en toda la ciudad.",address:"Av. Ricardo J. Alfaro, Torres del Sol, Of. 3B",hours:"Lunï¿½Vie 8:00am ï¿½ 6:00pm, Sï¿½b 9:00am ï¿½ 2:00pm",rating:4.4,reviews:76,image:"https://images.unsplash.com/photo-1588702547919-26089e690ecc?w=700&h=450&fit=crop&auto=format",logo:"https://images.unsplash.com/photo-1461749280684-dccba630e2f6?w=80&h=80&fit=crop&auto=format",phone:"+507 6312-0987",instagram:"@computec_pty",facebook:"ComputecSoluciones",tags:["Computadoras","Redes","Cï¿½maras","Domicilio"],isNew:true,mapQuery:"Avenida+Ricardo+Alfaro+Panama"},
+{id:"20",name:"Boutique Xclusive",category:"Ropa",categoryId:"ropa",description:"Ropa de diseï¿½ador local y marcas internacionales seleccionadas. Prendas exclusivas para mujer con servicio de estilismo personal incluido en cada compra.",address:"Mall Via Veneto, Local 112, El Dorado",hours:"Lunï¿½Dom 10:00am ï¿½ 9:00pm",rating:4.5,reviews:112,image:"https://images.unsplash.com/photo-1567401893414-76b7b1e5a7a5?w=700&h=450&fit=crop&auto=format",logo:"https://images.unsplash.com/photo-1490481651871-ab68de25d43d?w=80&h=80&fit=crop&auto=format",phone:"+507 6423-1098",instagram:"@boutique_xclusive",tags:["Diseï¿½ador","Exclusivo","Mujer","Estilismo"],isPopular:true,mapQuery:"Mall+Via+Veneto+El+Dorado+Panama"},
+{id:"21",name:"Transporte Ejecutivo GTR",category:"Transporte",categoryId:"transporte",description:"Servicio de transporte privado premium para ejecutivos, aeropuerto y eventos. Flota de vehï¿½culos modernos, choferes certificados y puntualidad garantizada.",address:"Punta Pacï¿½fica, Torre Global, Piso 1",hours:"Todos los dï¿½as 24 horas",rating:4.6,reviews:159,image:"https://images.unsplash.com/photo-1449965408869-eaa3f722e40d?w=700&h=450&fit=crop&auto=format",logo:"https://images.unsplash.com/photo-1503376780353-7e6692767b70?w=80&h=80&fit=crop&auto=format",phone:"+507 6534-2109",instagram:"@gtr_panama",website:"gtrtransporte.com",tags:["Ejecutivo","Aeropuerto","Premium","24 horas"],isFeatured:true,mapQuery:"Punta+Pacifica+Panama"},
+{id:"22",name:"Clï¿½nica Dental Sonrisas",category:"Salud",categoryId:"salud",description:"Odontologï¿½a estï¿½tica y general. Ortodoncia, blanqueamiento, implantes y limpiezas profesionales. Tecnologï¿½a digital para diagnï¿½sticos precisos sin radiaciï¿½n innecesaria.",address:"Calle 50, San Francisco, Edificio Mï¿½dico, Piso 3",hours:"Lunï¿½Vie 8:00am ï¿½ 6:00pm, Sï¿½b 9:00am ï¿½ 1:00pm",rating:4.8,reviews:183,image:"https://images.unsplash.com/photo-1629909613654-28e377c37b09?w=700&h=450&fit=crop&auto=format",logo:"https://images.unsplash.com/photo-1559757175-5700dde675bc?w=80&h=80&fit=crop&auto=format",phone:"+507 6645-3210",instagram:"@clinica_sonrisas",website:"clinicasonrisas.com",tags:["Dental","Ortodoncia","Estï¿½tica","Implantes"],isNew:true,isFeatured:true,mapQuery:"Calle+50+San+Francisco+Panama"},
+/* -- RESTAURANTES adicionales (ids 23ï¿½53) -- */
+{id:"23",name:"Tacos & Burritos",category:"Restaurantes",categoryId:"restaurantes",description:"Autï¿½ntica comida mexicana callejera con ingredientes frescos. Tacos de carne asada, al pastor, burritos y quesadillas con salsas caseras de distintos niveles de picante.",address:"Calle 48, El Cangrejo, Local 7",hours:"Marï¿½Dom 11:00am ï¿½ 10:00pm",rating:4.5,reviews:203,image:"https://images.unsplash.com/photo-1565299585323-38d6b0865b47?w=700&h=450&fit=crop&auto=format",logo:"https://images.unsplash.com/photo-1551504734-5ee1c4a1479b?w=80&h=80&fit=crop&auto=format",phone:"+507 6711-2233",instagram:"@tacos_burritos_pty",tags:["Mexicano","Tacos","Burritos","Picante"],isPopular:true,mapQuery:"Calle+48+El+Cangrejo+Panama"},
+{id:"24",name:"Pizzerï¿½a Napoli",category:"Restaurantes",categoryId:"restaurantes",description:"Pizza artesanal al horno de leï¿½a con masa madre fermentada 48 horas. Ingredientes importados de Italia y tomates San Marzano. Ambiente familiar y acogedor.",address:"Av. Balboa 112, Bella Vista",hours:"Lunï¿½Dom 12:00pm ï¿½ 11:00pm",rating:4.7,reviews:289,image:"https://images.unsplash.com/photo-1513104890138-7c749659a591?w=700&h=450&fit=crop&auto=format",logo:"https://images.unsplash.com/photo-1571997478779-2adcbbe9ab2f?w=80&h=80&fit=crop&auto=format",phone:"+507 6722-3344",instagram:"@napoli_pty",facebook:"PizzeriaNapoliPanama",tags:["Pizza","Italiana","Horno de Leï¿½a","Artesanal"],isFeatured:true,isPopular:true,deal:{label:"Pizza gratis",desc:"Comprando 2 pizzas grandes",color:"#F97316"},mapQuery:"Avenida+Balboa+112+Bella+Vista+Panama"},
+{id:"25",name:"Burger House",category:"Restaurantes",categoryId:"restaurantes",description:"Hamburguesas gourmet con carne de res 100% nacional. Panes artesanales, quesos importados y salsas secretas. Papas fritas con especias y batidos artesanales.",address:"Calle Uruguay 88, San Felipe",hours:"Lunï¿½Dom 11:00am ï¿½ 11:00pm",rating:4.6,reviews:341,image:"https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=700&h=450&fit=crop&auto=format",logo:"https://images.unsplash.com/photo-1550547660-d9450f859349?w=80&h=80&fit=crop&auto=format",phone:"+507 6733-4455",instagram:"@burgerhouse_pty",tags:["Hamburguesas","Gourmet","Batidos","Papas"],isPopular:true,mapQuery:"Calle+Uruguay+88+San+Felipe+Panama"},
+{id:"26",name:"Mariscos El Puerto",category:"Restaurantes",categoryId:"restaurantes",description:"Mariscos frescos del dï¿½a directamente del Pacï¿½fico. Ceviche, corvina al ajillo, camarones en salsa y langosta. Vista al mar y ambiente tropical inigualable.",address:"Calzada de Amador, Local 4",hours:"Marï¿½Dom 12:00pm ï¿½ 10:00pm",rating:4.8,reviews:267,image:"https://images.unsplash.com/photo-1615141982883-c7ad0e69fd62?w=700&h=450&fit=crop&auto=format",logo:"https://images.unsplash.com/photo-1563612116625-3012372fccce?w=80&h=80&fit=crop&auto=format",phone:"+507 6744-5566",instagram:"@mariscos_elpuerto",facebook:"MariscosElPuerto",tags:["Mariscos","Ceviche","Corvina","Vista al Mar"],isFeatured:true,isPopular:true,mapQuery:"Calzada+de+Amador+Panama"},
+{id:"27",name:"Ramen Tokio",category:"Restaurantes",categoryId:"restaurantes",description:"Ramen autï¿½ntico con caldos preparados durante 18 horas. Tonkotsu, shoyu y miso con noodles frescos, chashu de cerdo y huevo marinado. Para los amantes del ramen serio.",address:"Calle 49 Este, Bella Vista, Local 2",hours:"Marï¿½Dom 12:00pm ï¿½ 10:00pm",rating:4.6,reviews:178,image:"https://images.unsplash.com/photo-1569718212165-3a8278d5f624?w=700&h=450&fit=crop&auto=format",logo:"https://images.unsplash.com/photo-1611143669185-af224c5e3252?w=80&h=80&fit=crop&auto=format",phone:"+507 6755-6677",instagram:"@ramen_tokio_pty",tags:["Ramen","Japonï¿½s","Tonkotsu","Noodles"],isNew:true,mapQuery:"Calle+49+Este+Bella+Vista+Panama"},
+{id:"28",name:"El Asador Argentino",category:"Restaurantes",categoryId:"restaurantes",description:"Cortes premium de carne argentina al carbï¿½n. Asado de tira, bife de chorizo, entraï¿½a y costillas. Vinos argentinos seleccionados y empanadas caseras de entrada.",address:"Calle 53, Marbella, Local 8",hours:"Lunï¿½Dom 12:00pm ï¿½ 11:00pm",rating:4.7,reviews:312,image:"https://images.unsplash.com/photo-1544025162-d76694265947?w=700&h=450&fit=crop&auto=format",logo:"https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=80&h=80&fit=crop&auto=format",phone:"+507 6766-7788",instagram:"@asador_argentino_pty",facebook:"AsadorArgentinoPanama",tags:["Carne","Argentina","Parrilla","Vinos"],isFeatured:true,isPopular:true,mapQuery:"Calle+53+Marbella+Panama"},
+{id:"29",name:"Veggie Garden",category:"Restaurantes",categoryId:"restaurantes",description:"Restaurante vegano y vegetariano con opciones creativas y nutritivas. Bowls, wraps, hamburguesas de plantas y postres sin azï¿½car refinada. Ambiente zen y tranquilo.",address:"Calle Samuel Lewis, Obarrio, Local 3",hours:"Lunï¿½Sï¿½b 8:00am ï¿½ 9:00pm",rating:4.4,reviews:134,image:"https://images.unsplash.com/photo-1512621776951-a57141f2eefd?w=700&h=450&fit=crop&auto=format",logo:"https://images.unsplash.com/photo-1498579150354-977475b7ea0b?w=80&h=80&fit=crop&auto=format",phone:"+507 6777-8899",instagram:"@veggie_garden_pty",tags:["Vegano","Vegetariano","Saludable","Bowls"],isNew:true,mapQuery:"Calle+Samuel+Lewis+Obarrio+Panama"},
+{id:"31",name:"Thai Orchid",category:"Restaurantes",categoryId:"restaurantes",description:"Gastronomï¿½a tailandesa autï¿½ntica con recetas de la regiï¿½n de Chiang Mai. Pad Thai, curry verde, tom yum y mango sticky rice. Sabores asiï¿½ticos ï¿½nicos en Panamï¿½.",address:"Calle 52, El Carmen, Local 11",hours:"Marï¿½Dom 12:00pm ï¿½ 10:00pm",rating:4.5,reviews:156,image:"https://images.unsplash.com/photo-1562565652-a0d8f0c59eb4?w=700&h=450&fit=crop&auto=format",logo:"https://images.unsplash.com/photo-1547592166-23ac45744acd?w=80&h=80&fit=crop&auto=format",phone:"+507 6799-0011",instagram:"@thai_orchid_pty",tags:["Tailandï¿½s","Pad Thai","Curry","Asiï¿½tico"],mapQuery:"Calle+52+El+Carmen+Panama"},
+{id:"33",name:"Crepes & Co.",category:"Restaurantes",categoryId:"restaurantes",description:"Crï¿½perie francesa con mï¿½s de 40 variedades dulces y saladas. Ingredientes premium, masa artesanal y rellenos creativos. Ideal para desayuno, brunch o postre.",address:"Calle Uruguay 22, Casco Viejo",hours:"Miï¿½rï¿½Lun 8:00am ï¿½ 9:00pm",rating:4.4,reviews:167,image:"https://images.unsplash.com/photo-1519676867240-f03562e64548?w=700&h=450&fit=crop&auto=format",logo:"https://images.unsplash.com/photo-1565958011703-44f9829ba187?w=80&h=80&fit=crop&auto=format",phone:"+507 6811-2233",instagram:"@crepes_co_pty",tags:["Crepes","Francï¿½s","Brunch","Postres"],isNew:true,mapQuery:"Calle+Uruguay+22+Casco+Viejo+Panama"},
+{id:"34",name:"Cevicherï¿½a Pacï¿½fico",category:"Restaurantes",categoryId:"restaurantes",description:"Ceviches y tiraditos estilo peruano-panameï¿½o. Leche de tigre de autor, mixto de mariscos y corvina marinada. Fresco, picante y lleno de sabor del ocï¿½ano.",address:"Av. Nacional, Costa del Este, Local 9",hours:"Lunï¿½Dom 11:00am ï¿½ 9:00pm",rating:4.7,reviews:234,image:"https://images.unsplash.com/photo-1535399831218-d5bd36d1a6b3?w=700&h=450&fit=crop&auto=format",logo:"https://images.unsplash.com/photo-1563612116625-3012372fccce?w=80&h=80&fit=crop&auto=format",phone:"+507 6822-3344",instagram:"@cevicheria_pacifico",tags:["Ceviche","Mariscos","Peruano","Fresco"],isFeatured:true,mapQuery:"Costa+del+Este+Panama"},
+{id:"35",name:"Panaderï¿½a La Baguette",category:"Restaurantes",categoryId:"restaurantes",description:"Panaderï¿½a francesa con croissants, baguettes y viennoiseries reciï¿½n horneados cada maï¿½ana. Cafï¿½ de especialidad y sï¿½ndwiches gourmet para el desayuno y almuerzo.",address:"Calle 57, Obarrio, Local 1",hours:"Lunï¿½Sï¿½b 6:30am ï¿½ 7:00pm",rating:4.6,reviews:189,image:"https://images.unsplash.com/photo-1509440159596-0249088772ff?w=700&h=450&fit=crop&auto=format",logo:"https://images.unsplash.com/photo-1486427944299-d1955d23e34d?w=80&h=80&fit=crop&auto=format",phone:"+507 6833-4455",instagram:"@labaguette_pty",tags:["Pan","Croissants","Francï¿½s","Cafï¿½"],isNew:true,mapQuery:"Calle+57+Obarrio+Panama"},
+{id:"36",name:"Steak & Wine",category:"Restaurantes",categoryId:"restaurantes",description:"Restaurante de carnes y vinos con ambiente ï¿½ntimo y elegante. Cortes de res certificados, selecciï¿½n de vinos del nuevo y viejo mundo y postres de autor.",address:"Punta Pacï¿½fica, Centro Comercial Multiplaza, Nivel 2",hours:"Lunï¿½Dom 12:00pm ï¿½ 11:30pm",rating:4.8,reviews:221,image:"https://images.unsplash.com/photo-1558030006-450675393462?w=700&h=450&fit=crop&auto=format",logo:"https://images.unsplash.com/photo-1544025162-d76694265947?w=80&h=80&fit=crop&auto=format",phone:"+507 6844-5566",instagram:"@steak_wine_pty",website:"steakwinepty.com",tags:["Carne","Vinos","Elegante","Gourmet"],isFeatured:true,mapQuery:"Multiplaza+Panama"},
+{id:"37",name:"Brunch Club",category:"Restaurantes",categoryId:"restaurantes",description:"El mejor brunch de la ciudad los fines de semana. Pancakes, huevos benedictinos, waffles, smoothie bowls y mimosas. Reservaciones los sï¿½bados y domingos.",address:"Calle 56 Este, El Carmen",hours:"Sï¿½bï¿½Dom 8:00am ï¿½ 3:00pm",rating:4.7,reviews:298,image:"https://images.unsplash.com/photo-1533089860892-a7c6f0a88666?w=700&h=450&fit=crop&auto=format",logo:"https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=80&h=80&fit=crop&auto=format",phone:"+507 6855-6677",instagram:"@brunchclub_pty",tags:["Brunch","Pancakes","Fin de Semana","Mimosas"],isPopular:true,mapQuery:"Calle+56+Este+El+Carmen+Panama"},
+{id:"38",name:"Empanadas La Villa",category:"Restaurantes",categoryId:"restaurantes",description:"Empanadas artesanales colombianas y panameï¿½as. Mï¿½s de 20 rellenos distintos: pollo, res, champiï¿½ones, queso y dulces. Perfectas para llevar o comer en el local.",address:"Tumba Muerto, Calle 2 #45",hours:"Lunï¿½Dom 8:00am ï¿½ 8:00pm",rating:4.4,reviews:267,image:"https://images.unsplash.com/photo-1601050690597-df0568f70950?w=700&h=450&fit=crop&auto=format",logo:"https://images.unsplash.com/photo-1565299585323-38d6b0865b47?w=80&h=80&fit=crop&auto=format",phone:"+507 6866-7788",facebook:"EmpanadasLaVilla",tags:["Empanadas","Colombiano","Artesanal","Para Llevar"],isNew:true,mapQuery:"Tumba+Muerto+Panama"},
+{id:"39",name:"Smoothie Bar Verde",category:"Restaurantes",categoryId:"restaurantes",description:"Jugos naturales, smoothies, acai bowls y shots de bienestar. Todo sin azï¿½car aï¿½adida, con frutas frescas y superalimentos. Energï¿½a natural para tu dï¿½a.",address:"Calle 50 y 61, San Francisco, Local 3",hours:"Lunï¿½Sï¿½b 7:00am ï¿½ 7:00pm",rating:4.5,reviews:143,image:"https://images.unsplash.com/photo-1570696516188-ade861b84a49?w=700&h=450&fit=crop&auto=format",logo:"https://images.unsplash.com/photo-1512621776951-a57141f2eefd?w=80&h=80&fit=crop&auto=format",phone:"+507 6877-8899",instagram:"@smoothie_verde_pty",tags:["Jugos","Smoothies","Acai","Saludable"],mapQuery:"Calle+50+San+Francisco+Panama"},
+{id:"41",name:"Wok Asian Kitchen",category:"Restaurantes",categoryId:"restaurantes",description:"Cocina asiï¿½tica fusiï¿½n con platos de China, Japï¿½n, Tailandia y Vietnam. Wok al fuego vivo, dim sum, pho y baos rellenos. Ambiente urbano y moderno.",address:"Calle 50, Torre Delta, Local B",hours:"Lunï¿½Dom 11:00am ï¿½ 10:00pm",rating:4.4,reviews:178,image:"https://images.unsplash.com/photo-1526318896980-cf78c088247c?w=700&h=450&fit=crop&auto=format",logo:"https://images.unsplash.com/photo-1547592166-23ac45744acd?w=80&h=80&fit=crop&auto=format",phone:"+507 6899-0011",instagram:"@wok_asian_pty",tags:["Asiï¿½tico","Wok","Dim Sum","Fusiï¿½n"],mapQuery:"Calle+50+Torre+Delta+Panama"},
+{id:"43",name:"Cafï¿½ Literario",category:"Restaurantes",categoryId:"restaurantes",description:"Cafï¿½ boutique con biblioteca interior. Cafï¿½ de origen ï¿½nico, tï¿½s artesanales y reposterï¿½a fina. Eventos culturales semanales, lecturas y exposiciones de arte.",address:"Casco Viejo, Plaza Herrera #3",hours:"Marï¿½Dom 8:00am ï¿½ 8:00pm",rating:4.7,reviews:134,image:"https://images.unsplash.com/photo-1463797221720-6b07e6426c24?w=700&h=450&fit=crop&auto=format",logo:"https://images.unsplash.com/photo-1587241321921-91a834d6d191?w=80&h=80&fit=crop&auto=format",phone:"+507 6911-2233",instagram:"@cafe_literario_pty",tags:["Cafï¿½","Libros","Cultural","Reposterï¿½a"],isFeatured:true,mapQuery:"Plaza+Herrera+Casco+Viejo+Panama"},
+{id:"45",name:"Parrilla del Mar",category:"Restaurantes",categoryId:"restaurantes",description:"Pescados y mariscos a la parrilla con sazï¿½n caribeï¿½o. Pargo entero, langostinos al ajillo y pulpo a la brasa. Vistas al ocï¿½ano y mï¿½sica en vivo los viernes.",address:"Amador Causeway, Isla Perico, Local 7",hours:"Marï¿½Dom 12:00pm ï¿½ 11:00pm",rating:4.8,reviews:243,image:"https://images.unsplash.com/photo-1615141982883-c7ad0e69fd62?w=700&h=450&fit=crop&auto=format",logo:"https://images.unsplash.com/photo-1563612116625-3012372fccce?w=80&h=80&fit=crop&auto=format",phone:"+507 6933-4455",instagram:"@parrilla_delmar",facebook:"ParrillaDelMarPty",tags:["Mariscos","Parrilla","Vista al Mar","Pargo"],isFeatured:true,isPopular:true,mapQuery:"Amador+Causeway+Panama"},
+{id:"46",name:"Dulcerï¿½a La Canela",category:"Restaurantes",categoryId:"restaurantes",description:"Dulces artesanales panameï¿½os y latinoamericanos. Alfajores, cocadas, polvorones, dulce de leche y tamales dulces. Ideal para regalos y celebraciones especiales.",address:"Santa Ana, Calle 12 #56",hours:"Lunï¿½Sï¿½b 8:00am ï¿½ 7:00pm",rating:4.4,reviews:167,image:"https://images.unsplash.com/photo-1558326567-98ae2405596b?w=700&h=450&fit=crop&auto=format",logo:"https://images.unsplash.com/photo-1483695028939-5bb13f8648b0?w=80&h=80&fit=crop&auto=format",phone:"+507 6944-5566",facebook:"DulceriaLaCanela",tags:["Dulces","Artesanal","Panameï¿½o","Regalos"],mapQuery:"Santa+Ana+Panama"},
+{id:"49",name:"Cafï¿½ Azul",category:"Restaurantes",categoryId:"restaurantes",description:"Coffee shop especializado en mï¿½todos de extracciï¿½n alternativos: V60, aeropress, chemex y cold brew. Baristas certificados y granos de origen sostenible.",address:"Av. Ricardo J. Alfaro, Local 22",hours:"Lunï¿½Sï¿½b 7:00am ï¿½ 8:00pm",rating:4.7,reviews:156,image:"https://images.unsplash.com/photo-1498804103079-a6351b050096?w=700&h=450&fit=crop&auto=format",logo:"https://images.unsplash.com/photo-1587241321921-91a834d6d191?w=80&h=80&fit=crop&auto=format",phone:"+507 6977-8899",instagram:"@cafe_azul_pty",tags:["Cafï¿½","Specialty Coffee","V60","Cold Brew"],isFeatured:true,mapQuery:"Avenida+Ricardo+Alfaro+Panama"},
+{id:"51",name:"Restaurante ï¿½rabe Habibi",category:"Restaurantes",categoryId:"restaurantes",description:"Cocina ï¿½rabe del Medio Oriente. Hummus casero, falafel, shawarma, kabab y baklava. Mï¿½sica ï¿½rabe en vivo los jueves. Ideal para grupos y celebraciones.",address:"Calle 50, Los ï¿½ngeles, Local 6",hours:"Lunï¿½Dom 12:00pm ï¿½ 10:30pm",rating:4.4,reviews:143,image:"https://images.unsplash.com/photo-1542574271-7f3b92e6c821?w=700&h=450&fit=crop&auto=format",logo:"https://images.unsplash.com/photo-1478144592103-25e218a04891?w=80&h=80&fit=crop&auto=format",phone:"+507 6999-0011",facebook:"RestHabibiPty",tags:["ï¿½rabe","Shawarma","Hummus","Falafel"],mapQuery:"Calle+50+Los+Angeles+Panama"},
+{id:"53",name:"Sandwicherï¿½a Express",category:"Restaurantes",categoryId:"restaurantes",description:"Sï¿½ndwiches artesanales rï¿½pidos y deliciosos. Pan horneado a diario, jamï¿½n y quesos importados, vegetales frescos y salsas caseras. El almuerzo ideal en 5 minutos.",address:"Av. Espaï¿½a, Punta Pacï¿½fica, Local 2",hours:"Lunï¿½Vie 7:00am ï¿½ 5:00pm",rating:4.3,reviews:189,image:"https://images.unsplash.com/photo-1553909489-cd47e0907980?w=700&h=450&fit=crop&auto=format",logo:"https://images.unsplash.com/photo-1619546813926-a78fa6372cd2?w=80&h=80&fit=crop&auto=format",phone:"+507 6012-2233",facebook:"SandwicheriaExpress",tags:["Sï¿½ndwiches","Rï¿½pido","Almuerzo","Artesanal"],mapQuery:"Avenida+Espana+Punta+Pacifica+Panama"},
+/* -- BELLEZA (19 total, ids 61ï¿½78) -- */
+{id:"61",name:"Studio Glam",category:"Belleza",categoryId:"belleza",description:"Salï¿½n de belleza de alta gama con especialistas en coloraciï¿½n, extensiones y tratamientos de keratina brasileï¿½a. Ambiente lujoso y personalizado para cada clienta.",address:"Calle 50, Marbella, Torre HSBC, Local 2",hours:"Marï¿½Sï¿½b 9:00am ï¿½ 7:00pm",rating:4.8,reviews:167,image:"https://images.unsplash.com/photo-1560066984-138dadb4c035?w=700&h=450&fit=crop&auto=format",logo:"https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?w=80&h=80&fit=crop&auto=format",phone:"+507 6100-1122",instagram:"@studio_glam_pty",tags:["Coloraciï¿½n","Keratina","Extensiones","Premium"],isFeatured:true,mapQuery:"Calle+50+Marbella+Panama"},
+{id:"63",name:"Barberï¿½a El Caballero",category:"Belleza",categoryId:"belleza",description:"Barberï¿½a clï¿½sica para hombres modernos. Cortes de cabello, afeitado con navaja, arreglo de barba y tratamientos capilares masculinos. Ambiente retro y relajado.",address:"Calle 47, Bella Vista, Local 3",hours:"Lunï¿½Sï¿½b 9:00am ï¿½ 7:00pm",rating:4.6,reviews:198,image:"https://images.unsplash.com/photo-1503951914875-452162b0f3f1?w=700&h=450&fit=crop&auto=format",logo:"https://images.unsplash.com/photo-1621605815971-fbc98d665033?w=80&h=80&fit=crop&auto=format",phone:"+507 6122-3344",instagram:"@barberia_elcaballero",tags:["Barberï¿½a","Hombres","Navaja","Barba"],isPopular:true,mapQuery:"Calle+47+Bella+Vista+Panama"},
+{id:"65",name:"Centro Estï¿½tica Renova",category:"Belleza",categoryId:"belleza",description:"Tratamientos estï¿½ticos faciales y corporales. Limpieza profunda, hidrataciï¿½n, radiofrecuencia y depilaciï¿½n lï¿½ser. Profesionales certificados y equipos de ï¿½ltima tecnologï¿½a.",address:"Calle 50, Las Mercedes, Edificio Banco General, Local 1",hours:"Lunï¿½Vie 9:00am ï¿½ 6:00pm, Sï¿½b 9:00am ï¿½ 3:00pm",rating:4.5,reviews:145,image:"https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?w=700&h=450&fit=crop&auto=format",logo:"https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?w=80&h=80&fit=crop&auto=format",phone:"+507 6144-5566",website:"estrenova.com",tags:["Estï¿½tica","Facial","Lï¿½ser","Radiofrecuencia"],mapQuery:"Calle+50+Las+Mercedes+Panama"},
+{id:"66",name:"Peluquerï¿½a Infantil Ricitos",category:"Belleza",categoryId:"belleza",description:"Salï¿½n especializado en cortes para niï¿½os y niï¿½as de 0 a 12 aï¿½os. Ambiente divertido con juguetes y pantallas. Los mejores cortadores con paciencia y amor.",address:"El Dorado, Centro Comercial, Local 34",hours:"Marï¿½Dom 10:00am ï¿½ 6:00pm",rating:4.8,reviews:267,image:"https://images.unsplash.com/photo-1512290923902-8a9f81dc236c?w=700&h=450&fit=crop&auto=format",logo:"https://images.unsplash.com/photo-1595871151608-bc7abd1caca3?w=80&h=80&fit=crop&auto=format",phone:"+507 6155-6677",facebook:"RicitosPeluqueriaInfantil",tags:["Niï¿½os","Cortes Infantiles","Familiar","Divertido"],isPopular:true,mapQuery:"El+Dorado+Panama"},
+{id:"78",name:"Beauty Express",category:"Belleza",categoryId:"belleza",description:"Servicios de belleza rï¿½pidos y asequibles. Manicure, pedicure bï¿½sico, tinte express y cortes sencillos sin cita. La soluciï¿½n perfecta para quienes tienen poco tiempo.",address:"Av. Josï¿½ Agustï¿½n Arango, Tocumen, Local 3",hours:"Lunï¿½Dom 9:00am ï¿½ 8:00pm",rating:4.2,reviews:234,image:"https://images.unsplash.com/photo-1540555700478-4be289fbecef?w=700&h=450&fit=crop&auto=format",logo:"https://images.unsplash.com/photo-1595871151608-bc7abd1caca3?w=80&h=80&fit=crop&auto=format",phone:"+507 6277-8899",facebook:"BeautyExpressPanama",tags:["Express","Sin Cita","Manicure","Asequible"],isPopular:true,mapQuery:"Tocumen+Panama"},
+/* -- TRANSPORTE (12 total, ids 80ï¿½89) -- */
+/* -- TURISMO (15 total, ids 90ï¿½101) -- */
+{id:"93",name:"Bocas Adventure",category:"Turismo",categoryId:"turismo",description:"Paquetes de aventura en Bocas del Toro. Snorkel, kayak, pesca, tour en lancha por los cayos y delfines. La experiencia caribeï¿½a panameï¿½a mï¿½s completa.",address:"Bocas del Toro, Isla Colï¿½n (agencia en el centro)",hours:"Lunï¿½Dom 7:00am ï¿½ 6:00pm",rating:4.8,reviews:234,image:"https://images.unsplash.com/photo-1544551763-46a013bb70d5?w=700&h=450&fit=crop&auto=format",logo:"https://images.unsplash.com/photo-1526778548025-fa2f459cd5c1?w=80&h=80&fit=crop&auto=format",phone:"+507 6433-4455",instagram:"@bocas_adventure",website:"bocasadventure.com",tags:["Bocas del Toro","Snorkel","Kayak","Caribe"],isFeatured:true,isPopular:true,mapQuery:"Bocas+del+Toro+Panama"},
+{id:"96",name:"Playa Los Destinos",category:"Turismo",categoryId:"turismo",description:"Agencia de viajes especializada en destinos de playa en Panamï¿½ y el Caribe. Paquetes a San Blas, Bocas, Contadora y Colï¿½n. Todo incluido con transporte.",address:"Av. Samuel Lewis, Piso 3, Of. 301",hours:"Lunï¿½Vie 9:00am ï¿½ 6:00pm",rating:4.5,reviews:134,image:"https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=700&h=450&fit=crop&auto=format",logo:"https://images.unsplash.com/photo-1526778548025-fa2f459cd5c1?w=80&h=80&fit=crop&auto=format",phone:"+507 6466-7788",instagram:"@playa_losdestinos",website:"playalosdestinos.com",tags:["Agencia","San Blas","Contadora","Todo Incluido"],isFeatured:true,mapQuery:"Avenida+Samuel+Lewis+Panama"},
 /* -- SALUD adicionales -- */
-{id:"200",name:"Farmacia San Rafael",category:"Salud",categoryId:"salud",description:"Farmacia con amplio surtido de medicamentos, vitaminas, suplementos y productos de cuidado personal. Farmacéuticos certificados y servicio de entrega a domicilio disponible.",address:"Calle 50, San Francisco, Local 3",hours:"Lun–Dom 7:00am – 11:00pm",rating:4.5,reviews:312,image:"https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?w=700&h=450&fit=crop&auto=format",logo:"https://images.unsplash.com/photo-1532938911079-1b06ac7ceec7?w=80&h=80&fit=crop&auto=format",phone:"+507 6201-1001",facebook:"FarmaciaSanRafael",tags:["Farmacia","Medicamentos","Vitaminas","Domicilio"],isPopular:true,mapQuery:"Calle+50+San+Francisco+Panama"},
-{id:"201",name:"Centro Médico Familiar Vida",category:"Salud",categoryId:"salud",description:"Clínica familiar con médicos generales, pediatras y ginecólogos. Laboratorio clínico en sitio, rayos X digital y electrocardiogramas. Citas el mismo día.",address:"Av. Transistmica, Los Andes, Edificio Médico",hours:"Lun–Sáb 7:00am – 7:00pm",rating:4.6,reviews:198,image:"https://images.unsplash.com/photo-1666214280557-f1b5022eb634?w=700&h=450&fit=crop&auto=format",logo:"https://images.unsplash.com/photo-1631217868264-e5b90bb7e133?w=80&h=80&fit=crop&auto=format",phone:"+507 6202-1002",instagram:"@centrovida_pty",tags:["Médicos","Laboratorio","Pediatría","Ginecología"],isFeatured:true,mapQuery:"Transistmica+Panama"},
-{id:"202",name:"Óptica Visión Clara",category:"Salud",categoryId:"salud",description:"Centro óptico con exámenes de la vista, venta de lentes oftálmicos, de contacto y gafas de sol. Monturas nacionales e importadas. Entrega en 24 horas.",address:"Calle 49, Bella Vista, Local 8",hours:"Lun–Sáb 9:00am – 6:00pm",rating:4.7,reviews:145,image:"https://images.unsplash.com/photo-1574258495973-f010dfbb5371?w=700&h=450&fit=crop&auto=format",logo:"https://images.unsplash.com/photo-1580870069867-74c57ee1bb07?w=80&h=80&fit=crop&auto=format",phone:"+507 6203-1003",instagram:"@optica_visionclara",tags:["Óptica","Lentes","Gafas","Examen Visual"],isNew:true,mapQuery:"Calle+49+Bella+Vista+Panama"},
-{id:"203",name:"Psicología & Bienestar",category:"Salud",categoryId:"salud",description:"Centro de psicología clínica y terapia cognitivo-conductual. Atención individual, de pareja y familiar. Sesiones presenciales y en línea con psicólogos certificados.",address:"Paitilla, Av. Balboa, Torre Médica, Piso 4",hours:"Lun–Vie 8:00am – 7:00pm",rating:4.9,reviews:87,image:"https://images.unsplash.com/photo-1516302752625-fcc3c50ae61f?w=700&h=450&fit=crop&auto=format",logo:"https://images.unsplash.com/photo-1559757148-5c350d0d3c56?w=80&h=80&fit=crop&auto=format",phone:"+507 6204-1004",website:"psicologiabienestar.pty",tags:["Psicología","Terapia","Bienestar","En Línea"],isFeatured:true,mapQuery:"Paitilla+Panama"},
-{id:"204",name:"Nutrición & Vida Sana",category:"Salud",categoryId:"salud",description:"Consultoría nutricional con planes alimenticios personalizados para pérdida de peso, deporte y salud digestiva. Nutricionistas certificadas con enfoque holístico.",address:"Calle 53, Marbella, Of. 201",hours:"Lun–Vie 8:00am – 5:00pm",rating:4.8,reviews:112,image:"https://images.unsplash.com/photo-1490645935967-10de6ba17061?w=700&h=450&fit=crop&auto=format",logo:"https://images.unsplash.com/photo-1490645935967-10de6ba17061?w=80&h=80&fit=crop&auto=format",phone:"+507 6205-1005",instagram:"@nutricion_vidasana",tags:["Nutrición","Dieta","Peso","Holístico"],isNew:true,mapQuery:"Calle+53+Marbella+Panama"},
-{id:"126",name:"Smart Devices Store",category:"Tecnología",categoryId:"tecnologia",description:"Tienda especializada en dispositivos inteligentes: smartwatches, auriculares, cámaras de seguridad IP, drones y gadgets tecnológicos de las mejores marcas.",address:"Multiplaza Pacific, Punta Pacífica, Local 234",hours:"Lun–Dom 10:00am – 9:00pm",rating:4.5,reviews:198,image:"https://images.unsplash.com/photo-1761494296583-99b15e9063c5?w=700&h=450&fit=crop&auto=format",logo:"https://images.unsplash.com/photo-1565211604822-2641d0b081a6?w=80&h=80&fit=crop&auto=format",phone:"+507 6766-7788",instagram:"@smartdevices_pty",tags:["Smartwatch","Drones","Gadgets","Cámaras IP"],isNew:true,isPopular:true,mapQuery:"Multiplaza+Panama"},
+{id:"200",name:"Farmacia San Rafael",category:"Salud",categoryId:"salud",description:"Farmacia con amplio surtido de medicamentos, vitaminas, suplementos y productos de cuidado personal. Farmacï¿½uticos certificados y servicio de entrega a domicilio disponible.",address:"Calle 50, San Francisco, Local 3",hours:"Lunï¿½Dom 7:00am ï¿½ 11:00pm",rating:4.5,reviews:312,image:"https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?w=700&h=450&fit=crop&auto=format",logo:"https://images.unsplash.com/photo-1532938911079-1b06ac7ceec7?w=80&h=80&fit=crop&auto=format",phone:"+507 6201-1001",facebook:"FarmaciaSanRafael",tags:["Farmacia","Medicamentos","Vitaminas","Domicilio"],isPopular:true,mapQuery:"Calle+50+San+Francisco+Panama"},
+{id:"201",name:"Centro Mï¿½dico Familiar Vida",category:"Salud",categoryId:"salud",description:"Clï¿½nica familiar con mï¿½dicos generales, pediatras y ginecï¿½logos. Laboratorio clï¿½nico en sitio, rayos X digital y electrocardiogramas. Citas el mismo dï¿½a.",address:"Av. Transistmica, Los Andes, Edificio Mï¿½dico",hours:"Lunï¿½Sï¿½b 7:00am ï¿½ 7:00pm",rating:4.6,reviews:198,image:"https://images.unsplash.com/photo-1666214280557-f1b5022eb634?w=700&h=450&fit=crop&auto=format",logo:"https://images.unsplash.com/photo-1631217868264-e5b90bb7e133?w=80&h=80&fit=crop&auto=format",phone:"+507 6202-1002",instagram:"@centrovida_pty",tags:["Mï¿½dicos","Laboratorio","Pediatrï¿½a","Ginecologï¿½a"],isFeatured:true,mapQuery:"Transistmica+Panama"},
+{id:"202",name:"ï¿½ptica Visiï¿½n Clara",category:"Salud",categoryId:"salud",description:"Centro ï¿½ptico con exï¿½menes de la vista, venta de lentes oftï¿½lmicos, de contacto y gafas de sol. Monturas nacionales e importadas. Entrega en 24 horas.",address:"Calle 49, Bella Vista, Local 8",hours:"Lunï¿½Sï¿½b 9:00am ï¿½ 6:00pm",rating:4.7,reviews:145,image:"https://images.unsplash.com/photo-1574258495973-f010dfbb5371?w=700&h=450&fit=crop&auto=format",logo:"https://images.unsplash.com/photo-1580870069867-74c57ee1bb07?w=80&h=80&fit=crop&auto=format",phone:"+507 6203-1003",instagram:"@optica_visionclara",tags:["ï¿½ptica","Lentes","Gafas","Examen Visual"],isNew:true,mapQuery:"Calle+49+Bella+Vista+Panama"},
+{id:"203",name:"Psicologï¿½a & Bienestar",category:"Salud",categoryId:"salud",description:"Centro de psicologï¿½a clï¿½nica y terapia cognitivo-conductual. Atenciï¿½n individual, de pareja y familiar. Sesiones presenciales y en lï¿½nea con psicï¿½logos certificados.",address:"Paitilla, Av. Balboa, Torre Mï¿½dica, Piso 4",hours:"Lunï¿½Vie 8:00am ï¿½ 7:00pm",rating:4.9,reviews:87,image:"https://images.unsplash.com/photo-1516302752625-fcc3c50ae61f?w=700&h=450&fit=crop&auto=format",logo:"https://images.unsplash.com/photo-1559757148-5c350d0d3c56?w=80&h=80&fit=crop&auto=format",phone:"+507 6204-1004",website:"psicologiabienestar.pty",tags:["Psicologï¿½a","Terapia","Bienestar","En Lï¿½nea"],isFeatured:true,mapQuery:"Paitilla+Panama"},
+{id:"204",name:"Nutriciï¿½n & Vida Sana",category:"Salud",categoryId:"salud",description:"Consultorï¿½a nutricional con planes alimenticios personalizados para pï¿½rdida de peso, deporte y salud digestiva. Nutricionistas certificadas con enfoque holï¿½stico.",address:"Calle 53, Marbella, Of. 201",hours:"Lunï¿½Vie 8:00am ï¿½ 5:00pm",rating:4.8,reviews:112,image:"https://images.unsplash.com/photo-1490645935967-10de6ba17061?w=700&h=450&fit=crop&auto=format",logo:"https://images.unsplash.com/photo-1490645935967-10de6ba17061?w=80&h=80&fit=crop&auto=format",phone:"+507 6205-1005",instagram:"@nutricion_vidasana",tags:["Nutriciï¿½n","Dieta","Peso","Holï¿½stico"],isNew:true,mapQuery:"Calle+53+Marbella+Panama"},
+{id:"126",name:"Smart Devices Store",category:"Tecnologï¿½a",categoryId:"tecnologia",description:"Tienda especializada en dispositivos inteligentes: smartwatches, auriculares, cï¿½maras de seguridad IP, drones y gadgets tecnolï¿½gicos de las mejores marcas.",address:"Multiplaza Pacific, Punta Pacï¿½fica, Local 234",hours:"Lunï¿½Dom 10:00am ï¿½ 9:00pm",rating:4.5,reviews:198,image:"https://images.unsplash.com/photo-1761494296583-99b15e9063c5?w=700&h=450&fit=crop&auto=format",logo:"https://images.unsplash.com/photo-1565211604822-2641d0b081a6?w=80&h=80&fit=crop&auto=format",phone:"+507 6766-7788",instagram:"@smartdevices_pty",tags:["Smartwatch","Drones","Gadgets","Cï¿½maras IP"],isNew:true,isPopular:true,mapQuery:"Multiplaza+Panama"},
 /* ROPA */
-{id:"136",name:"Jeans & Co.",category:"Ropa",categoryId:"ropa",description:"Tienda especializada en jeans y ropa casual para toda la familia. Marcas nacionales e internacionales, todas las tallas y cortes modernos a precios competitivos.",address:"Av. Central, Santa Ana, Local 45",hours:"Lun–Dom 9:00am – 8:00pm",rating:4.3,reviews:178,image:"https://images.unsplash.com/photo-1542272604-787c3835535d?w=700&h=450&fit=crop&auto=format",logo:"https://images.unsplash.com/photo-1490481651871-ab68de25d43d?w=80&h=80&fit=crop&auto=format",phone:"+507 6866-7788",facebook:"JeansCopty",tags:["Jeans","Casual","Familia","Tallas"],isPopular:true,mapQuery:"Avenida+Central+Santa+Ana+Panama"},
-/* -- TRANSPORTE nuevos (ids 300–304) -- */
-{id:"300",name:"Moto Flash Delivery",category:"Transporte",categoryId:"transporte",description:"Servicio de mensajería y domicilios en moto. Entregas en menos de 45 minutos en toda la ciudad. Ideal para documentos, paquetes pequeños y compras urgentes.",address:"Calle 34, San Miguelito, Local 8",hours:"Lun–Dom 7:00am – 10:00pm",rating:4.4,reviews:231,image:"https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=700&h=450&fit=crop&auto=format",logo:"https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=80&h=80&fit=crop&auto=format",phone:"+507 6300-0011",instagram:"@motoflash_pty",tags:["Mensajería","Domicilio","Moto","Rápido"],isNew:true,mapQuery:"San+Miguelito+Panama"},
-{id:"301",name:"Bus Charter Panamá",category:"Transporte",categoryId:"transporte",description:"Alquiler de autobuses con aire acondicionado para excursiones, eventos corporativos y grupos escolares. Choferes con licencia profesional y puntualidad garantizada.",address:"Tocumen, Av. Principal #110",hours:"Lun–Sáb 6:00am – 8:00pm",rating:4.5,reviews:87,image:"https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?w=700&h=450&fit=crop&auto=format",logo:"https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?w=80&h=80&fit=crop&auto=format",phone:"+507 6301-0022",facebook:"BusCharterPty",tags:["Autobús","Charter","Grupos","Corporativo"],isFeatured:true,mapQuery:"Tocumen+Panama"},
-{id:"302",name:"Taxi Seguro 24H",category:"Transporte",categoryId:"transporte",description:"Servicio de taxi privado disponible las 24 horas. Tarifas fijas al aeropuerto, hoteles y puntos turísticos. Vehículos con GPS y conductores verificados.",address:"Calle 50, Marbella (despacho central)",hours:"Todos los días 24 horas",rating:4.6,reviews:412,image:"https://images.unsplash.com/photo-1549317661-bd32c8ce0db2?w=700&h=450&fit=crop&auto=format",logo:"https://images.unsplash.com/photo-1549317661-bd32c8ce0db2?w=80&h=80&fit=crop&auto=format",phone:"+507 6302-0033",instagram:"@taxiseguro_pty",tags:["Taxi","24 horas","Aeropuerto","GPS"],isPopular:true,mapQuery:"Marbella+Panama"},
-{id:"303",name:"Mudanzas Confiables",category:"Transporte",categoryId:"transporte",description:"Servicio profesional de mudanzas residenciales y empresariales. Empaque, carga, traslado y desempaque. Camiones climatizados para proteger muebles y equipos.",address:"Av. Transistmica, Tocumen, Bodega 4",hours:"Lun–Sáb 7:00am – 6:00pm",rating:4.3,reviews:98,image:"https://images.unsplash.com/photo-1601584115197-04ecc0da31d7?w=700&h=450&fit=crop&auto=format",logo:"https://images.unsplash.com/photo-1601584115197-04ecc0da31d7?w=80&h=80&fit=crop&auto=format",phone:"+507 6303-0044",facebook:"MudanzasConfiables",tags:["Mudanzas","Carga","Residencial","Empresarial"],mapQuery:"Transistmica+Tocumen+Panama"},
-{id:"304",name:"Rent-A-Car Express",category:"Transporte",categoryId:"transporte",description:"Alquiler de autos económicos, sedanes y SUV con y sin chofer. Precios desde $35 al día. Kilometraje ilimitado, seguro incluido y entrega en el aeropuerto.",address:"Aeropuerto Internacional de Tocumen, Hall 2",hours:"Todos los días 6:00am – 11:00pm",rating:4.7,reviews:356,image:"https://images.unsplash.com/photo-1489824904134-891ab64532f1?w=700&h=450&fit=crop&auto=format",logo:"https://images.unsplash.com/photo-1489824904134-891ab64532f1?w=80&h=80&fit=crop&auto=format",phone:"+507 6304-0055",instagram:"@rentacar_express_pty",website:"rentacarexpress.com",tags:["Alquiler","Autos","Aeropuerto","SUV"],isFeatured:true,isPopular:true,mapQuery:"Aeropuerto+Tocumen+Panama"},
-/* -- TURISMO nuevos (ids 305–309) -- */
-{id:"305",name:"Canal & Miraflores Tours",category:"Turismo",categoryId:"turismo",description:"Visitas guiadas al Canal de Panamá con acceso preferencial a las esclusas de Miraflores. Incluye transporte, guía bilingüe y entrada al museo interactivo.",address:"Esclusas de Miraflores, Panamá Oeste",hours:"Todos los días 8:00am – 5:00pm",rating:4.9,reviews:521,image:"https://images.unsplash.com/photo-1596422846543-75c6fc197f07?w=700&h=450&fit=crop&auto=format",logo:"https://images.unsplash.com/photo-1596422846543-75c6fc197f07?w=80&h=80&fit=crop&auto=format",phone:"+507 6305-0066",instagram:"@canaltours_pty",website:"canalmiraflorestours.com",tags:["Canal de Panamá","Miraflores","Guiado","Bilingüe"],isFeatured:true,isPopular:true,mapQuery:"Miraflores+Locks+Panama"},
-{id:"306",name:"San Blas Expeditions",category:"Turismo",categoryId:"turismo",description:"Expediciones a las Islas San Blas en velero y lancha. Convivencia con la comunidad Guna Yala, snorkel en arrecifes vírgenes y noche a bordo disponible.",address:"Marina Flamenco, Causeway de Amador",hours:"Vie–Dom (salidas programadas)",rating:4.8,reviews:298,image:"https://images.unsplash.com/photo-1439405326854-014607f694d7?w=700&h=450&fit=crop&auto=format",logo:"https://images.unsplash.com/photo-1439405326854-014607f694d7?w=80&h=80&fit=crop&auto=format",phone:"+507 6306-0077",instagram:"@sanblas_expeditions",website:"sanblasexpeditions.com",tags:["San Blas","Guna Yala","Velero","Snorkel"],isFeatured:true,mapQuery:"Marina+Flamenco+Amador+Panama"},
-{id:"307",name:"Panamá Selvático",category:"Turismo",categoryId:"turismo",description:"Ecoturismo en el Parque Nacional Soberanía. Avistamiento de aves, senderismo en el Camino de Cruces y kayak en el Lago Gatún. Guías naturalistas certificados.",address:"Gamboa, Parque Nacional Soberanía",hours:"Lun–Dom 6:00am – 4:00pm",rating:4.7,reviews:167,image:"https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=700&h=450&fit=crop&auto=format",logo:"https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=80&h=80&fit=crop&auto=format",phone:"+507 6307-0088",instagram:"@pty_selvatico",tags:["Ecoturismo","Aves","Senderismo","Gatún"],isNew:true,mapQuery:"Gamboa+Panama"},
-{id:"308",name:"Casco Viejo Walking Tours",category:"Turismo",categoryId:"turismo",description:"Recorridos a pie por el casco histórico patrimonio de la UNESCO. Arquitectura colonial, gastronomía local y arte urbano. Grupos de máximo 10 personas para mejor experiencia.",address:"Arco Chato, Casco Viejo (punto de encuentro)",hours:"Mar–Dom 8:30am y 3:30pm",rating:4.8,reviews:389,image:"https://images.unsplash.com/photo-1523906834658-6e24ef2386f9?w=700&h=450&fit=crop&auto=format",logo:"https://images.unsplash.com/photo-1523906834658-6e24ef2386f9?w=80&h=80&fit=crop&auto=format",phone:"+507 6308-0099",instagram:"@cascoviejo_walks",website:"cascoviejowalks.com",tags:["Casco Viejo","Patrimonio","A pie","UNESCO"],isPopular:true,mapQuery:"Casco+Viejo+Panama"},
-{id:"309",name:"Volcán Barú Trek",category:"Turismo",categoryId:"turismo",description:"Ascenso guiado al Volcán Barú, el punto más alto de Panamá. Senderismo nocturno para ver el amanecer desde la cima con vista a ambos océanos. Equipamiento incluido.",address:"Boquete, Chiriquí (salidas desde la agencia)",hours:"Jue–Dom (salidas a las 11:00pm)",rating:4.9,reviews:143,image:"https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=700&h=450&fit=crop&auto=format",logo:"https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=80&h=80&fit=crop&auto=format",phone:"+507 6309-0100",instagram:"@baru_trek",tags:["Volcán Barú","Senderismo","Boquete","Aventura"],isFeatured:true,isNew:true,mapQuery:"Volcan+Baru+Boquete+Panama"},
-/* -- ROPA nuevos (ids 310–314) -- */
-{id:"310",name:"Taller de Costura Creativa",category:"Ropa",categoryId:"ropa",description:"Confección y arreglos de ropa a medida. Vestidos de novia, trajes formales y ropa casual personalizada. Diseños únicos con telas nacionales e importadas.",address:"El Chorrillo, Calle 20 #33",hours:"Lun–Sáb 9:00am – 6:00pm",rating:4.6,reviews:134,image:"https://images.unsplash.com/photo-1558618047-3c8c76ca7d13?w=700&h=450&fit=crop&auto=format",logo:"https://images.unsplash.com/photo-1558618047-3c8c76ca7d13?w=80&h=80&fit=crop&auto=format",phone:"+507 6310-0111",facebook:"TallerCosturaCreativa",tags:["Costura","A medida","Novia","Diseño"],isFeatured:true,mapQuery:"El+Chorrillo+Panama"},
-{id:"311",name:"Deportes & Más",category:"Deportes",categoryId:"deportes",description:"Tienda de ropa y calzado deportivo. Nike, Adidas, Under Armour y marcas locales. Equipamiento para fútbol, natación, running y gimnasio. Asesoramiento especializado.",address:"Centro Comercial Albrook Mall, Local 312",hours:"Lun–Dom 10:00am – 9:00pm",rating:4.5,reviews:267,image:"https://images.unsplash.com/photo-1517649763962-0c623066013b?w=700&h=450&fit=crop&auto=format",logo:"https://images.unsplash.com/photo-1517649763962-0c623066013b?w=80&h=80&fit=crop&auto=format",phone:"+507 6311-0122",instagram:"@deportesymas_pty",facebook:"DeportesyMasPanama",tags:["Deportivo","Nike","Adidas","Running"],isPopular:true,mapQuery:"Albrook+Mall+Panama"},
-{id:"325",name:"FitZone Gym & Suplementos",category:"Deportes",categoryId:"deportes",description:"Gimnasio moderno con equipos de última generación y tienda de suplementos deportivos. Clases de crossfit, spinning, yoga y musculación. Entrenadores certificados.",address:"Via Israel, San Francisco, Local 14",hours:"Lun–Vie 5:00am – 10:00pm | Sáb–Dom 7:00am – 8:00pm",rating:4.7,reviews:312,image:"https://images.unsplash.com/photo-1534438327276-14e5300c3a48?w=700&h=450&fit=crop&auto=format",logo:"https://images.unsplash.com/photo-1534438327276-14e5300c3a48?w=80&h=80&fit=crop&auto=format",phone:"+507 6325-0010",instagram:"@fitzone_pty",tags:["Gimnasio","Crossfit","Suplementos","Yoga"],isFeatured:true,isPopular:true,mapQuery:"Via+Israel+San+Francisco+Panama"},
-{id:"326",name:"Cancha Real Fútbol",category:"Deportes",categoryId:"deportes",description:"Canchas de fútbol 5 y 7 sintéticas con iluminación LED. Alquiler por hora, torneos semanales y academia de fútbol para niños y adultos. Vestuarios y cafetería.",address:"Río Abajo, Calle 72 #15",hours:"Lun–Dom 7:00am – 11:00pm",rating:4.6,reviews:198,image:"https://images.unsplash.com/photo-1574629810360-7efbbe195018?w=700&h=450&fit=crop&auto=format",logo:"https://images.unsplash.com/photo-1574629810360-7efbbe195018?w=80&h=80&fit=crop&auto=format",phone:"+507 6326-0020",instagram:"@cancharealfutbol",tags:["Fútbol","Canchas","Academia","Torneos"],isNew:true,mapQuery:"Rio+Abajo+Panama"},
-{id:"327",name:"Natación Competitiva Aqua",category:"Deportes",categoryId:"deportes",description:"Club de natación con piscina semiolímpica. Clases para bebés, niños y adultos. Entrenamiento competitivo con instructores federados. Hidroterapia y aqua aerobics.",address:"Paitilla, Av. Balboa, Edificio Aqua",hours:"Lun–Vie 6:00am – 9:00pm | Sáb 7:00am – 5:00pm",rating:4.8,reviews:145,image:"https://images.unsplash.com/photo-1530549387789-4c1017266635?w=700&h=450&fit=crop&auto=format",logo:"https://images.unsplash.com/photo-1530549387789-4c1017266635?w=80&h=80&fit=crop&auto=format",phone:"+507 6327-0030",instagram:"@aqua_natacion_pty",tags:["Natación","Piscina","Niños","Competitivo"],isPopular:true,mapQuery:"Paitilla+Balboa+Panama"},
-{id:"312",name:"La Pollera Panameña",category:"Ropa",categoryId:"ropa",description:"Tienda especializada en trajes típicos panameños. Polleras de gala y montuna, tembleques, sombreros pintados y accesorios folklóricos para toda la familia.",address:"Av. Central, El Machetazo, 2do Piso",hours:"Lun–Sáb 9:00am – 7:00pm",rating:4.8,reviews:189,image:"https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?w=700&h=450&fit=crop&auto=format",logo:"https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?w=80&h=80&fit=crop&auto=format",phone:"+507 6312-0133",facebook:"LaPollera_Pty",tags:["Pollera","Típico","Folklórico","Tradición"],isFeatured:true,isNew:true,mapQuery:"Avenida+Central+Panama"},
-{id:"313",name:"Kids Fashion World",category:"Ropa",categoryId:"ropa",description:"Moda infantil de 0 a 14 años. Ropa de marca, conjuntos de fiesta, uniformes escolares y accesorios para niños. Tallas amplias y precios accesibles.",address:"Via España, Local 56, Bella Vista",hours:"Lun–Dom 10:00am – 8:00pm",rating:4.4,reviews:198,image:"https://images.unsplash.com/photo-1471286174890-9c112ac6e0d4?w=700&h=450&fit=crop&auto=format",logo:"https://images.unsplash.com/photo-1471286174890-9c112ac6e0d4?w=80&h=80&fit=crop&auto=format",phone:"+507 6313-0144",instagram:"@kidsfashion_pty",tags:["Infantil","Niños","Uniformes","Fiesta"],isPopular:true,mapQuery:"Via+Espana+Bella+Vista+Panama"},
-{id:"314",name:"Vintage & Thrift Hub",category:"Ropa",categoryId:"ropa",description:"Tienda de ropa vintage y segunda mano seleccionada. Prendas únicas de los 70s, 80s y 90s a precios increíbles. Sostenibilidad de moda y moda sostenible.",address:"Casco Viejo, Calle 3a #14",hours:"Mar–Dom 11:00am – 7:00pm",rating:4.6,reviews:112,image:"https://images.unsplash.com/photo-1558171813-7a58c25e0e49?w=700&h=450&fit=crop&auto=format",logo:"https://images.unsplash.com/photo-1558171813-7a58c25e0e49?w=80&h=80&fit=crop&auto=format",phone:"+507 6314-0155",instagram:"@vintage_thrift_pty",tags:["Vintage","Segunda mano","Sostenible","70s 80s"],isNew:true,mapQuery:"Casco+Viejo+Panama"},
-/* -- TECNOLOGÍA nuevos (ids 315–319) -- */
-{id:"315",name:"Code Academy Panamá",category:"Tecnología",categoryId:"tecnologia",description:"Academia de programación para niños, jóvenes y adultos. Cursos de Python, desarrollo web, diseño UX y robótica. Modalidad presencial y online con certificación.",address:"Calle 50, San Francisco, Edificio Metrobank, Of. 5A",hours:"Lun–Sáb 8:00am – 7:00pm",rating:4.8,reviews:156,image:"https://images.unsplash.com/photo-1517694712202-14dd9538aa97?w=700&h=450&fit=crop&auto=format",logo:"https://images.unsplash.com/photo-1517694712202-14dd9538aa97?w=80&h=80&fit=crop&auto=format",phone:"+507 6315-0166",instagram:"@codeacademy_pty",website:"codeacademypty.com",tags:["Programación","Python","Web","Cursos"],isFeatured:true,isNew:true,mapQuery:"Calle+50+San+Francisco+Panama"},
-{id:"316",name:"PrintTech 3D",category:"Tecnología",categoryId:"tecnologia",description:"Servicios de impresión 3D bajo demanda. Prototipos industriales, figuras personalizadas, piezas de repuesto y modelos arquitectónicos. Materiales PLA, ABS y resina.",address:"Zona Industrial de Panamá, Galpón 12",hours:"Lun–Vie 8:00am – 5:00pm",rating:4.5,reviews:89,image:"https://images.unsplash.com/photo-1615461066159-fea0960485d5?w=700&h=450&fit=crop&auto=format",logo:"https://images.unsplash.com/photo-1615461066159-fea0960485d5?w=80&h=80&fit=crop&auto=format",phone:"+507 6316-0177",instagram:"@printtech3d_pty",website:"printtech3d.com",tags:["Impresión 3D","Prototipos","Resina","PLA"],isNew:true,mapQuery:"Zona+Industrial+Panama"},
-{id:"317",name:"TechHogar Smart Home",category:"Tecnología",categoryId:"tecnologia",description:"Instalación de hogares inteligentes. Domótica, iluminación automatizada, cerraduras digitales, termostatos inteligentes y asistentes de voz. Marcas Google, Amazon y Samsung.",address:"Punta Pacífica, Av. Balboa, Torre Globos, Of. 2C",hours:"Lun–Vie 9:00am – 6:00pm",rating:4.7,reviews:67,image:"https://images.unsplash.com/photo-1558002038-1055907df827?w=700&h=450&fit=crop&auto=format",logo:"https://images.unsplash.com/photo-1558002038-1055907df827?w=80&h=80&fit=crop&auto=format",phone:"+507 6317-0188",instagram:"@techhogar_pty",website:"techhogarpty.com",tags:["Smart Home","Domótica","Google Home","Automatización"],isFeatured:true,mapQuery:"Punta+Pacifica+Panama"},
-{id:"318",name:"PC Armados Pro",category:"Tecnología",categoryId:"tecnologia",description:"Ensamblaje de computadoras de escritorio personalizadas para gaming, trabajo y diseño. Selección de componentes según presupuesto, con garantía de un año en mano de obra.",address:"Via España, Plaza Regency, Local 7",hours:"Lun–Sáb 9:00am – 6:00pm",rating:4.6,reviews:143,image:"https://images.unsplash.com/photo-1587202372634-32705e3bf49c?w=700&h=450&fit=crop&auto=format",logo:"https://images.unsplash.com/photo-1587202372634-32705e3bf49c?w=80&h=80&fit=crop&auto=format",phone:"+507 6318-0199",facebook:"PCArmadosPro",tags:["Gaming PC","Ensamblaje","Componentes","Diseño"],isPopular:true,mapQuery:"Via+Espana+Panama"},
-{id:"319",name:"Cybersec Panamá",category:"Tecnología",categoryId:"tecnologia",description:"Consultoría en ciberseguridad para empresas. Auditorías de seguridad, protección de datos, capacitación al personal y respuesta a incidentes. Certificados ISO 27001.",address:"Av. Samuel Lewis, Torres de la Américas, Piso 22",hours:"Lun–Vie 8:00am – 5:00pm",rating:4.8,reviews:54,image:"https://images.unsplash.com/photo-1563986768494-4dee2763ff3f?w=700&h=450&fit=crop&auto=format",logo:"https://images.unsplash.com/photo-1563986768494-4dee2763ff3f?w=80&h=80&fit=crop&auto=format",phone:"+507 6319-0200",website:"cybersecpty.com",tags:["Ciberseguridad","ISO 27001","Auditoría","Empresas"],isFeatured:true,mapQuery:"Torres+Americas+Panama"},
-/* -- HOGAR nuevos (ids 320–324) -- */
-{id:"320",name:"Muebles & Diseño Interiors",category:"Hogar",categoryId:"hogar",description:"Tienda de muebles y decoración para sala, comedor y dormitorios. Diseño de interiores personalizado, muebles a medida y asesoría gratuita en tu hogar.",address:"Via Ricardo J. Alfaro, Megaplex, Local 8",hours:"Lun–Dom 10:00am – 8:00pm",rating:4.6,reviews:178,image:"https://images.unsplash.com/photo-1555041469-a586c61ea9bc?w=700&h=450&fit=crop&auto=format",logo:"https://images.unsplash.com/photo-1555041469-a586c61ea9bc?w=80&h=80&fit=crop&auto=format",phone:"+507 6320-0211",instagram:"@muebles_interiors_pty",facebook:"MueblesInteriors",tags:["Muebles","Diseño de Interiores","Sala","Dormitorio"],isFeatured:true,isPopular:true,mapQuery:"Via+Ricardo+Alfaro+Panama"},
-{id:"321",name:"Jardín Tropical Panamá",category:"Hogar",categoryId:"hogar",description:"Vivero y servicio de jardinería. Plantas tropicales, árboles frutales, macetas decorativas y diseño de jardines residenciales. Mantenimiento mensual disponible.",address:"Calle Los Ríos, Ancón, Km 2",hours:"Lun–Dom 7:00am – 5:00pm",rating:4.5,reviews:134,image:"https://images.unsplash.com/photo-1416879595882-3373a0480b5b?w=700&h=450&fit=crop&auto=format",logo:"https://images.unsplash.com/photo-1416879595882-3373a0480b5b?w=80&h=80&fit=crop&auto=format",phone:"+507 6321-0222",facebook:"JardinTropicalPty",tags:["Plantas","Jardines","Vivero","Mantenimiento"],isNew:true,mapQuery:"Ancon+Panama"},
-{id:"322",name:"ElectroCasa Panamá",category:"Hogar",categoryId:"hogar",description:"Electrodomésticos, licuadoras, refrigeradoras, lavadoras y secadoras de las mejores marcas. Financiamiento a 24 meses y servicio técnico posventa incluido.",address:"Transistmica, El Dorado, Centro Comercial, Local 10",hours:"Lun–Dom 9:00am – 8:00pm",rating:4.4,reviews:312,image:"https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=700&h=450&fit=crop&auto=format",logo:"https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=80&h=80&fit=crop&auto=format",phone:"+507 6322-0233",instagram:"@electrocasa_pty",website:"electrocasa.pty",tags:["Electrodomésticos","Lavadora","Refrigeradora","Financiamiento"],isPopular:true,mapQuery:"El+Dorado+Panama"},
-{id:"323",name:"Pinturas & Acabados RD",category:"Hogar",categoryId:"hogar",description:"Venta de pinturas, barnices y acabados para interior y exterior. Servicio de pintura profesional a domicilio. Paleta de más de 500 colores y mezclas personalizadas.",address:"Av. Balboa, Santa Ana, Local 22",hours:"Lun–Sáb 7:30am – 6:00pm",rating:4.3,reviews:98,image:"https://images.unsplash.com/photo-1562259949-e8e7689d7828?w=700&h=450&fit=crop&auto=format",logo:"https://images.unsplash.com/photo-1562259949-e8e7689d7828?w=80&h=80&fit=crop&auto=format",phone:"+507 6323-0244",facebook:"PinturasRD",tags:["Pintura","Acabados","Domicilio","500 colores"],mapQuery:"Santa+Ana+Panama"},
-{id:"324",name:"Alarmas & Seguridad Home",category:"Hogar",categoryId:"hogar",description:"Instalación de sistemas de alarma, cámaras de vigilancia y control de acceso para residencias y condominios. Monitoreo 24/7 y respuesta inmediata ante emergencias.",address:"Calle 73, San Francisco, Edificio Tower, Of. 101",hours:"Lun–Vie 8:00am – 5:30pm",rating:4.7,reviews:167,image:"https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=700&h=450&fit=crop&auto=format",logo:"https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=80&h=80&fit=crop&auto=format",phone:"+507 6324-0255",instagram:"@alarmas_home_pty",website:"alarmashogar.pty",tags:["Alarmas","Cámaras","Seguridad","Monitoreo 24/7"],isFeatured:true,mapQuery:"San+Francisco+Panama"}];
+{id:"136",name:"Jeans & Co.",category:"Ropa",categoryId:"ropa",description:"Tienda especializada en jeans y ropa casual para toda la familia. Marcas nacionales e internacionales, todas las tallas y cortes modernos a precios competitivos.",address:"Av. Central, Santa Ana, Local 45",hours:"Lunï¿½Dom 9:00am ï¿½ 8:00pm",rating:4.3,reviews:178,image:"https://images.unsplash.com/photo-1542272604-787c3835535d?w=700&h=450&fit=crop&auto=format",logo:"https://images.unsplash.com/photo-1490481651871-ab68de25d43d?w=80&h=80&fit=crop&auto=format",phone:"+507 6866-7788",facebook:"JeansCopty",tags:["Jeans","Casual","Familia","Tallas"],isPopular:true,mapQuery:"Avenida+Central+Santa+Ana+Panama"},
+/* -- TRANSPORTE nuevos (ids 300ï¿½304) -- */
+{id:"300",name:"Moto Flash Delivery",category:"Transporte",categoryId:"transporte",description:"Servicio de mensajerï¿½a y domicilios en moto. Entregas en menos de 45 minutos en toda la ciudad. Ideal para documentos, paquetes pequeï¿½os y compras urgentes.",address:"Calle 34, San Miguelito, Local 8",hours:"Lunï¿½Dom 7:00am ï¿½ 10:00pm",rating:4.4,reviews:231,image:"https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=700&h=450&fit=crop&auto=format",logo:"https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=80&h=80&fit=crop&auto=format",phone:"+507 6300-0011",instagram:"@motoflash_pty",tags:["Mensajerï¿½a","Domicilio","Moto","Rï¿½pido"],isNew:true,mapQuery:"San+Miguelito+Panama"},
+{id:"301",name:"Bus Charter Panamï¿½",category:"Transporte",categoryId:"transporte",description:"Alquiler de autobuses con aire acondicionado para excursiones, eventos corporativos y grupos escolares. Choferes con licencia profesional y puntualidad garantizada.",address:"Tocumen, Av. Principal #110",hours:"Lunï¿½Sï¿½b 6:00am ï¿½ 8:00pm",rating:4.5,reviews:87,image:"https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?w=700&h=450&fit=crop&auto=format",logo:"https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?w=80&h=80&fit=crop&auto=format",phone:"+507 6301-0022",facebook:"BusCharterPty",tags:["Autobï¿½s","Charter","Grupos","Corporativo"],isFeatured:true,mapQuery:"Tocumen+Panama"},
+{id:"302",name:"Taxi Seguro 24H",category:"Transporte",categoryId:"transporte",description:"Servicio de taxi privado disponible las 24 horas. Tarifas fijas al aeropuerto, hoteles y puntos turï¿½sticos. Vehï¿½culos con GPS y conductores verificados.",address:"Calle 50, Marbella (despacho central)",hours:"Todos los dï¿½as 24 horas",rating:4.6,reviews:412,image:"https://images.unsplash.com/photo-1549317661-bd32c8ce0db2?w=700&h=450&fit=crop&auto=format",logo:"https://images.unsplash.com/photo-1549317661-bd32c8ce0db2?w=80&h=80&fit=crop&auto=format",phone:"+507 6302-0033",instagram:"@taxiseguro_pty",tags:["Taxi","24 horas","Aeropuerto","GPS"],isPopular:true,mapQuery:"Marbella+Panama"},
+{id:"303",name:"Mudanzas Confiables",category:"Transporte",categoryId:"transporte",description:"Servicio profesional de mudanzas residenciales y empresariales. Empaque, carga, traslado y desempaque. Camiones climatizados para proteger muebles y equipos.",address:"Av. Transistmica, Tocumen, Bodega 4",hours:"Lunï¿½Sï¿½b 7:00am ï¿½ 6:00pm",rating:4.3,reviews:98,image:"https://images.unsplash.com/photo-1601584115197-04ecc0da31d7?w=700&h=450&fit=crop&auto=format",logo:"https://images.unsplash.com/photo-1601584115197-04ecc0da31d7?w=80&h=80&fit=crop&auto=format",phone:"+507 6303-0044",facebook:"MudanzasConfiables",tags:["Mudanzas","Carga","Residencial","Empresarial"],mapQuery:"Transistmica+Tocumen+Panama"},
+{id:"304",name:"Rent-A-Car Express",category:"Transporte",categoryId:"transporte",description:"Alquiler de autos econï¿½micos, sedanes y SUV con y sin chofer. Precios desde $35 al dï¿½a. Kilometraje ilimitado, seguro incluido y entrega en el aeropuerto.",address:"Aeropuerto Internacional de Tocumen, Hall 2",hours:"Todos los dï¿½as 6:00am ï¿½ 11:00pm",rating:4.7,reviews:356,image:"https://images.unsplash.com/photo-1489824904134-891ab64532f1?w=700&h=450&fit=crop&auto=format",logo:"https://images.unsplash.com/photo-1489824904134-891ab64532f1?w=80&h=80&fit=crop&auto=format",phone:"+507 6304-0055",instagram:"@rentacar_express_pty",website:"rentacarexpress.com",tags:["Alquiler","Autos","Aeropuerto","SUV"],isFeatured:true,isPopular:true,mapQuery:"Aeropuerto+Tocumen+Panama"},
+/* -- TURISMO nuevos (ids 305ï¿½309) -- */
+{id:"305",name:"Canal & Miraflores Tours",category:"Turismo",categoryId:"turismo",description:"Visitas guiadas al Canal de Panamï¿½ con acceso preferencial a las esclusas de Miraflores. Incluye transporte, guï¿½a bilingï¿½e y entrada al museo interactivo.",address:"Esclusas de Miraflores, Panamï¿½ Oeste",hours:"Todos los dï¿½as 8:00am ï¿½ 5:00pm",rating:4.9,reviews:521,image:"https://images.unsplash.com/photo-1596422846543-75c6fc197f07?w=700&h=450&fit=crop&auto=format",logo:"https://images.unsplash.com/photo-1596422846543-75c6fc197f07?w=80&h=80&fit=crop&auto=format",phone:"+507 6305-0066",instagram:"@canaltours_pty",website:"canalmiraflorestours.com",tags:["Canal de Panamï¿½","Miraflores","Guiado","Bilingï¿½e"],isFeatured:true,isPopular:true,mapQuery:"Miraflores+Locks+Panama"},
+{id:"306",name:"San Blas Expeditions",category:"Turismo",categoryId:"turismo",description:"Expediciones a las Islas San Blas en velero y lancha. Convivencia con la comunidad Guna Yala, snorkel en arrecifes vï¿½rgenes y noche a bordo disponible.",address:"Marina Flamenco, Causeway de Amador",hours:"Vieï¿½Dom (salidas programadas)",rating:4.8,reviews:298,image:"https://images.unsplash.com/photo-1439405326854-014607f694d7?w=700&h=450&fit=crop&auto=format",logo:"https://images.unsplash.com/photo-1439405326854-014607f694d7?w=80&h=80&fit=crop&auto=format",phone:"+507 6306-0077",instagram:"@sanblas_expeditions",website:"sanblasexpeditions.com",tags:["San Blas","Guna Yala","Velero","Snorkel"],isFeatured:true,mapQuery:"Marina+Flamenco+Amador+Panama"},
+{id:"307",name:"Panamï¿½ Selvï¿½tico",category:"Turismo",categoryId:"turismo",description:"Ecoturismo en el Parque Nacional Soberanï¿½a. Avistamiento de aves, senderismo en el Camino de Cruces y kayak en el Lago Gatï¿½n. Guï¿½as naturalistas certificados.",address:"Gamboa, Parque Nacional Soberanï¿½a",hours:"Lunï¿½Dom 6:00am ï¿½ 4:00pm",rating:4.7,reviews:167,image:"https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=700&h=450&fit=crop&auto=format",logo:"https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=80&h=80&fit=crop&auto=format",phone:"+507 6307-0088",instagram:"@pty_selvatico",tags:["Ecoturismo","Aves","Senderismo","Gatï¿½n"],isNew:true,mapQuery:"Gamboa+Panama"},
+{id:"308",name:"Casco Viejo Walking Tours",category:"Turismo",categoryId:"turismo",description:"Recorridos a pie por el casco histï¿½rico patrimonio de la UNESCO. Arquitectura colonial, gastronomï¿½a local y arte urbano. Grupos de mï¿½ximo 10 personas para mejor experiencia.",address:"Arco Chato, Casco Viejo (punto de encuentro)",hours:"Marï¿½Dom 8:30am y 3:30pm",rating:4.8,reviews:389,image:"https://images.unsplash.com/photo-1523906834658-6e24ef2386f9?w=700&h=450&fit=crop&auto=format",logo:"https://images.unsplash.com/photo-1523906834658-6e24ef2386f9?w=80&h=80&fit=crop&auto=format",phone:"+507 6308-0099",instagram:"@cascoviejo_walks",website:"cascoviejowalks.com",tags:["Casco Viejo","Patrimonio","A pie","UNESCO"],isPopular:true,mapQuery:"Casco+Viejo+Panama"},
+{id:"309",name:"Volcï¿½n Barï¿½ Trek",category:"Turismo",categoryId:"turismo",description:"Ascenso guiado al Volcï¿½n Barï¿½, el punto mï¿½s alto de Panamï¿½. Senderismo nocturno para ver el amanecer desde la cima con vista a ambos ocï¿½anos. Equipamiento incluido.",address:"Boquete, Chiriquï¿½ (salidas desde la agencia)",hours:"Jueï¿½Dom (salidas a las 11:00pm)",rating:4.9,reviews:143,image:"https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=700&h=450&fit=crop&auto=format",logo:"https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=80&h=80&fit=crop&auto=format",phone:"+507 6309-0100",instagram:"@baru_trek",tags:["Volcï¿½n Barï¿½","Senderismo","Boquete","Aventura"],isFeatured:true,isNew:true,mapQuery:"Volcan+Baru+Boquete+Panama"},
+/* -- ROPA nuevos (ids 310ï¿½314) -- */
+{id:"310",name:"Taller de Costura Creativa",category:"Ropa",categoryId:"ropa",description:"Confecciï¿½n y arreglos de ropa a medida. Vestidos de novia, trajes formales y ropa casual personalizada. Diseï¿½os ï¿½nicos con telas nacionales e importadas.",address:"El Chorrillo, Calle 20 #33",hours:"Lunï¿½Sï¿½b 9:00am ï¿½ 6:00pm",rating:4.6,reviews:134,image:"https://images.unsplash.com/photo-1558618047-3c8c76ca7d13?w=700&h=450&fit=crop&auto=format",logo:"https://images.unsplash.com/photo-1558618047-3c8c76ca7d13?w=80&h=80&fit=crop&auto=format",phone:"+507 6310-0111",facebook:"TallerCosturaCreativa",tags:["Costura","A medida","Novia","Diseï¿½o"],isFeatured:true,mapQuery:"El+Chorrillo+Panama"},
+{id:"311",name:"Deportes & Mï¿½s",category:"Deportes",categoryId:"deportes",description:"Tienda de ropa y calzado deportivo. Nike, Adidas, Under Armour y marcas locales. Equipamiento para fï¿½tbol, nataciï¿½n, running y gimnasio. Asesoramiento especializado.",address:"Centro Comercial Albrook Mall, Local 312",hours:"Lunï¿½Dom 10:00am ï¿½ 9:00pm",rating:4.5,reviews:267,image:"https://images.unsplash.com/photo-1517649763962-0c623066013b?w=700&h=450&fit=crop&auto=format",logo:"https://images.unsplash.com/photo-1517649763962-0c623066013b?w=80&h=80&fit=crop&auto=format",phone:"+507 6311-0122",instagram:"@deportesymas_pty",facebook:"DeportesyMasPanama",tags:["Deportivo","Nike","Adidas","Running"],isPopular:true,mapQuery:"Albrook+Mall+Panama"},
+{id:"325",name:"FitZone Gym & Suplementos",category:"Deportes",categoryId:"deportes",description:"Gimnasio moderno con equipos de ï¿½ltima generaciï¿½n y tienda de suplementos deportivos. Clases de crossfit, spinning, yoga y musculaciï¿½n. Entrenadores certificados.",address:"Via Israel, San Francisco, Local 14",hours:"Lunï¿½Vie 5:00am ï¿½ 10:00pm | Sï¿½bï¿½Dom 7:00am ï¿½ 8:00pm",rating:4.7,reviews:312,image:"https://images.unsplash.com/photo-1534438327276-14e5300c3a48?w=700&h=450&fit=crop&auto=format",logo:"https://images.unsplash.com/photo-1534438327276-14e5300c3a48?w=80&h=80&fit=crop&auto=format",phone:"+507 6325-0010",instagram:"@fitzone_pty",tags:["Gimnasio","Crossfit","Suplementos","Yoga"],isFeatured:true,isPopular:true,mapQuery:"Via+Israel+San+Francisco+Panama"},
+{id:"326",name:"Cancha Real Fï¿½tbol",category:"Deportes",categoryId:"deportes",description:"Canchas de fï¿½tbol 5 y 7 sintï¿½ticas con iluminaciï¿½n LED. Alquiler por hora, torneos semanales y academia de fï¿½tbol para niï¿½os y adultos. Vestuarios y cafeterï¿½a.",address:"Rï¿½o Abajo, Calle 72 #15",hours:"Lunï¿½Dom 7:00am ï¿½ 11:00pm",rating:4.6,reviews:198,image:"https://images.unsplash.com/photo-1574629810360-7efbbe195018?w=700&h=450&fit=crop&auto=format",logo:"https://images.unsplash.com/photo-1574629810360-7efbbe195018?w=80&h=80&fit=crop&auto=format",phone:"+507 6326-0020",instagram:"@cancharealfutbol",tags:["Fï¿½tbol","Canchas","Academia","Torneos"],isNew:true,mapQuery:"Rio+Abajo+Panama"},
+{id:"327",name:"Nataciï¿½n Competitiva Aqua",category:"Deportes",categoryId:"deportes",description:"Club de nataciï¿½n con piscina semiolï¿½mpica. Clases para bebï¿½s, niï¿½os y adultos. Entrenamiento competitivo con instructores federados. Hidroterapia y aqua aerobics.",address:"Paitilla, Av. Balboa, Edificio Aqua",hours:"Lunï¿½Vie 6:00am ï¿½ 9:00pm | Sï¿½b 7:00am ï¿½ 5:00pm",rating:4.8,reviews:145,image:"https://images.unsplash.com/photo-1530549387789-4c1017266635?w=700&h=450&fit=crop&auto=format",logo:"https://images.unsplash.com/photo-1530549387789-4c1017266635?w=80&h=80&fit=crop&auto=format",phone:"+507 6327-0030",instagram:"@aqua_natacion_pty",tags:["Nataciï¿½n","Piscina","Niï¿½os","Competitivo"],isPopular:true,mapQuery:"Paitilla+Balboa+Panama"},
+{id:"312",name:"La Pollera Panameï¿½a",category:"Ropa",categoryId:"ropa",description:"Tienda especializada en trajes tï¿½picos panameï¿½os. Polleras de gala y montuna, tembleques, sombreros pintados y accesorios folklï¿½ricos para toda la familia.",address:"Av. Central, El Machetazo, 2do Piso",hours:"Lunï¿½Sï¿½b 9:00am ï¿½ 7:00pm",rating:4.8,reviews:189,image:"https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?w=700&h=450&fit=crop&auto=format",logo:"https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?w=80&h=80&fit=crop&auto=format",phone:"+507 6312-0133",facebook:"LaPollera_Pty",tags:["Pollera","Tï¿½pico","Folklï¿½rico","Tradiciï¿½n"],isFeatured:true,isNew:true,mapQuery:"Avenida+Central+Panama"},
+{id:"313",name:"Kids Fashion World",category:"Ropa",categoryId:"ropa",description:"Moda infantil de 0 a 14 aï¿½os. Ropa de marca, conjuntos de fiesta, uniformes escolares y accesorios para niï¿½os. Tallas amplias y precios accesibles.",address:"Via Espaï¿½a, Local 56, Bella Vista",hours:"Lunï¿½Dom 10:00am ï¿½ 8:00pm",rating:4.4,reviews:198,image:"https://images.unsplash.com/photo-1471286174890-9c112ac6e0d4?w=700&h=450&fit=crop&auto=format",logo:"https://images.unsplash.com/photo-1471286174890-9c112ac6e0d4?w=80&h=80&fit=crop&auto=format",phone:"+507 6313-0144",instagram:"@kidsfashion_pty",tags:["Infantil","Niï¿½os","Uniformes","Fiesta"],isPopular:true,mapQuery:"Via+Espana+Bella+Vista+Panama"},
+{id:"314",name:"Vintage & Thrift Hub",category:"Ropa",categoryId:"ropa",description:"Tienda de ropa vintage y segunda mano seleccionada. Prendas ï¿½nicas de los 70s, 80s y 90s a precios increï¿½bles. Sostenibilidad de moda y moda sostenible.",address:"Casco Viejo, Calle 3a #14",hours:"Marï¿½Dom 11:00am ï¿½ 7:00pm",rating:4.6,reviews:112,image:"https://images.unsplash.com/photo-1558171813-7a58c25e0e49?w=700&h=450&fit=crop&auto=format",logo:"https://images.unsplash.com/photo-1558171813-7a58c25e0e49?w=80&h=80&fit=crop&auto=format",phone:"+507 6314-0155",instagram:"@vintage_thrift_pty",tags:["Vintage","Segunda mano","Sostenible","70s 80s"],isNew:true,mapQuery:"Casco+Viejo+Panama"},
+/* -- TECNOLOGï¿½A nuevos (ids 315ï¿½319) -- */
+{id:"315",name:"Code Academy Panamï¿½",category:"Tecnologï¿½a",categoryId:"tecnologia",description:"Academia de programaciï¿½n para niï¿½os, jï¿½venes y adultos. Cursos de Python, desarrollo web, diseï¿½o UX y robï¿½tica. Modalidad presencial y online con certificaciï¿½n.",address:"Calle 50, San Francisco, Edificio Metrobank, Of. 5A",hours:"Lunï¿½Sï¿½b 8:00am ï¿½ 7:00pm",rating:4.8,reviews:156,image:"https://images.unsplash.com/photo-1517694712202-14dd9538aa97?w=700&h=450&fit=crop&auto=format",logo:"https://images.unsplash.com/photo-1517694712202-14dd9538aa97?w=80&h=80&fit=crop&auto=format",phone:"+507 6315-0166",instagram:"@codeacademy_pty",website:"codeacademypty.com",tags:["Programaciï¿½n","Python","Web","Cursos"],isFeatured:true,isNew:true,mapQuery:"Calle+50+San+Francisco+Panama"},
+{id:"316",name:"PrintTech 3D",category:"Tecnologï¿½a",categoryId:"tecnologia",description:"Servicios de impresiï¿½n 3D bajo demanda. Prototipos industriales, figuras personalizadas, piezas de repuesto y modelos arquitectï¿½nicos. Materiales PLA, ABS y resina.",address:"Zona Industrial de Panamï¿½, Galpï¿½n 12",hours:"Lunï¿½Vie 8:00am ï¿½ 5:00pm",rating:4.5,reviews:89,image:"https://images.unsplash.com/photo-1615461066159-fea0960485d5?w=700&h=450&fit=crop&auto=format",logo:"https://images.unsplash.com/photo-1615461066159-fea0960485d5?w=80&h=80&fit=crop&auto=format",phone:"+507 6316-0177",instagram:"@printtech3d_pty",website:"printtech3d.com",tags:["Impresiï¿½n 3D","Prototipos","Resina","PLA"],isNew:true,mapQuery:"Zona+Industrial+Panama"},
+{id:"317",name:"TechHogar Smart Home",category:"Tecnologï¿½a",categoryId:"tecnologia",description:"Instalaciï¿½n de hogares inteligentes. Domï¿½tica, iluminaciï¿½n automatizada, cerraduras digitales, termostatos inteligentes y asistentes de voz. Marcas Google, Amazon y Samsung.",address:"Punta Pacï¿½fica, Av. Balboa, Torre Globos, Of. 2C",hours:"Lunï¿½Vie 9:00am ï¿½ 6:00pm",rating:4.7,reviews:67,image:"https://images.unsplash.com/photo-1558002038-1055907df827?w=700&h=450&fit=crop&auto=format",logo:"https://images.unsplash.com/photo-1558002038-1055907df827?w=80&h=80&fit=crop&auto=format",phone:"+507 6317-0188",instagram:"@techhogar_pty",website:"techhogarpty.com",tags:["Smart Home","Domï¿½tica","Google Home","Automatizaciï¿½n"],isFeatured:true,mapQuery:"Punta+Pacifica+Panama"},
+{id:"318",name:"PC Armados Pro",category:"Tecnologï¿½a",categoryId:"tecnologia",description:"Ensamblaje de computadoras de escritorio personalizadas para gaming, trabajo y diseï¿½o. Selecciï¿½n de componentes segï¿½n presupuesto, con garantï¿½a de un aï¿½o en mano de obra.",address:"Via Espaï¿½a, Plaza Regency, Local 7",hours:"Lunï¿½Sï¿½b 9:00am ï¿½ 6:00pm",rating:4.6,reviews:143,image:"https://images.unsplash.com/photo-1587202372634-32705e3bf49c?w=700&h=450&fit=crop&auto=format",logo:"https://images.unsplash.com/photo-1587202372634-32705e3bf49c?w=80&h=80&fit=crop&auto=format",phone:"+507 6318-0199",facebook:"PCArmadosPro",tags:["Gaming PC","Ensamblaje","Componentes","Diseï¿½o"],isPopular:true,mapQuery:"Via+Espana+Panama"},
+{id:"319",name:"Cybersec Panamï¿½",category:"Tecnologï¿½a",categoryId:"tecnologia",description:"Consultorï¿½a en ciberseguridad para empresas. Auditorï¿½as de seguridad, protecciï¿½n de datos, capacitaciï¿½n al personal y respuesta a incidentes. Certificados ISO 27001.",address:"Av. Samuel Lewis, Torres de la Amï¿½ricas, Piso 22",hours:"Lunï¿½Vie 8:00am ï¿½ 5:00pm",rating:4.8,reviews:54,image:"https://images.unsplash.com/photo-1563986768494-4dee2763ff3f?w=700&h=450&fit=crop&auto=format",logo:"https://images.unsplash.com/photo-1563986768494-4dee2763ff3f?w=80&h=80&fit=crop&auto=format",phone:"+507 6319-0200",website:"cybersecpty.com",tags:["Ciberseguridad","ISO 27001","Auditorï¿½a","Empresas"],isFeatured:true,mapQuery:"Torres+Americas+Panama"},
+/* -- HOGAR nuevos (ids 320ï¿½324) -- */
+{id:"320",name:"Muebles & Diseï¿½o Interiors",category:"Hogar",categoryId:"hogar",description:"Tienda de muebles y decoraciï¿½n para sala, comedor y dormitorios. Diseï¿½o de interiores personalizado, muebles a medida y asesorï¿½a gratuita en tu hogar.",address:"Via Ricardo J. Alfaro, Megaplex, Local 8",hours:"Lunï¿½Dom 10:00am ï¿½ 8:00pm",rating:4.6,reviews:178,image:"https://images.unsplash.com/photo-1555041469-a586c61ea9bc?w=700&h=450&fit=crop&auto=format",logo:"https://images.unsplash.com/photo-1555041469-a586c61ea9bc?w=80&h=80&fit=crop&auto=format",phone:"+507 6320-0211",instagram:"@muebles_interiors_pty",facebook:"MueblesInteriors",tags:["Muebles","Diseï¿½o de Interiores","Sala","Dormitorio"],isFeatured:true,isPopular:true,mapQuery:"Via+Ricardo+Alfaro+Panama"},
+{id:"321",name:"Jardï¿½n Tropical Panamï¿½",category:"Hogar",categoryId:"hogar",description:"Vivero y servicio de jardinerï¿½a. Plantas tropicales, ï¿½rboles frutales, macetas decorativas y diseï¿½o de jardines residenciales. Mantenimiento mensual disponible.",address:"Calle Los Rï¿½os, Ancï¿½n, Km 2",hours:"Lunï¿½Dom 7:00am ï¿½ 5:00pm",rating:4.5,reviews:134,image:"https://images.unsplash.com/photo-1416879595882-3373a0480b5b?w=700&h=450&fit=crop&auto=format",logo:"https://images.unsplash.com/photo-1416879595882-3373a0480b5b?w=80&h=80&fit=crop&auto=format",phone:"+507 6321-0222",facebook:"JardinTropicalPty",tags:["Plantas","Jardines","Vivero","Mantenimiento"],isNew:true,mapQuery:"Ancon+Panama"},
+{id:"322",name:"ElectroCasa Panamï¿½",category:"Hogar",categoryId:"hogar",description:"Electrodomï¿½sticos, licuadoras, refrigeradoras, lavadoras y secadoras de las mejores marcas. Financiamiento a 24 meses y servicio tï¿½cnico posventa incluido.",address:"Transistmica, El Dorado, Centro Comercial, Local 10",hours:"Lunï¿½Dom 9:00am ï¿½ 8:00pm",rating:4.4,reviews:312,image:"https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=700&h=450&fit=crop&auto=format",logo:"https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=80&h=80&fit=crop&auto=format",phone:"+507 6322-0233",instagram:"@electrocasa_pty",website:"electrocasa.pty",tags:["Electrodomï¿½sticos","Lavadora","Refrigeradora","Financiamiento"],isPopular:true,mapQuery:"El+Dorado+Panama"},
+{id:"323",name:"Pinturas & Acabados RD",category:"Hogar",categoryId:"hogar",description:"Venta de pinturas, barnices y acabados para interior y exterior. Servicio de pintura profesional a domicilio. Paleta de mï¿½s de 500 colores y mezclas personalizadas.",address:"Av. Balboa, Santa Ana, Local 22",hours:"Lunï¿½Sï¿½b 7:30am ï¿½ 6:00pm",rating:4.3,reviews:98,image:"https://images.unsplash.com/photo-1562259949-e8e7689d7828?w=700&h=450&fit=crop&auto=format",logo:"https://images.unsplash.com/photo-1562259949-e8e7689d7828?w=80&h=80&fit=crop&auto=format",phone:"+507 6323-0244",facebook:"PinturasRD",tags:["Pintura","Acabados","Domicilio","500 colores"],mapQuery:"Santa+Ana+Panama"},
+{id:"324",name:"Alarmas & Seguridad Home",category:"Hogar",categoryId:"hogar",description:"Instalaciï¿½n de sistemas de alarma, cï¿½maras de vigilancia y control de acceso para residencias y condominios. Monitoreo 24/7 y respuesta inmediata ante emergencias.",address:"Calle 73, San Francisco, Edificio Tower, Of. 101",hours:"Lunï¿½Vie 8:00am ï¿½ 5:30pm",rating:4.7,reviews:167,image:"https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=700&h=450&fit=crop&auto=format",logo:"https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=80&h=80&fit=crop&auto=format",phone:"+507 6324-0255",instagram:"@alarmas_home_pty",website:"alarmashogar.pty",tags:["Alarmas","Cï¿½maras","Seguridad","Monitoreo 24/7"],isFeatured:true,mapQuery:"San+Francisco+Panama"}];
 
 // cargar favoritos del storage
 const _savedFavs = localStorage.getItem('fynderFavorites');
@@ -250,7 +250,7 @@ if(_savedFavs){
     const parsed = JSON.parse(_savedFavs);
     // Solo mantener IDs que existen en BUSINESSES
     parsed.forEach(id => { if(BUSINESSES.find(b=>b.id===id)) favorites.add(id); });
-    // Actualizar localStorage con solo los válidos
+    // Actualizar localStorage con solo los vï¿½lidos
     localStorage.setItem('fynderFavorites', JSON.stringify([...favorites]));
   } catch(e){ favorites = new Set(); }
 }
@@ -267,21 +267,21 @@ function gridCardHTML(b){
   const isFav=favorites.has(b.id);
   const badge=b.isNew?`<span class="bcard-badge new">NUEVO</span>`:b.isFeatured?`<span class="bcard-badge featured">DESTACADO</span>`:'';
   const dealBadge=b.deal?`<span class="bcard-badge deal" style="background:${b.deal.color}"><i class="fas fa-tags"></i> ${b.deal.label}</span>`:'';
-  return`<div class="bcard" onclick="openModal('${b.id}')"><div class="bcard-img"><img src="${b.image}" alt="${b.name}" loading="lazy" onerror="this.closest('.bcard').style.display='none'"/><div class="bcard-img-overlay"></div>${badge}${dealBadge}<button class="bcard-fav${isFav?' active':''}" onclick="event.stopPropagation();toggleFav('${b.id}')" data-fav-id="${b.id}" data-fav-size="md">${_heartSVG(isFav,'md')}</button></div><div class="bcard-body"><div class="bcard-row1"><span class="bcard-name">${b.name}</span><div class="bcard-rating"><svg style="width:12px;height:12px" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><polygon fill="#F4D35E" stroke="#F4D35E" points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg><span class="bcard-rating-val">${b.rating}</span></div></div>${b.deal?`<p class="bcard-deal-strip"><i class="fas fa-tag"></i> ${b.deal.desc}</p>`:''}<p class="bcard-desc line-clamp-2">${b.description}</p><div class="bcard-hours"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>${b.hours}</div><button class="bcard-btn" onclick="event.stopPropagation();openModal('${b.id}')">Ver más ?</button></div></div>`;
+  return`<div class="bcard" onclick="openModal('${b.id}')"><div class="bcard-img"><img src="${b.image}" alt="${b.name}" loading="lazy" onerror="this.closest('.bcard').style.display='none'"/><div class="bcard-img-overlay"></div>${badge}${dealBadge}<button class="bcard-fav${isFav?' active':''}" onclick="event.stopPropagation();toggleFav('${b.id}')" data-fav-id="${b.id}" data-fav-size="md">${_heartSVG(isFav,'md')}</button></div><div class="bcard-body"><div class="bcard-row1"><span class="bcard-name">${b.name}</span><div class="bcard-rating"><svg style="width:12px;height:12px" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><polygon fill="#F4D35E" stroke="#F4D35E" points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg><span class="bcard-rating-val">${b.rating}</span></div></div>${b.deal?`<p class="bcard-deal-strip"><i class="fas fa-tag"></i> ${b.deal.desc}</p>`:''}<p class="bcard-desc line-clamp-2">${b.description}</p><div class="bcard-hours"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>${b.hours}</div><button class="bcard-btn" onclick="event.stopPropagation();openModal('${b.id}')">Ver mï¿½s ?</button></div></div>`;
 }
 
 function listCardHTML(b){
   const isFav=favorites.has(b.id);
   const tags=b.tags.slice(0,3).map(t=>`<span class="tag tag-teal">${t}</span>`).join('');
-  const dealTag=b.deal?`<span class="tag" style="background:color-mix(in srgb,${b.deal.color} 12%,white);color:${b.deal.color};border:1px solid ${b.deal.color}40"><i class="fas fa-tags" style="font-size:.6rem"></i> ${b.deal.label} · ${b.deal.desc}</span>`:'';
+  const dealTag=b.deal?`<span class="tag" style="background:color-mix(in srgb,${b.deal.color} 12%,white);color:${b.deal.color};border:1px solid ${b.deal.color}40"><i class="fas fa-tags" style="font-size:.6rem"></i> ${b.deal.label} ï¿½ ${b.deal.desc}</span>`:'';
   return`<div class="bcard-list" onclick="openModal('${b.id}')"><div class="bcard-list-img"><img src="${b.image}" alt="${b.name}" loading="lazy" style="width:100%;height:100%;object-fit:cover" onerror="this.closest('.bcard-list').style.display='none'"/></div><div class="bcard-list-body"><div><div class="bcard-list-top"><span class="bcard-list-name">${b.name}</span><button onclick="event.stopPropagation();toggleFav('${b.id}')" style="background:none;border:none;cursor:pointer;flex-shrink:0;padding:2px" data-fav-id="${b.id}" data-fav-size="sm">${_heartSVG(isFav,'sm')}</button></div><p class="bcard-list-desc line-clamp-2">${b.description}</p><div class="bcard-list-tags">${tags}${dealTag}</div></div><div class="bcard-list-meta"><div class="bcard-list-meta-item"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>${b.hours}</div><div class="bcard-list-meta-item"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>${b.address.split(',')[0]}</div><div class="bcard-list-rating"><div class="stars">${starsHTML(b.rating)}</div><strong style="font-size:.75rem;color:#1F2937">${b.rating}</strong><span style="font-size:.75rem;color:#6B7280">(${b.reviews})</span></div></div></div></div>`;
 }
 function goPage(p){
-    // Si la página no existe, ignorar silenciosamente
+    // Si la pï¿½gina no existe, ignorar silenciosamente
     const target = document.getElementById('page-'+p);
     if(!target){ console.warn('goPage: no existe page-'+p); return; }
 
-    // Guardar la página anterior solo si NO es una página legal (para no perder el origen real)
+    // Guardar la pï¿½gina anterior solo si NO es una pï¿½gina legal (para no perder el origen real)
     const legalPages = ['terms','privacy'];
     const noHistoryPages = ['messages','chat','chat-profile'];
     if(!legalPages.includes(currentPage) && !noHistoryPages.includes(currentPage)){
@@ -296,10 +296,10 @@ function goPage(p){
     const noNavPages = ['login','register','terms','privacy','messages','chat','chat-profile'];
     navbar.style.display = noNavPages.includes(p) ? 'none' : 'block';
 
-    // Actualizar el botón "Volver" de las páginas legales con el destino correcto
+    // Actualizar el botï¿½n "Volver" de las pï¿½ginas legales con el destino correcto
     if(legalPages.includes(p)){
         const backBtns = document.querySelectorAll('#page-'+p+' .back-legal-btn');
-        const labels = { home:'Inicio', register:'Crear cuenta', login:'Iniciar sesión', directory:'Directorio', favorites:'Guardados', business:'Registrar negocio', profile:'Mi perfil', plans:'Planes', support:'Soporte', about:'Sobre FYNDER' };
+        const labels = { home:'Inicio', register:'Crear cuenta', login:'Iniciar sesiï¿½n', directory:'Directorio', favorites:'Guardados', business:'Registrar negocio', profile:'Mi perfil', plans:'Planes', support:'Soporte', about:'Sobre FYNDER' };
         const label = labels[previousPage] || 'Volver';
         backBtns.forEach(btn => {
             btn.setAttribute('data-back', previousPage);
@@ -334,7 +334,7 @@ function goPage(p){
     }
     if(p!=='messages' && p!=='chat') { if(typeof updateMsgBadge==='function') updateMsgBadge(); }
 
-    // La página de mensajes siempre oculta el navbar (tiene su propio header)
+    // La pï¿½gina de mensajes siempre oculta el navbar (tiene su propio header)
 }
 
 function goBack(){
@@ -390,10 +390,10 @@ function updateNav(){
     const fc=document.getElementById('favsCount');
     if(fc) fc.textContent=`${favorites.size} negocio${favorites.size!==1?'s':''} guardado${favorites.size!==1?'s':''}`;
 
-    // Sincronizar drawer móvil con estado de sesión
+    // Sincronizar drawer mï¿½vil con estado de sesiï¿½n
     if (typeof updateMobileMenuActions === 'function') updateMobileMenuActions();
 
-    // Resaltar el item activo en el menú lateral (drawer)
+    // Resaltar el item activo en el menï¿½ lateral (drawer)
     const pageToDrawerBtn = {
         'home':      0,
         'directory': 1,
@@ -429,14 +429,14 @@ function toggleFav(id){
   if(currentPage==='favorites') renderFavorites();
   if(modalBusinessId===id) updateModalFavBtn();
 
-  // Notificación real al guardar (no al quitar)
+  // Notificaciï¿½n real al guardar (no al quitar)
   if (!wasFav) {
     const biz = BUSINESSES.find(b => String(b.id) === String(id));
     if (biz) {
       pushNotification({
         type:  'fav',
         title: `Guardaste "${biz.name}"`,
-        body:  biz.description ? biz.description.slice(0, 80) + (biz.description.length > 80 ? '…' : '') : 'Negocio guardado en tus favoritos.',
+        body:  biz.description ? biz.description.slice(0, 80) + (biz.description.length > 80 ? 'ï¿½' : '') : 'Negocio guardado en tus favoritos.',
         bizId: biz.id,
         image: biz.image || null
       });
@@ -473,7 +473,7 @@ function openModal(id){
   document.getElementById('modalCat').textContent=b.category;
   document.getElementById('modalStars').innerHTML=starsHTML(b.rating);
   document.getElementById('modalRating').textContent=b.rating;
-  document.getElementById('modalReviews').textContent=`(${b.reviews} reseñas)`;
+  document.getElementById('modalReviews').textContent=`(${b.reviews} reseï¿½as)`;
   document.getElementById('modalDesc').textContent=b.description;
 
   // Tags
@@ -482,9 +482,9 @@ function openModal(id){
 
   // Info rows
   const irows=[
-    {icon:'<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>',label:'Dirección',val:b.address},
+    {icon:'<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>',label:'Direcciï¿½n',val:b.address},
     {icon:'<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>',label:'Horario',val:b.hours},
-    {icon:'<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.99 12 19.79 19.79 0 0 1 1.93 3.38 2 2 0 0 1 3.91 1h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 8.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>',label:'Teléfono',val:b.phone},
+    {icon:'<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.99 12 19.79 19.79 0 0 1 1.93 3.38 2 2 0 0 1 3.91 1h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 8.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>',label:'Telï¿½fono',val:b.phone},
     ...(b.website?[{icon:'<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"/><path d="M2 12h20"/></svg>',label:'Web',val:b.website}]:[])
   ];
   document.getElementById('modalInfo').innerHTML=irows.map(i=>`<div class="info-row"><div class="info-icon">${i.icon}</div><div><div class="info-label">${i.label}</div><div class="info-val">${i.val}</div></div></div>`).join('');
@@ -496,7 +496,7 @@ function openModal(id){
     (b.instagram?`<button class="btn-ig" onclick="window.open('https://instagram.com/${b.instagram.replace('@','')}','_blank')"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="20" x="2" y="2" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" x2="17.51" y1="6.5" y2="6.5"/></svg>${b.instagram}</button>`:'') +
     (b.facebook?`<button class="btn-fb" onclick="window.open('https://facebook.com/${b.facebook}','_blank')"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>${b.facebook}</button>`:'');
 
-  // Botones de acción: contactar y compartir
+  // Botones de acciï¿½n: contactar y compartir
   const contactBtn=document.getElementById('modalContactBtn');
   if(contactBtn) contactBtn.onclick=()=>{ window.open('tel:'+b.phone.replace(/\s|\(|\)|-/g,''),'_self'); };
   const shareBtn=document.getElementById('modalShareBtn');
@@ -505,7 +505,7 @@ function openModal(id){
   // Mapa embed (Google Maps)
   const mapWrap=document.getElementById('modalMapWrap');
   if(mapWrap){
-    const q=encodeURIComponent((b.mapQuery||b.address).replace(/\+/g,' ')+', Panamá');
+    const q=encodeURIComponent((b.mapQuery||b.address).replace(/\+/g,' ')+', Panamï¿½');
     mapWrap.innerHTML=`<iframe
       class="modal-map-iframe"
       src="https://maps.google.com/maps?q=${q}&output=embed&z=16&hl=es"
@@ -513,14 +513,14 @@ function openModal(id){
       allowfullscreen
       loading="lazy"
       referrerpolicy="no-referrer-when-downgrade"
-      title="Ubicación de ${b.name}"></iframe>
+      title="Ubicaciï¿½n de ${b.name}"></iframe>
     <a class="modal-map-ext-link" href="https://www.google.com/maps/search/?api=1&query=${q}" target="_blank" rel="noopener">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
       Ver en Google Maps
     </a>`;
   }
 
-  // Reseñas
+  // Reseï¿½as
   renderModalReviews(b.id, cat);
 
   updateModalFavBtn();
@@ -536,7 +536,7 @@ function renderModalReviews(bizId, cat){
   const userComments=_getBizComments(bizId);
   const color=cat?.color||'#67B8B4';
 
-  // Construir el HTML de reseñas estáticas
+  // Construir el HTML de reseï¿½as estï¿½ticas
   const staticHTML=staticList.map(r=>{
     const filled=r.stars;
     const stars=[1,2,3,4,5].map(i=>`<svg style="width:13px;height:13px;fill:${i<=filled?'#F4D35E':'#E5E7EB'};flex-shrink:0" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>`).join('');
@@ -553,7 +553,7 @@ function renderModalReviews(bizId, cat){
     </div>`;
   }).join('');
 
-  // Construir el HTML de reseñas de usuario (mismo estilo review-card, sin estrellas)
+  // Construir el HTML de reseï¿½as de usuario (mismo estilo review-card, sin estrellas)
   const logged=!!localStorage.getItem('fynderLogged');
   const user=JSON.parse(localStorage.getItem('fynderUser')||'null');
   const userHTML=userComments.slice().reverse().map(c=>{
@@ -587,24 +587,24 @@ function renderModalReviews(bizId, cat){
   const totalCount=staticList.length+userComments.length;
 
   wrap.innerHTML=`
-    <p class="modal-section-title">Reseñas de clientes (${totalCount})</p>
+    <p class="modal-section-title">Reseï¿½as de clientes (${totalCount})</p>
     <div class="reviews-list" id="bizReviewsList">
       ${staticHTML}
       ${userHTML}
-      ${totalCount===0?'<p style="font-size:.8125rem;color:var(--muted);text-align:center;padding:16px 0">Aún no hay reseñas. ¡Sé el primero!</p>':''}
+      ${totalCount===0?'<p style="font-size:.8125rem;color:var(--muted);text-align:center;padding:16px 0">Aï¿½n no hay reseï¿½as. ï¿½Sï¿½ el primero!</p>':''}
     </div>
     <div style="margin-top:20px">
       <div style="display:flex;gap:10px;align-items:flex-start">
         <div style="flex-shrink:0;margin-top:2px">${_getUserAvatarHTML(36)}</div>
         <div style="flex:1">
-          <textarea id="bizCommentInput" placeholder="Escribe tu reseña..." maxlength="400" rows="2"
+          <textarea id="bizCommentInput" placeholder="Escribe tu reseï¿½a..." maxlength="400" rows="2"
             class="biz-review-textarea"
             style="width:100%;padding:10px 14px;border:1.5px solid var(--border);border-radius:14px;font-family:'Inter',sans-serif;font-size:.875rem;color:var(--fg);background:var(--bg);resize:none;outline:none;box-sizing:border-box;transition:border-color .2s"
             onfocus="this.style.borderColor='var(--primary)'" onblur="this.style.borderColor='var(--border)'"
           ></textarea>
           <div style="display:flex;justify-content:flex-end;margin-top:8px">
             <button onclick="submitBizComment('${bizId}')" style="padding:9px 20px;border-radius:12px;border:none;background:var(--primary);color:#fff;font-family:'Poppins',sans-serif;font-size:.8125rem;font-weight:600;cursor:pointer;display:inline-flex;align-items:center;gap:6px">
-              <i class="fas fa-paper-plane"></i> Publicar reseña
+              <i class="fas fa-paper-plane"></i> Publicar reseï¿½a
             </button>
           </div>
         </div>
@@ -619,9 +619,9 @@ function shareModalBusiness(){
   const shareText=`${b.name}\n?? ${b.address}\n?? ${b.phone}`;
   const shareUrl=window.location.href;
 
-  // Intentar Web Share API (funciona en móvil/HTTPS)
+  // Intentar Web Share API (funciona en mï¿½vil/HTTPS)
   if(navigator.share && location.protocol!=='file:'){
-    navigator.share({title:b.name,text:`${b.name} – ${b.address}`,url:shareUrl}).catch(()=>{});
+    navigator.share({title:b.name,text:`${b.name} ï¿½ ${b.address}`,url:shareUrl}).catch(()=>{});
     return;
   }
 
@@ -635,7 +635,7 @@ function _showSharePanel(b, shareText, shareUrl){
   if(existing){ existing.remove(); return; }
 
   const waText=encodeURIComponent(`${b.name}\n?? ${b.address}\n?? ${b.phone}`);
-  const tgText=encodeURIComponent(`${b.name} – ${b.address}`);
+  const tgText=encodeURIComponent(`${b.name} ï¿½ ${b.address}`);
 
   const panel=document.createElement('div');
   panel.id='sharePanel';
@@ -673,7 +673,7 @@ function _shareTo(platform, encodedText){
     ig: `https://www.instagram.com/`
   };
   window.open(urls[platform],'_blank','noopener');
-  if(platform==='ig') showToast('Copia el texto y compártelo en Instagram ??');
+  if(platform==='ig') showToast('Copia el texto y compï¿½rtelo en Instagram ??');
 }
 
 function _shareCopy(encodedText){
@@ -681,7 +681,7 @@ function _shareCopy(encodedText){
   const btn=document.getElementById('shareCopyBtn');
   if(navigator.clipboard && navigator.clipboard.writeText){
     navigator.clipboard.writeText(text).then(()=>{
-      if(btn){ btn.innerHTML='<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg> ¡Copiado!'; btn.style.color='#10B981'; }
+      if(btn){ btn.innerHTML='<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg> ï¿½Copiado!'; btn.style.color='#10B981'; }
       setTimeout(()=>{ const p=document.getElementById('sharePanel'); if(p) p.remove(); },1200);
     }).catch(()=>_shareCopyFallback(text));
   } else {
@@ -690,7 +690,7 @@ function _shareCopy(encodedText){
 }
 
 function _shareCopyFallback(text){
-  // Método clásico compatible con file://
+  // Mï¿½todo clï¿½sico compatible con file://
   const ta=document.createElement('textarea');
   ta.value=text;
   ta.style.cssText='position:fixed;top:-9999px;left:-9999px;opacity:0';
@@ -701,7 +701,7 @@ function _shareCopyFallback(text){
   document.body.removeChild(ta);
   const btn=document.getElementById('shareCopyBtn');
   if(ok){
-    if(btn){ btn.innerHTML='<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg> ¡Copiado!'; btn.style.color='#10B981'; }
+    if(btn){ btn.innerHTML='<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg> ï¿½Copiado!'; btn.style.color='#10B981'; }
     setTimeout(()=>{ const p=document.getElementById('sharePanel'); if(p) p.remove(); },1200);
   } else {
     showToast(`?? ${text.split('\n')[0]}`);
@@ -716,7 +716,7 @@ function closeModal(e){if(e.target===document.getElementById('modalOverlay'))clo
 
 function closeModalDirect(){document.getElementById('modalOverlay').classList.add('hide');document.body.style.overflow='';modalBusinessId=null;}
 
-/* -- Reseñas de usuario en negocios -- */
+/* -- Reseï¿½as de usuario en negocios -- */
 function _getBizComments(bizId){try{return JSON.parse(localStorage.getItem('fynderBizComments_'+bizId)||'[]');}catch(e){return[];}}
 function _saveBizComments(bizId,c){localStorage.setItem('fynderBizComments_'+bizId,JSON.stringify(c));}
 
@@ -743,7 +743,7 @@ function submitBizComment(bizId){
   const b=BUSINESSES.find(x=>x.id===bizId)||BUSINESSES.find(x=>x.id===modalBusinessId);
   const cat=b?CATEGORIES.find(c=>c.id===b.categoryId):null;
   renderModalReviews(bizId,cat);
-  showToast('¡Reseña publicada! ?');
+  showToast('ï¿½Reseï¿½a publicada! ?');
 }
 
 function deleteBizComment(bizId,commentId){
@@ -751,7 +751,7 @@ function deleteBizComment(bizId,commentId){
   const b=BUSINESSES.find(x=>x.id===bizId)||BUSINESSES.find(x=>x.id===modalBusinessId);
   const cat=b?CATEGORIES.find(c=>c.id===b.categoryId):null;
   renderModalReviews(bizId,cat);
-  showToast('Reseña eliminada.');
+  showToast('Reseï¿½a eliminada.');
 }
 
 /* -- Drag-to-scroll en cat-filters (desktop mouse + touch mobile) -- */
@@ -803,7 +803,7 @@ function buildHome(){
   const heroStatSat=document.getElementById('heroStatSatisfaccion');
   if(heroStatSat) heroStatSat.textContent=satPct+'%';
 
-  // Sincronizar versión móvil de stats
+  // Sincronizar versiï¿½n mï¿½vil de stats
   const m1=document.getElementById('heroStatNegociosMobile');   if(m1) m1.textContent=total;
   const m2=document.getElementById('heroStatUsuariosMobile');   if(m2) m2.textContent=usersEst.toLocaleString('es')+'+';
   const m3=document.getElementById('heroStatRatingMobile');     if(m3) m3.textContent=avgRating;
@@ -835,16 +835,16 @@ function openStatModal(type){
       extra:`<div class="smodal-extra-row"><span>Nuevos este mes</span><strong style="color:#67B8B4">+${BUSINESSES.filter(b=>b.isNew).length}</strong></div>
              <div class="smodal-extra-row"><span>Destacados</span><strong style="color:#F4D35E">? ${BUSINESSES.filter(b=>b.isFeatured).length}</strong></div>
              <div class="smodal-extra-row"><span>Populares</span><strong style="color:#EF4444">?? ${BUSINESSES.filter(b=>b.isPopular).length}</strong></div>`,
-      chartTitle:'Negocios por categoría',chart:byCat,chartType:'bar'
+      chartTitle:'Negocios por categorï¿½a',chart:byCat,chartType:'bar'
     },
     usuarios:{
       icon:'??',title:'Usuarios Activos',value:usersEst.toLocaleString('es')+'+',unit:'usuarios',
       desc:'Personas que usan FYNDER para descubrir negocios locales.',
       color:'#2F5BB7',
       extra:`<div class="smodal-extra-row"><span>Usuarios nuevos/mes</span><strong style="color:#2F5BB7">+${Math.round(usersEst*0.08).toLocaleString('es')}</strong></div>
-             <div class="smodal-extra-row"><span>Retención</span><strong style="color:#10B981">92%</strong></div>
-             <div class="smodal-extra-row"><span>Negocios / usuario</span><strong style="color:#8B5CF6">~${(total/usersEst*1000).toFixed(1)} ‰</strong></div>`,
-      chartTitle:'Actividad mensual (últimos 6 meses)',chart:[
+             <div class="smodal-extra-row"><span>Retenciï¿½n</span><strong style="color:#10B981">92%</strong></div>
+             <div class="smodal-extra-row"><span>Negocios / usuario</span><strong style="color:#8B5CF6">~${(total/usersEst*1000).toFixed(1)} ï¿½</strong></div>`,
+      chartTitle:'Actividad mensual (ï¿½ltimos 6 meses)',chart:[
         {label:'Ene',count:Math.round(usersEst*.55),color:'#2F5BB7',bg:'#EEF2FF'},
         {label:'Feb',count:Math.round(usersEst*.62),color:'#2F5BB7',bg:'#EEF2FF'},
         {label:'Mar',count:Math.round(usersEst*.70),color:'#2F5BB7',bg:'#EEF2FF'},
@@ -854,27 +854,27 @@ function openStatModal(type){
       ],chartType:'bar'
     },
     rating:{
-      icon:'?',title:'Valoración Promedio',value:avgRating,unit:'/ 5 estrellas',
+      icon:'?',title:'Valoraciï¿½n Promedio',value:avgRating,unit:'/ 5 estrellas',
       desc:'Promedio calculado de todos los negocios activos en la plataforma.',
       color:'#F4D35E',
       extra:`<div class="smodal-extra-row"><span>Rating 5.0 ?</span><strong style="color:#F4D35E">${BUSINESSES.filter(b=>b.rating>=4.9).length} negocios</strong></div>
-             <div class="smodal-extra-row"><span>Rating 4.5–4.9</span><strong style="color:#F97316">${BUSINESSES.filter(b=>b.rating>=4.5&&b.rating<4.9).length} negocios</strong></div>
-             <div class="smodal-extra-row"><span>Rating 4.0–4.4</span><strong style="color:#10B981">${BUSINESSES.filter(b=>b.rating>=4.0&&b.rating<4.5).length} negocios</strong></div>`,
-      chartTitle:'Distribución de ratings',chart:[
+             <div class="smodal-extra-row"><span>Rating 4.5ï¿½4.9</span><strong style="color:#F97316">${BUSINESSES.filter(b=>b.rating>=4.5&&b.rating<4.9).length} negocios</strong></div>
+             <div class="smodal-extra-row"><span>Rating 4.0ï¿½4.4</span><strong style="color:#10B981">${BUSINESSES.filter(b=>b.rating>=4.0&&b.rating<4.5).length} negocios</strong></div>`,
+      chartTitle:'Distribuciï¿½n de ratings',chart:[
         {label:'5.0 ?',count:BUSINESSES.filter(b=>b.rating>=4.9).length,color:'#F4D35E',bg:'#FFFBEB'},
-        {label:'4.5–4.8',count:BUSINESSES.filter(b=>b.rating>=4.5&&b.rating<4.9).length,color:'#F97316',bg:'#FFF7ED'},
-        {label:'4.0–4.4',count:BUSINESSES.filter(b=>b.rating>=4.0&&b.rating<4.5).length,color:'#10B981',bg:'#ECFDF5'},
+        {label:'4.5ï¿½4.8',count:BUSINESSES.filter(b=>b.rating>=4.5&&b.rating<4.9).length,color:'#F97316',bg:'#FFF7ED'},
+        {label:'4.0ï¿½4.4',count:BUSINESSES.filter(b=>b.rating>=4.0&&b.rating<4.5).length,color:'#10B981',bg:'#ECFDF5'},
         {label:'<4.0',count:BUSINESSES.filter(b=>b.rating<4.0).length,color:'#6B7280',bg:'#F3F4F6'},
       ],chartType:'bar'
     },
     satisfaccion:{
-      icon:'??',title:'Índice de Satisfacción',value:satPct+'%',unit:'de negocios = 4.0?',
-      desc:'Porcentaje de negocios con calificación de 4.0 o más sobre 5 estrellas.',
+      icon:'??',title:'ï¿½ndice de Satisfacciï¿½n',value:satPct+'%',unit:'de negocios = 4.0?',
+      desc:'Porcentaje de negocios con calificaciï¿½n de 4.0 o mï¿½s sobre 5 estrellas.',
       color:'#10B981',
       extra:`<div class="smodal-extra-row"><span>Negocios satisfactorios</span><strong style="color:#10B981">${highSat} de ${total}</strong></div>
-             <div class="smodal-extra-row"><span>Reseñas registradas</span><strong style="color:#8B5CF6">${Object.keys(REVIEWS).length * 3}+</strong></div>
+             <div class="smodal-extra-row"><span>Reseï¿½as registradas</span><strong style="color:#8B5CF6">${Object.keys(REVIEWS).length * 3}+</strong></div>
              <div class="smodal-extra-row"><span>NPS estimado</span><strong style="color:#2F5BB7">+78</strong></div>`,
-      chartTitle:'Satisfacción por categoría',chart:CATEGORIES.map(c=>{
+      chartTitle:'Satisfacciï¿½n por categorï¿½a',chart:CATEGORIES.map(c=>{
         const bs=BUSINESSES.filter(b=>b.categoryId===c.id);
         if(!bs.length)return null;
         const avg=(bs.reduce((s,b)=>s+(b.rating||0),0)/bs.length);
@@ -942,9 +942,9 @@ function filterDir(){const v=document.getElementById('dirSearch').value;document
 
 function clearDirSearch(){document.getElementById('dirSearch').value='';document.getElementById('dirClear').classList.add('hide');renderDirectory();} 
 
-function renderDirectory(){buildDirCatFilters();const q=document.getElementById('dirSearch').value.toLowerCase().trim();const isDeals=dirActiveCategory==='__deals__';const res=BUSINESSES.filter(b=>{const mc=isDeals?!!b.deal:(!dirActiveCategory||b.categoryId===dirActiveCategory);const mq=!q||b.name.toLowerCase().includes(q)||b.category.toLowerCase().includes(q)||b.tags.some(t=>t.toLowerCase().includes(q))||b.description.toLowerCase().includes(q);return mc&&mq;});const cl=isDeals?'Ofertas':dirActiveCategory?CATEGORIES.find(c=>c.id===dirActiveCategory)?.label:'';document.getElementById('dirCount').innerHTML=`<strong>${res.length}</strong> negocio${res.length!==1?'s':''} encontrado${res.length!==1?'s':''}${cl?` en <span class="highlight">${cl}</span>`:''}`;const el=document.getElementById('dirResults');if(res.length===0){el.innerHTML=`<div class="empty-state"><div class="empty-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg></div><div class="empty-title">Sin resultados</div><div class="empty-desc">Intenta con otra búsqueda o categoría.</div></div>`;return;}el.innerHTML=dirViewMode==='grid'?`<div class="cards-grid">${res.map(gridCardHTML).join('')}</div>`:`<div class="cards-list">${res.map(listCardHTML).join('')}</div>`;} 
+function renderDirectory(){buildDirCatFilters();const q=document.getElementById('dirSearch').value.toLowerCase().trim();const isDeals=dirActiveCategory==='__deals__';const res=BUSINESSES.filter(b=>{const mc=isDeals?!!b.deal:(!dirActiveCategory||b.categoryId===dirActiveCategory);const mq=!q||b.name.toLowerCase().includes(q)||b.category.toLowerCase().includes(q)||b.tags.some(t=>t.toLowerCase().includes(q))||b.description.toLowerCase().includes(q);return mc&&mq;});const cl=isDeals?'Ofertas':dirActiveCategory?CATEGORIES.find(c=>c.id===dirActiveCategory)?.label:'';document.getElementById('dirCount').innerHTML=`<strong>${res.length}</strong> negocio${res.length!==1?'s':''} encontrado${res.length!==1?'s':''}${cl?` en <span class="highlight">${cl}</span>`:''}`;const el=document.getElementById('dirResults');if(res.length===0){el.innerHTML=`<div class="empty-state"><div class="empty-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg></div><div class="empty-title">Sin resultados</div><div class="empty-desc">Intenta con otra bï¿½squeda o categorï¿½a.</div></div>`;return;}el.innerHTML=dirViewMode==='grid'?`<div class="cards-grid">${res.map(gridCardHTML).join('')}</div>`:`<div class="cards-list">${res.map(listCardHTML).join('')}</div>`;} 
 
-function renderFavorites(){const favs=BUSINESSES.filter(b=>favorites.has(b.id));document.getElementById('favsCount').textContent=`${favs.length} negocio${favs.length!==1?'s':''} guardado${favs.length!==1?'s':''}`;const el=document.getElementById('favsResults');el.innerHTML=favs.length===0?`<div class="empty-state"><div class="fav-empty-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/></svg></div><div class="empty-title">Tu lista está vacía</div><div class="empty-desc" style="max-width:360px">Guarda tus negocios favoritos tocando el ícono del corazón.</div></div>`:`<div class="cards-grid">${favs.map(gridCardHTML).join('')}</div>`;} 
+function renderFavorites(){const favs=BUSINESSES.filter(b=>favorites.has(b.id));document.getElementById('favsCount').textContent=`${favs.length} negocio${favs.length!==1?'s':''} guardado${favs.length!==1?'s':''}`;const el=document.getElementById('favsResults');el.innerHTML=favs.length===0?`<div class="empty-state"><div class="fav-empty-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/></svg></div><div class="empty-title">Tu lista estï¿½ vacï¿½a</div><div class="empty-desc" style="max-width:360px">Guarda tus negocios favoritos tocando el ï¿½cono del corazï¿½n.</div></div>`:`<div class="cards-grid">${favs.map(gridCardHTML).join('')}</div>`;} 
 
 buildCategories();buildHome();updateNav();
 // drag scroll en filtros
@@ -961,7 +961,7 @@ function registerUser(event){
     const pass2 = document.getElementById("regPass2").value;
     const passError = document.getElementById("passError");
 
-    // Validar que las contraseñas coincidan
+    // Validar que las contraseï¿½as coincidan
     if(pass !== pass2){
         passError.classList.remove("hide");
         document.getElementById("regPass2").focus();
@@ -979,7 +979,7 @@ function registerUser(event){
     _saveCurrentAccount();  // guardar en la lista de cuentas
     localStorage.removeItem('fynderAddingAccount');
     updateNav();
-    showToast("¡Cuenta creada! Bienvenido a FYNDER, " + name + " ??");
+    showToast("ï¿½Cuenta creada! Bienvenido a FYNDER, " + name + " ??");
     goPage("home");
 }
 
@@ -997,21 +997,21 @@ function loginUser(event){
 
     if(email === user.email && pass === user.pass){
         localStorage.setItem("fynderLogged", "true");
-        // Auto-estado: Activo al iniciar sesión
+        // Auto-estado: Activo al iniciar sesiï¿½n
         localStorage.setItem("fynderUserStatus", "active");
         document.getElementById("userName").textContent = "Hola, " + user.name;
         _saveCurrentAccount();  // guardar/actualizar en la lista de cuentas
         localStorage.removeItem('fynderAddingAccount');
         updateNav();
-        showToast("¡Bienvenido de nuevo, " + user.name + "!");
+        showToast("ï¿½Bienvenido de nuevo, " + user.name + "!");
         goPage("home");
     }else{
-        showToast("Correo o contraseña incorrectos.", "error");
+        showToast("Correo o contraseï¿½a incorrectos.", "error");
     }
 }
 
 function forgotPassword(){
-    const email = prompt("Ingresa tu correo electrónico para recuperar tu contraseña:");
+    const email = prompt("Ingresa tu correo electrï¿½nico para recuperar tu contraseï¿½a:");
     if(!email) return;
 
     const user = JSON.parse(localStorage.getItem("fynderUser"));
@@ -1022,26 +1022,26 @@ function forgotPassword(){
     }
 
     if(email.trim() === user.email){
-        showToast("Tu contraseña es: " + user.pass);
+        showToast("Tu contraseï¿½a es: " + user.pass);
     }else{
-        showToast("No se encontró ninguna cuenta con ese correo.", "error");
+        showToast("No se encontrï¿½ ninguna cuenta con ese correo.", "error");
     }
 }
 
 function logout(){
-    // Auto-estado: Desactivado al cerrar sesión
+    // Auto-estado: Desactivado al cerrar sesiï¿½n
     localStorage.setItem("fynderUserStatus", "offline");
     localStorage.removeItem("fynderLogged");
     document.getElementById("userName").textContent = "";
     updateNav();
-    showToast("Sesión cerrada correctamente.");
+    showToast("Sesiï¿½n cerrada correctamente.");
     goPage("home");
 }
 
 function loadProfile(){
     const user = JSON.parse(localStorage.getItem("fynderUser"));
     if(!user){
-        showToast("Debes iniciar sesión para ver tu perfil.", "error");
+        showToast("Debes iniciar sesiï¿½n para ver tu perfil.", "error");
         goPage("login");
         return;
     }
@@ -1087,7 +1087,7 @@ function loadProfile(){
         eBio.oninput = updateBioCount;
     }
 
-    // Estadísticas
+    // Estadï¿½sticas
     const sf = document.getElementById("statFavs");
     const sb = document.getElementById("statBiz");
     if(sf) sf.textContent = favorites.size;
@@ -1107,7 +1107,7 @@ function applyAvatarDisplay(){
     const user   = JSON.parse(localStorage.getItem("fynderUser"));
 
     if(stored){
-        // Foto subida o tomada con cámara
+        // Foto subida o tomada con cï¿½mara
         avt.innerHTML = `<img src="${stored}" alt="Foto de perfil" style="width:100%;height:100%;object-fit:cover;border-radius:50%;display:block">`;
         avt.style.background = '';
     } else if(preset){
@@ -1157,7 +1157,7 @@ function onCoverFileSelected(event){
     reader.onload = function(e){
         localStorage.setItem('fynderCoverPhoto', e.target.result);
         applyProfileCover();
-        showToast('¡Foto de portada actualizada! ???');
+        showToast('ï¿½Foto de portada actualizada! ???');
     };
     reader.readAsDataURL(file);
     event.target.value = '';
@@ -1169,7 +1169,7 @@ function removeCover(){
     showToast("Foto de portada eliminada.");
 }
 
-/* -- Disparadores de file input — se recrean cada vez para garantizar el disparo del evento -- */
+/* -- Disparadores de file input ï¿½ se recrean cada vez para garantizar el disparo del evento -- */
 function _openFilePicker(accept, callback){
     // Eliminar cualquier input previo
     const old = document.getElementById('_dynFileInput');
@@ -1185,7 +1185,7 @@ function _openFilePicker(accept, callback){
         this.remove();
     });
     document.body.appendChild(inp);
-    // Pequeño timeout para que el DOM lo registre antes del click
+    // Pequeï¿½o timeout para que el DOM lo registre antes del click
     setTimeout(() => inp.click(), 10);
 }
 
@@ -1200,7 +1200,7 @@ function triggerCameraCapture(){
         cameraOpen('avatar');
     } else {
         _openFilePicker('image/*', (file) => _saveImageToStorage(file, 'avatar'));
-        showToast('Cámara no disponible. Selecciona una imagen guardada.');
+        showToast('Cï¿½mara no disponible. Selecciona una imagen guardada.');
     }
 }
 
@@ -1210,11 +1210,11 @@ function triggerCoverPicker(){
 
 function _saveImageToStorage(file, target){
     if(!file.type.startsWith('image/')){
-        showToast('Selecciona un archivo de imagen válido.', 'error'); return;
+        showToast('Selecciona un archivo de imagen vï¿½lido.', 'error'); return;
     }
     const maxMB = target === 'cover' ? 8 : 5;
     if(file.size > maxMB * 1024 * 1024){
-        showToast(`La imagen supera ${maxMB} MB. Elige una más pequeña.`, 'error'); return;
+        showToast(`La imagen supera ${maxMB} MB. Elige una mï¿½s pequeï¿½a.`, 'error'); return;
     }
     const reader = new FileReader();
     reader.onload = (e) => {
@@ -1222,7 +1222,7 @@ function _saveImageToStorage(file, target){
         if(target === 'cover'){
             localStorage.setItem('fynderCoverPhoto', dataUrl);
             applyProfileCover();
-            showToast('¡Foto de portada actualizada! ???');
+            showToast('ï¿½Foto de portada actualizada! ???');
         } else {
             // Al subir foto real, limpiar preset e inicial
             localStorage.removeItem('fynderAvatarPreset');
@@ -1230,7 +1230,7 @@ function _saveImageToStorage(file, target){
             localStorage.setItem('fynderAvatarPhoto', dataUrl);
             applyAvatarDisplay();
             _saveCurrentAccount();  // sincronizar foto en la lista de cuentas
-            showToast('¡Foto de perfil actualizada! ??');
+            showToast('ï¿½Foto de perfil actualizada! ??');
         }
     };
     reader.readAsDataURL(file);
@@ -1249,7 +1249,7 @@ function handleCoverChange(input){
     input.value = '';
 }
 
-/* -- Cámara con getUserMedia -- */
+/* -- Cï¿½mara con getUserMedia -- */
 let _cameraStream = null;
 let _cameraTarget = 'avatar'; // 'avatar' | 'cover'
 
@@ -1268,9 +1268,9 @@ function cameraOpen(target){
         })
         .catch(err => {
             console.warn('Camera error:', err);
-            // Fallback a input file si la cámara falla
+            // Fallback a input file si la cï¿½mara falla
             _openFilePicker('image/*', (file) => _saveImageToStorage(file, _cameraTarget));
-            showToast('No se pudo acceder a la cámara. Selecciona una foto guardada.', 'error');
+            showToast('No se pudo acceder a la cï¿½mara. Selecciona una foto guardada.', 'error');
         });
 }
 
@@ -1293,14 +1293,14 @@ function cameraSnap(){
     if(_cameraTarget === 'cover'){
         localStorage.setItem('fynderCoverPhoto', dataUrl);
         applyProfileCover();
-        showToast('¡Foto de portada tomada! ???');
+        showToast('ï¿½Foto de portada tomada! ???');
     } else {
         localStorage.removeItem('fynderAvatarPreset');
         localStorage.removeItem('fynderAvatarInitialBg');
         localStorage.setItem('fynderAvatarPhoto', dataUrl);
         applyAvatarDisplay();
         _saveCurrentAccount();  // sincronizar foto en la lista de cuentas
-        showToast('¡Foto de perfil tomada! ??');
+        showToast('ï¿½Foto de perfil tomada! ??');
     }
 }
 
@@ -1388,7 +1388,7 @@ function setAvatarInitial(bg){
     localStorage.setItem("fynderAvatarInitialBg", bg);
     applyAvatarDisplay();
     hideAvatarOptions();
-    showToast("¡Avatar de inicial actualizado! ?");
+    showToast("ï¿½Avatar de inicial actualizado! ?");
 }
 
 function setAvatarPreset(emoji){
@@ -1397,7 +1397,7 @@ function setAvatarPreset(emoji){
     localStorage.setItem("fynderAvatarPreset", emoji);
     applyAvatarDisplay();
     hideAvatarOptions();
-    showToast(`¡Avatar ${emoji} seleccionado!`);
+    showToast(`ï¿½Avatar ${emoji} seleccionado!`);
 }
 
 function removeAvatar(){
@@ -1461,11 +1461,11 @@ function applyStatusUI(status){
         badge.style.color      = cfg.textColor || '#16A34A';
     }
 
-    // Dot en el título de la tarjeta
+    // Dot en el tï¿½tulo de la tarjeta
     const titleDot = document.getElementById('statusDotTitle');
     if(titleDot) titleDot.style.color = cfg.color;
 
-    // Marcar la opción activa en la tarjeta de estado
+    // Marcar la opciï¿½n activa en la tarjeta de estado
     document.querySelectorAll('.status-option').forEach(btn => {
         btn.classList.toggle('status-option-active', btn.dataset.status === status);
     });
@@ -1497,7 +1497,7 @@ function saveProfile(event){
     localStorage.setItem("fynderUser", JSON.stringify(user));
     document.getElementById("userName").textContent = "Hola, " + user.name;
     _saveCurrentAccount();  // sincronizar cambios en la lista de cuentas
-    showToast("¡Perfil actualizado correctamente! ?");
+    showToast("ï¿½Perfil actualizado correctamente! ?");
     loadProfile();
 }
 
@@ -1509,29 +1509,29 @@ function changePassword(event){
     const confirmNewP = document.getElementById("confirmNewPass").value;
     if(!user) return;
     if(current !== user.pass){
-        showToast("La contraseña actual no es correcta.", "error"); return;
+        showToast("La contraseï¿½a actual no es correcta.", "error"); return;
     }
     if(newP !== confirmNewP){
-        showToast("Las contraseñas nuevas no coinciden.", "error"); return;
+        showToast("Las contraseï¿½as nuevas no coinciden.", "error"); return;
     }
     if(newP.length < 6){
-        showToast("La contraseña debe tener al menos 6 caracteres.", "error"); return;
+        showToast("La contraseï¿½a debe tener al menos 6 caracteres.", "error"); return;
     }
     user.pass = newP;
     localStorage.setItem("fynderUser", JSON.stringify(user));
     document.getElementById("passForm").reset();
-    showToast("¡Contraseña actualizada correctamente! ??");
+    showToast("ï¿½Contraseï¿½a actualizada correctamente! ??");
 }
 
 function deleteAccount(){
-    if(!confirm("¿Seguro que deseas eliminar tu cuenta? Esta acción no se puede deshacer.")) return;
+    if(!confirm("ï¿½Seguro que deseas eliminar tu cuenta? Esta acciï¿½n no se puede deshacer.")) return;
     localStorage.removeItem("fynderUser");
     localStorage.removeItem("fynderLogged");
     localStorage.removeItem("fynderAvatarPhoto");
     localStorage.removeItem("fynderCoverPhoto");
     document.getElementById("userName").textContent = "";
     updateNav();
-    showToast("Cuenta eliminada. ¡Hasta pronto!");
+    showToast("Cuenta eliminada. ï¿½Hasta pronto!");
     goPage("home");
 }
 
@@ -1590,7 +1590,7 @@ function registerBusiness(event) {
     saved.push(business);
     localStorage.setItem("fynderBusinesses", JSON.stringify(saved));
 
-    showToast("¡Negocio publicado exitosamente! ?? Ya está visible en el directorio.");
+    showToast("ï¿½Negocio publicado exitosamente! ?? Ya estï¿½ visible en el directorio.");
     document.getElementById("businessForm").reset();
     goPage("home");
 }
@@ -1602,106 +1602,106 @@ function subscribeBlog(event) {
     // Demo: guardar en localStorage
     const subs = JSON.parse(localStorage.getItem("fynderBlogSubs") || "[]");
     if (subs.includes(email)) {
-        showToast("Este correo ya está suscrito.", "error");
+        showToast("Este correo ya estï¿½ suscrito.", "error");
         return;
     }
     subs.push(email);
     localStorage.setItem("fynderBlogSubs", JSON.stringify(subs));
     document.getElementById("blogEmail").value = "";
-    showToast("¡Suscripción exitosa! Te avisaremos cuando haya nuevo contenido ??");
+    showToast("ï¿½Suscripciï¿½n exitosa! Te avisaremos cuando haya nuevo contenido ??");
 }
 
 function openArticle(id) {
   const articles = {
     "1": {
-      title: "Cómo llevar tu negocio local al siguiente nivel con presencia digital",
+      title: "Cï¿½mo llevar tu negocio local al siguiente nivel con presencia digital",
       category: "Emprendimiento", color: "#67B8B4",
-      author: "Ana Martínez", authorInitial: "A", authorGrad: "135deg,#67B8B4,#2F5BB7",
+      author: "Ana Martï¿½nez", authorInitial: "A", authorGrad: "135deg,#67B8B4,#2F5BB7",
       date: "15 jun 2026", readTime: "5 min",
       image: "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=900&h=450&fit=crop&auto=format",
-      body: `<p>En un mundo cada vez más conectado, tener visibilidad digital ya no es opcional para los negocios locales. Los estudios muestran que el <strong>87% de los consumidores</strong> busca información en línea antes de visitar un negocio físico.</p>
-<h3>¿Por qué importa la presencia digital?</h3>
-<p>Un negocio sin presencia en internet es prácticamente invisible para una generación entera de consumidores. Sin embargo, estar en línea no significa tener una web costosa o compleja. Plataformas como FYNDER te dan visibilidad inmediata y gratuita.</p>
+      body: `<p>En un mundo cada vez mï¿½s conectado, tener visibilidad digital ya no es opcional para los negocios locales. Los estudios muestran que el <strong>87% de los consumidores</strong> busca informaciï¿½n en lï¿½nea antes de visitar un negocio fï¿½sico.</p>
+<h3>ï¿½Por quï¿½ importa la presencia digital?</h3>
+<p>Un negocio sin presencia en internet es prï¿½cticamente invisible para una generaciï¿½n entera de consumidores. Sin embargo, estar en lï¿½nea no significa tener una web costosa o compleja. Plataformas como FYNDER te dan visibilidad inmediata y gratuita.</p>
 <h3>Pasos para empezar hoy mismo</h3>
 <p><strong>1. Registra tu negocio en FYNDER.</strong> Es gratis, toma menos de 2 minutos y te coloca frente a miles de usuarios locales que buscan exactamente lo que ofreces.</p>
-<p><strong>2. Completa tu perfil al 100%.</strong> Agrega fotos de calidad, horarios actualizados y una descripción clara de tus servicios. Los negocios con perfiles completos reciben hasta 3 veces más visitas.</p>
-<p><strong>3. Activa tus redes sociales.</strong> No necesitas estar en todas. Elige una o dos plataformas donde esté tu cliente ideal y publica de forma constante.</p>
-<p><strong>4. Pide reseñas a tus clientes.</strong> Las opiniones positivas son el mejor marketing que existe. Un cliente satisfecho que deja una reseña vale oro.</p>
+<p><strong>2. Completa tu perfil al 100%.</strong> Agrega fotos de calidad, horarios actualizados y una descripciï¿½n clara de tus servicios. Los negocios con perfiles completos reciben hasta 3 veces mï¿½s visitas.</p>
+<p><strong>3. Activa tus redes sociales.</strong> No necesitas estar en todas. Elige una o dos plataformas donde estï¿½ tu cliente ideal y publica de forma constante.</p>
+<p><strong>4. Pide reseï¿½as a tus clientes.</strong> Las opiniones positivas son el mejor marketing que existe. Un cliente satisfecho que deja una reseï¿½a vale oro.</p>
 <h3>El impacto real de dar el salto digital</h3>
-<p>Los negocios que dan el salto digital reportan en promedio un <strong>23% más de clientes</strong> en los primeros 6 meses. No es magia, es visibilidad. Cuando alguien en tu ciudad busca lo que vendes, tú apareces.</p>
-<p>FYNDER fue creado exactamente para esto: eliminar las barreras digitales para los emprendedores locales. No necesitas saber de tecnología, no necesitas presupuesto. Solo necesitas empezar.</p>`
+<p>Los negocios que dan el salto digital reportan en promedio un <strong>23% mï¿½s de clientes</strong> en los primeros 6 meses. No es magia, es visibilidad. Cuando alguien en tu ciudad busca lo que vendes, tï¿½ apareces.</p>
+<p>FYNDER fue creado exactamente para esto: eliminar las barreras digitales para los emprendedores locales. No necesitas saber de tecnologï¿½a, no necesitas presupuesto. Solo necesitas empezar.</p>`
     },
     "2": {
       title: "5 razones para preferir los restaurantes de tu barrio",
-      category: "Gastronomía", color: "#EF4444",
+      category: "Gastronomï¿½a", color: "#EF4444",
       author: "Carlos Vega", authorInitial: "C", authorGrad: "135deg,#EF4444,#F97316",
       date: "10 jun 2026", readTime: "4 min",
       image: "https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=900&h=450&fit=crop&auto=format",
-      body: `<p>Cadenas internacionales y franquicias dominan el paisaje gastronómico urbano. Sin embargo, los restaurantes locales tienen algo que ninguna cadena puede replicar: <strong>alma, historia e ingredientes del territorio</strong>.</p>
-<h3>1. Ingredientes más frescos</h3>
-<p>Los restaurantes locales suelen abastecerse de mercados y productores cercanos. Eso se traduce en ingredientes más frescos, más nutritivos y con mejor sabor que los productos procesados a escala industrial.</p>
-<h3>2. Recetas únicas e irrepetibles</h3>
-<p>Detrás de cada plato hay una historia familiar, una tradición que se ha pasado de generación en generación. Es imposible encontrar ese sancocho de gallina o esa sopa de frijoles en ningún otro lugar del mundo.</p>
+      body: `<p>Cadenas internacionales y franquicias dominan el paisaje gastronï¿½mico urbano. Sin embargo, los restaurantes locales tienen algo que ninguna cadena puede replicar: <strong>alma, historia e ingredientes del territorio</strong>.</p>
+<h3>1. Ingredientes mï¿½s frescos</h3>
+<p>Los restaurantes locales suelen abastecerse de mercados y productores cercanos. Eso se traduce en ingredientes mï¿½s frescos, mï¿½s nutritivos y con mejor sabor que los productos procesados a escala industrial.</p>
+<h3>2. Recetas ï¿½nicas e irrepetibles</h3>
+<p>Detrï¿½s de cada plato hay una historia familiar, una tradiciï¿½n que se ha pasado de generaciï¿½n en generaciï¿½n. Es imposible encontrar ese sancocho de gallina o esa sopa de frijoles en ningï¿½n otro lugar del mundo.</p>
 <h3>3. Tu dinero se queda en la comunidad</h3>
-<p>Estudios económicos demuestran que el <strong>68% del dinero gastado</strong> en negocios locales permanece circulando en la comunidad, frente al 43% en cadenas nacionales y apenas el 28% en franquicias internacionales.</p>
-<h3>4. Atención personalizada</h3>
-<p>En el restaurante de tu barrio, el dueño te conoce por tu nombre, recuerda que no te gusta el picante y sabe cuál es tu plato favorito. Ese nivel de atención es imposible de escalar en una franquicia.</p>
+<p>Estudios econï¿½micos demuestran que el <strong>68% del dinero gastado</strong> en negocios locales permanece circulando en la comunidad, frente al 43% en cadenas nacionales y apenas el 28% en franquicias internacionales.</p>
+<h3>4. Atenciï¿½n personalizada</h3>
+<p>En el restaurante de tu barrio, el dueï¿½o te conoce por tu nombre, recuerda que no te gusta el picante y sabe cuï¿½l es tu plato favorito. Ese nivel de atenciï¿½n es imposible de escalar en una franquicia.</p>
 <h3>5. Apoya a tu vecino</h3>
-<p>Detrás de cada restaurante local hay una familia que trabaja duro para sacar adelante un sueño. Cada vez que eliges su menú sobre el de una cadena, estás invirtiendo en la historia de tu comunidad.</p>`
+<p>Detrï¿½s de cada restaurante local hay una familia que trabaja duro para sacar adelante un sueï¿½o. Cada vez que eliges su menï¿½ sobre el de una cadena, estï¿½s invirtiendo en la historia de tu comunidad.</p>`
     },
     "3": {
-      title: "Guía para registrar tu negocio en FYNDER paso a paso",
+      title: "Guï¿½a para registrar tu negocio en FYNDER paso a paso",
       category: "Emprendimiento", color: "#2F5BB7",
-      author: "María López", authorInitial: "M", authorGrad: "135deg,#2F5BB7,#67B8B4",
+      author: "Marï¿½a Lï¿½pez", authorInitial: "M", authorGrad: "135deg,#2F5BB7,#67B8B4",
       date: "5 jun 2026", readTime: "3 min",
       image: "https://images.unsplash.com/photo-1556742111-a301076d9d18?w=900&h=450&fit=crop&auto=format",
-      body: `<p>Registrar tu negocio en FYNDER es completamente gratuito y toma menos de 2 minutos. Aquí te explicamos cada paso para que tu perfil quede impecable desde el primer día.</p>
+      body: `<p>Registrar tu negocio en FYNDER es completamente gratuito y toma menos de 2 minutos. Aquï¿½ te explicamos cada paso para que tu perfil quede impecable desde el primer dï¿½a.</p>
 <h3>Paso 1: Haz clic en "Registrar negocio"</h3>
-<p>Encontrarás este botón en la barra de navegación superior o en la sección principal de la página de inicio. Te llevará directamente al formulario de registro.</p>
-<h3>Paso 2: Completa la información básica</h3>
-<p>Nombre del negocio, categoría, descripción, dirección, teléfono y horario. Tómate tu tiempo para escribir una buena descripción: es lo primero que verán los clientes potenciales.</p>
+<p>Encontrarï¿½s este botï¿½n en la barra de navegaciï¿½n superior o en la secciï¿½n principal de la pï¿½gina de inicio. Te llevarï¿½ directamente al formulario de registro.</p>
+<h3>Paso 2: Completa la informaciï¿½n bï¿½sica</h3>
+<p>Nombre del negocio, categorï¿½a, descripciï¿½n, direcciï¿½n, telï¿½fono y horario. Tï¿½mate tu tiempo para escribir una buena descripciï¿½n: es lo primero que verï¿½n los clientes potenciales.</p>
 <h3>Paso 3: Agrega tus redes sociales</h3>
-<p>Si tienes Instagram, Facebook o página web, añádelos. Los usuarios podrán seguirte directamente desde tu perfil en FYNDER.</p>
+<p>Si tienes Instagram, Facebook o pï¿½gina web, aï¿½ï¿½delos. Los usuarios podrï¿½n seguirte directamente desde tu perfil en FYNDER.</p>
 <h3>Paso 4: Publica</h3>
-<p>Haz clic en "Publicar negocio" y listo. Tu negocio aparecerá instantáneamente en el directorio y estará visible para todos los usuarios de tu área.</p>
+<p>Haz clic en "Publicar negocio" y listo. Tu negocio aparecerï¿½ instantï¿½neamente en el directorio y estarï¿½ visible para todos los usuarios de tu ï¿½rea.</p>
 <h3>Consejos para un perfil exitoso</h3>
-<p>? Usa una descripción clara y específica de lo que ofreces.</p>
-<p>? Mantén tus horarios actualizados, especialmente en días festivos.</p>
-<p>? Responde rápido cuando los clientes te contacten a través de tus redes.</p>`
+<p>? Usa una descripciï¿½n clara y especï¿½fica de lo que ofreces.</p>
+<p>? Mantï¿½n tus horarios actualizados, especialmente en dï¿½as festivos.</p>
+<p>? Responde rï¿½pido cuando los clientes te contacten a travï¿½s de tus redes.</p>`
     },
     "4": {
-      title: "Los mejores salones de belleza en tu ciudad: ¿cómo elegir el tuyo?",
+      title: "Los mejores salones de belleza en tu ciudad: ï¿½cï¿½mo elegir el tuyo?",
       category: "Estilo de vida", color: "#EC4899",
       author: "Laura Soto", authorInitial: "L", authorGrad: "135deg,#EC4899,#8B5CF6",
       date: "1 jun 2026", readTime: "4 min",
       image: "https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?w=900&h=450&fit=crop&auto=format",
-      body: `<p>Encontrar el salón de belleza ideal puede ser una odisea si no sabes qué buscar. Más allá del precio, hay varios factores que determinan si un lugar realmente vale la pena.</p>
+      body: `<p>Encontrar el salï¿½n de belleza ideal puede ser una odisea si no sabes quï¿½ buscar. Mï¿½s allï¿½ del precio, hay varios factores que determinan si un lugar realmente vale la pena.</p>
 <h3>La especialidad importa</h3>
-<p>No todos los salones son expertos en todos los servicios. Algunos se especializan en coloración, otros en tratamientos capilares o en uñas. Antes de ir, investiga en qué destacan.</p>
-<h3>Lee las reseñas con criterio</h3>
-<p>Las opiniones de otros clientes son invaluables. Busca reseñas específicas sobre el servicio que te interesa. Una calificación alta en cortes no garantiza que los tratamientos de keratina sean igualmente buenos.</p>
+<p>No todos los salones son expertos en todos los servicios. Algunos se especializan en coloraciï¿½n, otros en tratamientos capilares o en uï¿½as. Antes de ir, investiga en quï¿½ destacan.</p>
+<h3>Lee las reseï¿½as con criterio</h3>
+<p>Las opiniones de otros clientes son invaluables. Busca reseï¿½as especï¿½ficas sobre el servicio que te interesa. Una calificaciï¿½n alta en cortes no garantiza que los tratamientos de keratina sean igualmente buenos.</p>
 <h3>La consulta inicial lo dice todo</h3>
-<p>Un buen estilista siempre preguntará sobre el historial de tu cabello antes de aplicar cualquier producto. Si no lo hace, es una señal de alerta.</p>
+<p>Un buen estilista siempre preguntarï¿½ sobre el historial de tu cabello antes de aplicar cualquier producto. Si no lo hace, es una seï¿½al de alerta.</p>
 <h3>El ambiente y la limpieza</h3>
-<p>Un salón limpio y ordenado refleja la profesionalidad del equipo. Fíjate en los instrumentos de trabajo: deben estar desinfectados y en buen estado.</p>
-<h3>Cómo usar FYNDER para encontrarlo</h3>
-<p>Filtra por la categoría "Belleza" en nuestro directorio y compara los perfiles. Revisa las fotos, las reseñas de clientes reales y los servicios específicos de cada salón antes de hacer tu cita.</p>`
+<p>Un salï¿½n limpio y ordenado refleja la profesionalidad del equipo. Fï¿½jate en los instrumentos de trabajo: deben estar desinfectados y en buen estado.</p>
+<h3>Cï¿½mo usar FYNDER para encontrarlo</h3>
+<p>Filtra por la categorï¿½a "Belleza" en nuestro directorio y compara los perfiles. Revisa las fotos, las reseï¿½as de clientes reales y los servicios especï¿½ficos de cada salï¿½n antes de hacer tu cita.</p>`
     },
     "5": {
-      title: "Dónde reparar tu smartphone sin salir del barrio",
-      category: "Tecnología", color: "#2F5BB7",
-      author: "Roberto Díaz", authorInitial: "R", authorGrad: "135deg,#2F5BB7,#1E8F8B",
+      title: "Dï¿½nde reparar tu smartphone sin salir del barrio",
+      category: "Tecnologï¿½a", color: "#2F5BB7",
+      author: "Roberto Dï¿½az", authorInitial: "R", authorGrad: "135deg,#2F5BB7,#1E8F8B",
       date: "28 may 2026", readTime: "3 min",
       image: "https://images.unsplash.com/photo-1518770660439-4636190af475?w=900&h=450&fit=crop&auto=format",
-      body: `<p>La pantalla rota de un smartphone es hoy tan común como un grifo que gotea. Y al igual que para el grifo, no hay razón para llamar a alguien de la otra punta de la ciudad cuando hay un especialista a pocas cuadras de tu casa.</p>
-<h3>¿Por qué evitar las cadenas de reparación masivas?</h3>
-<p>Los centros de reparación de las grandes cadenas suelen tener tiempos de espera largos, precios inflados y a veces usan repuestos genéricos. Los técnicos locales especializados, en cambio, conocen cada modelo al dedillo y trabajan con piezas de calidad.</p>
-<h3>Qué buscar en un buen técnico</h3>
-<p><strong>Garantía escrita.</strong> Un técnico confiable siempre te da garantía por el trabajo realizado, generalmente entre 30 y 90 días.</p>
-<p><strong>Diagnóstico gratuito.</strong> Antes de comprometerte a pagar, tienes derecho a saber exactamente qué le pasa a tu equipo y cuánto costará arreglarlo.</p>
-<p><strong>Repuestos originales o certificados.</strong> Pregunta siempre qué tipo de piezas van a usar.</p>
-<h3>Usa FYNDER para encontrar técnicos certificados</h3>
-<p>En nuestra categoría "Tecnología" encontrarás talleres de reparación verificados cerca de ti. Lee las reseñas de clientes anteriores para elegir con confianza.</p>`
+      body: `<p>La pantalla rota de un smartphone es hoy tan comï¿½n como un grifo que gotea. Y al igual que para el grifo, no hay razï¿½n para llamar a alguien de la otra punta de la ciudad cuando hay un especialista a pocas cuadras de tu casa.</p>
+<h3>ï¿½Por quï¿½ evitar las cadenas de reparaciï¿½n masivas?</h3>
+<p>Los centros de reparaciï¿½n de las grandes cadenas suelen tener tiempos de espera largos, precios inflados y a veces usan repuestos genï¿½ricos. Los tï¿½cnicos locales especializados, en cambio, conocen cada modelo al dedillo y trabajan con piezas de calidad.</p>
+<h3>Quï¿½ buscar en un buen tï¿½cnico</h3>
+<p><strong>Garantï¿½a escrita.</strong> Un tï¿½cnico confiable siempre te da garantï¿½a por el trabajo realizado, generalmente entre 30 y 90 dï¿½as.</p>
+<p><strong>Diagnï¿½stico gratuito.</strong> Antes de comprometerte a pagar, tienes derecho a saber exactamente quï¿½ le pasa a tu equipo y cuï¿½nto costarï¿½ arreglarlo.</p>
+<p><strong>Repuestos originales o certificados.</strong> Pregunta siempre quï¿½ tipo de piezas van a usar.</p>
+<h3>Usa FYNDER para encontrar tï¿½cnicos certificados</h3>
+<p>En nuestra categorï¿½a "Tecnologï¿½a" encontrarï¿½s talleres de reparaciï¿½n verificados cerca de ti. Lee las reseï¿½as de clientes anteriores para elegir con confianza.</p>`
     },
     "6": {
       title: "El impacto real de comprar local: datos que sorprenden",
@@ -1709,46 +1709,46 @@ function openArticle(id) {
       author: "Paola Ruiz", authorInitial: "P", authorGrad: "135deg,#10B981,#67B8B4",
       date: "22 may 2026", readTime: "5 min",
       image: "https://images.unsplash.com/photo-1542838132-92c53300491e?w=900&h=450&fit=crop&auto=format",
-      body: `<p>Detrás de cada compra local hay una cadena de efectos positivos que van mucho más allá del simple intercambio comercial. Los números son contundentes y deberían cambiar la forma en que todos tomamos decisiones de consumo.</p>
+      body: `<p>Detrï¿½s de cada compra local hay una cadena de efectos positivos que van mucho mï¿½s allï¿½ del simple intercambio comercial. Los nï¿½meros son contundentes y deberï¿½an cambiar la forma en que todos tomamos decisiones de consumo.</p>
 <h3>El efecto multiplicador del dinero local</h3>
-<p>Según investigaciones del Institute for Local Self-Reliance, por cada <strong>$100 gastados en un negocio local</strong>, $68 permanecen en la comunidad, frente a $43 de cadenas nacionales y apenas $28 de grandes franquicias internacionales.</p>
+<p>Segï¿½n investigaciones del Institute for Local Self-Reliance, por cada <strong>$100 gastados en un negocio local</strong>, $68 permanecen en la comunidad, frente a $43 de cadenas nacionales y apenas $28 de grandes franquicias internacionales.</p>
 <h3>Empleos de calidad</h3>
-<p>Los pequeños negocios locales generan el <strong>60-80% de los nuevos empleos</strong> en economías en desarrollo. Son empleos con horarios humanos, cercanía al hogar y trato personalizado que las cadenas rara vez ofrecen.</p>
-<h3>Diversidad económica y resiliencia</h3>
-<p>Las ciudades con economías dominadas por negocios locales diversificados son más resistentes a las crisis económicas que aquellas dependientes de pocas cadenas grandes. Cuando cierran los gigantes, los locales siguen.</p>
+<p>Los pequeï¿½os negocios locales generan el <strong>60-80% de los nuevos empleos</strong> en economï¿½as en desarrollo. Son empleos con horarios humanos, cercanï¿½a al hogar y trato personalizado que las cadenas rara vez ofrecen.</p>
+<h3>Diversidad econï¿½mica y resiliencia</h3>
+<p>Las ciudades con economï¿½as dominadas por negocios locales diversificados son mï¿½s resistentes a las crisis econï¿½micas que aquellas dependientes de pocas cadenas grandes. Cuando cierran los gigantes, los locales siguen.</p>
 <h3>El impacto medioambiental</h3>
-<p>Comprar local generalmente significa cadenas de suministro más cortas, menos embalaje industrial y menor huella de carbono. El pan que compras en la panadería de la esquina recorrió muchísimos menos kilómetros que el de la gran cadena de supermercados.</p>
-<h3>¿Qué puedes hacer tú hoy?</h3>
-<p>La próxima vez que necesites algo, busca primero en FYNDER si hay un negocio local cerca que lo ofrezca. El cambio empieza con decisiones pequeñas y cotidianas.</p>`
+<p>Comprar local generalmente significa cadenas de suministro mï¿½s cortas, menos embalaje industrial y menor huella de carbono. El pan que compras en la panaderï¿½a de la esquina recorriï¿½ muchï¿½simos menos kilï¿½metros que el de la gran cadena de supermercados.</p>
+<h3>ï¿½Quï¿½ puedes hacer tï¿½ hoy?</h3>
+<p>La prï¿½xima vez que necesites algo, busca primero en FYNDER si hay un negocio local cerca que lo ofrezca. El cambio empieza con decisiones pequeï¿½as y cotidianas.</p>`
     },
     "7": {
-      title: "7 fotos que transformarán el perfil de tu negocio",
+      title: "7 fotos que transformarï¿½n el perfil de tu negocio",
       category: "Consejos", color: "#F97316",
       author: "Jorge Castillo", authorInitial: "J", authorGrad: "135deg,#F97316,#F4D35E",
       date: "18 may 2026", readTime: "4 min",
       image: "https://images.unsplash.com/photo-1551836022-d5d88e9218df?w=900&h=450&fit=crop&auto=format",
-      body: `<p>Una imagen vale más que mil palabras, especialmente en el mundo digital. Los perfiles con al menos 5 fotos de calidad reciben hasta <strong>3 veces más clics</strong> que los que no tienen imágenes. Y lo mejor: no necesitas un fotógrafo profesional.</p>
+      body: `<p>Una imagen vale mï¿½s que mil palabras, especialmente en el mundo digital. Los perfiles con al menos 5 fotos de calidad reciben hasta <strong>3 veces mï¿½s clics</strong> que los que no tienen imï¿½genes. Y lo mejor: no necesitas un fotï¿½grafo profesional.</p>
 <h3>Foto 1: La fachada o entrada</h3>
 <p>Que los clientes reconozcan tu negocio cuando lleguen. Una foto clara de la entrada, tomada con buena luz natural, es esencial.</p>
 <h3>Foto 2: El ambiente interior</h3>
-<p>Muestra cómo se siente estar dentro. Busca la mejor iluminación, ordena el espacio y captura la esencia de tu negocio.</p>
+<p>Muestra cï¿½mo se siente estar dentro. Busca la mejor iluminaciï¿½n, ordena el espacio y captura la esencia de tu negocio.</p>
 <h3>Foto 3: Tu producto o servicio estrella</h3>
-<p>¿Cuál es el plato más pedido? ¿El producto del que más te enorgulleces? Esa foto tiene que brillar.</p>
+<p>ï¿½Cuï¿½l es el plato mï¿½s pedido? ï¿½El producto del que mï¿½s te enorgulleces? Esa foto tiene que brillar.</p>
 <h3>Foto 4: El equipo humano</h3>
-<p>Las personas detrás de un negocio generan confianza. Una foto del equipo sonriente humaniza tu marca y crea conexión emocional.</p>
+<p>Las personas detrï¿½s de un negocio generan confianza. Una foto del equipo sonriente humaniza tu marca y crea conexiï¿½n emocional.</p>
 <h3>Foto 5: El proceso</h3>
-<p>Un pastelero decorando una torta, un mecánico revisando un motor, una estilista trabajando. El proceso en acción genera credibilidad.</p>
-<h3>Fotos 6 y 7: Clientes felices y detalles únicos</h3>
-<p>Con su permiso, fotografía a clientes satisfechos. Y captura esos pequeños detalles que hacen especial a tu negocio: la pizarra del menú, el detalle en el empaque, la planta en el mostrador.</p>
+<p>Un pastelero decorando una torta, un mecï¿½nico revisando un motor, una estilista trabajando. El proceso en acciï¿½n genera credibilidad.</p>
+<h3>Fotos 6 y 7: Clientes felices y detalles ï¿½nicos</h3>
+<p>Con su permiso, fotografï¿½a a clientes satisfechos. Y captura esos pequeï¿½os detalles que hacen especial a tu negocio: la pizarra del menï¿½, el detalle en el empaque, la planta en el mostrador.</p>
 <h3>Tip final</h3>
-<p>Usa siempre luz natural cuando sea posible, limpia el lente del celular antes de fotografiar y toma varias opciones para elegir la mejor. La fotografía móvil actual es más que suficiente para brillar en FYNDER.</p>`
+<p>Usa siempre luz natural cuando sea posible, limpia el lente del celular antes de fotografiar y toma varias opciones para elegir la mejor. La fotografï¿½a mï¿½vil actual es mï¿½s que suficiente para brillar en FYNDER.</p>`
     }
   };
 
   const art = articles[id];
-  if(!art){ showToast("Artículo no encontrado.", "error"); return; }
+  if(!art){ showToast("Artï¿½culo no encontrado.", "error"); return; }
 
-  // Llenar la página de artículo
+  // Llenar la pï¿½gina de artï¿½culo
   document.getElementById('artHeroImg').src = art.image;
   document.getElementById('artHeroImg').alt = art.title;
   document.getElementById('artCatLabel').textContent = art.category;
@@ -1767,7 +1767,7 @@ function openArticle(id) {
   goPage('article');
 }
 
-/* -- Sistema de comentarios de artículos -- */
+/* -- Sistema de comentarios de artï¿½culos -- */
 let _currentArticleId = null;
 const ART_COMMENT_COLORS = [
   'linear-gradient(135deg,#67B8B4,#2F5BB7)',
@@ -1821,7 +1821,7 @@ function renderArticleComments(articleId) {
   if(!list) return;
 
   if(comments.length === 0) {
-    list.innerHTML = `<div class="article-no-comments"><i class="fas fa-comments"></i>Sé el primero en comentar este artículo.</div>`;
+    list.innerHTML = `<div class="article-no-comments"><i class="fas fa-comments"></i>Sï¿½ el primero en comentar este artï¿½culo.</div>`;
     return;
   }
 
@@ -1834,7 +1834,7 @@ function renderArticleComments(articleId) {
     const isLiked = liked.includes(c.id);
     const isOwn   = logged && user && c.userId === (user.email || user.name);
     const colorIdx = c.colorIdx !== undefined ? c.colorIdx : 0;
-    // Si el comentario guardó avatarPhoto, úsala; si no, usa el color
+    // Si el comentario guardï¿½ avatarPhoto, ï¿½sala; si no, usa el color
     let avatarHTML;
     if(c.avatarPhoto) {
       avatarHTML = `<img src="${c.avatarPhoto}" style="width:36px;height:36px;border-radius:50%;object-fit:cover;flex-shrink:0;display:block" alt="avatar">`;
@@ -1906,7 +1906,7 @@ function submitArticleComment() {
   ta.value = '';
   artCommentCharCount(ta);
   renderArticleComments(_currentArticleId);
-  showToast('¡Comentario publicado! ??');
+  showToast('ï¿½Comentario publicado! ??');
 }
 
 function likeComment(articleId, commentId, btn) {
@@ -1959,7 +1959,7 @@ function sendSupport(event) {
     tickets.push({ name, email, subject, msg, date: new Date().toISOString() });
     localStorage.setItem("fynderSupportTickets", JSON.stringify(tickets));
     document.getElementById("supportForm").reset();
-    showToast("¡Mensaje enviado! Te responderemos en menos de 24 horas ??");
+    showToast("ï¿½Mensaje enviado! Te responderemos en menos de 24 horas ??");
 }
 
 /*modo oscuro*/
@@ -1975,7 +1975,7 @@ function toggleDarkMode(){
 function _applyNavbarTheme(){
     const navbar = document.getElementById('navbar');
     if(!navbar) return;
-    // Si está scrolled, el CSS ya lo maneja; solo forzamos repaint
+    // Si estï¿½ scrolled, el CSS ya lo maneja; solo forzamos repaint
     navbar.style.transition = 'background .3s, box-shadow .3s';
 }
 
@@ -1987,7 +1987,7 @@ function _applyNavbarTheme(){
     }
 })();
 
-/* -- Auto-estado al cerrar la pestaña/navegador -- */
+/* -- Auto-estado al cerrar la pestaï¿½a/navegador -- */
 window.addEventListener('beforeunload', function(){
     if(localStorage.getItem('fynderLogged')){
         localStorage.setItem('fynderUserStatus', 'offline');
@@ -2000,7 +2000,7 @@ window.addEventListener('beforeunload', function(){
 // datos de planes
 const PLAN_DATA = {
   basico: {
-    name: 'Básico',
+    name: 'Bï¿½sico',
     price: '$0',
     period: 'para siempre',
     icon: '??',
@@ -2100,10 +2100,10 @@ function renderDashChart(period) {
   const lineColor  = '#67B8B4';
   const fillColor  = isDark ? 'rgba(103,184,180,.12)' : 'rgba(103,184,180,.15)';
 
-  // Destruir gráfica anterior si existe
+  // Destruir grï¿½fica anterior si existe
   if (dashChart) { dashChart.destroy(); dashChart = null; }
 
-  // Usamos Canvas API directamente (sin Chart.js para no añadir dependencias)
+  // Usamos Canvas API directamente (sin Chart.js para no aï¿½adir dependencias)
   const ctx = canvas.getContext('2d');
   const W = canvas.offsetWidth || 700;
   const H = 220;
@@ -2205,7 +2205,7 @@ function updateDashStats(period) {
   const deltaIds = ['statViewsDelta','statSavesDelta','statClicksDelta','statReviewsDelta'];
 
   if (isLocked) {
-    statIds.forEach(id => { const el = document.getElementById(id); if(el) el.textContent = '—'; });
+    statIds.forEach(id => { const el = document.getElementById(id); if(el) el.textContent = 'ï¿½'; });
     deltaIds.forEach(id => { const el = document.getElementById(id); if(el) el.textContent = ''; });
     return;
   }
@@ -2224,7 +2224,7 @@ function updateDashStats(period) {
     if (!el) return;
     const delta = deltas[i];
     const sign  = delta >= 0 ? '+' : '';
-    el.textContent = sign + delta + '% vs período anterior';
+    el.textContent = sign + delta + '% vs perï¿½odo anterior';
     el.className   = 'dash-stat-delta ' + (delta >= 0 ? 'up' : 'down');
   });
 }
@@ -2271,7 +2271,7 @@ function loadDashboard() {
   const upgradeStrip = document.getElementById('dashUpgradeStrip');
   if (upgradeStrip) upgradeStrip.style.display = planInfo.level >= 3 ? 'none' : 'flex';
 
-  // ---- Plan badge en gráfica ----
+  // ---- Plan badge en grï¿½fica ----
   const chartBadge = document.getElementById('dashPlanBadgeChart');
   if (chartBadge) {
     chartBadge.textContent = 'Plan ' + planInfo.name;
@@ -2286,7 +2286,7 @@ function loadDashboard() {
   // ---- Stats ----
   updateDashStats(currentDashPeriod);
 
-  // ---- Gráfica ----
+  // ---- Grï¿½fica ----
   setTimeout(() => renderDashChart(currentDashPeriod), 80);
 
   // ---- Negocios ----
@@ -2297,7 +2297,7 @@ function loadDashboard() {
       bizList.innerHTML = `
         <div class="dash-biz-empty">
           <i class="fas fa-store"></i>
-          Aún no tienes negocios registrados.
+          Aï¿½n no tienes negocios registrados.
           <br><br>
           <button class="btn-teal" style="padding:10px 20px" onclick="goPage('business')">
             <i class="fas fa-plus" style="font-size:.7rem"></i> Registrar negocio
@@ -2315,7 +2315,7 @@ function loadDashboard() {
             </div>
             <div class="dash-biz-info">
               <p class="dash-biz-name">${biz.name || 'Sin nombre'}</p>
-              <span class="dash-biz-cat">${catObj ? catObj.label : (biz.category || 'Sin categoría')} ${biz.city ? '· ' + biz.city : ''}</span>
+              <span class="dash-biz-cat">${catObj ? catObj.label : (biz.category || 'Sin categorï¿½a')} ${biz.city ? 'ï¿½ ' + biz.city : ''}</span>
             </div>
             <div class="dash-biz-actions">
               <button class="dash-biz-btn" onclick="openBusinessDetail(${i})">
@@ -2334,12 +2334,12 @@ function loadDashboard() {
     const businesses = JSON.parse(localStorage.getItem('fynderBusinesses') || '[]');
     const activities = [];
 
-    activities.push({ dot: '#10B981', text: 'Sesión iniciada correctamente', time: 'Ahora' });
+    activities.push({ dot: '#10B981', text: 'Sesiï¿½n iniciada correctamente', time: 'Ahora' });
     if (businesses.length > 0) {
       activities.push({ dot: '#67B8B4', text: `Negocio "${businesses[businesses.length-1].name || 'Sin nombre'}" registrado`, time: 'Reciente' });
     }
     if (favorites && favorites.size > 0) {
-      activities.push({ dot: '#F4D35E', text: `${favorites.size} negocio${favorites.size!==1?'s':''} guardado${favorites.size!==1?'s':''}`, time: 'Esta sesión' });
+      activities.push({ dot: '#F4D35E', text: `${favorites.size} negocio${favorites.size!==1?'s':''} guardado${favorites.size!==1?'s':''}`, time: 'Esta sesiï¿½n' });
     }
     activities.push({ dot: '#2F5BB7', text: `Plan ${planInfo.name} activo`, time: since || 'Hoy' });
 
@@ -2363,7 +2363,7 @@ function openBusinessDetail(index) {
   if (match) {
     openModal(match.id);
   } else {
-    showToast('Este negocio aún no está en el directorio público.');
+    showToast('Este negocio aï¿½n no estï¿½ en el directorio pï¿½blico.');
   }
 }
 
@@ -2427,12 +2427,12 @@ function initFynderAnimations() {
     el.style.animation = `fyl-fade-up .5s cubic-bezier(.22,1,.36,1) ${i * 0.1}s both`;
   });
 
-  // Añadir efecto ripple a botones de categoría al click
+  // Aï¿½adir efecto ripple a botones de categorï¿½a al click
   page.querySelectorAll('.fyl-cat').forEach(btn => {
     btn.addEventListener('click', createRipple, { once: false });
   });
 
-  // Ripple en botones principales también
+  // Ripple en botones principales tambiï¿½n
   page.querySelectorAll('.fyl-btn-primary, .fyl-for-btn-teal, .fyl-for-btn-purple, .fyl-cta-btn').forEach(btn => {
     btn.addEventListener('click', createRipple);
   });
@@ -2484,7 +2484,7 @@ function toggleMobileMenu() {
     if (burger) burger.classList.add('open');
     document.body.style.overflow = 'hidden';
     updateMobileMenuActions();
-    // Mostrar/ocultar botón Salir según sesión
+    // Mostrar/ocultar botï¿½n Salir segï¿½n sesiï¿½n
     const salirBtn = document.getElementById('mobileMenuSalirBtn');
     if (salirBtn) salirBtn.style.display = localStorage.getItem('fynderLogged') ? '' : 'none';
     setTimeout(_applyDrawerAvatarBg, 10);
@@ -2497,32 +2497,32 @@ function closeMobileMenu() {
   const burger = document.getElementById('navHamburger');
   if (burger) burger.classList.remove('open');
   document.body.style.overflow = '';
-  // Cerrar también todos los submenús
+  // Cerrar tambiï¿½n todos los submenï¿½s
   document.querySelectorAll('.mobile-submenu.open').forEach(s => s.classList.remove('open'));
   document.querySelectorAll('.mobile-menu-has-sub.sub-open').forEach(b => b.classList.remove('sub-open'));
 }
 
-/** Despliega/colapsa un submenú en el menú móvil */
+/** Despliega/colapsa un submenï¿½ en el menï¿½ mï¿½vil */
 function toggleMobileSubMenu(id, btn) {
   const sub = document.getElementById(id);
   if (!sub) return;
   const isOpen = sub.classList.contains('open');
-  // Cerrar todos los demás
+  // Cerrar todos los demï¿½s
   document.querySelectorAll('.mobile-submenu.open').forEach(s => { if (s !== sub) s.classList.remove('open'); });
   document.querySelectorAll('.mobile-menu-has-sub.sub-open').forEach(b => { if (b !== btn) b.classList.remove('sub-open'); });
   sub.classList.toggle('open', !isOpen);
   if (btn) btn.classList.toggle('sub-open', !isOpen);
 }
 
-/** Traducir página (usa Web Share o navigator.language como fallback) */
+/** Traducir pï¿½gina (usa Web Share o navigator.language como fallback) */
 function mobileTranslate() {
   const url = `https://translate.google.com/translate?hl=es&sl=auto&tl=es&u=${encodeURIComponent(location.href)}`;
   window.open(url, '_blank');
 }
 
-/** Compartir página actual */
+/** Compartir pï¿½gina actual */
 async function mobileShare() {
-  const data = { title: 'Fynder – Descubre Negocios Locales', url: location.href };
+  const data = { title: 'Fynder ï¿½ Descubre Negocios Locales', url: location.href };
   try {
     if (navigator.share) {
       await navigator.share(data);
@@ -2583,7 +2583,7 @@ function updateMobileMenuActions() {
         <i class="fas fa-plus"></i> Registrar negocio
       </button>
       <button class="mobile-action-btn mobile-action-logout" onclick="closeMobileMenu();logout()">
-        <i class="fas fa-right-from-bracket"></i> Cerrar sesión
+        <i class="fas fa-right-from-bracket"></i> Cerrar sesiï¿½n
       </button>`;
   } else {
     el.innerHTML = `
@@ -2591,7 +2591,7 @@ function updateMobileMenuActions() {
         <i class="fas fa-plus"></i> Registrar negocio
       </button>
       <button class="mobile-action-btn mobile-action-login" onclick="closeMobileMenu();goPage('login')">
-        <i class="fas fa-right-to-bracket"></i> Iniciar sesión
+        <i class="fas fa-right-to-bracket"></i> Iniciar sesiï¿½n
       </button>
       <button class="mobile-action-btn mobile-action-register-acc" onclick="closeMobileMenu();goPage('register')">
         <i class="fas fa-user-plus"></i> Crear cuenta
@@ -2731,12 +2731,12 @@ function _switchToAccount(email) {
 function _openAddAccountFlow() {
   // Guardar cuenta actual antes de salir
   _saveCurrentAccount();
-  // Cerrar sesión temporalmente y llevar al login con flag
+  // Cerrar sesiï¿½n temporalmente y llevar al login con flag
   localStorage.setItem('fynderAddingAccount', '1');
   closeMobileMenu();
   logout(true); // true = silencioso, no mostrar toast ni redirigir
   goPage('login');
-  showToast('Inicia sesión con la nueva cuenta');
+  showToast('Inicia sesiï¿½n con la nueva cuenta');
 }
 
 /* Sobrescribir logout para soportar modo silencioso */
@@ -2749,7 +2749,7 @@ function logout(silent) {
   localStorage.removeItem('fynderFavorites');
   updateNav();
   if (!silent) {
-    showToast('Sesión cerrada. ¡Hasta pronto!');
+    showToast('Sesiï¿½n cerrada. ï¿½Hasta pronto!');
     goPage('home');
   }
 }
@@ -2758,7 +2758,7 @@ function logout(silent) {
 document.addEventListener('click', e => {
   const drawer = document.getElementById('mobileMenuDrawer');
   if (drawer && drawer.classList.contains('open')) {
-    // Si el click fue en un botón de navegación dentro del drawer, ya se cierra por closeMobileMenu()
+    // Si el click fue en un botï¿½n de navegaciï¿½n dentro del drawer, ya se cierra por closeMobileMenu()
   }
 });
 
@@ -2831,7 +2831,7 @@ function animateCount(id, from, to, duration, prefix, suffix, decimals = 0) {
 
 
 /* ================================================================
-   MAPA DE NEGOCIOS — Motor completo
+   MAPA DE NEGOCIOS ï¿½ Motor completo
    ================================================================ */
 
 // Coordenadas de los negocios (Panama City y alrededores)
@@ -2839,12 +2839,12 @@ const BIZ_COORDS = {
   "1":  [8.9936, -79.5197],  // Centro
   "2":  [8.9914, -79.5302],  // Zona Rosa
   "3":  [9.0007, -79.5200],  // Plaza
-  "5":  [8.9878, -79.5150],  // Barrio El Jardín
-  "6":  [8.9945, -79.5260],  // Col. Médica
+  "5":  [8.9878, -79.5150],  // Barrio El Jardï¿½n
+  "6":  [8.9945, -79.5260],  // Col. Mï¿½dica
   "7":  [9.0021, -79.5185],  // Paseo Comercial
   "8":  [9.0044, -79.5310],  // Las Palmas Blvd Norte
   "9":  [8.9830, -79.5280],  // Calle 50 Miraflores
-  "10": [8.9921, -79.5350],  // Vía Argentina
+  "10": [8.9921, -79.5350],  // Vï¿½a Argentina
   "11": [8.9880, -79.5420],  // Av. Balboa Bella Vista
   "12": [8.9505, -79.5348],  // San Felipe
   "13": [9.0100, -79.5230],  // Tumba Muerto
@@ -2855,7 +2855,7 @@ const BIZ_COORDS = {
   "18": [8.9630, -79.5412],  // El Chorrillo
   "19": [9.0080, -79.5140],  // Av. Ricardo Alfaro
   "20": [9.0170, -79.5155],  // El Dorado
-  "21": [8.9802, -79.5055],  // Punta Pacífica
+  "21": [8.9802, -79.5055],  // Punta Pacï¿½fica
   "22": [8.9841, -79.5090],  // Calle 50 San Francisco
   "23": [8.9905, -79.5330],  // El Cangrejo
   "300":[9.0052, -79.5320],
@@ -2863,11 +2863,11 @@ const BIZ_COORDS = {
   "302":[8.9744, -79.5115],
   "303":[9.0310, -79.5010],
   "304":[8.9590, -79.5460],
-  "305":[9.0650, -79.6820],  // Canal de Panamá
+  "305":[9.0650, -79.6820],  // Canal de Panamï¿½
   "306":[9.5620, -78.9830],  // San Blas
-  "307":[9.1100, -79.6700],  // Parque Soberanía
+  "307":[9.1100, -79.6700],  // Parque Soberanï¿½a
   "308":[8.9520, -79.5338],  // Casco Viejo
-  "309":[8.8080, -82.5400],  // Volcán Barú
+  "309":[8.8080, -82.5400],  // Volcï¿½n Barï¿½
   "310":[8.9960, -79.5180],
   "311":[9.0088, -79.5090],
   "312":[8.9523, -79.5345],
@@ -2888,13 +2888,13 @@ const BIZ_COORDS = {
 // -- Estado del mapa --
 let _map            = null;   // instancia Leaflet
 let _mapMarkers     = {};     // { bizId: L.marker }
-let _mapActiveCat   = '';     // categoría filtrada
+let _mapActiveCat   = '';     // categorï¿½a filtrada
 let _mapSelectedId  = null;   // id negocio seleccionado
 let _mapInitialized = false;
 
 // -- Entrada principal --
 function initMap() {
-  // Si ya está inicializado solo actualizar tamaño y redibuja filtros
+  // Si ya estï¿½ inicializado solo actualizar tamaï¿½o y redibuja filtros
   if (_mapInitialized) {
     _map.invalidateSize();
     _filterAndRenderMap();
@@ -2911,13 +2911,13 @@ function initMap() {
     zoomControl: false
   });
 
-  // Tiles — CartoDB claro/oscuro (sin API key)
+  // Tiles ï¿½ CartoDB claro/oscuro (sin API key)
   const tileUrl = dark
     ? 'https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png'
     : 'https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png';
 
   L.tileLayer(tileUrl, {
-    attribution: '© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> | © <a href="https://carto.com">CARTO</a>',
+    attribution: 'ï¿½ <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> | ï¿½ <a href="https://carto.com">CARTO</a>',
     subdomains: 'abcd',
     maxZoom: 19
   }).addTo(_map);
@@ -2925,7 +2925,7 @@ function initMap() {
   // Zoom control en esquina superior derecha
   L.control.zoom({ position: 'topright' }).addTo(_map);
 
-  // Chips de categoría
+  // Chips de categorï¿½a
   _buildMapCatFilters();
 
   // Marcadores
@@ -2934,7 +2934,7 @@ function initMap() {
   // Panel lateral
   _filterAndRenderMap();
 
-  // Cierra popup al click en mapa vacío
+  // Cierra popup al click en mapa vacï¿½o
   _map.on('click', () => closeMapPopup());
 }
 
@@ -2947,11 +2947,11 @@ document.addEventListener('themeChanged', () => {
     dark
       ? 'https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png'
       : 'https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png',
-    { attribution: '© OpenStreetMap | © CARTO', subdomains: 'abcd', maxZoom: 19 }
+    { attribution: 'ï¿½ OpenStreetMap | ï¿½ CARTO', subdomains: 'abcd', maxZoom: 19 }
   ).addTo(_map);
 });
 
-// -- Chips de filtro por categoría --
+// -- Chips de filtro por categorï¿½a --
 function _buildMapCatFilters() {
   const wrap = document.getElementById('mapCatFilters');
   if (!wrap) return;
@@ -2961,7 +2961,7 @@ function _buildMapCatFilters() {
   all.onclick = () => _setMapCat('');
   wrap.appendChild(all);
 
-  // Una chip por categoría que tenga negocios con coords
+  // Una chip por categorï¿½a que tenga negocios con coords
   const usedCats = new Set(
     BUSINESSES
       .filter(b => BIZ_COORDS[b.id])
@@ -3021,7 +3021,7 @@ function _placeAllMarkers() {
   });
 }
 
-// -- Emoji por categoría --
+// -- Emoji por categorï¿½a --
 function _catEmoji(catId) {
   const map = {
     restaurantes: '???',
@@ -3079,7 +3079,7 @@ function _renderMapPanel(list) {
   if (!list.length) {
     container.innerHTML = `<div style="padding:24px 16px;text-align:center;color:var(--muted);font-size:.875rem">
       <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="margin:0 auto 12px;display:block;opacity:.35"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
-      Sin resultados para esta búsqueda
+      Sin resultados para esta bï¿½squeda
     </div>`;
     if (panel) panel.classList.remove('hidden');
     return;
@@ -3152,17 +3152,17 @@ function _openMapPopup(biz) {
   const ratingEl = document.getElementById('mpRating');
   ratingEl.innerHTML = `${stars}
     <strong style="margin-left:4px">${biz.rating}</strong>
-    <span style="font-weight:400;color:var(--muted)">(${biz.reviews} reseñas)</span>`;
+    <span style="font-weight:400;color:var(--muted)">(${biz.reviews} reseï¿½as)</span>`;
 
-  // Botón "Ver detalle"
+  // Botï¿½n "Ver detalle"
   const btnDetail = document.getElementById('mpBtnDetail');
   btnDetail.onclick = () => { closeMapPopup(); openModal(biz.id); };
 
-  // Botón Google Maps
+  // Botï¿½n Google Maps
   const btnGmaps = document.getElementById('mpBtnGmaps');
   btnGmaps.href = `https://www.google.com/maps/search/?api=1&query=${biz.mapQuery || encodeURIComponent(biz.address)}`;
 
-  // Teléfono rápido si existe
+  // Telï¿½fono rï¿½pido si existe
   let phoneHtml = '';
   if (biz.phone) {
     phoneHtml = `<a href="tel:${biz.phone}" class="map-popup-btn map-popup-btn-phone" style="flex:0 0 auto;padding:9px 12px;border-radius:12px;background:rgba(16,185,129,.1);color:#10B981;border:none;cursor:pointer;display:flex;align-items:center;gap:5px;font-size:.8rem;font-weight:600;font-family:'Poppins',sans-serif;text-decoration:none">
@@ -3171,7 +3171,7 @@ function _openMapPopup(biz) {
     </a>`;
   }
 
-  // Inyectar botón de llamada si no existe
+  // Inyectar botï¿½n de llamada si no existe
   const actionsEl = document.querySelector('.map-popup-actions');
   if (actionsEl) {
     const existingPhone = actionsEl.querySelector('.map-popup-btn-phone');
@@ -3230,10 +3230,10 @@ if (_origToggleDark) {
 
 
 /* ================================================================
-   GLOBO TERRÁQUEO FYNDER — versión completa con texturas reales,
-   shader día/noche, nubes, arcos tipo tubo, labels flotantes,
+   GLOBO TERRï¿½QUEO FYNDER ï¿½ versiï¿½n completa con texturas reales,
+   shader dï¿½a/noche, nubes, arcos tipo tubo, labels flotantes,
    tarjetas orbitantes, ticker y controles de zoom.
-   Panamá ???? destacado como hub principal.
+   Panamï¿½ ???? destacado como hub principal.
    ================================================================ */
 (function () {
   'use strict';
@@ -3266,7 +3266,7 @@ if (_origToggleDark) {
     const manager = new THREE.LoadingManager();
     manager.onProgress = (url, loaded, total) => {
       if (loaderText) loaderText.textContent =
-        'Iniciando red global… ' + Math.round(loaded / total * 100) + '%';
+        'Iniciando red globalï¿½ ' + Math.round(loaded / total * 100) + '%';
     };
     manager.onLoad = () => {
       if (loaderEl) loaderEl.classList.add('hidden');
@@ -3344,7 +3344,7 @@ if (_origToggleDark) {
     sunSprite.scale.set(195, 195, 1);
     scene.add(sunSprite);
 
-    /* -- Shader Tierra día/noche -- */
+    /* -- Shader Tierra dï¿½a/noche -- */
     const earthMat = new THREE.ShaderMaterial({
       uniforms: {
         dayTexture:   { value: dayTex },
@@ -3385,7 +3385,7 @@ if (_origToggleDark) {
     );
     globeGroup.add(cloudMesh);
 
-    /* -- Atmósfera glow -- */
+    /* -- Atmï¿½sfera glow -- */
     globeGroup.add(new THREE.Mesh(
       new THREE.SphereGeometry(RADIUS + 6, 64, 64),
       new THREE.ShaderMaterial({
@@ -3418,25 +3418,25 @@ if (_origToggleDark) {
     const cityData = [
       { name:'Nueva York',       lat:40.7,   lon:-74.0,   label:true,  info:'Hub financiero global' },
       { name:'Londres',          lat:51.5,   lon:-0.1,    label:true,  info:'Capital europea de negocios' },
-      { name:'Lagos',            lat:6.5,    lon:3.4,     label:false, info:'Mayor ciudad de África' },
+      { name:'Lagos',            lat:6.5,    lon:3.4,     label:false, info:'Mayor ciudad de ï¿½frica' },
       { name:'El Cairo',         lat:30.0,   lon:31.2,    label:false, info:'Ciudad milenaria de Egipto' },
-      { name:'Dubái',            lat:25.2,   lon:55.3,    label:true,  info:'Centro comercial de Oriente Medio' },
+      { name:'Dubï¿½i',            lat:25.2,   lon:55.3,    label:true,  info:'Centro comercial de Oriente Medio' },
       { name:'Bombay',           lat:19.1,   lon:72.9,    label:false, info:'Capital financiera de India' },
-      { name:'Singapur',         lat:1.35,   lon:103.8,   label:false, info:'Centro tecnológico de Asia' },
-      { name:'Tokio',            lat:35.7,   lon:139.7,   label:true,  info:'Metrópolis más grande del mundo' },
-      { name:'Sídney',           lat:-33.9,  lon:151.2,   label:false, info:'Principal ciudad de Oceanía' },
-      { name:'Los Ángeles',      lat:34.0,   lon:-118.2,  label:false, info:'Capital del entretenimiento' },
-      { name:'São Paulo',        lat:-23.5,  lon:-46.6,   label:true,  info:'Motor económico de Latinoamérica' },
-      { name:'Ciudad de México', lat:19.4,   lon:-99.1,   label:false, info:'Capital de México' },
-      { name:'Bogotá',           lat:4.7,    lon:-74.1,   label:false, info:'Capital de Colombia' },
-      { name:'Lima',             lat:-12.0,  lon:-77.0,   label:false, info:'Capital de Perú' },
+      { name:'Singapur',         lat:1.35,   lon:103.8,   label:false, info:'Centro tecnolï¿½gico de Asia' },
+      { name:'Tokio',            lat:35.7,   lon:139.7,   label:true,  info:'Metrï¿½polis mï¿½s grande del mundo' },
+      { name:'Sï¿½dney',           lat:-33.9,  lon:151.2,   label:false, info:'Principal ciudad de Oceanï¿½a' },
+      { name:'Los ï¿½ngeles',      lat:34.0,   lon:-118.2,  label:false, info:'Capital del entretenimiento' },
+      { name:'Sï¿½o Paulo',        lat:-23.5,  lon:-46.6,   label:true,  info:'Motor econï¿½mico de Latinoamï¿½rica' },
+      { name:'Ciudad de Mï¿½xico', lat:19.4,   lon:-99.1,   label:false, info:'Capital de Mï¿½xico' },
+      { name:'Bogotï¿½',           lat:4.7,    lon:-74.1,   label:false, info:'Capital de Colombia' },
+      { name:'Lima',             lat:-12.0,  lon:-77.0,   label:false, info:'Capital de Perï¿½' },
       { name:'Buenos Aires',     lat:-34.6,  lon:-58.4,   label:false, info:'Capital de Argentina' },
-      { name:'Madrid',           lat:40.4,   lon:-3.7,    label:false, info:'Capital de España' },
+      { name:'Madrid',           lat:40.4,   lon:-3.7,    label:false, info:'Capital de Espaï¿½a' },
       { name:'Nairobi',          lat:-1.3,   lon:36.8,    label:false, info:'Capital de Kenia' },
-      { name:'Toronto',          lat:43.7,   lon:-79.4,   label:false, info:'Mayor ciudad de Canadá' },
-      { name:'Moscú',            lat:55.75,  lon:37.6,    label:false, info:'Capital de Rusia' },
-      { name:'Shanghái',         lat:31.2,   lon:121.5,   label:false, info:'Hub financiero de China' },
-      { name:'Panamá',           lat:8.98,   lon:-79.52,  label:true,  highlight:true, info:'???? Hub logístico de las Américas · Fynder HQ' },
+      { name:'Toronto',          lat:43.7,   lon:-79.4,   label:false, info:'Mayor ciudad de Canadï¿½' },
+      { name:'Moscï¿½',            lat:55.75,  lon:37.6,    label:false, info:'Capital de Rusia' },
+      { name:'Shanghï¿½i',         lat:31.2,   lon:121.5,   label:false, info:'Hub financiero de China' },
+      { name:'Panamï¿½',           lat:8.98,   lon:-79.52,  label:true,  highlight:true, info:'???? Hub logï¿½stico de las Amï¿½ricas ï¿½ Fynder HQ' },
     ];
 
     const markerGeo   = new THREE.SphereGeometry(1.1, 10, 10);
@@ -3487,20 +3487,20 @@ if (_origToggleDark) {
     const arcPairs = [
       ['Nueva York',      'Londres'],
       ['Londres',         'El Cairo'],
-      ['El Cairo',        'Dubái'],
-      ['Dubái',           'Bombay'],
+      ['El Cairo',        'Dubï¿½i'],
+      ['Dubï¿½i',           'Bombay'],
       ['Bombay',          'Singapur'],
       ['Singapur',        'Tokio'],
-      ['Tokio',           'Los Ángeles'],
-      ['Los Ángeles',     'Panamá'],
-      ['Panamá',          'Nueva York'],
-      ['Panamá',          'São Paulo'],
-      ['São Paulo',       'Lagos'],
+      ['Tokio',           'Los ï¿½ngeles'],
+      ['Los ï¿½ngeles',     'Panamï¿½'],
+      ['Panamï¿½',          'Nueva York'],
+      ['Panamï¿½',          'Sï¿½o Paulo'],
+      ['Sï¿½o Paulo',       'Lagos'],
       ['Lagos',           'Londres'],
-      ['Panamá',          'Ciudad de México'],
-      ['Panamá',          'Bogotá'],
-      ['São Paulo',       'Buenos Aires'],
-      ['Ciudad de México','Los Ángeles'],
+      ['Panamï¿½',          'Ciudad de Mï¿½xico'],
+      ['Panamï¿½',          'Bogotï¿½'],
+      ['Sï¿½o Paulo',       'Buenos Aires'],
+      ['Ciudad de Mï¿½xico','Los ï¿½ngeles'],
     ];
 
     function _findCity(name) { return cities.find(c => c.name === name); }
@@ -3517,7 +3517,7 @@ if (_origToggleDark) {
       mid.setLength(RADIUS + 1 + start.distanceTo(end) * 0.42);
       const curve   = new THREE.QuadraticBezierCurve3(start, mid, end);
       const tubeGeo = new THREE.TubeGeometry(curve, 64, 0.35, 6, false);
-      const isPanama = a === 'Panamá' || b === 'Panamá';
+      const isPanama = a === 'Panamï¿½' || b === 'Panamï¿½';
       const tubeMat  = new THREE.MeshBasicMaterial({
         color: isPanama ? 0xffd166 : 0x9fe6c9,
         transparent: true, opacity: isPanama ? 0.55 : 0.38,
@@ -3537,7 +3537,7 @@ if (_origToggleDark) {
       arcs.push({ curve, trailMeshes, t: Math.random(), speed: 0.0028 + Math.random() * 0.0016 });
     });
 
-    /* -- Interacción: drag + inercia + zoom -- */
+    /* -- Interacciï¿½n: drag + inercia + zoom -- */
     let isDragging = false, prevX = 0, prevY = 0;
     let velX = 0.0015;
     let targetZ = BASE_Z;
@@ -3633,7 +3633,7 @@ if (_origToggleDark) {
       if (tooltip) tooltip.style.opacity = '0';
     }
 
-    /* -- Count-up del número de negocios -- */
+    /* -- Count-up del nï¿½mero de negocios -- */
     function _startCountUp() {
       const el = document.getElementById('gStatNumber');
       if (!el) return;
@@ -3650,16 +3650,16 @@ if (_origToggleDark) {
 
     /* -- Ticker -- */
     const tickerItems = [
-      'Nuevo negocio en <b>Panamá City</b> · hace 2s',
-      'Cliente conectado desde <b>Bogotá</b> · hace 5s',
-      'Negocio guardado en <b>Ciudad de México</b> · hace 9s',
-      'Nueva reseña en <b>São Paulo</b> · hace 14s',
-      'Emprendedor registrado en <b>Lima</b> · hace 18s',
-      'Búsqueda desde <b>Madrid</b> · hace 24s',
-      'Venta confirmada en <b>Buenos Aires</b> · hace 29s',
-      'Nuevo usuario en <b>Toronto</b> · hace 33s',
-      '???? Negocio destacado en <b>Panamá</b> · hace 37s',
-      'Cliente conectado desde <b>Tokio</b> · hace 41s',
+      'Nuevo negocio en <b>Panamï¿½ City</b> ï¿½ hace 2s',
+      'Cliente conectado desde <b>Bogotï¿½</b> ï¿½ hace 5s',
+      'Negocio guardado en <b>Ciudad de Mï¿½xico</b> ï¿½ hace 9s',
+      'Nueva reseï¿½a en <b>Sï¿½o Paulo</b> ï¿½ hace 14s',
+      'Emprendedor registrado en <b>Lima</b> ï¿½ hace 18s',
+      'Bï¿½squeda desde <b>Madrid</b> ï¿½ hace 24s',
+      'Venta confirmada en <b>Buenos Aires</b> ï¿½ hace 29s',
+      'Nuevo usuario en <b>Toronto</b> ï¿½ hace 33s',
+      '???? Negocio destacado en <b>Panamï¿½</b> ï¿½ hace 37s',
+      'Cliente conectado desde <b>Tokio</b> ï¿½ hace 41s',
     ];
     const track = document.getElementById('globe-ticker-track');
     if (track) {
@@ -3711,7 +3711,7 @@ if (_origToggleDark) {
       });
     }
 
-    /* -- Loop de animación -- */
+    /* -- Loop de animaciï¿½n -- */
     const clock = new THREE.Clock();
 
     function animate() {
@@ -3719,7 +3719,7 @@ if (_origToggleDark) {
       const delta = Math.min(clock.getDelta(), 0.05);
       const t     = clock.getElapsedTime();
 
-      /* Auto-rotación + inercia */
+      /* Auto-rotaciï¿½n + inercia */
       if (!isDragging) {
         globeGroup.rotation.y += AUTO_SPEED + velX;
         velX *= 0.94;
@@ -3767,7 +3767,7 @@ if (_origToggleDark) {
       /* Estrellas derivan lento */
       starField.rotation.y += 0.00006;
 
-      /* Paralaje de cámara con el mouse */
+      /* Paralaje de cï¿½mara con el mouse */
       camera.position.x = baseCameraPos.x + pointerNormX * 12;
       camera.position.y = baseCameraPos.y - pointerNormY * 8;
       camera.lookAt(0, 0, 0);
@@ -3792,7 +3792,7 @@ if (_origToggleDark) {
 
 
 /* ================================================================
-   SISTEMA DE MENSAJES – FYNDER
+   SISTEMA DE MENSAJES ï¿½ FYNDER
    ================================================================ */
 
 // ---- Storage helpers ----
@@ -3824,7 +3824,7 @@ let _activeChatBizId = null;
 // ---- Abrir chat desde el modal del negocio ----
 function openChatFromModal() {
   const logged = !!localStorage.getItem('fynderLogged');
-  if (!logged) { showToast('Inicia sesión para enviar mensajes'); closeModalDirect(); goPage('login'); return; }
+  if (!logged) { showToast('Inicia sesiï¿½n para enviar mensajes'); closeModalDirect(); goPage('login'); return; }
   const id = modalBusinessId; // variable global del modal existente
   if (!id) return;
   const biz = BUSINESSES.find(b => String(b.id) === String(id));
@@ -3840,7 +3840,7 @@ function openChat(bizId, biz) {
   // Cerrar el panel de info si estaba abierto (nuevo chat seleccionado)
   closeWaChatInfoPanel();
 
-  // Asegurar que la conversación existe
+  // Asegurar que la conversaciï¿½n existe
   let convs = _getConversations();
   if (!convs.find(c => String(c.id) === String(bizId))) {
     convs.unshift({ id: String(bizId), name: biz.name, cat: biz.category, image: biz.image || null, unread: 0, lastMsg: '', lastTime: '' });
@@ -3854,7 +3854,7 @@ function openChat(bizId, biz) {
     const avaEl    = document.getElementById(avaId);
     const onlineEl = document.getElementById(onlineId);
     if (nameEl) nameEl.textContent = biz.name;
-    if (subEl)  { subEl.textContent = 'en línea'; subEl.classList.add('online'); }
+    if (subEl)  { subEl.textContent = 'en lï¿½nea'; subEl.classList.add('online'); }
     if (onlineEl) onlineEl.classList.add('visible');
     if (avaEl) {
       if (biz.image) {
@@ -3868,16 +3868,16 @@ function openChat(bizId, biz) {
     }
   }
 
-  // Rellena header del área desktop (wa-chat-area) y del page-chat móvil
+  // Rellena header del ï¿½rea desktop (wa-chat-area) y del page-chat mï¿½vil
   _fillHeader('chatHeaderName','chatHeaderSub','chatHeaderAvatar','chatHeaderOnline');
   _fillHeader('chatHeaderNameMobile','chatHeaderSubMobile','chatHeaderAvatarMobile','chatHeaderOnlineMobile');
 
-  // Botón llamar desktop
+  // Botï¿½n llamar desktop
   const callBtn = document.getElementById('waChatCallBtn');
   if (callBtn) {
     callBtn.onclick = biz.phone
       ? () => { window.location.href = 'tel:' + biz.phone.replace(/\s/g,''); }
-      : () => showToast('Teléfono no disponible');
+      : () => showToast('Telï¿½fono no disponible');
   }
 
   // Si no tiene mensajes, agregar mensaje de bienvenida
@@ -3885,14 +3885,14 @@ function openChat(bizId, biz) {
   if (msgs.length === 0) {
     const welcomeMsg = {
       id: Date.now(), from: 'biz',
-      text: `¡Hola! ?? Bienvenido a ${biz.name}. ¿En qué podemos ayudarte?`,
+      text: `ï¿½Hola! ?? Bienvenido a ${biz.name}. ï¿½En quï¿½ podemos ayudarte?`,
       time: _fmtTime(new Date()), date: _fmtDate(new Date())
     };
     msgs = [welcomeMsg];
     _saveMsgs(bizId, msgs);
     _updateConvLastMsg(bizId, welcomeMsg.text, welcomeMsg.time);
     pushNotification({ type:'chat', title:biz.name,
-      body: welcomeMsg.text.slice(0,80)+(welcomeMsg.text.length>80?'…':''),
+      body: welcomeMsg.text.slice(0,80)+(welcomeMsg.text.length>80?'ï¿½':''),
       bizId:biz.id, image:biz.image||null });
   }
 
@@ -3903,13 +3903,16 @@ function openChat(bizId, biz) {
     const chatArea = document.getElementById('waChatArea');
     if (welcome)  welcome.style.display  = 'none';
     if (chatArea) chatArea.style.display = 'flex';
+    // Navegar a la pu00e1gina de mensajes si no estamos ya en ella
+    goPage('messages');
+    renderConversations();
     renderChatMessages(bizId);   // renderiza en #chatMessages (desktop)
     // Marcar activo en la lista
     document.querySelectorAll('.msg-chat-item').forEach(el => el.classList.remove('wa-active'));
     const activeItem = document.querySelector(`.msg-chat-item[data-biz-id="${bizId}"]`);
     if (activeItem) activeItem.classList.add('wa-active');
   } else {
-    // Móvil: renderiza en #chatMessagesMobile y navega a page-chat
+    // Mï¿½vil: renderiza en #chatMessagesMobile y navega a page-chat
     renderChatMessagesMobile(bizId);
     goPage('chat');
   }
@@ -3946,7 +3949,7 @@ function renderChatMessages(bizId) {
   _renderMsgsInto(container, bizId);
 }
 
-// ---- Renderizar mensajes (móvil: #chatMessagesMobile) ----
+// ---- Renderizar mensajes (mï¿½vil: #chatMessagesMobile) ----
 function renderChatMessagesMobile(bizId) {
   const container = document.getElementById('chatMessagesMobile');
   _renderMsgsInto(container, bizId);
@@ -4017,7 +4020,7 @@ function sendChatMessage() {
   _doSendMessage('chatInput', _activeChatBizId, renderChatMessages);
 }
 
-// ---- Enviar mensaje (móvil: #chatInputMobile) ----
+// ---- Enviar mensaje (mï¿½vil: #chatInputMobile) ----
 function sendChatMessageMobile() {
   _doSendMessage('chatInputMobile', _activeChatBizId, renderChatMessagesMobile);
 }
@@ -4029,7 +4032,7 @@ function _doSendMessage(inputId, bizId, renderFn) {
   if (!text) return;
 
   if (!localStorage.getItem('fynderLogged')) {
-    showToast('Inicia sesión para enviar mensajes'); return;
+    showToast('Inicia sesiï¿½n para enviar mensajes'); return;
   }
 
   const now = new Date();
@@ -4046,7 +4049,7 @@ function _doSendMessage(inputId, bizId, renderFn) {
   input.value = '';
   renderFn(bizId);
 
-  // Simular progresión de estados: pending ? sent ? delivered ? read
+  // Simular progresiï¿½n de estados: pending ? sent ? delivered ? read
   setTimeout(() => _advanceMsgStatus(bizId, msg.id, 'sent',      renderFn), 400);
   setTimeout(() => _advanceMsgStatus(bizId, msg.id, 'delivered', renderFn), 900);
   setTimeout(() => _advanceMsgStatus(bizId, msg.id, 'read',      renderFn), 2200);
@@ -4064,11 +4067,11 @@ function _advanceMsgStatus(bizId, msgId, newStatus, renderFn) {
   if (_activeChatBizId === bizId && renderFn) renderFn(bizId);
 }
 
-// ---- Respuesta automática del negocio ----
+// ---- Respuesta automï¿½tica del negocio ----
 function _bizAutoReply(bizId, renderFn) {
   if (_activeChatBizId !== bizId) return;
 
-  // Marcar todos los mensajes del usuario como 'read' (el negocio los leyó)
+  // Marcar todos los mensajes del usuario como 'read' (el negocio los leyï¿½)
   const msgs = _getMsgs(bizId);
   let changed = false;
   msgs.forEach(m => {
@@ -4079,7 +4082,7 @@ function _bizAutoReply(bizId, renderFn) {
     }
   });
 
-  // Obtener el último mensaje del usuario para responder con contexto
+  // Obtener el ï¿½ltimo mensaje del usuario para responder con contexto
   const userMsgs = msgs.filter(m => m.from === 'user');
   const lastUserText = userMsgs.length > 0
     ? (userMsgs[userMsgs.length - 1].text || '').toLowerCase()
@@ -4096,7 +4099,7 @@ function _bizAutoReply(bizId, renderFn) {
   _saveMsgs(bizId, msgs);
   _updateConvLastMsg(bizId, text, reply.time);
   renderConversations();
-  // Usa la función de render pasada, o detecta cuál aplica
+  // Usa la funciï¿½n de render pasada, o detecta cuï¿½l aplica
   if (renderFn) {
     renderFn(bizId);
   } else {
@@ -4142,7 +4145,7 @@ function renderConversations() {
         </div>
         <div class="msg-chat-actions">
           ${unread}
-          <button class="msg-chat-menu" onclick="event.stopPropagation();msgConvMenu('${c.id}')" title="Más opciones">
+          <button class="msg-chat-menu" onclick="event.stopPropagation();msgConvMenu('${c.id}')" title="Mï¿½s opciones">
             <i class="fas fa-ellipsis-vertical"></i>
           </button>
         </div>
@@ -4161,7 +4164,7 @@ function openChatById(bizId) {
   if (biz) {
     openChat(bizId, biz);
   } else {
-    // Negocio no encontrado — mostrar igualmente
+    // Negocio no encontrado ï¿½ mostrar igualmente
     _activeChatBizId = String(bizId);
     const isDesktop = window.innerWidth >= 769;
 
@@ -4196,18 +4199,18 @@ function openChatById(bizId) {
   }
 }
 
-// ---- Menú contextual de conversación ----
+// ---- Menï¿½ contextual de conversaciï¿½n ----
 function msgConvMenu(bizId) {
   const bmarks = _getBookmarks();
   const isBookmarked = bmarks.includes(String(bizId));
-  const action1 = isBookmarked ? 'Quitar de marcadores' : 'Añadir a marcadores';
+  const action1 = isBookmarked ? 'Quitar de marcadores' : 'Aï¿½adir a marcadores';
   const icon1   = isBookmarked ? 'fa-bookmark-slash' : 'fa-bookmark';
-  showToast(`${action1}… (próximamente)`);
+  showToast(`${action1}ï¿½ (prï¿½ximamente)`);
 }
 
 // ---- Tab switch ----
 function msgSwitchTab(tab) {
-  // Limpiar búsqueda al cambiar de tab
+  // Limpiar bï¿½squeda al cambiar de tab
   _convSearchQuery = '';
   const searchInput = document.getElementById('msgSearchInput');
   if (searchInput) searchInput.value = '';
@@ -4228,7 +4231,7 @@ function msgSwitchTab(tab) {
 }
 
 function msgSwitchSection(section) {
-  // Botón "Notificaciones" en el header
+  // Botï¿½n "Notificaciones" en el header
   document.getElementById('msgPanelChats')    .classList.remove('active');
   document.getElementById('msgPanelBookmarks').classList.remove('active');
   document.getElementById('msgPanelNotif')    .classList.toggle('active', section === 'notif');
@@ -4278,7 +4281,7 @@ function renderBookmarks() {
   }).join('');
 }
 
-// ---- Notificaciones — sistema real ----
+// ---- Notificaciones ï¿½ sistema real ----
 
 const NOTIF_KEY = 'fynderNotifications';
 
@@ -4294,7 +4297,7 @@ function _saveNotifications(list) {
 }
 
 /**
- * Agrega una nueva notificación al almacén.
+ * Agrega una nueva notificaciï¿½n al almacï¿½n.
  * @param {Object} opts - { type, title, body, icon, bizId, image }
  */
 function pushNotification({ type = 'info', title, body, icon = '??', bizId = null, image = null } = {}) {
@@ -4310,12 +4313,12 @@ function pushNotification({ type = 'info', title, body, icon = '??', bizId = nul
     ts:    Date.now(),
     read:  false
   });
-  // Máximo 50 notificaciones
+  // Mï¿½ximo 50 notificaciones
   if (notifs.length > 50) notifs.length = 50;
   _saveNotifications(notifs);
   updateNotifBadge();
 
-  // Dispara notificación nativa del navegador si el permiso está concedido
+  // Dispara notificaciï¿½n nativa del navegador si el permiso estï¿½ concedido
   if (Notification.permission === 'granted' && _msgSettings.notif) {
     try {
       new Notification(title, {
@@ -4328,21 +4331,21 @@ function pushNotification({ type = 'info', title, body, icon = '??', bizId = nul
   }
 }
 
-/** Marca todas las notificaciones como leídas */
+/** Marca todas las notificaciones como leï¿½das */
 function markAllNotifsRead() {
   const notifs = _getNotifications().map(n => ({ ...n, read: true }));
   _saveNotifications(notifs);
   updateNotifBadge();
 }
 
-/** Marca una notificación individual como leída */
+/** Marca una notificaciï¿½n individual como leï¿½da */
 function markNotifRead(id) {
   const notifs = _getNotifications().map(n => n.id === id ? { ...n, read: true } : n);
   _saveNotifications(notifs);
   updateNotifBadge();
 }
 
-/** Elimina una notificación */
+/** Elimina una notificaciï¿½n */
 function deleteNotif(id) {
   const notifs = _getNotifications().filter(n => n.id !== id);
   _saveNotifications(notifs);
@@ -4350,7 +4353,7 @@ function deleteNotif(id) {
   updateNotifBadge();
 }
 
-/** Actualiza el badge del botón "Notificaciones" en el header de mensajes */
+/** Actualiza el badge del botï¿½n "Notificaciones" en el header de mensajes */
 function updateNotifBadge() {
   const unread = _getNotifications().filter(n => !n.read).length;
   // Badge en el tab del header
@@ -4377,41 +4380,41 @@ async function requestNotifPermission() {
     return;
   }
   if (Notification.permission === 'granted') {
-    showToast('¡Las notificaciones ya están activadas!');
+    showToast('ï¿½Las notificaciones ya estï¿½n activadas!');
     _hideNotifBanner();
     _setNotifBtnActivated();
     return;
   }
   if (Notification.permission === 'denied') {
-    showToast('Notificaciones bloqueadas. Actívalas desde la configuración del navegador.');
+    showToast('Notificaciones bloqueadas. Actï¿½valas desde la configuraciï¿½n del navegador.');
     return;
   }
   const perm = await Notification.requestPermission();
   if (perm === 'granted') {
     _setNotifBtnActivated();
-    showToast('? ¡Notificaciones activadas!');
+    showToast('? ï¿½Notificaciones activadas!');
     setTimeout(() => _hideNotifBanner(), 1200);
     pushNotification({
       type: 'welcome',
-      title: '¡Bienvenido a Fynder!',
-      body: 'Ahora recibirás actualizaciones sobre negocios y ofertas.',
+      title: 'ï¿½Bienvenido a Fynder!',
+      body: 'Ahora recibirï¿½s actualizaciones sobre negocios y ofertas.',
       icon: '??'
     });
     renderNotifications();
-    settSyncNotif(); // actualiza el estado en ajustes también
+    settSyncNotif(); // actualiza el estado en ajustes tambiï¿½n
   } else {
     showToast('Notificaciones no activadas');
   }
 }
 
-/** Marca el botón del banner como "Activado" visualmente */
+/** Marca el botï¿½n del banner como "Activado" visualmente */
 function _setNotifBtnActivated() {
   const btn = document.getElementById('notifBannerBtn');
   if (btn) {
     btn.innerHTML = '<i class="fas fa-bell"></i> Activado';
     btn.classList.add('activated');
   }
-  // Ajustes: actualizar el botón y estado
+  // Ajustes: actualizar el botï¿½n y estado
   const settBtn = document.getElementById('settNotifActivarBtn');
   if (settBtn) {
     settBtn.textContent = '? Activado';
@@ -4422,7 +4425,7 @@ function _setNotifBtnActivated() {
   }
 }
 
-/** Manejador del botón "Activar" del banner — actualiza UI antes de la promesa */
+/** Manejador del botï¿½n "Activar" del banner ï¿½ actualiza UI antes de la promesa */
 async function handleNotifBannerClick(btn) {
   if (!('Notification' in window)) {
     showToast('Tu navegador no soporta notificaciones');
@@ -4431,12 +4434,12 @@ async function handleNotifBannerClick(btn) {
   if (Notification.permission === 'granted') {
     btn.innerHTML = '<i class="fas fa-bell"></i> Activado';
     btn.classList.add('activated');
-    showToast('¡Las notificaciones ya están activadas!');
+    showToast('ï¿½Las notificaciones ya estï¿½n activadas!');
     setTimeout(() => _hideNotifBanner(), 1200);
     return;
   }
   if (Notification.permission === 'denied') {
-    showToast('Notificaciones bloqueadas. Actívalas desde la configuración del navegador.');
+    showToast('Notificaciones bloqueadas. Actï¿½valas desde la configuraciï¿½n del navegador.');
     return;
   }
   // Mostrar estado de carga
@@ -4447,12 +4450,12 @@ async function handleNotifBannerClick(btn) {
     btn.innerHTML = '<i class="fas fa-bell"></i> Activado';
     btn.classList.add('activated');
     btn.disabled = false;
-    showToast('? ¡Notificaciones activadas!');
+    showToast('? ï¿½Notificaciones activadas!');
     setTimeout(() => _hideNotifBanner(), 1500);
     pushNotification({
       type: 'welcome',
-      title: '¡Bienvenido a Fynder!',
-      body: 'Ahora recibirás actualizaciones sobre negocios y ofertas.',
+      title: 'ï¿½Bienvenido a Fynder!',
+      body: 'Ahora recibirï¿½s actualizaciones sobre negocios y ofertas.',
       icon: '??'
     });
     renderNotifications();
@@ -4470,7 +4473,7 @@ function _hideNotifBanner() {
   if (banner) banner.style.display = 'none';
 }
 
-/* -- Modal de ajustes administrados por la organización -- */
+/* -- Modal de ajustes administrados por la organizaciï¿½n -- */
 function showOrgInfoModal() {
   const modal = document.getElementById('orgInfoModal');
   if (modal) modal.classList.add('open');
@@ -4493,11 +4496,11 @@ function _fmtNotifDate(ts) {
   if (min < 1)   return 'Ahora mismo';
   if (min < 60)  return `Hace ${min} min`;
   if (hrs < 24)  return `Hace ${hrs} h`;
-  if (days < 7)  return `Hace ${days} día${days > 1 ? 's' : ''}`;
+  if (days < 7)  return `Hace ${days} dï¿½a${days > 1 ? 's' : ''}`;
   return new Date(ts).toLocaleDateString('es', { day: 'numeric', month: 'short' });
 }
 
-/** Ícono por tipo de notificación */
+/** ï¿½cono por tipo de notificaciï¿½n */
 function _notifTypeIcon(type) {
   const map = {
     welcome: '??',
@@ -4513,7 +4516,7 @@ function renderNotifications() {
   const list = document.getElementById('msgNotifList');
   if (!list) return;
 
-  // Actualizar visibilidad del banner según permiso
+  // Actualizar visibilidad del banner segï¿½n permiso
   const banner = document.querySelector('.msg-notif-banner');
   if (banner) {
     const shouldShow = !('Notification' in window) || Notification.permission !== 'granted';
@@ -4527,12 +4530,12 @@ function renderNotifications() {
       <div class="msg-empty" style="display:flex">
         <div class="msg-empty-icon"><i class="fas fa-bell-slash"></i></div>
         <p class="msg-empty-title">Sin notificaciones</p>
-        <p class="msg-empty-sub">Cuando haya novedades de negocios o tus actividades, aparecerán aquí.</p>
+        <p class="msg-empty-sub">Cuando haya novedades de negocios o tus actividades, aparecerï¿½n aquï¿½.</p>
       </div>`;
     return;
   }
 
-  // Cabecera con "Marcar todas como leídas"
+  // Cabecera con "Marcar todas como leï¿½das"
   const unread = notifs.filter(n => !n.read).length;
   const header = unread > 0
     ? `<div class="msg-notif-actions-row">
@@ -4551,7 +4554,7 @@ function renderNotifications() {
     const action = n.bizId
       ? `<button class="msg-notif-card-btn"
            onclick="event.stopPropagation();markNotifRead(${n.id});openChatById('${n.bizId}')">
-           Ver más
+           Ver mï¿½s
          </button>`
       : '';
 
@@ -4575,7 +4578,7 @@ function renderNotifications() {
   }).join('');
 }
 
-// ---- Badge de mensajes no leídos ----
+// ---- Badge de mensajes no leï¿½dos ----
 function updateMsgBadge() {
   const convs  = _getConversations();
   const unread = convs.reduce((s, c) => s + (c.unread || 0), 0);
@@ -4587,7 +4590,7 @@ function updateMsgBadge() {
     badge.style.display = unread > 0 ? 'flex' : 'none';
   }
 
-  // Badge en el bottom-nav de la página de mensajes
+  // Badge en el bottom-nav de la pï¿½gina de mensajes
   const bnavBadge = document.getElementById('msgBnavBadge');
   if (bnavBadge) {
     bnavBadge.textContent = unread > 9 ? '9+' : unread;
@@ -4636,10 +4639,10 @@ function escapeHtml(str) {
 }
 
 // ---- Hook en goPage para inicializar mensajes ----
-// La inicialización se hace directamente desde el goPage original modificado arriba
+// La inicializaciï¿½n se hace directamente desde el goPage original modificado arriba
 // y desde el DOMContentLoaded abajo.
 
-// ---- Inicialización al cargar ----
+// ---- Inicializaciï¿½n al cargar ----
 document.addEventListener('DOMContentLoaded', () => {
   updateMsgBadge();
   updateNotifBadge();
@@ -4654,17 +4657,17 @@ document.addEventListener('DOMContentLoaded', () => {
         pushNotification({
           type:  'promo',
           title: `Novedad de ${b.name}`,
-          body:  b.description ? b.description.slice(0, 90) + (b.description.length > 90 ? '…' : '') : '¡Visita su perfil!',
+          body:  b.description ? b.description.slice(0, 90) + (b.description.length > 90 ? 'ï¿½' : '') : 'ï¿½Visita su perfil!',
           bizId: b.id,
           image: b.image || null
         });
       }, i * 50); // ligero stagger para timestamps distintos
     });
-    // Notificación de bienvenida a Fynder
+    // Notificaciï¿½n de bienvenida a Fynder
     setTimeout(() => {
       pushNotification({
         type:  'welcome',
-        title: '¡Bienvenido a Fynder!',
+        title: 'ï¿½Bienvenido a Fynder!',
         body:  'Descubre negocios locales, guarda tus favoritos y chatea directamente con ellos.',
         icon:  '??'
       });
@@ -4690,7 +4693,7 @@ function openChatProfile() {
     return;
   }
 
-  // -- Móvil: navegar a la página chat-profile --
+  // -- Mï¿½vil: navegar a la pï¿½gina chat-profile --
   _populateChatProfilePage(biz);
   goPage('chat-profile');
 }
@@ -4710,19 +4713,19 @@ function _populateChatInfoPanel(biz) {
       avaEl.style.background = _avatarColor(biz ? biz.name : '');
     }
   }
-  // Nombre y teléfono
+  // Nombre y telï¿½fono
   const nameEl  = document.getElementById('waCproName');
   const phoneEl = document.getElementById('waCproPhone');
-  if (nameEl)  nameEl.textContent  = biz ? biz.name  : '—';
+  if (nameEl)  nameEl.textContent  = biz ? biz.name  : 'ï¿½';
   if (phoneEl) phoneEl.textContent = biz && biz.phone ? biz.phone : '';
 
-  // Botón llamar
+  // Botï¿½n llamar
   const callBtn = document.getElementById('waCproCallBtn');
   if (callBtn) {
     if (biz && biz.phone) {
       callBtn.onclick = () => { window.location.href = 'tel:' + biz.phone.replace(/\s/g,''); };
     } else {
-      callBtn.onclick = () => showToast('Teléfono no disponible');
+      callBtn.onclick = () => showToast('Telï¿½fono no disponible');
     }
   }
 
@@ -4737,7 +4740,7 @@ function _populateChatInfoPanel(biz) {
       `<img class="cpro-media-thumb" src="${url}" alt="" loading="lazy">`
     ).join('');
     if (countEl) {
-      countEl.textContent = imgs.length + ' ›';
+      countEl.textContent = imgs.length + ' ï¿½';
       countEl.onclick = openPhotoLightbox;
       countEl.style.cursor = 'pointer';
     }
@@ -4750,11 +4753,11 @@ function _populateChatInfoPanel(biz) {
   }
 }
 
-/* Rellena la página de perfil (móvil) */
+/* Rellena la pï¿½gina de perfil (mï¿½vil) */
 function _populateChatProfilePage(biz) {
-  // Título del header
+  // Tï¿½tulo del header
   const titleEl = document.getElementById('cproHeaderTitle');
-  if (titleEl) titleEl.textContent = biz ? biz.name : 'Información';
+  if (titleEl) titleEl.textContent = biz ? biz.name : 'Informaciï¿½n';
 
   // Avatar grande
   const avaEl = document.getElementById('cproAvatar');
@@ -4770,18 +4773,18 @@ function _populateChatProfilePage(biz) {
     }
   }
 
-  // Nombre y teléfono
+  // Nombre y telï¿½fono
   const nameEl  = document.getElementById('cproName');
   const phoneEl = document.getElementById('cproPhone');
-  if (nameEl)  nameEl.textContent  = biz ? biz.name  : '—';
+  if (nameEl)  nameEl.textContent  = biz ? biz.name  : 'ï¿½';
   if (phoneEl) phoneEl.textContent = biz && biz.phone ? biz.phone : '';
 
-  // Botón llamar
+  // Botï¿½n llamar
   const callBtn = document.getElementById('cproCallBtn');
   if (callBtn && biz && biz.phone) {
     callBtn.onclick = () => { window.location.href = 'tel:' + biz.phone.replace(/\s/g,''); };
   } else if (callBtn) {
-    callBtn.onclick = () => showToast('Teléfono no disponible');
+    callBtn.onclick = () => showToast('Telï¿½fono no disponible');
   }
 
   // Media strip
@@ -4795,7 +4798,7 @@ function _populateChatProfilePage(biz) {
       `<img class="cpro-media-thumb" src="${url}" alt="" loading="lazy">`
     ).join('');
     if (countEl) {
-      countEl.textContent = imgs.length + ' ›';
+      countEl.textContent = imgs.length + ' ï¿½';
       countEl.onclick = openPhotoLightbox;
       countEl.style.cursor = 'pointer';
     }
@@ -4812,7 +4815,7 @@ function _populateChatProfilePage(biz) {
 function _buildCproInfoRows(biz) {
   const rows = [];
   
-  // Dirección - hace click para abrir en mapa
+  // Direcciï¿½n - hace click para abrir en mapa
   if (biz.address) rows.push({ 
     icon: 'fa-location-dot', 
     title: biz.address, 
@@ -4828,11 +4831,11 @@ function _buildCproInfoRows(biz) {
     action: ''
   });
   
-  // Teléfono - hace click para llamar
+  // Telï¿½fono - hace click para llamar
   if (biz.phone) rows.push({ 
     icon: 'fa-phone', 
     title: biz.phone, 
-    sub: 'Teléfono',
+    sub: 'Telï¿½fono',
     action: `onclick="window.location.href='tel:${biz.phone.replace(/\\s/g,'')}'" style="cursor:pointer"`
   });
   
@@ -4860,19 +4863,19 @@ function _buildCproInfoRows(biz) {
     action: `onclick="window.open('${biz.facebook.startsWith('http') ? biz.facebook : 'https://facebook.com/' + biz.facebook}','_blank')" style="cursor:pointer"`
   });
   
-  // Descripción - solo informativo
+  // Descripciï¿½n - solo informativo
   if (biz.description) rows.push({ 
     icon: 'fa-circle-info', 
     title: biz.description, 
-    sub: 'Descripción',
+    sub: 'Descripciï¿½n',
     action: ''
   });
   
-  // Valoración - hace click para abrir el modal con reseñas
+  // Valoraciï¿½n - hace click para abrir el modal con reseï¿½as
   if (biz.rating) rows.push({ 
     icon: 'fa-star', 
-    title: `${biz.rating} ?  (${biz.reviews || 0} reseñas)`, 
-    sub: 'Valoración',
+    title: `${biz.rating} ?  (${biz.reviews || 0} reseï¿½as)`, 
+    sub: 'Valoraciï¿½n',
     action: `onclick="openModal('${biz.id}');setTimeout(()=>document.getElementById('modalTabReviews')?.click(),100)" style="cursor:pointer"`
   });
 
@@ -4891,10 +4894,10 @@ function _buildCproInfoRows(biz) {
 function closeWaChatInfoPanel() {
   const panel = document.getElementById('waChatInfoPanel');
   if (panel) panel.classList.remove('open');
-  closeWaCproMenu(); // Cerrar menú si estaba abierto
+  closeWaCproMenu(); // Cerrar menï¿½ si estaba abierto
 }
 
-/* Abre/Cierra el menú contextual del panel lateral */
+/* Abre/Cierra el menï¿½ contextual del panel lateral */
 let _waCproMenuOpen = false;
 function toggleWaCproMenu(btn) {
   const menu = document.getElementById('waCproCtxMenu');
@@ -4909,7 +4912,7 @@ function closeWaCproMenu() {
   _waCproMenuOpen = false;
 }
 
-// Cerrar el menú del panel de info al hacer click fuera
+// Cerrar el menï¿½ del panel de info al hacer click fuera
 document.addEventListener('click', (e) => {
   const menu = document.getElementById('waCproCtxMenu');
   const btn  = document.getElementById('waCproMenuBtn');
@@ -4924,17 +4927,17 @@ function openChatProfileMap() {
   if (biz && biz.mapQuery) {
     window.open('https://maps.google.com/?q=' + encodeURIComponent(biz.mapQuery), '_blank');
   } else {
-    showToast('Ubicación no disponible');
+    showToast('Ubicaciï¿½n no disponible');
   }
 }
 
 function deleteChatHistory() {
   if (!_activeChatBizId) return;
-  if (!confirm('¿Borrar todo el historial de este chat?')) return;
+  if (!confirm('ï¿½Borrar todo el historial de este chat?')) return;
   
   localStorage.removeItem('fynderChat_' + _activeChatBizId);
   
-  // Actualizar conversación
+  // Actualizar conversaciï¿½n
   let convs = _getConversations();
   const idx = convs.findIndex(c => String(c.id) === String(_activeChatBizId));
   if (idx > -1) { 
@@ -4959,9 +4962,9 @@ function deleteChatHistory() {
 function blockBiz() {
   if (!_activeChatBizId) return;
   
-  if (!confirm('¿Bloquear este negocio? Ya no recibirás mensajes.')) return;
+  if (!confirm('ï¿½Bloquear este negocio? Ya no recibirï¿½s mensajes.')) return;
   
-  // Aquí iría la lógica real de bloqueo (localStorage, etc.)
+  // Aquï¿½ irï¿½a la lï¿½gica real de bloqueo (localStorage, etc.)
   let blocked = JSON.parse(localStorage.getItem('fynderBlocked') || '[]');
   if (!blocked.includes(_activeChatBizId)) {
     blocked.push(_activeChatBizId);
@@ -4983,7 +4986,7 @@ function blockBiz() {
 
 
 /* ================================================================
-   MENÚ CONTEXTUAL DE CHAT (?)
+   MENï¿½ CONTEXTUAL DE CHAT (?)
    ================================================================ */
 
 let _ctxMenuBizId = null;
@@ -4996,7 +4999,7 @@ function openMsgCtxMenu(bizId, event) {
   const conv  = convs.find(c => String(c.id) === String(bizId));
   const biz   = BUSINESSES.find(b => String(b.id) === String(bizId));
 
-  // Header del menú
+  // Header del menï¿½
   const ava  = document.getElementById('msgCtxAva');
   const name = document.getElementById('msgCtxName');
   if (ava) {
@@ -5018,7 +5021,7 @@ function openMsgCtxMenu(bizId, event) {
   const icon  = document.getElementById('msgCtxBookmarkIcon');
   const label = document.getElementById('msgCtxBookmarkLabel');
   if (icon)  icon.className  = isBookmarked ? 'fas fa-bookmark-slash' : 'fas fa-bookmark';
-  if (label) label.textContent = isBookmarked ? 'Quitar de marcadores' : 'Añadir a marcadores';
+  if (label) label.textContent = isBookmarked ? 'Quitar de marcadores' : 'Aï¿½adir a marcadores';
 
   document.getElementById('msgCtxOverlay').classList.add('open');
   document.getElementById('msgCtxMenu').classList.add('open');
@@ -5039,7 +5042,7 @@ function toggleMsgBookmark() {
     showToast('Eliminado de marcadores');
   } else {
     bmarks.unshift(id);
-    showToast('Añadido a marcadores ?');
+    showToast('Aï¿½adido a marcadores ?');
   }
   _saveBookmarks(bmarks);
   closeMsgCtxMenu();
@@ -5065,14 +5068,14 @@ function msgCtxMarkRead() {
   if (conv) { conv.unread = 0; _saveConversations(convs); }
   updateMsgBadge();
   renderConversations();
-  showToast('Marcado como leído');
+  showToast('Marcado como leï¿½do');
   closeMsgCtxMenu();
 }
 
 function msgCtxDeleteChat() {
   if (!_ctxMenuBizId) return;
   closeMsgCtxMenu();
-  if (!confirm('¿Eliminar esta conversación?')) return;
+  if (!confirm('ï¿½Eliminar esta conversaciï¿½n?')) return;
   // Borrar mensajes
   localStorage.removeItem('fynderChat_' + _ctxMenuBizId);
   // Quitar de lista de conversaciones
@@ -5085,13 +5088,13 @@ function msgCtxDeleteChat() {
   _saveBookmarks(bmarks);
   updateMsgBadge();
   renderConversations();
-  showToast('Conversación eliminada');
+  showToast('Conversaciï¿½n eliminada');
 }
 
 /* Actualizar renderConversations para usar openMsgCtxMenu */
-// (Sobreescribe la función anterior con la nueva que pasa bizId al menú)
+// (Sobreescribe la funciï¿½n anterior con la nueva que pasa bizId al menï¿½)
 
-/** Query activo del buscador de chats — se mantiene entre renders */
+/** Query activo del buscador de chats ï¿½ se mantiene entre renders */
 let _convSearchQuery = '';
 
 function renderConversations() {
@@ -5100,7 +5103,7 @@ function renderConversations() {
   const empty = document.getElementById('msgEmptyChats');
   if (!list) return;
 
-  // Aplicar filtro de búsqueda
+  // Aplicar filtro de bï¿½squeda
   if (_convSearchQuery) {
     const q = _convSearchQuery;
     convs = convs.filter(c =>
@@ -5135,7 +5138,7 @@ function renderConversations() {
       ? `<span class="msg-chat-bookmark-dot" title="Marcado"><i class="fas fa-bookmark" style="font-size:.6rem;color:#F4D35E"></i></span>`
       : '';
 
-    // Preview: resaltar término buscado
+    // Preview: resaltar tï¿½rmino buscado
     let preview = escapeHtml(c.lastMsg || 'Toca para ver el chat');
     if (_convSearchQuery && c.lastMsg) {
       const idx = c.lastMsg.toLowerCase().indexOf(_convSearchQuery);
@@ -5161,7 +5164,7 @@ function renderConversations() {
         </div>
         <div class="msg-chat-actions">
           ${unread}
-          <button class="msg-chat-menu" onclick="openMsgCtxMenu('${c.id}', event)" title="Más opciones">
+          <button class="msg-chat-menu" onclick="openMsgCtxMenu('${c.id}', event)" title="Mï¿½s opciones">
             <i class="fas fa-ellipsis-vertical"></i>
           </button>
         </div>
@@ -5183,7 +5186,7 @@ const EMOJI_CATS = [
   { icon: '?', label: 'Deportes',   emojis: ['?','??','??','?','??','??','??','??','??','??','??','??','??','??','??','??','??','??','??','?','??','??','??','??','??','??','??','??','??'] },
   { icon: '??', label: 'Viajes',     emojis: ['??','??','??','??','???','??','???','??','??','??','???','???','???','???','???','???','???','??','??','??','??','???','???','??','??','??','??','??','??','??','??','??','??','??','??','??','??','??','??','??','??','??','?','??','??','??','??','??','?','?','??','??','???','??','??','??','??','??','??','??','??','??','??','??','??','??','??','??','??','??','??','??','??','??','??','??','??','??','??','??','??','??','??','??','??','??','??','??','??','??','??','??','??','??','???','???','??','??','??','??','??','??','??','???','???','?','??','??','??','??','??','?','?','??','??','???','??','???','??','??','???','??','??','??','??','??','??','??','??','??','??','??'] },
   { icon: '??', label: 'Negocios',   emojis: ['??','??','??','???','??','??','??','??','??','??','??','??','??','??','???','???','???','??','??','??','??','??','???','??','??','??','??','???','???','??','???','??','??','??','??','??','???','??','??','??','??','??','??','??','??','??','??','??','??','??','??','??','??','??','??','??','??','??','???','???','??','??','??','??','??','??','??','??','??','??','??','??','??','??','??','??','??','??'] },
-  { icon: '??', label: 'Símbolos',   emojis: ['??','??','??','??','??','?','?','??','??','??','???','?','???','??','???','???','??','???','???','??','??','?','???','??','??','???','??','??','??','??','?','??','?','??','??','??','??','??','??','??','??','??','???','???','??','??','??','??','?','?','?','??','??','?','??','??','??','??','??','?','?','??','??','??','??','??','??','??','??','??','??','??','??'] }
+  { icon: '??', label: 'Sï¿½mbolos',   emojis: ['??','??','??','??','??','?','?','??','??','??','???','?','???','??','???','???','??','???','???','??','??','?','???','??','??','???','??','??','??','??','?','??','?','??','??','??','??','??','??','??','??','??','???','???','??','??','??','??','?','?','?','??','??','?','??','??','??','??','??','?','?','??','??','??','??','??','??','??','??','??','??','??','??'] }
 ];
 
 let _emojiActiveCat = 0;
@@ -5202,7 +5205,7 @@ function openEmojiPicker() {
       `<button class="emoji-tab-btn${i === 0 ? ' active' : ''}" onclick="emojiSelectCat(${i})" title="${cat.label}">${cat.icon}</button>`
     ).join('');
   }
-  // Renderizar primera categoría
+  // Renderizar primera categorï¿½a
   renderEmojiCat(_emojiActiveCat);
 
   document.getElementById('emojiOverlay').classList.add('open');
@@ -5238,7 +5241,7 @@ function filterEmojis() {
   if (!grid) return;
   if (!q) { renderEmojiCat(_emojiActiveCat); return; }
 
-  // Buscar en todas las categorías
+  // Buscar en todas las categorï¿½as
   const allEmojis = EMOJI_CATS.flatMap(cat => cat.emojis);
   const filtered  = allEmojis.filter((e, i, arr) => arr.indexOf(e) === i); // deduplicate
   grid.innerHTML = filtered.map(e =>
@@ -5285,13 +5288,13 @@ function _saveMsgSettings() {
 function openMsgSettings() {
   _loadMsgSettings();
 
-  // Sync toggles de notif / sonido / leído
+  // Sync toggles de notif / sonido / leï¿½do
   ['notif','sound','read'].forEach(k => {
     const el = document.getElementById('setting' + k.charAt(0).toUpperCase() + k.slice(1) + 'Toggle');
     if (el) el.classList.toggle('on', _msgSettings[k] !== false);
   });
 
-  // Sync toggle de "en línea"
+  // Sync toggle de "en lï¿½nea"
   const onlineToggle = document.getElementById('settingOnlineToggle');
   if (onlineToggle) onlineToggle.classList.toggle('on', _msgSettings.online !== false);
 
@@ -5310,7 +5313,7 @@ function openMsgSettings() {
   });
 
   // Sync font sub
-  const fontLabels = { small:'Pequeño', normal:'Normal', large:'Grande' };
+  const fontLabels = { small:'Pequeï¿½o', normal:'Normal', large:'Grande' };
   const fontSubEl = document.getElementById('settingFontSub');
   if (fontSubEl) fontSubEl.textContent = fontLabels[_msgSettings.fontSize] || 'Normal';
 
@@ -5336,7 +5339,7 @@ function openMsgSettings() {
   // Sync wallpaper dots
   const wpNames = {
     default: 'Por defecto',
-    dots: 'Patrón de puntos',
+    dots: 'Patrï¿½n de puntos',
     gradient: 'Gradiente',
     dark: 'Oscuro total',
     nature: 'Verde natural'
@@ -5404,7 +5407,7 @@ function setChatWallpaper(wp, btn) {
   
   const names = { 
     default: 'Por defecto', 
-    dots: 'Patrón de puntos', 
+    dots: 'Patrï¿½n de puntos', 
     gradient: 'Gradiente', 
     dark: 'Oscuro total', 
     nature: 'Verde natural' 
@@ -5425,7 +5428,7 @@ function _applyChatWallpaper(wp) {
 }
 
 function clearAllChats() {
-  if (!confirm('¿Borrar TODOS los chats y conversaciones? Esta acción no se puede deshacer.')) return;
+  if (!confirm('ï¿½Borrar TODOS los chats y conversaciones? Esta acciï¿½n no se puede deshacer.')) return;
   
   // Borrar todos los chats del localStorage
   const keys = Object.keys(localStorage);
@@ -5461,7 +5464,7 @@ function setChatBubbleColor(color, name, btn) {
   // Actualizar CSS en tiempo real
   _applyChatBubbleColor(color);
   
-  // Actualizar TODOS los dots de color (panel de mensajes Y página de ajustes)
+  // Actualizar TODOS los dots de color (panel de mensajes Y pï¿½gina de ajustes)
   document.querySelectorAll('.msg-color-dot, .sett-color-dot').forEach(d => {
     d.classList.toggle('active', d.dataset.color === color);
   });
@@ -5488,20 +5491,20 @@ function setChatFontSize(size, label) {
   _msgSettings.fontSize = size;
   _saveMsgSettings();
   
-  // Aplicar tamaño
+  // Aplicar tamaï¿½o
   _applyChatFontSize(size);
   
   // Actualizar label en el panel de mensajes
   const fontSubEl = document.getElementById('settingFontSub');
   if (fontSubEl) fontSubEl.textContent = label;
   
-  // Actualizar TODOS los botones de tamaño (panel de mensajes Y página de ajustes)
+  // Actualizar TODOS los botones de tamaï¿½o (panel de mensajes Y pï¿½gina de ajustes)
   document.querySelectorAll('.msg-font-btn, .sett-font-btn').forEach((btn, i) => {
     const sizes = ['small','normal','large'];
     btn.classList.toggle('active', sizes[i] === size);
   });
   
-  showToast('Tamaño actualizado');
+  showToast('Tamaï¿½o actualizado');
 }
 
 function _applyChatFontSize(size) {
@@ -5530,7 +5533,7 @@ function exportChats() {
 }
 
 function clearAllChats() {
-  if (!confirm('¿Borrar TODOS los chats? Esta acción no se puede deshacer.')) return;
+  if (!confirm('ï¿½Borrar TODOS los chats? Esta acciï¿½n no se puede deshacer.')) return;
   const convs = _getConversations();
   convs.forEach(c => localStorage.removeItem('fynderChat_' + c.id));
   _saveConversations([]);
@@ -5549,7 +5552,7 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 /* ================================================================
-   PHOTO LIGHTBOX – abre galería de fotos del negocio
+   PHOTO LIGHTBOX ï¿½ abre galerï¿½a de fotos del negocio
    ================================================================ */
 
 function openPhotoLightbox() {
@@ -5572,11 +5575,11 @@ function openPhotoLightbox() {
     overlay.innerHTML = `
       <button onclick="document.getElementById('photoLightbox').remove()" style="position:absolute;top:16px;right:16px;background:rgba(255,255,255,.15);border:none;color:#fff;width:40px;height:40px;border-radius:50%;font-size:1.2rem;cursor:pointer;display:flex;align-items:center;justify-content:center;"><i class="fas fa-xmark"></i></button>
       <img src="${img.src}" style="max-width:90vw;max-height:70dvh;border-radius:16px;object-fit:contain;box-shadow:0 8px 40px rgba(0,0,0,.6);" loading="lazy">
-      <p style="color:rgba(255,255,255,.7);font-size:.875rem;font-family:'Inter',sans-serif;margin:0;">${escapeHtml(img.caption)} · ${currentIdx+1}/${imgs.length}</p>
+      <p style="color:rgba(255,255,255,.7);font-size:.875rem;font-family:'Inter',sans-serif;margin:0;">${escapeHtml(img.caption)} ï¿½ ${currentIdx+1}/${imgs.length}</p>
       ${imgs.length > 1 ? `
       <div style="display:flex;gap:12px;">
-        <button onclick="lightboxNav(-1)" style="background:rgba(255,255,255,.15);border:none;color:#fff;padding:10px 20px;border-radius:10px;cursor:pointer;font-size:.875rem;">‹ Anterior</button>
-        <button onclick="lightboxNav(1)"  style="background:rgba(255,255,255,.15);border:none;color:#fff;padding:10px 20px;border-radius:10px;cursor:pointer;font-size:.875rem;">Siguiente ›</button>
+        <button onclick="lightboxNav(-1)" style="background:rgba(255,255,255,.15);border:none;color:#fff;padding:10px 20px;border-radius:10px;cursor:pointer;font-size:.875rem;">ï¿½ Anterior</button>
+        <button onclick="lightboxNav(1)"  style="background:rgba(255,255,255,.15);border:none;color:#fff;padding:10px 20px;border-radius:10px;cursor:pointer;font-size:.875rem;">Siguiente ï¿½</button>
       </div>` : ''}
     `;
   }
@@ -5589,10 +5592,10 @@ function openPhotoLightbox() {
 }
 
 /* ================================================================
-   PÁGINA DE AJUSTES
+   Pï¿½GINA DE AJUSTES
    ================================================================ */
 
-/** Navega a una sección del panel de ajustes */
+/** Navega a una secciï¿½n del panel de ajustes */
 function settGoSection(id, btn) {
   document.querySelectorAll('#page-settings .sett-section').forEach(s => s.classList.remove('active'));
   document.querySelectorAll('#page-settings .sett-nav-item').forEach(b => b.classList.remove('active'));
@@ -5601,11 +5604,11 @@ function settGoSection(id, btn) {
   if (sec) sec.classList.add('active');
   if (btn) btn.classList.add('active');
 
-  // Sync específico al entrar en cada sección
+  // Sync especï¿½fico al entrar en cada secciï¿½n
   if (id === 'cuenta')         settSyncAccount();
   if (id === 'apariencia')     settSyncAppearance();
   if (id === 'notificaciones') settSyncNotif();
-  if (id === 'privacidad')     settSyncNotif();   // read toggle vive aquí también
+  if (id === 'privacidad')     settSyncNotif();   // read toggle vive aquï¿½ tambiï¿½n
   if (id === 'accesibilidad')  settSyncAccessibility();
   if (id === 'datos')          settSyncStorage();
   if (id === 'rendimiento')    settSyncRendimiento();
@@ -5616,15 +5619,15 @@ function settGoSection(id, btn) {
   if (id === 'mensajes')       settSyncMensajesSection();
 }
 
-/** Helper para navegar desde dentro del contenido (sin referencia al botón) */
+/** Helper para navegar desde dentro del contenido (sin referencia al botï¿½n) */
 function settGoToSection(id) {
   const btn = document.querySelector(`#page-settings .sett-nav-item[data-section="${id}"]`);
   settGoSection(id, btn);
 }
 
-/** Inicializa la página cada vez que se navega a ella */
+/** Inicializa la pï¿½gina cada vez que se navega a ella */
 function initSettingsPage() {
-  // Activar sección "cuenta" por defecto
+  // Activar secciï¿½n "cuenta" por defecto
   const firstBtn = document.querySelector('#page-settings .sett-nav-item[data-section="cuenta"]');
   settGoSection('cuenta', firstBtn);
 }
@@ -5639,7 +5642,7 @@ function settSyncAccount() {
   const avaEl   = document.getElementById('settUserAvatar');
 
   if (nameEl)  nameEl.textContent  = user.name  || 'Usuario';
-  if (emailEl) emailEl.textContent = user.email || '—';
+  if (emailEl) emailEl.textContent = user.email || 'ï¿½';
 
   if (avaEl) {
     const photo  = localStorage.getItem('fynderAvatarPhoto');
@@ -5668,10 +5671,10 @@ function settSyncAccount() {
   _updateFriendCount();
 }
 
-/** Cierra sesión correctamente usando la función centralizada */
+/** Cierra sesiï¿½n correctamente usando la funciï¿½n centralizada */
 function settLogout() {
-  if (!confirm('¿Cerrar sesión?')) return;
-  logout();   // llama a la función completa que limpia todo
+  if (!confirm('ï¿½Cerrar sesiï¿½n?')) return;
+  logout();   // llama a la funciï¿½n completa que limpia todo
 }
 
 // -- APARIENCIA --------------------------------------------------------------
@@ -5685,7 +5688,7 @@ function settSyncAppearance() {
     darkBtn.classList.toggle('on', document.documentElement.getAttribute('data-theme') === 'dark');
   }
 
-  // Tamaño de fuente del chat
+  // Tamaï¿½o de fuente del chat
   const fontBtns = document.querySelectorAll('#sett-apariencia .sett-font-btn');
   const sizes = ['small', 'normal', 'large'];
   const currentSize = _msgSettings.fontSize || 'normal';
@@ -5716,12 +5719,12 @@ function settSyncNotif() {
     if (!('Notification' in window)) {
       statusEl.textContent = '?? No compatible con este navegador';
     } else {
-      const map = { granted: '? Activadas', denied: '?? Bloqueadas por el navegador', default: 'Sin configurar — haz clic en Activar' };
+      const map = { granted: '? Activadas', denied: '?? Bloqueadas por el navegador', default: 'Sin configurar ï¿½ haz clic en Activar' };
       statusEl.textContent = map[Notification.permission] || 'Sin configurar';
     }
   }
 
-  // Botón "Activar": cambiar texto/estado según permiso
+  // Botï¿½n "Activar": cambiar texto/estado segï¿½n permiso
   const activarBtn = document.getElementById('settNotifActivarBtn');
   if (activarBtn) {
     const perm = ('Notification' in window) ? Notification.permission : 'unsupported';
@@ -5757,12 +5760,12 @@ function settSyncNotif() {
   if (chatT)  chatT.classList.toggle('on', _msgSettings.notif);
   if (soundT) soundT.classList.toggle('on', _msgSettings.sound);
 
-  // Toggle de confirmación de lectura (sección privacidad)
+  // Toggle de confirmaciï¿½n de lectura (secciï¿½n privacidad)
   const readT = document.getElementById('settReadToggle2');
   if (readT) readT.classList.toggle('on', _msgSettings.read);
 }
 
-/** Toggle genérico de preferencias de mensajes/ajustes */
+/** Toggle genï¿½rico de preferencias de mensajes/ajustes */
 function settToggleSetting(key, btnId) {
   // Claves de mensajes (legacy _msgSettings)
   const msgKeys = ['notif', 'sound', 'read'];
@@ -5792,7 +5795,7 @@ function settToggleSetting(key, btnId) {
 // -- ACCESIBILIDAD -----------------------------------------------------------
 
 function settSyncAccessibility() {
-  // Tamaño de fuente UI
+  // Tamaï¿½o de fuente UI
   const sel = document.getElementById('settUIFontSize');
   if (sel) {
     const saved = localStorage.getItem('fynderUIFontSize') || 'normal';
@@ -5808,7 +5811,7 @@ function settSetUIFontSize(val) {
   const map = { normal: '16px', large: '18px', xlarge: '20px' };
   document.documentElement.style.fontSize = map[val] || '16px';
   localStorage.setItem('fynderUIFontSize', val);
-  showToast('Tamaño de fuente actualizado');
+  showToast('Tamaï¿½o de fuente actualizado');
 }
 
 function settToggleReduceMotion() {
@@ -5842,7 +5845,7 @@ function settSyncStorage() {
   const kb = (bytes / 1024).toFixed(1);
   el.textContent = `${kb} KB usados (localStorage)`;
 
-  // Barra de progreso (localStorage máx ~5MB)
+  // Barra de progreso (localStorage mï¿½x ~5MB)
   const bar = document.getElementById('settStorageBar');
   if (bar) {
     const pct = Math.min((bytes / (5 * 1024 * 1024)) * 100, 100).toFixed(1);
@@ -5851,7 +5854,7 @@ function settSyncStorage() {
 }
 
 function settClearData() {
-  if (!confirm('¿Limpiar caché y preferencias locales?\n\nSe perderán: conversaciones, favoritos guardados y ajustes de la app.\nTu cuenta (nombre y contraseña) se mantendrá.')) return;
+  if (!confirm('ï¿½Limpiar cachï¿½ y preferencias locales?\n\nSe perderï¿½n: conversaciones, favoritos guardados y ajustes de la app.\nTu cuenta (nombre y contraseï¿½a) se mantendrï¿½.')) return;
 
   const keep = ['fynderUser', 'fynderLogged', 'fynderTheme'];
   const toRemove = [];
@@ -5880,7 +5883,7 @@ function settSyncMsgUI() {
     d.classList.toggle('active', d.dataset.color === _msgSettings.bubbleColor);
   });
   
-  // Sincronizar dots de color (página de ajustes)
+  // Sincronizar dots de color (pï¿½gina de ajustes)
   document.querySelectorAll('.sett-color-dot').forEach(d => {
     d.classList.toggle('active', d.dataset.color === _msgSettings.bubbleColor);
   });
@@ -5891,14 +5894,14 @@ function settSyncMsgUI() {
     btn.classList.toggle('active', sizes[i] === (_msgSettings.fontSize || 'normal'));
   });
   
-  // Sincronizar botones de fuente (página de ajustes)
+  // Sincronizar botones de fuente (pï¿½gina de ajustes)
   document.querySelectorAll('.sett-font-btn').forEach((btn, i) => {
     const sizes = ['small', 'normal', 'large'];
     btn.classList.toggle('active', sizes[i] === (_msgSettings.fontSize || 'normal'));
   });
 }
 
-/** Sincroniza los toggles y labels de la sección de ajustes de Mensajes */
+/** Sincroniza los toggles y labels de la secciï¿½n de ajustes de Mensajes */
 function settSyncMensajesSection() {
   // Restringir chat
   const restBtn = document.getElementById('settRestringirToggle');
@@ -5918,7 +5921,7 @@ function settSyncMensajesSection() {
   // Idioma de transcripciones
   const transcLabel = document.getElementById('settTranscripcionLabel');
   if (transcLabel) {
-    const lang = localStorage.getItem('fynder_transcripcionLang') || 'Español';
+    const lang = localStorage.getItem('fynder_transcripcionLang') || 'Espaï¿½ol';
     transcLabel.textContent = lang;
   }
 }
@@ -5935,7 +5938,7 @@ function settToggleMsgPriv() {
   showToast(newVal ? 'Privacidad avanzada activada' : 'Privacidad avanzada desactivada');
 }
 
-/** Filtro de búsqueda en el sidebar */
+/** Filtro de bï¿½squeda en el sidebar */
 function settFilterSections(q) {
   const query = q.toLowerCase().trim();
   document.querySelectorAll('#page-settings .sett-nav-item').forEach(btn => {
@@ -5950,7 +5953,7 @@ function settFilterSections(q) {
 // -- HERRAMIENTAS -------------------------------------------------------------
 
 function settSyncHerramientas() {
-  // Cerrar todos los expandibles al entrar a la sección
+  // Cerrar todos los expandibles al entrar a la secciï¿½n
   document.querySelectorAll('#sett-herramientas .sett-expandable').forEach(e => e.classList.remove('open'));
   document.querySelectorAll('#sett-herramientas .sett-row-expandable').forEach(r => r.classList.remove('expanded'));
 }
@@ -5961,7 +5964,7 @@ function settToggleExpand(id, row) {
   if (!panel) return;
   const isOpen = panel.classList.contains('open');
 
-  // Cerrar los demás del mismo grupo
+  // Cerrar los demï¿½s del mismo grupo
   const parentSection = row.closest('.sett-section');
   if (parentSection) {
     parentSection.querySelectorAll('.sett-expandable.open').forEach(p => {
@@ -5998,11 +6001,11 @@ function settSyncRendimiento() {
     }
   });
 
-  // Ahorro de energía
+  // Ahorro de energï¿½a
   const energyBtn = document.getElementById('settEnergySaverToggle');
   if (energyBtn) energyBtn.classList.toggle('on', localStorage.getItem('fynderEnergySaver') === '1');
 
-  // Modo de energía
+  // Modo de energï¿½a
   const eMode = parseInt(localStorage.getItem('fynderEnergyMode') || '1');
   settSelectEnergyMode(eMode);
 
@@ -6033,7 +6036,7 @@ function settToggleEnergySaver() {
   const isOn = btn && btn.classList.contains('on');
   if (btn) btn.classList.toggle('on', !isOn);
   localStorage.setItem('fynderEnergySaver', !isOn ? '1' : '');
-  showToast(!isOn ? 'Ahorro de energía activado' : 'Ahorro de energía desactivado');
+  showToast(!isOn ? 'Ahorro de energï¿½a activado' : 'Ahorro de energï¿½a desactivado');
 }
 
 function settSelectEnergyMode(mode) {
@@ -6050,13 +6053,13 @@ function settSelectPreloadMode(mode) {
   if (d1) d1.classList.toggle('active', mode === 1);
   if (d2) d2.classList.toggle('active', mode === 2);
   localStorage.setItem('fynderPreloadMode', mode);
-  showToast(mode === 1 ? 'Precarga ampliada activada' : 'Precarga estándar activada');
+  showToast(mode === 1 ? 'Precarga ampliada activada' : 'Precarga estï¿½ndar activada');
 }
 
 // -- RESTABLECER ---------------------------------------------------------------
 
 function settResetConfig() {
-  if (!confirm('¿Restaurar todos los ajustes a sus valores predeterminados?\n\nTus datos de cuenta y negocios no se verán afectados.')) return;
+  if (!confirm('ï¿½Restaurar todos los ajustes a sus valores predeterminados?\n\nTus datos de cuenta y negocios no se verï¿½n afectados.')) return;
 
   // Eliminar solo claves de ajustes (no datos de cuenta)
   const keepKeys = ['fynderUser', 'fynderLogged', 'fynderBusinesses', 'fynderChats'];
@@ -6073,26 +6076,26 @@ function settResetConfig() {
   document.documentElement.removeAttribute('data-reduce-motion');
 
   showToast('? Ajustes restablecidos a valores predeterminados');
-  // Recargar la sección actual
+  // Recargar la secciï¿½n actual
   const btn = document.querySelector('#page-settings .sett-nav-item.active');
   if (btn) settGoSection(btn.dataset.section, btn);
 }
 
 
-// -- INICIALIZACIÓN ------------------------------------------------------------
+// -- INICIALIZACIï¿½N ------------------------------------------------------------
 
 document.addEventListener('DOMContentLoaded', () => {
-  // Restaurar tamaño de fuente UI
+  // Restaurar tamaï¿½o de fuente UI
   const savedFont = localStorage.getItem('fynderUIFontSize');
   if (savedFont) {
     const map = { normal: '16px', large: '18px', xlarge: '20px' };
     document.documentElement.style.fontSize = map[savedFont] || '16px';
   }
-  // Restaurar reducción de animaciones
+  // Restaurar reducciï¿½n de animaciones
   if (localStorage.getItem('fynderReduceMotion')) {
     document.documentElement.setAttribute('data-reduce-motion', '1');
   }
-  // Auto-traducción al iniciar
+  // Auto-traducciï¿½n al iniciar
   _initAutoTranslate();
 });
 
@@ -6109,8 +6112,8 @@ function settToggleInvisible() {
   const sub = document.getElementById('settInvisibleSub');
   if (btn) btn.classList.toggle('on', newVal);
   if (sub) sub.textContent = newVal
-    ? 'Estás invisible — nadie ve que estás en línea'
-    : 'Los demás ven que estás en línea';
+    ? 'Estï¿½s invisible ï¿½ nadie ve que estï¿½s en lï¿½nea'
+    : 'Los demï¿½s ven que estï¿½s en lï¿½nea';
   showToast(newVal ? '??? Modo invisible activado' : '??? Modo invisible desactivado');
 
   // Aplicar indicador visual de estado
@@ -6118,7 +6121,7 @@ function settToggleInvisible() {
 }
 
 function _applyInvisibleMode(invisible) {
-  // Oculta o muestra el indicador verde de "en línea" en el avatar del navbar
+  // Oculta o muestra el indicador verde de "en lï¿½nea" en el avatar del navbar
   const onlineDots = document.querySelectorAll('.online-dot, .user-online-badge');
   onlineDots.forEach(d => d.style.display = invisible ? 'none' : '');
 }
@@ -6129,8 +6132,8 @@ function _syncInvisibleSetting() {
   const sub = document.getElementById('settInvisibleSub');
   if (btn) btn.classList.toggle('on', isOn);
   if (sub) sub.textContent = isOn
-    ? 'Estás invisible — nadie ve que estás en línea'
-    : 'Los demás ven que estás en línea';
+    ? 'Estï¿½s invisible ï¿½ nadie ve que estï¿½s en lï¿½nea'
+    : 'Los demï¿½s ven que estï¿½s en lï¿½nea';
   _applyInvisibleMode(isOn);
 }
 
@@ -6147,13 +6150,13 @@ function _saveFriendReqs(arr) { localStorage.setItem('fynderFriendReqs', JSON.st
 function _seedFriendsDemo() {
   if (_getFriends().length > 0) return;
   const demo = [
-    { id:'f1', name:'Ana García',    email:'ana@ejemplo.com',    online:true  },
-    { id:'f2', name:'Carlos López',  email:'carlos@ejemplo.com', online:false },
-    { id:'f3', name:'María Pérez',   email:'maria@ejemplo.com',  online:true  },
+    { id:'f1', name:'Ana Garcï¿½a',    email:'ana@ejemplo.com',    online:true  },
+    { id:'f2', name:'Carlos Lï¿½pez',  email:'carlos@ejemplo.com', online:false },
+    { id:'f3', name:'Marï¿½a Pï¿½rez',   email:'maria@ejemplo.com',  online:true  },
   ];
   _saveFriends(demo);
   const req = [
-    { id:'r1', name:'Juan Rodríguez', email:'juan@ejemplo.com' },
+    { id:'r1', name:'Juan Rodrï¿½guez', email:'juan@ejemplo.com' },
   ];
   _saveFriendReqs(req);
 }
@@ -6177,7 +6180,7 @@ function _updateFriendCount() {
     badge.style.display = reqs.length > 0 ? 'inline-flex' : 'none';
   }
 
-  // Actualizar sub en "Tú y Fynder"
+  // Actualizar sub en "Tï¿½ y Fynder"
   const sub = document.getElementById('settFriendCountSub');
   if (sub) sub.textContent = friends.length > 0 ? `${friends.length} amigo${friends.length !== 1 ? 's' : ''}` : 'Ver lista de amigos';
 }
@@ -6214,7 +6217,7 @@ function _renderFriendList(filter) {
   if (friends.length === 0) {
     cont.innerHTML = filter
       ? '<div class="sett-empty-state"><i class="fas fa-magnifying-glass"></i><span>Sin resultados</span></div>'
-      : '<div class="sett-empty-state"><i class="fas fa-user-group"></i><span>Aún no tienes amigos agregados</span></div>';
+      : '<div class="sett-empty-state"><i class="fas fa-user-group"></i><span>Aï¿½n no tienes amigos agregados</span></div>';
     return;
   }
   cont.innerHTML = friends.map(f => `
@@ -6223,7 +6226,7 @@ function _renderFriendList(filter) {
       <div class="sett-friend-status ${f.online ? '' : 'offline'}"></div>
       <div class="sett-friend-info">
         <span class="sett-friend-name">${f.name}</span>
-        <span class="sett-friend-email">${f.online ? '?? En línea' : '? Desconectado'} · ${f.email}</span>
+        <span class="sett-friend-email">${f.online ? '?? En lï¿½nea' : '? Desconectado'} ï¿½ ${f.email}</span>
       </div>
       <div class="sett-friend-actions">
         <button class="sett-friend-btn" onclick="msgFriend('${f.id}','${f.name}')"><i class="fas fa-comment-dots"></i> Mensaje</button>
@@ -6248,7 +6251,7 @@ function acceptFriendReq(id) {
   _renderFriendRequests();
   _renderFriendList();
   _updateFriendCount();
-  showToast(`? ¡Ahora eres amigo de ${req.name}!`);
+  showToast(`? ï¿½Ahora eres amigo de ${req.name}!`);
 }
 
 function declineFriendReq(id) {
@@ -6263,7 +6266,7 @@ function removeFriend(id) {
   const friends = _getFriends();
   const f = friends.find(x => x.id === id);
   if (!f) return;
-  if (!confirm(`¿Eliminar a ${f.name} de tus amigos?`)) return;
+  if (!confirm(`ï¿½Eliminar a ${f.name} de tus amigos?`)) return;
   _saveFriends(friends.filter(x => x.id !== id));
   _renderFriendList();
   _updateFriendCount();
@@ -6276,11 +6279,11 @@ function msgFriend(id, name) {
 }
 
 // ------------------------------------------------------------------------------
-// IDIOMA / TRADUCCIÓN — Sistema propio con diccionario
+// IDIOMA / TRADUCCIï¿½N ï¿½ Sistema propio con diccionario
 // ------------------------------------------------------------------------------
 
 const LANG_NAMES = {
-  es:'Español', en:'English', fr:'Français', pt:'Português',
+  es:'Espaï¿½ol', en:'English', fr:'Franï¿½ais', pt:'Portuguï¿½s',
   de:'Deutsch', it:'Italiano', zh:'??', ja:'???', ko:'???',
   ar:'???????', ru:'???????'
 };
@@ -6297,79 +6300,79 @@ function _langFlag(code) {
 // -- Diccionario de traducciones ----------------------------------------------
 const I18N = {
   // Nav
-  'nav.home':        { es:'Inicio',      en:'Home',       fr:'Accueil',    pt:'Início',    de:'Startseite' },
-  'nav.directory':   { es:'Directorio',  en:'Directory',  fr:'Annuaire',   pt:'Diretório', de:'Verzeichnis' },
-  'nav.saved':       { es:'Guardados',   en:'Saved',      fr:'Enregistrés',pt:'Salvos',    de:'Gespeichert' },
+  'nav.home':        { es:'Inicio',      en:'Home',       fr:'Accueil',    pt:'Inï¿½cio',    de:'Startseite' },
+  'nav.directory':   { es:'Directorio',  en:'Directory',  fr:'Annuaire',   pt:'Diretï¿½rio', de:'Verzeichnis' },
+  'nav.saved':       { es:'Guardados',   en:'Saved',      fr:'Enregistrï¿½s',pt:'Salvos',    de:'Gespeichert' },
   'nav.messages':    { es:'Mensajes',    en:'Messages',   fr:'Messages',   pt:'Mensagens', de:'Nachrichten' },
-  'nav.login':       { es:'Iniciar sesión', en:'Sign in', fr:'Connexion',  pt:'Entrar',    de:'Anmelden' },
-  'nav.register':    { es:'Registrar negocio', en:'Register business', fr:'Enregistrer entreprise', pt:'Registrar negócio', de:'Unternehmen registrieren' },
+  'nav.login':       { es:'Iniciar sesiï¿½n', en:'Sign in', fr:'Connexion',  pt:'Entrar',    de:'Anmelden' },
+  'nav.register':    { es:'Registrar negocio', en:'Register business', fr:'Enregistrer entreprise', pt:'Registrar negï¿½cio', de:'Unternehmen registrieren' },
   // Hero
-  'hero.pill':       { es:'Descubre negocios cerca de ti', en:'Discover businesses near you', fr:'Découvrez les entreprises près de vous', pt:'Descubra negócios perto de você', de:'Entdecke Unternehmen in deiner Nähe' },
+  'hero.pill':       { es:'Descubre negocios cerca de ti', en:'Discover businesses near you', fr:'Dï¿½couvrez les entreprises prï¿½s de vous', pt:'Descubra negï¿½cios perto de vocï¿½', de:'Entdecke Unternehmen in deiner Nï¿½he' },
   'hero.title1':     { es:'Encuentra los mejores', en:'Find the best', fr:'Trouvez les meilleurs', pt:'Encontre os melhores', de:'Finde die besten' },
-  'hero.title2':     { es:'negocios locales', en:'local businesses', fr:'commerces locaux', pt:'negócios locais', de:'lokalen Unternehmen' },
-  'hero.desc':       { es:'FYNDER conecta personas con emprendedores y comercios de su comunidad. Descubre, explora y apoya a los negocios que hacen grande tu ciudad.', en:'FYNDER connects people with entrepreneurs and businesses in their community. Discover, explore and support the businesses that make your city great.', fr:'FYNDER connecte les personnes avec les entrepreneurs et les commerces de leur communauté.', pt:'FYNDER conecta pessoas com empreendedores e comércios de sua comunidade.', de:'FYNDER verbindet Menschen mit Unternehmern und Betrieben in ihrer Gemeinde.' },
-  'hero.search.ph':  { es:'Ej: "Pasteles", "Peluquería"...', en:'E.g. "Cakes", "Barbershop"...', fr:'Ex: "Gâteaux", "Coiffeur"...', pt:'Ex: "Bolos", "Barbearia"...', de:'Z.B. "Kuchen", "Friseur"...' },
+  'hero.title2':     { es:'negocios locales', en:'local businesses', fr:'commerces locaux', pt:'negï¿½cios locais', de:'lokalen Unternehmen' },
+  'hero.desc':       { es:'FYNDER conecta personas con emprendedores y comercios de su comunidad. Descubre, explora y apoya a los negocios que hacen grande tu ciudad.', en:'FYNDER connects people with entrepreneurs and businesses in their community. Discover, explore and support the businesses that make your city great.', fr:'FYNDER connecte les personnes avec les entrepreneurs et les commerces de leur communautï¿½.', pt:'FYNDER conecta pessoas com empreendedores e comï¿½rcios de sua comunidade.', de:'FYNDER verbindet Menschen mit Unternehmern und Betrieben in ihrer Gemeinde.' },
+  'hero.search.ph':  { es:'Ej: "Pasteles", "Peluquerï¿½a"...', en:'E.g. "Cakes", "Barbershop"...', fr:'Ex: "Gï¿½teaux", "Coiffeur"...', pt:'Ex: "Bolos", "Barbearia"...', de:'Z.B. "Kuchen", "Friseur"...' },
   'hero.search.btn': { es:'Buscar', en:'Search', fr:'Rechercher', pt:'Buscar', de:'Suchen' },
   'hero.popular':    { es:'Popular:', en:'Popular:', fr:'Populaire:', pt:'Popular:', de:'Beliebt:' },
   // Sections
-  'sec.categories.label': { es:'Explorar por categoría', en:'Browse by category', fr:'Parcourir par catégorie', pt:'Explorar por categoria', de:'Nach Kategorie durchsuchen' },
-  'sec.categories.title': { es:'¿Qué estás buscando?', en:'What are you looking for?', fr:'Que cherchez-vous?', pt:'O que você está procurando?', de:'Was suchst du?' },
+  'sec.categories.label': { es:'Explorar por categorï¿½a', en:'Browse by category', fr:'Parcourir par catï¿½gorie', pt:'Explorar por categoria', de:'Nach Kategorie durchsuchen' },
+  'sec.categories.title': { es:'ï¿½Quï¿½ estï¿½s buscando?', en:'What are you looking for?', fr:'Que cherchez-vous?', pt:'O que vocï¿½ estï¿½ procurando?', de:'Was suchst du?' },
   'sec.categories.all':   { es:'Ver todas', en:'See all', fr:'Voir tout', pt:'Ver todas', de:'Alle anzeigen' },
-  'sec.featured.label':   { es:'Selección destacada', en:'Featured selection', fr:'Sélection vedette', pt:'Seleção em destaque', de:'Empfohlene Auswahl' },
-  'sec.featured.title':   { es:'Negocios Destacados', en:'Featured Businesses', fr:'Entreprises en vedette', pt:'Negócios em Destaque', de:'Empfohlene Unternehmen' },
+  'sec.featured.label':   { es:'Selecciï¿½n destacada', en:'Featured selection', fr:'Sï¿½lection vedette', pt:'Seleï¿½ï¿½o em destaque', de:'Empfohlene Auswahl' },
+  'sec.featured.title':   { es:'Negocios Destacados', en:'Featured Businesses', fr:'Entreprises en vedette', pt:'Negï¿½cios em Destaque', de:'Empfohlene Unternehmen' },
   'sec.featured.all':     { es:'Ver todos', en:'See all', fr:'Voir tout', pt:'Ver todos', de:'Alle anzeigen' },
-  'sec.popular.title':    { es:'Más Populares', en:'Most Popular', fr:'Les Plus Populaires', pt:'Mais Populares', de:'Am Beliebtesten' },
+  'sec.popular.title':    { es:'Mï¿½s Populares', en:'Most Popular', fr:'Les Plus Populaires', pt:'Mais Populares', de:'Am Beliebtesten' },
   // How it works
-  'how.label':  { es:'Simple y rápido', en:'Simple and fast', fr:'Simple et rapide', pt:'Simples e rápido', de:'Einfach und schnell' },
-  'how.title':  { es:'¿Cómo funciona FYNDER?', en:'How does FYNDER work?', fr:'Comment fonctionne FYNDER?', pt:'Como funciona o FYNDER?', de:'Wie funktioniert FYNDER?' },
-  'how.sub':    { es:'En tres simples pasos conectas con los mejores negocios de tu comunidad.', en:'In three simple steps you connect with the best businesses in your community.', fr:'En trois étapes simples, connectez-vous avec les meilleures entreprises.', pt:'Em três etapas simples você se conecta com os melhores negócios.', de:'In drei einfachen Schritten verbindest du dich mit den besten Unternehmen.' },
-  'how.step1.title': { es:'Busca lo que necesitas', en:'Search what you need', fr:'Recherchez ce dont vous avez besoin', pt:'Busque o que você precisa', de:'Suche was du brauchst' },
-  'how.step1.desc':  { es:'Ingresa el producto, servicio o categoría que estás buscando en nuestro buscador inteligente.', en:'Enter the product, service or category you are looking for in our smart search.', fr:'Entrez le produit, service ou catégorie que vous recherchez.', pt:'Insira o produto, serviço ou categoria que está procurando.', de:'Gib das Produkt, die Dienstleistung oder Kategorie in unsere intelligente Suche ein.' },
-  'how.step2.title': { es:'Descubre negocios cercanos', en:'Discover nearby businesses', fr:'Découvrez les entreprises à proximité', pt:'Descubra negócios próximos', de:'Entdecke nahegelegene Unternehmen' },
-  'how.step2.desc':  { es:'Explora el directorio de negocios locales con información completa: horarios, contacto y ubicación.', en:'Explore the local business directory with complete information: hours, contact and location.', fr:'Explorez le répertoire des entreprises locales avec des informations complètes.', pt:'Explore o diretório de negócios locais com informações completas.', de:'Erkunde das Verzeichnis lokaler Unternehmen mit vollständigen Informationen.' },
-  'how.step3.title': { es:'Conecta y apoya', en:'Connect and support', fr:'Connectez et soutenez', pt:'Conecte e apoie', de:'Verbinden und unterstützen' },
-  'how.step3.desc':  { es:'Contacta directamente al negocio, guárdalo en favoritos y comparte con amigos y familia.', en:'Contact the business directly, save it to favorites and share with friends and family.', fr:'Contactez directement l\'entreprise, enregistrez-la et partagez.', pt:'Contate diretamente o negócio, salve nos favoritos e compartilhe.', de:'Kontaktiere das Unternehmen direkt, speichere es und teile es.' },
+  'how.label':  { es:'Simple y rï¿½pido', en:'Simple and fast', fr:'Simple et rapide', pt:'Simples e rï¿½pido', de:'Einfach und schnell' },
+  'how.title':  { es:'ï¿½Cï¿½mo funciona FYNDER?', en:'How does FYNDER work?', fr:'Comment fonctionne FYNDER?', pt:'Como funciona o FYNDER?', de:'Wie funktioniert FYNDER?' },
+  'how.sub':    { es:'En tres simples pasos conectas con los mejores negocios de tu comunidad.', en:'In three simple steps you connect with the best businesses in your community.', fr:'En trois ï¿½tapes simples, connectez-vous avec les meilleures entreprises.', pt:'Em trï¿½s etapas simples vocï¿½ se conecta com os melhores negï¿½cios.', de:'In drei einfachen Schritten verbindest du dich mit den besten Unternehmen.' },
+  'how.step1.title': { es:'Busca lo que necesitas', en:'Search what you need', fr:'Recherchez ce dont vous avez besoin', pt:'Busque o que vocï¿½ precisa', de:'Suche was du brauchst' },
+  'how.step1.desc':  { es:'Ingresa el producto, servicio o categorï¿½a que estï¿½s buscando en nuestro buscador inteligente.', en:'Enter the product, service or category you are looking for in our smart search.', fr:'Entrez le produit, service ou catï¿½gorie que vous recherchez.', pt:'Insira o produto, serviï¿½o ou categoria que estï¿½ procurando.', de:'Gib das Produkt, die Dienstleistung oder Kategorie in unsere intelligente Suche ein.' },
+  'how.step2.title': { es:'Descubre negocios cercanos', en:'Discover nearby businesses', fr:'Dï¿½couvrez les entreprises ï¿½ proximitï¿½', pt:'Descubra negï¿½cios prï¿½ximos', de:'Entdecke nahegelegene Unternehmen' },
+  'how.step2.desc':  { es:'Explora el directorio de negocios locales con informaciï¿½n completa: horarios, contacto y ubicaciï¿½n.', en:'Explore the local business directory with complete information: hours, contact and location.', fr:'Explorez le rï¿½pertoire des entreprises locales avec des informations complï¿½tes.', pt:'Explore o diretï¿½rio de negï¿½cios locais com informaï¿½ï¿½es completas.', de:'Erkunde das Verzeichnis lokaler Unternehmen mit vollstï¿½ndigen Informationen.' },
+  'how.step3.title': { es:'Conecta y apoya', en:'Connect and support', fr:'Connectez et soutenez', pt:'Conecte e apoie', de:'Verbinden und unterstï¿½tzen' },
+  'how.step3.desc':  { es:'Contacta directamente al negocio, guï¿½rdalo en favoritos y comparte con amigos y familia.', en:'Contact the business directly, save it to favorites and share with friends and family.', fr:'Contactez directement l\'entreprise, enregistrez-la et partagez.', pt:'Contate diretamente o negï¿½cio, salve nos favoritos e compartilhe.', de:'Kontaktiere das Unternehmen direkt, speichere es und teile es.' },
   // CTA
-  'cta.title1':  { es:'¿Tienes un negocio?', en:'Do you have a business?', fr:'Vous avez une entreprise?', pt:'Você tem um negócio?', de:'Haben Sie ein Unternehmen?' },
-  'cta.title2':  { es:'Únete a Fynder gratis', en:'Join Fynder for free', fr:'Rejoignez Fynder gratuitement', pt:'Junte-se ao Fynder gratuitamente', de:'Trete Fynder kostenlos bei' },
-  'cta.desc':    { es:'Registra tu negocio hoy y llega a miles de clientes potenciales en tu comunidad. Sin comisiones, sin costos ocultos.', en:'Register your business today and reach thousands of potential customers in your community. No commissions, no hidden costs.', fr:'Enregistrez votre entreprise aujourd\'hui et atteignez des milliers de clients potentiels.', pt:'Registre seu negócio hoje e alcance milhares de clientes potenciais.', de:'Registriere dein Unternehmen heute und erreiche Tausende potenzieller Kunden.' },
-  'cta.btn1':    { es:'Registrar mi negocio', en:'Register my business', fr:'Enregistrer mon entreprise', pt:'Registrar meu negócio', de:'Mein Unternehmen registrieren' },
-  'cta.btn2':    { es:'Saber más', en:'Learn more', fr:'En savoir plus', pt:'Saiba mais', de:'Mehr erfahren' },
+  'cta.title1':  { es:'ï¿½Tienes un negocio?', en:'Do you have a business?', fr:'Vous avez une entreprise?', pt:'Vocï¿½ tem um negï¿½cio?', de:'Haben Sie ein Unternehmen?' },
+  'cta.title2':  { es:'ï¿½nete a Fynder gratis', en:'Join Fynder for free', fr:'Rejoignez Fynder gratuitement', pt:'Junte-se ao Fynder gratuitamente', de:'Trete Fynder kostenlos bei' },
+  'cta.desc':    { es:'Registra tu negocio hoy y llega a miles de clientes potenciales en tu comunidad. Sin comisiones, sin costos ocultos.', en:'Register your business today and reach thousands of potential customers in your community. No commissions, no hidden costs.', fr:'Enregistrez votre entreprise aujourd\'hui et atteignez des milliers de clients potentiels.', pt:'Registre seu negï¿½cio hoje e alcance milhares de clientes potenciais.', de:'Registriere dein Unternehmen heute und erreiche Tausende potenzieller Kunden.' },
+  'cta.btn1':    { es:'Registrar mi negocio', en:'Register my business', fr:'Enregistrer mon entreprise', pt:'Registrar meu negï¿½cio', de:'Mein Unternehmen registrieren' },
+  'cta.btn2':    { es:'Saber mï¿½s', en:'Learn more', fr:'En savoir plus', pt:'Saiba mais', de:'Mehr erfahren' },
   'cta.perk1':   { es:'100% gratuito', en:'100% free', fr:'100% gratuit', pt:'100% gratuito', de:'100% kostenlos' },
-  'cta.perk2':   { es:'Activación inmediata', en:'Instant activation', fr:'Activation immédiate', pt:'Ativação imediata', de:'Sofortige Aktivierung' },
-  'cta.perk3':   { es:'Miles de usuarios', en:'Thousands of users', fr:'Des milliers d\'utilisateurs', pt:'Milhares de usuários', de:'Tausende von Nutzern' },
+  'cta.perk2':   { es:'Activaciï¿½n inmediata', en:'Instant activation', fr:'Activation immï¿½diate', pt:'Ativaï¿½ï¿½o imediata', de:'Sofortige Aktivierung' },
+  'cta.perk3':   { es:'Miles de usuarios', en:'Thousands of users', fr:'Des milliers d\'utilisateurs', pt:'Milhares de usuï¿½rios', de:'Tausende von Nutzern' },
   // Directory
-  'dir.title':       { es:'Directorio de Negocios', en:'Business Directory', fr:'Annuaire des entreprises', pt:'Diretório de Negócios', de:'Unternehmensverzeichnis' },
-  'dir.search.ph':   { es:'Buscar negocios...', en:'Search businesses...', fr:'Rechercher des entreprises...', pt:'Buscar negócios...', de:'Unternehmen suchen...' },
+  'dir.title':       { es:'Directorio de Negocios', en:'Business Directory', fr:'Annuaire des entreprises', pt:'Diretï¿½rio de Negï¿½cios', de:'Unternehmensverzeichnis' },
+  'dir.search.ph':   { es:'Buscar negocios...', en:'Search businesses...', fr:'Rechercher des entreprises...', pt:'Buscar negï¿½cios...', de:'Unternehmen suchen...' },
   'dir.all':         { es:'Todos', en:'All', fr:'Tous', pt:'Todos', de:'Alle' },
-  'dir.sort.recent': { es:'Más recientes', en:'Most recent', fr:'Plus récents', pt:'Mais recentes', de:'Neueste' },
-  'dir.sort.rating': { es:'Mejor valorados', en:'Top rated', fr:'Mieux notés', pt:'Melhor avaliados', de:'Bestbewertet' },
-  'dir.sort.popular':{ es:'Más populares', en:'Most popular', fr:'Plus populaires', pt:'Mais populares', de:'Beliebteste' },
+  'dir.sort.recent': { es:'Mï¿½s recientes', en:'Most recent', fr:'Plus rï¿½cents', pt:'Mais recentes', de:'Neueste' },
+  'dir.sort.rating': { es:'Mejor valorados', en:'Top rated', fr:'Mieux notï¿½s', pt:'Melhor avaliados', de:'Bestbewertet' },
+  'dir.sort.popular':{ es:'Mï¿½s populares', en:'Most popular', fr:'Plus populaires', pt:'Mais populares', de:'Beliebteste' },
   // Business card
-  'biz.reviews': { es:'reseñas', en:'reviews', fr:'avis', pt:'avaliações', de:'Bewertungen' },
-  'biz.open':    { es:'Abierto', en:'Open', fr:'Ouvert', pt:'Aberto', de:'Geöffnet' },
-  'biz.closed':  { es:'Cerrado', en:'Closed', fr:'Fermé', pt:'Fechado', de:'Geschlossen' },
+  'biz.reviews': { es:'reseï¿½as', en:'reviews', fr:'avis', pt:'avaliaï¿½ï¿½es', de:'Bewertungen' },
+  'biz.open':    { es:'Abierto', en:'Open', fr:'Ouvert', pt:'Aberto', de:'Geï¿½ffnet' },
+  'biz.closed':  { es:'Cerrado', en:'Closed', fr:'Fermï¿½', pt:'Fechado', de:'Geschlossen' },
   'biz.new':     { es:'Nuevo', en:'New', fr:'Nouveau', pt:'Novo', de:'Neu' },
   'biz.featured':{ es:'Destacado', en:'Featured', fr:'Vedette', pt:'Destaque', de:'Empfohlen' },
   'biz.viewprofile': { es:'Ver perfil', en:'View profile', fr:'Voir le profil', pt:'Ver perfil', de:'Profil anzeigen' },
   'biz.contact': { es:'Contactar', en:'Contact', fr:'Contacter', pt:'Contatar', de:'Kontaktieren' },
   'biz.save':    { es:'Guardar', en:'Save', fr:'Enregistrer', pt:'Salvar', de:'Speichern' },
   // Settings
-  'sett.title':     { es:'Ajustes', en:'Settings', fr:'Paramètres', pt:'Configurações', de:'Einstellungen' },
+  'sett.title':     { es:'Ajustes', en:'Settings', fr:'Paramï¿½tres', pt:'Configuraï¿½ï¿½es', de:'Einstellungen' },
   'sett.lang.title':{ es:'Idioma', en:'Language', fr:'Langue', pt:'Idioma', de:'Sprache' },
-  'sett.lang.label':{ es:'Idioma de la interfaz', en:'Interface language', fr:'Langue de l\'interface', pt:'Idioma da interface', de:'Oberflächensprache' },
+  'sett.lang.label':{ es:'Idioma de la interfaz', en:'Interface language', fr:'Langue de l\'interface', pt:'Idioma da interface', de:'Oberflï¿½chensprache' },
   // Misc
   'search.placeholder': { es:'Buscar un chat...', en:'Search a chat...', fr:'Rechercher un chat...', pt:'Buscar um chat...', de:'Chat suchen...' },
   'msg.new':   { es:'Nuevo mensaje', en:'New message', fr:'Nouveau message', pt:'Nova mensagem', de:'Neue Nachricht' },
   'empty.fav': { es:'Sin favoritos', en:'No favorites', fr:'Pas de favoris', pt:'Sem favoritos', de:'Keine Favoriten' },
-  'empty.fav.sub': { es:'Guarda tus chats favoritos aquí.', en:'Save your favorite chats here.', fr:'Enregistrez vos chats favoris ici.', pt:'Salve seus chats favoritos aqui.', de:'Speichere deine Lieblingschats hier.' },
-  'chat.write': { es:'Escribe un mensaje...', en:'Write a message...', fr:'Écrivez un message...', pt:'Escreva uma mensagem...', de:'Nachricht schreiben...' },
-  'notif.title': { es:'Notificaciones', en:'Notifications', fr:'Notifications', pt:'Notificações', de:'Benachrichtigungen' },
+  'empty.fav.sub': { es:'Guarda tus chats favoritos aquï¿½.', en:'Save your favorite chats here.', fr:'Enregistrez vos chats favoris ici.', pt:'Salve seus chats favoritos aqui.', de:'Speichere deine Lieblingschats hier.' },
+  'chat.write': { es:'Escribe un mensaje...', en:'Write a message...', fr:'ï¿½crivez un message...', pt:'Escreva uma mensagem...', de:'Nachricht schreiben...' },
+  'notif.title': { es:'Notificaciones', en:'Notifications', fr:'Notifications', pt:'Notificaï¿½ï¿½es', de:'Benachrichtigungen' },
   'tab.all':     { es:'Todos', en:'All', fr:'Tous', pt:'Todos', de:'Alle' },
   'tab.fav':     { es:'Favoritos', en:'Favorites', fr:'Favoris', pt:'Favoritos', de:'Favoriten' },
 };
 
-/** Obtiene la traducción de una clave para el idioma activo */
+/** Obtiene la traducciï¿½n de una clave para el idioma activo */
 function t(key) {
   const lang = localStorage.getItem('fynderLang') || 'es';
   const entry = I18N[key];
@@ -6409,7 +6412,7 @@ function settApplyLanguage(langCode) {
   const nowRow = document.getElementById('settTranslateNowRow');
   const nowSub = document.getElementById('settTranslateNowSub');
   if (nowRow) nowRow.style.display = langCode !== 'es' ? '' : 'none';
-  if (nowSub) nowSub.textContent = `Idioma activo: ${LANG_NAMES[langCode] || 'Español'}`;
+  if (nowSub) nowSub.textContent = `Idioma activo: ${LANG_NAMES[langCode] || 'Espaï¿½ol'}`;
 
   _renderPreferredLangs(langCode);
   _applyI18N();
@@ -6428,7 +6431,7 @@ function settApplyLanguage(langCode) {
     _gtApplyViaCookie(langCode);
   } else {
     _gtRemoveTranslation();
-    showToast(`???? Idioma restaurado a Español`);
+    showToast(`???? Idioma restaurado a Espaï¿½ol`);
   }
 }
 
@@ -6450,7 +6453,7 @@ function settSyncIdioma() {
   if (sel) sel.value = LANG_NAMES[saved] ? saved : 'es';
 
   const sub = document.getElementById('settLangDetectedSub');
-  if (sub) sub.textContent = `Idioma del sistema: ${LANG_NAMES[browserLang] || 'Español'}`;
+  if (sub) sub.textContent = `Idioma del sistema: ${LANG_NAMES[browserLang] || 'Espaï¿½ol'}`;
 
   const toggle = document.getElementById('settAutoTranslateToggle');
   if (toggle) toggle.classList.toggle('on', autoOn);
@@ -6458,7 +6461,7 @@ function settSyncIdioma() {
   const nowRow = document.getElementById('settTranslateNowRow');
   const nowSub = document.getElementById('settTranslateNowSub');
   if (nowRow) nowRow.style.display = saved !== 'es' ? '' : 'none';
-  if (nowSub) nowSub.textContent = `Idioma activo: ${LANG_NAMES[saved] || 'Español'}`;
+  if (nowSub) nowSub.textContent = `Idioma activo: ${LANG_NAMES[saved] || 'Espaï¿½ol'}`;
 
   _renderPreferredLangs(saved);
 }
@@ -6490,15 +6493,15 @@ function settToggleAutoTranslate() {
   if (newVal) {
     const detected = _detectBrowserLang();
     if (detected !== 'es') settApplyLanguage(detected);
-    else showToast(`? Traducción automática activada`);
+    else showToast(`? Traducciï¿½n automï¿½tica activada`);
   } else {
-    showToast('Traducción automática desactivada');
+    showToast('Traducciï¿½n automï¿½tica desactivada');
   }
 }
 
 /**
- * Aplica traducción usando la cookie de Google Translate.
- * Esto traduce la página in-place igual que el botón "Traducir" de Chrome,
+ * Aplica traducciï¿½n usando la cookie de Google Translate.
+ * Esto traduce la pï¿½gina in-place igual que el botï¿½n "Traducir" de Chrome,
  * sin redirigir al usuario a otra URL.
  */
 function settApplyLanguage(langCode) {
@@ -6511,18 +6514,18 @@ function settApplyLanguage(langCode) {
   const nowRow = document.getElementById('settTranslateNowRow');
   const nowSub = document.getElementById('settTranslateNowSub');
   if (nowRow) nowRow.style.display = langCode !== 'es' ? '' : 'none';
-  if (nowSub) nowSub.textContent = `Idioma activo: ${LANG_NAMES[langCode] || 'Español'}`;
+  if (nowSub) nowSub.textContent = `Idioma activo: ${LANG_NAMES[langCode] || 'Espaï¿½ol'}`;
 
   _renderPreferredLangs(langCode);
 
   if (langCode === 'es') {
-    // Quitar traducción — restaurar original
+    // Quitar traducciï¿½n ï¿½ restaurar original
     _gtRemoveTranslation();
-    showToast('???? Idioma restaurado a Español');
+    showToast('???? Idioma restaurado a Espaï¿½ol');
     return;
   }
 
-  // Intentar primero con el widget embebido (más limpio)
+  // Intentar primero con el widget embebido (mï¿½s limpio)
   const combo = document.querySelector('.goog-te-combo');
   if (combo) {
     combo.value = langCode;
@@ -6531,12 +6534,12 @@ function settApplyLanguage(langCode) {
     return;
   }
 
-  // Fallback: inyectar el widget si no está listo e intentar de nuevo
-  showToast(`${_langFlag(langCode)} Cargando traducción...`);
+  // Fallback: inyectar el widget si no estï¿½ listo e intentar de nuevo
+  showToast(`${_langFlag(langCode)} Cargando traducciï¿½n...`);
   _gtLoadAndTranslate(langCode);
 }
 
-/** Carga el widget de Google Translate si no está y aplica el idioma */
+/** Carga el widget de Google Translate si no estï¿½ y aplica el idioma */
 function _gtLoadAndTranslate(langCode) {
   // Asegurarse de que el elemento contenedor existe
   let el = document.getElementById('google_translate_element');
@@ -6557,7 +6560,7 @@ function _gtLoadAndTranslate(langCode) {
     } catch(e) {}
   }
 
-  // Esperar hasta que el combo esté disponible (máx 4s)
+  // Esperar hasta que el combo estï¿½ disponible (mï¿½x 4s)
   let attempts = 0;
   const poll = setInterval(() => {
     const combo = document.querySelector('.goog-te-combo');
@@ -6568,14 +6571,14 @@ function _gtLoadAndTranslate(langCode) {
       showToast(`${_langFlag(langCode)} ${LANG_NAMES[langCode]} activado ?`);
     } else if (++attempts > 20) {
       clearInterval(poll);
-      // Último recurso: iframe de traducción de Google en la misma pestaña
+      // ï¿½ltimo recurso: iframe de traducciï¿½n de Google en la misma pestaï¿½a
       _gtApplyViaCookie(langCode);
     }
   }, 200);
 }
 
 /**
- * Traduce la página al idioma especificado usando Google Translate
+ * Traduce la pï¿½gina al idioma especificado usando Google Translate
  */
 function _gtTranslateTo(langCode) {
   if (langCode === 'es') {
@@ -6586,8 +6589,8 @@ function _gtTranslateTo(langCode) {
 }
 
 /**
- * Aplica la traducción inyectando la cookie de Google Translate
- * y recargando la página (método más compatible con archivos locales)
+ * Aplica la traducciï¿½n inyectando la cookie de Google Translate
+ * y recargando la pï¿½gina (mï¿½todo mï¿½s compatible con archivos locales)
  */
 function _gtApplyViaCookie(langCode) {
   try {
@@ -6601,20 +6604,20 @@ function _gtApplyViaCookie(langCode) {
     document.cookie = `googtrans=/es/${langCode}; path=/; domain=${domain}`;
     document.cookie = `googtrans=/es/${langCode}; path=/`;
     
-    // También establecer googtrans (sin barra) que usa GT en algunos navegadores
+    // Tambiï¿½n establecer googtrans (sin barra) que usa GT en algunos navegadores
     document.cookie = `googtrans=es|${langCode}; path=/`;
     
-    showToast(`${_langFlag(langCode)} Aplicando ${LANG_NAMES[langCode]}... La página se recargará.`);
+    showToast(`${_langFlag(langCode)} Aplicando ${LANG_NAMES[langCode]}... La pï¿½gina se recargarï¿½.`);
     
     // Recargar para que la cookie surta efecto
     setTimeout(() => location.reload(), 800);
   } catch(e) {
-    console.error('Error aplicando traducción:', e);
-    showToast('No se pudo cargar el traductor. Verifica tu conexión a internet.');
+    console.error('Error aplicando traducciï¿½n:', e);
+    showToast('No se pudo cargar el traductor. Verifica tu conexiï¿½n a internet.');
   }
 }
 
-/** Quita la traducción restaurando el idioma original */
+/** Quita la traducciï¿½n restaurando el idioma original */
 function _gtRemoveTranslation() {
   // Limpiar cookies de Google Translate
   const domain = location.hostname || 'localhost';
@@ -6626,22 +6629,22 @@ function _gtRemoveTranslation() {
   if (combo) {
     combo.value = 'es';
     combo.dispatchEvent(new Event('change'));
-    showToast('???? Idioma restaurado a Español');
+    showToast('???? Idioma restaurado a Espaï¿½ol');
     return;
   }
 
-  // Si no hay combo disponible, recargar para quitar traducción
-  showToast('???? Restaurando idioma español...');
+  // Si no hay combo disponible, recargar para quitar traducciï¿½n
+  showToast('???? Restaurando idioma espaï¿½ol...');
   setTimeout(() => location.reload(), 600);
 }
 
-/** Inicializa la traducción automática al cargar si está activada */
+/** Inicializa la traducciï¿½n automï¿½tica al cargar si estï¿½ activada */
 function _initAutoTranslate() {
   const autoOn = localStorage.getItem('fynderAutoTranslate') === '1';
   if (!autoOn) return;
   const saved = localStorage.getItem('fynderLang') || _detectBrowserLang();
   if (saved !== 'es') {
-    // Esperar a que Google Translate esté listo
+    // Esperar a que Google Translate estï¿½ listo
     let attempts = 0;
     const poll = setInterval(() => {
       const combo = document.querySelector('.goog-te-combo');
@@ -6666,7 +6669,7 @@ function settSyncIdioma() {
   if (sel) sel.value = LANG_NAMES[saved] ? saved : 'es';
 
   const sub = document.getElementById('settLangDetectedSub');
-  if (sub) sub.textContent = `Idioma del sistema: ${LANG_NAMES[browserLang] || 'Español'}`;
+  if (sub) sub.textContent = `Idioma del sistema: ${LANG_NAMES[browserLang] || 'Espaï¿½ol'}`;
 
   const toggle = document.getElementById('settAutoTranslateToggle');
   if (toggle) toggle.classList.toggle('on', autoOn);
@@ -6674,7 +6677,7 @@ function settSyncIdioma() {
   const nowRow = document.getElementById('settTranslateNowRow');
   const nowSub = document.getElementById('settTranslateNowSub');
   if (nowRow) nowRow.style.display = saved !== 'es' ? '' : 'none';
-  if (nowSub) nowSub.textContent = `Idioma activo: ${LANG_NAMES[saved] || 'Español'}`;
+  if (nowSub) nowSub.textContent = `Idioma activo: ${LANG_NAMES[saved] || 'Espaï¿½ol'}`;
 
   _renderPreferredLangs(saved);
 }
@@ -6708,10 +6711,10 @@ function settToggleAutoTranslate() {
   if (newVal) {
     const detected = _detectBrowserLang();
     const saved = localStorage.getItem('fynderLang') || detected;
-    showToast(`? Traducción automática activada — ${LANG_NAMES[detected] || 'Español'}`);
+    showToast(`? Traducciï¿½n automï¿½tica activada ï¿½ ${LANG_NAMES[detected] || 'Espaï¿½ol'}`);
     if (saved !== 'es') settApplyLanguage(saved);
   } else {
-    showToast('Traducción automática desactivada');
+    showToast('Traducciï¿½n automï¿½tica desactivada');
   }
 }
 
@@ -6747,14 +6750,14 @@ function setFeedbackStar(n) {
 
 function submitFeedback() {
   const txt = (document.getElementById('feedbackText')?.value || '').trim();
-  if (!_feedbackStar) { showToast('Elige una valoración primero ??'); return; }
-  // Guardamos localmente (en un proyecto real iría a un servidor)
+  if (!_feedbackStar) { showToast('Elige una valoraciï¿½n primero ??'); return; }
+  // Guardamos localmente (en un proyecto real irï¿½a a un servidor)
   const entry = { stars: _feedbackStar, text: txt, date: new Date().toLocaleDateString('es') };
   const prev = JSON.parse(localStorage.getItem('fynderFeedback') || '[]');
   prev.push(entry);
   localStorage.setItem('fynderFeedback', JSON.stringify(prev));
   closeFeedbackModal();
-  showToast('¡Gracias por tu opinión! ??');
+  showToast('ï¿½Gracias por tu opiniï¿½n! ??');
 }
 
 // -- LAYOUT WHATSAPP WEB ------------------------------------------------------
@@ -6776,12 +6779,12 @@ function waCloseChat() {
 
 /** Filtra la lista de conversaciones por texto */
 function filterConversations(q) {
-  // Guardar el query activo y re-renderizar respetándolo
+  // Guardar el query activo y re-renderizar respetï¿½ndolo
   _convSearchQuery = (q || '').trim().toLowerCase();
   renderConversations();
 }
 
-/** Toggle emoji picker para el input móvil */
+/** Toggle emoji picker para el input mï¿½vil */
 function toggleEmojiPickerMobile() {
   // Redirigir al mismo picker, pero al cerrar insertar en chatInputMobile
   const picker  = document.getElementById('emojiPicker');
@@ -6802,7 +6805,7 @@ function toggleEmojiPickerMobile() {
 
 
 /* ================================================================
-   CHAT: DIVISOR REDIMENSIONABLE (sidebar ? área principal)
+   CHAT: DIVISOR REDIMENSIONABLE (sidebar ? ï¿½rea principal)
    ================================================================ */
 (function initWaResizer() {
   document.addEventListener('DOMContentLoaded', () => {
@@ -6845,7 +6848,7 @@ function toggleEmojiPickerMobile() {
 })();
 
 /* ================================================================
-   CHAT: BOTÓN ENVIAR / MICRÓFONO (toggle según haya texto)
+   CHAT: BOTï¿½N ENVIAR / MICRï¿½FONO (toggle segï¿½n haya texto)
    ================================================================ */
 function chatInputChange() {
   const input   = document.getElementById('chatInput');
@@ -6857,7 +6860,7 @@ function chatInputChange() {
   micBtn.style.display  = hasText ? 'none' : '';
 }
 
-// Inicializar el estado del botón al abrir un chat
+// Inicializar el estado del botï¿½n al abrir un chat
 (function patchChatOpen() {
   document.addEventListener('DOMContentLoaded', () => {
     // Esconder send, mostrar mic al inicio (sin texto)
@@ -6869,7 +6872,7 @@ function chatInputChange() {
 })();
 
 /* ================================================================
-   CHAT: MENÚ DE ADJUNTAR
+   CHAT: MENï¿½ DE ADJUNTAR
    ================================================================ */
 let _attachMenuOpen = false;
 
@@ -6896,9 +6899,9 @@ document.addEventListener('click', (e) => {
 function handleFileAttach(input, type) {
   if (!input.files || !input.files.length) return;
   if (!_activeChatBizId) { showToast('Selecciona un chat primero'); return; }
-  if (!localStorage.getItem('fynderLogged')) { showToast('Inicia sesión para enviar archivos'); return; }
+  if (!localStorage.getItem('fynderLogged')) { showToast('Inicia sesiï¿½n para enviar archivos'); return; }
 
-  // Cerrar menú
+  // Cerrar menï¿½
   const menu = document.getElementById('chatAttachMenu');
   if (menu) menu.classList.remove('open');
   _attachMenuOpen = false;
@@ -6945,7 +6948,7 @@ function handleFileAttach(input, type) {
 (function patchRenderMsgsInto() {
   const _orig = window._renderMsgsInto;
   // Sobreescribir directamente en el renderizador existente inyectando HTML de adjunto
-  // Lo hacemos reemplazando la función global
+  // Lo hacemos reemplazando la funciï¿½n global
   const _origRender = _renderMsgsInto;
   window._renderMsgsInto = function(container, bizId) {
     if (!container) return;
@@ -7046,7 +7049,7 @@ function handleFileAttach(input, type) {
     container.innerHTML = html;
     requestAnimationFrame(() => { container.scrollTop = container.scrollHeight; });
 
-    // Iniciar duración de audios
+    // Iniciar duraciï¿½n de audios
     container.querySelectorAll('.chat-bubble-audio audio').forEach(audio => {
       const id = audio.id;
       audio.addEventListener('loadedmetadata', () => {
@@ -7085,7 +7088,7 @@ function _playBubbleAudio(id, btn) {
   const audio = document.getElementById(id);
   if (!audio) return;
   if (audio.paused) {
-    // Pausar cualquier otro audio en reproducción
+    // Pausar cualquier otro audio en reproducciï¿½n
     document.querySelectorAll('.chat-bubble-audio audio').forEach(a => {
       if (a !== audio && !a.paused) {
         a.pause();
@@ -7123,12 +7126,12 @@ function _openImgLightbox(src, caption) {
   overlay.onclick = () => overlay.remove();
   overlay.innerHTML = `
     <img src="${src}" style="max-width:92vw;max-height:82dvh;border-radius:12px;object-fit:contain;box-shadow:0 8px 40px rgba(0,0,0,.6);" loading="lazy" onclick="event.stopPropagation()">
-    <p style="color:rgba(255,255,255,.6);font-size:.8rem;font-family:'Inter',sans-serif;margin:0;">${caption} · Clic para cerrar</p>`;
+    <p style="color:rgba(255,255,255,.6);font-size:.8rem;font-family:'Inter',sans-serif;margin:0;">${caption} ï¿½ Clic para cerrar</p>`;
   document.body.appendChild(overlay);
 }
 
 /* ================================================================
-   CHAT: GRABACIÓN DE AUDIO (micrófono)
+   CHAT: GRABACIï¿½N DE AUDIO (micrï¿½fono)
    ================================================================ */
 let _mediaRecorder  = null;
 let _audioChunks    = [];
@@ -7146,7 +7149,7 @@ function toggleAudioRecord() {
 
 async function startAudioRecord() {
   if (!_activeChatBizId) { showToast('Selecciona un chat primero'); return; }
-  if (!localStorage.getItem('fynderLogged')) { showToast('Inicia sesión para enviar audios'); return; }
+  if (!localStorage.getItem('fynderLogged')) { showToast('Inicia sesiï¿½n para enviar audios'); return; }
 
   try {
     const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
@@ -7157,7 +7160,7 @@ async function startAudioRecord() {
     _mediaRecorder.start();
     _isRecording = true;
 
-    // Mostrar barra de grabación
+    // Mostrar barra de grabaciï¿½n
     const micBtn    = document.getElementById('chatMicBtn');
     const inputBar  = document.querySelector('.chat-input-bar.wa-input-bar');
     const recordBar = document.getElementById('chatRecordBar');
@@ -7171,15 +7174,15 @@ async function startAudioRecord() {
     _recordTimer = setInterval(() => {
       _recordSeconds++;
       _updateRecordTime();
-      // Límite de 5 minutos
+      // Lï¿½mite de 5 minutos
       if (_recordSeconds >= 300) stopAndSendAudio();
     }, 1000);
 
   } catch (err) {
     if (err.name === 'NotAllowedError' || err.name === 'PermissionDeniedError') {
-      showToast('Permiso de micrófono denegado. Actívalo en la configuración del navegador.');
+      showToast('Permiso de micrï¿½fono denegado. Actï¿½valo en la configuraciï¿½n del navegador.');
     } else {
-      showToast('No se pudo acceder al micrófono: ' + err.message);
+      showToast('No se pudo acceder al micrï¿½fono: ' + err.message);
     }
   }
 }
@@ -7208,7 +7211,7 @@ function cancelAudioRecord() {
   }
   _audioChunks = [];
   _hideRecordBar();
-  showToast('Grabación cancelada');
+  showToast('Grabaciï¿½n cancelada');
 }
 
 function _hideRecordBar() {
@@ -7260,11 +7263,11 @@ function _onRecordStop() {
 }
 
 /* ================================================================
-   CHAT: ESTADO DE MENSAJES — TICKS ESTILO WHATSAPP
-   pending   ? reloj        (esperando envío / sin conexión)
-   sent      ? ? gris       (llegó al servidor)
+   CHAT: ESTADO DE MENSAJES ï¿½ TICKS ESTILO WHATSAPP
+   pending   ? reloj        (esperando envï¿½o / sin conexiï¿½n)
+   sent      ? ? gris       (llegï¿½ al servidor)
    delivered ? ?? gris      (entregado al destinatario)
-   read      ? ?? azul      (leído)
+   read      ? ?? azul      (leï¿½do)
    ================================================================ */
 function _buildTickHtml(msg) {
   // Compatibilidad con mensajes anteriores que usan msg.read
@@ -7286,16 +7289,16 @@ function _buildTickHtml(msg) {
     </span>`;
   }
   // read
-  return `<span class="chat-bubble-tick tick-read" title="Leído">
+  return `<span class="chat-bubble-tick tick-read" title="Leï¿½do">
     <i class="fas fa-check-double"></i>
   </span>`;
 }
 
 /* ================================================================
-   CHAT: DIVISOR REDIMENSIONABLE — RANGO AMPLIADO
+   CHAT: DIVISOR REDIMENSIONABLE ï¿½ RANGO AMPLIADO
    Min: 200px  |  Max: 65% del viewport
    ================================================================ */
-// Parchar el resizer existente para ampliar los límites
+// Parchar el resizer existente para ampliar los lï¿½mites
 (function patchWaResizer() {
   document.addEventListener('DOMContentLoaded', () => {
     const handle  = document.getElementById('waResizeHandle');
@@ -7351,7 +7354,7 @@ function _buildTickHtml(msg) {
    CHAT HEADER: funciones de los botones
    ================================================================ */
 
-/** Llamar al teléfono del negocio si está disponible */
+/** Llamar al telï¿½fono del negocio si estï¿½ disponible */
 function waChatCall() {
   if (!_activeChatBizId) return;
   const biz = BUSINESSES.find(b => String(b.id) === String(_activeChatBizId));
@@ -7361,11 +7364,11 @@ function waChatCall() {
     const clean = String(phone).replace(/\D/g, '');
     window.open('tel:+' + clean, '_self');
   } else {
-    showToast('Este negocio no tiene número de teléfono registrado ??');
+    showToast('Este negocio no tiene nï¿½mero de telï¿½fono registrado ??');
   }
 }
 
-/** Abrir/cerrar el menú contextual del header del chat */
+/** Abrir/cerrar el menï¿½ contextual del header del chat */
 let _waChatCtxOpen = false;
 function toggleWaChatMenu(btn) {
   const menu = document.getElementById('waChatCtxMenu');
@@ -7388,7 +7391,7 @@ document.addEventListener('click', (e) => {
   }
 });
 
-/** Búsqueda dentro del chat (resalta mensajes que contienen el texto) */
+/** Bï¿½squeda dentro del chat (resalta mensajes que contienen el texto) */
 function waChatSearch() {
   const q = prompt('Buscar en el chat:');
   if (!q || !q.trim()) return;
@@ -7407,7 +7410,7 @@ function waChatSearch() {
     // Scroll al primero encontrado
     const first = document.querySelector('#chatMessages .chat-bubble[style*="outline"]');
     if (first) first.scrollIntoView({ behavior: 'smooth', block: 'center' });
-    // Limpiar resaltado después de 3 segundos
+    // Limpiar resaltado despuï¿½s de 3 segundos
     setTimeout(() => {
       document.querySelectorAll('#chatMessages .chat-bubble').forEach(b => b.style.outline = '');
     }, 3000);
@@ -7421,7 +7424,7 @@ function exportThisChat() {
   const name = biz ? biz.name : 'Negocio';
   const msgs = _getMsgs(_activeChatBizId);
   if (!msgs.length) { showToast('No hay mensajes para exportar'); return; }
-  let txt = `Chat con ${name} — Fynder\n${'='.repeat(40)}\n\n`;
+  let txt = `Chat con ${name} ï¿½ Fynder\n${'='.repeat(40)}\n\n`;
   msgs.forEach(m => {
     const who = m.from === 'user' ? 'Yo' : name;
     txt += `[${m.date} ${m.time}] ${who}: ${m.text || (m.attach ? '[Archivo adjunto]' : '')}\n`;
@@ -7439,7 +7442,7 @@ function clearThisChat() {
   if (!_activeChatBizId) return;
   const biz  = BUSINESSES.find(b => String(b.id) === String(_activeChatBizId));
   const name = biz ? biz.name : 'este negocio';
-  if (!confirm(`¿Borrar todos los mensajes con ${name}?`)) return;
+  if (!confirm(`ï¿½Borrar todos los mensajes con ${name}?`)) return;
   _saveMsgs(_activeChatBizId, []);
   const convs = _getConversations();
   const idx   = convs.findIndex(c => String(c.id) === String(_activeChatBizId));
@@ -7453,7 +7456,7 @@ function clearThisChat() {
    CHAT PROFILE: botones funcionales
    ================================================================ */
 
-/** Flecha atrás — vuelve al chat si estaba activo, si no a mensajes */
+/** Flecha atrï¿½s ï¿½ vuelve al chat si estaba activo, si no a mensajes */
 function cproGoBack() {
   if (_activeChatBizId) {
     if (window.innerWidth >= 769) {
@@ -7476,7 +7479,7 @@ function cproCall() {
     const clean = String(phone).replace(/[\s\-\(\)]/g, '');
     window.location.href = 'tel:' + clean;
   } else {
-    showToast('Este negocio no tiene número de teléfono registrado ??');
+    showToast('Este negocio no tiene nï¿½mero de telï¿½fono registrado ??');
   }
 }
 
@@ -7509,7 +7512,7 @@ function cproSearchInChat() {
   }, 350);
 }
 
-/** Ver mapa — con fallback a address si no hay mapQuery */
+/** Ver mapa ï¿½ con fallback a address si no hay mapQuery */
 function openChatProfileMap() {
   if (!_activeChatBizId) return;
   const biz = BUSINESSES.find(b => String(b.id) === String(_activeChatBizId));
@@ -7518,7 +7521,7 @@ function openChatProfileMap() {
   if (query) {
     window.open('https://maps.google.com/?q=' + encodeURIComponent(query.replace(/\+/g, ' ')), '_blank');
   } else {
-    showToast('Ubicación no disponible para este negocio ??');
+    showToast('Ubicaciï¿½n no disponible para este negocio ??');
   }
 }
 
@@ -7541,20 +7544,20 @@ function cproShareProfile() {
   if (!_activeChatBizId) return;
   const biz = BUSINESSES.find(b => String(b.id) === String(_activeChatBizId));
   const name = biz ? biz.name : 'este negocio';
-  const text = `¡Descubrí ${name} en Fynder! ?? Encuéntralo en la app.`;
+  const text = `ï¿½Descubrï¿½ ${name} en Fynder! ?? Encuï¿½ntralo en la app.`;
   if (navigator.share) {
     navigator.share({ title: name, text: text, url: window.location.href })
       .catch(() => {});
   } else {
     navigator.clipboard.writeText(text).then(() => {
-      showToast('¡Enlace copiado al portapapeles! ??');
+      showToast('ï¿½Enlace copiado al portapapeles! ??');
     }).catch(() => {
       showToast('No se pudo compartir en este navegador');
     });
   }
 }
 
-/** Menú contextual del ? del perfil */
+/** Menï¿½ contextual del ? del perfil */
 let _cproMenuOpen = false;
 function toggleCproMenu(btn) {
   const menu = document.getElementById('cproCtxMenu');
@@ -7577,10 +7580,10 @@ document.addEventListener('click', (e) => {
 });
 
 /* ================================================================
-   RAIL DE ÍCONOS: lógica de navegación y avatar
+   RAIL DE ï¿½CONOS: lï¿½gica de navegaciï¿½n y avatar
    ================================================================ */
 
-/** Cambia la sección activa del rail */
+/** Cambia la secciï¿½n activa del rail */
 function waRailSwitch(section, btn) {
   // Quitar activo de todos los botones del rail
   document.querySelectorAll('.wa-rail-btn').forEach(b => b.classList.remove('active'));
@@ -7617,7 +7620,7 @@ function waRailSyncAvatar() {
   }
 }
 
-/** Actualiza el badge de mensajes no leídos en el rail */
+/** Actualiza el badge de mensajes no leï¿½dos en el rail */
 function waRailUpdateBadge() {
   const badge = document.getElementById('railBadgeChats');
   const navBadge = document.getElementById('navMsgBadge');
@@ -7631,7 +7634,7 @@ function waRailUpdateBadge() {
   }
 }
 
-// Inicializar el rail cuando se abre la página de mensajes
+// Inicializar el rail cuando se abre la pï¿½gina de mensajes
 document.addEventListener('DOMContentLoaded', () => {
   // Parchear goPage para sincronizar el rail al entrar a mensajes
   const _origGoPageRail = window.goPage;
@@ -7659,9 +7662,9 @@ document.addEventListener('DOMContentLoaded', () => {
    AJUSTES DEL CHAT: modo oscuro y fondo del chat
    ================================================================ */
 
-/** Toggle modo oscuro/día desde el panel de ajustes del chat */
+/** Toggle modo oscuro/dï¿½a desde el panel de ajustes del chat */
 function msgToggleTheme() {
-  toggleDarkMode(); // usa la función global existente
+  toggleDarkMode(); // usa la funciï¿½n global existente
   _syncMsgSettingsTheme();
 }
 
@@ -7679,7 +7682,7 @@ function _syncMsgSettingsTheme() {
     : '<i class="fas fa-sun" style="color:#F4D35E"></i>';
 }
 
-/** Toggle genérico de ajustes del chat (online, etc.) */
+/** Toggle genï¿½rico de ajustes del chat (online, etc.) */
 function msgToggleSetting(key, btnId) {
   const lsKey  = 'fynderMsgOpt_' + key;
   const btn    = document.getElementById(btnId);
@@ -7692,7 +7695,7 @@ function msgToggleSetting(key, btnId) {
 
 /** Cambiar fondo del chat */
 function setChatWallpaper(wp, btn) {
-  // Quitar clases anteriores del área de mensajes
+  // Quitar clases anteriores del ï¿½rea de mensajes
   const msgs1 = document.getElementById('chatMessages');
   const msgs2 = document.getElementById('chatMessagesMobile');
   [msgs1, msgs2].forEach(el => {
@@ -7709,7 +7712,7 @@ function setChatWallpaper(wp, btn) {
   if (btn) btn.classList.add('active');
 
   // Actualizar sub-label
-  const wpLabels = { default:'Patrón por defecto', dots:'Puntos', gradient:'Gradiente', dark:'Oscuro total', nature:'Verde' };
+  const wpLabels = { default:'Patrï¿½n por defecto', dots:'Puntos', gradient:'Gradiente', dark:'Oscuro total', nature:'Verde' };
   const sub = document.getElementById('settingWallpaperSub');
   if (sub) sub.textContent = wpLabels[wp] || wp;
 
@@ -7731,7 +7734,7 @@ function _restoreChatWallpaper() {
   document.querySelectorAll('.msg-wallpaper-dot').forEach(d => {
     d.classList.toggle('active', d.dataset.wp === wp);
   });
-  const wpLabels = { default:'Patrón por defecto', dots:'Puntos', gradient:'Gradiente', dark:'Oscuro total', nature:'Verde' };
+  const wpLabels = { default:'Patrï¿½n por defecto', dots:'Puntos', gradient:'Gradiente', dark:'Oscuro total', nature:'Verde' };
   const sub = document.getElementById('settingWallpaperSub');
   if (sub) sub.textContent = wpLabels[wp] || wp;
 }
@@ -7744,14 +7747,14 @@ window.openMsgSettings = function() {
   _restoreChatWallpaper();
 };
 
-// Restaurar wallpaper al cargar la página
+// Restaurar wallpaper al cargar la pï¿½gina
 document.addEventListener('DOMContentLoaded', () => {
   _restoreChatWallpaper();
   _syncMsgSettingsTheme();
 });
 
 // ============================================================
-//  HEADER CHATS — Menú de tres puntitos (dropdown)
+//  HEADER CHATS ï¿½ Menï¿½ de tres puntitos (dropdown)
 // ============================================================
 
 let _msgHeaderMenuOpen = false;
@@ -7780,7 +7783,7 @@ function _closeMsgHeaderMenuOutside(e) {
   closeMsgHeaderMenu();
 }
 
-/** Marca todos los chats como leídos (limpia badges) */
+/** Marca todos los chats como leï¿½dos (limpia badges) */
 function msgMarkAllRead() {
   const convs = _getConversations();
   convs.forEach(c => {
@@ -7792,7 +7795,7 @@ function msgMarkAllRead() {
   _saveConversations(convs);
   renderConversations();
   updateMsgBadge();
-  showToast('? Todos los chats marcados como leídos');
+  showToast('? Todos los chats marcados como leï¿½dos');
 }
 
 /** Ordena los chats por criterio */
@@ -7801,17 +7804,17 @@ function msgSortChats(by) {
   if (by === 'unread') {
     convs.sort((a, b) => (b.unread || 0) - (a.unread || 0));
   } else {
-    // recent: orden por timestamp del último mensaje
+    // recent: orden por timestamp del ï¿½ltimo mensaje
     convs.sort((a, b) => (b.lastTime || 0) - (a.lastTime || 0));
   }
   _saveConversations(convs);
   renderConversations();
-  showToast(by === 'unread' ? '?? Ordenado por no leídos' : '?? Ordenado por recientes');
+  showToast(by === 'unread' ? '?? Ordenado por no leï¿½dos' : '?? Ordenado por recientes');
 }
 
-/** Limpia todo el historial de chats (pide confirmación) */
+/** Limpia todo el historial de chats (pide confirmaciï¿½n) */
 function msgClearAllChats() {
-  if (!confirm('¿Limpiar todo el historial de chats? Esta acción no se puede deshacer.')) return;
+  if (!confirm('ï¿½Limpiar todo el historial de chats? Esta acciï¿½n no se puede deshacer.')) return;
   const convs = _getConversations();
   convs.forEach(c => {
     localStorage.removeItem('fynderChat_' + c.id);
@@ -7822,7 +7825,7 @@ function msgClearAllChats() {
 }
 
 // ============================================================
-//  BOTÓN LÁPIZ — Modal "Nuevo chat"
+//  BOTï¿½N Lï¿½PIZ ï¿½ Modal "Nuevo chat"
 // ============================================================
 
 function openNewChatModal() {
@@ -7850,7 +7853,7 @@ function _renderNewChatList(q) {
   if (!list) return;
   const term = (q || '').trim().toLowerCase();
 
-  // Negocios con los que ya hay conversación
+  // Negocios con los que ya hay conversaciï¿½n
   const existingIds = new Set(_getConversations().map(c => String(c.bizId)));
 
   let businesses = BUSINESSES;
@@ -7880,7 +7883,7 @@ function _renderNewChatList(q) {
         </div>
         <div class="msg-newchat-info">
           <span class="msg-newchat-name">${b.name}</span>
-          <span class="msg-newchat-meta">${cat ? cat.label : ''} ${stars ? '· ' + stars : ''}</span>
+          <span class="msg-newchat-meta">${cat ? cat.label : ''} ${stars ? 'ï¿½ ' + stars : ''}</span>
         </div>
         ${hasChat
           ? `<span class="msg-newchat-badge-existing"><i class="fas fa-comment-dots"></i></span>`
@@ -7899,91 +7902,91 @@ function _pick(arr) {
 }
 
 /**
- * Detecta la intención del usuario usando múltiples señales:
- * palabras clave, frases completas, contexto negativo ("no me quedó"),
- * verbos de acción ("cambiar", "devolver") y variantes coloquiales.
+ * Detecta la intenciï¿½n del usuario usando mï¿½ltiples seï¿½ales:
+ * palabras clave, frases completas, contexto negativo ("no me quedï¿½"),
+ * verbos de acciï¿½n ("cambiar", "devolver") y variantes coloquiales.
  */
 function _detectIntent(t) {
-  // t ya viene en minúsculas sin acentos normalizados
+  // t ya viene en minï¿½sculas sin acentos normalizados
   const intents = [];
 
-  // -- DEVOLUCIÓN / CAMBIO / NO QUEDÓ --
-  if (/(no me qued|no qued|no sirvi|no funcion|no jal|no encaj|no entr|cambiar|cambi|devolver|devolución|devolucion|reembolso|reembolsar|quiero cambiar|me la cambia|me lo cambia|talla mal|talla equivocad|quedó grande|quedó pequeño|quedo grande|quedo pequeño|no era lo que|vino mal|llegó mal|llegó roto|llegó dañado|llegó defectuoso|en mal estado|producto malo|no es lo que ped|no coincide|no es correcto|artículo incorrecto)/.test(t)) {
+  // -- DEVOLUCIï¿½N / CAMBIO / NO QUEDï¿½ --
+  if (/(no me qued|no qued|no sirvi|no funcion|no jal|no encaj|no entr|cambiar|cambi|devolver|devoluciï¿½n|devolucion|reembolso|reembolsar|quiero cambiar|me la cambia|me lo cambia|talla mal|talla equivocad|quedï¿½ grande|quedï¿½ pequeï¿½o|quedo grande|quedo pequeï¿½o|no era lo que|vino mal|llegï¿½ mal|llegï¿½ roto|llegï¿½ daï¿½ado|llegï¿½ defectuoso|en mal estado|producto malo|no es lo que ped|no coincide|no es correcto|artï¿½culo incorrecto)/.test(t)) {
     intents.push('cambio_devolucion');
   }
 
   // -- QUEJA / PROBLEMA / MAL SERVICIO --
-  if (/(queja|reclamo|molest|inconveniente|pésimo|pesimo|mal servicio|mala atención|mala atencion|me trataron|irresponsable|tardaron mucho|nunca llegó|nunca llego|me estafaron|me robaron|me cobraron de más|cobro de mas|no cumplieron|incumplieron|fallaron|decepcionante|deplorable|negligencia|dañaron|rompieron|perdieron mi|extraviaron)/.test(t)) {
+  if (/(queja|reclamo|molest|inconveniente|pï¿½simo|pesimo|mal servicio|mala atenciï¿½n|mala atencion|me trataron|irresponsable|tardaron mucho|nunca llegï¿½|nunca llego|me estafaron|me robaron|me cobraron de mï¿½s|cobro de mas|no cumplieron|incumplieron|fallaron|decepcionante|deplorable|negligencia|daï¿½aron|rompieron|perdieron mi|extraviaron)/.test(t)) {
     intents.push('queja');
   }
 
-  // -- PRODUCTO DAÑADO / DEFECTO --
-  if (/(dañad|roto|defecto|defectuos|no funciona|se dañó|se daño|se rompió|se rompio|no enciende|no prende|no carga|no corre|falla|fallo|error|no abre|no cierra|suena raro|hace ruido|se calienta demasiado|se sobre calienta|pantalla rota|pantalla rayada|pantalla quebrada)/.test(t)) {
+  // -- PRODUCTO DAï¿½ADO / DEFECTO --
+  if (/(daï¿½ad|roto|defecto|defectuos|no funciona|se daï¿½ï¿½|se daï¿½o|se rompiï¿½|se rompio|no enciende|no prende|no carga|no corre|falla|fallo|error|no abre|no cierra|suena raro|hace ruido|se calienta demasiado|se sobre calienta|pantalla rota|pantalla rayada|pantalla quebrada)/.test(t)) {
     intents.push('producto_danado');
   }
 
-  // -- PRECIO / COTIZACIÓN --
-  if (/(precio|costo|cuánto|cuanto|cuánto cuesta|cuanto cuesta|cuánto cobran|cuanto cobran|tarifa|valor|cuánto sale|cuanto sale|presupuesto|cotización|cotizacion|cotizar|cuánto me costaría|cuanto me costaria|qué precio|que precio|tienen precio|tienen tarifa|economico|barato|caro)/.test(t)) {
+  // -- PRECIO / COTIZACIï¿½N --
+  if (/(precio|costo|cuï¿½nto|cuanto|cuï¿½nto cuesta|cuanto cuesta|cuï¿½nto cobran|cuanto cobran|tarifa|valor|cuï¿½nto sale|cuanto sale|presupuesto|cotizaciï¿½n|cotizacion|cotizar|cuï¿½nto me costarï¿½a|cuanto me costaria|quï¿½ precio|que precio|tienen precio|tienen tarifa|economico|barato|caro)/.test(t)) {
     intents.push('precio');
   }
 
   // -- HORARIO --
-  if (/(horario|qué hora|que hora|a qué hora|a que hora|cuándo abren|cuando abren|cuándo cierran|cuando cierran|están abiertos|estan abiertos|abren hoy|cierran hoy|hora de apertura|hora de cierre|cuándo atienden|cuando atienden|abierto ahora|hasta qué hora|hasta que hora|desde qué hora|desde que hora)/.test(t)) {
+  if (/(horario|quï¿½ hora|que hora|a quï¿½ hora|a que hora|cuï¿½ndo abren|cuando abren|cuï¿½ndo cierran|cuando cierran|estï¿½n abiertos|estan abiertos|abren hoy|cierran hoy|hora de apertura|hora de cierre|cuï¿½ndo atienden|cuando atienden|abierto ahora|hasta quï¿½ hora|hasta que hora|desde quï¿½ hora|desde que hora)/.test(t)) {
     intents.push('horario');
   }
 
-  // -- DIRECCIÓN / UBICACIÓN --
-  if (/(dónde están|donde estan|dónde quedan|donde quedan|dirección|direccion|ubicación|ubicacion|cómo llego|como llego|cómo llegar|como llegar|están en|estan en|dónde se encuentran|donde se encuentran|local|sucursal|tienen tienda|tienen local|qué zona|que zona|en qué barrio|en que barrio|mapa|google maps)/.test(t)) {
+  // -- DIRECCIï¿½N / UBICACIï¿½N --
+  if (/(dï¿½nde estï¿½n|donde estan|dï¿½nde quedan|donde quedan|direcciï¿½n|direccion|ubicaciï¿½n|ubicacion|cï¿½mo llego|como llego|cï¿½mo llegar|como llegar|estï¿½n en|estan en|dï¿½nde se encuentran|donde se encuentran|local|sucursal|tienen tienda|tienen local|quï¿½ zona|que zona|en quï¿½ barrio|en que barrio|mapa|google maps)/.test(t)) {
     intents.push('ubicacion');
   }
 
   // -- CITA / RESERVA --
-  if (/(cita|reserva|reservar|agendar|agenda|turno|appointment|quiero una hora|pedir hora|disponibilidad|cupo|cuándo puedo ir|cuando puedo ir|puedo ir hoy|puedo ir mañana|puedo ir manana|me pueden atender|me pueden recibir|me dan un espacio)/.test(t)) {
+  if (/(cita|reserva|reservar|agendar|agenda|turno|appointment|quiero una hora|pedir hora|disponibilidad|cupo|cuï¿½ndo puedo ir|cuando puedo ir|puedo ir hoy|puedo ir maï¿½ana|puedo ir manana|me pueden atender|me pueden recibir|me dan un espacio)/.test(t)) {
     intents.push('cita');
   }
 
-  // -- MENÚ / PRODUCTOS / QUÉ OFRECEN --
-  if (/(menú|menu|carta|qué platos|que platos|qué tienen|que tienen|qué ofrecen|que ofrecen|qué venden|que venden|qué servicios|que servicios|catálogo|catalogo|lista de precios|productos disponibles|tienen.*\?|venden.*\?|ofrecen.*\?)/.test(t)) {
+  // -- MENï¿½ / PRODUCTOS / QUï¿½ OFRECEN --
+  if (/(menï¿½|menu|carta|quï¿½ platos|que platos|quï¿½ tienen|que tienen|quï¿½ ofrecen|que ofrecen|quï¿½ venden|que venden|quï¿½ servicios|que servicios|catï¿½logo|catalogo|lista de precios|productos disponibles|tienen.*\?|venden.*\?|ofrecen.*\?)/.test(t)) {
     intents.push('menu_productos');
   }
 
-  // -- DELIVERY / ENVÍO --
-  if (/(delivery|domicilio|envío|envio|mandan a|despachan|llevan a|traen a|a mi casa|a mi dirección|a mi direccion|entregan|hacen entregas|llega a|reparto|mensajería|mensajeria|shipping)/.test(t)) {
+  // -- DELIVERY / ENVï¿½O --
+  if (/(delivery|domicilio|envï¿½o|envio|mandan a|despachan|llevan a|traen a|a mi casa|a mi direcciï¿½n|a mi direccion|entregan|hacen entregas|llega a|reparto|mensajerï¿½a|mensajeria|shipping)/.test(t)) {
     intents.push('delivery');
   }
 
   // -- PAGO --
-  if (/(pago|pagar|cómo pago|como pago|métodos de pago|metodos de pago|efectivo|tarjeta|transferencia|yappy|nequi|sinpe|visa|mastercard|crédito|credito|débito|debito|depósito|deposito|digital|billetera|billetera digital|aceptan tarjeta|aceptan efectivo)/.test(t)) {
+  if (/(pago|pagar|cï¿½mo pago|como pago|mï¿½todos de pago|metodos de pago|efectivo|tarjeta|transferencia|yappy|nequi|sinpe|visa|mastercard|crï¿½dito|credito|dï¿½bito|debito|depï¿½sito|deposito|digital|billetera|billetera digital|aceptan tarjeta|aceptan efectivo)/.test(t)) {
     intents.push('pago');
   }
 
   // -- DESCUENTO / PROMO --
-  if (/(descuento|promoción|promo|oferta|rebaja|especial|cupón|cupon|2x1|gratis|precio especial|precio de oferta|tienen algo barato|algo económico|algo economico|sale|hay algún descuento|hay algun descuento|están de oferta|estan de oferta)/.test(t)) {
+  if (/(descuento|promociï¿½n|promo|oferta|rebaja|especial|cupï¿½n|cupon|2x1|gratis|precio especial|precio de oferta|tienen algo barato|algo econï¿½mico|algo economico|sale|hay algï¿½n descuento|hay algun descuento|estï¿½n de oferta|estan de oferta)/.test(t)) {
     intents.push('descuento');
   }
 
   // -- TIEMPO / URGENCIA --
-  if (/(cuánto tarda|cuanto tarda|cuánto demora|cuanto demora|tiempo de espera|qué tan rápido|que tan rapido|urgente|para hoy|para ya|lo más pronto|lo mas pronto|inmediato|express|rápido|rapido|mismo día|mismo dia|en el día|en el dia|antes de las|para mañana|para manana)/.test(t)) {
+  if (/(cuï¿½nto tarda|cuanto tarda|cuï¿½nto demora|cuanto demora|tiempo de espera|quï¿½ tan rï¿½pido|que tan rapido|urgente|para hoy|para ya|lo mï¿½s pronto|lo mas pronto|inmediato|express|rï¿½pido|rapido|mismo dï¿½a|mismo dia|en el dï¿½a|en el dia|antes de las|para maï¿½ana|para manana)/.test(t)) {
     intents.push('tiempo');
   }
 
-  // -- INFORMACIÓN CONTACTO --
-  if (/(teléfono|telefono|número|numero|whatsapp|llamar|llamada|contacto|correo|email|instagram|facebook|redes|página web|pagina web|página|pagina|web|redes sociales)/.test(t)) {
+  // -- INFORMACIï¿½N CONTACTO --
+  if (/(telï¿½fono|telefono|nï¿½mero|numero|whatsapp|llamar|llamada|contacto|correo|email|instagram|facebook|redes|pï¿½gina web|pagina web|pï¿½gina|pagina|web|redes sociales)/.test(t)) {
     intents.push('contacto');
   }
 
   // -- AGRADECIMIENTO --
-  if (/(gracias|thank|muchas gracias|muy amable|perfecto|excelente|genial|increíble|increible|muy bien|buenísimo|buenisimo|satisfecho|satisfecha|todo bien|quedé feliz|quede feliz|quedé contento|quede contento|estuvo bien|me gustó|me gusto|les quedo bien|les quedó bien)/.test(t)) {
+  if (/(gracias|thank|muchas gracias|muy amable|perfecto|excelente|genial|increï¿½ble|increible|muy bien|buenï¿½simo|buenisimo|satisfecho|satisfecha|todo bien|quedï¿½ feliz|quede feliz|quedï¿½ contento|quede contento|estuvo bien|me gustï¿½|me gusto|les quedo bien|les quedï¿½ bien)/.test(t)) {
     intents.push('gracias');
   }
 
   // -- SALUDO --
-  if (/(^hola|^buenas|^buenos|^hey|^hi |^buen dia|^buen día|saludos|^ola |buenas tardes|buenas noches|buenos dias|buenos días)/.test(t)) {
+  if (/(^hola|^buenas|^buenos|^hey|^hi |^buen dia|^buen dï¿½a|saludos|^ola |buenas tardes|buenas noches|buenos dias|buenos dï¿½as)/.test(t)) {
     intents.push('saludo');
   }
 
   // -- DISPONIBILIDAD / HAY STOCK --
-  if (/(disponible|disponibilidad|hay|tienen en stock|queda|quedan|en existencia|lo tienen|lo tienen disponible|está disponible|esta disponible|puedo conseguir|puedo comprar)/.test(t) && !intents.includes('menu_productos')) {
+  if (/(disponible|disponibilidad|hay|tienen en stock|queda|quedan|en existencia|lo tienen|lo tienen disponible|estï¿½ disponible|esta disponible|puedo conseguir|puedo comprar)/.test(t) && !intents.includes('menu_productos')) {
     intents.push('disponibilidad');
   }
 
@@ -7991,168 +7994,168 @@ function _detectIntent(t) {
 }
 
 function _getSmartReply(userText, cat, bizName, biz) {
-  // Normalizar: minúsculas, quitar acentos para la detección
+  // Normalizar: minï¿½sculas, quitar acentos para la detecciï¿½n
   const t = userText.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'');
   const tOrig = userText.toLowerCase();
 
   const intents = [...new Set([..._detectIntent(t), ..._detectIntent(tOrig)])];
 
-  const hours  = biz && biz.hours   ? biz.hours   : 'Lun–Sáb 8:00am – 6:00pm';
-  const addr   = biz && biz.address ? biz.address : 'nuestra dirección en el perfil';
+  const hours  = biz && biz.hours   ? biz.hours   : 'Lunï¿½Sï¿½b 8:00am ï¿½ 6:00pm';
+  const addr   = biz && biz.address ? biz.address : 'nuestra direcciï¿½n en el perfil';
   const phone  = biz && biz.phone   ? biz.phone   : 'disponible en nuestro perfil';
   const ig     = biz && biz.instagram ? biz.instagram : '@' + bizName.toLowerCase().replace(/\s/g,'_');
 
-  // -- Prioridad: intenciones específicas primero --
+  // -- Prioridad: intenciones especï¿½ficas primero --
 
   if (intents.includes('cambio_devolucion')) return _pick([
-    `¡Por supuesto! En ${bizName} aceptamos cambios ??. ¿Tienes el comprobante de compra?`,
-    `Claro, para el cambio necesitamos el artículo y el recibo. ¿Lo tienes a mano?`,
-    `Sin problema. ¿Qué talla o modelo diferente necesitas? Lo gestionamos ya ??`,
-    `Pasa por ${addr} con el artículo y el recibo. ¿Hay algo específico que prefieras de cambio?`,
-    `¡Tranquilo/a! Lo resolvemos. ¿Fue un problema de talla, color o el artículo vino defectuoso?`,
+    `ï¿½Por supuesto! En ${bizName} aceptamos cambios ??. ï¿½Tienes el comprobante de compra?`,
+    `Claro, para el cambio necesitamos el artï¿½culo y el recibo. ï¿½Lo tienes a mano?`,
+    `Sin problema. ï¿½Quï¿½ talla o modelo diferente necesitas? Lo gestionamos ya ??`,
+    `Pasa por ${addr} con el artï¿½culo y el recibo. ï¿½Hay algo especï¿½fico que prefieras de cambio?`,
+    `ï¿½Tranquilo/a! Lo resolvemos. ï¿½Fue un problema de talla, color o el artï¿½culo vino defectuoso?`,
   ]);
 
   if (intents.includes('producto_danado')) return _pick([
-    `¡Lamentamos eso! ?? Si vino defectuoso tiene garantía. ¿Qué falla exactamente?`,
-    `Eso no debería pasar. Cubrimos productos defectuosos sin costo. ¿Cuándo lo compraste?`,
-    `Entendemos. ¿El daño fue al recibirlo o después de usarlo? Eso nos ayuda con la garantía ??`,
-    `Por favor tráenos el producto y lo revisamos o reemplazamos. ¿Cuándo puedes venir?`,
+    `ï¿½Lamentamos eso! ?? Si vino defectuoso tiene garantï¿½a. ï¿½Quï¿½ falla exactamente?`,
+    `Eso no deberï¿½a pasar. Cubrimos productos defectuosos sin costo. ï¿½Cuï¿½ndo lo compraste?`,
+    `Entendemos. ï¿½El daï¿½o fue al recibirlo o despuï¿½s de usarlo? Eso nos ayuda con la garantï¿½a ??`,
+    `Por favor trï¿½enos el producto y lo revisamos o reemplazamos. ï¿½Cuï¿½ndo puedes venir?`,
   ]);
 
   if (intents.includes('queja')) return _pick([
-    `Lamentamos mucho lo ocurrido ??. ¿Nos cuentas en detalle qué pasó para resolverlo?`,
-    `Gracias por decírnoslo, es la única forma de mejorar. ¿Cómo podemos compensarte?`,
-    `Lo tomamos muy en serio ??. ¿Tienes fecha o número de pedido para revisarlo?`,
-    `Disculpa el inconveniente. Vamos a revisar tu caso de inmediato. ¿Más detalles?`,
+    `Lamentamos mucho lo ocurrido ??. ï¿½Nos cuentas en detalle quï¿½ pasï¿½ para resolverlo?`,
+    `Gracias por decï¿½rnoslo, es la ï¿½nica forma de mejorar. ï¿½Cï¿½mo podemos compensarte?`,
+    `Lo tomamos muy en serio ??. ï¿½Tienes fecha o nï¿½mero de pedido para revisarlo?`,
+    `Disculpa el inconveniente. Vamos a revisar tu caso de inmediato. ï¿½Mï¿½s detalles?`,
   ]);
 
   if (intents.includes('precio')) {
     const catP = {
-      restaurantes: [`Platos desde $5 hasta $25 ???. ¿Quieres la carta completa?`, `Menú del día $8 (sopa + plato + bebida). ¿Algo en especial?`, `Opciones para todos los presupuestos. ¿Qué prefieres?`],
-      belleza:      [`Corte $15 ??, tinte $45, manicure $12, pedicure $18. ¿Qué servicio?`, `¿Corte, color o tratamiento? Te doy el precio exacto ??`, `Paquete básica dama $20 (corte+lavado). ¿Quieres más info?`],
-      salud:        [`Consulta general $40, especialistas desde $60 ??. ¿Tienes seguro médico? Eso puede bajar el costo.`, `Varía según especialista. ¿Necesitas medicina general, pediatría, nutrición u otra especialidad?`, `Los exámenes de laboratorio arrancan desde $15. ¿Qué examen necesitas?`],
-      tecnologia:   [`Diagnóstico gratis ??. Pantalla desde $35, batería $20, software $15. ¿Qué equipo tienes?`, `Depende del daño. ¿Es celular, laptop o tablet? Te doy el precio exacto.`, `Reparaciones con garantía de 3 meses. ¿Cuál es el problema de tu dispositivo? ??`],
-      hogar:        [`Visita de diagnóstico sin costo ??. Trabajos desde $30. ¿Qué necesitas reparar?`, `Presupuesto gratis y sin compromiso. ¿Es plomería, electricidad, pintura u otro?`, `Precios justos y mano de obra garantizada. ¿Nos describes el trabajo? ??`],
-      turismo:      [`Tours desde $35/persona ???. Grupos de 5+ tienen 15% de descuento. ¿Para cuántos son?`, `Paquetes desde $50 con transporte, guía y entrada. ¿Qué destino te interesa?`, `Tour de medio día $35, día completo $65 incluyendo almuerzo. ¿Cuál prefieres? ??`],
-      transporte:   [`Depende del destino ??. ¿Punto de salida y llegada para cotizarte?`, `Aeropuerto desde $20, zonas urbanas desde $8. ¿A dónde necesitas ir?`, `Tarifa plana para rutas frecuentes. ¿Cuál es tu ruta habitual? ??`],
-      ropa:         [`Prendas desde $10 hasta $80 según marca y estilo ??. ¿Buscas algo casual, formal o sport?`, `Tenemos ropa para todos los presupuestos. ¿Qué tipo de prenda buscas?`, `Esta semana hay piezas con hasta 30% de descuento. ¿Quieres que te mostremos las ofertas? ???`],
-      deportes:     [`Equipos desde $15 hasta $200 según deporte y marca ?. ¿Qué deporte practicas?`, `Zapatillas desde $35, ropa deportiva desde $15. ¿Tienes presupuesto definido?`, `Suplementos, ropa y equipamiento. ¿Qué necesitas exactamente? ??`],
+      restaurantes: [`Platos desde $5 hasta $25 ???. ï¿½Quieres la carta completa?`, `Menï¿½ del dï¿½a $8 (sopa + plato + bebida). ï¿½Algo en especial?`, `Opciones para todos los presupuestos. ï¿½Quï¿½ prefieres?`],
+      belleza:      [`Corte $15 ??, tinte $45, manicure $12, pedicure $18. ï¿½Quï¿½ servicio?`, `ï¿½Corte, color o tratamiento? Te doy el precio exacto ??`, `Paquete bï¿½sica dama $20 (corte+lavado). ï¿½Quieres mï¿½s info?`],
+      salud:        [`Consulta general $40, especialistas desde $60 ??. ï¿½Tienes seguro mï¿½dico? Eso puede bajar el costo.`, `Varï¿½a segï¿½n especialista. ï¿½Necesitas medicina general, pediatrï¿½a, nutriciï¿½n u otra especialidad?`, `Los exï¿½menes de laboratorio arrancan desde $15. ï¿½Quï¿½ examen necesitas?`],
+      tecnologia:   [`Diagnï¿½stico gratis ??. Pantalla desde $35, baterï¿½a $20, software $15. ï¿½Quï¿½ equipo tienes?`, `Depende del daï¿½o. ï¿½Es celular, laptop o tablet? Te doy el precio exacto.`, `Reparaciones con garantï¿½a de 3 meses. ï¿½Cuï¿½l es el problema de tu dispositivo? ??`],
+      hogar:        [`Visita de diagnï¿½stico sin costo ??. Trabajos desde $30. ï¿½Quï¿½ necesitas reparar?`, `Presupuesto gratis y sin compromiso. ï¿½Es plomerï¿½a, electricidad, pintura u otro?`, `Precios justos y mano de obra garantizada. ï¿½Nos describes el trabajo? ??`],
+      turismo:      [`Tours desde $35/persona ???. Grupos de 5+ tienen 15% de descuento. ï¿½Para cuï¿½ntos son?`, `Paquetes desde $50 con transporte, guï¿½a y entrada. ï¿½Quï¿½ destino te interesa?`, `Tour de medio dï¿½a $35, dï¿½a completo $65 incluyendo almuerzo. ï¿½Cuï¿½l prefieres? ??`],
+      transporte:   [`Depende del destino ??. ï¿½Punto de salida y llegada para cotizarte?`, `Aeropuerto desde $20, zonas urbanas desde $8. ï¿½A dï¿½nde necesitas ir?`, `Tarifa plana para rutas frecuentes. ï¿½Cuï¿½l es tu ruta habitual? ??`],
+      ropa:         [`Prendas desde $10 hasta $80 segï¿½n marca y estilo ??. ï¿½Buscas algo casual, formal o sport?`, `Tenemos ropa para todos los presupuestos. ï¿½Quï¿½ tipo de prenda buscas?`, `Esta semana hay piezas con hasta 30% de descuento. ï¿½Quieres que te mostremos las ofertas? ???`],
+      deportes:     [`Equipos desde $15 hasta $200 segï¿½n deporte y marca ?. ï¿½Quï¿½ deporte practicas?`, `Zapatillas desde $35, ropa deportiva desde $15. ï¿½Tienes presupuesto definido?`, `Suplementos, ropa y equipamiento. ï¿½Quï¿½ necesitas exactamente? ??`],
     };
-    return _pick(catP[cat] || [`Precios varían según el servicio ??. ¿Qué necesitas exactamente?`, `Con gusto cotizamos. ¿Qué producto o servicio te interesa?`]);
+    return _pick(catP[cat] || [`Precios varï¿½an segï¿½n el servicio ??. ï¿½Quï¿½ necesitas exactamente?`, `Con gusto cotizamos. ï¿½Quï¿½ producto o servicio te interesa?`]);
   }
 
   if (intents.includes('horario')) return _pick([
-    `Nuestro horario es ${hours} ?. ¿Algún día en especial que te convenga?`,
-    `Atendemos ${hours}. Para citas puedes reservar con anticipación ??`,
-    `Disponibles ${hours}. ¿Necesitas agendar algo? ???`,
+    `Nuestro horario es ${hours} ?. ï¿½Algï¿½n dï¿½a en especial que te convenga?`,
+    `Atendemos ${hours}. Para citas puedes reservar con anticipaciï¿½n ??`,
+    `Disponibles ${hours}. ï¿½Necesitas agendar algo? ???`,
   ]);
 
   if (intents.includes('ubicacion')) return _pick([
-    `Estamos en ${addr} ??. ¿Vienes en carro o transporte público?`,
-    `Nos encuentras en ${addr}. Búscanos en Google Maps como "${bizName}" ???`,
-    `Dirección: ${addr}. ¿Necesitas que te expliquemos la ruta? ??`,
+    `Estamos en ${addr} ??. ï¿½Vienes en carro o transporte pï¿½blico?`,
+    `Nos encuentras en ${addr}. Bï¿½scanos en Google Maps como "${bizName}" ???`,
+    `Direcciï¿½n: ${addr}. ï¿½Necesitas que te expliquemos la ruta? ??`,
   ]);
 
   if (intents.includes('cita')) return _pick([
-    `¡Agendamos! ¿Qué fecha y hora te viene bien? ??`,
-    `Con gusto. ¿Para cuántas personas y qué día prefieres? ???`,
-    `Tenemos disponibilidad esta semana. ¿Mañana o pasado? ?`,
-    `¿Prefieres mañana, tarde o noche? Apartamos tu espacio ?`,
-    `Para la cita: ¿nombre y servicio que deseas? ??`,
+    `ï¿½Agendamos! ï¿½Quï¿½ fecha y hora te viene bien? ??`,
+    `Con gusto. ï¿½Para cuï¿½ntas personas y quï¿½ dï¿½a prefieres? ???`,
+    `Tenemos disponibilidad esta semana. ï¿½Maï¿½ana o pasado? ?`,
+    `ï¿½Prefieres maï¿½ana, tarde o noche? Apartamos tu espacio ?`,
+    `Para la cita: ï¿½nombre y servicio que deseas? ??`,
   ]);
 
   if (intents.includes('delivery')) return _pick([
-    `¡Sí hacemos entregas! ?? 30–45 min aprox. ¿Cuál es tu dirección?`,
-    `Delivery dentro de la ciudad ??. ¿Dónde estás?`,
-    `Envío gratis en compras mayores a $20 ??. ¿Tu ubicación?`,
+    `ï¿½Sï¿½ hacemos entregas! ?? 30ï¿½45 min aprox. ï¿½Cuï¿½l es tu direcciï¿½n?`,
+    `Delivery dentro de la ciudad ??. ï¿½Dï¿½nde estï¿½s?`,
+    `Envï¿½o gratis en compras mayores a $20 ??. ï¿½Tu ubicaciï¿½n?`,
   ]);
 
   if (intents.includes('pago')) return _pick([
-    `Efectivo, tarjeta débito/crédito y transferencias ??. ¿Cuál prefieres?`,
-    `Visa, Mastercard, efectivo y Yappy ??. ¡El método que quieras!`,
-    `Todos los métodos: efectivo, tarjeta y digital ?. ¿Necesitas factura?`,
+    `Efectivo, tarjeta dï¿½bito/crï¿½dito y transferencias ??. ï¿½Cuï¿½l prefieres?`,
+    `Visa, Mastercard, efectivo y Yappy ??. ï¿½El mï¿½todo que quieras!`,
+    `Todos los mï¿½todos: efectivo, tarjeta y digital ?. ï¿½Necesitas factura?`,
   ]);
 
   if (intents.includes('descuento')) return _pick([
-    `¡Sí tenemos promos! ?? Esta semana 20% de descuento.`,
-    `Clientes nuevos: 15% off en su primera compra ??. ¿Es tu primera vez?`,
-    `2 servicios por el precio de 1 los martes ??. ¿Te apuntas?`,
+    `ï¿½Sï¿½ tenemos promos! ?? Esta semana 20% de descuento.`,
+    `Clientes nuevos: 15% off en su primera compra ??. ï¿½Es tu primera vez?`,
+    `2 servicios por el precio de 1 los martes ??. ï¿½Te apuntas?`,
   ]);
 
   if (intents.includes('tiempo')) {
     const catT = {
-      tecnologia:   [`Reparaciones básicas en el día ?, complejas en 24–48h. ¿Qué tiene tu equipo?`, `Pantalla: 2h. Batería: 1h. Software: mismo día ??. ¿Cuál es tu caso?`],
-      restaurantes: [`En mesa: 15–20 min ??. Delivery: 30–45 min. ¿Para cuándo lo necesitas?`, `Si reservas con anticipación garantizamos tu mesa al llegar ???`],
-      belleza:      [`Corte 30 min, tinte 2h, manicure 1h, pedicure 1h ??. ¿Qué servicio te interesa?`, `Para no esperar, ¿agendamos una cita y garantizamos tu hora? ??`],
-      hogar:        [`Trabajos pequeños: mismo día ?. Remodelaciones: 2–7 días. ¿Qué necesitas?`, `Técnicos disponibles hoy si es urgente. ¿Cuál es el trabajo? ??`],
-      transporte:   [`Confirmamos el vehículo en 15 min ??. Llegamos en 20–30 min. ¿Para cuándo?`, `Traslado al aeropuerto: llegar 30 min antes de tu vuelo ??. ¿A qué hora sales?`],
-      turismo:      [`Tours de medio día: 4–5h. Día completo: 8–10h ???. ¿Cuánto tiempo tienes disponible?`, `Los tours salen por la mañana. ¿Cuántos días estarás en la ciudad? ??`],
-      salud:        [`Consultas con cita: espera máx 15 min ??. Sin cita según disponibilidad.`, `Exámenes de laboratorio listos en 24–48h. Urgentes en el día ??. ¿Qué examen necesitas?`],
-      ropa:         [`Encuentras lo que buscas al instante ??. ¿Tienes una ocasión específica próximamente?`, `Si necesitas algo con urgencia tenemos disponibilidad inmediata en tienda ??`],
-      deportes:     [`Los artículos están disponibles de inmediato ?. ¿Qué equipo necesitas?`, `Entregas a domicilio en 24–48h si lo prefieres ??. ¿Cuándo lo necesitas?`],
+      tecnologia:   [`Reparaciones bï¿½sicas en el dï¿½a ?, complejas en 24ï¿½48h. ï¿½Quï¿½ tiene tu equipo?`, `Pantalla: 2h. Baterï¿½a: 1h. Software: mismo dï¿½a ??. ï¿½Cuï¿½l es tu caso?`],
+      restaurantes: [`En mesa: 15ï¿½20 min ??. Delivery: 30ï¿½45 min. ï¿½Para cuï¿½ndo lo necesitas?`, `Si reservas con anticipaciï¿½n garantizamos tu mesa al llegar ???`],
+      belleza:      [`Corte 30 min, tinte 2h, manicure 1h, pedicure 1h ??. ï¿½Quï¿½ servicio te interesa?`, `Para no esperar, ï¿½agendamos una cita y garantizamos tu hora? ??`],
+      hogar:        [`Trabajos pequeï¿½os: mismo dï¿½a ?. Remodelaciones: 2ï¿½7 dï¿½as. ï¿½Quï¿½ necesitas?`, `Tï¿½cnicos disponibles hoy si es urgente. ï¿½Cuï¿½l es el trabajo? ??`],
+      transporte:   [`Confirmamos el vehï¿½culo en 15 min ??. Llegamos en 20ï¿½30 min. ï¿½Para cuï¿½ndo?`, `Traslado al aeropuerto: llegar 30 min antes de tu vuelo ??. ï¿½A quï¿½ hora sales?`],
+      turismo:      [`Tours de medio dï¿½a: 4ï¿½5h. Dï¿½a completo: 8ï¿½10h ???. ï¿½Cuï¿½nto tiempo tienes disponible?`, `Los tours salen por la maï¿½ana. ï¿½Cuï¿½ntos dï¿½as estarï¿½s en la ciudad? ??`],
+      salud:        [`Consultas con cita: espera mï¿½x 15 min ??. Sin cita segï¿½n disponibilidad.`, `Exï¿½menes de laboratorio listos en 24ï¿½48h. Urgentes en el dï¿½a ??. ï¿½Quï¿½ examen necesitas?`],
+      ropa:         [`Encuentras lo que buscas al instante ??. ï¿½Tienes una ocasiï¿½n especï¿½fica prï¿½ximamente?`, `Si necesitas algo con urgencia tenemos disponibilidad inmediata en tienda ??`],
+      deportes:     [`Los artï¿½culos estï¿½n disponibles de inmediato ?. ï¿½Quï¿½ equipo necesitas?`, `Entregas a domicilio en 24ï¿½48h si lo prefieres ??. ï¿½Cuï¿½ndo lo necesitas?`],
     };
-    return _pick(catT[cat] || [`Depende del servicio. ¿Nos das más detalles? ??`, `Trabajamos rápido y con calidad. ¿Qué tan urgente es? ?`]);
+    return _pick(catT[cat] || [`Depende del servicio. ï¿½Nos das mï¿½s detalles? ??`, `Trabajamos rï¿½pido y con calidad. ï¿½Quï¿½ tan urgente es? ?`]);
   }
 
   if (intents.includes('contacto')) return _pick([
-    `Llámanos al ${phone} ??. También atendemos aquí en Fynder.`,
-    `Número: ${phone}. ¿Prefieres que te contactemos? ??`,
-    `¡Escríbenos aquí! O si prefieres llamar: ${phone} ??`,
-    `Instagram: ${ig} ??. Teléfono: ${phone}.`,
+    `Llï¿½manos al ${phone} ??. Tambiï¿½n atendemos aquï¿½ en Fynder.`,
+    `Nï¿½mero: ${phone}. ï¿½Prefieres que te contactemos? ??`,
+    `ï¿½Escrï¿½benos aquï¿½! O si prefieres llamar: ${phone} ??`,
+    `Instagram: ${ig} ??. Telï¿½fono: ${phone}.`,
   ]);
 
   if (intents.includes('gracias')) return _pick([
-    `¡A ti por preferirnos! ?? ¡Hasta pronto!`,
-    `¡Gracias a ti! ?? Que tengas un excelente día.`,
-    `¡De nada! Tu satisfacción es nuestra prioridad ?`,
-    `Es un honor servirte. ¡Siempre estamos aquí! ??`,
+    `ï¿½A ti por preferirnos! ?? ï¿½Hasta pronto!`,
+    `ï¿½Gracias a ti! ?? Que tengas un excelente dï¿½a.`,
+    `ï¿½De nada! Tu satisfacciï¿½n es nuestra prioridad ?`,
+    `Es un honor servirte. ï¿½Siempre estamos aquï¿½! ??`,
   ]);
 
   if (intents.includes('disponibilidad')) return _pick([
-    `¡Sí tenemos disponibilidad! ? ¿Para qué fecha?`,
-    `Déjame verificar. ¿Qué es lo que buscas exactamente? ??`,
-    `Sí contamos con eso. ¿Lo apartamos ahora? ??`,
+    `ï¿½Sï¿½ tenemos disponibilidad! ? ï¿½Para quï¿½ fecha?`,
+    `Dï¿½jame verificar. ï¿½Quï¿½ es lo que buscas exactamente? ??`,
+    `Sï¿½ contamos con eso. ï¿½Lo apartamos ahora? ??`,
   ]);
 
   if (intents.includes('menu_productos')) {
     const catM = {
-      restaurantes: [`Entradas, sopas, platos fuertes, postres y bebidas ???. ¿Quieres que te cuente las especialidades del día?`, `Menú del día $10 (sopa+plato+bebida). También tenemos à la carte ??. ¿Qué prefieres?`, `Opciones vegetarianas, carnes, mariscos y pastas. ¿Alguna preferencia o restricción alimentaria?`],
-      belleza:      [`Cortes, tintes, alisados, manicure, pedicure, maquillaje y tratamientos capilares ??. ¿Qué te interesa?`, `Servicio completo para dama y caballero. ¿Buscas algo específico? ?`, `También hacemos extensiones, cejas y depilación ??. ¿Qué servicio necesitas?`],
-      tecnologia:   [`Reparamos pantallas, baterías, cámaras, puertos, teclados y problemas de software ??. ¿Qué equipo?`, `Celulares, laptops, tablets y PCs ??. También vendemos accesorios y repuestos originales.`, `Soporte técnico a domicilio, mantenimiento preventivo y recuperación de datos ??. ¿Cuál es tu necesidad?`],
-      salud:        [`Medicina general, pediatría, cardiología, nutrición, fisioterapia y más ??. ¿Qué especialidad necesitas?`, `También hacemos exámenes de laboratorio, rayos X y electrocardiogramas ??. ¿Qué estás buscando?`, `Consultas presenciales y virtuales disponibles ??. ¿Cuál prefieres?`],
-      hogar:        [`Plomería, electricidad, pintura, carpintería, aires acondicionados y remodelaciones ??. ¿Qué necesitas?`, `También hacemos impermeabilizaciones, soldadura y trabajos de aluminio y vidrio ??. ¿Tienes algún trabajo específico?`],
-      turismo:      [`City tours, tours de aventura, ecoturismo, tours culturales y paquetes de varios días ???. ¿Qué tipo de experiencia buscas?`, `Tours en grupos o privados, con transporte y guía incluido ??. ¿Para cuántas personas?`, `Excursiones de medio día, día completo y paquetes todo incluido ??. ¿Cuánto tiempo tienes?`],
-      transporte:   [`Traslados al aeropuerto, tours en la ciudad, transporte escolar y ejecutivo ??. ¿Qué necesitas?`, `Sedanes, SUVs, minivans y buses para grupos ??. ¿Cuántas personas son?`, `También hacemos mudanzas locales y transporte de carga ??. ¿Para qué lo necesitas?`],
-      ropa:         [`Ropa casual, formal, sport, para ocasiones especiales y accesorios ??. ¿Qué estilo buscas?`, `Tenemos dama, caballero y niños. ¿Para quién es? ??`, `Nueva colección disponible: jeans, blusas, vestidos, zapatos y carteras ???. ¿Qué necesitas?`],
-      deportes:     [`Ropa deportiva, calzado, equipamiento para fútbol, natación, gimnasio, running y más ?. ¿Qué deporte?`, `Suplementos, proteínas, vitaminas y accesorios fitness ??. ¿Qué buscas?`, `Marcas originales: Nike, Adidas, Under Armour y más ???. ¿Tienes marca preferida?`],
+      restaurantes: [`Entradas, sopas, platos fuertes, postres y bebidas ???. ï¿½Quieres que te cuente las especialidades del dï¿½a?`, `Menï¿½ del dï¿½a $10 (sopa+plato+bebida). Tambiï¿½n tenemos ï¿½ la carte ??. ï¿½Quï¿½ prefieres?`, `Opciones vegetarianas, carnes, mariscos y pastas. ï¿½Alguna preferencia o restricciï¿½n alimentaria?`],
+      belleza:      [`Cortes, tintes, alisados, manicure, pedicure, maquillaje y tratamientos capilares ??. ï¿½Quï¿½ te interesa?`, `Servicio completo para dama y caballero. ï¿½Buscas algo especï¿½fico? ?`, `Tambiï¿½n hacemos extensiones, cejas y depilaciï¿½n ??. ï¿½Quï¿½ servicio necesitas?`],
+      tecnologia:   [`Reparamos pantallas, baterï¿½as, cï¿½maras, puertos, teclados y problemas de software ??. ï¿½Quï¿½ equipo?`, `Celulares, laptops, tablets y PCs ??. Tambiï¿½n vendemos accesorios y repuestos originales.`, `Soporte tï¿½cnico a domicilio, mantenimiento preventivo y recuperaciï¿½n de datos ??. ï¿½Cuï¿½l es tu necesidad?`],
+      salud:        [`Medicina general, pediatrï¿½a, cardiologï¿½a, nutriciï¿½n, fisioterapia y mï¿½s ??. ï¿½Quï¿½ especialidad necesitas?`, `Tambiï¿½n hacemos exï¿½menes de laboratorio, rayos X y electrocardiogramas ??. ï¿½Quï¿½ estï¿½s buscando?`, `Consultas presenciales y virtuales disponibles ??. ï¿½Cuï¿½l prefieres?`],
+      hogar:        [`Plomerï¿½a, electricidad, pintura, carpinterï¿½a, aires acondicionados y remodelaciones ??. ï¿½Quï¿½ necesitas?`, `Tambiï¿½n hacemos impermeabilizaciones, soldadura y trabajos de aluminio y vidrio ??. ï¿½Tienes algï¿½n trabajo especï¿½fico?`],
+      turismo:      [`City tours, tours de aventura, ecoturismo, tours culturales y paquetes de varios dï¿½as ???. ï¿½Quï¿½ tipo de experiencia buscas?`, `Tours en grupos o privados, con transporte y guï¿½a incluido ??. ï¿½Para cuï¿½ntas personas?`, `Excursiones de medio dï¿½a, dï¿½a completo y paquetes todo incluido ??. ï¿½Cuï¿½nto tiempo tienes?`],
+      transporte:   [`Traslados al aeropuerto, tours en la ciudad, transporte escolar y ejecutivo ??. ï¿½Quï¿½ necesitas?`, `Sedanes, SUVs, minivans y buses para grupos ??. ï¿½Cuï¿½ntas personas son?`, `Tambiï¿½n hacemos mudanzas locales y transporte de carga ??. ï¿½Para quï¿½ lo necesitas?`],
+      ropa:         [`Ropa casual, formal, sport, para ocasiones especiales y accesorios ??. ï¿½Quï¿½ estilo buscas?`, `Tenemos dama, caballero y niï¿½os. ï¿½Para quiï¿½n es? ??`, `Nueva colecciï¿½n disponible: jeans, blusas, vestidos, zapatos y carteras ???. ï¿½Quï¿½ necesitas?`],
+      deportes:     [`Ropa deportiva, calzado, equipamiento para fï¿½tbol, nataciï¿½n, gimnasio, running y mï¿½s ?. ï¿½Quï¿½ deporte?`, `Suplementos, proteï¿½nas, vitaminas y accesorios fitness ??. ï¿½Quï¿½ buscas?`, `Marcas originales: Nike, Adidas, Under Armour y mï¿½s ???. ï¿½Tienes marca preferida?`],
     };
-    return _pick(catM[cat] || [`En ${bizName} tenemos amplia variedad. ¿Qué buscas exactamente? ??`, `¡Cuéntanos qué necesitas y te orientamos! ??`]);
+    return _pick(catM[cat] || [`En ${bizName} tenemos amplia variedad. ï¿½Quï¿½ buscas exactamente? ??`, `ï¿½Cuï¿½ntanos quï¿½ necesitas y te orientamos! ??`]);
   }
 
   if (intents.includes('saludo')) return _pick([
-    `¡Hola! ?? Bienvenido a ${bizName}. ¿En qué podemos ayudarte?`,
-    `¡Buenas! ?? Gracias por contactar a ${bizName}. ¿Cómo servirte?`,
-    `¡Hola! Un gusto. Estamos para atenderte. ¿Qué necesitas?`,
-    `¡Bienvenido! ?? En ${bizName} estamos para lo que necesites.`,
+    `ï¿½Hola! ?? Bienvenido a ${bizName}. ï¿½En quï¿½ podemos ayudarte?`,
+    `ï¿½Buenas! ?? Gracias por contactar a ${bizName}. ï¿½Cï¿½mo servirte?`,
+    `ï¿½Hola! Un gusto. Estamos para atenderte. ï¿½Quï¿½ necesitas?`,
+    `ï¿½Bienvenido! ?? En ${bizName} estamos para lo que necesites.`,
   ]);
 
-  // -- Fallback por categoría --
+  // -- Fallback por categorï¿½a --
   const catFb = {
-    restaurantes: [`¿Mesa, para llevar o delivery? ???`, `¿Alguna preferencia de comida? Recomendamos las especialidades ??`, `¿Celebrando algo especial? Preparamos algo personalizado ??`, `Tenemos sección vegetariana y sin gluten. ¿Tienes alguna restricción? ??`],
-    belleza:      [`¿Cambio de look o mantenimiento? Cuéntanos tu idea ?`, `¿Primera vez? Consulta inicial gratis ??`, `¿Viste algo en Instagram? Tráenos la foto y lo recreamos ??`, `Productos profesionales libres de químicos agresivos ??`],
-    salud:        [`¿Consulta, examen o tratamiento? ?? Cuéntanos para orientarte.`, `¿Es emergencia o consulta programada? Te orientamos ??`, `Trae tu carnet de seguro si tienes. Trabajamos con varias aseguradoras ??`],
-    tecnologia:   [`¿Qué equipo necesitas reparar o qué servicio buscas? ??`, `Diagnóstico gratuito y sin compromiso ??. ¿Lo traes hoy?`, `¿Hardware, software o necesitas un accesorio? ??`, `¿Cayó al agua, pantalla rota o no enciende? Cuéntanos los síntomas ??`],
-    hogar:        [`¿Qué trabajo necesitas en tu hogar? ?? Estamos para ayudarte.`, `Presupuesto sin costo. ¿Describimos el trabajo o mandamos técnico? ??`, `Plomería, electricidad, pintura y remodelaciones ??. ¿Qué necesitas?`],
-    turismo:      [`¿Tours locales, paquetes o experiencias de aventura? ??`, `¿Para cuántas personas y en qué fecha planeas el viaje? ???`, `Guías bilingües y transporte incluido. ¿Qué destino te interesa? ???`],
-    transporte:   [`¿Para qué fecha y destino necesitas el servicio? ??`, `¿Aeropuerto, excursión o ruta específica? Cuéntanos ??`, `Sedanes, SUVs y vans disponibles. ¿Cuántas personas son? ??`],
-    ropa:         [`¿Casual, formal, sport o para una ocasión especial? ??`, `¿Cuál es tu talla? Verificamos disponibilidad ??`, `¿Es para regalo? Empaque especial sin costo adicional ??`, `Nueva colección disponible. ¿Quieres ver fotos? ??`],
-    deportes:     [`¿Qué deporte practicas o qué equipo necesitas? ???`, `¿Eres principiante o tienes experiencia? Así te recomendamos mejor ??`, `Marcas originales con garantía. ¿Tienes marca preferida? ?`, `También medimos tu pisada gratis para el calzado correcto ??`],
+    restaurantes: [`ï¿½Mesa, para llevar o delivery? ???`, `ï¿½Alguna preferencia de comida? Recomendamos las especialidades ??`, `ï¿½Celebrando algo especial? Preparamos algo personalizado ??`, `Tenemos secciï¿½n vegetariana y sin gluten. ï¿½Tienes alguna restricciï¿½n? ??`],
+    belleza:      [`ï¿½Cambio de look o mantenimiento? Cuï¿½ntanos tu idea ?`, `ï¿½Primera vez? Consulta inicial gratis ??`, `ï¿½Viste algo en Instagram? Trï¿½enos la foto y lo recreamos ??`, `Productos profesionales libres de quï¿½micos agresivos ??`],
+    salud:        [`ï¿½Consulta, examen o tratamiento? ?? Cuï¿½ntanos para orientarte.`, `ï¿½Es emergencia o consulta programada? Te orientamos ??`, `Trae tu carnet de seguro si tienes. Trabajamos con varias aseguradoras ??`],
+    tecnologia:   [`ï¿½Quï¿½ equipo necesitas reparar o quï¿½ servicio buscas? ??`, `Diagnï¿½stico gratuito y sin compromiso ??. ï¿½Lo traes hoy?`, `ï¿½Hardware, software o necesitas un accesorio? ??`, `ï¿½Cayï¿½ al agua, pantalla rota o no enciende? Cuï¿½ntanos los sï¿½ntomas ??`],
+    hogar:        [`ï¿½Quï¿½ trabajo necesitas en tu hogar? ?? Estamos para ayudarte.`, `Presupuesto sin costo. ï¿½Describimos el trabajo o mandamos tï¿½cnico? ??`, `Plomerï¿½a, electricidad, pintura y remodelaciones ??. ï¿½Quï¿½ necesitas?`],
+    turismo:      [`ï¿½Tours locales, paquetes o experiencias de aventura? ??`, `ï¿½Para cuï¿½ntas personas y en quï¿½ fecha planeas el viaje? ???`, `Guï¿½as bilingï¿½es y transporte incluido. ï¿½Quï¿½ destino te interesa? ???`],
+    transporte:   [`ï¿½Para quï¿½ fecha y destino necesitas el servicio? ??`, `ï¿½Aeropuerto, excursiï¿½n o ruta especï¿½fica? Cuï¿½ntanos ??`, `Sedanes, SUVs y vans disponibles. ï¿½Cuï¿½ntas personas son? ??`],
+    ropa:         [`ï¿½Casual, formal, sport o para una ocasiï¿½n especial? ??`, `ï¿½Cuï¿½l es tu talla? Verificamos disponibilidad ??`, `ï¿½Es para regalo? Empaque especial sin costo adicional ??`, `Nueva colecciï¿½n disponible. ï¿½Quieres ver fotos? ??`],
+    deportes:     [`ï¿½Quï¿½ deporte practicas o quï¿½ equipo necesitas? ???`, `ï¿½Eres principiante o tienes experiencia? Asï¿½ te recomendamos mejor ??`, `Marcas originales con garantï¿½a. ï¿½Tienes marca preferida? ?`, `Tambiï¿½n medimos tu pisada gratis para el calzado correcto ??`],
   };
 
   return _pick(catFb[cat] || [
-    `¡Gracias por escribir a ${bizName}! ?? ¿En qué podemos ayudarte?`,
-    `Recibimos tu mensaje. ¿Puedes contarnos más? ??`,
-    `¡Con gusto te atendemos! ¿Qué necesitas exactamente?`,
-    `Estamos aquí para ayudarte ?. ¿Cuéntanos?`,
+    `ï¿½Gracias por escribir a ${bizName}! ?? ï¿½En quï¿½ podemos ayudarte?`,
+    `Recibimos tu mensaje. ï¿½Puedes contarnos mï¿½s? ??`,
+    `ï¿½Con gusto te atendemos! ï¿½Quï¿½ necesitas exactamente?`,
+    `Estamos aquï¿½ para ayudarte ?. ï¿½Cuï¿½ntanos?`,
   ]);
 }
