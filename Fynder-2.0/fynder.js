@@ -528,6 +528,60 @@ function openModal(id){
   document.body.style.overflow='hidden';
 }
 
+/* ── Helpers de likes para reseñas estáticas ── */
+// Genera un ID estable a partir del bizId + nombre + fecha de la reseña
+function _staticReviewId(bizId, r) {
+  return bizId + '_' + (r.name || '').replace(/\s/g,'') + '_' + (r.date || '').replace(/\s/g,'');
+}
+
+// Devuelve los likes de una reseña estática — los genera random la primera vez y los persiste
+function _getStaticReviewLikes(sid, r) {
+  const store = JSON.parse(localStorage.getItem('fynderStaticRevLikes') || '{}');
+  if(store[sid] === undefined) {
+    // Generar likes random seeded (entre 3 y 48) según el texto para consistencia
+    let seed = 0;
+    const str = (r.name || '') + (r.text || '');
+    for(let i = 0; i < str.length; i++) seed = (seed * 31 + str.charCodeAt(i)) & 0xFFFFFF;
+    store[sid] = 3 + (seed % 46);
+    localStorage.setItem('fynderStaticRevLikes', JSON.stringify(store));
+  }
+  return store[sid];
+}
+
+// Dar/quitar like a una reseña estática
+function likeStaticReview(bizId, sid, btn) {
+  const likedKey = 'fynderStaticRevLiked_' + bizId;
+  const liked = JSON.parse(localStorage.getItem(likedKey) || '[]');
+  const store = JSON.parse(localStorage.getItem('fynderStaticRevLikes') || '{}');
+
+  if(liked.includes(sid)) {
+    // quitar like
+    store[sid] = Math.max(0, (store[sid] || 0) - 1);
+    liked.splice(liked.indexOf(sid), 1);
+    if(btn) btn.classList.remove('liked');
+  } else {
+    // dar like
+    store[sid] = (store[sid] || 0) + 1;
+    liked.push(sid);
+    if(btn) {
+      btn.classList.add('liked');
+      btn.classList.add('like-pop');
+      setTimeout(() => btn && btn.classList.remove('like-pop'), 350);
+    }
+  }
+  localStorage.setItem('fynderStaticRevLikes', JSON.stringify(store));
+  localStorage.setItem(likedKey, JSON.stringify(liked));
+  // Actualizar contador sin re-renderizar
+  if(btn) {
+    const countEl = btn.querySelector('.review-like-count');
+    if(countEl) countEl.textContent = store[sid];
+  }
+  // Re-renderizar para reordenar
+  const b = BUSINESSES.find(x => String(x.id) === String(bizId));
+  const cat = b ? CATEGORIES.find(c => c.id === b.categoryId) : null;
+  renderModalReviews(bizId, cat);
+}
+
 function renderModalReviews(bizId, cat){
   const wrap=document.getElementById('modalReviewsWrap');
   if(!wrap) return;
