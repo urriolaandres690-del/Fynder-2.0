@@ -16587,26 +16587,21 @@ iframe.goog-te-menu-frame { box-shadow: 0 4px 20px rgba(0,0,0,.15) !important; b
 
 /* ── Barra de reacciones rápidas (desplegable al hacer clic en la carita) ── */
 .chat-reaction-bar {
-  position: fixed; /* fixed para que no se corte por overflow */
+  position: fixed;
   display: flex;
   align-items: center;
-  gap: 1px;
-  background: var(--surface, #fff);
-  border: 1px solid rgba(0,0,0,.1);
+  gap: 2px;
+  background: #1e2328;
+  border: none;
   border-radius: 999px;
-  padding: 4px 6px;
-  box-shadow: 0 4px 18px rgba(0,0,0,.2);
+  padding: 6px 10px;
+  box-shadow: 0 6px 24px rgba(0,0,0,.55);
   opacity: 0;
   pointer-events: none;
   transform: scale(.8) translateY(6px);
-  transition: opacity .16s ease, transform .16s ease;
+  transition: opacity .16s ease, transform .16s cubic-bezier(.34,1.56,.64,1);
   z-index: 9990;
   white-space: nowrap;
-}
-[data-theme="dark"] .chat-reaction-bar {
-  background: #2a2d35;
-  border-color: rgba(255,255,255,.12);
-  box-shadow: 0 4px 20px rgba(0,0,0,.5);
 }
 .chat-reaction-bar.open {
   opacity: 1;
@@ -16616,42 +16611,39 @@ iframe.goog-te-menu-frame { box-shadow: 0 4px 20px rgba(0,0,0,.15) !important; b
 
 /* Botones de emoji en la barra */
 .chat-reaction-btn {
-  width: 34px; height: 34px;
+  width: 40px; height: 40px;
   border-radius: 50%;
   border: none;
   background: transparent;
   cursor: pointer;
-  font-size: 1.25rem;
+  font-size: 1.5rem;
   line-height: 1;
   display: flex; align-items: center; justify-content: center;
-  transition: transform .15s;
+  transition: transform .15s, background .12s;
 }
-.chat-reaction-btn:hover { transform: scale(1.35); }
+.chat-reaction-btn:hover {
+  transform: scale(1.35);
+  background: rgba(255,255,255,.1);
+}
 .chat-reaction-btn.reacted { opacity: .5; }
 
-/* Botón "+" al final de la barra — círculo oscuro estilo WhatsApp */
+/* Botón "+" al final de la barra — círculo gris oscuro estilo WhatsApp */
 .chat-reaction-bar .react-more {
-  width: 32px; height: 32px;
+  width: 36px; height: 36px;
   border-radius: 50%;
   border: none;
-  background: #3a3d45;
+  background: #3a3f48;
   cursor: pointer;
   display: flex; align-items: center; justify-content: center;
-  font-size: 1.1rem;
-  font-weight: 300;
+  font-size: 1.15rem;
+  font-weight: 400;
   color: #fff;
-  transition: background .15s, transform .12s;
+  transition: background .12s, transform .12s;
   flex-shrink: 0;
 }
 .chat-reaction-bar .react-more:hover {
-  background: #4a4e58;
+  background: #4a5060;
   transform: scale(1.1);
-}
-[data-theme="light"] .chat-reaction-bar .react-more {
-  background: #555;
-}
-[data-theme="light"] .chat-reaction-bar .react-more:hover {
-  background: #333;
 }
 
 /* ── Badge de reacción pegado a la esquina inferior del bubble ───── */
