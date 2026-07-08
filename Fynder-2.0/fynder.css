@@ -6083,6 +6083,9 @@ select option {
 }
 [data-theme="dark"] .biz-input-wrap input::placeholder,
 [data-theme="dark"] .biz-input-wrap textarea::placeholder { color: var(--muted); }
+[data-theme="dark"] .biz-input-wrap select {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%2394A3B8' stroke-width='2.5'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E") !important;
+}
 [data-theme="dark"] .status-option  { background: rgba(255,255,255,.04); border-color: rgba(255,255,255,.08); }
 [data-theme="dark"] .status-option.active { border-color: var(--primary); }
 [data-theme="dark"] .status-label   { color: var(--fg); }
