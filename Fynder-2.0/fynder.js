@@ -8494,12 +8494,22 @@ function _getSmartReply(userText, cat, bizName, biz) {
     `Nuestro horario es ${hours} ⏰. ¿Algún día en especial que te convenga?`,
     `Atendemos ${hours}. Para citas puedes reservar con anticipación 📅`,
     `Disponibles ${hours}. ¿Necesitas agendar algo? 🗓️`,
+    `Estamos abiertos ${hours}. ¿Tienes alguna duda sobre el día de hoy? 😊`,
+    `Horario: ${hours}. Si vienes entre semana hay menos espera ⚡`,
+    `Atendemos ${hours}. Los fines de semana te recomendamos reservar antes 📱`,
+    `${hours} es nuestro horario. ¿Quieres que te avisemos si hay cambios? 🔔`,
+    `¡Respondemos rápido en ese horario! ${hours} ⏰. ¿Para cuándo piensas venir?`,
   ]);
 
   if (intents.includes('ubicacion')) return _pick([
     `Estamos en ${addr} 📍. ¿Vienes en carro o transporte público?`,
     `Nos encuentras en ${addr}. Búscanos en Google Maps como "${bizName}" 🗺️`,
     `Dirección: ${addr}. ¿Necesitas que te expliquemos la ruta? 📌`,
+    `Estamos ubicados en ${addr} 🏠. ¿Tienes referencia del sector?`,
+    `${addr} es nuestra dirección. ¿Hay algún punto de referencia que te ayude a llegar? 🧭`,
+    `Te esperamos en ${addr} 📍. Si llegas en Uber dales esa dirección exacta.`,
+    `Puedes encontrarnos en ${addr}. En Google Maps busca "${bizName}" 🔍`,
+    `Estamos en ${addr}. El estacionamiento más cercano está a media cuadra 🅿️`,
   ]);
 
   if (intents.includes('cita')) return _pick([
@@ -8508,24 +8518,48 @@ function _getSmartReply(userText, cat, bizName, biz) {
     `Tenemos disponibilidad esta semana. ¿Mañana o pasado? ⏰`,
     `¿Prefieres mañana, tarde o noche? Apartamos tu espacio ✅`,
     `Para la cita: ¿nombre y servicio que deseas? 😊`,
+    `¡Claro! ¿Cuál es tu nombre y para qué día lo necesitas? 📋`,
+    `Agenda confirmada en menos de 5 min. ¿Qué día y hora prefieres? ⚡`,
+    `Tenemos turnos disponibles. ¿Prefieres que te confirmemos por aquí o por llamada? 📱`,
+    `¿Para ti solo o vas acompañado? Así coordinamos mejor el espacio 😊`,
+    `Perfecto. ¿Tienes preferencia de horario, mañana o tarde? 🗓️`,
   ]);
 
   if (intents.includes('delivery')) return _pick([
     `¡Sí hacemos entregas! 🛵 30–45 min aprox. ¿Cuál es tu dirección?`,
     `Delivery dentro de la ciudad 📦. ¿Dónde estás?`,
     `Envío gratis en compras mayores a $20 🎉. ¿Tu ubicación?`,
+    `¡Claro que sí! ¿A qué barrio o zona enviamos? 🗺️`,
+    `Hacemos delivery todos los días. ¿A qué hora lo necesitas? ⏰`,
+    `Tenemos servicio a domicilio 🛵. ¿La dirección exacta para calcular el tiempo?`,
+    `Delivery disponible. ¿Pagas efectivo o digital al recibir? 💳`,
+    `Repartidores propios para llegar en tiempo y forma 🚴. ¿Tu dirección?`,
+    `¡Llevamos hasta tu puerta! ¿A qué hora estarás en casa? 🏠`,
   ]);
 
   if (intents.includes('pago')) return _pick([
     `Efectivo, tarjeta débito/crédito y transferencias 💳. ¿Cuál prefieres?`,
     `Visa, Mastercard, efectivo y Yappy 📱. ¡El método que quieras!`,
     `Todos los métodos: efectivo, tarjeta y digital ✅. ¿Necesitas factura?`,
+    `Aceptamos efectivo, tarjeta y transferencia bancaria 🏦. ¿Cuál te queda mejor?`,
+    `Pago digital con Yappy, Nequi o transferencia. ¿Cuál usas? 📲`,
+    `¡Sin problema de pago! Efectivo o tarjeta, lo que prefieras 😊`,
+    `Todas las tarjetas aceptadas. ¿Necesitas recibo o factura? 🧾`,
+    `Pagos seguros en todos los métodos. ¿Tienes alguna preferencia? 🔒`,
+    `También aceptamos QR y pago móvil. Muy cómodo y rápido ⚡`,
   ]);
 
   if (intents.includes('descuento')) return _pick([
-    `¡Sí tenemos promos! 🎉 Esta semana 20% de descuento.`,
+    `¡Sí tenemos promos! 🎉 Esta semana 20% de descuento. ¿Te interesa?`,
     `Clientes nuevos: 15% off en su primera compra 🌟. ¿Es tu primera vez?`,
     `2 servicios por el precio de 1 los martes 🔥. ¿Te apuntas?`,
+    `Tenemos programa de lealtad: acumula puntos y canjea descuentos 🎁`,
+    `Síguenos en Instagram ${ig} para ver las promos exclusivas 📸`,
+    `Descuento del 10% si traes un amigo nuevo. ¡Recomiéndanos! 👥`,
+    `Oferta de temporada activa. ¿Quieres que te cuente los detalles? 🏷️`,
+    `Promociones los miércoles y viernes. ¿Cuál es mejor para ti? 📅`,
+    `Primera visita con 15% off. ¿Ya viniste antes? 😊`,
+    `Combo especial del mes disponible. ¿Te lo cuento? 🌟`,
   ]);
 
   if (intents.includes('tiempo')) {
