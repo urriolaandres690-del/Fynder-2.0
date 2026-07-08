@@ -8595,6 +8595,11 @@ function _getSmartReply(userText, cat, bizName, biz) {
     `Número: ${phone}. ¿Prefieres que te contactemos? 📲`,
     `¡Escríbenos aquí! O si prefieres llamar: ${phone} ☎️`,
     `Instagram: ${ig} 📸. Teléfono: ${phone}.`,
+    `Puedes contactarnos al ${phone} o por aquí mismo 💬. ¿Qué prefieres?`,
+    `Estamos disponibles al ${phone} y por Fynder Chat 🤝`,
+    `Tel: ${phone}. WhatsApp también disponible 📱. ¿Cómo te queda mejor?`,
+    `Síguenos en ${ig} para novedades 📸. Para urgencias: ${phone}`,
+    `Respondemos este chat en menos de 5 minutos ⚡. ¿O prefieres que te llamemos?`,
   ]);
 
   if (intents.includes('gracias')) return _pick([
@@ -8602,12 +8607,23 @@ function _getSmartReply(userText, cat, bizName, biz) {
     `¡Gracias a ti! 😊 Que tengas un excelente día.`,
     `¡De nada! Tu satisfacción es nuestra prioridad ⭐`,
     `Es un honor servirte. ¡Siempre estamos aquí! 💚`,
+    `¡Fue un placer atenderte! Vuelve pronto 🌟`,
+    `¡Gracias por confiar en ${bizName}! 🙌 ¡Hasta la próxima!`,
+    `¡Con mucho gusto! Si necesitas algo más, aquí estaremos 😊`,
+    `¡Feliz de haberte ayudado! ¿Hay algo más antes de irte? 💬`,
+    `Nos alegra que todo haya quedado claro. ¡Buen día! ☀️`,
+    `¡Igualmente! Tu visita nos alegra 😄 ¿Nos dejas una reseña? ⭐`,
   ]);
 
   if (intents.includes('disponibilidad')) return _pick([
     `¡Sí tenemos disponibilidad! ✅ ¿Para qué fecha?`,
     `Déjame verificar. ¿Qué es lo que buscas exactamente? 🔍`,
     `Sí contamos con eso. ¿Lo apartamos ahora? 📦`,
+    `¡Disponible! ¿Lo reservo a tu nombre? 📋`,
+    `Tenemos stock/disponibilidad para esta semana. ¿Cuándo lo necesitas? 📅`,
+    `¡Sí hay! ¿Cuántas unidades o para cuántas personas? 😊`,
+    `Disponibilidad confirmada ✅. ¿Quieres que lo separemos?`,
+    `¡Perfecto momento para pedirlo! Aún tenemos. ¿Continúo con la reserva? 🎉`,
   ]);
 
   if (intents.includes('menu_productos')) {
