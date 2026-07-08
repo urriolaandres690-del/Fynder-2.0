@@ -615,8 +615,7 @@ function renderModalReviews(bizId, cat){
   wrap.innerHTML=`
     <p class="modal-section-title">Reseñas de clientes (${totalCount})</p>
     <div class="reviews-list" id="bizReviewsList">
-      ${staticHTML}
-      ${userHTML}
+      ${reviewsHTML}
       ${totalCount===0?'<p style="font-size:.8125rem;color:var(--muted);text-align:center;padding:16px 0">Aún no hay reseñas. ¡Sé el primero!</p>':''}
     </div>
     <div style="margin-top:20px">
