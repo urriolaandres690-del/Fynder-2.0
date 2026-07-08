@@ -8707,6 +8707,12 @@ function _getSmartReply(userText, cat, bizName, biz) {
     `¡Buenas! 😊 Gracias por contactar a ${bizName}. ¿Cómo servirte?`,
     `¡Hola! Un gusto. Estamos para atenderte. ¿Qué necesitas?`,
     `¡Bienvenido! 🌟 En ${bizName} estamos para lo que necesites.`,
+    `¡Hey! 👋 Me alegra que nos escribas. ¿En qué te ayudamos hoy?`,
+    `¡Hola! 😄 ¿Es tu primera vez con nosotros o ya nos conoces?`,
+    `¡Buenas! Qué gusto tenerte aquí. ¿Cómo podemos ayudarte? 🙌`,
+    `¡Hola hola! 👋 En ${bizName} estamos listos para atenderte.`,
+    `¡Bienvenido/a! 🎉 ¿Qué te trae por aquí hoy?`,
+    `¡Hola! Escríbenos lo que necesitas y te respondemos de inmediato 💬`,
   ]);
 
   // ── Fallback por subtipo específico (cuando no se detectó intención) ──
