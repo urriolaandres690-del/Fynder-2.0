@@ -8899,7 +8899,7 @@ function _getOrCreateReactBar() {
   return bar;
 }
 
-function _openReactionBar(triggerEvent, bizId, msgId, isOut) {
+function _openReactionBar(triggerEvent, bizId, msgId, isOut, onClose) {
   const bar = _getOrCreateReactBar();
   _reactBarBizId = bizId;
   _reactBarMsgId = msgId;
@@ -8916,6 +8916,9 @@ function _openReactionBar(triggerEvent, bizId, msgId, isOut) {
   `<button class="react-more"
     onclick="event.stopPropagation();_closeReactionBar();openReactionEmojiPicker('${bizId}','${msgId}');"
     title="Más emojis">+</button>`;
+
+  // Guardar callback para cuando se cierre
+  bar._onClose = onClose || null;
 
   // Posicionar encima del botón que la disparó
   bar.classList.remove('open');
@@ -8934,7 +8937,6 @@ function _openReactionBar(triggerEvent, bizId, msgId, isOut) {
       : btnRect.left - 8;
     let y = btnRect.top - barRect.height - 8;
 
-    // ajustar para no salirse del viewport
     if (x + barRect.width > vw - 8) x = vw - barRect.width - 8;
     if (x < 8) x = 8;
     if (y < 8) y = btnRect.bottom + 8;
