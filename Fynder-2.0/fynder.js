@@ -595,6 +595,9 @@ function renderModalReviews(bizId, cat){
         avInner=c.initial;
       }
       const starsHTML = c.stars ? [1,2,3,4,5].map(i=>`<svg style="width:13px;height:13px;fill:${i<=c.stars?'#F4D35E':'#E5E7EB'};flex-shrink:0" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>`).join('') : '';
+      const bizLikedKey = 'fynderBizRevLikes_' + bizId;
+      const bizLiked = JSON.parse(localStorage.getItem(bizLikedKey) || '[]');
+      const isLiked = bizLiked.includes(c.id);
       return `<div class="review-card" id="bizc-${c.id}">
         <div class="review-header">
           <div class="review-avatar" style="${avStyle}">${avInner}</div>
@@ -606,6 +609,11 @@ function renderModalReviews(bizId, cat){
           ${isOwn?`<button onclick="deleteBizComment('${bizId}','${c.id}')" title="Eliminar" style="background:none;border:none;cursor:pointer;color:#94A3B8;font-size:.75rem;padding:2px 4px;margin-left:4px"><i class="fas fa-trash-alt"></i></button>`:''}
         </div>
         <p class="review-text">${escapeHtml(c.text)}</p>
+        <div class="review-actions">
+          <button class="review-like-btn${isLiked ? ' liked' : ''}" onclick="likeBizComment('${bizId}','${c.id}',this)">
+            <i class="fas fa-heart"></i> <span class="review-like-count">${c.likes || 0}</span>
+          </button>
+        </div>
       </div>`;
     }
   }).join('');
