@@ -7096,6 +7096,61 @@ document.addEventListener('click', (e) => {
 /* ================================================================
    CHAT: ENVIAR ARCHIVOS ADJUNTOS
    ================================================================ */
+
+/** Enviar ubicación actual como mensaje */
+function sendChatLocation() {
+  if (!_activeChatBizId) { showToast('Selecciona un chat primero'); return; }
+  if (!localStorage.getItem('fynderLogged')) { showToast('Inicia sesión para enviar tu ubicación'); return; }
+  if (!navigator.geolocation) { showToast('Tu dispositivo no soporta geolocalización'); return; }
+
+  showToast('Obteniendo ubicación… 📍');
+  navigator.geolocation.getCurrentPosition(
+    (pos) => {
+      const { latitude: lat, longitude: lng } = pos.coords;
+      const mapUrl = `https://www.google.com/maps?q=${lat},${lng}`;
+      const thumb  = `https://maps.googleapis.com/maps/api/staticmap?center=${lat},${lng}&zoom=15&size=300x150&markers=${lat},${lng}&key=`;
+      const now    = new Date();
+      const msg = {
+        id: Date.now() + Math.random(), from: 'user', text: '',
+        time: _fmtTime(now), date: _fmtDate(now), read: false,
+        attach: { type: 'location', lat, lng, mapUrl, thumb }
+      };
+      const msgs = _getMsgs(_activeChatBizId);
+      msgs.push(msg);
+      _saveMsgs(_activeChatBizId, msgs);
+      _updateConvLastMsg(_activeChatBizId, '📍 Ubicación compartida', msg.time);
+      renderConversations();
+      if (window.innerWidth >= 769) renderChatMessages(_activeChatBizId);
+      else renderChatMessagesMobile(_activeChatBizId);
+    },
+    () => showToast('No se pudo obtener la ubicación', 'error')
+  );
+}
+
+/** Enviar tarjeta de contacto del usuario */
+function sendChatContact() {
+  if (!_activeChatBizId) { showToast('Selecciona un chat primero'); return; }
+  if (!localStorage.getItem('fynderLogged')) { showToast('Inicia sesión para enviar tu contacto'); return; }
+  const user = JSON.parse(localStorage.getItem('fynderUser') || 'null');
+  if (!user) { showToast('No hay información de perfil', 'error'); return; }
+  const name  = user.name  || 'Usuario Fynder';
+  const email = user.email || '';
+  const now   = new Date();
+  const msg = {
+    id: Date.now() + Math.random(), from: 'user', text: '',
+    time: _fmtTime(now), date: _fmtDate(now), read: false,
+    attach: { type: 'contact', name, email }
+  };
+  const msgs = _getMsgs(_activeChatBizId);
+  msgs.push(msg);
+  _saveMsgs(_activeChatBizId, msgs);
+  _updateConvLastMsg(_activeChatBizId, '👤 Contacto compartido', msg.time);
+  renderConversations();
+  if (window.innerWidth >= 769) renderChatMessages(_activeChatBizId);
+  else renderChatMessagesMobile(_activeChatBizId);
+  showToast('Contacto enviado 👤');
+}
+
 function handleFileAttach(input, type) {
   if (!input.files || !input.files.length) return;
   if (!_activeChatBizId) { showToast('Selecciona un chat primero'); return; }
