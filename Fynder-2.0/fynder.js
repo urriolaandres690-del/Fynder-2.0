@@ -8555,9 +8555,9 @@ function _buildReactionBadgesHTML(bizId, msgId) {
     .map(([emoji, count]) => {
       const isMine = mine === emoji ? 'mine' : '';
       return `<button class="chat-bubble-reaction-badge ${isMine}"
-        onclick="toggleMsgReaction('${bizId}','${msgId}','${emoji}')"
-        title="${isMine ? 'Quitar reacción' : 'Reaccionar'}">
-        ${emoji}<span class="react-count">${count > 1 ? count : ''}</span>
+        onclick="event.stopPropagation();toggleMsgReaction('${bizId}','${msgId}','${emoji}')"
+        title="${isMine ? 'Quitar reacción' : 'Reaccionar con ' + emoji}">
+        ${emoji}${count > 1 ? `<span class="react-count">${count}</span>` : ''}
       </button>`;
     });
   if (!badges.length) return '';
