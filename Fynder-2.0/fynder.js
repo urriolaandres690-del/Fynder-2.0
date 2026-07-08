@@ -1892,7 +1892,14 @@ function renderArticleComments(articleId) {
   const likedKey = 'fynderCommentLikes_' + articleId;
   const liked = JSON.parse(localStorage.getItem(likedKey) || '[]');
 
-  list.innerHTML = comments.slice().reverse().map((c) => {
+  list.innerHTML = comments.slice()
+    .sort((a, b) => {
+      // Primero por likes DESC, empate por fecha (id timestamp) DESC
+      const likeDiff = (b.likes || 0) - (a.likes || 0);
+      if (likeDiff !== 0) return likeDiff;
+      return parseInt(b.id) - parseInt(a.id);
+    })
+    .map((c) => {
     const isLiked = liked.includes(c.id);
     const isOwn   = logged && user && c.userId === (user.email || user.name);
     const colorIdx = c.colorIdx !== undefined ? c.colorIdx : 0;
