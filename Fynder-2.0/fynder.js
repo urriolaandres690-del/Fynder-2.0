@@ -7884,7 +7884,7 @@ function _renderNewChatList(q) {
         </div>
         ${hasChat
           ? `<span class="msg-newchat-badge-existing"><i class="fas fa-comment-dots"></i></span>`
-          : `<span class="msg-newchat-badge-new"><i class="fas fa-plus"></i></span>`
+          : `<button class="msg-newchat-badge-new" onclick="event.stopPropagation();closeNewChatModal();openChatById(${b.id})" title="Iniciar chat"><i class="fas fa-plus"></i></button>`
         }
       </div>`;
   }).join('');
