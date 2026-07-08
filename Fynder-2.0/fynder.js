@@ -4282,11 +4282,17 @@ function _bizAutoReply(bizId, renderFn) {
     ? (userMsgs[userMsgs.length - 1].text || '').toLowerCase()
     : '';
 
+  // Obtener el último mensaje del bot para entender el contexto
+  const bizMsgs = msgs.filter(m => m.from === 'biz');
+  const lastBizText = bizMsgs.length > 0
+    ? (bizMsgs[bizMsgs.length - 1].text || '').toLowerCase()
+    : '';
+
   const biz = BUSINESSES.find(b => String(b.id) === String(bizId));
   const cat = biz ? (biz.categoryId || biz.category || '').toLowerCase() : '';
   const bizName = biz ? biz.name : 'nosotros';
 
-  const text = _getSmartReply(lastUserText, cat, bizName, biz);
+  const text = _getSmartReply(lastUserText, cat, bizName, biz, lastBizText);
   const now  = new Date();
   const reply = { id: Date.now(), from: 'biz', text, time: _fmtTime(now), date: _fmtDate(now) };
   msgs.push(reply);
