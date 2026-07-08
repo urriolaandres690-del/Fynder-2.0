@@ -16902,3 +16902,167 @@ iframe.goog-te-menu-frame { box-shadow: 0 4px 20px rgba(0,0,0,.15) !important; b
 .chat-msg-row {
   overflow: visible !important;
 }
+
+
+/* ================================================================
+   ELIMINAR MENSAJE ESTILO WHATSAPP
+   ================================================================ */
+
+/* Overlay oscuro detrás del modal */
+.del-msg-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,.55);
+  z-index: 10000;
+  animation: fadeIn .15s ease;
+}
+
+/* Modal centrado */
+.del-msg-modal {
+  position: fixed;
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%) scale(.92);
+  z-index: 10001;
+  background: #1e2328;
+  border-radius: 18px;
+  padding: 24px 20px 12px;
+  min-width: 280px;
+  max-width: 340px;
+  width: 90vw;
+  box-shadow: 0 12px 40px rgba(0,0,0,.6);
+  animation: popIn .18s cubic-bezier(.34,1.56,.64,1) forwards;
+}
+@keyframes popIn {
+  from { transform: translate(-50%,-50%) scale(.88); opacity: 0; }
+  to   { transform: translate(-50%,-50%) scale(1);   opacity: 1; }
+}
+
+.del-msg-title {
+  color: #e0e6ed;
+  font-size: .95rem;
+  font-weight: 500;
+  margin: 0 0 18px;
+  text-align: left;
+}
+
+/* Botones del modal */
+.del-msg-btn {
+  display: block;
+  width: 100%;
+  padding: 13px 16px;
+  margin-bottom: 6px;
+  border: none;
+  border-radius: 12px;
+  font-size: .95rem;
+  font-weight: 500;
+  cursor: pointer;
+  text-align: center;
+  transition: background .13s, transform .1s;
+}
+.del-msg-btn:active { transform: scale(.97); }
+
+.del-msg-everyone {
+  background: #2a6041;
+  color: #fff;
+}
+.del-msg-everyone:hover { background: #2f7049; }
+
+.del-msg-me {
+  background: #252a30;
+  color: #c8d4de;
+  border: 1px solid rgba(255,255,255,.1);
+}
+.del-msg-me:hover { background: #2e343c; }
+
+.del-msg-cancel {
+  background: transparent;
+  color: #7a8899;
+  font-weight: 400;
+  margin-bottom: 0;
+}
+.del-msg-cancel:hover { color: #a0adb8; }
+
+/* ================================================================
+   MODO SELECCIÓN DE MENSAJES
+   ================================================================ */
+
+/* Barra inferior de selección */
+.msg-select-bar {
+  position: fixed;
+  bottom: 0; left: 0; right: 0;
+  z-index: 9500;
+  background: #1a1f25;
+  border-top: 1px solid rgba(255,255,255,.08);
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 16px;
+  box-shadow: 0 -4px 20px rgba(0,0,0,.4);
+  animation: slideUp .2s ease;
+}
+@keyframes slideUp {
+  from { transform: translateY(100%); }
+  to   { transform: translateY(0); }
+}
+
+.msg-select-close {
+  background: none; border: none; cursor: pointer;
+  color: #8a97a6; font-size: 1.1rem;
+  padding: 6px; border-radius: 50%;
+  transition: background .13s;
+}
+.msg-select-close:hover { background: rgba(255,255,255,.08); color: #fff; }
+
+.msg-select-count {
+  flex: 1;
+  color: #d0dae4;
+  font-size: .9rem;
+  font-weight: 500;
+}
+
+.msg-select-actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.msg-select-action {
+  background: none; border: none; cursor: pointer;
+  color: #8a97a6; font-size: 1.15rem;
+  padding: 8px; border-radius: 50%;
+  transition: background .13s, color .13s;
+}
+.msg-select-action:hover { background: rgba(255,255,255,.08); color: #fff; }
+.msg-select-action.danger { color: #e05454; }
+.msg-select-action.danger:hover { background: rgba(224,84,84,.12); color: #ff6b6b; }
+
+/* Checkbox en cada mensaje cuando está en modo selección */
+.chat-msg-row .msg-checkbox {
+  display: none;
+  width: 20px; height: 20px;
+  flex-shrink: 0;
+  margin: auto 8px auto 0;
+  cursor: pointer;
+  accent-color: #25d366;
+}
+.chat-msg-row.out .msg-checkbox { margin: auto 0 auto 8px; order: 1; }
+body.select-mode .chat-msg-row .msg-checkbox { display: flex; align-items: center; }
+
+/* En modo selección, el row seleccionado tiene fondo */
+.chat-msg-row.selected-msg {
+  background: rgba(37,211,102,.08);
+  border-radius: 8px;
+}
+
+/* Mensaje eliminado "para todos" — bubble especial */
+.chat-bubble.deleted-for-all {
+  background: transparent !important;
+  border: 1px solid rgba(255,255,255,.12) !important;
+  color: rgba(200,210,220,.6) !important;
+  font-style: italic;
+  font-size: .82rem;
+}
+.chat-bubble.deleted-for-all .chat-bubble-meta { opacity: .5; }
+.chat-msg-row.out .chat-bubble.deleted-for-all {
+  border-color: rgba(255,255,255,.15) !important;
+}
