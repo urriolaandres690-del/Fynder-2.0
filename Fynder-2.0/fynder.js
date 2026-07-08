@@ -8936,6 +8936,78 @@ function _closeReactionBar() {
   _reactBarMsgId = null;
 }
 
+/* ================================================================
+   PICKER DE EMOJIS PARA REACCIONES (botón "+")
+   Reutiliza el emoji picker existente pero en modo reacción:
+   al seleccionar un emoji se aplica como reacción al mensaje
+   en lugar de insertarlo en el input.
+   ================================================================ */
+
+// Estado del modo reacción
+let _reactionPickerBizId = null;
+let _reactionPickerMsgId = null;
+
+function openReactionEmojiPicker(bizId, msgId) {
+  _reactionPickerBizId = bizId;
+  _reactionPickerMsgId = msgId;
+
+  // Construir tabs si no existen
+  const tabsEl = document.getElementById('emojiPickerTabs');
+  if (tabsEl && !tabsEl.children.length) {
+    tabsEl.innerHTML = EMOJI_CATS.map((cat, i) =>
+      `<button class="emoji-tab-btn${i === 0 ? ' active' : ''}" onclick="emojiSelectCat(${i})" title="${cat.label}">${cat.icon}</button>`
+    ).join('');
+  }
+
+  // Parchar temporalmente insertEmoji para que en vez de insertar al input,
+  // aplique la reacción al mensaje activo
+  window._prevInsertEmoji = window.insertEmoji;
+  window.insertEmoji = function(emoji) {
+    if (_reactionPickerBizId && _reactionPickerMsgId) {
+      toggleMsgReaction(_reactionPickerBizId, _reactionPickerMsgId, emoji);
+    }
+    // Restaurar comportamiento normal y cerrar picker
+    window.insertEmoji = window._prevInsertEmoji;
+    _reactionPickerBizId = null;
+    _reactionPickerMsgId = null;
+    closeEmojiPicker();
+  };
+
+  // Mostrar título de "Escoge una reacción" en el picker
+  const picker = document.getElementById('emojiPicker');
+  if (picker) {
+    let lbl = picker.querySelector('.emoji-reaction-label');
+    if (!lbl) {
+      lbl = document.createElement('div');
+      lbl.className = 'emoji-reaction-label';
+      picker.insertBefore(lbl, picker.firstChild);
+    }
+    lbl.textContent = 'Escoge una reacción';
+    lbl.style.cssText = 'font-size:.75rem;color:var(--primary,#67b8b4);font-weight:600;padding:6px 12px 0;';
+  }
+
+  // Renderizar primera categoría y abrir
+  renderEmojiCat(0);
+  document.getElementById('emojiSearch').value = '';
+  document.getElementById('emojiOverlay').classList.add('open');
+  document.getElementById('emojiPicker').classList.add('open');
+
+  // Al cerrar el overlay (clic en overlay o Escape) restaurar insertEmoji
+  const overlayEl = document.getElementById('emojiOverlay');
+  const _restore = () => {
+    if (window.insertEmoji !== window._prevInsertEmoji && window._prevInsertEmoji) {
+      window.insertEmoji = window._prevInsertEmoji;
+    }
+    _reactionPickerBizId = null;
+    _reactionPickerMsgId = null;
+    // quitar el label
+    const lbl = document.getElementById('emojiPicker')?.querySelector('.emoji-reaction-label');
+    if (lbl) lbl.remove();
+    overlayEl.removeEventListener('click', _restore);
+  };
+  overlayEl.addEventListener('click', _restore, { once: true });
+}
+
 // ---- Cerrar menú al hacer clic fuera ----
 document.addEventListener('click', (e) => {
   const menu = document.getElementById('msgBubbleCtxMenu');
