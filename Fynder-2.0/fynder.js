@@ -8674,37 +8674,169 @@ function _getSmartReply(userText, cat, bizName, biz, lastBizText = '') {
   }
 
   if (intents.includes('confirmacion')) {
+    // ── Respuesta contextual basada en lo que preguntó el bot antes ──
+    if (prevBot) {
+      // Bot preguntó por alergia / restricción
+      if (/(alergia|restriccion|celiaco|intolerante|evitar|gluten|lactosa|soya|nueces|mariscos|sin carne|vegetariano|vegano)/.test(prevBot)) {
+        if (/^(si|sí|yes)$/.test(t.trim())) return _pick([
+          `Gracias por avisarnos 🙏. ¿Qué ingrediente debemos evitar exactamente?`,
+          `Entendido. ¿Tienes celiaquía, intolerancia o alergia severa? Así lo preparamos con cuidado 🌿`,
+          `Lo tenemos en cuenta. ¿Puedes especificar cuál es la restricción? 😊`,
+        ]);
+        if (/^no$/.test(t.trim())) return _pick([
+          `¡Perfecto! Entonces puedes disfrutar todo el menú sin problema 🎉. ¿Qué te provoca?`,
+          `¡Qué bien! Sin restricciones podemos recomendarte los favoritos de la casa 😋. ¿Cuáles?`,
+          `Sin restricciones, ¡perfecto! ¿Qué se te antoja hoy? 😊`,
+        ]);
+      }
+      // Bot preguntó si es primera vez
+      if (/(primera vez|primera visita|ya nos conoces|has estado|has venido)/.test(prevBot)) {
+        if (/^(si|sí|yes)$/.test(t.trim())) return _pick([
+          `¡Bienvenido por primera vez! 🎉 Te recomendamos empezar con nuestro clásico más popular. ¿Cuál es tu gusto?`,
+          `¡Qué gusto que nos pruebes! Los favoritos de la casa son los más pedidos 🌟. ¿Quieres que te los contemos?`,
+          `¡Primera vez aquí! Prometemos que no será la última 😄. ¿Tienes alguna preferencia?`,
+        ]);
+        if (/^no$/.test(t.trim())) return _pick([
+          `¡Qué bueno tenerte de vuelta! 🙌 ¿Qué vas a pedir hoy?`,
+          `¡Ya eres parte de la familia! 💚 ¿El de siempre o probamos algo nuevo?`,
+          `¡Bienvenido de regreso! ¿Ya sabes lo que quieres o te contamos las novedades? 😊`,
+        ]);
+      }
+      // Bot preguntó por delivery / si viene o delivery
+      if (/(delivery|domicilio|traemos|llevamos|a tu casa|envio|envío|pides aqui|comer aqui|para llevar)/.test(prevBot)) {
+        if (/^(si|sí|yes|delivery|domicilio)/.test(t.trim())) return _pick([
+          `¡Perfecto! ¿Cuál es tu dirección? 📍 Calculamos el tiempo de entrega.`,
+          `¡Enviamos para allá! ¿La dirección completa por favor? 🛵`,
+          `Delivery confirmado. ¿A qué dirección y a qué hora lo necesitas? ⏰`,
+        ]);
+        if (/^no$/.test(t.trim())) return _pick([
+          `¡Genial, te esperamos entonces! ¿Para qué hora? 🍽️`,
+          `¡Perfecto! Mesa lista para ti. ¿Para cuántas personas? 😊`,
+          `¡Te esperamos en ${addr}! ¿A qué hora llegas? ⏰`,
+        ]);
+      }
+      // Bot preguntó por tamaño, cantidad o personas
+      if (/(cuantas personas|para cuantos|cuantos son|tamano|tamaño|grande|mediana|personal|cuantas)/.test(prevBot)) {
+        return _pick([
+          `¡Perfecto! Con ese dato ya puedo preparar la recomendación ideal 😊. ¿Algo más?`,
+          `¡Anotado! ¿Hay alguna preferencia de sabor o ingrediente en el grupo? 🍽️`,
+          `¡Genial! ¿Cuándo vienen / para cuándo lo necesitan? 📅`,
+        ]);
+      }
+      // Bot preguntó por fecha / hora
+      if (/(cuand|fecha|que dia|que hora|para cuando|que semana|este fin|manana|pasado)/.test(prevBot)) {
+        if (/^(si|sí|yes|dale|va|claro|bueno|listo)$/.test(t.trim())) return _pick([
+          `¡Confirmado! ¿A nombre de quién queda la reserva? 📋`,
+          `¡Perfecto, agendado! ¿Cuántas personas son? 😊`,
+          `¡Listo! Te enviaremos recordatorio. ¿Cuál es el número de contacto? 📱`,
+        ]);
+      }
+      // Bot preguntó por regalo / ocasión especial
+      if (/(regalo|ocasion especial|celebracion|cumpleanos|boda|evento|fiesta)/.test(prevBot)) {
+        if (/^(si|sí|yes)$/.test(t.trim())) return _pick([
+          `¡Qué bonito! 🎁 ¿Para qué fecha es y cuántas personas?`,
+          `¡Perfecto para un regalo especial! ¿Tienes algún presupuesto en mente? 💰`,
+          `¡Encantados de hacer parte de esa celebración! ¿Cuéntanos los detalles? 🎉`,
+        ]);
+        if (/^no$/.test(t.trim())) return _pick([
+          `¡Claro! Para uso personal también es un placer atenderte 😊. ¿Qué necesitas?`,
+          `Perfecto. ¿Cuándo lo necesitas? 📅`,
+        ]);
+      }
+      // Bot preguntó si le interesa algo específico (¿te interesa? / ¿lo pruebas? / ¿lo vemos?)
+      if (/(te interesa|lo pruebas|lo vemos|lo pedimos|lo apartamos|te apuntas|te animas|lo agendamos|lo hacemos|lo sumamos|lo confirmo|lo separamos|lo cotizamos|lo reservamos)/.test(prevBot)) {
+        if (/^(si|sí|yes|dale|va|claro|bueno|listo|perfecto|genial)$/.test(t.trim())) return _pick([
+          `¡Excelente elección! 🎉 ¿Para cuándo lo necesitas?`,
+          `¡Genial! ¿Hay algo más que quieras agregar? 😊`,
+          `¡Perfecto! ¿Para cuántas personas o qué cantidad? 📦`,
+          `¡Hecho! ¿Cuál es el mejor momento para coordinar los detalles? 📅`,
+        ]);
+        if (/^no$/.test(t.trim())) return _pick([
+          `¡Sin problema! ¿Hay otra opción que te llame la atención? 😊`,
+          `Entendido. ¿Qué sería lo ideal para ti entonces? 💬`,
+          `¡Claro que no! ¿Qué prefieres en su lugar? 🌟`,
+        ]);
+      }
+      // Bot preguntó nivel de picante
+      if (/(picante|nivel|jalapeño|habanero|suave|medio|fuerte)/.test(prevBot)) {
+        return _pick([
+          `¡Perfecto! Lo preparamos a tu gusto 🌶️. ¿Algo más en el pedido?`,
+          `¡Anotado el nivel de picante! ¿Con qué bebida lo acompañamos? 🥤`,
+          `¡Listo! ¿Para llevar o comes aquí? 😋`,
+        ]);
+      }
+      // Bot preguntó por término de cocción de la carne
+      if (/(termino|termino medio|tres cuartos|bien cocido|poco hecho|jugoso)/.test(prevBot)) {
+        return _pick([
+          `¡Perfecto punto de cocción! 🥩 ¿Qué acompañamiento le ponemos?`,
+          `¡Anotado! ¿Vinos para acompañar? Tenemos selección argentina 🍷`,
+          `¡Listo el corte! ¿Empanadas de entrada? Son caseras 😋`,
+        ]);
+      }
+      // Fallback contextual genérico para "sí"
+      if (/^(si|sí|yes)$/.test(t.trim())) {
+        const subConf = {
+          pasteleria:   [`¡Perfecto! 🎂 ¿Confirmas la fecha y el diseño?`, `¡Genial! ¿Para cuántas personas y qué sabor? 🍰`, `¡Anotado! ¿Algún detalle especial de decoración? ✨`],
+          panaderia:    [`¡Listo! 🥐 ¿Para qué hora pasas?`, `¡Entendido! ¿Cuántas unidades? 🍞`],
+          heladeria:    [`¡Dale! 🍦 ¿Cuántas bolas y de qué sabores?`, `¡Perfecto! ¿Lo comes aquí o llevas? 🌈`],
+          sushi_ramen:  [`¡Listo! 🍱 ¿Para cuántas personas? Te organizo el combo 🥢`, `¡Genial! ¿Sushi, ramen o los dos? 🍜`],
+          pizzeria:     [`¡Va! 🍕 ¿Grande o mediana? ¿Para aquí o delivery?`, `¡Perfecto! ¿Qué ingredientes? 🧀`],
+          hamburgueseria:[`¡Dale! 🍔 ¿Cuántas burgers y con qué salsa?`, `¡Claro! ¿Papas o aros de cebolla? 🥤`],
+          mariscos:     [`¡Perfecto! 🐟 ¿Para comer aquí o domicilio?`, `¡Genial! ¿Mesa con vista al mar? 🌊`],
+          vegano:       [`¡Genial! 🌱 ¿Para cuándo lo necesitas?`, `¡Perfecto! ¿Alguna alergia a considerar? 🥗`],
+          cafeteria:    [`¡Genial! ☕ ¿Para tomar aquí o llevar?`, `¡Perfecto! ¿Con leche de vaca, almendras o avena? 🥛`],
+          dental:       [`¡Agendado! 🦷 ¿Qué día y hora te viene bien?`, `¡Perfecto! ¿Es consulta inicial o tratamiento? 🩺`],
+          spa:          [`¡Reservado! 💆 ¿A nombre de quién y cuándo?`, `¡Genial! ¿Masaje o facial? 🌸`],
+          gym:          [`¡Excelente! 💪 ¿Cuándo empiezas? Te asignamos entrenador.`, `¡Perfecto! ¿Mañana o tarde? 🏋️`],
+          mecanica:     [`¡Listo! 🔧 ¿Lo traes hoy o mañana?`, `¡Perfecto! ¿Año y modelo del vehículo? ⚙️`],
+          tours:        [`¡Genial! 🗺️ ¿Para cuántas personas y qué fecha?`, `¡Perfecto! ¿Español o inglés el tour? 🌍`],
+        };
+        return _pick(subConf[sub] || [
+          `¡Perfecto! ¿Con qué continuamos? 😊`,
+          `¡Genial! ¿Cuándo lo necesitas? 📅`,
+          `¡Listo! ¿Cuántas personas o qué cantidad? 📦`,
+          `¡Excelente! ¿Hay algo más que quieras agregar? 🌟`,
+        ]);
+      }
+      // Fallback contextual genérico para "no"
+      if (/^no$/.test(t.trim())) return _pick([
+        `¡Sin problema! ¿Hay algo más en lo que podamos ayudarte? 😊`,
+        `Entendido. ¿Qué necesitas entonces? 💬`,
+        `¡Claro! Dinos qué prefieres y lo buscamos 🔍`,
+        `¡De acuerdo! ¿Tienes alguna otra pregunta? 🙏`,
+      ]);
+    }
+    // Sin contexto previo del bot → respuesta genérica de confirmación por subtipo
     const subConf = {
-      pasteleria:   [`¡Perfecto! 🎂 ¿Confirmas la fecha y el diseño? Te envío el presupuesto.`, `¡Genial! ¿Me dices para cuántas personas y el sabor que prefieres? 🍰`, `¡Anotado! ¿Algún detalle especial de decoración? ✨`],
-      panaderia:    [`¡Listo! 🥐 ¿Para qué hora pasas a recogerlo?`, `¡Entendido! Déjame anotar el pedido. ¿Cuántas unidades? 🍞`, `¡Genial! ¿Lo pagas al recoger o lo apartamos con adelanto? 💳`],
-      heladeria:    [`¡Dale! 🍦 ¿Cuántas bolas y de qué sabores?`, `¡Perfecto! ¿Lo comes aquí o lo llevas? 🌈`, `¡Vamos! ¿Con toppings o al natural? 🥥`],
-      sushi_ramen:  [`¡Listo! 🍱 ¿Quieres la mesa ahora o hacemos el pedido para delivery?`, `¡Genial! ¿Cuántas personas son? Te organizo el combo ideal 🥢`, `¡Perfecto! ¿Algo sin mariscos en el grupo? Lo preparamos sin problema 🍜`],
-      pizzeria:     [`¡Va! 🍕 ¿Para comer aquí o llevas? ¿Grande o mediana?`, `¡Perfecto! ¿Qué ingredientes le ponemos? 🧀`, `¡Hecho! ¿Con orilla rellena de queso o normal? 🔥`],
-      hamburgueseria:[`¡Dale! 🍔 ¿Cuántas burgers y con qué salsa?`, `¡Claro! ¿Papas fritas o aros de cebolla de acompañante? 🥤`, `¡Genial! ¿Puntos de cocción: bien cocida o término medio? 🥩`],
-      mariscos:     [`¡Perfecto! 🐟 ¿Lo comes aquí o lo llevamos a domicilio?`, `¡Genial! ¿Quieres la mesa con vista al mar? 🌊`, `¡Anotado! ¿Algún mariscos que no comas o alergia? 🦐`],
-      mexicano:     [`¡Órale! 🌮 ¿Cuántos tacos y de qué relleno?`, `¡Listo! ¿Salsa suave, picante o extra picante? 🌶️`, `¡Perfecto! ¿Para llevar o comes aquí? 😋`],
-      parrilla:     [`¡Fuego! 🔥 ¿Cuántas personas y qué cortes prefieres?`, `¡Genial! ¿Término medio, tres cuartos o bien cocido? 🥩`, `¡Anotado! ¿Con ensalada o papas fritas de acompañante? 🍷`],
-      vegano:       [`¡Qué bien! 🌱 ¿Para comer aquí o te lo llevamos?`, `¡Perfecto! ¿Tienes alguna alergia adicional que deba saber? 🥗`, `¡Genial! ¿Lo quieres sin soya también? 😊`],
-      brunch:       [`¡Reservado! 🥞 ¿A nombre de quién y cuántas personas?`, `¡Perfecto! ¿Con o sin mimosas? 🥂`, `¡Listo! ¿Prefieres mesa interior o terraza? 🌅`],
-      empanadas:    [`¡Anoté! 🫓 ¿Cuántas de cada relleno?`, `¡Genial! ¿Fritas o al horno? 😋`, `¡Perfecto! ¿Para llevar o comes aquí? Con salsa casera incluida 🌶️`],
-      jugos:        [`¡Va! 🥤 ¿Tamaño pequeño, mediano o grande?`, `¡Listo! ¿Con o sin hielo y azúcar? 🌿`, `¡Perfecto! ¿Añadimos un shot de jengibre? ⚡`],
-      cafeteria:    [`¡Genial! ☕ ¿Para tomar aquí o para llevar?`, `¡Listo! ¿Con leche de vaca, almendras o avena? 🥛`, `¡Perfecto! ¿Caliente o frío? ❄️`],
-      tailandes:    [`¡Sabrosón! 🍜 ¿Nivel de picante del 1 al 5?`, `¡Genial! ¿Para cuántas personas es? 🇹🇭`, `¡Perfecto! ¿Arroz jazmín o fideos de arroz de acompañante? 🌺`],
-      dental:       [`¡Listo! 🦷 ¿Confirmas día y hora? ¿Consulta inicial o tratamiento en curso?`, `¡Perfecto! ¿Tienes alergia a medicamentos? 🩺`, `¡Agendado! Te llegará un recordatorio. ¿A ese mismo número? 📱`],
-      spa:          [`¡Agendado! 💆 ¿A nombre de quién y día preferido?`, `¡Genial! ¿Zona de tensión específica a trabajar? 🌸`, `¡Perfecto! ¿Aromaterapia incluida o sesión estándar? 🕯️`],
-      gym:          [`¡Excelente! 💪 ¿Cuándo empiezas? Te asignamos entrenador.`, `¡Perfecto! ¿Objetivo: bajar de peso, ganar músculo o resistencia? 🏋️`, `¡Genial! ¿Mañana o tarde prefieres entrenar? 🧘`],
-      mecanica:     [`¡Listo! 🔧 ¿Lo traes hoy o mañana? ¿Año y modelo del vehículo?`, `¡Entendido! ¿Gasolina o diesel? Para tener los repuestos listos ⚙️`, `¡Perfecto! Te esperamos. ¿Necesitas que te llevemos mientras lo revisamos? 🚗`],
-      tours:        [`¡Genial! 🗺️ ¿Para cuántas personas y qué fecha?`, `¡Anotado! ¿Español o inglés el tour? 🌍`, `¡Perfecto! ¿Transporte incluido desde tu hotel? ✈️`],
-      fotografia:   [`¡Genial! 📸 ¿Fecha, hora y tipo de sesión?`, `¡Perfecto! ¿En estudio o locación externa? 🖼️`, `¡Listo! ¿Cuántas personas en la sesión? 📷`],
-      transporte_ejecutivo:[`¡Confirmado! 🚗 ¿Dirección de recogida y destino?`, `¡Perfecto! ¿A qué hora te recogemos? 🛫`, `¡Listo! ¿Cuántas personas? Asignamos el vehículo adecuado 🚐`],
+      pasteleria:   [`¡Perfecto! 🎂 ¿Confirmas la fecha y el diseño? Te envío el presupuesto.`, `¡Genial! ¿Para cuántas personas y el sabor? 🍰`, `¡Anotado! ¿Algún detalle especial? ✨`],
+      panaderia:    [`¡Listo! 🥐 ¿Para qué hora pasas a recogerlo?`, `¡Entendido! ¿Cuántas unidades? 🍞`, `¡Genial! ¿Pagas al recoger o adelanto? 💳`],
+      heladeria:    [`¡Dale! 🍦 ¿Cuántas bolas y de qué sabores?`, `¡Perfecto! ¿Aquí o llevas? 🌈`, `¡Vamos! ¿Con toppings? 🥥`],
+      sushi_ramen:  [`¡Listo! 🍱 ¿Mesa o delivery? ¿Cuántas personas? 🥢`, `¡Genial! ¿Algo sin mariscos en el grupo? 🍜`],
+      pizzeria:     [`¡Va! 🍕 ¿Aquí o llevas? ¿Grande o mediana?`, `¡Perfecto! ¿Qué ingredientes? 🧀`],
+      hamburgueseria:[`¡Dale! 🍔 ¿Cuántas burgers y qué salsa?`, `¡Claro! ¿Papas fritas o aros? 🥤`],
+      mariscos:     [`¡Perfecto! 🐟 ¿Aquí o domicilio?`, `¡Genial! ¿Mesa con vista al mar? 🌊`],
+      mexicano:     [`¡Órale! 🌮 ¿Cuántos tacos y de qué relleno?`, `¡Listo! ¿Salsa suave o picante? 🌶️`],
+      parrilla:     [`¡Fuego! 🔥 ¿Cuántas personas y qué cortes?`, `¡Genial! ¿Término de cocción? 🥩`],
+      vegano:       [`¡Qué bien! 🌱 ¿Para aquí o llevas?`, `¡Perfecto! ¿Alguna alergia? 🥗`],
+      brunch:       [`¡Reservado! 🥞 ¿A nombre de quién y cuántas personas?`, `¡Perfecto! ¿Con mimosas? 🥂`],
+      empanadas:    [`¡Anoté! 🫓 ¿Cuántas de cada relleno?`, `¡Genial! ¿Fritas o al horno? 😋`],
+      jugos:        [`¡Va! 🥤 ¿Tamaño pequeño, mediano o grande?`, `¡Listo! ¿Con o sin hielo? 🌿`],
+      cafeteria:    [`¡Genial! ☕ ¿Para tomar aquí o llevas?`, `¡Listo! ¿Con leche de vaca, almendras o avena? 🥛`],
+      dental:       [`¡Listo! 🦷 ¿Día y hora? ¿Consulta o tratamiento?`, `¡Perfecto! ¿Alergia a medicamentos? 🩺`],
+      spa:          [`¡Agendado! 💆 ¿Nombre y día?`, `¡Genial! ¿Zona de tensión? 🌸`],
+      gym:          [`¡Excelente! 💪 ¿Cuándo empiezas?`, `¡Perfecto! ¿Objetivo? 🏋️`],
+      mecanica:     [`¡Listo! 🔧 ¿Lo traes hoy?`, `¡Entendido! ¿Año y modelo? ⚙️`],
+      tours:        [`¡Genial! 🗺️ ¿Cuántas personas y fecha?`, `¡Perfecto! ¿Español o inglés? 🌍`],
+      fotografia:   [`¡Genial! 📸 ¿Fecha, hora y tipo de sesión?`, `¡Perfecto! ¿En estudio o exterior? 🖼️`],
+      transporte_ejecutivo:[`¡Confirmado! 🚗 ¿Dirección de recogida y destino?`, `¡Perfecto! ¿A qué hora? 🛫`],
     };
     return _pick(subConf[sub] || [
       `¡Perfecto! 😊 ¿Con qué continuamos?`,
       `¡Genial! ¿Necesitas algo más?`,
       `¡Entendido! ¿Algo más en lo que podamos ayudarte? ✅`,
       `¡De acuerdo! ¿Confirmamos los detalles? 🙏`,
-      `¡Hecho! ¿Hay algo más que quieras saber? 💬`,
-      `¡Listo! Quedamos atentos a cualquier otra pregunta 😊`,
+      `¡Hecho! ¿Hay algo más? 💬`,
+      `¡Listo! Quedamos atentos 😊`,
     ]);
   }
 
