@@ -7267,6 +7267,28 @@ function handleFileAttach(input, type) {
               </div>
               <span class="chat-bubble-audio-dur" id="dur_${uid}">0:00</span>
             </div>`;
+        } else if (a.type === 'location') {
+          content = `
+            <div class="chat-bubble-location" onclick="window.open('${a.mapUrl}','_blank')">
+              <div class="chat-bubble-location-map">
+                <i class="fas fa-location-dot"></i>
+              </div>
+              <div class="chat-bubble-location-label">
+                <span>📍 Ubicación compartida</span>
+                <span style="font-size:.7rem;opacity:.7">Toca para ver en el mapa</span>
+              </div>
+            </div>`;
+        } else if (a.type === 'contact') {
+          const initLetter = (a.name || '?')[0].toUpperCase();
+          content = `
+            <div class="chat-bubble-contact">
+              <div class="chat-bubble-contact-av">${initLetter}</div>
+              <div class="chat-bubble-contact-info">
+                <span class="chat-bubble-contact-name">${escapeHtml(a.name)}</span>
+                ${a.email ? `<span class="chat-bubble-contact-sub">${escapeHtml(a.email)}</span>` : ''}
+              </div>
+              <i class="fas fa-user-plus" style="font-size:.9rem;opacity:.6"></i>
+            </div>`;
         } else {
           // documento
           const sizeKb = a.size ? Math.round(a.size / 1024) + ' KB' : '';
