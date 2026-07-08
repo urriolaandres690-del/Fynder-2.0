@@ -6094,8 +6094,7 @@ select option {
   background-color: var(--card);
   color: var(--fg);
 }
-[data-theme="dark"] .biz-input-wrap input::placeholder,
-[data-theme="dark"] .biz-input-wrap textarea::placeholder { color: var(--muted); }
+
 [data-theme="dark"] .status-option  { background: rgba(255,255,255,.04); border-color: rgba(255,255,255,.08); }
 [data-theme="dark"] .status-option.active { border-color: var(--primary); }
 [data-theme="dark"] .status-label   { color: var(--fg); }
