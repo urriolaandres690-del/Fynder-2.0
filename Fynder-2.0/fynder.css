@@ -12650,20 +12650,47 @@ body:has(#page-fynder.active) #navbar:not(.scrolled) .nav-dots-btn:hover {
 }
 .msg-newchat-badge-new,
 .msg-newchat-badge-existing {
-  width: 28px; height: 28px;
+  width: 36px; height: 36px;
   border-radius: 50%;
   display: flex; align-items: center; justify-content: center;
-  font-size: .75rem;
+  font-size: .85rem;
   flex-shrink: 0;
+  border: none;
+  cursor: pointer;
+  transition: transform .15s cubic-bezier(.34,1.56,.64,1), box-shadow .15s, background .15s;
+  position: relative;
 }
 .msg-newchat-badge-new {
   background: var(--msg-accent, #67B8B4);
   color: #fff;
+  box-shadow: 0 0 0 0 rgba(103,184,180,.5);
+  animation: addBtnPulse 2s ease-in-out infinite;
+}
+.msg-newchat-badge-new:hover,
+.msg-newchat-add-btn:hover {
+  transform: scale(1.18);
+  box-shadow: 0 4px 16px rgba(103,184,180,.55);
+  animation: none;
+}
+.msg-newchat-badge-new:active,
+.msg-newchat-add-btn:active {
+  transform: scale(.9);
+  box-shadow: 0 2px 8px rgba(103,184,180,.4);
+}
+@keyframes addBtnPulse {
+  0%   { box-shadow: 0 0 0 0   rgba(103,184,180,.55); }
+  60%  { box-shadow: 0 0 0 8px rgba(103,184,180,.0);  }
+  100% { box-shadow: 0 0 0 0   rgba(103,184,180,.0);  }
 }
 .msg-newchat-badge-existing {
   background: var(--msg-surface, #2a3942);
   color: var(--msg-accent, #67B8B4);
+  border: none;
+  cursor: pointer;
+  transition: transform .15s cubic-bezier(.34,1.56,.64,1), background .15s;
 }
+.msg-newchat-badge-existing:hover { transform: scale(1.12); }
+.msg-newchat-badge-existing:active { transform: scale(.9); }
 .msg-newchat-empty {
   display: flex;
   flex-direction: column;
