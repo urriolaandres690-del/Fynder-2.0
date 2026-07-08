@@ -8587,7 +8587,9 @@ function openMsgBubbleCtxMenu(event, bizId, msgId, isOut) {
         onclick="toggleMsgReaction('${bizId}','${msgId}','${em}');closeMsgBubbleCtxMenu();"
         title="${em}">${em}</button>`;
     }).join('') +
-    `<button class="react-more" onclick="closeMsgBubbleCtxMenu()" title="Cerrar">✕</button>`;
+    `<button class="react-more"
+      onclick="closeMsgBubbleCtxMenu();openReactionEmojiPicker('${bizId}','${msgId}');"
+      title="Más emojis">+</button>`;
   }
 
   // Actualizar etiqueta "Fijar" según estado actual
