@@ -4129,6 +4129,11 @@ function openChat(bizId, biz) {
   _loadMsgSettings();
   if (_msgSettings.bubbleColor) _applyChatBubbleColor(_msgSettings.bubbleColor);
   if (_msgSettings.fontSize)    _applyChatFontSize(_msgSettings.fontSize);
+
+  // Resetear input y mostrar botón mic (en caso de que quedara texto de un chat anterior)
+  const chatInput = document.getElementById('chatInput');
+  if (chatInput) { chatInput.value = ''; }
+  chatInputChange();
 }
 
 // ---- Renderizar mensajes (desktop: #chatMessages) ----
