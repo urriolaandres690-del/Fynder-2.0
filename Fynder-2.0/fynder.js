@@ -278,7 +278,7 @@ function listCardHTML(b){
 }
 function goPage(p){
     // Páginas que requieren sesión activa
-    const authRequired = ['messages','chat','chat-profile','profile','settings','dashboard','favorites'];
+    const authRequired = ['messages','chat','chat-profile','profile','settings','dashboard'];
     if(authRequired.includes(p) && !localStorage.getItem('fynderLogged')){
         showToast('Debes iniciar sesión para acceder a esta sección.', 'error');
         p = 'login';
