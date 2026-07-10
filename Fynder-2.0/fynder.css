@@ -6112,6 +6112,135 @@ label.avatar-option-btn:hover { background: var(--teal-light); border-color: rgb
 [data-theme="dark"] .dark-toggle-btn .icon-moon { display: none;  }
 [data-theme="dark"] .dark-toggle-btn .icon-sun  { display: block; }
 
+/* ================================================================
+   MODO DÍA — mejoras visuales
+   ================================================================ */
+
+/* Fondo general con gradiente muy suave */
+body { background: linear-gradient(160deg, #EBF5F4 0%, #F0F7F6 40%, #EFF4FB 100%); background-attachment: fixed; }
+
+/* Scrollbar con tinte teal */
+::-webkit-scrollbar-thumb { background: rgba(103,184,180,.35); }
+::-webkit-scrollbar-thumb:hover { background: rgba(103,184,180,.6); }
+
+/* Navbar: borde inferior sutil con color primario */
+#navbar.scrolled {
+  background: rgba(240,247,246,.96);
+  border-bottom: 1px solid rgba(103,184,180,.25);
+  box-shadow: 0 4px 20px rgba(103,184,180,.12);
+}
+
+/* Cards de negocio: sombra teal y borde suave */
+.bcard {
+  border: 1px solid rgba(103,184,180,.15);
+  box-shadow: 0 2px 12px rgba(103,184,180,.08);
+  transition: transform .22s, box-shadow .22s, border-color .22s;
+}
+.bcard:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 12px 36px rgba(103,184,180,.22);
+  border-color: rgba(103,184,180,.3);
+}
+
+/* Cards de lista: misma mejora */
+.bcard-list {
+  border: 1px solid rgba(103,184,180,.15);
+  box-shadow: 0 2px 10px rgba(103,184,180,.07);
+}
+.bcard-list:hover {
+  box-shadow: 0 8px 28px rgba(103,184,180,.18);
+  border-color: rgba(103,184,180,.3);
+}
+
+/* Cards de categoría: fondo con tinte muy suave, borde y sombra */
+.cat-card {
+  background: linear-gradient(145deg, #ffffff 0%, #F3FAFA 100%);
+  border: 1px solid rgba(103,184,180,.18);
+  box-shadow: 0 2px 10px rgba(103,184,180,.07);
+  transition: all .22s;
+}
+.cat-card:hover {
+  border-color: rgba(103,184,180,.4);
+  box-shadow: 0 8px 24px rgba(103,184,180,.18);
+  background: linear-gradient(145deg, #ffffff 0%, #E8F8F7 100%);
+}
+
+/* Secciones con fondo alternado sutil */
+.section:nth-child(even) { background: rgba(255,255,255,.7) !important; }
+.section:nth-child(odd)  { background: transparent !important; }
+
+/* Sección "cómo funciona": fondo más rico */
+.how-section {
+  background: linear-gradient(160deg, #EAF6F5 0%, #F0F7FF 100%) !important;
+}
+.how-section::before {
+  background-image: radial-gradient(rgba(103,184,180,.08) 1px, transparent 1px) !important;
+}
+.how-card {
+  background: #ffffff;
+  box-shadow: 0 4px 18px rgba(103,184,180,.10);
+  border: 1px solid rgba(103,184,180,.15);
+}
+.how-card:hover { box-shadow: 0 16px 48px rgba(103,184,180,.22) !important; }
+
+/* Barra del directorio */
+.dir-toolbar {
+  background: rgba(240,247,246,.97) !important;
+  border-bottom: 1px solid rgba(103,184,180,.2);
+  box-shadow: 0 4px 16px rgba(103,184,180,.1);
+}
+
+/* Input de búsqueda del directorio */
+.search-box input {
+  background: #ffffff;
+  border: 1px solid rgba(103,184,180,.2);
+  box-shadow: 0 1px 4px rgba(103,184,180,.08);
+  transition: box-shadow .2s, border-color .2s;
+}
+.search-box input:focus {
+  border-color: rgba(103,184,180,.5);
+  box-shadow: 0 0 0 3px rgba(103,184,180,.15);
+}
+
+/* Chips de filtro */
+.filter-chip {
+  background: #ffffff;
+  border: 1px solid rgba(103,184,180,.2);
+  color: var(--muted);
+  box-shadow: 0 1px 4px rgba(103,184,180,.07);
+}
+.filter-chip:hover { background: var(--teal-light); border-color: rgba(103,184,180,.35); }
+.filter-chip.active { box-shadow: 0 2px 10px rgba(103,184,180,.25); }
+
+/* Modal: sombra más pronunciada */
+.fynder-modal { box-shadow: 0 20px 60px rgba(103,184,180,.2), 0 4px 16px rgba(0,0,0,.12); }
+
+/* Info rows del modal: más definidos */
+.info-row {
+  background: linear-gradient(135deg, #F6FCFB 0%, #EFF7F9 100%);
+  border: 1px solid rgba(103,184,180,.18);
+}
+
+/* Botón primario: sombra coloreada */
+.btn-teal { box-shadow: 0 4px 14px rgba(103,184,180,.35); }
+.btn-teal:hover { box-shadow: 0 6px 20px rgba(103,184,180,.45); }
+
+/* Página de favoritos: fondo especial */
+#page-favorites { background: linear-gradient(160deg, #EBF5F4 0%, #F0F7FF 100%) !important; }
+
+/* Página del directorio */
+#page-directory { background: linear-gradient(160deg, #F0F7F6 0%, #EFF4FB 100%) !important; }
+
+/* Hero stat cards: más vividas */
+.hero-stat-card {
+  box-shadow: 0 6px 24px rgba(0,0,0,.1), 0 1px 4px rgba(103,184,180,.12);
+  border: 1px solid rgba(255,255,255,.8);
+}
+.hero-stat-icon { background: var(--teal-light); }
+
+/* Page inner: fondo más rico */
+.page-inner { background: linear-gradient(160deg, #EBF5F4 0%, #F0F7F6 60%, #EFF4FB 100%); }
+
 /* variables modo oscuro */
 [data-theme="dark"] {
   --bg:         #0F172A;
