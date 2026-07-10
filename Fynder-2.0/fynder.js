@@ -1798,10 +1798,17 @@ function changePassword(event){
 
 function deleteAccount(){
     if(!confirm("¿Seguro que deseas eliminar tu cuenta? Esta acción no se puede deshacer.")) return;
+    const user = JSON.parse(localStorage.getItem("fynderUser") || 'null');
+    // Eliminar del array de cuentas guardadas
+    if(user){
+        const accounts = _getSavedAccounts().filter(a => a.email !== user.email);
+        _setSavedAccounts(accounts);
+    }
     localStorage.removeItem("fynderUser");
     localStorage.removeItem("fynderLogged");
-    localStorage.removeItem("fynderAvatarPhoto");
-    localStorage.removeItem("fynderCoverPhoto");
+    _clearProfileVisualData();
+    favorites.clear();
+    localStorage.removeItem("fynderFavorites");
     document.getElementById("userName").textContent = "";
     updateNav();
     showToast("Cuenta eliminada. ¡Hasta pronto!");
@@ -3031,8 +3038,12 @@ function _openAddAccountFlow() {
 /* Sobrescribir logout para soportar modo silencioso */
 const _origLogout = typeof logout === 'function' ? logout : null;
 function logout(silent) {
+  // Guardar estado de la cuenta antes de limpiar
+  _saveCurrentAccount();
   localStorage.setItem('fynderUserStatus', 'offline');
   localStorage.removeItem('fynderLogged');
+  // Limpiar datos visuales del perfil (no pertenecen a ninguna sesión activa)
+  _clearProfileVisualData();
   document.getElementById('userName').textContent = '';
   favorites.clear();
   localStorage.removeItem('fynderFavorites');
@@ -3041,6 +3052,15 @@ function logout(silent) {
     showToast('Sesión cerrada. ¡Hasta pronto!');
     goPage('home');
   }
+}
+
+/* Elimina las claves de perfil visual de la sesión activa */
+function _clearProfileVisualData() {
+  localStorage.removeItem('fynderAvatarPhoto');
+  localStorage.removeItem('fynderAvatarPreset');
+  localStorage.removeItem('fynderAvatarInitialBg');
+  localStorage.removeItem('fynderCoverPhoto');
+  localStorage.removeItem('fynderUserStatus');
 }
 
 // cerrar al hacer click
