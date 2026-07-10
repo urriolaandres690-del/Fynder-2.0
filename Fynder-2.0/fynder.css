@@ -6305,7 +6305,7 @@ select option {
 [data-theme="dark"] .auth-field label { color: var(--fg); }
 [data-theme="dark"] .auth-input-wrap  { background: rgba(255,255,255,.06); border-color: rgba(255,255,255,.1); }
 [data-theme="dark"] .auth-input-wrap input { background: rgba(255,255,255,.06) !important; color: var(--fg) !important; }
-[data-theme="dark"] .auth-input-wrap input:hover { background: rgba(255,255,255,.09) !important; color: var(--fg) !important; }
+[data-theme="dark"] .auth-input-wrap input:hover { background: rgba(255,255,255,.09) !important; color: var(--fg) !important; border-color: rgba(255,255,255,.2) !important; }
 [data-theme="dark"] .auth-input-wrap input:focus { background: rgba(255,255,255,.09) !important; color: var(--fg) !important; }
 [data-theme="dark"] .auth-input-wrap input::placeholder { color: var(--muted) !important; }
 [data-theme="dark"] .auth-divider span { background: var(--card); color: var(--muted); }
