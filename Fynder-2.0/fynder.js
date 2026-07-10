@@ -997,6 +997,17 @@ function buildHome(){
   document.getElementById('popularList').innerHTML=BUSINESSES.filter(b=>b.isPopular).map(listCardHTML).join('');
   _initCarouselDrag('featuredGrid');
 
+  // ── Fade del scroll en Más Populares ──
+  const popWrap = document.querySelector('.popular-scroll-wrap');
+  if(popWrap){
+    const updateFade = () => {
+      const atEnd = popWrap.scrollTop + popWrap.clientHeight >= popWrap.scrollHeight - 8;
+      popWrap.classList.toggle('scrolled-end', atEnd);
+    };
+    popWrap.addEventListener('scroll', updateFade, {passive:true});
+    updateFade();
+  }
+
   // ── Cifras reales calculadas desde BUSINESSES y REVIEWS ──
   const total = BUSINESSES.length;
   const totalReviews = Object.values(REVIEWS).reduce((s,arr)=>s+arr.length,0);
