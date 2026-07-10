@@ -1225,26 +1225,62 @@ function loginUser(event){
 
     const email = document.getElementById("loginEmail").value.trim();
     const pass  = document.getElementById("loginPass").value;
-    const user  = JSON.parse(localStorage.getItem("fynderUser"));
 
-    if(!user){
-        showToast("No existe ninguna cuenta registrada. Crea una primero.", "error");
+    // Buscar en el array de todas las cuentas registradas
+    const accounts = _getSavedAccounts();
+    const acc = accounts.find(a => a.email === email);
+
+    // Compatibilidad: también revisar fynderUser si todavía no hay accounts
+    const legacyUser = JSON.parse(localStorage.getItem("fynderUser") || 'null');
+
+    const matchedAcc  = acc && acc.pass === pass ? acc : null;
+    const matchedLegacy = !matchedAcc && legacyUser && legacyUser.email === email && legacyUser.pass === pass ? legacyUser : null;
+
+    if(!matchedAcc && !matchedLegacy){
+        if(accounts.length === 0 && !legacyUser){
+            showToast("No existe ninguna cuenta registrada. Crea una primero.", "error");
+        } else {
+            showToast("Correo o contraseña incorrectos.", "error");
+        }
         return;
     }
 
-    if(email === user.email && pass === user.pass){
-        localStorage.setItem("fynderLogged", "true");
-        // Auto-estado: Activo al iniciar sesión
-        localStorage.setItem("fynderUserStatus", "active");
-        document.getElementById("userName").textContent = "Hola, " + user.name;
-        _saveCurrentAccount();  // guardar/actualizar en la lista de cuentas
-        localStorage.removeItem('fynderAddingAccount');
-        updateNav();
-        showToast("¡Bienvenido de nuevo, " + user.name + "!");
-        goPage("home");
-    }else{
-        showToast("Correo o contraseña incorrectos.", "error");
+    const user = matchedAcc
+        ? { name: matchedAcc.name, email: matchedAcc.email, pass: matchedAcc.pass,
+            city: matchedAcc.city || '', bio: matchedAcc.bio || '', phone: matchedAcc.phone || '' }
+        : legacyUser;
+
+    // Guardar estado de la cuenta anterior y limpiar datos visuales
+    _saveCurrentAccount();
+    _clearProfileVisualData();
+
+    // Restaurar datos de esta cuenta
+    localStorage.setItem("fynderUser", JSON.stringify(user));
+    localStorage.setItem("fynderLogged", "true");
+    localStorage.setItem("fynderUserStatus", "active");
+
+    // Restaurar avatar/portada de esta cuenta si existen
+    if(matchedAcc){
+        if(matchedAcc.avatarPhoto)  localStorage.setItem('fynderAvatarPhoto',     matchedAcc.avatarPhoto);
+        if(matchedAcc.avatarPreset) localStorage.setItem('fynderAvatarPreset',    matchedAcc.avatarPreset);
+        if(matchedAcc.avatarInitBg) localStorage.setItem('fynderAvatarInitialBg', matchedAcc.avatarInitBg);
+        if(matchedAcc.coverPhoto)   localStorage.setItem('fynderCoverPhoto',      matchedAcc.coverPhoto);
+
+        // Restaurar favoritos de esta cuenta
+        if(matchedAcc.favorites){
+            const favArr = JSON.parse(matchedAcc.favorites || '[]');
+            favorites.clear();
+            favArr.forEach(id => favorites.add(id));
+            localStorage.setItem('fynderFavorites', matchedAcc.favorites);
+        }
     }
+
+    document.getElementById("userName").textContent = "Hola, " + user.name;
+    _saveCurrentAccount();
+    localStorage.removeItem('fynderAddingAccount');
+    updateNav();
+    showToast("¡Bienvenido de nuevo, " + user.name + "!");
+    goPage("home");
 }
 
 function forgotPassword(){
