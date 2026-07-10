@@ -10223,20 +10223,8 @@ function dismissWelcomeModal() {
 
 
 /* ════════════════════════════════════════════════════════
-   LOGIN SOCIAL – Google & Microsoft
-   ════════════════════════════════════════════════════════
-   CONFIGURACIÓN:
-   - GOOGLE_CLIENT_ID: obtener en https://console.cloud.google.com
-     → Credenciales → Crear credencial → ID de cliente OAuth 2.0
-     → Tipo: Aplicación web → Agregar origen: file:// o tu dominio
-   - MICROSOFT_CLIENT_ID: obtener en https://portal.azure.com
-     → Azure Active Directory → Registros de aplicaciones → Nueva
-     → Tipo de cuenta: Cuentas de cualquier directorio + personal
-     → URI de redireccionamiento: tipo "Aplicación de página única"
-   ════════════════════════════════════════════════════════ */
 
-const GOOGLE_CLIENT_ID    = 'TU_GOOGLE_CLIENT_ID_AQUI';   // ← reemplazar
-const MICROSOFT_CLIENT_ID = 'TU_MICROSOFT_CLIENT_ID_AQUI'; // ← reemplazar
+
 
 /* ── Sesión social compartida: login, guardar y navegar ── */
 function _socialLogin(name, email, avatarUrl, provider) {
