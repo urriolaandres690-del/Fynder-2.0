@@ -2021,19 +2021,6 @@ body{
   box-shadow: 0 0 0 3px rgba(103,184,180,.18) !important;
 }
 
-/* modo oscuro: restaurar fondos y texto correctos */
-[data-theme="dark"] .input-wrap input,
-[data-theme="dark"] .input-wrap input:focus,
-[data-theme="dark"] .input-wrap input:focus-visible {
-  background: rgba(255,255,255,.06) !important;
-  color: #E2E8F0 !important;
-  border-color: rgba(255,255,255,.1) !important;
-}
-[data-theme="dark"] .input-wrap input:focus {
-  background: rgba(255,255,255,.09) !important;
-  border-color: var(--primary) !important;
-}
-
 /* Bootstrap .form-control adds its own styles; isolate our inputs */
 #loginForm .input-wrap input,
 #registerForm .input-wrap input {
@@ -6317,10 +6304,8 @@ select option {
 [data-theme="dark"] .auth-card p  { color: var(--muted); }
 [data-theme="dark"] .auth-field label { color: var(--fg); }
 [data-theme="dark"] .auth-input-wrap  { background: rgba(255,255,255,.06); border-color: rgba(255,255,255,.1); }
-[data-theme="dark"] .auth-input-wrap input { background: transparent !important; color: #E2E8F0 !important; }
-[data-theme="dark"] .auth-input-wrap input:hover { background: transparent !important; color: #E2E8F0 !important; border-color: rgba(255,255,255,.2) !important; }
-[data-theme="dark"] .auth-input-wrap input:focus { background: transparent !important; color: #E2E8F0 !important; }
-[data-theme="dark"] .auth-input-wrap input::placeholder { color: var(--muted) !important; }
+[data-theme="dark"] .auth-input-wrap input { background: transparent; color: var(--fg); }
+[data-theme="dark"] .auth-input-wrap input::placeholder { color: var(--muted); }
 [data-theme="dark"] .auth-divider span { background: var(--card); color: var(--muted); }
 [data-theme="dark"] .auth-remember span:last-child { color: var(--muted); }
 
@@ -15449,9 +15434,9 @@ body { top: 0 !important; }
 
 /* ---- input-wrap genérico (formularios de auth, contacto, etc.) ---- */
 [data-theme="dark"] .input-wrap           { background: rgba(255,255,255,.06); border-color: rgba(255,255,255,.1); }
-[data-theme="dark"] .input-wrap input     { background: transparent !important; color: #E2E8F0 !important; }
-[data-theme="dark"] .input-wrap input::placeholder { color: var(--muted) !important; }
-[data-theme="dark"] .input-wrap input:focus { background: rgba(255,255,255,.08) !important; color: #E2E8F0 !important; }
+[data-theme="dark"] .input-wrap input     { background: transparent; color: var(--fg); }
+[data-theme="dark"] .input-wrap input::placeholder { color: var(--muted); }
+[data-theme="dark"] .input-wrap input:focus { background: rgba(255,255,255,.08) !important; }
 [data-theme="dark"] .input-wrap .input-icon { color: var(--muted); }
 
 /* ---- Formulario soporte – campos ---- */
