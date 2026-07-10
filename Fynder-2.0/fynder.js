@@ -10231,30 +10231,7 @@ function dismissWelcomeModal() {
 
 
 
-/* ── Helpers para el selector de cuentas estilo real ── */
 
-function _getSavedDemoAccounts(provider) {
-  const isGoogle = provider === 'Google';
-  const key = isGoogle ? 'fynderGoogleAccounts' : 'fynderMsAccounts';
-  try {
-    const saved = JSON.parse(localStorage.getItem(key) || '[]');
-    if (saved.length) return saved;
-  } catch(_) {}
-  // Cuentas predeterminadas si no hay historial
-  return isGoogle ? [
-    { name:'Josseph González', email:'gjosseph674@gmail.com',
-      avatar:'https://ui-avatars.com/api/?name=Josseph+Gonz%C3%A1lez&background=8B5CF6&color=fff&size=48&bold=true&rounded=true' },
-    { name:'alex', email:'alexy567alba@gmail.com',
-      avatar:'https://ui-avatars.com/api/?name=alex&background=4285F4&color=fff&size=48&bold=true&rounded=true' },
-  ] : [
-    { name:'Josseph Gonzalez', email:'josseph.gonzalez2027@fbgsantiago.superate.org',
-      avatar:'https://ui-avatars.com/api/?name=Josseph+Gonzalez&background=555&color=fff&size=48&bold=true&rounded=true',
-      sub:'Conectado a Windows' },
-    { name:'hp roja', email:'hproja08102020@hotmail.com',
-      avatar:'https://ui-avatars.com/api/?name=hp+roja&background=777&color=fff&size=48&bold=true&rounded=true',
-      sub:'Conectado' },
-  ];
-}
 
 function _buildGoogleAccountChooser(overlay, accounts) {
   const rowsHtml = accounts.map((acc, i) => `
