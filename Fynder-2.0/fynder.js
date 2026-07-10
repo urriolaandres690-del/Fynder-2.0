@@ -2271,12 +2271,14 @@ function _applyNavbarTheme(){
     navbar.style.transition = 'background .3s, box-shadow .3s';
 }
 
-// iniciar tema guardado
+// iniciar tema guardado — por defecto siempre modo claro
 (function initTheme(){
     const saved = localStorage.getItem('fynderTheme');
-    if(saved === 'dark'){
-        document.documentElement.setAttribute('data-theme', 'dark');
-    }
+    // Si el usuario eligió explícitamente un tema, respetarlo
+    // Si no hay preferencia guardada, forzar 'light' sin importar el OS
+    const theme = (saved === 'dark' || saved === 'light') ? saved : 'light';
+    document.documentElement.setAttribute('data-theme', theme);
+    if (!saved) localStorage.setItem('fynderTheme', 'light');
 })();
 
 /* ── Auto-estado al cerrar la pestaña/navegador ── */
