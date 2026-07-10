@@ -10248,7 +10248,7 @@ function _showSocialLoginDemo(provider) {
     <div style="
       background:#fff;border-radius:20px;padding:32px 28px;width:360px;max-width:calc(100vw - 32px);
       box-shadow:0 24px 64px rgba(0,0,0,.18);
-      animation:slideUp .25s ease;
+      animation:slideUpCenter .25s ease;
     ">
       <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:24px">
         <div style="display:flex;align-items:center;gap:10px">
