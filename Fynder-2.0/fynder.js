@@ -10519,12 +10519,8 @@ function selectGoogleAccount(email, name) {
   if (overlay) overlay.classList.add('hide');
   document.body.style.overflow = '';
 
-  // Avatar: SVG del fantasma como data URI para guardarlo como foto de perfil
-  const ghostSvg = `<svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg" width="40" height="40"><circle cx="20" cy="20" r="20" fill="#7C3AED"/><path d="M20 8c-5.523 0-10 4.477-10 10v10l3-3 3 3 3-3 3 3 3-3 3 3V18c0-5.523-4.477-10-10-10z" fill="white"/><circle cx="16" cy="19" r="2" fill="#7C3AED"/><circle cx="24" cy="19" r="2" fill="#7C3AED"/></svg>`;
-  const svgBlob = new Blob([ghostSvg], { type: 'image/svg+xml' });
-  const avatarUrl = URL.createObjectURL(svgBlob);
-
-  _socialLogin(name, email, avatarUrl, 'Google');
+  // Usar avatar vacío — el botón de nav mostrará el SVG fantasma directamente
+  _socialLogin(name, email, null, 'Google');
 
   // Actualizar el botón de perfil en la navbar para mostrar el avatar fantasma + correo
   _applyGoogleNavProfile(email);
