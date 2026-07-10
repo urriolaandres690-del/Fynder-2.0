@@ -10565,9 +10565,69 @@ function _applyGoogleNavProfile(email) {
 }
 
 /* ── Google Login (Google Identity Services) ── */
+
+/**
+ * Callback que Google llama después de que el usuario inicia sesión.
+ * Recibe un JWT credential que decodificamos para obtener nombre, email y foto.
+ */
+function handleCredentialResponse(response) {
+  try {
+    // El credential es un JWT — decodificamos la parte payload (base64)
+    const payload = JSON.parse(atob(response.credential.split('.')[1]));
+    const name      = payload.name  || payload.given_name || 'Usuario';
+    const email     = payload.email || '';
+    const avatarUrl = payload.picture || null;
+    _socialLogin(name, email, avatarUrl, 'Google');
+  } catch (e) {
+    showToast('No se pudo completar el inicio de sesión con Google.', 'error');
+  }
+}
+
 function loginWithGoogle() {
-  // Abrir el picker modal de Google
-  openGooglePicker();
+  // Si hay un Client ID real configurado, usar Google Identity Services real
+  if (GOOGLE_CLIENT_ID && GOOGLE_CLIENT_ID !== 'TU_GOOGLE_CLIENT_ID_AQUI') {
+    if (typeof google === 'undefined' || !google.accounts) {
+      showToast('Librería de Google no disponible. Revisa tu conexión.', 'error');
+      return;
+    }
+    // Inicializar GSI y mostrar el selector de cuenta de Google real
+    google.accounts.id.initialize({
+      client_id:         GOOGLE_CLIENT_ID,
+      callback:          handleCredentialResponse,
+      auto_select:       false,
+      cancel_on_tap_outside: true,
+    });
+    // Abre la pantalla de selección de cuenta de Google (popup nativo)
+    google.accounts.id.prompt(notification => {
+      // Si el One Tap fue descartado o no disponible, usar el flujo OAuth popup
+      if (notification.isNotDisplayed() || notification.isSkippedMoment()) {
+        google.accounts.oauth2.initTokenClient({
+          client_id: GOOGLE_CLIENT_ID,
+          scope: 'openid profile email',
+          callback: async tokenResp => {
+            if (!tokenResp.access_token) return;
+            try {
+              const info = await fetch(
+                'https://www.googleapis.com/oauth2/v3/userinfo',
+                { headers: { Authorization: 'Bearer ' + tokenResp.access_token } }
+              ).then(r => r.json());
+              _socialLogin(
+                info.name || info.given_name || 'Usuario',
+                info.email || '',
+                info.picture || null,
+                'Google'
+              );
+            } catch (_) {
+              showToast('No se pudo obtener la información de tu cuenta Google.', 'error');
+            }
+          },
+        }).requestAccessToken({ prompt: 'select_account' });
+      }
+    });
+  } else {
+    // Sin Client ID configurado → abrir picker simulado como fallback
+    openGooglePicker();
+  }
 }
 
 /* ── Microsoft Login (MSAL.js) ── */
