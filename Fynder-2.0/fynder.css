@@ -6304,8 +6304,10 @@ select option {
 [data-theme="dark"] .auth-card p  { color: var(--muted); }
 [data-theme="dark"] .auth-field label { color: var(--fg); }
 [data-theme="dark"] .auth-input-wrap  { background: rgba(255,255,255,.06); border-color: rgba(255,255,255,.1); }
-[data-theme="dark"] .auth-input-wrap input { background: transparent; color: var(--fg); }
-[data-theme="dark"] .auth-input-wrap input::placeholder { color: var(--muted); }
+[data-theme="dark"] .auth-input-wrap input { background: rgba(255,255,255,.06) !important; color: var(--fg) !important; }
+[data-theme="dark"] .auth-input-wrap input:hover { background: rgba(255,255,255,.09) !important; color: var(--fg) !important; }
+[data-theme="dark"] .auth-input-wrap input:focus { background: rgba(255,255,255,.09) !important; color: var(--fg) !important; }
+[data-theme="dark"] .auth-input-wrap input::placeholder { color: var(--muted) !important; }
 [data-theme="dark"] .auth-divider span { background: var(--card); color: var(--muted); }
 [data-theme="dark"] .auth-remember span:last-child { color: var(--muted); }
 
@@ -15434,9 +15436,9 @@ body { top: 0 !important; }
 
 /* ---- input-wrap genérico (formularios de auth, contacto, etc.) ---- */
 [data-theme="dark"] .input-wrap           { background: rgba(255,255,255,.06); border-color: rgba(255,255,255,.1); }
-[data-theme="dark"] .input-wrap input     { background: transparent; color: var(--fg); }
-[data-theme="dark"] .input-wrap input::placeholder { color: var(--muted); }
-[data-theme="dark"] .input-wrap input:focus { background: rgba(255,255,255,.08) !important; }
+[data-theme="dark"] .input-wrap input     { background: rgba(255,255,255,.06) !important; color: var(--fg) !important; }
+[data-theme="dark"] .input-wrap input::placeholder { color: var(--muted) !important; }
+[data-theme="dark"] .input-wrap input:focus { background: rgba(255,255,255,.08) !important; color: var(--fg) !important; }
 [data-theme="dark"] .input-wrap .input-icon { color: var(--muted); }
 
 /* ---- Formulario soporte – campos ---- */
