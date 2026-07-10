@@ -994,7 +994,7 @@ function _initCarouselDrag(id) {
 
 function buildHome(){
   document.getElementById('featuredGrid').innerHTML=BUSINESSES.filter(b=>b.isFeatured).map(gridCardHTML).join('');
-  document.getElementById('popularList').innerHTML=BUSINESSES.filter(b=>b.isPopular).slice(0,4).map(listCardHTML).join('');
+  document.getElementById('popularList').innerHTML=BUSINESSES.filter(b=>b.isPopular).map(listCardHTML).join('');
   _initCarouselDrag('featuredGrid');
 
   // ── Cifras reales calculadas desde BUSINESSES y REVIEWS ──
