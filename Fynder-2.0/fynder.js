@@ -2285,12 +2285,13 @@ function _applyNavbarTheme(){
 
 // iniciar tema guardado — por defecto siempre modo claro
 (function initTheme(){
-    const saved = localStorage.getItem('fynderTheme');
-    // Si el usuario eligió explícitamente un tema, respetarlo
-    // Si no hay preferencia guardada, forzar 'light' sin importar el OS
-    const theme = (saved === 'dark' || saved === 'light') ? saved : 'light';
+    const saved  = localStorage.getItem('fynderTheme');
+    const logged = localStorage.getItem('fynderLogged');
+    // Si no hay sesión activa, siempre modo claro (la opción oscuro aún no se activa sin login)
+    // Si hay sesión, respetar el tema que el usuario eligió
+    const theme = (logged && saved === 'dark') ? 'dark' : 'light';
     document.documentElement.setAttribute('data-theme', theme);
-    if (!saved) localStorage.setItem('fynderTheme', 'light');
+    if (!logged) localStorage.setItem('fynderTheme', 'light');
 })();
 
 /* ── Auto-estado al cerrar la pestaña/navegador ── */
