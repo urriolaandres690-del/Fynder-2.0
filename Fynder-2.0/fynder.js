@@ -2268,6 +2268,11 @@ function sendSupport(event) {
 
 /*modo oscuro*/
 function toggleDarkMode(){
+    // Solo permitir modo oscuro si hay sesión activa
+    if (!localStorage.getItem('fynderLogged')) {
+      showToast('Inicia sesión para activar el modo oscuro 🌙', 'info');
+      return;
+    }
     const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
     const next   = isDark ? 'light' : 'dark';
     document.documentElement.setAttribute('data-theme', next);
