@@ -10255,24 +10255,7 @@ function _showSocialLoginDemo(provider) {
   overlay.addEventListener('click', e => { if (e.target === overlay) overlay.remove(); });
 }
 
-/* placeholder removed */
-
-  const accountsHTML = demoAccounts.map((acc, i) => `
-    <button onclick="_completeSocialDemo(${i}, '${provider}')" style="
-      display:flex;align-items:center;gap:14px;width:100%;padding:14px 16px;
-      border:1px solid #E5E7EB;border-radius:12px;background:#fff;cursor:pointer;
-      transition:background .15s,border-color .15s;text-align:left;
-      font-family:'Inter',sans-serif;
-    " onmouseover="this.style.background='#F8FAFC';this.style.borderColor='#D1D5DB'"
-       onmouseout="this.style.background='#fff';this.style.borderColor='#E5E7EB'">
-      <img src="${acc.avatar}" alt="${acc.name}" style="width:40px;height:40px;border-radius:50%;flex-shrink:0">
-      <div>
-        <div style="font-weight:600;font-size:.875rem;color:#1F2937">${acc.name}</div>
-        <div style="font-size:.75rem;color:#6B7280">${acc.email}</div>
-      </div>
-      <svg style="margin-left:auto;color:#9CA3AF" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m9 18 6-6-6-6"/></svg>
-    </button>
-  `).join('');
+/* new functions below */
 
   overlay.innerHTML = `
     <div style="
