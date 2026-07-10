@@ -1193,14 +1193,27 @@ function registerUser(event){
     }
     passError.classList.add("hide");
 
-    const user = { name, email, phone, pass };
-    localStorage.setItem("fynderUser", JSON.stringify(user));
+    // Verificar si ya existe una cuenta con ese email
+    const accounts = _getSavedAccounts();
+    if(accounts.find(a => a.email === email)){
+        showToast("Ya existe una cuenta con ese correo. Inicia sesión.", "error");
+        goPage("login");
+        return;
+    }
 
-    // Mostrar nombre en la navbar y marcar como logueado
+    const user = { name, email, phone, pass };
+
+    // Guardar estado de la cuenta actual antes de cambiar (si había sesión)
+    _saveCurrentAccount();
+
+    // Limpiar datos de perfil visual del usuario anterior
+    _clearProfileVisualData();
+
+    localStorage.setItem("fynderUser", JSON.stringify(user));
     localStorage.setItem("fynderLogged", "true");
     localStorage.setItem("fynderUserStatus", "active");
     document.getElementById("userName").textContent = "Hola, " + name;
-    _saveCurrentAccount();  // guardar en la lista de cuentas
+    _saveCurrentAccount();  // guardar la nueva cuenta en la lista
     localStorage.removeItem('fynderAddingAccount');
     updateNav();
     showToast("¡Cuenta creada! Bienvenido a FYNDER, " + name + " 🎉");
