@@ -10236,18 +10236,16 @@ function _socialLogin(name, email, avatarUrl, provider) {
   goPage('home');
 }
 
-/* ── Login Demo (cuando no hay Client ID real configurado) ── */
+/* ── Login Demo — UI idéntica a Google/Microsoft reales ── */
 function _showSocialLoginDemo(provider) {
-  // Crear modal de simulación de selección de cuenta
   const isGoogle = provider === 'Google';
+
+  // Obtener cuentas guardadas previamente (de sesiones anteriores en esta app)
+  const savedAccounts = _getSavedDemoAccounts(provider);
+
   const overlay = document.createElement('div');
   overlay.id = '_socialDemoOverlay';
-  overlay.style.cssText = `
-    position:fixed;inset:0;z-index:9999;
-    background:rgba(0,0,0,.55);backdrop-filter:blur(4px);
-    display:flex;align-items:center;justify-content:center;
-    animation:fadeIn .2s ease;
-  `;
+  overlay.style.cssText = `position:fixed;inset:0;z-index:10000;display:flex;align-items:center;justify-content:center;animation:fadeIn .15s ease;`;
 
   const demoAccounts = isGoogle ? [
     { name: 'Usuario Fynder',    email: 'usuario@gmail.com',    avatar: 'https://ui-avatars.com/api/?name=Usuario+Fynder&background=4285F4&color=fff&size=48' },
