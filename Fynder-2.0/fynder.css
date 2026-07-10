@@ -15436,9 +15436,9 @@ body { top: 0 !important; }
 
 /* ---- input-wrap genérico (formularios de auth, contacto, etc.) ---- */
 [data-theme="dark"] .input-wrap           { background: rgba(255,255,255,.06); border-color: rgba(255,255,255,.1); }
-[data-theme="dark"] .input-wrap input     { background: rgba(255,255,255,.06) !important; color: var(--fg) !important; }
+[data-theme="dark"] .input-wrap input     { background: transparent !important; color: #E2E8F0 !important; }
 [data-theme="dark"] .input-wrap input::placeholder { color: var(--muted) !important; }
-[data-theme="dark"] .input-wrap input:focus { background: rgba(255,255,255,.08) !important; color: var(--fg) !important; }
+[data-theme="dark"] .input-wrap input:focus { background: rgba(255,255,255,.08) !important; color: #E2E8F0 !important; }
 [data-theme="dark"] .input-wrap .input-icon { color: var(--muted); }
 
 /* ---- Formulario soporte – campos ---- */
