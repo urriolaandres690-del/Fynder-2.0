@@ -10476,11 +10476,67 @@ function _submitCustomDemoLogin(provider) {
   _socialLogin(name, email, avatar, provider);
 }
 
+/* ── Google Picker Modal (HTML estático) ── */
+function openGooglePicker() {
+  const overlay = document.getElementById('googlePickerOverlay');
+  if (overlay) {
+    overlay.classList.remove('hide');
+    document.body.style.overflow = 'hidden';
+  }
+}
+
+function closeGooglePicker(e) {
+  // Si se llama desde onclick del overlay, solo cerrar si el click fue en el fondo
+  if (e && e.target !== document.getElementById('googlePickerOverlay')) return;
+  const overlay = document.getElementById('googlePickerOverlay');
+  if (overlay) overlay.classList.add('hide');
+  document.body.style.overflow = '';
+}
+
+function selectGoogleAccount(email, name) {
+  // Cerrar picker
+  const overlay = document.getElementById('googlePickerOverlay');
+  if (overlay) overlay.classList.add('hide');
+  document.body.style.overflow = '';
+
+  // Avatar: SVG del fantasma como data URI para guardarlo como foto de perfil
+  const ghostSvg = `<svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg" width="40" height="40"><circle cx="20" cy="20" r="20" fill="#7C3AED"/><path d="M20 8c-5.523 0-10 4.477-10 10v10l3-3 3 3 3-3 3 3 3-3 3 3V18c0-5.523-4.477-10-10-10z" fill="white"/><circle cx="16" cy="19" r="2" fill="#7C3AED"/><circle cx="24" cy="19" r="2" fill="#7C3AED"/></svg>`;
+  const svgBlob = new Blob([ghostSvg], { type: 'image/svg+xml' });
+  const avatarUrl = URL.createObjectURL(svgBlob);
+
+  _socialLogin(name, email, avatarUrl, 'Google');
+
+  // Actualizar el botón de perfil en la navbar para mostrar el avatar fantasma + correo
+  _applyGoogleNavProfile(email);
+}
+
+function _applyGoogleNavProfile(email) {
+  const profileBtn = document.getElementById('navBtnProfile');
+  if (!profileBtn) return;
+
+  // Reemplazar el ícono estándar por avatar fantasma + correo
+  profileBtn.classList.add('google-user');
+  profileBtn.innerHTML = `
+    <span class="nav-google-avatar">
+      <svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg" width="30" height="30">
+        <circle cx="20" cy="20" r="20" fill="#7C3AED"/>
+        <path d="M20 8c-5.523 0-10 4.477-10 10v10l3-3 3 3 3-3 3 3 3-3 3 3V18c0-5.523-4.477-10-10-10z" fill="white"/>
+        <circle cx="16" cy="19" r="2" fill="#7C3AED"/>
+        <circle cx="24" cy="19" r="2" fill="#7C3AED"/>
+      </svg>
+    </span>
+    <span class="nav-google-email">${email}</span>`;
+}
+
 /* ── Google Login (Google Identity Services) ── */
 function loginWithGoogle() {
-  // Modo demostración: si no hay Client ID configurado, simular login con Google
+  // Siempre abrir el picker modal de Google estilo real
+  openGooglePicker();
+  return;
+
+  // Código real con OAuth (desactivado mientras no haya Client ID)
   if (GOOGLE_CLIENT_ID === 'TU_GOOGLE_CLIENT_ID_AQUI') {
-    _showSocialLoginDemo('Google');
+    openGooglePicker();
     return;
   }
   if (typeof google === 'undefined' || !google.accounts) {
