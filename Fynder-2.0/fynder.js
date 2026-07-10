@@ -366,6 +366,20 @@ function updateNav(){
     if(profile) profile.style.display = logged ? 'inline-flex'  : 'none';
     if(uname && !logged) uname.textContent = '';
 
+    // Si el usuario inició sesión con Google, mostrar avatar fantasma + correo en el botón de perfil
+    if (logged && profile) {
+      const user = JSON.parse(localStorage.getItem('fynderUser') || 'null');
+      if (user && user.provider === 'Google') {
+        _applyGoogleNavProfile(user.email);
+      } else {
+        // Restaurar el ícono estándar si no es Google
+        profile.classList.remove('google-user');
+        if (!profile.classList.contains('google-user')) {
+          profile.innerHTML = '<i class="fas fa-user-circle"></i>';
+        }
+      }
+    }
+
     const dashboard = document.getElementById('navBtnDashboard');
     if(dashboard) dashboard.style.display = logged ? 'inline-flex' : 'none';
 
