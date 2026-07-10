@@ -10255,55 +10255,135 @@ function _showSocialLoginDemo(provider) {
   overlay.addEventListener('click', e => { if (e.target === overlay) overlay.remove(); });
 }
 
-/* new functions below */
+/* ── Helpers para el selector de cuentas estilo real ── */
 
+function _getSavedDemoAccounts(provider) {
+  const isGoogle = provider === 'Google';
+  const key = isGoogle ? 'fynderGoogleAccounts' : 'fynderMsAccounts';
+  try {
+    const saved = JSON.parse(localStorage.getItem(key) || '[]');
+    if (saved.length) return saved;
+  } catch(_) {}
+  // Cuentas predeterminadas si no hay historial
+  return isGoogle ? [
+    { name:'Josseph González', email:'gjosseph674@gmail.com',
+      avatar:'https://ui-avatars.com/api/?name=Josseph+Gonz%C3%A1lez&background=8B5CF6&color=fff&size=48&bold=true&rounded=true' },
+    { name:'alex', email:'alexy567alba@gmail.com',
+      avatar:'https://ui-avatars.com/api/?name=alex&background=4285F4&color=fff&size=48&bold=true&rounded=true' },
+  ] : [
+    { name:'Josseph Gonzalez', email:'josseph.gonzalez2027@fbgsantiago.superate.org',
+      avatar:'https://ui-avatars.com/api/?name=Josseph+Gonzalez&background=555&color=fff&size=48&bold=true&rounded=true',
+      sub:'Conectado a Windows' },
+    { name:'hp roja', email:'hproja08102020@hotmail.com',
+      avatar:'https://ui-avatars.com/api/?name=hp+roja&background=777&color=fff&size=48&bold=true&rounded=true',
+      sub:'Conectado' },
+  ];
+}
+
+function _buildGoogleAccountChooser(overlay, accounts) {
+  const rowsHtml = accounts.map((acc, i) => `
+    <div class="_gdemo-row" onclick="_completeSocialDemo(${i},'Google')"
+      style="display:flex;align-items:center;padding:10px 12px;border-radius:4px;cursor:pointer;gap:16px;border-bottom:1px solid #e0e0e0;"
+      onmouseover="this.style.background='rgba(0,0,0,.06)'" onmouseout="this.style.background=''">
+      <img src="${acc.avatar}" alt="${acc.name}"
+        style="width:32px;height:32px;border-radius:50%;flex-shrink:0;object-fit:cover">
+      <div style="flex:1;min-width:0">
+        <div style="font-size:.9375rem;color:#202124;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">${acc.name}</div>
+        <div style="font-size:.8125rem;color:#5f6368;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">${acc.email}</div>
+      </div>
+    </div>`).join('');
+
+  overlay.style.background = 'rgba(0,0,0,.4)';
+  overlay.style.backdropFilter = 'blur(2px)';
   overlay.innerHTML = `
-    <div style="
-      background:#fff;border-radius:20px;padding:32px 28px;width:360px;max-width:calc(100vw - 32px);
-      box-shadow:0 24px 64px rgba(0,0,0,.18);
-      animation:slideUpCenter .25s ease;
-    ">
-      <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:24px">
-        <div style="display:flex;align-items:center;gap:10px">
-          ${logoSVG}
-          <div>
-            <div style="font-family:'Poppins',sans-serif;font-weight:700;font-size:1rem;color:#1F2937">Elegir cuenta</div>
-            <div style="font-size:.75rem;color:#6B7280">Para continuar en Fynder</div>
+    <div style="background:#202124;border-radius:12px;width:480px;max-width:calc(100vw - 32px);
+      overflow:hidden;box-shadow:0 8px 40px rgba(0,0,0,.5);animation:slideUpCenter .22s ease;font-family:Google Sans,Roboto,sans-serif;">
+      <div style="padding:24px 24px 0">
+        <div style="display:flex;align-items:center;gap:10px;padding-bottom:20px;border-bottom:1px solid #3c4043">
+          <svg width="24" height="24" viewBox="0 0 24 24">
+            <path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/>
+            <path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/>
+            <path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l3.66-2.84z"/>
+            <path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/>
+          </svg>
+          <span style="color:#e8eaed;font-size:1rem;font-weight:500">Acceder con Google</span>
+        </div>
+      </div>
+      <div style="display:flex">
+        <div style="padding:20px 24px;border-right:1px solid #3c4043;min-width:160px">
+          <div style="background:#2a2d30;border-radius:8px;width:60px;height:60px;display:flex;align-items:center;justify-content:center;margin-bottom:16px">
+            <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#9aa0a6" stroke-width="1.5"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+          </div>
+          <div style="font-size:1.5rem;font-weight:400;color:#e8eaed;margin-bottom:4px">Elige una<br>cuenta</div>
+          <div style="font-size:.8125rem;color:#4285F4;cursor:pointer">Ir a <span style="font-weight:500">Fynder</span></div>
+        </div>
+        <div style="flex:1;overflow:hidden">
+          <div style="overflow-y:auto;max-height:220px">
+            ${rowsHtml}
+            <div class="_gdemo-row" onclick="_useOtherAccountDemo('Google')"
+              style="display:flex;align-items:center;padding:10px 12px;border-radius:4px;cursor:pointer;gap:16px;"
+              onmouseover="this.style.background='rgba(0,0,0,.06)'" onmouseout="this.style.background=''">
+              <div style="width:32px;height:32px;border-radius:50%;border:2px solid #9aa0a6;display:flex;align-items:center;justify-content:center;flex-shrink:0">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#9aa0a6" stroke-width="2"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg>
+              </div>
+              <span style="font-size:.9375rem;color:#e8eaed">Usar otra cuenta</span>
+            </div>
+          </div>
+          <div style="padding:12px;font-size:.75rem;color:#9aa0a6;line-height:1.5">
+            Antes de usar Fynder, revisa su
+            <a href="#" onclick="event.preventDefault();goPage('privacy')" style="color:#4285F4;text-decoration:none">Política de privacidad</a> y
+            <a href="#" onclick="event.preventDefault();goPage('terms')" style="color:#4285F4;text-decoration:none">Condiciones del servicio</a>.
           </div>
         </div>
-        <button onclick="document.getElementById('_socialDemoOverlay').remove()" style="
-          background:none;border:none;cursor:pointer;color:#9CA3AF;padding:4px;
-          border-radius:8px;display:flex;
-        ">
-          <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6 6 18M6 6l12 12"/></svg>
-        </button>
       </div>
-      <div style="display:flex;flex-direction:column;gap:10px">
-        ${accountsHTML}
-        <button onclick="_useDifferentAccountDemo('${provider}')" style="
-          display:flex;align-items:center;gap:10px;width:100%;padding:12px 16px;
-          border:1px dashed #D1D5DB;border-radius:12px;background:transparent;cursor:pointer;
-          font-family:'Inter',sans-serif;font-size:.8125rem;color:#6B7280;
-          transition:background .15s;
-        " onmouseover="this.style.background='#F8FAFC'" onmouseout="this.style.background='transparent'">
-          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 8v4M12 16h.01"/></svg>
-          Usar otra cuenta
-        </button>
+    </div>`;
+}
+
+function _buildMicrosoftAccountChooser(overlay, accounts) {
+  const rowsHtml = accounts.map((acc, i) => `
+    <div onclick="_completeSocialDemo(${i},'Microsoft')"
+      style="display:flex;align-items:center;padding:14px 32px;cursor:pointer;gap:16px;border-bottom:1px solid #eee;"
+      onmouseover="this.style.background='#f5f5f5'" onmouseout="this.style.background=''">
+      <div style="width:40px;height:40px;border-radius:50%;background:#d8d8d8;display:flex;align-items:center;justify-content:center;flex-shrink:0;overflow:hidden">
+        <img src="${acc.avatar}" alt="${acc.name}" style="width:100%;height:100%;object-fit:cover">
       </div>
-      <p style="margin-top:16px;font-size:.7rem;color:#9CA3AF;text-align:center;line-height:1.5">
-        Al continuar, aceptas los Términos de servicio y la Política de privacidad de Fynder.
-      </p>
-    </div>
-  `;
+      <div style="flex:1;min-width:0">
+        <div style="font-size:.9375rem;color:#1b1b1b;font-weight:400">${acc.name}</div>
+        <div style="font-size:.8125rem;color:#605e5c">${acc.email}</div>
+        ${acc.sub ? `<div style="font-size:.75rem;color:#605e5c">${acc.sub}</div>` : ''}
+      </div>
+    </div>`).join('');
 
-  // Guardar cuentas demo en window para acceder desde los handlers
-  window._socialDemoAccounts = demoAccounts;
-  document.body.appendChild(overlay);
-
-  // Cerrar al clic fuera del panel
-  overlay.addEventListener('click', function(e) {
-    if (e.target === overlay) overlay.remove();
-  });
+  overlay.style.background = 'rgba(240,242,245,.92)';
+  overlay.style.backdropFilter = 'blur(6px)';
+  overlay.innerHTML = `
+    <div style="background:#fff;border-radius:2px;width:440px;max-width:calc(100vw - 32px);
+      box-shadow:0 2px 6px rgba(0,0,0,.2);animation:slideUpCenter .22s ease;font-family:'Segoe UI',system-ui,sans-serif;">
+      <div style="padding:44px 32px 20px">
+        <svg width="108" height="24" viewBox="0 0 108 24" xmlns="http://www.w3.org/2000/svg">
+          <rect x="0" y="0" width="10" height="10" fill="#F25022"/>
+          <rect x="12" y="0" width="10" height="10" fill="#7FBA00"/>
+          <rect x="0" y="12" width="10" height="10" fill="#00A4EF"/>
+          <rect x="12" y="12" width="10" height="10" fill="#FFB900"/>
+          <text x="30" y="18" font-family="'Segoe UI',sans-serif" font-size="18" font-weight="300" fill="#737373">Microsoft</text>
+        </svg>
+        <h1 style="font-size:1.5rem;font-weight:600;color:#1b1b1b;margin:20px 0 8px">Selección de la cuenta</h1>
+        <p style="font-size:.875rem;color:#605e5c;margin:0 0 8px">Para continuar en Fynder</p>
+      </div>
+      <div>
+        ${rowsHtml}
+        <div onclick="_useOtherAccountDemo('Microsoft')"
+          style="display:flex;align-items:center;padding:14px 32px;cursor:pointer;gap:16px;"
+          onmouseover="this.style.background='#f5f5f5'" onmouseout="this.style.background=''">
+          <div style="width:40px;height:40px;border-radius:50%;border:1px solid #aaa;display:flex;align-items:center;justify-content:center;flex-shrink:0;color:#aaa;font-size:1.4rem">+</div>
+          <span style="font-size:.9375rem;color:#1b1b1b">Usar otra cuenta</span>
+        </div>
+      </div>
+      <div style="padding:16px 32px;display:flex;justify-content:space-between;font-size:.75rem;color:#605e5c;border-top:1px solid #eee">
+        <a href="#" onclick="event.preventDefault();goPage('terms')" style="color:#0067b8;text-decoration:none">Términos de uso</a>
+        <a href="#" onclick="event.preventDefault();goPage('privacy')" style="color:#0067b8;text-decoration:none">Privacidad y cookies</a>
+      </div>
+    </div>`;
 }
 
 function _completeSocialDemo(index, provider) {
@@ -10311,25 +10391,24 @@ function _completeSocialDemo(index, provider) {
   if (!acc) return;
   const overlay = document.getElementById('_socialDemoOverlay');
   if (overlay) overlay.remove();
+  // Guardar la cuenta usada para futuras sesiones
+  const key = provider === 'Google' ? 'fynderGoogleAccounts' : 'fynderMsAccounts';
+  try {
+    const all = JSON.parse(localStorage.getItem(key) || '[]');
+    if (!all.find(a => a.email === acc.email)) { all.unshift(acc); localStorage.setItem(key, JSON.stringify(all.slice(0,3))); }
+  } catch(_) {}
   _socialLogin(acc.name, acc.email, acc.avatar, provider);
 }
 
-function _useDifferentAccountDemo(provider) {
-  // Mostrar un prompt simple para ingresar nombre/email manualmente
+function _useOtherAccountDemo(provider) {
   const overlay = document.getElementById('_socialDemoOverlay');
   if (overlay) overlay.remove();
-
-  const isGoogle    = provider === 'Google';
-  const bgColor     = isGoogle ? '#4285F4' : '#0078D4';
-  const emailDomain = isGoogle ? 'gmail.com' : 'outlook.com';
-
+  const isGoogle = provider === 'Google';
   const modal = document.createElement('div');
   modal.id = '_socialCustomOverlay';
-  modal.style.cssText = `
-    position:fixed;inset:0;z-index:9999;
-    background:rgba(0,0,0,.55);backdrop-filter:blur(4px);
-    display:flex;align-items:center;justify-content:center;
-  `;
+  modal.style.cssText = isGoogle
+    ? 'position:fixed;inset:0;z-index:10000;background:rgba(0,0,0,.4);backdrop-filter:blur(2px);display:flex;align-items:center;justify-content:center;'
+    : 'position:fixed;inset:0;z-index:10000;background:rgba(240,242,245,.92);backdrop-filter:blur(6px);display:flex;align-items:center;justify-content:center;';
   modal.innerHTML = `
     <div style="
       background:#fff;border-radius:20px;padding:32px 28px;width:360px;max-width:calc(100vw - 32px);
