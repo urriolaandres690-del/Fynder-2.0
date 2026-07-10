@@ -6237,24 +6237,24 @@ label.avatar-option-btn:hover { background: var(--teal-light); border-color: rgb
 [data-theme="dark"] .biz-input-wrap        { background: rgba(255,255,255,.05); border-color: rgba(255,255,255,.1); }
 [data-theme="dark"] .biz-input-wrap input,
 [data-theme="dark"] .biz-input-wrap textarea,
-[data-theme="dark"] .biz-input-wrap select { background: #ffffff !important; color: #1F2937 !important; }
+[data-theme="dark"] .biz-input-wrap select { background: rgba(255,255,255,.06) !important; color: var(--fg) !important; }
 
 [data-theme="dark"] .biz-input-wrap input:hover,
 [data-theme="dark"] .biz-input-wrap select:hover,
 [data-theme="dark"] .biz-input-wrap textarea:hover {
-  background: #ffffff !important;
-  color: #1F2937 !important;
+  background: rgba(255,255,255,.09) !important;
+  color: var(--fg) !important;
 }
 
 [data-theme="dark"] .biz-input-wrap input:focus,
 [data-theme="dark"] .biz-input-wrap select:focus,
 [data-theme="dark"] .biz-input-wrap textarea:focus {
-  background: #ffffff !important;
-  color: #1F2937 !important;
+  background: rgba(255,255,255,.09) !important;
+  color: var(--fg) !important;
 }
 
 [data-theme="dark"] .biz-input-wrap input::placeholder,
-[data-theme="dark"] .biz-input-wrap textarea::placeholder { color: #9CA3AF !important; }
+[data-theme="dark"] .biz-input-wrap textarea::placeholder { color: var(--muted) !important; }
 
 /* opciones del select: forzar colores legibles en todos los temas */
 select option {
