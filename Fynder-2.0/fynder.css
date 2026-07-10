@@ -17399,3 +17399,198 @@ body.select-mode .chat-msg-row .msg-checkbox { display: flex; align-items: cente
 [data-theme="dark"] .auth-social-btn:hover { background: rgba(255,255,255,.1) !important; }
 [data-theme="dark"] .auth-google-btn:hover    { border-color: #4285F4 !important; }
 [data-theme="dark"] .auth-microsoft-btn:hover { border-color: #00A4EF !important; }
+
+/* ================================================================
+   GOOGLE ACCOUNT PICKER MODAL
+   ================================================================ */
+
+.gpicker-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  background: rgba(0,0,0,.45);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  backdrop-filter: blur(2px);
+  animation: gpickerFadeIn .15s ease;
+}
+.gpicker-overlay.hide { display: none !important; }
+
+@keyframes gpickerFadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+.gpicker-dialog {
+  background: #fff;
+  border-radius: 28px;
+  box-shadow: 0 8px 40px rgba(0,0,0,.28);
+  width: 100%;
+  max-width: 360px;
+  overflow: hidden;
+  animation: gpickerSlideIn .2s cubic-bezier(.34,1.56,.64,1);
+}
+@keyframes gpickerSlideIn {
+  from { transform: scale(.88) translateY(20px); opacity: 0; }
+  to   { transform: scale(1)   translateY(0);    opacity: 1; }
+}
+
+.gpicker-header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  padding: 32px 24px 20px;
+  border-bottom: 1px solid #e8eaed;
+}
+
+.gpicker-google-logo {
+  height: 24px;
+  width: auto;
+}
+
+.gpicker-subtitle {
+  font-family: 'Google Sans', 'Segoe UI', Roboto, sans-serif;
+  font-size: .9375rem;
+  color: #202124;
+  margin: 0;
+  text-align: center;
+}
+.gpicker-subtitle strong { font-weight: 600; }
+
+.gpicker-accounts {
+  padding: 8px 0;
+}
+
+.gpicker-account-item {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 12px 24px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  transition: background .15s;
+  text-align: left;
+}
+.gpicker-account-item:hover { background: #f1f3f4; }
+
+.gpicker-avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  overflow: hidden;
+}
+
+.gpicker-avatar-ghost {
+  /* Sin fondo extra, el SVG ya tiene el círculo morado */
+  background: transparent;
+}
+
+.gpicker-avatar-add {
+  background: #f1f3f4;
+  border: 2px solid #dadce0;
+  color: #5f6368;
+}
+
+.gpicker-account-info {
+  flex: 1;
+  min-width: 0;
+}
+.gpicker-account-name {
+  font-family: 'Google Sans', 'Segoe UI', Roboto, sans-serif;
+  font-size: .9375rem;
+  font-weight: 500;
+  color: #202124;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.gpicker-account-email {
+  font-family: 'Roboto', sans-serif;
+  font-size: .8125rem;
+  color: #5f6368;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.gpicker-add-account .gpicker-account-name {
+  font-weight: 400;
+  color: #1a73e8;
+}
+
+.gpicker-account-arrow {
+  color: #5f6368;
+  flex-shrink: 0;
+}
+
+.gpicker-footer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 14px 24px;
+  border-top: 1px solid #e8eaed;
+}
+.gpicker-footer-link {
+  font-family: 'Roboto', sans-serif;
+  font-size: .75rem;
+  color: #5f6368;
+  text-decoration: none;
+  transition: color .15s;
+}
+.gpicker-footer-link:hover { color: #1a73e8; text-decoration: underline; }
+.gpicker-footer-dot { color: #bdc1c6; font-size: .75rem; }
+
+/* Dark mode */
+[data-theme="dark"] .gpicker-dialog { background: #2d2d2d; }
+[data-theme="dark"] .gpicker-header { border-bottom-color: #3c3c3c; }
+[data-theme="dark"] .gpicker-subtitle { color: #e8eaed; }
+[data-theme="dark"] .gpicker-account-item:hover { background: #3c3c3c; }
+[data-theme="dark"] .gpicker-account-name { color: #e8eaed; }
+[data-theme="dark"] .gpicker-account-email { color: #9aa0a6; }
+[data-theme="dark"] .gpicker-avatar-add { background: #3c3c3c; border-color: #5f6368; color: #9aa0a6; }
+[data-theme="dark"] .gpicker-footer { border-top-color: #3c3c3c; }
+[data-theme="dark"] .gpicker-footer-link { color: #9aa0a6; }
+
+/* Navbar: avatar fantasma del usuario logueado con Google */
+.nav-google-avatar {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+.nav-google-avatar svg { width: 30px; height: 30px; }
+
+/* Perfil en el botón de navbar cuando se usa Google */
+#navBtnProfile.google-user {
+  display: inline-flex !important;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 10px 4px 4px;
+  border-radius: 99px;
+  background: rgba(103,184,180,.1);
+  border: 1px solid rgba(103,184,180,.25);
+  font-size: .8125rem;
+  font-weight: 500;
+  color: var(--fg);
+}
+#navBtnProfile.google-user .nav-google-email {
+  max-width: 140px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-size: .75rem;
+  color: var(--muted);
+}
