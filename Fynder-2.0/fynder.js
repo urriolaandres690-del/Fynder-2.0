@@ -10522,6 +10522,17 @@ function closeGooglePicker(e) {
   document.body.style.overflow = '';
 }
 
+// Cerrar picker con Escape
+document.addEventListener('keydown', function(e) {
+  if (e.key === 'Escape') {
+    const overlay = document.getElementById('googlePickerOverlay');
+    if (overlay && !overlay.classList.contains('hide')) {
+      overlay.classList.add('hide');
+      document.body.style.overflow = '';
+    }
+  }
+});
+
 function selectGoogleAccount(email, name) {
   // Cerrar picker
   const overlay = document.getElementById('googlePickerOverlay');
