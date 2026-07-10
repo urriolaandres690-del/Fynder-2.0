@@ -4870,7 +4870,7 @@ function _updateConvLastMsg(bizId, text, time) {
   }
 }
 function _fmtTime(d) {
-  return d.toLocaleTimeString('es', { hour: '2-digit', minute: '2-digit', hour12: false });
+  return d.toLocaleTimeString('es', { hour: '2-digit', minute: '2-digit', hour12: true });
 }
 function _fmtDate(d) {
   const today = new Date();
