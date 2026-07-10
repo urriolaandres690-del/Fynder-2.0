@@ -10233,18 +10233,8 @@ function dismissWelcomeModal() {
 
 
 
-function _buildGoogleAccountChooser(overlay, accounts) {
-  const rowsHtml = accounts.map((acc, i) => `
-    <div class="_gdemo-row" onclick="_completeSocialDemo(${i},'Google')"
-      style="display:flex;align-items:center;padding:10px 12px;border-radius:4px;cursor:pointer;gap:16px;border-bottom:1px solid #e0e0e0;"
-      onmouseover="this.style.background='rgba(0,0,0,.06)'" onmouseout="this.style.background=''">
-      <img src="${acc.avatar}" alt="${acc.name}"
-        style="width:32px;height:32px;border-radius:50%;flex-shrink:0;object-fit:cover">
-      <div style="flex:1;min-width:0">
-        <div style="font-size:.9375rem;color:#202124;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">${acc.name}</div>
-        <div style="font-size:.8125rem;color:#5f6368;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">${acc.email}</div>
-      </div>
-    </div>`).join('');
+
+
 
   overlay.style.background = 'rgba(0,0,0,.4)';
   overlay.style.backdropFilter = 'blur(2px)';
