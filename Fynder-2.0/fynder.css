@@ -137,9 +137,9 @@ input, button, select, textarea {
 
     #navbar.scrolled { 
 
-      background: rgba(255,255,255,.95); backdrop-filter: blur(12px); 
+      background: rgba(240,247,246,.97); backdrop-filter: blur(12px); 
 
-      box-shadow: var(--shadow-sm); border-bottom: 1px solid var(--border); 
+      box-shadow: 0 4px 20px rgba(103,184,180,.15); border-bottom: 1px solid rgba(103,184,180,.2); 
 
     } 
 
