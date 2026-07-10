@@ -6024,28 +6024,34 @@ function initSettingsPage() {
 // ── CUENTA ─────────────────────────────────────────────────────────────────
 
 function settSyncAccount() {
-  const user = JSON.parse(localStorage.getItem('fynderUser') || '{}');
+  const logged = !!localStorage.getItem('fynderLogged');
+  const user = logged ? JSON.parse(localStorage.getItem('fynderUser') || '{}') : {};
 
   const nameEl  = document.getElementById('settUserName');
   const emailEl = document.getElementById('settUserEmail');
   const avaEl   = document.getElementById('settUserAvatar');
 
-  if (nameEl)  nameEl.textContent  = user.name  || 'Usuario';
-  if (emailEl) emailEl.textContent = user.email || '—';
+  if (nameEl)  nameEl.textContent  = logged ? (user.name  || 'Usuario') : '';
+  if (emailEl) emailEl.textContent = logged ? (user.email || '—') : '';
 
   if (avaEl) {
-    const photo  = localStorage.getItem('fynderAvatarPhoto');
-    const preset = localStorage.getItem('fynderAvatarPreset');
-    if (photo) {
-      avaEl.innerHTML = `<img src="${photo}" alt="avatar" style="width:100%;height:100%;object-fit:cover;border-radius:50%">`;
-    } else if (preset) {
+    if (!logged) {
       avaEl.innerHTML = '';
-      avaEl.textContent = preset;
+      avaEl.textContent = '';
     } else {
-      avaEl.innerHTML = '';
-      avaEl.textContent = (user.name || 'U')[0].toUpperCase();
-      const bg = localStorage.getItem('fynderAvatarInitialBg');
-      if (bg) avaEl.style.background = bg;
+      const photo  = localStorage.getItem('fynderAvatarPhoto');
+      const preset = localStorage.getItem('fynderAvatarPreset');
+      if (photo) {
+        avaEl.innerHTML = `<img src="${photo}" alt="avatar" style="width:100%;height:100%;object-fit:cover;border-radius:50%">`;
+      } else if (preset) {
+        avaEl.innerHTML = '';
+        avaEl.textContent = preset;
+      } else {
+        avaEl.innerHTML = '';
+        avaEl.textContent = (user.name || 'U')[0].toUpperCase();
+        const bg = localStorage.getItem('fynderAvatarInitialBg');
+        if (bg) avaEl.style.background = bg;
+      }
     }
   }
 
