@@ -2999,6 +2999,9 @@ function _switchToAccount(email) {
   else                  localStorage.removeItem('fynderAvatarPreset');
   if (acc.avatarInitBg) localStorage.setItem('fynderAvatarInitialBg',  acc.avatarInitBg);
   else                  localStorage.removeItem('fynderAvatarInitialBg');
+  // Restaurar portada
+  if (acc.coverPhoto)   localStorage.setItem('fynderCoverPhoto',       acc.coverPhoto);
+  else                  localStorage.removeItem('fynderCoverPhoto');
 
   // Restaurar favoritos
   if (acc.favorites) {
