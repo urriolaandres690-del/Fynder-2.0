@@ -2021,6 +2021,19 @@ body{
   box-shadow: 0 0 0 3px rgba(103,184,180,.18) !important;
 }
 
+/* modo oscuro: restaurar fondos y texto correctos */
+[data-theme="dark"] .input-wrap input,
+[data-theme="dark"] .input-wrap input:focus,
+[data-theme="dark"] .input-wrap input:focus-visible {
+  background: rgba(255,255,255,.06) !important;
+  color: #E2E8F0 !important;
+  border-color: rgba(255,255,255,.1) !important;
+}
+[data-theme="dark"] .input-wrap input:focus {
+  background: rgba(255,255,255,.09) !important;
+  border-color: var(--primary) !important;
+}
+
 /* Bootstrap .form-control adds its own styles; isolate our inputs */
 #loginForm .input-wrap input,
 #registerForm .input-wrap input {
