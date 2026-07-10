@@ -17355,3 +17355,39 @@ body.select-mode .chat-msg-row .msg-checkbox { display: flex; align-items: cente
   .welcome-modal-perks { grid-template-columns: 1fr; }
   .welcome-social-row { grid-template-columns: 1fr; }
 }
+
+/* ── Botones sociales en login/register ── */
+.auth-social-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  margin-bottom: 4px;
+}
+.auth-social-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 11px 14px;
+  border: 1.5px solid #E5E7EB;
+  border-radius: 12px;
+  background: #fff;
+  font-size: .875rem;
+  font-weight: 600;
+  color: #374151;
+  cursor: pointer;
+  transition: border-color .2s, box-shadow .2s, background .2s;
+  font-family: 'Inter', sans-serif;
+}
+.auth-social-btn:hover { box-shadow: 0 2px 12px rgba(0,0,0,.1); background: #fafafa; }
+.auth-google-btn:hover    { border-color: #4285F4; }
+.auth-microsoft-btn:hover { border-color: #00A4EF; }
+
+[data-theme="dark"] .auth-social-btn {
+  background: rgba(255,255,255,.06) !important;
+  border-color: rgba(255,255,255,.12) !important;
+  color: var(--fg) !important;
+}
+[data-theme="dark"] .auth-social-btn:hover { background: rgba(255,255,255,.1) !important; }
+[data-theme="dark"] .auth-google-btn:hover    { border-color: #4285F4 !important; }
+[data-theme="dark"] .auth-microsoft-btn:hover { border-color: #00A4EF !important; }
