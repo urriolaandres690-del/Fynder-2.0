@@ -10204,8 +10204,9 @@ function _socialLogin(name, email, avatarUrl, provider) {
 
 /* ── Google Login (Google Identity Services) ── */
 function loginWithGoogle() {
+  // Modo demostración: si no hay Client ID configurado, simular login con Google
   if (GOOGLE_CLIENT_ID === 'TU_GOOGLE_CLIENT_ID_AQUI') {
-    showToast('Configura GOOGLE_CLIENT_ID en fynder.js para activar este login.', 'error');
+    _showSocialLoginDemo('Google');
     return;
   }
   if (typeof google === 'undefined' || !google.accounts) {
@@ -10260,8 +10261,9 @@ function _getMsalInstance() {
 }
 
 async function loginWithMicrosoft() {
+  // Modo demostración: si no hay Client ID configurado, simular login con Microsoft
   if (MICROSOFT_CLIENT_ID === 'TU_MICROSOFT_CLIENT_ID_AQUI') {
-    showToast('Configura MICROSOFT_CLIENT_ID en fynder.js para activar este login.', 'error');
+    _showSocialLoginDemo('Microsoft');
     return;
   }
   const msalApp = _getMsalInstance();
