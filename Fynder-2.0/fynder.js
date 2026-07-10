@@ -370,13 +370,22 @@ function updateNav(){
     if (logged && profile) {
       const user = JSON.parse(localStorage.getItem('fynderUser') || 'null');
       if (user && user.provider === 'Google') {
-        _applyGoogleNavProfile(user.email);
+        // Solo actualizar si aún no tiene la clase google-user aplicada
+        if (!profile.classList.contains('google-user')) {
+          _applyGoogleNavProfile(user.email);
+        }
       } else {
         // Restaurar el ícono estándar si no es Google
-        profile.classList.remove('google-user');
-        if (!profile.classList.contains('google-user')) {
+        if (profile.classList.contains('google-user')) {
+          profile.classList.remove('google-user');
           profile.innerHTML = '<i class="fas fa-user-circle"></i>';
         }
+      }
+    } else if (!logged && profile) {
+      // Al cerrar sesión, limpiar clase google-user por si acaso
+      profile.classList.remove('google-user');
+      if (!profile.querySelector('i')) {
+        profile.innerHTML = '<i class="fas fa-user-circle"></i>';
       }
     }
 
