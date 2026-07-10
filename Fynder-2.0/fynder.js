@@ -3884,25 +3884,6 @@ if (_origToggleDark) {
       requestAnimationFrame(tick);
     }
 
-    /* ── Ticker ── */
-    const tickerItems = [
-      'Nuevo negocio en <b>Panamá City</b> · hace 2s',
-      'Cliente conectado desde <b>Bogotá</b> · hace 5s',
-      'Negocio guardado en <b>Ciudad de México</b> · hace 9s',
-      'Nueva reseña en <b>São Paulo</b> · hace 14s',
-      'Emprendedor registrado en <b>Lima</b> · hace 18s',
-      'Búsqueda desde <b>Madrid</b> · hace 24s',
-      'Venta confirmada en <b>Buenos Aires</b> · hace 29s',
-      'Nuevo usuario en <b>Toronto</b> · hace 33s',
-      '🇵🇦 Negocio destacado en <b>Panamá</b> · hace 37s',
-      'Cliente conectado desde <b>Tokio</b> · hace 41s',
-    ];
-    const track = document.getElementById('globe-ticker-track');
-    if (track) {
-      const full = tickerItems.concat(tickerItems);
-      track.innerHTML = full.map(t => `<span class="globe-ticker-item">● ${t}</span>`).join('');
-    }
-
     /* ── Tarjetas orbitantes ── */
     const orbitCards = [
       { el: document.getElementById('gCardLeft'),  angle: Math.PI * 0.78, speed: 0.10,  rx: 0.47, ry: 0.40, dir:  1 },
