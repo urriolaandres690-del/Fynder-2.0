@@ -10108,18 +10108,19 @@ function shareSelectedMsgs() {
    y no lo ha descartado en esta visita.
    ════════════════════════════════════════════ */
 (function initWelcomeModal() {
-  // Esperar a que el DOM esté listo
   function _show() {
-    const user = JSON.parse(localStorage.getItem('fynderUser') || 'null');
-    // Ya tiene sesión → no mostrar
-    if (user) return;
-    // Ya lo descartó en esta pestaña/visita → no molestar de nuevo
-    if (sessionStorage.getItem('fynderWelcomeSeen')) return;
+    // Solo mostrar si NO hay sesión activa
+    const logged = localStorage.getItem('fynderLogged') === 'true';
+    if (logged) return;
+
+    // Si ya lo descartó en esta carga (no en toda la sesión de pestaña),
+    // usar un flag de instancia en memoria — se resetea al recargar
+    if (window._fynderWelcomeShown) return;
 
     const overlay = document.getElementById('welcomeModalOverlay');
     if (!overlay) return;
 
-    // Pequeño delay para que la página cargue visualmente primero
+    window._fynderWelcomeShown = true;
     setTimeout(() => {
       overlay.classList.add('active');
     }, 900);
@@ -10141,5 +10142,4 @@ function dismissWelcomeModal() {
   const overlay = document.getElementById('welcomeModalOverlay');
   if (!overlay) return;
   overlay.classList.remove('active');
-  sessionStorage.setItem('fynderWelcomeSeen', '1');
 }
