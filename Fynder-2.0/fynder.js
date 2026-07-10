@@ -1357,6 +1357,12 @@ function logout(){
     localStorage.setItem("fynderUserStatus", "offline");
     localStorage.removeItem("fynderLogged");
     document.getElementById("userName").textContent = "";
+    // Restaurar el botón de perfil a su estado original
+    const profileBtn = document.getElementById('navBtnProfile');
+    if (profileBtn) {
+      profileBtn.classList.remove('google-user');
+      profileBtn.innerHTML = '<i class="fas fa-user-circle"></i>';
+    }
     updateNav();
     showToast("Sesión cerrada correctamente.");
     goPage("home");
