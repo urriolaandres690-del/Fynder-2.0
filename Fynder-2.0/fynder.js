@@ -10530,34 +10530,9 @@ function _applyGoogleNavProfile(email) {
 
 /* ── Google Login (Google Identity Services) ── */
 function loginWithGoogle() {
-  // Siempre abrir el picker modal de Google estilo real
+  // Abrir el picker modal de Google
   openGooglePicker();
-  return;
-
-  // Código real con OAuth (desactivado mientras no haya Client ID)
-  if (GOOGLE_CLIENT_ID === 'TU_GOOGLE_CLIENT_ID_AQUI') {
-    openGooglePicker();
-    return;
-  }
-  if (typeof google === 'undefined' || !google.accounts) {
-    showToast('SDK de Google no cargado. Revisa tu conexión.', 'error');
-    return;
-  }
-
-  google.accounts.id.initialize({
-    client_id: GOOGLE_CLIENT_ID,
-    callback: function(response) {
-      try {
-        // Decodificar el JWT que Google devuelve
-        const payload = JSON.parse(atob(response.credential.split('.')[1]));
-        _socialLogin(payload.name, payload.email, payload.picture, 'Google');
-      } catch(e) {
-        showToast('Error al procesar la respuesta de Google.', 'error');
-      }
-    },
-    auto_select: false,
-    cancel_on_tap_outside: true,
-  });
+}
 
   // Mostrar el popup de selección de cuenta
   google.accounts.id.prompt((notification) => {
