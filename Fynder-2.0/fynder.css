@@ -6256,7 +6256,24 @@ body { background: linear-gradient(160deg, #EBF5F4 0%, #F0F7F6 40%, #EFF4FB 100%
 }
 
 /* base */
-[data-theme="dark"] body { background: var(--bg); color: var(--fg); }
+[data-theme="dark"] body { background: var(--bg); color: var(--fg); background-attachment: initial; }
+
+/* resetear mejoras del modo día */
+[data-theme="dark"] .bcard,
+[data-theme="dark"] .bcard-list { box-shadow: none; }
+[data-theme="dark"] .cat-card { background: var(--card); box-shadow: none; }
+[data-theme="dark"] .filter-chip { background: rgba(255,255,255,.07); border: none; box-shadow: none; }
+[data-theme="dark"] .search-box input { background: rgba(255,255,255,.07); border: none; box-shadow: none; }
+[data-theme="dark"] .how-section { background: #0F172A !important; }
+[data-theme="dark"] .how-card { background: rgba(30,41,59,.8); box-shadow: none; }
+[data-theme="dark"] .section:nth-child(even),
+[data-theme="dark"] .section:nth-child(odd) { background: var(--bg) !important; }
+[data-theme="dark"] .dir-toolbar { background: rgba(15,23,42,.95) !important; border-bottom-color: rgba(103,184,180,.15) !important; box-shadow: none; }
+[data-theme="dark"] .info-row { background: rgba(255,255,255,.04); }
+[data-theme="dark"] .btn-teal { box-shadow: none; }
+[data-theme="dark"] .page-inner { background: var(--bg); }
+[data-theme="dark"] .hero-stat-icon { background: rgba(255,255,255,.05); }
+
 
 /* navbar modo oscuro */
 [data-theme="dark"] #navbar { background: rgba(15,23,42,.7); }
