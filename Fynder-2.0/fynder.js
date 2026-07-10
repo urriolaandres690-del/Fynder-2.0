@@ -421,6 +421,12 @@ window.__scrolled=false;
 window.addEventListener('scroll',()=>{const s=window.scrollY>40;if(s!==window.__scrolled){window.__scrolled=s;document.getElementById('navbar').classList.toggle('scrolled',s);updateNav();}},{passive:true}); 
 
 function toggleFav(id){
+  // Bloquear si no hay sesión activa
+  if (!localStorage.getItem('fynderLogged')) {
+    showToast('Inicia sesión para guardar favoritos ❤️', 'error');
+    goPage('login');
+    return;
+  }
   const wasFav = favorites.has(id);
   favorites.has(id)?favorites.delete(id):favorites.add(id);
   localStorage.setItem('fynderFavorites',JSON.stringify([...favorites]));
