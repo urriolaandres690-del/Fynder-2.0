@@ -1361,21 +1361,7 @@ function forgotPassword(){
     }
 }
 
-function logout(){
-    // Auto-estado: Desactivado al cerrar sesión
-    localStorage.setItem("fynderUserStatus", "offline");
-    localStorage.removeItem("fynderLogged");
-    document.getElementById("userName").textContent = "";
-    // Restaurar el botón de perfil a su estado original
-    const profileBtn = document.getElementById('navBtnProfile');
-    if (profileBtn) {
-      profileBtn.classList.remove('google-user');
-      profileBtn.innerHTML = '<i class="fas fa-user-circle"></i>';
-    }
-    updateNav();
-    showToast("Sesión cerrada correctamente.");
-    goPage("home");
-}
+// logout() definido más abajo (línea ~3114) — esta referencia se elimina para evitar sobreescritura
 
 function loadProfile(){
     const user = JSON.parse(localStorage.getItem("fynderUser"));
