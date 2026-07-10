@@ -3062,6 +3062,9 @@ function logout(silent) {
   document.getElementById('userName').textContent = '';
   favorites.clear();
   localStorage.removeItem('fynderFavorites');
+  // Al cerrar sesión, volver siempre a modo claro
+  document.documentElement.setAttribute('data-theme', 'light');
+  localStorage.setItem('fynderTheme', 'light');
   updateNav();
   if (!silent) {
     showToast('Sesión cerrada. ¡Hasta pronto!');
