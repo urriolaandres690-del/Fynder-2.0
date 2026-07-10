@@ -10202,6 +10202,178 @@ function _socialLogin(name, email, avatarUrl, provider) {
   goPage('home');
 }
 
+/* ── Login Demo (cuando no hay Client ID real configurado) ── */
+function _showSocialLoginDemo(provider) {
+  // Crear modal de simulación de selección de cuenta
+  const isGoogle = provider === 'Google';
+  const overlay = document.createElement('div');
+  overlay.id = '_socialDemoOverlay';
+  overlay.style.cssText = `
+    position:fixed;inset:0;z-index:9999;
+    background:rgba(0,0,0,.55);backdrop-filter:blur(4px);
+    display:flex;align-items:center;justify-content:center;
+    animation:fadeIn .2s ease;
+  `;
+
+  const demoAccounts = isGoogle ? [
+    { name: 'Usuario Fynder',    email: 'usuario@gmail.com',    avatar: 'https://ui-avatars.com/api/?name=Usuario+Fynder&background=4285F4&color=fff&size=48' },
+    { name: 'Demo Google',       email: 'demo@gmail.com',       avatar: 'https://ui-avatars.com/api/?name=Demo+Google&background=34A853&color=fff&size=48' },
+  ] : [
+    { name: 'Usuario Fynder',    email: 'usuario@outlook.com',  avatar: 'https://ui-avatars.com/api/?name=Usuario+Fynder&background=0078D4&color=fff&size=48' },
+    { name: 'Demo Microsoft',    email: 'demo@outlook.com',     avatar: 'https://ui-avatars.com/api/?name=Demo+Microsoft&background=7FBA00&color=fff&size=48' },
+  ];
+
+  const logoSVG = isGoogle
+    ? `<svg width="22" height="22" viewBox="0 0 24 24"><path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/><path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/><path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l3.66-2.84z"/><path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/></svg>`
+    : `<svg width="22" height="22" viewBox="0 0 24 24"><rect x="1" y="1" width="10" height="10" fill="#F25022"/><rect x="13" y="1" width="10" height="10" fill="#7FBA00"/><rect x="1" y="13" width="10" height="10" fill="#00A4EF"/><rect x="13" y="13" width="10" height="10" fill="#FFB900"/></svg>`;
+
+  const accountsHTML = demoAccounts.map((acc, i) => `
+    <button onclick="_completeSocialDemo(${i}, '${provider}')" style="
+      display:flex;align-items:center;gap:14px;width:100%;padding:14px 16px;
+      border:1px solid #E5E7EB;border-radius:12px;background:#fff;cursor:pointer;
+      transition:background .15s,border-color .15s;text-align:left;
+      font-family:'Inter',sans-serif;
+    " onmouseover="this.style.background='#F8FAFC';this.style.borderColor='#D1D5DB'"
+       onmouseout="this.style.background='#fff';this.style.borderColor='#E5E7EB'">
+      <img src="${acc.avatar}" alt="${acc.name}" style="width:40px;height:40px;border-radius:50%;flex-shrink:0">
+      <div>
+        <div style="font-weight:600;font-size:.875rem;color:#1F2937">${acc.name}</div>
+        <div style="font-size:.75rem;color:#6B7280">${acc.email}</div>
+      </div>
+      <svg style="margin-left:auto;color:#9CA3AF" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m9 18 6-6-6-6"/></svg>
+    </button>
+  `).join('');
+
+  overlay.innerHTML = `
+    <div style="
+      background:#fff;border-radius:20px;padding:32px 28px;width:360px;max-width:calc(100vw - 32px);
+      box-shadow:0 24px 64px rgba(0,0,0,.18);
+      animation:slideUp .25s ease;
+    ">
+      <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:24px">
+        <div style="display:flex;align-items:center;gap:10px">
+          ${logoSVG}
+          <div>
+            <div style="font-family:'Poppins',sans-serif;font-weight:700;font-size:1rem;color:#1F2937">Elegir cuenta</div>
+            <div style="font-size:.75rem;color:#6B7280">Para continuar en Fynder</div>
+          </div>
+        </div>
+        <button onclick="document.getElementById('_socialDemoOverlay').remove()" style="
+          background:none;border:none;cursor:pointer;color:#9CA3AF;padding:4px;
+          border-radius:8px;display:flex;
+        ">
+          <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6 6 18M6 6l12 12"/></svg>
+        </button>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:10px">
+        ${accountsHTML}
+        <button onclick="_useDifferentAccountDemo('${provider}')" style="
+          display:flex;align-items:center;gap:10px;width:100%;padding:12px 16px;
+          border:1px dashed #D1D5DB;border-radius:12px;background:transparent;cursor:pointer;
+          font-family:'Inter',sans-serif;font-size:.8125rem;color:#6B7280;
+          transition:background .15s;
+        " onmouseover="this.style.background='#F8FAFC'" onmouseout="this.style.background='transparent'">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 8v4M12 16h.01"/></svg>
+          Usar otra cuenta
+        </button>
+      </div>
+      <p style="margin-top:16px;font-size:.7rem;color:#9CA3AF;text-align:center;line-height:1.5">
+        Al continuar, aceptas los Términos de servicio y la Política de privacidad de Fynder.
+      </p>
+    </div>
+  `;
+
+  // Guardar cuentas demo en window para acceder desde los handlers
+  window._socialDemoAccounts = demoAccounts;
+  document.body.appendChild(overlay);
+
+  // Cerrar al clic fuera del panel
+  overlay.addEventListener('click', function(e) {
+    if (e.target === overlay) overlay.remove();
+  });
+}
+
+function _completeSocialDemo(index, provider) {
+  const acc = window._socialDemoAccounts[index];
+  if (!acc) return;
+  const overlay = document.getElementById('_socialDemoOverlay');
+  if (overlay) overlay.remove();
+  _socialLogin(acc.name, acc.email, acc.avatar, provider);
+}
+
+function _useDifferentAccountDemo(provider) {
+  // Mostrar un prompt simple para ingresar nombre/email manualmente
+  const overlay = document.getElementById('_socialDemoOverlay');
+  if (overlay) overlay.remove();
+
+  const isGoogle    = provider === 'Google';
+  const bgColor     = isGoogle ? '#4285F4' : '#0078D4';
+  const emailDomain = isGoogle ? 'gmail.com' : 'outlook.com';
+
+  const modal = document.createElement('div');
+  modal.id = '_socialCustomOverlay';
+  modal.style.cssText = `
+    position:fixed;inset:0;z-index:9999;
+    background:rgba(0,0,0,.55);backdrop-filter:blur(4px);
+    display:flex;align-items:center;justify-content:center;
+  `;
+  modal.innerHTML = `
+    <div style="
+      background:#fff;border-radius:20px;padding:32px 28px;width:360px;max-width:calc(100vw - 32px);
+      box-shadow:0 24px 64px rgba(0,0,0,.18);
+    ">
+      <div style="margin-bottom:20px">
+        <div style="font-family:'Poppins',sans-serif;font-weight:700;font-size:1rem;color:#1F2937;margin-bottom:4px">
+          Iniciar sesión con ${provider}
+        </div>
+        <div style="font-size:.8125rem;color:#6B7280">Ingresa tus datos de ${provider}</div>
+      </div>
+      <div style="margin-bottom:14px">
+        <label style="font-size:.8125rem;font-weight:500;color:#374151;display:block;margin-bottom:6px">Nombre</label>
+        <input id="_demoCustomName" type="text" placeholder="Tu nombre" value="" style="
+          width:100%;padding:10px 14px;border:1px solid #E5E7EB;border-radius:10px;
+          font-family:'Inter',sans-serif;font-size:.875rem;color:#1F2937;outline:none;
+          transition:border-color .2s;
+        " onfocus="this.style.borderColor='${bgColor}'" onblur="this.style.borderColor='#E5E7EB'">
+      </div>
+      <div style="margin-bottom:20px">
+        <label style="font-size:.8125rem;font-weight:500;color:#374151;display:block;margin-bottom:6px">Correo electrónico</label>
+        <input id="_demoCustomEmail" type="email" placeholder="correo@${emailDomain}" value="" style="
+          width:100%;padding:10px 14px;border:1px solid #E5E7EB;border-radius:10px;
+          font-family:'Inter',sans-serif;font-size:.875rem;color:#1F2937;outline:none;
+          transition:border-color .2s;
+        " onfocus="this.style.borderColor='${bgColor}'" onblur="this.style.borderColor='#E5E7EB'">
+      </div>
+      <div style="display:flex;gap:10px">
+        <button onclick="document.getElementById('_socialCustomOverlay').remove()" style="
+          flex:1;padding:11px;border:1px solid #E5E7EB;border-radius:12px;background:#fff;
+          font-family:'Inter',sans-serif;font-size:.875rem;font-weight:500;color:#6B7280;cursor:pointer;
+        ">Cancelar</button>
+        <button onclick="_submitCustomDemoLogin('${provider}')" style="
+          flex:2;padding:11px;border:none;border-radius:12px;background:${bgColor};
+          font-family:'Poppins',sans-serif;font-size:.875rem;font-weight:600;color:#fff;cursor:pointer;
+        ">Continuar</button>
+      </div>
+    </div>
+  `;
+  document.body.appendChild(modal);
+  modal.addEventListener('click', e => { if (e.target === modal) modal.remove(); });
+  setTimeout(() => document.getElementById('_demoCustomName')?.focus(), 100);
+}
+
+function _submitCustomDemoLogin(provider) {
+  const name  = (document.getElementById('_demoCustomName')?.value  || '').trim();
+  const email = (document.getElementById('_demoCustomEmail')?.value || '').trim();
+  if (!name)  { showToast('Ingresa tu nombre para continuar.', 'error'); return; }
+  if (!email || !email.includes('@')) { showToast('Ingresa un correo válido.', 'error'); return; }
+  const modal = document.getElementById('_socialCustomOverlay');
+  if (modal) modal.remove();
+  const isGoogle = provider === 'Google';
+  const avatarBg = isGoogle ? '4285F4' : '0078D4';
+  const avatar = `https://ui-avatars.com/api/?name=${encodeURIComponent(name)}&background=${avatarBg}&color=fff&size=48`;
+  _socialLogin(name, email, avatar, provider);
+}
+
 /* ── Google Login (Google Identity Services) ── */
 function loginWithGoogle() {
   // Modo demostración: si no hay Client ID configurado, simular login con Google
