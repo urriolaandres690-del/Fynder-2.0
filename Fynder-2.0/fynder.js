@@ -10534,20 +10534,6 @@ function loginWithGoogle() {
   openGooglePicker();
 }
 
-  // Mostrar el popup de selección de cuenta
-  google.accounts.id.prompt((notification) => {
-    if (notification.isNotDisplayed() || notification.isSkippedMoment()) {
-      // Si One Tap no puede mostrarse, usar el flujo de botón
-      const div = document.createElement('div');
-      div.style.cssText = 'display:none';
-      document.body.appendChild(div);
-      google.accounts.id.renderButton(div, { type: 'standard' });
-      div.querySelector('div[role="button"]')?.click();
-      setTimeout(() => div.remove(), 3000);
-    }
-  });
-}
-
 /* ── Microsoft Login (MSAL.js) ── */
 let _msalInstance = null;
 
