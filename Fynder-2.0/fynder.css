@@ -47,27 +47,27 @@ input, button, select, textarea {
 
       --yellow-d:  #f0cb3f; 
 
-      --bg:        #F8FAFC; 
+      --bg:        #F0F7F6; 
 
-      --fg:        #1F2937; 
+      --fg:        #1A2332; 
 
-      --muted:     #6B7280; 
+      --muted:     #5A6A7A; 
 
-      --border:    rgba(103,184,180,.18); 
+      --border:    rgba(103,184,180,.22); 
 
       --card:      #ffffff; 
 
-      --teal-light:#E6F5F4; 
+      --teal-light:#DFF1F0; 
 
-      --blue-light:#EEF2FF; 
+      --blue-light:#E8F0FE; 
 
       --radius:    1rem; 
 
-      --shadow-sm: 0 1px 4px rgba(0,0,0,.07); 
+      --shadow-sm: 0 2px 8px rgba(103,184,180,.10); 
 
-      --shadow-md: 0 4px 16px rgba(0,0,0,.10); 
+      --shadow-md: 0 6px 24px rgba(103,184,180,.14); 
 
-      --shadow-lg: 0 8px 32px rgba(0,0,0,.14); 
+      --shadow-lg: 0 12px 40px rgba(103,184,180,.18); 
 
     } 
 
