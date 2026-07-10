@@ -10226,32 +10226,8 @@ function dismissWelcomeModal() {
 
 
 
-/* ── Sesión social compartida: login, guardar y navegar ── */
-function _socialLogin(name, email, avatarUrl, provider) {
-  // Guardar cuenta anterior
-  _saveCurrentAccount();
-  _clearProfileVisualData();
 
-  const user = { name, email, pass: null, phone: '', city: '', bio: '', provider };
-  localStorage.setItem('fynderUser',   JSON.stringify(user));
-  localStorage.setItem('fynderLogged', 'true');
-  localStorage.setItem('fynderUserStatus', 'active');
 
-  // Guardar avatar de la cuenta social como foto de perfil
-  if (avatarUrl) localStorage.setItem('fynderAvatarPhoto', avatarUrl);
-
-  document.getElementById('userName').textContent = 'Hola, ' + name;
-
-  // Siempre modo claro al iniciar sesión
-  document.documentElement.setAttribute('data-theme', 'light');
-  localStorage.setItem('fynderTheme', 'light');
-
-  _saveCurrentAccount();
-  updateNav();
-  dismissWelcomeModal();
-  showToast('¡Bienvenido, ' + name + '! Sesión iniciada con ' + provider + ' ✓');
-  goPage('home');
-}
 
 /* ── Login Demo — UI idéntica a Google/Microsoft reales ── */
 function _showSocialLoginDemo(provider) {
