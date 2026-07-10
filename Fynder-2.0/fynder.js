@@ -10548,6 +10548,12 @@ function _applyGoogleNavProfile(email) {
     <span class="nav-google-email">${email}</span>`;
 }
 
+/* ── Google Login (Google Identity Services) ── */
+function loginWithGoogle() {
+  // Abrir el picker modal de Google
+  openGooglePicker();
+}
+
 /* ── Microsoft Login (MSAL.js) ── */
 let _msalInstance = null;
 
