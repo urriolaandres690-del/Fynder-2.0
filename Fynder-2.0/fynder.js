@@ -10229,24 +10229,7 @@ function dismissWelcomeModal() {
 
 
 
-/* ── Login Demo — UI idéntica a Google/Microsoft reales ── */
-function _showSocialLoginDemo(provider) {
-  const isGoogle = provider === 'Google';
 
-  // Obtener cuentas guardadas previamente (de sesiones anteriores en esta app)
-  const savedAccounts = _getSavedDemoAccounts(provider);
-
-  // Construir la pantalla de selección de cuentas
-  if (isGoogle) {
-    _buildGoogleAccountChooser(overlay, savedAccounts);
-  } else {
-    _buildMicrosoftAccountChooser(overlay, savedAccounts);
-  }
-
-  window._socialDemoAccounts = savedAccounts;
-  document.body.appendChild(overlay);
-  overlay.addEventListener('click', e => { if (e.target === overlay) overlay.remove(); });
-}
 
 /* ── Helpers para el selector de cuentas estilo real ── */
 
