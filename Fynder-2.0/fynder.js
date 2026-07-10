@@ -1221,6 +1221,9 @@ function registerUser(event){
     document.getElementById("userName").textContent = "Hola, " + name;
     _saveCurrentAccount();  // guardar la nueva cuenta en la lista
     localStorage.removeItem('fynderAddingAccount');
+    // Siempre arrancar en modo claro al registrarse
+    document.documentElement.setAttribute('data-theme', 'light');
+    localStorage.setItem('fynderTheme', 'light');
     updateNav();
     showToast("¡Cuenta creada! Bienvenido a FYNDER, " + name + " 🎉");
     goPage("home");
@@ -1284,6 +1287,9 @@ function loginUser(event){
     document.getElementById("userName").textContent = "Hola, " + user.name;
     _saveCurrentAccount();
     localStorage.removeItem('fynderAddingAccount');
+    // Siempre arrancar en modo claro al iniciar sesión
+    document.documentElement.setAttribute('data-theme', 'light');
+    localStorage.setItem('fynderTheme', 'light');
     updateNav();
     showToast("¡Bienvenido de nuevo, " + user.name + "!");
     goPage("home");
