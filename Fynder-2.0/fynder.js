@@ -2925,16 +2925,17 @@ function _saveCurrentAccount() {
   const accounts = _getSavedAccounts();
   const idx = accounts.findIndex(a => a.email === user.email);
   const entry = {
-    name:      user.name,
-    email:     user.email,
-    pass:      user.pass,
-    city:      user.city  || '',
-    bio:       user.bio   || '',
-    phone:     user.phone || '',
-    avatarPhoto:  localStorage.getItem('fynderAvatarPhoto')  || null,
-    avatarPreset: localStorage.getItem('fynderAvatarPreset') || null,
+    name:         user.name,
+    email:        user.email,
+    pass:         user.pass,
+    city:         user.city  || '',
+    bio:          user.bio   || '',
+    phone:        user.phone || '',
+    avatarPhoto:  localStorage.getItem('fynderAvatarPhoto')     || null,
+    avatarPreset: localStorage.getItem('fynderAvatarPreset')    || null,
     avatarInitBg: localStorage.getItem('fynderAvatarInitialBg') || null,
-    favorites: JSON.stringify([...favorites])
+    coverPhoto:   localStorage.getItem('fynderCoverPhoto')      || null,
+    favorites:    JSON.stringify([...favorites])
   };
   if (idx >= 0) accounts[idx] = entry;
   else accounts.push(entry);
