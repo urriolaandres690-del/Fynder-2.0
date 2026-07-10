@@ -10157,3 +10157,149 @@ function dismissWelcomeModal() {
   if (!overlay) return;
   overlay.classList.remove('active');
 }
+
+
+/* ════════════════════════════════════════════════════════
+   LOGIN SOCIAL – Google & Microsoft
+   ════════════════════════════════════════════════════════
+   CONFIGURACIÓN:
+   - GOOGLE_CLIENT_ID: obtener en https://console.cloud.google.com
+     → Credenciales → Crear credencial → ID de cliente OAuth 2.0
+     → Tipo: Aplicación web → Agregar origen: file:// o tu dominio
+   - MICROSOFT_CLIENT_ID: obtener en https://portal.azure.com
+     → Azure Active Directory → Registros de aplicaciones → Nueva
+     → Tipo de cuenta: Cuentas de cualquier directorio + personal
+     → URI de redireccionamiento: tipo "Aplicación de página única"
+   ════════════════════════════════════════════════════════ */
+
+const GOOGLE_CLIENT_ID    = 'TU_GOOGLE_CLIENT_ID_AQUI';   // ← reemplazar
+const MICROSOFT_CLIENT_ID = 'TU_MICROSOFT_CLIENT_ID_AQUI'; // ← reemplazar
+
+/* ── Sesión social compartida: login, guardar y navegar ── */
+function _socialLogin(name, email, avatarUrl, provider) {
+  // Guardar cuenta anterior
+  _saveCurrentAccount();
+  _clearProfileVisualData();
+
+  const user = { name, email, pass: null, phone: '', city: '', bio: '', provider };
+  localStorage.setItem('fynderUser',   JSON.stringify(user));
+  localStorage.setItem('fynderLogged', 'true');
+  localStorage.setItem('fynderUserStatus', 'active');
+
+  // Guardar avatar de la cuenta social como foto de perfil
+  if (avatarUrl) localStorage.setItem('fynderAvatarPhoto', avatarUrl);
+
+  document.getElementById('userName').textContent = 'Hola, ' + name;
+
+  // Siempre modo claro al iniciar sesión
+  document.documentElement.setAttribute('data-theme', 'light');
+  localStorage.setItem('fynderTheme', 'light');
+
+  _saveCurrentAccount();
+  updateNav();
+  dismissWelcomeModal();
+  showToast('¡Bienvenido, ' + name + '! Sesión iniciada con ' + provider + ' ✓');
+  goPage('home');
+}
+
+/* ── Google Login (Google Identity Services) ── */
+function loginWithGoogle() {
+  if (GOOGLE_CLIENT_ID === 'TU_GOOGLE_CLIENT_ID_AQUI') {
+    showToast('Configura GOOGLE_CLIENT_ID en fynder.js para activar este login.', 'error');
+    return;
+  }
+  if (typeof google === 'undefined' || !google.accounts) {
+    showToast('SDK de Google no cargado. Revisa tu conexión.', 'error');
+    return;
+  }
+
+  google.accounts.id.initialize({
+    client_id: GOOGLE_CLIENT_ID,
+    callback: function(response) {
+      try {
+        // Decodificar el JWT que Google devuelve
+        const payload = JSON.parse(atob(response.credential.split('.')[1]));
+        _socialLogin(payload.name, payload.email, payload.picture, 'Google');
+      } catch(e) {
+        showToast('Error al procesar la respuesta de Google.', 'error');
+      }
+    },
+    auto_select: false,
+    cancel_on_tap_outside: true,
+  });
+
+  // Mostrar el popup de selección de cuenta
+  google.accounts.id.prompt((notification) => {
+    if (notification.isNotDisplayed() || notification.isSkippedMoment()) {
+      // Si One Tap no puede mostrarse, usar el flujo de botón
+      const div = document.createElement('div');
+      div.style.cssText = 'display:none';
+      document.body.appendChild(div);
+      google.accounts.id.renderButton(div, { type: 'standard' });
+      div.querySelector('div[role="button"]')?.click();
+      setTimeout(() => div.remove(), 3000);
+    }
+  });
+}
+
+/* ── Microsoft Login (MSAL.js) ── */
+let _msalInstance = null;
+
+function _getMsalInstance() {
+  if (_msalInstance) return _msalInstance;
+  if (typeof msal === 'undefined') return null;
+  _msalInstance = new msal.PublicClientApplication({
+    auth: {
+      clientId: MICROSOFT_CLIENT_ID,
+      authority: 'https://login.microsoftonline.com/common',
+      redirectUri: window.location.href.split('?')[0].split('#')[0],
+    },
+    cache: { cacheLocation: 'sessionStorage', storeAuthStateInCookie: false },
+  });
+  return _msalInstance;
+}
+
+async function loginWithMicrosoft() {
+  if (MICROSOFT_CLIENT_ID === 'TU_MICROSOFT_CLIENT_ID_AQUI') {
+    showToast('Configura MICROSOFT_CLIENT_ID en fynder.js para activar este login.', 'error');
+    return;
+  }
+  const msalApp = _getMsalInstance();
+  if (!msalApp) {
+    showToast('SDK de Microsoft no cargado. Revisa tu conexión.', 'error');
+    return;
+  }
+  try {
+    const result = await msalApp.loginPopup({
+      scopes: ['openid', 'profile', 'email', 'User.Read'],
+      prompt: 'select_account',
+    });
+    const acc = result.account;
+    const name  = acc.name  || acc.username?.split('@')[0] || 'Usuario';
+    const email = acc.username || '';
+    // Obtener foto de perfil de Microsoft Graph (opcional, puede fallar)
+    let avatarUrl = null;
+    try {
+      const tokenResp = await msalApp.acquireTokenSilent({
+        scopes: ['User.Read'], account: acc
+      });
+      const photoResp = await fetch('https://graph.microsoft.com/v1.0/me/photo/$value', {
+        headers: { Authorization: 'Bearer ' + tokenResp.accessToken }
+      });
+      if (photoResp.ok) {
+        const blob = await photoResp.blob();
+        avatarUrl = await new Promise(res => {
+          const r = new FileReader();
+          r.onload = e => res(e.target.result);
+          r.readAsDataURL(blob);
+        });
+      }
+    } catch(_) { /* foto no disponible, continuar sin ella */ }
+
+    _socialLogin(name, email, avatarUrl, 'Microsoft');
+  } catch(e) {
+    if (e.errorCode !== 'user_cancelled') {
+      showToast('No se pudo iniciar sesión con Microsoft. Inténtalo de nuevo.', 'error');
+    }
+  }
+}
