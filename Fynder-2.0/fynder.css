@@ -11805,32 +11805,6 @@ body:has(#page-fynder.active) #navbar:not(.scrolled) .nav-dots-btn:hover {
   100% { opacity: 0; }
 }
 
-/* ticker */
-#globe-ticker {
-  position: absolute;
-  left: 0; right: 0; bottom: 0;
-  z-index: 10;
-  height: 34px;
-  overflow: hidden;
-  background: linear-gradient(180deg, rgba(4,20,15,0) 0%, rgba(4,20,15,.88) 40%);
-  border-top: 1px solid rgba(52,211,153,.15);
-  display: flex;
-  align-items: center;
-}
-#globe-ticker-track {
-  display: flex;
-  gap: 46px;
-  white-space: nowrap;
-  animation: gScrollTicker 38s linear infinite;
-  padding-left: 100%;
-}
-.globe-ticker-item { font-size: 11px; color: var(--gb-dim); letter-spacing: .04em; }
-.globe-ticker-item b { color: var(--gb-accent); font-weight: 600; }
-@keyframes gScrollTicker {
-  from { transform: translateX(0); }
-  to   { transform: translateX(-100%); }
-}
-
 /* responsive */
 @media (max-width: 760px) {
   .globe-stat-card  { max-width: 200px; padding: 9px 13px; }
@@ -11839,13 +11813,11 @@ body:has(#page-fynder.active) #navbar:not(.scrolled) .nav-dots-btn:hover {
   .globe-corner     { width: 16px; height: 16px; }
   #globe-brand      { top: 14px; left: 14px; font-size: 9px; }
   .globe-city-label { font-size: 8px; }
-  #globe-ticker     { height: 26px; }
-  .globe-ticker-item { font-size: 9px; }
   #globe-zoom-ctrl  { right: 10px; }
   #globe-section    { height: 70vh; }
 }
 @media (prefers-reduced-motion: reduce) {
-  .globe-stat-card, #globe-hint, .globe-brand-dot, #globe-ticker-track { animation: none !important; opacity: 1; }
+  .globe-stat-card, #globe-hint, .globe-brand-dot { animation: none !important; opacity: 1; }
 }
 
 
