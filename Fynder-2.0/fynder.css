@@ -2800,7 +2800,7 @@ body{
 .biz-input-wrap textarea:hover {
   border-color: #CBD5E1 !important;
   background: #fff !important;
-  color: #1F2937 !important;
+  color: var(--fg) !important;
 }
 
 .biz-input-wrap input:focus,
