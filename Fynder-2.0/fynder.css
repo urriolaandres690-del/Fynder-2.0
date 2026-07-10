@@ -478,6 +478,26 @@ input, button, select, textarea {
 
     .cards-grid { display: grid; grid-template-columns: repeat(auto-fill,minmax(240px,1fr)); gap: 20px; }
 
+    /* ── Scroll vertical sección Más Populares ── */
+    .popular-scroll-wrap {
+      max-height: 520px;
+      overflow-y: auto;
+      overflow-x: hidden;
+      padding-right: 6px;
+      scroll-behavior: smooth;
+      /* fade en el borde inferior para indicar que hay más contenido */
+      -webkit-mask-image: linear-gradient(to bottom, black 80%, transparent 100%);
+              mask-image: linear-gradient(to bottom, black 80%, transparent 100%);
+    }
+    .popular-scroll-wrap::-webkit-scrollbar { width: 5px; }
+    .popular-scroll-wrap::-webkit-scrollbar-track { background: transparent; }
+    .popular-scroll-wrap::-webkit-scrollbar-thumb { background: #CBD5E1; border-radius: 99px; }
+    /* Cuando está siendo scrolleado quitamos el fade para no cortar contenido */
+    .popular-scroll-wrap.scrolled-end {
+      -webkit-mask-image: none;
+              mask-image: none;
+    }
+
     /* ── Carrusel de destacados ── */
     .featured-carousel-wrap {
       position: relative;
