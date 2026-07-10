@@ -278,7 +278,7 @@ function listCardHTML(b){
 }
 function goPage(p){
     // Páginas que requieren sesión activa
-    const authRequired = ['messages','chat','chat-profile','profile','settings','dashboard'];
+    const authRequired = ['messages','chat','chat-profile','profile','dashboard'];
     if(authRequired.includes(p) && !localStorage.getItem('fynderLogged')){
         showToast('Debes iniciar sesión para acceder a esta sección.', 'error');
         p = 'login';
@@ -6010,12 +6010,6 @@ function settGoToSection(id) {
 
 /** Inicializa la página cada vez que se navega a ella */
 function initSettingsPage() {
-  // Redirigir si no hay sesión activa
-  if (!localStorage.getItem('fynderLogged')) {
-    showToast('Debes iniciar sesión para acceder a ajustes.', 'error');
-    goPage('login');
-    return;
-  }
   // Activar sección "cuenta" por defecto
   const firstBtn = document.querySelector('#page-settings .sett-nav-item[data-section="cuenta"]');
   settGoSection('cuenta', firstBtn);
