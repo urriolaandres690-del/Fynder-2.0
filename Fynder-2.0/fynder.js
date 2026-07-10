@@ -10027,3 +10027,46 @@ function shareSelectedMsgs() {
     }
   };
 })();
+
+
+/* ════════════════════════════════════════════
+   MODAL DE BIENVENIDA – RECOMENDACIÓN LOGIN
+   Se muestra solo si el usuario no tiene sesión
+   y no lo ha descartado en esta visita.
+   ════════════════════════════════════════════ */
+(function initWelcomeModal() {
+  // Esperar a que el DOM esté listo
+  function _show() {
+    const user = JSON.parse(localStorage.getItem('fynderUser') || 'null');
+    // Ya tiene sesión → no mostrar
+    if (user) return;
+    // Ya lo descartó en esta pestaña/visita → no molestar de nuevo
+    if (sessionStorage.getItem('fynderWelcomeSeen')) return;
+
+    const overlay = document.getElementById('welcomeModalOverlay');
+    if (!overlay) return;
+
+    // Pequeño delay para que la página cargue visualmente primero
+    setTimeout(() => {
+      overlay.classList.add('active');
+    }, 900);
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', _show);
+  } else {
+    _show();
+  }
+})();
+
+function closeWelcomeModal(e) {
+  if (e && e.target !== document.getElementById('welcomeModalOverlay')) return;
+  dismissWelcomeModal();
+}
+
+function dismissWelcomeModal() {
+  const overlay = document.getElementById('welcomeModalOverlay');
+  if (!overlay) return;
+  overlay.classList.remove('active');
+  sessionStorage.setItem('fynderWelcomeSeen', '1');
+}
