@@ -17622,10 +17622,11 @@ body.select-mode .chat-msg-row .msg-checkbox { display: flex; align-items: cente
 /* ── About / Saber más: ola se une al body sin línea ni espacio ── */
 .about-hero-v2 {
   padding-bottom: 0 !important;
+  overflow: visible !important; /* permite que la ola no quede cortada */
 }
 .about-hero-wave {
-  margin-top: 32px;
-  margin-bottom: -2px; /* cubre sub-pixel gaps */
+  margin-top: 24px;
+  margin-bottom: -3px; /* cubre sub-pixel gaps */
   position: relative;
   z-index: 2;
 }
