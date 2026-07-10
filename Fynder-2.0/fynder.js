@@ -424,7 +424,6 @@ function toggleFav(id){
   // Bloquear si no hay sesión activa
   if (!localStorage.getItem('fynderLogged')) {
     showToast('Inicia sesión para guardar favoritos ❤️', 'error');
-    goPage('login');
     return;
   }
   const wasFav = favorites.has(id);
