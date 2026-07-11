@@ -15913,9 +15913,7 @@ body { top: 0 !important; }
   flex-shrink: 0;
 }
 
-/* ================================================================
-   RAIL DE ÍCONOS IZQUIERDO — estilo WhatsApp Web
-   ================================================================ */
+/* RAIL DE ÍCONOS IZQUIERDO — estilo WhatsApp Web */
 .wa-icon-rail {
   width: 68px;
   flex-shrink: 0;
@@ -16128,9 +16126,7 @@ mark.msg-search-mark {
   padding: 0 1px;
 }
 
-/* ================================================================
-   SECCIÓN PATROCINADORES — página About
-   ================================================================ */
+/* SECCIÓN PATROCINADORES — página About */
 
 .about-sponsors-section {
   position: relative;
