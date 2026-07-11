@@ -5855,9 +5855,7 @@ document.addEventListener('DOMContentLoaded', () => {
   if (_msgSettings.fontSize)    _applyChatFontSize(_msgSettings.fontSize);
 });
 
-/* ================================================================
-   PHOTO LIGHTBOX – abre galería de fotos del negocio
-   ================================================================ */
+/* PHOTO LIGHTBOX – abre galería de fotos del negocio */
 
 function openPhotoLightbox() {
   if (!_activeChatBizId) return;
@@ -5895,9 +5893,7 @@ function openPhotoLightbox() {
   document.body.appendChild(overlay);
 }
 
-/* ================================================================
-   PÁGINA DE AJUSTES
-   ================================================================ */
+/* PÁGINA DE AJUSTES */
 
 /** Navega a una sección del panel de ajustes */
 function settGoSection(id, btn) {
