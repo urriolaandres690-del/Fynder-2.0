@@ -9691,9 +9691,7 @@ section.fyl-section-alt > *:last-child { padding-bottom: 72px; }
   .profile-header-actions { width: 100%; }
 }
 
-/* ============================================================
-   BREAKPOINT: móvil muy pequeño (≤ 360px)
-   ============================================================ */
+/* BREAKPOINT: móvil muy pequeño (≤ 360px) */
 @media (max-width: 360px) {
   html { font-size: 14px; }
   .hero h1 { font-size: 1.45rem; }
@@ -9703,9 +9701,7 @@ section.fyl-section-alt > *:last-child { padding-bottom: 72px; }
   .plan-price-amount { font-size: 1.75rem; }
 }
 
-/* ============================================================
-   DARK MODE – correcciones drawer móvil
-   ============================================================ */
+/* DARK MODE – correcciones drawer móvil */
 [data-theme="dark"] .mobile-menu-drawer {
   background: var(--card);
   box-shadow: -8px 0 32px rgba(0,0,0,.5);
@@ -9725,9 +9721,7 @@ section.fyl-section-alt > *:last-child { padding-bottom: 72px; }
 }
 
 
-/* ============================================================
-   ESCALA MÓVIL – Reducción de tamaños en pantallas pequeñas
-   ============================================================ */
+/* ESCALA MÓVIL – Reducción de tamaños en pantallas pequeñas */
 
 @media (max-width: 600px) {
 
