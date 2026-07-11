@@ -11814,9 +11814,7 @@ body:has(#page-fynder.active) #navbar:not(.scrolled) .nav-dots-btn:hover {
   input, select, textarea { font-size: 16px !important; }
 }
 
-/* ============================================================
-   TABLET (≤ 1024px) – nav + hero + layout
-   ============================================================ */
+/* TABLET (≤ 1024px) – nav + hero + layout */
 @media (max-width: 1024px) {
   .nav-inner { padding: 0 16px; }
   .hero-inner {
@@ -11830,9 +11828,7 @@ body:has(#page-fynder.active) #navbar:not(.scrolled) .nav-dots-btn:hover {
   .footer-grid { grid-template-columns: 1fr 1fr; gap: 32px; }
 }
 
-/* ============================================================
-   TABLET PEQUEÑA / MÓVIL GRANDE (≤ 768px)
-   ============================================================ */
+/* TABLET PEQUEÑA / MÓVIL GRANDE (≤ 768px) */
 @media (max-width: 768px) {
   /* ---- Navbar ---- */
   .nav-links      { display: none !important; }
@@ -12003,9 +11999,7 @@ body:has(#page-fynder.active) #navbar:not(.scrolled) .nav-dots-btn:hover {
   .mobile-menu-drawer { width: min(320px, 88vw) !important; }
 }
 
-/* ============================================================
-   MÓVIL (≤ 600px) – ajustes adicionales
-   ============================================================ */
+/* MÓVIL (≤ 600px) – ajustes adicionales */
 @media (max-width: 600px) {
   /* Hero aún más compacto */
   .hero-inner { padding: 72px 14px 40px; }
