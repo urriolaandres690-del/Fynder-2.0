@@ -6236,7 +6236,7 @@ label.avatar-option-btn:hover { background: var(--teal-light); border-color: rgb
 [data-theme="dark"] .biz-input-wrap        { background: #ffffff; border-color: #E5E7EB; }
 [data-theme="dark"] .biz-input-wrap input,
 [data-theme="dark"] .biz-input-wrap textarea,
-[data-theme="dark"] .biz-input-wrap select { background: #ffffff !important; color: #1F2937 !important; }
+[data-theme="dark"] .biz-input-wrap select { background: #ffffff !important; color: #1F2937 !important; box-shadow: 0 1px 3px rgba(0,0,0,.08) !important; }
 
 [data-theme="dark"] .biz-input-wrap input:hover,
 [data-theme="dark"] .biz-input-wrap select:hover,
