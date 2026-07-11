@@ -248,9 +248,7 @@ let favorites = new Set();
 if(_savedFavs){
   try {
     const parsed = JSON.parse(_savedFavs);
-    // Solo mantener IDs que existen en BUSINESSES
     parsed.forEach(id => { if(BUSINESSES.find(b=>b.id===id)) favorites.add(id); });
-    // Actualizar localStorage con solo los válidos
     localStorage.setItem('fynderFavorites', JSON.stringify([...favorites]));
   } catch(e){ favorites = new Set(); }
 }
@@ -277,18 +275,15 @@ function listCardHTML(b){
   return`<div class="bcard-list" onclick="openModal('${b.id}')"><div class="bcard-list-img"><img src="${b.image}" alt="${b.name}" loading="lazy" style="width:100%;height:100%;object-fit:cover" onerror="this.closest('.bcard-list').style.display='none'"/></div><div class="bcard-list-body"><div><div class="bcard-list-top"><span class="bcard-list-name">${b.name}</span><button onclick="event.stopPropagation();toggleFav('${b.id}')" style="background:none;border:none;cursor:pointer;flex-shrink:0;padding:2px" data-fav-id="${b.id}" data-fav-size="sm">${_heartSVG(isFav,'sm')}</button></div><p class="bcard-list-desc line-clamp-2">${b.description}</p><div class="bcard-list-tags">${tags}${dealTag}</div></div><div class="bcard-list-meta"><div class="bcard-list-meta-item"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>${b.hours}</div><div class="bcard-list-meta-item"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>${b.address.split(',')[0]}</div><div class="bcard-list-rating"><div class="stars">${starsHTML(b.rating)}</div><strong style="font-size:.75rem;color:#1F2937">${b.rating}</strong><span style="font-size:.75rem;color:#6B7280">(${b.reviews})</span></div></div></div></div>`;
 }
 function goPage(p){
-    // Páginas que requieren sesión activa
     const authRequired = ['messages','chat','chat-profile','profile','dashboard'];
     if(authRequired.includes(p) && !localStorage.getItem('fynderLogged')){
         showToast('Debes iniciar sesión para acceder a esta sección.', 'error');
         p = 'login';
     }
 
-    // Si la página no existe, ignorar silenciosamente
     const target = document.getElementById('page-'+p);
     if(!target){ console.warn('goPage: no existe page-'+p); return; }
 
-    // Guardar la página anterior solo si NO es una página legal (para no perder el origen real)
     const legalPages = ['terms','privacy'];
     const noHistoryPages = ['messages','chat','chat-profile'];
     if(!legalPages.includes(currentPage) && !noHistoryPages.includes(currentPage)){
@@ -303,7 +298,6 @@ function goPage(p){
     const noNavPages = ['login','register','terms','privacy','messages','chat','chat-profile'];
     navbar.style.display = noNavPages.includes(p) ? 'none' : 'block';
 
-    // Actualizar el botón "Volver" de las páginas legales con el destino correcto
     if(legalPages.includes(p)){
         const backBtns = document.querySelectorAll('#page-'+p+' .back-legal-btn');
         const labels = { home:'Inicio', register:'Crear cuenta', login:'Iniciar sesión', directory:'Directorio', favorites:'Guardados', business:'Registrar negocio', profile:'Mi perfil', plans:'Planes', support:'Soporte', about:'Sobre FYNDER' };
@@ -314,7 +308,6 @@ function goPage(p){
         });
     }
 
-    // Reset scroll state before updateNav so on-hero works immediately on new page
     window.__scrolled = false;
     document.getElementById('navbar').classList.remove('scrolled');
     updateNav();
