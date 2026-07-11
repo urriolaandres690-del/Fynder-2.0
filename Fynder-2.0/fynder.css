@@ -1994,7 +1994,6 @@ body{
   border-color: #fff;
 }
 
-/* fix sombras bootstrap en inputs */
 .input-wrap input,
 .input-wrap input:focus,
 .input-wrap input:focus-visible {
@@ -2016,25 +2015,21 @@ body{
   box-shadow: 0 0 0 3px rgba(103,184,180,.18) !important;
 }
 
-/* Bootstrap .form-control adds its own styles; isolate our inputs */
 #loginForm .input-wrap input,
 #registerForm .input-wrap input {
   display: block;
 }
 
-/* Bootstrap sets line-height on buttons which pushes their height */
 .btn-teal, .btn-ghost, .btn-login-nav,
 .nav-link, .bcard-btn, .hero-search-btn,
 .btn-yellow, .btn-outline-white {
   line-height: 1 !important;
 }
 
-/* Bootstrap can override font on button elements */
 .btn-teal, .btn-login-nav {
   font-family: 'Poppins', sans-serif !important;
 }
 
-/* Navbar btn-ghost: clean up Bootstrap bleed */
 .btn-ghost {
   display: inline-flex !important;
   align-items: center !important;
@@ -2057,7 +2052,6 @@ body{
   background: #F1F5F9 !important;
 }
 
-/* .btn-teal: ensure Bootstrap doesn't override */
 .btn-teal {
   display: inline-flex !important;
   align-items: center !important;
