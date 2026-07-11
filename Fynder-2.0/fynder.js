@@ -428,7 +428,6 @@ function toggleFav(id){
   if(currentPage==='favorites') renderFavorites();
   if(modalBusinessId===id) updateModalFavBtn();
 
-  // Notificación real al guardar (no al quitar)
   if (!wasFav) {
     const biz = BUSINESSES.find(b => String(b.id) === String(id));
     if (biz) {
@@ -464,7 +463,6 @@ function openModal(id){
   if(!b)return;
   modalBusinessId=id;
 
-  // Imagen y cabecera
   document.getElementById('modalImg').src=b.image;
   document.getElementById('modalImg').alt=b.name;
   document.getElementById('modalLogo').src=b.logo;
@@ -475,11 +473,9 @@ function openModal(id){
   document.getElementById('modalReviews').textContent=`(${b.reviews} reseñas)`;
   document.getElementById('modalDesc').textContent=b.description;
 
-  // Tags
   const cat=CATEGORIES.find(c=>c.id===b.categoryId);
   document.getElementById('modalTags').innerHTML=b.tags.map(t=>`<span class="modal-tag" style="background:${cat?.bg||'#E6F5F4'};color:${cat?.color||'#67B8B4'}">${t}</span>`).join('');
 
-  // Info rows
   const irows=[
     {icon:'<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>',label:'Dirección',val:b.address},
     {icon:'<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>',label:'Horario',val:b.hours},
@@ -488,14 +484,12 @@ function openModal(id){
   ];
   document.getElementById('modalInfo').innerHTML=irows.map(i=>`<div class="info-row"><div class="info-icon">${i.icon}</div><div><div class="info-label">${i.label}</div><div class="info-val">${i.val}</div></div></div>`).join('');
 
-  // Redes sociales
   const hasSocial=b.instagram||b.facebook;
   document.getElementById('modalSocialWrap').style.display=hasSocial?'block':'none';
   if(hasSocial) document.getElementById('modalSocial').innerHTML=
     (b.instagram?`<button class="btn-ig" onclick="window.open('https://instagram.com/${b.instagram.replace('@','')}','_blank')"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="20" x="2" y="2" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" x2="17.51" y1="6.5" y2="6.5"/></svg>${b.instagram}</button>`:'') +
     (b.facebook?`<button class="btn-fb" onclick="window.open('https://facebook.com/${b.facebook}','_blank')"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>${b.facebook}</button>`:'');
 
-  // Botones de acción: contactar y compartir
   const contactBtn=document.getElementById('modalContactBtn');
   if(contactBtn) contactBtn.onclick=()=>{ window.open('tel:'+b.phone.replace(/\s|\(|\)|-/g,''),'_self'); };
   const shareBtn=document.getElementById('modalShareBtn');
