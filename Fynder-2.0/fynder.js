@@ -545,12 +545,10 @@ function likeStaticReview(bizId, sid, btn) {
   const store = JSON.parse(localStorage.getItem('fynderStaticRevLikes') || '{}');
 
   if(liked.includes(sid)) {
-    // quitar like
     store[sid] = Math.max(0, (store[sid] || 0) - 1);
     liked.splice(liked.indexOf(sid), 1);
     if(btn) btn.classList.remove('liked');
   } else {
-    // dar like
     store[sid] = (store[sid] || 0) + 1;
     liked.push(sid);
     if(btn) {
@@ -561,12 +559,10 @@ function likeStaticReview(bizId, sid, btn) {
   }
   localStorage.setItem('fynderStaticRevLikes', JSON.stringify(store));
   localStorage.setItem(likedKey, JSON.stringify(liked));
-  // Actualizar contador sin re-renderizar
   if(btn) {
     const countEl = btn.querySelector('.review-like-count');
     if(countEl) countEl.textContent = store[sid];
   }
-  // Re-renderizar para reordenar
   const b = BUSINESSES.find(x => String(x.id) === String(bizId));
   const cat = b ? CATEGORIES.find(c => c.id === b.categoryId) : null;
   renderModalReviews(bizId, cat);
@@ -587,18 +583,17 @@ function renderModalReviews(bizId, cat){
   function _dateToTs(dateStr) {
     if(!dateStr) return 0;
     const parts = dateStr.toLowerCase().replace('.','').split(/\s+/);
-    if(parts.length === 2) { // "mar 2026"
+    if(parts.length === 2) {
       const m = _MONTHS[parts[0]] ?? 0;
       return new Date(parseInt(parts[1]), m, 1).getTime();
     }
-    if(parts.length === 3) { // "10 jul 2025"
+    if(parts.length === 3) {
       const m = _MONTHS[parts[1]] ?? 0;
       return new Date(parseInt(parts[2]), m, parseInt(parts[0])).getTime();
     }
     return 0;
   }
 
-  // Unificar todas las reseñas en un solo array normalizado
   const allReviews = [
     ...staticList.map(r => {
       const sid = _staticReviewId(bizId, r);
@@ -607,7 +602,6 @@ function renderModalReviews(bizId, cat){
     ...userComments.map(c => ({ type:'user', data:c, ts: parseInt(c.id) || _dateToTs(c.date), likes: c.likes || 0 }))
   ];
 
-  // Ordenar: primero por likes DESC, empate por fecha mas reciente
   allReviews.sort((a, b) => {
     const likeDiff = b.likes - a.likes;
     if(likeDiff !== 0) return likeDiff;
@@ -619,7 +613,6 @@ function renderModalReviews(bizId, cat){
       const r = item.data;
       const filled = r.stars;
       const stars = [1,2,3,4,5].map(i=>`<svg style="width:13px;height:13px;fill:${i<=filled?'#F4D35E':'#E5E7EB'};flex-shrink:0" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>`).join('');
-      // Generar/recuperar likes para reseña estática
       const sid = _staticReviewId(bizId, r);
       const sLikes = _getStaticReviewLikes(sid, r);
       const sLikedKey = 'fynderStaticRevLiked_' + bizId;
