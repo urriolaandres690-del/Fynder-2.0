@@ -2862,13 +2862,11 @@ body{
 
 /* aislamiento bootstrap en modal */
 
-/* Bootstrap sets .modal-body padding and .modal display:none — override inside fynder-modal */
 .fynder-modal .modal-body {
   display: flex !important;
   flex-direction: column !important;
   gap: 22px !important;
   padding: 24px !important;
-  /* reset any Bootstrap .modal-body styles */
   margin: 0 !important;
 }
 
@@ -2876,8 +2874,6 @@ body{
   display: block !important;
 }
 
-/* Bootstrap adds display:none to .modal by default via JS — fynder-modal is not affected
-   but make absolutely sure the overlay logic works with our .hide class */
 .fynder-modal-overlay:not(.hide) {
   display: flex !important;
 }
