@@ -11397,9 +11397,7 @@ section.fyl-section-alt {
 }
 
 
-/* ============================================================
-   FIX FINAL — Team card redondeo + testimonios
-   ============================================================ */
+/* FIX FINAL — Team card redondeo + testimonios */
 
 /* ── Team card: esquinas bien redondeadas y aspecto premium ── */
 .about-team-card {
@@ -11435,10 +11433,7 @@ section.fyl-section-alt {
 }
 
 
-/* ============================================================
-   NAVBAR BLANCO sobre heroes de About y Saber más
-   Fallback CSS para cuando on-hero no se aplica a tiempo
-   ============================================================ */
+/* NAVBAR BLANCO sobre heroes de About y Saber más — Fallback CSS para cuando on-hero no se aplica a tiempo */
 
 /* Nav links blancos sobre el hero de Home, About y Saber más */
 body:has(#page-home.active) #navbar:not(.scrolled) .nav-link,
