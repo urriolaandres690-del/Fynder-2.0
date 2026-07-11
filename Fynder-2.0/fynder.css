@@ -12258,9 +12258,7 @@ body:has(#page-fynder.active) #navbar:not(.scrolled) .nav-dots-btn:hover {
 }
 .chat-page.active { display: flex; }
 
-/* ================================================================
-   LAYOUT WHATSAPP WEB – DESKTOP (≥769px)
-   ================================================================ */
+/* LAYOUT WHATSAPP WEB – DESKTOP (≥769px) */
 @media (min-width: 769px) {
   /* La página ocupa TODO — el navbar está oculto en mensajes */
   .msg-page.active {
@@ -12485,9 +12483,7 @@ body:has(#page-fynder.active) #navbar:not(.scrolled) .nav-dots-btn:hover {
   .msg-bottom-nav { display: flex; }
 }
 
-/* ================================================================
-   PÁGINA: MENSAJES
-   ================================================================ */
+/* PÁGINA: MENSAJES */
 
 /* ---- Header ---- */
 .msg-header {
