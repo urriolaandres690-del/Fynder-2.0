@@ -14724,7 +14724,9 @@ body:has(#page-fynder.active) #navbar:not(.scrolled) .nav-dots-btn:hover {
 .hero-stats { gap: 14px !important; }
 
 /* Wave more visible */
-.hero-wave svg { height: 60px !important; }
+.hero-wave svg { height: 80px !important; }
+.about-hero-wave svg { height: 80px !important; }
+.fyl-hero-wave svg { height: 80px !important; }
 
 /* Section breathing room */
 .section { padding: 80px 0 !important; }
@@ -16677,7 +16679,7 @@ iframe.goog-te-menu-frame { box-shadow: 0 4px 20px rgba(0,0,0,.15) !important; b
   opacity: .45;
 }
 
-/* Botón "+" — círculo gris oscuro bien definido */
+/* Boton "+" — círculo gris oscuro bien definido */
 .chat-reaction-bar .react-more {
   width: 32px; height: 32px;
   border-radius: 50%;
@@ -16744,7 +16746,7 @@ iframe.goog-te-menu-frame { box-shadow: 0 4px 20px rgba(0,0,0,.15) !important; b
   min-width: 8px;
 }
 
-/* modo oscuro whatsappp de n */
+/* modo oscuro whatsappp de temu */
 #msgBubbleCtxMenu {
   position: fixed;
   z-index: 9999;
