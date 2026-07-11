@@ -2644,7 +2644,7 @@ body{
 /* Perks */
 .biz-reg-perks {
   display: flex;
-  gap: 10px;
+  gap: 12px;
   flex-wrap: wrap;
   margin-bottom: 32px;
 }
@@ -2652,17 +2652,86 @@ body{
 .biz-reg-perk {
   display: inline-flex;
   align-items: center;
-  gap: 7px;
-  padding: 8px 16px;
-  border-radius: 99px;
-  background: var(--teal-light);
-  color: var(--primary);
+  gap: 12px;
+  padding: 12px 18px;
+  border-radius: 16px;
   font-size: .8125rem;
   font-weight: 600;
-  border: 1px solid rgba(103,184,180,.25);
+  border: 1.5px solid transparent;
+  cursor: pointer;
+  transition: transform .2s, box-shadow .2s, border-color .2s;
+  user-select: none;
 }
 
-.biz-reg-perk i { font-size: .75rem; }
+.biz-reg-perk:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 24px rgba(0,0,0,.12);
+}
+
+.biz-reg-perk:active { transform: translateY(0); }
+
+/* Ícono circular */
+.biz-perk-icon {
+  width: 36px;
+  height: 36px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  font-size: .875rem;
+  transition: transform .2s;
+}
+
+.biz-reg-perk:hover .biz-perk-icon { transform: scale(1.15) rotate(-5deg); }
+
+/* Texto */
+.biz-perk-text { display: flex; flex-direction: column; gap: 1px; }
+.biz-perk-title { font-size: .8125rem; font-weight: 700; line-height: 1.2; }
+.biz-perk-sub   { font-size: .6875rem; font-weight: 400; opacity: .75; }
+
+/* Variantes de color */
+.biz-perk-green {
+  background: #ECFDF5;
+  border-color: rgba(16,185,129,.2);
+  color: #065F46;
+}
+.biz-perk-green .biz-perk-icon { background: rgba(16,185,129,.15); color: #10B981; }
+.biz-perk-green:hover { border-color: rgba(16,185,129,.4); box-shadow: 0 8px 24px rgba(16,185,129,.15); }
+
+.biz-perk-yellow {
+  background: #FFFBEB;
+  border-color: rgba(244,211,94,.35);
+  color: #78350F;
+}
+.biz-perk-yellow .biz-perk-icon { background: rgba(244,211,94,.25); color: #D97706; }
+.biz-perk-yellow:hover { border-color: rgba(244,211,94,.6); box-shadow: 0 8px 24px rgba(244,211,94,.2); }
+
+.biz-perk-blue {
+  background: #EFF6FF;
+  border-color: rgba(47,91,183,.2);
+  color: #1E3A8A;
+}
+.biz-perk-blue .biz-perk-icon { background: rgba(47,91,183,.12); color: #2F5BB7; }
+.biz-perk-blue:hover { border-color: rgba(47,91,183,.4); box-shadow: 0 8px 24px rgba(47,91,183,.15); }
+
+.biz-perk-teal {
+  background: #F0FEFE;
+  border-color: rgba(103,184,180,.25);
+  color: #134E4A;
+}
+.biz-perk-teal .biz-perk-icon { background: rgba(103,184,180,.15); color: var(--primary); }
+.biz-perk-teal:hover { border-color: rgba(103,184,180,.5); box-shadow: 0 8px 24px rgba(103,184,180,.2); }
+
+/* Dark mode perks */
+[data-theme="dark"] .biz-perk-green  { background: rgba(16,185,129,.1);  color: #6EE7B7; border-color: rgba(16,185,129,.2); }
+[data-theme="dark"] .biz-perk-yellow { background: rgba(244,211,94,.08); color: #FCD34D; border-color: rgba(244,211,94,.2); }
+[data-theme="dark"] .biz-perk-blue   { background: rgba(47,91,183,.12);  color: #93C5FD; border-color: rgba(47,91,183,.2); }
+[data-theme="dark"] .biz-perk-teal   { background: rgba(103,184,180,.1); color: #5EEAD4; border-color: rgba(103,184,180,.2); }
+[data-theme="dark"] .biz-perk-green .biz-perk-icon  { background: rgba(16,185,129,.2);  color: #34D399; }
+[data-theme="dark"] .biz-perk-yellow .biz-perk-icon { background: rgba(244,211,94,.15); color: #FCD34D; }
+[data-theme="dark"] .biz-perk-blue .biz-perk-icon   { background: rgba(47,91,183,.2);   color: #93C5FD; }
+[data-theme="dark"] .biz-perk-teal .biz-perk-icon   { background: rgba(103,184,180,.2); color: #67B8B4; }
 
 /* Tarjeta del formulario */
 .biz-reg-card {
