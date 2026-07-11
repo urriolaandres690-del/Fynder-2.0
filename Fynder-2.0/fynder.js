@@ -7714,9 +7714,7 @@ function _buildTickHtml(msg) {
   });
 })();
 
-/* ================================================================
-   CHAT HEADER: funciones de los botones
-   ================================================================ */
+/* CHAT HEADER: funciones de los botones */
 
 /** Llamar al teléfono del negocio si está disponible */
 function waChatCall() {
@@ -7867,9 +7865,7 @@ function toggleChatMute() {
   }
 }
 
-/* ================================================================
-   CHAT PROFILE: botones funcionales
-   ================================================================ */
+/* CHAT PROFILE: botones funcionales */
 
 /** Flecha atrás — vuelve al chat si estaba activo, si no a mensajes */
 function cproGoBack() {
