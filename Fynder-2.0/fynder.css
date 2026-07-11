@@ -231,7 +231,7 @@ input, button, select, textarea {
           background-attachment: fixed;
         }
 
-        /* Navbar sobre el hero en modo claro: fondo semitransparente del color del hero */
+        /* Navbar sobre el hero en modo claro fondo semitransparente del color del hero */
         body:has(#page-home.active) #navbar:not(.scrolled) {
           background: rgba(15, 90, 87, 0.25);
           backdrop-filter: blur(4px);
@@ -915,7 +915,6 @@ input, button, select, textarea {
       justify-content: space-between;
       flex-wrap: wrap;
       gap: 8px;
-      /* sin border-top: la línea animada ya actúa de separador */
     }
     .footer-bottom p { font-size: .78rem; color: rgba(255,255,255,.6); letter-spacing: .02em; }
 
@@ -991,7 +990,6 @@ input, button, select, textarea {
 
     /* modal */ 
 
-    /* Renamed from .modal-overlay/.modal to avoid Bootstrap JS hijacking these class names */
     .fynder-modal-overlay { position: fixed; inset: 0; z-index: 200; display: flex; align-items: center; justify-content: center; padding: 16px; background: rgba(0,0,0,.5); backdrop-filter: blur(6px); } 
 
     .fynder-modal-overlay.hide { display: none !important; } 
