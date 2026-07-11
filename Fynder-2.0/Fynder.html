@@ -2868,6 +2868,15 @@
       <p class="section-label" style="text-align:center;margin-bottom:8px">Para dueños de negocios</p>
       <h1 class="plans-title">Planes y <span>precios</span></h1>
       <p class="plans-lead">Empieza gratis y escala cuando lo necesites. Sin compromisos, sin costos ocultos.</p>
+
+      <!-- Toggle mensual / anual -->
+      <div class="plans-billing-toggle">
+        <span class="plans-billing-label" id="lbl-monthly">Mensual</span>
+        <button class="plans-toggle-switch" id="plansToggleSwitch" onclick="toggleBilling()" aria-label="Cambiar facturación">
+          <span class="plans-toggle-knob"></span>
+        </button>
+        <span class="plans-billing-label" id="lbl-annual">Anual <span class="plans-save-badge">Ahorra 20%</span></span>
+      </div>
     </div>
 
     <!-- Cards de planes -->
