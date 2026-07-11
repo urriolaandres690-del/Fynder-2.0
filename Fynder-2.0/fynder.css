@@ -301,7 +301,7 @@ input, button, select, textarea {
 
     .page.active { display: block; } 
 
-    /* Páginas internas con fondo y padding estándar */
+    /* Paginas internas con fondo y padding estandar */
     .page-inner {
       min-height: 100vh;
       background: var(--bg);
@@ -2081,14 +2081,12 @@ body{
 
 /* Páginas de autenticación – Login y Registro */
 
-/* Página completa: layout split */
 .auth-page.active {
   display: grid !important;
   grid-template-columns: 420px 1fr;
   min-height: 100vh;
 }
 
-/* panel izquierdo */
 .auth-panel {
   position: relative;
   background: linear-gradient(155deg, #1E8F8B 0%, #2F5BB7 60%, #1a3a8a 100%);
@@ -2111,7 +2109,6 @@ body{
   height: 100%;
 }
 
-/* Formas decorativas de fondo */
 .auth-panel-shapes { position: absolute; inset: 0; z-index: 1; pointer-events: none; }
 
 .auth-shape {
