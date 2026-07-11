@@ -12027,9 +12027,7 @@ body:has(#page-fynder.active) #navbar:not(.scrolled) .nav-dots-btn:hover {
   .section-header { flex-direction: column !important; align-items: flex-start !important; }
 }
 
-/* ============================================================
-   MÓVIL PEQUEÑO (≤ 480px)
-   ============================================================ */
+/* MÓVIL PEQUEÑO (≤ 480px) */
 @media (max-width: 480px) {
   html { font-size: 14.5px; }
 
@@ -12061,9 +12059,7 @@ body:has(#page-fynder.active) #navbar:not(.scrolled) .nav-dots-btn:hover {
   .hero-stat-card { padding: 8px 10px; border-radius: 12px; }
 }
 
-/* ============================================================
-   MÓVIL MUY PEQUEÑO (≤ 360px)
-   ============================================================ */
+/* MÓVIL MUY PEQUEÑO (≤ 360px) */
 @media (max-width: 360px) {
   html { font-size: 13.5px; }
   .hero h1 { font-size: 1.4rem !important; }
