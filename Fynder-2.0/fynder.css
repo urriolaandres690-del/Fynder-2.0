@@ -13900,9 +13900,7 @@ body:has(#page-fynder.active) #navbar:not(.scrolled) .nav-dots-btn:hover {
   background: var(--msg-sep-line);
 }
 
-/* ================================================================
-   PANEL LATERAL DE INFO DEL CHAT (desktop, estilo WA Web)
-   ================================================================ */
+/* PANEL LATERAL DE INFO DEL CHAT (desktop, estilo WA Web) */
 
 .wa-info-panel {
   width: 0;
@@ -13963,9 +13961,7 @@ body:has(#page-fynder.active) #navbar:not(.scrolled) .nav-dots-btn:hover {
   overscroll-behavior: contain;
 }
 
-/* ================================================================
-   PÁGINA: PERFIL DEL NEGOCIO (desde chat) – estilo WhatsApp dark
-   ================================================================ */
+/* PÁGINA: PERFIL DEL NEGOCIO (desde chat) – estilo WhatsApp dark */
 
 .chat-profile-page {
   background: var(--msg-bg2);
