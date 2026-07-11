@@ -16180,9 +16180,7 @@ body { top: 0 !important; }
 /* Ocultar el bottom-nav antiguo siempre (lo reemplaza el rail) */
 .msg-bottom-nav { display: none !important; }
 
-/* ================================================================
-   AJUSTES DEL CHAT: wallpapers y mejoras visuales
-   ================================================================ */
+/* AJUSTES DEL CHAT wallpapers y mejoras visuales */
 
 /* Dots de fondo del chat */
 .msg-settings-wallpapers {
@@ -16593,9 +16591,7 @@ body { top: 0 !important; }
 iframe.goog-te-menu-frame { box-shadow: 0 4px 20px rgba(0,0,0,.15) !important; border-radius: 8px !important; }
 
 
-/* ================================================================
-   CHAT: REACCIONES Y MENÚ CONTEXTUAL
-   ================================================================ */
+/* reacciones y menu contextual */
 
 /* Wrapper del mensaje — necesario para posicionar badges y hover-bar */
 .chat-msg-row {
@@ -16679,7 +16675,7 @@ iframe.goog-te-menu-frame { box-shadow: 0 4px 20px rgba(0,0,0,.15) !important; b
   opacity: .45;
 }
 
-/* Boton "+" — círculo gris oscuro bien definido */
+/* Boton "+" — circulo gris oscuro bien definido */
 .chat-reaction-bar .react-more {
   width: 32px; height: 32px;
   border-radius: 50%;
@@ -17268,23 +17264,6 @@ body.select-mode .chat-msg-row .msg-checkbox { display: flex; align-items: cente
   grid-template-columns: 1fr 1fr;
   gap: 8px;
 }
-.welcome-social-btn {
-  background: var(--bg-secondary, #f8fafc);
-  border: 1.5px solid var(--border-color, #e5e7eb);
-  border-radius: 12px;
-  padding: 10px 12px;
-  font-size: .78rem;
-  font-weight: 600;
-  color: var(--text-primary, #374151);
-  cursor: pointer;
-  display: flex; align-items: center; justify-content: center; gap: 7px;
-  transition: border-color .2s, background .2s, box-shadow .2s;
-  white-space: nowrap;
-}
-.welcome-social-btn:hover { border-color: #9ca3af; background: var(--card-bg, #fff); box-shadow: 0 2px 10px rgba(0,0,0,.08); }
-.welcome-google:hover    { border-color: #4285F4; }
-.welcome-microsoft:hover { border-color: #00A4EF; }
-
 .welcome-btn-secondary {
   background: transparent;
   color: var(--text-primary, #111);
