@@ -7173,9 +7173,7 @@ function chatInputChange() {
   });
 })();
 
-/* ================================================================
-   CHAT: MENÚ DE ADJUNTAR
-   ================================================================ */
+/* CHAT: MENÚ DE ADJUNTAR */
 let _attachMenuOpen = false;
 
 function toggleAttachMenu() {
@@ -7195,9 +7193,7 @@ document.addEventListener('click', (e) => {
   }
 });
 
-/* ================================================================
-   CHAT: ENVIAR ARCHIVOS ADJUNTOS
-   ================================================================ */
+/* CHAT: ENVIAR ARCHIVOS ADJUNTOS */
 
 /** Enviar ubicación actual como mensaje */
 function sendChatLocation() {
@@ -7509,9 +7505,7 @@ function _openImgLightbox(src, caption) {
   document.body.appendChild(overlay);
 }
 
-/* ================================================================
-   CHAT: GRABACIÓN DE AUDIO (micrófono)
-   ================================================================ */
+/* CHAT: GRABACIÓN DE AUDIO (micrófono) */
 let _mediaRecorder  = null;
 let _audioChunks    = [];
 let _recordTimer    = null;
