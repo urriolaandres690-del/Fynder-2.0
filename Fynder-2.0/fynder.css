@@ -11119,9 +11119,7 @@ section.fyl-section-alt { background: #EBF6F5 !important; }
 /* ── About team card: override en bloque de fixes ── */
 
 
-/* ============================================================
-   FIX MODO CLARO — Hero badges/pills, CTAs oscuros, esquinas
-   ============================================================ */
+/* FIX MODO CLARO — Hero badges/pills, CTAs oscuros, esquinas */
 
 /* ── 1. HERO BADGE del "Saber más": texto visible sobre turquesa ── */
 .fyl-hero-badge {
@@ -11226,9 +11224,7 @@ section.fyl-section .fyl-cta {
 [data-theme="dark"] .about-badge-dot { background: #67B8B4; }
 
 
-/* ============================================================
-   FIX VISUAL — Texto FYNDER visible, Origin card, Team card
-   ============================================================ */
+/* FIX VISUAL — Texto FYNDER visible, Origin card, Team card */
 
 /* ── 1. FYNDER en el título del hero: amarillo brillante, nunca invisible ── */
 .fyl-hero-title span {
@@ -11338,10 +11334,7 @@ section.fyl-section .fyl-cta {
 }
 
 
-/* ============================================================
-   REDONDEO GLOBAL + FIX TESTIMONIO FEATURED
-   Saber más y Sobre Fynder — menos cuadrados, más fluidos
-   ============================================================ */
+/* REDONDEO GLOBAL + FIX TESTIMONIO FEATURED — Saber más y Sobre Fynder — menos cuadrados, más fluidos */
 
 /* ── FIX CRÍTICO: testimonio del medio (featured) siempre texto blanco ── */
 .fyl-testi-featured .fyl-testi-text   { color: rgba(255,255,255,.88) !important; }
