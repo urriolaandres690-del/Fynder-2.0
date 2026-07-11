@@ -12088,9 +12088,7 @@ body:has(#page-fynder.active) #navbar:not(.scrolled) .nav-dots-btn:hover {
   .hero-inner { grid-template-columns: 1fr 1fr; padding: 80px 24px 64px; }
 }
 
-/* ============================================================
-   TOUCH TARGETS – mínimo 44px en todos los botones táctiles
-   ============================================================ */
+/* TOUCH TARGETS – mínimo 44px en todos los botones táctiles */
 @media (max-width: 768px) {
   .hero-tag,
   .filter-chip,
@@ -12109,9 +12107,7 @@ body:has(#page-fynder.active) #navbar:not(.scrolled) .nav-dots-btn:hover {
   .mobile-menu-nav button { min-height: 48px; }
 }
 
-/* ============================================================
-   SMOOTH SCROLL + OVERSCROLL para móvil
-   ============================================================ */
+/* SMOOTH SCROLL + OVERSCROLL para móvil */
 @media (max-width: 768px) {
   .mobile-menu-drawer,
   .fynder-modal,
