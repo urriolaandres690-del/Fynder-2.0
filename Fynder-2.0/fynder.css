@@ -2760,18 +2760,26 @@ body{
 .biz-input-wrap select,
 .biz-input-wrap textarea {
   width: 100% !important;
-  padding: 12px 14px 12px 40px !important;
+  padding: 13px 14px 13px 42px !important;
   border: 1.5px solid #E5E7EB !important;
-  border-radius: 14px !important;
+  border-radius: 16px !important;
   font-size: .9rem !important;
   font-family: 'Inter', sans-serif !important;
-  color: var(--fg) !important;
-  background: #FAFAFA !important;
+  font-weight: 450 !important;
+  letter-spacing: .01em !important;
+  color: #374151 !important;
+  background: #ffffff !important;
   outline: none !important;
-  box-shadow: none !important;
-  transition: border-color .2s, background .2s, box-shadow .2s !important;
+  box-shadow: 0 1px 3px rgba(0,0,0,.06) !important;
+  transition: border-color .2s, box-shadow .2s !important;
   -webkit-appearance: none;
   appearance: none;
+}
+
+.biz-input-wrap input::placeholder,
+.biz-input-wrap textarea::placeholder {
+  color: #9CA3AF !important;
+  font-weight: 400 !important;
 }
 
 .biz-input-wrap select {
@@ -2783,17 +2791,18 @@ body{
 }
 
 .biz-input-wrap textarea {
-  resize: vertical;
-  min-height: 110px;
-  padding-top: 13px !important;
-  line-height: 1.6 !important;
+  resize: none;
+  min-height: 120px;
+  padding-top: 14px !important;
+  line-height: 1.65 !important;
+  border-radius: 16px !important;
 }
 
 .biz-input-wrap input:hover,
 .biz-input-wrap select:hover,
 .biz-input-wrap textarea:hover {
   border-color: #CBD5E1 !important;
-  background: #fff !important;
+  background: #ffffff !important;
   color: #1F2937 !important;
 }
 
@@ -2801,7 +2810,7 @@ body{
 .biz-input-wrap select:focus,
 .biz-input-wrap textarea:focus {
   border-color: var(--primary) !important;
-  background: #fff !important;
+  background: #ffffff !important;
   color: #1F2937 !important;
   box-shadow: 0 0 0 3.5px rgba(103,184,180,.18) !important;
 }
