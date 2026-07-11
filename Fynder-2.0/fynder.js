@@ -786,7 +786,6 @@ function _shareCopy(encodedText){
 }
 
 function _shareCopyFallback(text){
-  // Método clásico compatible con file://
   const ta=document.createElement('textarea');
   ta.value=text;
   ta.style.cssText='position:fixed;top:-9999px;left:-9999px;opacity:0';
