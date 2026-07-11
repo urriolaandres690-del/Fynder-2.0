@@ -495,7 +495,6 @@ function openModal(id){
   const shareBtn=document.getElementById('modalShareBtn');
   if(shareBtn) shareBtn.onclick=()=>shareModalBusiness();
 
-  // Mapa embed (Google Maps)
   const mapWrap=document.getElementById('modalMapWrap');
   if(mapWrap){
     const q=encodeURIComponent((b.mapQuery||b.address).replace(/\+/g,' ')+', Panamá');
@@ -513,7 +512,6 @@ function openModal(id){
     </a>`;
   }
 
-  // Reseñas
   renderModalReviews(b.id, cat);
 
   updateModalFavBtn();
@@ -521,7 +519,6 @@ function openModal(id){
   document.body.style.overflow='hidden';
 }
 
-/* ── Helpers de likes para reseñas estáticas ── */
 // Genera un ID estable a partir del bizId + nombre + fecha de la reseña
 function _staticReviewId(bizId, r) {
   return bizId + '_' + (r.name || '').replace(/\s/g,'') + '_' + (r.date || '').replace(/\s/g,'');
