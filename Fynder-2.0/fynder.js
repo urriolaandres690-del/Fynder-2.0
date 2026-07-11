@@ -7990,9 +7990,7 @@ document.addEventListener('click', (e) => {
   if (!menu.contains(e.target)) closeCproMenu();
 });
 
-/* ================================================================
-   RAIL DE ÍCONOS: lógica de navegación y avatar
-   ================================================================ */
+/* RAIL DE ÍCONOS: lógica de navegación y avatar */
 
 /** Cambia la sección activa del rail */
 function waRailSwitch(section, btn) {
@@ -8069,9 +8067,7 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 });
 
-/* ================================================================
-   AJUSTES DEL CHAT: modo oscuro y fondo del chat
-   ================================================================ */
+/* AJUSTES DEL CHAT: modo oscuro y fondo del chat */
 
 /** Toggle modo oscuro/día desde el panel de ajustes del chat */
 function msgToggleTheme() {
