@@ -389,20 +389,23 @@ function updateNav(){
     if (typeof updateMobileMenuActions === 'function') updateMobileMenuActions();
 
     const pageToDrawerBtn = {
-        'home':      0,
-        'directory': 1,
-        'favorites': 2,
-        'plans':     3,
-        'about':     4,
-        'fynder':    5,
-        'blog':      6,
-        'support':   7,
-        'map':       8
+        'home':      'home',
+        'directory': 'directory',
+        'favorites': 'favorites',
+        'messages':  'messages',
+        'plans':     'plans',
+        'about':     'about',
+        'fynder':    'fynder',
+        'blog':      'blog',
+        'support':   'support',
+        'map':       'map'
     };
-    const drawerBtns = document.querySelectorAll('.mobile-menu-nav button:not(.mobile-menu-nav-small)');
-    drawerBtns.forEach((btn, i) => {
-        const isActive = i === pageToDrawerBtn[currentPage];
-        btn.classList.toggle('active', isActive);
+    const drawerBtns = document.querySelectorAll('.mobile-menu-nav button');
+    drawerBtns.forEach(btn => {
+        const onclick = btn.getAttribute('onclick') || '';
+        const match = onclick.match(/goPage\(['"](\w[\w-]*)['"](?:,|\))/);
+        const btnPage = match ? match[1] : null;
+        btn.classList.toggle('active', btnPage === currentPage);
     });
 }
 
