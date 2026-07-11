@@ -17258,12 +17258,6 @@ body.select-mode .chat-msg-row .msg-checkbox { display: flex; align-items: cente
 }
 .welcome-btn-primary:hover { opacity: .92; transform: translateY(-1px); box-shadow: 0 10px 28px rgba(47,91,183,.38); }
 
-/* Botones sociales */
-.welcome-social-row {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 8px;
-}
 .welcome-btn-secondary {
   background: transparent;
   color: var(--text-primary, #111);
