@@ -15962,9 +15962,7 @@ body { top: 0 !important; }
   white-space: nowrap;
 }
 
-/* ================================================================
-   CHAT HEADER: menú contextual de los tres puntos
-   ================================================================ */
+/* CHAT HEADER: menú contextual de los tres puntos */
 .wa-chat-area {
   position: relative; /* necesario para el menú absoluto */
 }
