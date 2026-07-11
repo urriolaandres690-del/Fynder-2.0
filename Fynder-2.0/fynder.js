@@ -344,7 +344,6 @@ function goBack(){
 function updateNav(){
     const isHero = (currentPage==='home' || currentPage==='about' || currentPage==='fynder') && !window.__scrolled;
 
-    // Nav links activos + on-hero
     ['home','directory','favorites','messages'].forEach(p=>{
         const el=document.getElementById('nl-'+p);
         if(!el) return;
@@ -354,7 +353,6 @@ function updateNav(){
     const lt = document.getElementById('logoText');
     if(lt) lt.classList.toggle('on-hero', isHero);
 
-    // Botones y nombre de usuario: on-hero mientras estamos en el hero sin scroll
     const logged = !!localStorage.getItem('fynderLogged');
     const login   = document.getElementById('navBtnLogin');
     const logout  = document.getElementById('navBtnLogout');
@@ -380,9 +378,7 @@ function updateNav(){
 
     if(uname) uname.classList.toggle('on-hero', isHero);
 
-    // nav-icon-btn on-hero (perfil, dashboard compactos)
     document.querySelectorAll('.nav-icon-btn').forEach(el => el.classList.toggle('on-hero', isHero));
-    // nav-msg-btn on-hero
     const msgNavBtn = document.getElementById('navMsgBtn');
     if(msgNavBtn) msgNavBtn.classList.toggle('on-hero', isHero);
     const b=document.getElementById('navBadge');
@@ -390,10 +386,8 @@ function updateNav(){
     const fc=document.getElementById('favsCount');
     if(fc) fc.textContent=`${favorites.size} negocio${favorites.size!==1?'s':''} guardado${favorites.size!==1?'s':''}`;
 
-    // Sincronizar drawer móvil con estado de sesion
     if (typeof updateMobileMenuActions === 'function') updateMobileMenuActions();
 
-    // Resaltar el item activo en el menú lateral (drawer)
     const pageToDrawerBtn = {
         'home':      0,
         'directory': 1,
