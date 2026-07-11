@@ -715,18 +715,15 @@ function shareModalBusiness(){
   const shareText=`${b.name}\n📍 ${b.address}\n📞 ${b.phone}`;
   const shareUrl=window.location.href;
 
-  // Intentar Web Share API (funciona en móvil/HTTPS)
   if(navigator.share && location.protocol!=='file:'){
     navigator.share({title:b.name,text:`${b.name} – ${b.address}`,url:shareUrl}).catch(()=>{});
     return;
   }
 
-  // Fallback: mostrar panel de opciones de compartir
   _showSharePanel(b, shareText, shareUrl);
 }
 
 function _showSharePanel(b, shareText, shareUrl){
-  // Si ya existe, quitarlo
   const existing=document.getElementById('sharePanel');
   if(existing){ existing.remove(); return; }
 
