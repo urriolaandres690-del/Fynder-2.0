@@ -8274,9 +8274,7 @@ section.fyl-section-alt > *:last-child { padding-bottom: 72px; }
 .plans-table td:first-child { width: 36%; }
 
 
-/* ============================================================
-   DASHBOARD – Panel de administración de plan y analíticas
-   ============================================================ */
+/* DASHBOARD – Panel de administración de plan y analíticas */
 
 .dashboard-inner {
   max-width: 1100px;
@@ -8843,9 +8841,7 @@ section.fyl-section-alt > *:last-child { padding-bottom: 72px; }
 }
 
 
-/* ============================================================
-   SABER MÁS – Animaciones, efectos y mejoras de botones
-   ============================================================ */
+/* SABER MÁS – Animaciones, efectos y mejoras de botones */
 
 /* ---- Keyframes ---- */
 @keyframes fyl-fade-up {
