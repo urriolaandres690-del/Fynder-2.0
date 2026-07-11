@@ -1184,6 +1184,13 @@ function registerUser(event){
     const pass2 = document.getElementById("regPass2").value;
     const passError = document.getElementById("passError");
 
+    // Validar mínimo 6 caracteres
+    if(pass.length < 6){
+        showToast("La contraseña debe tener al menos 6 caracteres.", "error");
+        document.getElementById("regPass").focus();
+        return;
+    }
+
     // Validar que las contraseñas coincidan
     if(pass !== pass2){
         passError.classList.remove("hide");
