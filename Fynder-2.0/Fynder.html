@@ -967,21 +967,33 @@
 
     <!-- Perks rápidos -->
     <div class="biz-reg-perks">
-      <div class="biz-reg-perk">
-        <i class="fas fa-shield-halved"></i>
-        <span>100% gratuito</span>
+      <div class="biz-reg-perk biz-perk-green" onclick="showToast('Sin costo alguno, siempre.', 'success')">
+        <div class="biz-perk-icon"><i class="fas fa-shield-halved"></i></div>
+        <div class="biz-perk-text">
+          <span class="biz-perk-title">100% gratuito</span>
+          <span class="biz-perk-sub">Sin costos ocultos</span>
+        </div>
       </div>
-      <div class="biz-reg-perk">
-        <i class="fas fa-bolt"></i>
-        <span>Activación inmediata</span>
+      <div class="biz-reg-perk biz-perk-yellow" onclick="showToast('Tu negocio aparece al instante.', 'success')">
+        <div class="biz-perk-icon"><i class="fas fa-bolt"></i></div>
+        <div class="biz-perk-text">
+          <span class="biz-perk-title">Activación inmediata</span>
+          <span class="biz-perk-sub">Visible en segundos</span>
+        </div>
       </div>
-      <div class="biz-reg-perk">
-        <i class="fas fa-users"></i>
-        <span>+2,400 usuarios activos</span>
+      <div class="biz-reg-perk biz-perk-blue" onclick="showToast('+2,400 personas buscan negocios aquí.', 'info')">
+        <div class="biz-perk-icon"><i class="fas fa-users"></i></div>
+        <div class="biz-perk-text">
+          <span class="biz-perk-title">+2,400 usuarios activos</span>
+          <span class="biz-perk-sub">Comunidad real</span>
+        </div>
       </div>
-      <div class="biz-reg-perk">
-        <i class="fas fa-chart-line"></i>
-        <span>Mayor visibilidad local</span>
+      <div class="biz-reg-perk biz-perk-teal" onclick="goPage('plans')">
+        <div class="biz-perk-icon"><i class="fas fa-chart-line"></i></div>
+        <div class="biz-perk-text">
+          <span class="biz-perk-title">Mayor visibilidad local</span>
+          <span class="biz-perk-sub">Ver planes →</span>
+        </div>
       </div>
     </div>
 
