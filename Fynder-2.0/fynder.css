@@ -13711,9 +13711,7 @@ body:has(#page-fynder.active) #navbar:not(.scrolled) .nav-dots-btn:hover {
 
 /* DARK MODE – adaptar variables al data-theme="dark" del resto de Fynder */
 
-/* ================================================================
-   BOTÓN "Mensajear" en el modal de negocio
-   ================================================================ */
+/* BOTÓN "Mensajear" en el modal de negocio */
 .btn-msg-biz {
   display: flex;
   align-items: center;
@@ -13736,9 +13734,7 @@ body:has(#page-fynder.active) #navbar:not(.scrolled) .nav-dots-btn:hover {
 }
 .btn-msg-biz i { color: var(--primary); }
 
-/* ================================================================
-   ÍCONO de mensajes en el navbar
-   ================================================================ */
+/* ÍCONO de mensajes en el navbar */
 .nav-msg-btn {
   position: relative;
   width: 36px; height: 36px;
