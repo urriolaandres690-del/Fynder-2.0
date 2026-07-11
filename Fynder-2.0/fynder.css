@@ -2341,7 +2341,7 @@ body{
 
 .auth-input-wrap input {
   width: 100% !important;
-  padding: 13px 44px 13px 42px !important;
+  padding: 13px 46px 13px 42px !important;
   border: 1.5px solid #E5E7EB !important;
   border-radius: 14px !important;
   font-size: .9375rem !important;
@@ -2353,6 +2353,18 @@ body{
   transition: border-color .2s, background .2s, box-shadow .2s !important;
   -webkit-appearance: none;
   appearance: none;
+}
+
+/* Ocultar el ojo nativo del browser (Edge/Chrome) en inputs de contraseña */
+.auth-input-wrap input[type="password"]::-ms-reveal,
+.auth-input-wrap input[type="password"]::-ms-clear {
+  display: none !important;
+}
+.auth-input-wrap input[type="password"]::-webkit-credentials-auto-fill-button,
+.auth-input-wrap input[type="password"]::-webkit-textfield-decoration-container {
+  display: none !important;
+  visibility: hidden !important;
+  pointer-events: none !important;
 }
 
 .auth-input-wrap input:hover {
