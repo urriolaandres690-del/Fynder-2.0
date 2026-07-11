@@ -341,7 +341,7 @@ function goPage(p){
     }
     if(p!=='messages' && p!=='chat') { if(typeof updateMsgBadge==='function') updateMsgBadge(); }
 
-    // La página de mensajes siempre oculta el navbar (tiene su propio header)
+    // La pagina de mensajes siempre oculta el navbar (tiene su propio header pa q no estorbe)
 }
 
 function goBack(){
@@ -373,29 +373,6 @@ function updateNav(){
     if(profile) profile.style.display = logged ? 'inline-flex'  : 'none';
     if(uname && !logged) uname.textContent = '';
 
-    // Si el usuario inició sesión con Google, mostrar avatar fantasma + correo en el botón de perfil
-    if (logged && profile) {
-      const user = JSON.parse(localStorage.getItem('fynderUser') || 'null');
-      if (user && user.provider === 'Google') {
-        // Solo actualizar si aún no tiene la clase google-user aplicada
-        if (!profile.classList.contains('google-user')) {
-          _applyGoogleNavProfile(user.email);
-        }
-      } else {
-        // Restaurar el ícono estándar si no es Google
-        if (profile.classList.contains('google-user')) {
-          profile.classList.remove('google-user');
-          profile.innerHTML = '<i class="fas fa-user-circle"></i>';
-        }
-      }
-    } else if (!logged && profile) {
-      // Al cerrar sesión, limpiar clase google-user por si acaso
-      profile.classList.remove('google-user');
-      if (!profile.querySelector('i')) {
-        profile.innerHTML = '<i class="fas fa-user-circle"></i>';
-      }
-    }
-
     const dashboard = document.getElementById('navBtnDashboard');
     if(dashboard) dashboard.style.display = logged ? 'inline-flex' : 'none';
 
@@ -420,7 +397,7 @@ function updateNav(){
     const fc=document.getElementById('favsCount');
     if(fc) fc.textContent=`${favorites.size} negocio${favorites.size!==1?'s':''} guardado${favorites.size!==1?'s':''}`;
 
-    // Sincronizar drawer móvil con estado de sesión
+    // Sincronizar drawer móvil con estado de sesion
     if (typeof updateMobileMenuActions === 'function') updateMobileMenuActions();
 
     // Resaltar el item activo en el menú lateral (drawer)
@@ -451,9 +428,9 @@ window.__scrolled=false;
 window.addEventListener('scroll',()=>{const s=window.scrollY>40;if(s!==window.__scrolled){window.__scrolled=s;document.getElementById('navbar').classList.toggle('scrolled',s);updateNav();}},{passive:true}); 
 
 function toggleFav(id){
-  // Bloquear si no hay sesión activa
+  // Bloquear si no hay sesion activa
   if (!localStorage.getItem('fynderLogged')) {
-    showToast('Inicia sesión para guardar favoritos ❤️', 'error');
+    showToast('Inicia sesión para guardar favoritos', 'error');
     return;
   }
   const wasFav = favorites.has(id);
@@ -652,7 +629,7 @@ function renderModalReviews(bizId, cat){
     ...userComments.map(c => ({ type:'user', data:c, ts: parseInt(c.id) || _dateToTs(c.date), likes: c.likes || 0 }))
   ];
 
-  // Ordenar: primero por likes DESC, empate por fecha más reciente
+  // Ordenar: primero por likes DESC, empate por fecha mas reciente
   allReviews.sort((a, b) => {
     const likeDiff = b.likes - a.likes;
     if(likeDiff !== 0) return likeDiff;
@@ -9860,12 +9837,7 @@ function _closeReactionBar() {
   _reactBarMsgId = null;
 }
 
-/* ================================================================
-   PICKER DE EMOJIS PARA REACCIONES (botón "+")
-   Reutiliza el emoji picker existente pero en modo reacción:
-   al seleccionar un emoji se aplica como reacción al mensaje
-   en lugar de insertarlo en el input.
-   ================================================================ */
+/* (botón "+")Reutiliza el emoji picker existente se aplica como reacción al mensaje en lugar de insertarlo en el input*/
 
 // Estado del modo reacción
 let _reactionPickerBizId = null;
@@ -9883,8 +9855,7 @@ function openReactionEmojiPicker(bizId, msgId) {
     ).join('');
   }
 
-  // Parchar temporalmente insertEmoji para que en vez de insertar al input,
-  // aplique la reacción al mensaje activo
+  // aplique la reacción al mensaje activo h
   window._prevInsertEmoji = window.insertEmoji;
   window.insertEmoji = function(emoji) {
     if (_reactionPickerBizId && _reactionPickerMsgId) {
@@ -9897,7 +9868,7 @@ function openReactionEmojiPicker(bizId, msgId) {
     closeEmojiPicker();
   };
 
-  // Mostrar título de "Escoge una reacción" en el picker
+  // Mostrar titulo de "Escoge una reaccion" en el picker
   const picker = document.getElementById('emojiPicker');
   if (picker) {
     let lbl = picker.querySelector('.emoji-reaction-label');
@@ -9910,7 +9881,7 @@ function openReactionEmojiPicker(bizId, msgId) {
     lbl.style.cssText = 'font-size:.75rem;color:var(--primary,#67b8b4);font-weight:600;padding:6px 12px 0;';
   }
 
-  // Renderizar primera categoría y abrir
+  // Renderizar primera categoria y abrir
   renderEmojiCat(0);
   document.getElementById('emojiSearch').value = '';
   document.getElementById('emojiOverlay').classList.add('open');
@@ -9932,7 +9903,7 @@ function openReactionEmojiPicker(bizId, msgId) {
   overlayEl.addEventListener('click', _restore, { once: true });
 }
 
-// ---- Cerrar menú al hacer clic fuera ----
+// ---- cerrar menu al hacer clic fuera ----
 document.addEventListener('click', (e) => {
   const menu = document.getElementById('msgBubbleCtxMenu');
   if (menu && menu.classList.contains('open') && !menu.contains(e.target)) {
@@ -9942,7 +9913,7 @@ document.addEventListener('click', (e) => {
 document.addEventListener('keydown', (e) => {
   if (e.key === 'Escape') {
     closeMsgBubbleCtxMenu();
-    // Si el picker estaba en modo reacción, restaurar insertEmoji
+    // Si el picker estaba en modo reaccion, restaurar insertEmoji
     if (_reactionPickerBizId && window._prevInsertEmoji) {
       window.insertEmoji = window._prevInsertEmoji;
       _reactionPickerBizId = null;
@@ -9952,10 +9923,7 @@ document.addEventListener('keydown', (e) => {
 });
 
 
-/* ================================================================
-   ELIMINAR MENSAJE ESTILO WHATSAPP
-   Modal con "Eliminar para todos" / "Eliminar para mí"
-   ================================================================ */
+/* Modal con "Eliminar para todos" whatsApp de temu/ "Eliminar para mí" */
 
 let _deleteMsgBizId = null;
 let _deleteMsgId    = null;
@@ -9990,12 +9958,12 @@ function confirmDeleteMsg(type) {
   if (!msg) return;
 
   if (type === 'me') {
-    // Solo para mí: marcar como hidden, no se renderiza
+    // Solo para mí marcar como hidden, no se renderiza
     msg.deletedForMe = true;
     _saveMsgs(bizId, msgs);
     showToast('Mensaje eliminado');
   } else {
-    // Para todos: reemplazar contenido con aviso
+    // Para todos reemplazar contenido con aviso
     msg.deletedForAll = true;
     msg.text  = '';
     msg.attach = null;
@@ -10008,10 +9976,7 @@ function confirmDeleteMsg(type) {
   if (typeof _rf === 'function') _rf(bizId);
 }
 
-/* ================================================================
-   MODO SELECCIÓN DE MENSAJES
-   Checkboxes + barra inferior con "X seleccionados"
-   ================================================================ */
+/*SELECCIÓN DE MENSAJES Checkboxes + barra inferior con "X seleccionados" no sirve hay que correjirlo */
 
 let _selectModeBizId  = null;
 const _selectedMsgIds = new Set();
@@ -10136,9 +10101,7 @@ function shareSelectedMsgs() {
   }
   exitSelectMode();
 }
-
-// Parche al renderizador para omitir mensajes eliminados para mí
-// y mostrar el bubble especial para "eliminado para todos"
+//  mostrar el bubble especial para "eliminado para todos"
 (function patchRenderForDeleted() {
   const _prev = window._renderMsgsInto;
   if (!_prev) return;
@@ -10178,11 +10141,7 @@ function shareSelectedMsgs() {
 })();
 
 
-/* ════════════════════════════════════════════
-   MODAL DE BIENVENIDA – RECOMENDACIÓN LOGIN
-   Se muestra solo si el usuario no tiene sesión
-   y no lo ha descartado en esta visita.
-   ════════════════════════════════════════════ */
+/*Se muestra solo si el usuario no tiene sesión y no lo ha descartado en esta visita*/
 (function initWelcomeModal() {
   function _show() {
     // Solo mostrar si NO hay sesión activa
