@@ -15666,9 +15666,7 @@ body { top: 0 !important; }
 .chat-bubble-contact-name  { font-weight: 600; font-size: .875rem; }
 .chat-bubble-contact-sub   { font-size: .75rem; opacity: .65; }
 
-/* ================================================================
-   CHAT: INPUT BAR estilo WhatsApp — micrófono
-   ================================================================ */
+/* CHAT: INPUT BAR estilo WhatsApp — micrófono */
 .chat-mic-btn {
   transition: background .2s, transform .15s, box-shadow .2s;
 }
@@ -15691,9 +15689,7 @@ body { top: 0 !important; }
   animation: recordPulse 1.2s ease-out infinite;
 }
 
-/* ================================================================
-   CHAT: BARRA DE GRABACIÓN DE AUDIO
-   ================================================================ */
+/* CHAT: BARRA DE GRABACIÓN DE AUDIO */
 .chat-record-bar {
   background: var(--msg-bg);
   border-top: 1px solid var(--msg-border);
