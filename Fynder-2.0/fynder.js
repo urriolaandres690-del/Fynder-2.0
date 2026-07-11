@@ -7110,9 +7110,7 @@ function toggleEmojiPickerMobile() {
 }
 
 
-/* ================================================================
-   CHAT: DIVISOR REDIMENSIONABLE (sidebar ↔ área principal)
-   ================================================================ */
+/* CHAT: DIVISOR REDIMENSIONABLE (sidebar ↔ área principal) */
 (function initWaResizer() {
   document.addEventListener('DOMContentLoaded', () => {
     const handle  = document.getElementById('waResizeHandle');
@@ -7153,9 +7151,7 @@ function toggleEmojiPickerMobile() {
   });
 })();
 
-/* ================================================================
-   CHAT: BOTÓN ENVIAR / MICRÓFONO (toggle según haya texto)
-   ================================================================ */
+/* CHAT: BOTÓN ENVIAR / MICRÓFONO (toggle según haya texto) */
 function chatInputChange() {
   const input   = document.getElementById('chatInput');
   const sendBtn = document.getElementById('chatSendBtn');
