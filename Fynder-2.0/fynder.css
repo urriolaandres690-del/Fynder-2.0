@@ -2762,7 +2762,7 @@ body{
   width: 100% !important;
   padding: 13px 14px 13px 42px !important;
   border: 1.5px solid #E5E7EB !important;
-  border-radius: 16px !important;
+  border-radius: 50px !important;
   font-size: .9rem !important;
   font-family: 'Inter', sans-serif !important;
   font-weight: 450 !important;
@@ -2795,7 +2795,7 @@ body{
   min-height: 120px;
   padding-top: 14px !important;
   line-height: 1.65 !important;
-  border-radius: 16px !important;
+  border-radius: 20px !important;
 }
 
 .biz-input-wrap input:hover,
@@ -6236,7 +6236,8 @@ label.avatar-option-btn:hover { background: var(--teal-light); border-color: rgb
 [data-theme="dark"] .biz-input-wrap        { background: #ffffff; border-color: #E5E7EB; }
 [data-theme="dark"] .biz-input-wrap input,
 [data-theme="dark"] .biz-input-wrap textarea,
-[data-theme="dark"] .biz-input-wrap select { background: #ffffff !important; color: #1F2937 !important; box-shadow: 0 1px 3px rgba(0,0,0,.08) !important; }
+[data-theme="dark"] .biz-input-wrap select { background: #ffffff !important; color: #1F2937 !important; box-shadow: 0 1px 3px rgba(0,0,0,.08) !important; border-radius: 50px !important; }
+[data-theme="dark"] .biz-input-wrap textarea { border-radius: 20px !important; }
 
 [data-theme="dark"] .biz-input-wrap input:hover,
 [data-theme="dark"] .biz-input-wrap select:hover,
