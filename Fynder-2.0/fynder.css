@@ -9191,9 +9191,7 @@ section.fyl-section-alt > *:last-child { padding-bottom: 72px; }
 .filter-chip-deals i { font-size: .75rem; }
 
 
-/* ============================================================
-   RESPONSIVE GLOBAL – Correcciones para móvil, tablet, desktop
-   ============================================================ */
+/* RESPONSIVE GLOBAL – Correcciones para móvil, tablet, desktop */
 
 /* ---- Hamburger button ---- */
 .nav-hamburger {
@@ -9483,9 +9481,7 @@ section.fyl-section-alt > *:last-child { padding-bottom: 72px; }
   color: #EF4444;
 }
 
-/* ============================================================
-   BREAKPOINT: tablet ancho (769px – 1024px)
-   ============================================================ */
+/* BREAKPOINT: tablet ancho (769px – 1024px) */
 @media (max-width: 1024px) {
   /* How-grid: paso intermedio 5 cols → 3 pasos verticales */
   .how-grid {
@@ -9518,9 +9514,7 @@ section.fyl-section-alt > *:last-child { padding-bottom: 72px; }
   .plan-card-pro:hover { transform: translateY(-3px); }
 }
 
-/* ============================================================
-   BREAKPOINT: tablet (601px – 768px)
-   ============================================================ */
+/* BREAKPOINT: tablet (601px – 768px) */
 @media (max-width: 768px) {
   /* How-grid: apilado */
   .how-grid { grid-template-columns: 1fr; }
