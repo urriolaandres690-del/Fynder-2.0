@@ -15748,9 +15748,7 @@ body { top: 0 !important; }
 }
 .chat-record-send:hover { background: #5aa6a2; transform: scale(1.08); }
 
-/* ================================================================
-   CHAT: BURBUJAS DE ARCHIVOS / MEDIA / AUDIO
-   ================================================================ */
+/* CHAT: BURBUJAS DE ARCHIVOS / MEDIA / AUDIO */
 .chat-bubble-file {
   display: flex;
   align-items: center;
@@ -15900,9 +15898,7 @@ body { top: 0 !important; }
   margin: 4px 8px;
 }
 
-/* ================================================================
-   CHAT PROFILE: menú contextual del ⋮ y ajustes varios
-   ================================================================ */
+/* CHAT PROFILE: menú contextual del ⋮ y ajustes varios */
 .chat-profile-page {
   position: relative; /* para el menú absoluto */
 }
