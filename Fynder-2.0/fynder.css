@@ -313,7 +313,7 @@ input, button, select, textarea {
 
     .hero { 
 
-      position: relative; min-height: 100vh; display: flex; align-items: center; overflow: hidden; 
+      position: relative; min-height: 100vh; display: flex; align-items: center; overflow-x: hidden; overflow-y: visible; 
 
       background: linear-gradient(135deg, #1E8F8B 0%, #67B8B4 45%, #2F5BB7 100%); 
 
@@ -473,7 +473,7 @@ input, button, select, textarea {
 
     .cards-grid { display: grid; grid-template-columns: repeat(auto-fill,minmax(240px,1fr)); gap: 20px; }
 
-    /* ── Scroll vertical sección Más Populares ── */
+    /* ── Scroll vertical seccion Más Populares ── */
     .popular-scroll-wrap {
       max-height: 520px;
       overflow-y: auto;
@@ -721,7 +721,7 @@ input, button, select, textarea {
         inset 0 1px 0 rgba(255,255,255,.04);
     }
 
-    /* Partículas flotantes */
+    /* particulas flotantes */
     .footer-particles {
       position: absolute;
       inset: 0;
@@ -1909,7 +1909,7 @@ body{
   margin-bottom: 20px;
 }
 
-/* Register / login link below button */
+/* registro / login link below button */
 .register-link {
   text-align: center;
   font-size: .875rem;
@@ -2079,7 +2079,7 @@ body{
 }
 
 
-/* Páginas de autenticación – Login y Registro */
+/* paginas de autenticacion – Login y Registro */
 
 .auth-page.active {
   display: grid !important;
@@ -2424,7 +2424,7 @@ body{
   flex-shrink: 0;
 }
 
-/* Términos */
+/* terminos */
 .auth-terms {
   display: flex;
   align-items: flex-start;
@@ -2445,7 +2445,7 @@ body{
 
 .auth-link:hover { text-decoration: underline; }
 
-/* Botón principal submit */
+/* Boton principal submit */
 .auth-submit-btn {
   width: 100%;
   display: flex;
@@ -16744,9 +16744,7 @@ iframe.goog-te-menu-frame { box-shadow: 0 4px 20px rgba(0,0,0,.15) !important; b
   min-width: 8px;
 }
 
-/* ================================================================
-   MENÚ CONTEXTUAL DE MENSAJE — ESTILO WHATSAPP DARK
-   ================================================================ */
+/* modo oscuro whatsappp de n */
 #msgBubbleCtxMenu {
   position: fixed;
   z-index: 9999;
@@ -16951,9 +16949,7 @@ iframe.goog-te-menu-frame { box-shadow: 0 4px 20px rgba(0,0,0,.15) !important; b
 }
 
 
-/* ================================================================
-   ELIMINAR MENSAJE ESTILO WHATSAPP
-   ================================================================ */
+/* ELIMINAR MENSAJE ESTILO WHATSAPP */
 
 /* Overlay oscuro detrás del modal */
 .del-msg-overlay {
@@ -17029,9 +17025,7 @@ iframe.goog-te-menu-frame { box-shadow: 0 4px 20px rgba(0,0,0,.15) !important; b
 }
 .del-msg-cancel:hover { color: #a0adb8; }
 
-/* ================================================================
-   MODO SELECCIÓN DE MENSAJES
-   ================================================================ */
+/* MODO SELECCION DE MENSAJES NO SIRVE */
 
 /* Barra inferior de selección */
 .msg-select-bar {
@@ -17122,10 +17116,7 @@ body.select-mode .chat-msg-row .msg-checkbox { display: flex; align-items: cente
   border-color: rgba(255,255,255,.15) !important;
 }
 
-
-/* ════════════════════════════════════════════
-   MODAL DE BIENVENIDA / RECOMENDACIÓN LOGIN
-   ════════════════════════════════════════════ */
+/*MODAL DE BIENVENIDA / RECOMENDACION LOGIN*/
 .welcome-modal-overlay {
   position: fixed;
   inset: 0;
@@ -17573,12 +17564,6 @@ body.select-mode .chat-msg-row .msg-checkbox { display: flex; align-items: cente
   color: var(--muted);
 }
 
-
-/* ================================================================
-   TRANSICIONES HERO → SECCIÓN (sin líneas ni cortes visibles)
-   ================================================================ */
-
-/* ── Inicio: ola pegada a la sección siguiente, sin gap ni línea ── */
 .hero {
   padding-bottom: 0 !important;
   margin-bottom: 0 !important;
@@ -17591,7 +17576,7 @@ body.select-mode .chat-msg-row .msg-checkbox { display: flex; align-items: cente
   display: block;
 }
 
-/* ── About: ola unida al body, sin líneas ni espacio visible ── */
+/* ── About ola unida al body── */
 .about-hero-v2 {
   padding-bottom: 0 !important;
   overflow: visible !important;
@@ -17634,12 +17619,12 @@ body.select-mode .chat-msg-row .msg-checkbox { display: flex; align-items: cente
   background: var(--bg) !important;
 }
 
-/* Modo claro: fill de las olas */
+/* Modo claro fill de las olas */
 .hero-wave-fill                { fill: #F8FAFC; }
 .about-hero-wave path          { fill: var(--bg) !important; }
 .fyl-hero-wave path            { fill: var(--bg) !important; }
 
-/* Modo oscuro: fill coincide con el fondo */
+/* Modo oscuro fill coincide con el fondo */
 [data-theme="dark"] .hero-wave-fill        { fill: var(--bg) !important; }
 [data-theme="dark"] .about-hero-wave path  { fill: var(--bg) !important; }
 [data-theme="dark"] .fyl-hero-wave path    { fill: var(--bg) !important; }
