@@ -2740,6 +2740,8 @@ body{
   position: relative;
   display: flex;
   align-items: center;
+  border-radius: 50px;
+  overflow: hidden;
 }
 
 .biz-input-icon {
@@ -2816,7 +2818,7 @@ body{
 }
 
 /* Campo sin icono (textarea full) */
-.biz-textarea-wrap { align-items: flex-start; }
+.biz-textarea-wrap { align-items: flex-start; border-radius: 20px; }
 
 /* Submit */
 .biz-reg-submit-wrap {
