@@ -950,8 +950,7 @@ function _initCarouselDrag(id) {
   el.addEventListener('mouseup', e => {
     isDown = false;
     el.classList.remove('is-dragging');
-    // Si se movió más de 5px no disparar el click de la tarjeta
-    if (moved) e.stopPropagation();
+  if (moved) e.stopPropagation();
   });
   el.addEventListener('mousemove', e => {
     if (!isDown) return;
@@ -961,7 +960,6 @@ function _initCarouselDrag(id) {
     if (Math.abs(walk) > 5) moved = true;
     el.scrollLeft = scrollLeft - walk;
   });
-  // Evitar que el click se dispare tras un drag
   el.addEventListener('click', e => { if (moved) { e.stopPropagation(); moved = false; } }, true);
 }
 
@@ -1000,7 +998,6 @@ function buildHome(){
   const heroStatSat=document.getElementById('heroStatSatisfaccion');
   if(heroStatSat) heroStatSat.textContent=satPct+'%';
 
-  // Sincronizar versión móvil de stats
   const m1=document.getElementById('heroStatNegociosMobile');   if(m1) m1.textContent=total;
   const m2=document.getElementById('heroStatUsuariosMobile');   if(m2) m2.textContent=usersEst.toLocaleString('es')+'+';
   const m3=document.getElementById('heroStatRatingMobile');     if(m3) m3.textContent=avgRating;
