@@ -4082,9 +4082,7 @@ if (_origToggleDark) {
 }()); // fin IIFE
 
 
-/* ================================================================
-   SISTEMA DE MENSAJES – FYNDER
-   ================================================================ */
+/* SISTEMA DE MENSAJES – FYNDER */
 
 // ---- Storage helpers ----
 function _getMsgs(bizId) {
@@ -4989,9 +4987,7 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 
-/* ================================================================
-   PERFIL DEL NEGOCIO DESDE CHAT
-   ================================================================ */
+/* PERFIL DEL NEGOCIO DESDE CHAT */
 
 function openChatProfile() {
   if (!_activeChatBizId) return;
