@@ -13763,9 +13763,7 @@ body:has(#page-fynder.active) #navbar:not(.scrolled) .nav-dots-btn:hover {
   border: 2px solid var(--bg);
 }
 
-/* ================================================================
-   RESPONSIVE – mensajes (ya manejado en el bloque de layout WA)
-   ================================================================ */
+/* RESPONSIVE – mensajes (ya manejado en el bloque de layout WA) */
 @media (max-width: 768px) {
   .msg-page,
   .chat-page {
@@ -13776,9 +13774,7 @@ body:has(#page-fynder.active) #navbar:not(.scrolled) .nav-dots-btn:hover {
 }
 
 
-/* ================================================================
-   MEJORAS CHAT – burbujas
-   ================================================================ */
+/* MEJORAS CHAT – burbujas */
 
 /* Fondo del chat */
 .chat-page { background: var(--msg-bg2); }
