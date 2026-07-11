@@ -481,7 +481,7 @@ input, button, select, textarea {
       padding-right: 6px;
       scroll-behavior: smooth;
       /* fade en el borde inferior para indicar que hay más contenido */
-      -webkit-mask-image: linear-gradient(to bottom, black 80%, transparent 100%);
+      -webkit-mask-image:
               mask-image: linear-gradient(to bottom, black 80%, transparent 100%);
     }
     .popular-scroll-wrap::-webkit-scrollbar { width: 5px; }
@@ -809,7 +809,7 @@ input, button, select, textarea {
       background-clip: text;
       -webkit-text-fill-color: transparent;
       animation: footerBrillo 4s linear infinite;
-      text-shadow: none; /* text-shadow no aplica con clip, se usa filter */
+      text-shadow: none;
       filter: drop-shadow(0 0 6px rgba(255,211,105,.35));
       transition: filter .3s;
     }
@@ -2071,7 +2071,6 @@ body{
   background: var(--primary-d) !important;
 }
 
-/* Auth page: .btn-full overrides */
 .auth-card .btn-teal,
 .btn-full {
   width: 100% !important;
