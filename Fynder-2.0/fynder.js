@@ -838,9 +838,7 @@ function submitBizComment(bizId){
   const comments=_getBizComments(bizId);
   comments.push(comment);
   _saveBizComments(bizId,comments);
-  // Resetear estado de estrellas
   _bizStarVal=0;
-  // Re-renderizar usando el bizId almacenado
   const b=BUSINESSES.find(x=>x.id===bizId)||BUSINESSES.find(x=>x.id===modalBusinessId);
   const cat=b?CATEGORIES.find(c=>c.id===b.categoryId):null;
   renderModalReviews(bizId,cat);
@@ -856,12 +854,10 @@ function likeBizComment(bizId, commentId, btn) {
   if(idx === -1) return;
 
   if(liked.includes(commentId)) {
-    // quitar like
     comments[idx].likes = Math.max(0, (comments[idx].likes || 0) - 1);
     liked.splice(liked.indexOf(commentId), 1);
     if(btn) btn.classList.remove('liked');
   } else {
-    // dar like
     comments[idx].likes = (comments[idx].likes || 0) + 1;
     liked.push(commentId);
     if(btn) {
@@ -872,12 +868,10 @@ function likeBizComment(bizId, commentId, btn) {
   }
   localStorage.setItem(likedKey, JSON.stringify(liked));
   _saveBizComments(bizId, comments);
-  // Actualizar solo el contador sin re-renderizar todo
   if(btn) {
     const countEl = btn.querySelector('.review-like-count');
     if(countEl) countEl.textContent = comments[idx].likes;
   }
-  // Re-renderizar para reordenar por likes
   const b = BUSINESSES.find(x => String(x.id) === String(bizId));
   const cat = b ? CATEGORIES.find(c => c.id === b.categoryId) : null;
   renderModalReviews(bizId, cat);
