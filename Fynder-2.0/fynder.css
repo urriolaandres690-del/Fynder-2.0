@@ -6292,6 +6292,9 @@ select option {
 [data-theme="dark"] #page-business   { background: var(--bg) !important; }
 [data-theme="dark"] .biz-reg-card    { background: var(--card); border-color: rgba(255,255,255,.07); }
 [data-theme="dark"] .biz-reg-title   { color: var(--fg); }
+[data-theme="dark"] .biz-reg-field label { color: #F1F5F9; }
+[data-theme="dark"] .biz-reg-section-label { color: #F1F5F9; }
+[data-theme="dark"] .biz-optional-lbl { color: rgba(255,255,255,.45); }
 
 /* login registro */
 [data-theme="dark"] #page-login,
