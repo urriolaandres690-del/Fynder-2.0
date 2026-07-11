@@ -4,34 +4,29 @@ button, input, select, textarea {
   line-height: inherit;
 }
 
-/* Bootstrap sets box-sizing on form controls; keep our intent */
 input, button, select, textarea {
   box-sizing: border-box;
 }
 
-/* Bootstrap adds border-radius:0 and border to inputs via .form-control;
-   our .input-wrap input handles its own styling, so prevent bleed */
 .input-wrap input {
   -webkit-appearance: none;
   appearance: none;
 }
 
-/* Bootstrap's .btn resets can override our custom button classes */
 .btn-teal, .btn-ghost, .btn-yellow, .btn-outline-white,
 .btn-map, .btn-sm, .btn-fav, .btn-share, .btn-contact,
 .nav-link, .logo, .back-home, .cat-card, .bcard-btn,
 .hero-search-btn, .filter-chip, .section-link, .view-btn,
 .toggle-pass {
-  box-shadow: none; /* Bootstrap adds shadow; let our rules handle it */
+  box-shadow: none;
 }
 
-/* Bootstrap's reboot sets margins on p/h elements; our pages handle spacing */
 #page-login p, #page-register p,
 #page-login h1, #page-register h1 {
   margin-bottom: 0;
 }
 
-/* fin override bootstrap */
+
 
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; } 
 
