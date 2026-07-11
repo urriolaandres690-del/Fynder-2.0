@@ -14219,9 +14219,7 @@ body:has(#page-fynder.active) #navbar:not(.scrolled) .nav-dots-btn:hover {
 }
 
 
-/* ================================================================
-   MENÚ CONTEXTUAL DE CHAT (⋮)
-   ================================================================ */
+/* MENÚ CONTEXTUAL DE CHAT (⋮) */
 .msg-ctx-overlay {
   display: none;
   position: fixed; inset: 0;
@@ -14278,9 +14276,7 @@ body:has(#page-fynder.active) #navbar:not(.scrolled) .nav-dots-btn:hover {
 .msg-ctx-item-danger i { color: #ef4444; }
 .msg-ctx-divider { height: 1px; background: var(--msg-border); margin: 4px 0; }
 
-/* ================================================================
-   EMOJI PICKER
-   ================================================================ */
+/* EMOJI PICKER */
 .emoji-overlay {
   display: none;
   position: fixed; inset: 0;
@@ -14367,9 +14363,7 @@ body:has(#page-fynder.active) #navbar:not(.scrolled) .nav-dots-btn:hover {
 .emoji-btn:hover  { background: var(--msg-surface2); transform: scale(1.15); }
 .emoji-btn:active { transform: scale(.95); }
 
-/* ================================================================
-   PANEL DE AJUSTES DE MENSAJES
-   ================================================================ */
+/* PANEL DE AJUSTES DE MENSAJES */
 .msg-settings-overlay {
   display: none;
   position: fixed; inset: 0;
