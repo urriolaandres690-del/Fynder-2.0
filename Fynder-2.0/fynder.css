@@ -15568,9 +15568,7 @@ body { top: 0 !important; }
   .wa-resize-handle { display: none; }
 }
 
-/* ================================================================
-   CHAT: MENÚ DE ADJUNTAR
-   ================================================================ */
+/* CHAT: MENÚ DE ADJUNTAR */
 .chat-attach-wrap {
   position: relative;
   flex-shrink: 0;
