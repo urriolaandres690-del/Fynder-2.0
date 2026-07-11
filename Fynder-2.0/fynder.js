@@ -8160,9 +8160,7 @@ document.addEventListener('DOMContentLoaded', () => {
   _syncMsgSettingsTheme();
 });
 
-// ============================================================
-//  HEADER CHATS — Menú de tres puntitos (dropdown)
-// ============================================================
+// HEADER CHATS — Menú de tres puntitos (dropdown)
 
 let _msgHeaderMenuOpen = false;
 
@@ -8231,9 +8229,7 @@ function msgClearAllChats() {
   showToast('🗑️ Historial eliminado');
 }
 
-// ============================================================
-//  BOTÓN LÁPIZ — Modal "Nuevo chat"
-// ============================================================
+// BOTÓN LÁPIZ — Modal "Nuevo chat"
 
 function openNewChatModal() {
   const overlay = document.getElementById('newChatOverlay');
