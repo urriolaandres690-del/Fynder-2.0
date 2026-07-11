@@ -7635,13 +7635,7 @@ function _onRecordStop() {
   _audioChunks = [];
 }
 
-/* ================================================================
-   CHAT: ESTADO DE MENSAJES — TICKS ESTILO WHATSAPP
-   pending   → reloj        (esperando envío / sin conexión)
-   sent      → ✓ gris       (llegó al servidor)
-   delivered → ✓✓ gris      (entregado al destinatario)
-   read      → ✓✓ azul      (leído)
-   ================================================================ */
+/* CHAT: ESTADO DE MENSAJES — TICKS ESTILO WHATSAPP — pending → reloj, sent → ✓ gris, delivered → ✓✓ gris, read → ✓✓ azul */
 function _buildTickHtml(msg) {
   // Compatibilidad con mensajes anteriores que usan msg.read
   const status = msg.status || (msg.read ? 'read' : 'delivered');
@@ -7667,10 +7661,7 @@ function _buildTickHtml(msg) {
   </span>`;
 }
 
-/* ================================================================
-   CHAT: DIVISOR REDIMENSIONABLE — RANGO AMPLIADO
-   Min: 200px  |  Max: 65% del viewport
-   ================================================================ */
+/* CHAT: DIVISOR REDIMENSIONABLE — RANGO AMPLIADO — Min: 200px | Max: 65% del viewport */
 // Parchar el resizer existente para ampliar los límites
 (function patchWaResizer() {
   document.addEventListener('DOMContentLoaded', () => {
