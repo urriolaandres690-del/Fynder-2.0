@@ -2696,8 +2696,8 @@ body{
   width: 26px;
   height: 26px;
   border-radius: 8px;
-  background: linear-gradient(135deg, var(--primary), #2F5BB7);
-  color: #fff;
+  background: #ffffff;
+  color: #1F2937;
   font-size: .75rem;
   font-weight: 800;
   display: flex;
