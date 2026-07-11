@@ -3147,9 +3147,7 @@ function animateCount(id, from, to, duration, prefix, suffix, decimals = 0) {
 }
 
 
-/* ================================================================
-   MAPA DE NEGOCIOS — Motor completo
-   ================================================================ */
+/* MAPA DE NEGOCIOS — Motor completo */
 
 // Coordenadas de los negocios (Panama City y alrededores)
 const BIZ_COORDS = {
@@ -3546,12 +3544,7 @@ if (_origToggleDark) {
 }
 
 
-/* ================================================================
-   GLOBO TERRÁQUEO FYNDER — versión completa con texturas reales,
-   shader día/noche, nubes, arcos tipo tubo, labels flotantes,
-   tarjetas orbitantes, ticker y controles de zoom.
-   Panamá 🇵🇦 destacado como hub principal.
-   ================================================================ */
+/* GLOBO TERRÁQUEO FYNDER — versión completa con texturas reales, shader día/noche, nubes, arcos tipo tubo, labels flotantes, tarjetas orbitantes, ticker y controles de zoom. Panamá 🇵🇦 destacado como hub principal. */
 (function () {
   'use strict';
 
