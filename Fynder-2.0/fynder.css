@@ -8274,7 +8274,9 @@ section.fyl-section-alt > *:last-child { padding-bottom: 72px; }
 .plans-table td:first-child { width: 36%; }
 
 
-/* DASHBOARD – Panel de administración de plan y analíticas */
+/* ============================================================
+   DASHBOARD – Panel de administración de plan y analíticas
+   ============================================================ */
 
 .dashboard-inner {
   max-width: 1100px;
@@ -8841,7 +8843,9 @@ section.fyl-section-alt > *:last-child { padding-bottom: 72px; }
 }
 
 
-/* SABER MÁS – Animaciones, efectos y mejoras de botones */
+/* ============================================================
+   SABER MÁS – Animaciones, efectos y mejoras de botones
+   ============================================================ */
 
 /* ---- Keyframes ---- */
 @keyframes fyl-fade-up {
@@ -9191,7 +9195,9 @@ section.fyl-section-alt > *:last-child { padding-bottom: 72px; }
 .filter-chip-deals i { font-size: .75rem; }
 
 
-/* RESPONSIVE GLOBAL – Correcciones para móvil, tablet, desktop */
+/* ============================================================
+   RESPONSIVE GLOBAL – Correcciones para móvil, tablet, desktop
+   ============================================================ */
 
 /* ---- Hamburger button ---- */
 .nav-hamburger {
@@ -9481,7 +9487,9 @@ section.fyl-section-alt > *:last-child { padding-bottom: 72px; }
   color: #EF4444;
 }
 
-/* BREAKPOINT: tablet ancho (769px – 1024px) */
+/* ============================================================
+   BREAKPOINT: tablet ancho (769px – 1024px)
+   ============================================================ */
 @media (max-width: 1024px) {
   /* How-grid: paso intermedio 5 cols → 3 pasos verticales */
   .how-grid {
@@ -9514,7 +9522,9 @@ section.fyl-section-alt > *:last-child { padding-bottom: 72px; }
   .plan-card-pro:hover { transform: translateY(-3px); }
 }
 
-/* BREAKPOINT: tablet (601px – 768px) */
+/* ============================================================
+   BREAKPOINT: tablet (601px – 768px)
+   ============================================================ */
 @media (max-width: 768px) {
   /* How-grid: apilado */
   .how-grid { grid-template-columns: 1fr; }
@@ -9552,7 +9562,9 @@ section.fyl-section-alt > *:last-child { padding-bottom: 72px; }
   .dir-toolbar { top: 56px; }
 }
 
-/* BREAKPOINT: móvil grande (481px – 600px) */
+/* ============================================================
+   BREAKPOINT: móvil grande (481px – 600px)
+   ============================================================ */
 @media (max-width: 600px) {
   /* Navbar: mostrar hamburger, ocultar nav-links y acciones grandes */
   .nav-links         { display: none !important; }
@@ -9616,7 +9628,9 @@ section.fyl-section-alt > *:last-child { padding-bottom: 72px; }
   .fynder-modal { border-radius: 16px 16px 0 0; }
 }
 
-/* BREAKPOINT: móvil pequeño (≤ 480px) */
+/* ============================================================
+   BREAKPOINT: móvil pequeño (≤ 480px)
+   ============================================================ */
 @media (max-width: 480px) {
   /* Tipografía base */
   html { font-size: 15px; }
@@ -9691,7 +9705,9 @@ section.fyl-section-alt > *:last-child { padding-bottom: 72px; }
   .profile-header-actions { width: 100%; }
 }
 
-/* BREAKPOINT: móvil muy pequeño (≤ 360px) */
+/* ============================================================
+   BREAKPOINT: móvil muy pequeño (≤ 360px)
+   ============================================================ */
 @media (max-width: 360px) {
   html { font-size: 14px; }
   .hero h1 { font-size: 1.45rem; }
@@ -9701,7 +9717,9 @@ section.fyl-section-alt > *:last-child { padding-bottom: 72px; }
   .plan-price-amount { font-size: 1.75rem; }
 }
 
-/* DARK MODE – correcciones drawer móvil */
+/* ============================================================
+   DARK MODE – correcciones drawer móvil
+   ============================================================ */
 [data-theme="dark"] .mobile-menu-drawer {
   background: var(--card);
   box-shadow: -8px 0 32px rgba(0,0,0,.5);
@@ -9721,7 +9739,9 @@ section.fyl-section-alt > *:last-child { padding-bottom: 72px; }
 }
 
 
-/* ESCALA MÓVIL – Reducción de tamaños en pantallas pequeñas */
+/* ============================================================
+   ESCALA MÓVIL – Reducción de tamaños en pantallas pequeñas
+   ============================================================ */
 
 @media (max-width: 600px) {
 
@@ -10142,7 +10162,9 @@ section.fyl-section-alt > *:last-child { padding-bottom: 72px; }
 .nav-hamburger { display: none !important; }
 
 
-/* ABOUT PAGE V2 – Rediseño visual completo */
+/* ============================================================
+   ABOUT PAGE V2 – Rediseño visual completo
+   ============================================================ */
 
 /* Keyframes */
 @keyframes about-float   { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-10px)} }
@@ -11004,7 +11026,10 @@ section.fyl-section-alt > *:last-child { padding-bottom: 72px; }
 }
 
 
-/* TEMA CLARO/OSCURO — Páginas "Saber más" y "Sobre Fynder" Fix: fondos, bordes, textos y cards adaptables al tema */
+/* ============================================================
+   TEMA CLARO/OSCURO — Páginas "Saber más" y "Sobre Fynder"
+   Fix: fondos, bordes, textos y cards adaptables al tema
+   ============================================================ */
 
 /* ── Fondos de sección principal ── */
 .fyl-body { background: var(--bg); }
@@ -11119,7 +11144,9 @@ section.fyl-section-alt { background: #EBF6F5 !important; }
 /* ── About team card: override en bloque de fixes ── */
 
 
-/* FIX MODO CLARO — Hero badges/pills, CTAs oscuros, esquinas */
+/* ============================================================
+   FIX MODO CLARO — Hero badges/pills, CTAs oscuros, esquinas
+   ============================================================ */
 
 /* ── 1. HERO BADGE del "Saber más": texto visible sobre turquesa ── */
 .fyl-hero-badge {
@@ -11224,7 +11251,9 @@ section.fyl-section .fyl-cta {
 [data-theme="dark"] .about-badge-dot { background: #67B8B4; }
 
 
-/* FIX VISUAL — Texto FYNDER visible, Origin card, Team card */
+/* ============================================================
+   FIX VISUAL — Texto FYNDER visible, Origin card, Team card
+   ============================================================ */
 
 /* ── 1. FYNDER en el título del hero: amarillo brillante, nunca invisible ── */
 .fyl-hero-title span {
@@ -11334,7 +11363,10 @@ section.fyl-section .fyl-cta {
 }
 
 
-/* REDONDEO GLOBAL + FIX TESTIMONIO FEATURED Saber más y Sobre Fynder — menos cuadrados, más fluidos */
+/* ============================================================
+   REDONDEO GLOBAL + FIX TESTIMONIO FEATURED
+   Saber más y Sobre Fynder — menos cuadrados, más fluidos
+   ============================================================ */
 
 /* ── FIX CRÍTICO: testimonio del medio (featured) siempre texto blanco ── */
 .fyl-testi-featured .fyl-testi-text   { color: rgba(255,255,255,.88) !important; }
@@ -11397,7 +11429,9 @@ section.fyl-section-alt {
 }
 
 
-/* FIX FINAL — Team card redondeo + testimonios */
+/* ============================================================
+   FIX FINAL — Team card redondeo + testimonios
+   ============================================================ */
 
 /* ── Team card: esquinas bien redondeadas y aspecto premium ── */
 .about-team-card {
@@ -11433,7 +11467,10 @@ section.fyl-section-alt {
 }
 
 
-/* NAVBAR BLANCO sobre heroes de About y Saber más Fallback CSS para cuando on-hero no se aplica a tiempo */
+/* ============================================================
+   NAVBAR BLANCO sobre heroes de About y Saber más
+   Fallback CSS para cuando on-hero no se aplica a tiempo
+   ============================================================ */
 
 /* Nav links blancos sobre el hero de Home, About y Saber más */
 body:has(#page-home.active) #navbar:not(.scrolled) .nav-link,
@@ -11534,7 +11571,9 @@ body:has(#page-fynder.active) #navbar:not(.scrolled) .nav-dots-btn:hover {
 }
 
 
-/* SECCIÓN GLOBO TERRÁQUEO FYNDER — dentro de #page-map */
+/* ================================================================
+   SECCIÓN GLOBO TERRÁQUEO FYNDER — dentro de #page-map
+   ================================================================ */
 
 :root {
   --gb: #04140f;
@@ -11807,14 +11846,19 @@ body:has(#page-fynder.active) #navbar:not(.scrolled) .nav-dots-btn:hover {
 }
 
 
-/* RESPONSIVE MÓVIL – CORRECCIONES COMPLETAS Aplicadas al final para que tengan máxima prioridad */
+/* ============================================================
+   RESPONSIVE MÓVIL – CORRECCIONES COMPLETAS
+   Aplicadas al final para que tengan máxima prioridad
+   ============================================================ */
 
 /* ---- viewport meta fix: evitar zoom al tocar inputs ---- */
 @media (max-width: 768px) {
   input, select, textarea { font-size: 16px !important; }
 }
 
-/* TABLET (≤ 1024px) – nav + hero + layout */
+/* ============================================================
+   TABLET (≤ 1024px) – nav + hero + layout
+   ============================================================ */
 @media (max-width: 1024px) {
   .nav-inner { padding: 0 16px; }
   .hero-inner {
@@ -11828,7 +11872,9 @@ body:has(#page-fynder.active) #navbar:not(.scrolled) .nav-dots-btn:hover {
   .footer-grid { grid-template-columns: 1fr 1fr; gap: 32px; }
 }
 
-/* TABLET PEQUEÑA / MÓVIL GRANDE (≤ 768px) */
+/* ============================================================
+   TABLET PEQUEÑA / MÓVIL GRANDE (≤ 768px)
+   ============================================================ */
 @media (max-width: 768px) {
   /* ---- Navbar ---- */
   .nav-links      { display: none !important; }
@@ -11999,7 +12045,9 @@ body:has(#page-fynder.active) #navbar:not(.scrolled) .nav-dots-btn:hover {
   .mobile-menu-drawer { width: min(320px, 88vw) !important; }
 }
 
-/* MÓVIL (≤ 600px) – ajustes adicionales */
+/* ============================================================
+   MÓVIL (≤ 600px) – ajustes adicionales
+   ============================================================ */
 @media (max-width: 600px) {
   /* Hero aún más compacto */
   .hero-inner { padding: 72px 14px 40px; }
@@ -12027,7 +12075,9 @@ body:has(#page-fynder.active) #navbar:not(.scrolled) .nav-dots-btn:hover {
   .section-header { flex-direction: column !important; align-items: flex-start !important; }
 }
 
-/* MÓVIL PEQUEÑO (≤ 480px) */
+/* ============================================================
+   MÓVIL PEQUEÑO (≤ 480px)
+   ============================================================ */
 @media (max-width: 480px) {
   html { font-size: 14.5px; }
 
@@ -12059,7 +12109,9 @@ body:has(#page-fynder.active) #navbar:not(.scrolled) .nav-dots-btn:hover {
   .hero-stat-card { padding: 8px 10px; border-radius: 12px; }
 }
 
-/* MÓVIL MUY PEQUEÑO (≤ 360px) */
+/* ============================================================
+   MÓVIL MUY PEQUEÑO (≤ 360px)
+   ============================================================ */
 @media (max-width: 360px) {
   html { font-size: 13.5px; }
   .hero h1 { font-size: 1.4rem !important; }
@@ -12068,7 +12120,9 @@ body:has(#page-fynder.active) #navbar:not(.scrolled) .nav-dots-btn:hover {
   .nav-inner { padding: 0 10px; }
 }
 
-/* DARK MODE – ajustes adicionales en móvil */
+/* ============================================================
+   DARK MODE – ajustes adicionales en móvil
+   ============================================================ */
 @media (max-width: 768px) {
   [data-theme="dark"] .hero-search {
     background: rgba(255,255,255,.12);
@@ -12082,13 +12136,17 @@ body:has(#page-fynder.active) #navbar:not(.scrolled) .nav-dots-btn:hover {
   [data-theme="dark"] .hero-search-btn { background: var(--primary); }
 }
 
-/* DESKTOP – asegurar que el hero-right se muestre correctamente */
+/* ============================================================
+   DESKTOP – asegurar que el hero-right se muestre correctamente
+   ============================================================ */
 @media (min-width: 1025px) {
   .hero-right { display: flex !important; }
   .hero-inner { grid-template-columns: 1fr 1fr; padding: 80px 24px 64px; }
 }
 
-/* TOUCH TARGETS – mínimo 44px en todos los botones táctiles */
+/* ============================================================
+   TOUCH TARGETS – mínimo 44px en todos los botones táctiles
+   ============================================================ */
 @media (max-width: 768px) {
   .hero-tag,
   .filter-chip,
@@ -12107,7 +12165,9 @@ body:has(#page-fynder.active) #navbar:not(.scrolled) .nav-dots-btn:hover {
   .mobile-menu-nav button { min-height: 48px; }
 }
 
-/* SMOOTH SCROLL + OVERSCROLL para móvil */
+/* ============================================================
+   SMOOTH SCROLL + OVERSCROLL para móvil
+   ============================================================ */
 @media (max-width: 768px) {
   .mobile-menu-drawer,
   .fynder-modal,
@@ -12153,7 +12213,10 @@ body:has(#page-fynder.active) #navbar:not(.scrolled) .nav-dots-btn:hover {
 }
 
 
-/* SISTEMA DE MENSAJES – FYNDER Variables adaptables: modo día (claro) y noche (oscuro) */
+/* ================================================================
+   SISTEMA DE MENSAJES – FYNDER
+   Variables adaptables: modo día (claro) y noche (oscuro)
+   ================================================================ */
 
 /* Variables del sistema de mensajes en modo claro */
 :root {
@@ -12229,7 +12292,9 @@ body:has(#page-fynder.active) #navbar:not(.scrolled) .nav-dots-btn:hover {
 }
 
 /* ---- Página raíz ---- */
-/* LAYOUT BASE – página de mensajes */
+/* ================================================================
+   LAYOUT BASE – página de mensajes
+   ================================================================ */
 .msg-page {
   display: none;
   height: 100dvh;
@@ -12258,7 +12323,9 @@ body:has(#page-fynder.active) #navbar:not(.scrolled) .nav-dots-btn:hover {
 }
 .chat-page.active { display: flex; }
 
-/* LAYOUT WHATSAPP WEB – DESKTOP (≥769px) */
+/* ================================================================
+   LAYOUT WHATSAPP WEB – DESKTOP (≥769px)
+   ================================================================ */
 @media (min-width: 769px) {
   /* La página ocupa TODO — el navbar está oculto en mensajes */
   .msg-page.active {
@@ -12483,7 +12550,9 @@ body:has(#page-fynder.active) #navbar:not(.scrolled) .nav-dots-btn:hover {
   .msg-bottom-nav { display: flex; }
 }
 
-/* PÁGINA: MENSAJES */
+/* ================================================================
+   PÁGINA: MENSAJES
+   ================================================================ */
 
 /* ---- Header ---- */
 .msg-header {
@@ -13437,7 +13506,9 @@ body:has(#page-fynder.active) #navbar:not(.scrolled) .nav-dots-btn:hover {
   border: 2px solid var(--msg-bnav-bg);
 }
 
-/* PÁGINA: CHAT INDIVIDUAL */
+/* ================================================================
+   PÁGINA: CHAT INDIVIDUAL
+   ================================================================ */
 
 .chat-page {
   background: var(--msg-bg2);
@@ -13709,9 +13780,14 @@ body:has(#page-fynder.active) #navbar:not(.scrolled) .nav-dots-btn:hover {
 .chat-send-btn:hover  { background: #5aa6a2; }
 .chat-send-btn:active { transform: scale(.92); }
 
-/* DARK MODE – adaptar variables al data-theme="dark" del resto de Fynder (ya que el panel de mensajes siempre es oscuro, las variables ya lo son) */
+/* ================================================================
+   DARK MODE – adaptar variables al data-theme="dark" del resto de Fynder
+   (ya que el panel de mensajes siempre es oscuro, las variables ya lo son)
+   ================================================================ */
 
-/* BOTÓN "Mensajear" en el modal de negocio */
+/* ================================================================
+   BOTÓN "Mensajear" en el modal de negocio
+   ================================================================ */
 .btn-msg-biz {
   display: flex;
   align-items: center;
@@ -13734,7 +13810,9 @@ body:has(#page-fynder.active) #navbar:not(.scrolled) .nav-dots-btn:hover {
 }
 .btn-msg-biz i { color: var(--primary); }
 
-/* ÍCONO de mensajes en el navbar */
+/* ================================================================
+   ÍCONO de mensajes en el navbar
+   ================================================================ */
 .nav-msg-btn {
   position: relative;
   width: 36px; height: 36px;
@@ -13763,7 +13841,9 @@ body:has(#page-fynder.active) #navbar:not(.scrolled) .nav-dots-btn:hover {
   border: 2px solid var(--bg);
 }
 
-/* RESPONSIVE – mensajes (ya manejado en el bloque de layout WA) */
+/* ================================================================
+   RESPONSIVE – mensajes (ya manejado en el bloque de layout WA)
+   ================================================================ */
 @media (max-width: 768px) {
   .msg-page,
   .chat-page {
@@ -13774,7 +13854,9 @@ body:has(#page-fynder.active) #navbar:not(.scrolled) .nav-dots-btn:hover {
 }
 
 
-/* MEJORAS CHAT – burbujas */
+/* ================================================================
+   MEJORAS CHAT – burbujas
+   ================================================================ */
 
 /* Fondo del chat */
 .chat-page { background: var(--msg-bg2); }
@@ -13900,7 +13982,9 @@ body:has(#page-fynder.active) #navbar:not(.scrolled) .nav-dots-btn:hover {
   background: var(--msg-sep-line);
 }
 
-/* PANEL LATERAL DE INFO DEL CHAT (desktop, estilo WA Web) */
+/* ================================================================
+   PANEL LATERAL DE INFO DEL CHAT (desktop, estilo WA Web)
+   ================================================================ */
 
 .wa-info-panel {
   width: 0;
@@ -13961,7 +14045,9 @@ body:has(#page-fynder.active) #navbar:not(.scrolled) .nav-dots-btn:hover {
   overscroll-behavior: contain;
 }
 
-/* PÁGINA: PERFIL DEL NEGOCIO (desde chat) – estilo WhatsApp dark */
+/* ================================================================
+   PÁGINA: PERFIL DEL NEGOCIO (desde chat) – estilo WhatsApp dark
+   ================================================================ */
 
 .chat-profile-page {
   background: var(--msg-bg2);
@@ -14219,7 +14305,9 @@ body:has(#page-fynder.active) #navbar:not(.scrolled) .nav-dots-btn:hover {
 }
 
 
-/* MENÚ CONTEXTUAL DE CHAT (⋮) */
+/* ================================================================
+   MENÚ CONTEXTUAL DE CHAT (⋮)
+   ================================================================ */
 .msg-ctx-overlay {
   display: none;
   position: fixed; inset: 0;
@@ -14276,7 +14364,9 @@ body:has(#page-fynder.active) #navbar:not(.scrolled) .nav-dots-btn:hover {
 .msg-ctx-item-danger i { color: #ef4444; }
 .msg-ctx-divider { height: 1px; background: var(--msg-border); margin: 4px 0; }
 
-/* EMOJI PICKER */
+/* ================================================================
+   EMOJI PICKER
+   ================================================================ */
 .emoji-overlay {
   display: none;
   position: fixed; inset: 0;
@@ -14363,7 +14453,9 @@ body:has(#page-fynder.active) #navbar:not(.scrolled) .nav-dots-btn:hover {
 .emoji-btn:hover  { background: var(--msg-surface2); transform: scale(1.15); }
 .emoji-btn:active { transform: scale(.95); }
 
-/* PANEL DE AJUSTES DE MENSAJES */
+/* ================================================================
+   PANEL DE AJUSTES DE MENSAJES
+   ================================================================ */
 .msg-settings-overlay {
   display: none;
   position: fixed; inset: 0;
@@ -14489,7 +14581,9 @@ body:has(#page-fynder.active) #navbar:not(.scrolled) .nav-dots-btn:hover {
 .chat-messages.font-large  .chat-bubble { font-size: 1rem; }
 
 
-/* NAVBAR REDISEÑADO – limpio y sin saturación */
+/* ================================================================
+   NAVBAR REDISEÑADO – limpio y sin saturación
+   ================================================================ */
 
 /* Botón ícono genérico del navbar (perfil, dashboard) */
 .nav-icon-btn {
@@ -14564,7 +14658,9 @@ body:has(#page-fynder.active) #navbar:not(.scrolled) .nav-dots-btn:hover {
   .btn-login-nav { display: none !important; }
 }
 
-/* HERO IMPROVEMENTS – better spacing and visual hierarchy */
+/* ================================================================
+   HERO IMPROVEMENTS – better spacing and visual hierarchy
+   ================================================================ */
 
 /* More padding top so content doesn't start right at the navbar */
 .hero-inner {
@@ -14649,7 +14745,9 @@ body:has(#page-fynder.active) #navbar:not(.scrolled) .nav-dots-btn:hover {
 }
 .cat-name { font-size: .75rem !important; }
 
-/* BOTÓN AJUSTES EN NAVBAR */
+/* ================================================================
+   BOTÓN AJUSTES EN NAVBAR
+   ================================================================ */
 .nav-settings-btn {
   width: 36px; height: 36px;
   border-radius: 50%;
@@ -14690,7 +14788,9 @@ body:has(#page-fynder.active) #navbar:not(.scrolled) .nav-settings-btn:hover {
   color: #fff;
 }
 
-/* PÁGINA DE AJUSTES */
+/* ================================================================
+   PÁGINA DE AJUSTES
+   ================================================================ */
 #page-settings {
   min-height: 100vh;
   background: var(--bg);
@@ -15280,7 +15380,11 @@ body { top: 0 !important; }
 [data-theme="dark"] .sett-group-label { color: var(--muted); }
 
 
-/* MODO OSCURO — COMPLEMENTO COMPLETO Cubre todos los elementos que usaban colores hardcoded (#fff, #F8FAFC, etc.) y que no estaban cubiertos por las reglas anteriores. */
+/* ================================================================
+   MODO OSCURO — COMPLEMENTO COMPLETO
+   Cubre todos los elementos que usaban colores hardcoded (#fff,
+   #F8FAFC, etc.) y que no estaban cubiertos por las reglas anteriores.
+   ================================================================ */
 
 /* ---- Navbar complementos ---- */
 [data-theme="dark"] .nav-icon-btn { background: rgba(255,255,255,.05); color: var(--muted); border-color: rgba(255,255,255,.08); }
@@ -15538,7 +15642,9 @@ body { top: 0 !important; }
   border-color: rgba(255,255,255,.12);
 }
 
-/* CHAT: DIVISOR REDIMENSIONABLE (sidebar ↔ área principal) */
+/* ================================================================
+   CHAT: DIVISOR REDIMENSIONABLE (sidebar ↔ área principal)
+   ================================================================ */
 .wa-resize-handle {
   width: 5px;
   cursor: col-resize;
@@ -15568,7 +15674,9 @@ body { top: 0 !important; }
   .wa-resize-handle { display: none; }
 }
 
-/* CHAT: MENÚ DE ADJUNTAR */
+/* ================================================================
+   CHAT: MENÚ DE ADJUNTAR
+   ================================================================ */
 .chat-attach-wrap {
   position: relative;
   flex-shrink: 0;
@@ -15666,7 +15774,9 @@ body { top: 0 !important; }
 .chat-bubble-contact-name  { font-weight: 600; font-size: .875rem; }
 .chat-bubble-contact-sub   { font-size: .75rem; opacity: .65; }
 
-/* CHAT: INPUT BAR estilo WhatsApp — micrófono */
+/* ================================================================
+   CHAT: INPUT BAR estilo WhatsApp — micrófono
+   ================================================================ */
 .chat-mic-btn {
   transition: background .2s, transform .15s, box-shadow .2s;
 }
@@ -15689,7 +15799,9 @@ body { top: 0 !important; }
   animation: recordPulse 1.2s ease-out infinite;
 }
 
-/* CHAT: BARRA DE GRABACIÓN DE AUDIO */
+/* ================================================================
+   CHAT: BARRA DE GRABACIÓN DE AUDIO
+   ================================================================ */
 .chat-record-bar {
   background: var(--msg-bg);
   border-top: 1px solid var(--msg-border);
@@ -15748,7 +15860,9 @@ body { top: 0 !important; }
 }
 .chat-record-send:hover { background: #5aa6a2; transform: scale(1.08); }
 
-/* CHAT: BURBUJAS DE ARCHIVOS / MEDIA / AUDIO */
+/* ================================================================
+   CHAT: BURBUJAS DE ARCHIVOS / MEDIA / AUDIO
+   ================================================================ */
 .chat-bubble-file {
   display: flex;
   align-items: center;
@@ -15848,7 +15962,7 @@ body { top: 0 !important; }
   white-space: nowrap;
 }
 
-/* CHAT HEADER: menú contextual de los tres puntos */
+/* CHAT HEADER menú contextual de los tres puntos */
 .wa-chat-area {
   position: relative; /* necesario para el menú absoluto */
 }
@@ -15898,7 +16012,9 @@ body { top: 0 !important; }
   margin: 4px 8px;
 }
 
-/* CHAT PROFILE: menú contextual del ⋮ y ajustes varios */
+/* ================================================================
+   CHAT PROFILE: menú contextual del ⋮ y ajustes varios
+   ================================================================ */
 .chat-profile-page {
   position: relative; /* para el menú absoluto */
 }
@@ -15913,7 +16029,9 @@ body { top: 0 !important; }
   flex-shrink: 0;
 }
 
-/* RAIL DE ÍCONOS IZQUIERDO — estilo WhatsApp Web */
+/* ================================================================
+   RAIL DE ÍCONOS IZQUIERDO — estilo WhatsApp Web
+   ================================================================ */
 .wa-icon-rail {
   width: 68px;
   flex-shrink: 0;
@@ -16126,7 +16244,9 @@ mark.msg-search-mark {
   padding: 0 1px;
 }
 
-/* SECCIÓN PATROCINADORES — página About */
+/* ================================================================
+   SECCIÓN PATROCINADORES — página About
+   ================================================================ */
 
 .about-sponsors-section {
   position: relative;
