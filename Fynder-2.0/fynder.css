@@ -17311,23 +17311,4 @@ body.select-mode .chat-msg-row .msg-checkbox { display: flex; align-items: cente
 @media (max-width: 480px) {
   .welcome-modal { padding: 28px 18px 20px; }
   .welcome-modal-perks { grid-template-columns: 1fr; }
-  .welcome-social-row { grid-template-columns: 1fr; }
-}
-
-/* ── Separador visual en login/register ── */
-.auth-social-btn {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 8px;
-  padding: 11px 14px;
-  border: 1.5px solid #E5E7EB;
-  border-radius: 12px;
-  background: #fff;
-  font-size: .875rem;
-  font-weight: 600;
-  color: #374151;
-  cursor: pointer;
-  transition: border-color .2s, box-shadow .2s, background .2s;
-  font-family: 'Inter', sans-serif;
 }
