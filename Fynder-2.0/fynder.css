@@ -14489,9 +14489,7 @@ body:has(#page-fynder.active) #navbar:not(.scrolled) .nav-dots-btn:hover {
 .chat-messages.font-large  .chat-bubble { font-size: 1rem; }
 
 
-/* ================================================================
-   NAVBAR REDISEÑADO – limpio y sin saturación
-   ================================================================ */
+/* NAVBAR REDISEÑADO – limpio y sin saturación */
 
 /* Botón ícono genérico del navbar (perfil, dashboard) */
 .nav-icon-btn {
