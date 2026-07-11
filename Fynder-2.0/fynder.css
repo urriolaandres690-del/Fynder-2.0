@@ -11534,9 +11534,7 @@ body:has(#page-fynder.active) #navbar:not(.scrolled) .nav-dots-btn:hover {
 }
 
 
-/* ================================================================
-   SECCIÓN GLOBO TERRÁQUEO FYNDER — dentro de #page-map
-   ================================================================ */
+/* SECCIÓN GLOBO TERRÁQUEO FYNDER — dentro de #page-map */
 
 :root {
   --gb: #04140f;
@@ -11809,10 +11807,7 @@ body:has(#page-fynder.active) #navbar:not(.scrolled) .nav-dots-btn:hover {
 }
 
 
-/* ============================================================
-   RESPONSIVE MÓVIL – CORRECCIONES COMPLETAS
-   Aplicadas al final para que tengan máxima prioridad
-   ============================================================ */
+/* RESPONSIVE MÓVIL – CORRECCIONES COMPLETAS — Aplicadas al final para que tengan máxima prioridad */
 
 /* ---- viewport meta fix: evitar zoom al tocar inputs ---- */
 @media (max-width: 768px) {
