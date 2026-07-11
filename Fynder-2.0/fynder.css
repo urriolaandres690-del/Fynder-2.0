@@ -12068,9 +12068,7 @@ body:has(#page-fynder.active) #navbar:not(.scrolled) .nav-dots-btn:hover {
   .nav-inner { padding: 0 10px; }
 }
 
-/* ============================================================
-   DARK MODE – ajustes adicionales en móvil
-   ============================================================ */
+/* DARK MODE – ajustes adicionales en móvil */
 @media (max-width: 768px) {
   [data-theme="dark"] .hero-search {
     background: rgba(255,255,255,.12);
@@ -12084,9 +12082,7 @@ body:has(#page-fynder.active) #navbar:not(.scrolled) .nav-dots-btn:hover {
   [data-theme="dark"] .hero-search-btn { background: var(--primary); }
 }
 
-/* ============================================================
-   DESKTOP – asegurar que el hero-right se muestre correctamente
-   ============================================================ */
+/* DESKTOP – asegurar que el hero-right se muestre correctamente */
 @media (min-width: 1025px) {
   .hero-right { display: flex !important; }
   .hero-inner { grid-template-columns: 1fr 1fr; padding: 80px 24px 64px; }
