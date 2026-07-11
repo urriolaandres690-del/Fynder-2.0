@@ -13437,9 +13437,7 @@ body:has(#page-fynder.active) #navbar:not(.scrolled) .nav-dots-btn:hover {
   border: 2px solid var(--msg-bnav-bg);
 }
 
-/* ================================================================
-   PÁGINA: CHAT INDIVIDUAL
-   ================================================================ */
+/* PÁGINA: CHAT INDIVIDUAL */
 
 .chat-page {
   background: var(--msg-bg2);
@@ -13711,10 +13709,7 @@ body:has(#page-fynder.active) #navbar:not(.scrolled) .nav-dots-btn:hover {
 .chat-send-btn:hover  { background: #5aa6a2; }
 .chat-send-btn:active { transform: scale(.92); }
 
-/* ================================================================
-   DARK MODE – adaptar variables al data-theme="dark" del resto de Fynder
-   (ya que el panel de mensajes siempre es oscuro, las variables ya lo son)
-   ================================================================ */
+/* DARK MODE – adaptar variables al data-theme="dark" del resto de Fynder */
 
 /* ================================================================
    BOTÓN "Mensajear" en el modal de negocio
