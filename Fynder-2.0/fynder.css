@@ -9552,9 +9552,7 @@ section.fyl-section-alt > *:last-child { padding-bottom: 72px; }
   .dir-toolbar { top: 56px; }
 }
 
-/* ============================================================
-   BREAKPOINT: móvil grande (481px – 600px)
-   ============================================================ */
+/* BREAKPOINT: móvil grande (481px – 600px) */
 @media (max-width: 600px) {
   /* Navbar: mostrar hamburger, ocultar nav-links y acciones grandes */
   .nav-links         { display: none !important; }
@@ -9618,9 +9616,7 @@ section.fyl-section-alt > *:last-child { padding-bottom: 72px; }
   .fynder-modal { border-radius: 16px 16px 0 0; }
 }
 
-/* ============================================================
-   BREAKPOINT: móvil pequeño (≤ 480px)
-   ============================================================ */
+/* BREAKPOINT: móvil pequeño (≤ 480px) */
 @media (max-width: 480px) {
   /* Tipografía base */
   html { font-size: 15px; }
