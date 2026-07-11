@@ -2693,20 +2693,17 @@ body{
 }
 
 .biz-reg-step {
-  width: 28px;
-  height: 28px;
-  border-radius: 50%;
+  width: 26px;
+  height: 26px;
+  border-radius: 8px;
   background: linear-gradient(135deg, var(--primary), #2F5BB7);
   color: #fff;
-  font-size: .8rem;
+  font-size: .75rem;
   font-weight: 800;
-  font-family: 'Poppins', sans-serif;
-  letter-spacing: 0;
   display: flex;
   align-items: center;
   justify-content: center;
   flex-shrink: 0;
-  box-shadow: 0 2px 8px rgba(47,91,183,.35);
 }
 
 /* Grid 2 columnas */
