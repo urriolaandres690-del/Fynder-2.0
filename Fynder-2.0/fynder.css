@@ -12153,10 +12153,7 @@ body:has(#page-fynder.active) #navbar:not(.scrolled) .nav-dots-btn:hover {
 }
 
 
-/* ================================================================
-   SISTEMA DE MENSAJES – FYNDER
-   Variables adaptables: modo día (claro) y noche (oscuro)
-   ================================================================ */
+/* SISTEMA DE MENSAJES – FYNDER — Variables adaptables: modo día (claro) y noche (oscuro) */
 
 /* Variables del sistema de mensajes en modo claro */
 :root {
@@ -12232,9 +12229,7 @@ body:has(#page-fynder.active) #navbar:not(.scrolled) .nav-dots-btn:hover {
 }
 
 /* ---- Página raíz ---- */
-/* ================================================================
-   LAYOUT BASE – página de mensajes
-   ================================================================ */
+/* LAYOUT BASE – página de mensajes */
 .msg-page {
   display: none;
   height: 100dvh;
