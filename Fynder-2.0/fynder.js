@@ -8296,9 +8296,7 @@ function _renderNewChatList(q) {
   }).join('');
 }
 
-// ============================================================
-//  RESPUESTAS INTELIGENTES DEL NEGOCIO
-// ============================================================
+// RESPUESTAS INTELIGENTES DEL NEGOCIO
 
 function _pick(arr) {
   return arr[Math.floor(Math.random() * arr.length)];
@@ -9296,9 +9294,7 @@ function _getSmartReply(userText, cat, bizName, biz, lastBizText = '') {
 }
 
 
-/* ================================================================
-   CHAT: REACCIONES Y MENÚ CONTEXTUAL DE MENSAJES
-   ================================================================ */
+/* CHAT: REACCIONES Y MENÚ CONTEXTUAL DE MENSAJES */
 
 // Emojis de reacción rápida (mismos que WhatsApp)
 const QUICK_REACTIONS = ['👍','❤️','😂','😮','😢','🙏'];
