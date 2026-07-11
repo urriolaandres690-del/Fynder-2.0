@@ -14564,9 +14564,7 @@ body:has(#page-fynder.active) #navbar:not(.scrolled) .nav-dots-btn:hover {
   .btn-login-nav { display: none !important; }
 }
 
-/* ================================================================
-   HERO IMPROVEMENTS – better spacing and visual hierarchy
-   ================================================================ */
+/* HERO IMPROVEMENTS – better spacing and visual hierarchy */
 
 /* More padding top so content doesn't start right at the navbar */
 .hero-inner {
@@ -14651,9 +14649,7 @@ body:has(#page-fynder.active) #navbar:not(.scrolled) .nav-dots-btn:hover {
 }
 .cat-name { font-size: .75rem !important; }
 
-/* ================================================================
-   BOTÓN AJUSTES EN NAVBAR
-   ================================================================ */
+/* BOTÓN AJUSTES EN NAVBAR */
 .nav-settings-btn {
   width: 36px; height: 36px;
   border-radius: 50%;
@@ -14694,9 +14690,7 @@ body:has(#page-fynder.active) #navbar:not(.scrolled) .nav-settings-btn:hover {
   color: #fff;
 }
 
-/* ================================================================
-   PÁGINA DE AJUSTES
-   ================================================================ */
+/* PÁGINA DE AJUSTES */
 #page-settings {
   min-height: 100vh;
   background: var(--bg);
