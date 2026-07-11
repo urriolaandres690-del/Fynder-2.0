@@ -10142,9 +10142,7 @@ section.fyl-section-alt > *:last-child { padding-bottom: 72px; }
 .nav-hamburger { display: none !important; }
 
 
-/* ============================================================
-   ABOUT PAGE V2 – Rediseño visual completo
-   ============================================================ */
+/* ABOUT PAGE V2 – Rediseño visual completo */
 
 /* Keyframes */
 @keyframes about-float   { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-10px)} }
@@ -11006,10 +11004,7 @@ section.fyl-section-alt > *:last-child { padding-bottom: 72px; }
 }
 
 
-/* ============================================================
-   TEMA CLARO/OSCURO — Páginas "Saber más" y "Sobre Fynder"
-   Fix: fondos, bordes, textos y cards adaptables al tema
-   ============================================================ */
+/* TEMA CLARO/OSCURO — Páginas "Saber más" y "Sobre Fynder" — Fix: fondos, bordes, textos y cards adaptables al tema */
 
 /* ── Fondos de sección principal ── */
 .fyl-body { background: var(--bg); }
