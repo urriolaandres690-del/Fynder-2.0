@@ -468,7 +468,22 @@ function openModal(id){
 
   document.getElementById('modalImg').src=b.image;
   document.getElementById('modalImg').alt=b.name;
-  document.getElementById('modalLogo').src=b.logo;
+  const logoEl = document.getElementById('modalLogo');
+  logoEl.src = b.logo || '';
+  logoEl.alt = b.name;
+  logoEl.onerror = function() {
+    // Si el logo falla, mostrar iniciales sobre fondo de color
+    this.style.display = 'none';
+    const wrap = this.parentElement;
+    if (!wrap.querySelector('.modal-logo-fallback')) {
+      const cat = CATEGORIES.find(c => c.id === b.categoryId);
+      const fb = document.createElement('div');
+      fb.className = 'modal-logo-fallback';
+      fb.textContent = b.name.charAt(0).toUpperCase();
+      fb.style.cssText = `width:100%;height:100%;border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:'Poppins',sans-serif;font-weight:800;font-size:1.25rem;color:#fff;background:${cat?.color||'#67B8B4'}`;
+      wrap.appendChild(fb);
+    }
+  };
   document.getElementById('modalName').textContent=b.name;
   document.getElementById('modalCat').textContent=b.category;
   document.getElementById('modalStars').innerHTML=starsHTML(b.rating);
