@@ -6266,6 +6266,9 @@ label.avatar-option-btn:hover { background: var(--teal-light); border-color: rgb
 
 /* modal modo oscuro */
 [data-theme="dark"] #modalOverlay { background: rgba(0,0,0,.7); }
+[data-theme="dark"] .modal-close  { background: rgba(15,23,42,.75); }
+[data-theme="dark"] .modal-close:hover { background: rgba(15,23,42,.95); }
+[data-theme="dark"] .modal-close svg { color: #F1F5F9; }
 [data-theme="dark"] .modal-box    { background: var(--card); border-color: rgba(255,255,255,.07); }
 [data-theme="dark"] .modal-img    { background: #1E293B; }
 [data-theme="dark"] .modal-name   { color: var(--fg); }
