@@ -3350,66 +3350,6 @@ function msgToggleSetting(key, btnId) {
   showToast(newVal ? 'Activado' : 'Desactivado');
 }
 
-/** Cambiar fondo del chat */
-function setChatWallpaper(wp, btn) {
-  // Quitar clases anteriores del área de mensajes
-  const msgs1 = document.getElementById('chatMessages');
-  const msgs2 = document.getElementById('chatMessagesMobile');
-  [msgs1, msgs2].forEach(el => {
-    if (!el) return;
-    el.classList.remove('wp-dots', 'wp-gradient', 'wp-dark', 'wp-nature');
-    if (wp !== 'default') el.classList.add('wp-' + wp);
-  });
-
-  // Guardar preferencia
-  localStorage.setItem('fynderChatWallpaper', wp);
-
-  // Actualizar dots activos
-  document.querySelectorAll('.msg-wallpaper-dot').forEach(d => d.classList.remove('active'));
-  if (btn) btn.classList.add('active');
-
-  // Actualizar sub-label
-  const wpLabels = { default:'Patrón por defecto', dots:'Puntos', gradient:'Gradiente', dark:'Oscuro total', nature:'Verde' };
-  const sub = document.getElementById('settingWallpaperSub');
-  if (sub) sub.textContent = wpLabels[wp] || wp;
-
-  showToast('Fondo actualizado');
-}
-
-/** Restaurar fondo del chat al cargar */
-function _restoreChatWallpaper() {
-  const wp = localStorage.getItem('fynderChatWallpaper') || 'default';
-  const msgs1 = document.getElementById('chatMessages');
-  const msgs2 = document.getElementById('chatMessagesMobile');
-  [msgs1, msgs2].forEach(el => {
-    if (!el) return;
-    el.classList.remove('wp-dots', 'wp-gradient', 'wp-dark', 'wp-nature');
-    if (wp !== 'default') el.classList.add('wp-' + wp);
-  });
-
-  // Sync dots en el panel
-  document.querySelectorAll('.msg-wallpaper-dot').forEach(d => {
-    d.classList.toggle('active', d.dataset.wp === wp);
-  });
-  const wpLabels = { default:'Patrón por defecto', dots:'Puntos', gradient:'Gradiente', dark:'Oscuro total', nature:'Verde' };
-  const sub = document.getElementById('settingWallpaperSub');
-  if (sub) sub.textContent = wpLabels[wp] || wp;
-}
-
-// Parchear openMsgSettings para sincronizar el tema y wallpaper al abrir
-const _origOpenMsgSettings = window.openMsgSettings;
-window.openMsgSettings = function() {
-  if (_origOpenMsgSettings) _origOpenMsgSettings();
-  _syncMsgSettingsTheme();
-  _restoreChatWallpaper();
-};
-
-// Restaurar wallpaper al cargar la página
-document.addEventListener('DOMContentLoaded', () => {
-  _restoreChatWallpaper();
-  _syncMsgSettingsTheme();
-});
-
 // HEADER CHATS — Menú de tres puntitos (dropdown)
 
 let _msgHeaderMenuOpen = false;
