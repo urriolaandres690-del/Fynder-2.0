@@ -40,3 +40,40 @@ function _initCarouselDrag(id){
   });
   el.addEventListener('click', e => { if(moved){ e.stopPropagation(); moved=false; } }, true);
 }
+
+const USERS_EST = Math.max(1200, BUSINESSES.length * 14);
+
+function buildHome(){
+  const featGrid = document.getElementById('featuredGrid');
+  if(featGrid) featGrid.innerHTML = BUSINESSES.filter(b=>b.isFeatured).map(gridCardHTML).join('');
+  const popList = document.getElementById('popularList');
+  if(popList) popList.innerHTML = BUSINESSES.filter(b=>b.isPopular).map(listCardHTML).join('');
+  _initCarouselDrag('featuredGrid');
+
+  const popWrap = document.querySelector('.popular-scroll-wrap');
+  if(popWrap){
+    const updateFade = () => {
+      const atEnd = popWrap.scrollTop + popWrap.clientHeight >= popWrap.scrollHeight - 8;
+      popWrap.classList.toggle('scrolled-end', atEnd);
+    };
+    popWrap.addEventListener('scroll', updateFade, {passive:true});
+    updateFade();
+  }
+
+  const total = BUSINESSES.length;
+  const allRatings = BUSINESSES.map(b=>b.rating).filter(Boolean);
+  const avgRating = allRatings.length ? (allRatings.reduce((a,b)=>a+b,0)/allRatings.length).toFixed(1) : '4.8';
+  const highSat = BUSINESSES.filter(b=>b.rating>=4.0).length;
+  const satPct  = Math.round((highSat/total)*100);
+
+  const setEl = (id, val) => { const el=document.getElementById(id); if(el) el.textContent=val; };
+  setEl('heroStatNegocios',      total);
+  setEl('heroStatUsuarios',      USERS_EST.toLocaleString('es')+'+');
+  setEl('heroStatRating',        avgRating);
+  setEl('heroStatSatisfaccion',  satPct+'%');
+  setEl('heroStatNegociosMobile',    total);
+  setEl('heroStatUsuariosMobile',    USERS_EST.toLocaleString('es')+'+');
+  setEl('heroStatRatingMobile',      avgRating);
+  setEl('heroStatSatisfaccionMobile',satPct+'%');
+  setEl('loginNegociosCount',    `+${total} negocios registrados`);
+}
