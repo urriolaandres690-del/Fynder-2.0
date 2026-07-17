@@ -3453,14 +3453,17 @@ body.select-mode .chat-msg-row .msg-checkbox { display: flex; align-items: cente
   width: 36px; height: 36px;
   border-radius: 50%;
   border: none;
+  outline: none;
   background: none;
   color: var(--msg-muted);
   font-size: 1.1rem;
   cursor: pointer;
   flex-shrink: 0;
-  transition: color .2s;
+  transition: color .2s, background .2s;
+  -webkit-tap-highlight-color: transparent;
 }
-.chat-emoji-btn:hover { color: #fff; }
+.chat-emoji-btn:focus { outline: none; }
+.chat-emoji-btn:hover { color: var(--msg-text); background: var(--msg-surface); }
 
 .chat-input {
   flex: 1;
@@ -6775,4 +6778,4 @@ body.select-mode .chat-msg-row .msg-checkbox { display: flex; align-items: cente
 .chat-msg-row.out .chat-bubble.deleted-for-all {
   border-color: rgba(255,255,255,.15) !important;
 }
-
+
