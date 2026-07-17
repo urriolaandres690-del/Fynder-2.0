@@ -1345,7 +1345,7 @@ function _clearAuthForms() {
   if (loginPass)  loginPass.value  = '';
 
   // Checkbox "Recordarme" del login
-  const rememberMe = document.querySelector('#page-login input[type="checkbox"]');
+  const rememberMe = document.getElementById('rememberMe');
   if (rememberMe) rememberMe.checked = false;
 
   // Formulario de registro (crear cuenta)
