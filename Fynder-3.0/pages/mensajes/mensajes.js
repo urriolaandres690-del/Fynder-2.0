@@ -1616,35 +1616,16 @@ function _applyChatWallpaper(wp) {
 }
 
 function clearAllChats() {
-  if (!confirm('¿Borrar TODOS los chats y conversaciones? Esta acción no se puede deshacer.')) return;
-  
-  // Borrar todos los chats del localStorage
-  const keys = Object.keys(localStorage);
-  keys.forEach(key => {
-    if (key.startsWith('fynderChat_')) {
-      localStorage.removeItem(key);
-    }
-  });
-  
-  // Limpiar conversaciones
+  if (!confirm('¿Borrar TODOS los chats? Esta acción no se puede deshacer.')) return;
+  const convs = _getConversations();
+  convs.forEach(c => localStorage.removeItem('fynderChat_' + c.id));
   _saveConversations([]);
-  
-  showToast('Todos los chats han sido borrados');
-  closeMsgSettings();
-  
-  // Actualizar UI
+  _saveBookmarks([]);
+  updateMsgBadge();
   renderConversations();
-  
-  // Si estaba en un chat, cerrar
-  const isDesktop = window.innerWidth >= 769;
-  if (isDesktop) {
-    waCloseChat();
-  } else {
-    goPage('messages');
-  }
+  closeMsgSettings();
+  showToast('Todos los chats eliminados');
 }
-
-function setChatBubbleColor(color, name, btn) {
   _loadMsgSettings();
   _msgSettings.bubbleColor = color;
   _saveMsgSettings();
