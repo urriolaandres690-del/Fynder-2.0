@@ -3,16 +3,18 @@
  *  Fynder — Registro
  *  Archivo: pages/registro/registro.js
  *
- *  NOTA: Toda la lógica principal está en shared/fynder.js
- *  que se carga globalmente desde index.html.
+ *  NOTA: Toda la lógica está en shared/fynder.js (cargado desde
+ *  index.html). Este archivo existe para overrides, extensiones
+ *  o código exclusivo de esta sección.
  *
- *  Funciones de shared/fynder.js relevantes para esta sección:
+ *  Funciones principales de esta sección (en shared/fynder.js):
  *  registerUser, togglePassVisibility
- *
- *  Agrega aquí cualquier lógica EXCLUSIVA de esta página que
- *  no sea necesaria en otras secciones.
  * ═══════════════════════════════════════════════════════════════
  */
 
-// Este archivo está reservado para lógica exclusiva de la sección "Registro".
-// La lógica actual está en shared/fynder.js — no se necesita duplicar nada aquí.
+/*
+ * Agrega aquí cualquier lógica exclusiva de esta página.
+ * Ejemplo: event listeners específicos, inicialización local, etc.
+ *
+ * IMPORTANTE: No dupliques funciones que ya existen en shared/fynder.js
+ */
