@@ -1701,18 +1701,6 @@ function exportChats() {
   showToast('Conversaciones exportadas');
 }
 
-function clearAllChats() {
-  if (!confirm('¿Borrar TODOS los chats? Esta acción no se puede deshacer.')) return;
-  const convs = _getConversations();
-  convs.forEach(c => localStorage.removeItem('fynderChat_' + c.id));
-  _saveConversations([]);
-  _saveBookmarks([]);
-  updateMsgBadge();
-  renderConversations();
-  closeMsgSettings();
-  showToast('Todos los chats eliminados');
-}
-
 // ---- Aplicar ajustes al iniciar ----
 document.addEventListener('DOMContentLoaded', () => {
   _loadMsgSettings();
