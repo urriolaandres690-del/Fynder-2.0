@@ -1236,6 +1236,11 @@ body:has(#page-fynder.active) #navbar:not(.scrolled) .nav-dots-btn:hover {
     gap: 10px;
   }
   .hero-stats-mobile .hero-stat-card {
+    padding: 14px 12px;
+    border-radius: 14px;
+    gap: 10px;
+  }
+}
 
 /* HERO IMPROVEMENTS – better spacing and visual hierarchy */
 
