@@ -97,4 +97,57 @@ function forgotPassword(){
 
 function loadProfile(){
     const user = JSON.parse(localStorage.getItem("fynderUser"));
+    if(!user){
+        showToast("Debes iniciar sesión para ver tu perfil.", "error");
+        goPage("login");
+        return;
+    }
 
+    // Cabecera: nombre y email
+    const pname  = document.getElementById("profileName");
+    const pemail = document.getElementById("profileEmail");
+    if(pname)  pname.textContent  = user.name;
+    if(pemail) pemail.textContent = user.email;
+
+    // Avatar y portada
+    applyAvatarDisplay();
+    applyProfileCover();
+
+    // Ciudad badge
+    const cityBadge = document.getElementById("profileCityBadge");
+    const cityLabel = document.getElementById("profileCityLabel");
+    if(cityBadge && cityLabel && user.city){
+        cityLabel.textContent = user.city;
+        cityBadge.style.display = 'inline-flex';
+    } else if(cityBadge){
+        cityBadge.style.display = 'none';
+    }
+
+    // Estado
+    const savedStatus = localStorage.getItem("fynderUserStatus") || "active";
+    applyStatusUI(savedStatus);
+
+    // Campos del formulario
+    const eName  = document.getElementById("profileEditName");
+    const eEmail = document.getElementById("profileEditEmail");
+    const ePhone = document.getElementById("profileEditPhone");
+    const eCity  = document.getElementById("profileEditCity");
+    const eBio   = document.getElementById("profileEditBio");
+    if(eName)  eName.value  = user.name  || '';
+    if(eEmail) eEmail.value = user.email || '';
+    if(ePhone) ePhone.value = user.phone || '';
+    if(eCity)  eCity.value  = user.city  || '';
+    if(eBio){
+        eBio.value = user.bio || '';
+        updateBioCount();
+        eBio.oninput = updateBioCount;
+    }
+
+    // Estadísticas
+    const sf = document.getElementById("statFavs");
+    const sb = document.getElementById("statBiz");
+    if(sf) sf.textContent = favorites.size;
+    if(sb) sb.textContent = JSON.parse(localStorage.getItem("fynderBusinesses")||"[]").length;
+
+    hideAvatarOptions();
+}
