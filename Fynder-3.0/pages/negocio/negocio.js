@@ -1,20 +1,39 @@
 ﻿/**
  * ═══════════════════════════════════════════════════════════════
- *  Fynder — Registrar Negocio
- *  Archivo: pages/negocio/negocio.js
+ *  Fynder — JS de: negocio
+ *  Extraído de fynder.js
  *
- *  NOTA: Toda la lógica está en shared/fynder.js (cargado desde
- *  index.html). Este archivo existe para overrides, extensiones
- *  o código exclusivo de esta sección.
- *
- *  Funciones principales de esta sección (en shared/fynder.js):
- *  registerBusiness
+ *  Las funciones GLOBALES (goPage, toggleFav, showToast, etc.)
+ *  están en shared/fynder.js — este archivo contiene solo
+ *  las funciones específicas de esta sección.
  * ═══════════════════════════════════════════════════════════════
  */
 
-/*
- * Agrega aquí cualquier lógica exclusiva de esta página.
- * Ejemplo: event listeners específicos, inicialización local, etc.
- *
- * IMPORTANTE: No dupliques funciones que ya existen en shared/fynder.js
- */
+function registerBusiness(event) {
+    event.preventDefault();
+
+    const name      = document.getElementById("bizName").value.trim();
+    const category  = document.getElementById("bizCategory").value;
+    const desc      = document.getElementById("bizDesc").value.trim();
+    const address   = document.getElementById("bizAddress").value.trim();
+    const phone     = document.getElementById("bizPhone").value.trim();
+    const hours     = document.getElementById("bizHours").value.trim();
+    const website   = document.getElementById("bizWebsite").value.trim();
+    const instagram = document.getElementById("bizInstagram").value.trim();
+    const facebook  = document.getElementById("bizFacebook").value.trim();
+
+    const business = { name, category, desc, address, phone, hours, website, instagram, facebook };
+
+    // Guardar en localStorage (demo)
+    const saved = JSON.parse(localStorage.getItem("fynderBusinesses") || "[]");
+    saved.push(business);
+    localStorage.setItem("fynderBusinesses", JSON.stringify(saved));
+
+    showToast("¡Negocio publicado exitosamente! 🚀 Ya está visible en el directorio.");
+    document.getElementById("businessForm").reset();
+    goPage("home");
+}
+
+function subscribeBlog(event) {
+    event.preventDefault();
+

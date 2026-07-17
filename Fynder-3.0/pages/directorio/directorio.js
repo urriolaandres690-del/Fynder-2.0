@@ -1,20 +1,26 @@
 ﻿/**
  * ═══════════════════════════════════════════════════════════════
- *  Fynder — Directorio
- *  Archivo: pages/directorio/directorio.js
+ *  Fynder — JS de: directorio
+ *  Extraído de fynder.js
  *
- *  NOTA: Toda la lógica está en shared/fynder.js (cargado desde
- *  index.html). Este archivo existe para overrides, extensiones
- *  o código exclusivo de esta sección.
- *
- *  Funciones principales de esta sección (en shared/fynder.js):
- *  renderDirectory, buildDirCatFilters, setDirCat, setView, filterDir, clearDirSearch
+ *  Las funciones GLOBALES (goPage, toggleFav, showToast, etc.)
+ *  están en shared/fynder.js — este archivo contiene solo
+ *  las funciones específicas de esta sección.
  * ═══════════════════════════════════════════════════════════════
  */
 
-/*
- * Agrega aquí cualquier lógica exclusiva de esta página.
- * Ejemplo: event listeners específicos, inicialización local, etc.
- *
- * IMPORTANTE: No dupliques funciones que ya existen en shared/fynder.js
- */
+function buildDirCatFilters(){const dealsActive=dirActiveCategory==='__deals__';document.getElementById('dirCatFilters').innerHTML=`<button class="filter-chip ${!dirActiveCategory?'active':''}" onclick="setDirCat('')">Todos</button><button class="filter-chip filter-chip-deals ${dealsActive?'active':''}" onclick="setDirCat('__deals__')"><i class="fas fa-tags"></i> Ofertas</button>`+CATEGORIES.map(c=>`<button class="filter-chip ${dirActiveCategory===c.id?'active':''}" onclick="setDirCat('${c.id}')" style="${dirActiveCategory===c.id?'background:'+c.color+';color:#fff;':''}">${c.label}</button>`).join('');initCatFiltersDrag();} 
+
+function setDirCat(id){dirActiveCategory=id;buildDirCatFilters();renderDirectory();} 
+
+function setView(v){dirViewMode=v;document.getElementById('viewGrid').classList.toggle('active',v==='grid');document.getElementById('viewList').classList.toggle('active',v==='list');renderDirectory();} 
+
+function filterDir(){const v=document.getElementById('dirSearch').value;document.getElementById('dirClear').classList.toggle('hide',!v);renderDirectory();} 
+
+function clearDirSearch(){document.getElementById('dirSearch').value='';document.getElementById('dirClear').classList.add('hide');renderDirectory();} 
+
+function renderDirectory(){buildDirCatFilters();const q=document.getElementById('dirSearch').value.toLowerCase().trim();const isDeals=dirActiveCategory==='__deals__';const res=BUSINESSES.filter(b=>{const mc=isDeals?!!b.deal:(!dirActiveCategory||b.categoryId===dirActiveCategory);const mq=!q||b.name.toLowerCase().includes(q)||b.category.toLowerCase().includes(q)||b.tags.some(t=>t.toLowerCase().includes(q))||b.description.toLowerCase().includes(q);return mc&&mq;});const cl=isDeals?'Ofertas':dirActiveCategory?CATEGORIES.find(c=>c.id===dirActiveCategory)?.label:'';document.getElementById('dirCount').innerHTML=`<strong>${res.length}</strong> negocio${res.length!==1?'s':''} encontrado${res.length!==1?'s':''}${cl?` en <span class="highlight">${cl}</span>`:''}`;const el=document.getElementById('dirResults');if(res.length===0){el.innerHTML=`<div class="empty-state"><div class="empty-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg></div><div class="empty-title">Sin resultados</div><div class="empty-desc">Intenta con otra búsqueda o categoría.</div></div>`;return;}el.innerHTML=dirViewMode==='grid'?`<div class="cards-grid">${res.map(gridCardHTML).join('')}</div>`:`<div class="cards-list">${res.map(listCardHTML).join('')}</div>`;} 
+
+function renderFavorites(){
+  const el = document.getElementById('favsResults');
+
