@@ -22,9 +22,10 @@
     }
   </script>
   <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
-
-  $m = $args[0]
-  $m.Value -replace "  <!-- Estilos por página -->
+  <!-- Estilos globales -->
+  <link rel="stylesheet" href="compartido/fynder.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <!-- Estilos por página -->
   <link rel="stylesheet" href="paginas/ajustes/ajustes.css">
   <link rel="stylesheet" href="paginas/articulo/articulo.css">
   <link rel="stylesheet" href="paginas/bienvenida-modal/bienvenida-modal.css">
@@ -48,35 +49,10 @@
   <link rel="stylesheet" href="paginas/soporte/soporte.css">
   <link rel="stylesheet" href="paginas/terminos/terminos.css">
   <link rel="stylesheet" href="paginas/write/write.css">
-
-  <!-- Leaflet para el mapa de negocios -->",
-    "  <!-- Estilos por pagina -->`n$cssBlock`n`n  <!-- Estilos por página -->
-  <link rel="stylesheet" href="paginas/ajustes/ajustes.css">
-  <link rel="stylesheet" href="paginas/articulo/articulo.css">
-  <link rel="stylesheet" href="paginas/bienvenida-modal/bienvenida-modal.css">
-  <link rel="stylesheet" href="paginas/blog/blog.css">
-  <link rel="stylesheet" href="paginas/blog/write.css">
-  <link rel="stylesheet" href="paginas/chat/chat.css">
-  <link rel="stylesheet" href="paginas/dashboard/dashboard.css">
-  <link rel="stylesheet" href="paginas/directorio/directorio.css">
-  <link rel="stylesheet" href="paginas/guardados/guardados.css">
-  <link rel="stylesheet" href="paginas/home/home.css">
-  <link rel="stylesheet" href="paginas/login/login.css">
-  <link rel="stylesheet" href="paginas/mapa/mapa.css">
-  <link rel="stylesheet" href="paginas/mensajes/mensajes.css">
-  <link rel="stylesheet" href="paginas/negocio/negocio.css">
-  <link rel="stylesheet" href="paginas/perfil/perfil.css">
-  <link rel="stylesheet" href="paginas/planes/planes.css">
-  <link rel="stylesheet" href="paginas/privacidad/privacidad.css">
-  <link rel="stylesheet" href="paginas/registro/registro.css">
-  <link rel="stylesheet" href="paginas/saber-mas/saber-mas.css">
-  <link rel="stylesheet" href="paginas/sobre-fynder/sobre-fynder.css">
-  <link rel="stylesheet" href="paginas/soporte/soporte.css">
-  <link rel="stylesheet" href="paginas/terminos/terminos.css">
-  <link rel="stylesheet" href="paginas/write/write.css">
-
-  <!-- Leaflet para el mapa de negocios -->"
-
+  <!-- Leaflet para el mapa de negocios -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+</head>
 <body>
 
 <!-- ── BARRA DE NAVEGACIÓN ── -->
@@ -5127,8 +5103,29 @@
 <script src="paginas/sobre-fynder/sobre-fynder.js"></script>
 <script src="paginas/soporte/soporte.js"></script>
 <script src="paginas/write/write.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+<script src="compartido/fynder.js"></script>
+<!-- Scripts por página -->
+<script src="paginas/ajustes/ajustes.js"></script>
+<script src="paginas/articulo/articulo.js"></script>
+<script src="paginas/bienvenida-modal/bienvenida-modal.js"></script>
+<script src="paginas/blog/blog.js"></script>
+<script src="paginas/chat-profile/chat-profile.js"></script>
+<script src="paginas/dashboard/dashboard.js"></script>
+<script src="paginas/directorio/directorio.js"></script>
+<script src="paginas/guardados/guardados.js"></script>
+<script src="paginas/home/home.js"></script>
+<script src="paginas/login/login.js"></script>
+<script src="paginas/mapa/mapa.js"></script>
+<script src="paginas/mensajes/mensajes.js"></script>
+<script src="paginas/negocio/negocio.js"></script>
+<script src="paginas/perfil/perfil.js"></script>
+<script src="paginas/registro/registro.js"></script>
+<script src="paginas/saber-mas/saber-mas.js"></script>
+<script src="paginas/sobre-fynder/sobre-fynder.js"></script>
+<script src="paginas/soporte/soporte.js"></script>
+<script src="paginas/write/write.js"></script>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
 
 </body>
-</html>
