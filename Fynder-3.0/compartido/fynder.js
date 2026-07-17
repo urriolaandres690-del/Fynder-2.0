@@ -928,9 +928,7 @@ function initCatFiltersDrag(){
 }
 
 function buildCategories(){
-  const el = document.getElementById('catGrid');
-  if(!el) return;
-  el.innerHTML=CATEGORIES.map(c=>{
+  document.getElementById('catGrid').innerHTML=CATEGORIES.map(c=>{
     const count=BUSINESSES.filter(b=>b.categoryId===c.id).length;
     return`<button class="cat-card" onclick="goDirectoryQuery('','${c.id}')"><div class="cat-icon" style="background:${c.bg};color:${c.color}">${c.svg}</div><div class="cat-name">${c.label}</div><div class="cat-count">${count} negocio${count!==1?'s':''}</div></button>`;
   }).join('');
@@ -969,11 +967,8 @@ function _initCarouselDrag(id) {
 }
 
 function buildHome(){
-  const fg = document.getElementById('featuredGrid');
-  const pl = document.getElementById('popularList');
-  if(!fg || !pl) return;
-  fg.innerHTML=BUSINESSES.filter(b=>b.isFeatured).map(gridCardHTML).join('');
-  pl.innerHTML=BUSINESSES.filter(b=>b.isPopular).map(listCardHTML).join('');
+  document.getElementById('featuredGrid').innerHTML=BUSINESSES.filter(b=>b.isFeatured).map(gridCardHTML).join('');
+  document.getElementById('popularList').innerHTML=BUSINESSES.filter(b=>b.isPopular).map(listCardHTML).join('');
   _initCarouselDrag('featuredGrid');
 
   // ── Fade del scroll en Más Populares ──
@@ -1176,6 +1171,7 @@ function renderFavorites(){
 
 buildCategories();buildHome();updateNav();
 // drag scroll en filtros
+// tambien se llama desde goPage
 document.addEventListener('DOMContentLoaded', ()=>{ setTimeout(initCatFiltersDrag, 200); });
 
 function registerUser(event){
@@ -1328,7 +1324,940 @@ function loadProfile(){
         return;
     }
 
+    // Cabecera: nombre y email
+    const pname  = document.getElementById("profileName");
+    const pemail = document.getElementById("profileEmail");
+    if(pname)  pname.textContent  = user.name;
+    if(pemail) pemail.textContent = user.email;
 
+    // Avatar y portada
+    applyAvatarDisplay();
+    applyProfileCover();
+
+    // Ciudad badge
+    const cityBadge = document.getElementById("profileCityBadge");
+    const cityLabel = document.getElementById("profileCityLabel");
+    if(cityBadge && cityLabel && user.city){
+        cityLabel.textContent = user.city;
+        cityBadge.style.display = 'inline-flex';
+    } else if(cityBadge){
+        cityBadge.style.display = 'none';
+    }
+
+    // Estado
+    const savedStatus = localStorage.getItem("fynderUserStatus") || "active";
+    applyStatusUI(savedStatus);
+
+    // Campos del formulario
+    const eName  = document.getElementById("profileEditName");
+    const eEmail = document.getElementById("profileEditEmail");
+    const ePhone = document.getElementById("profileEditPhone");
+    const eCity  = document.getElementById("profileEditCity");
+    const eBio   = document.getElementById("profileEditBio");
+    if(eName)  eName.value  = user.name  || '';
+    if(eEmail) eEmail.value = user.email || '';
+    if(ePhone) ePhone.value = user.phone || '';
+    if(eCity)  eCity.value  = user.city  || '';
+    if(eBio){
+        eBio.value = user.bio || '';
+        updateBioCount();
+        // Evitar duplicar el listener
+        eBio.oninput = updateBioCount;
+    }
+
+    // Estadísticas
+    const sf = document.getElementById("statFavs");
+    const sb = document.getElementById("statBiz");
+    if(sf) sf.textContent = favorites.size;
+    if(sb) sb.textContent = JSON.parse(localStorage.getItem("fynderBusinesses")||"[]").length;
+
+    hideAvatarOptions();
+}
+
+/* ── Avatar ── */
+/* ── Avatar ── */
+function applyAvatarDisplay(){
+    const avt = document.getElementById("profileAvatar");
+    if(!avt) return;
+    const stored = localStorage.getItem("fynderAvatarPhoto");
+    const preset = localStorage.getItem("fynderAvatarPreset");   // emoji preset
+    const initBg = localStorage.getItem("fynderAvatarInitialBg"); // color inicial
+    const user   = JSON.parse(localStorage.getItem("fynderUser"));
+
+    if(stored){
+        // Foto subida o tomada con cámara
+        avt.innerHTML = `<img src="${stored}" alt="Foto de perfil" style="width:100%;height:100%;object-fit:cover;border-radius:50%;display:block">`;
+        avt.style.background = '';
+    } else if(preset){
+        // Avatar emoji predeterminado
+        avt.innerHTML = `<span style="font-size:1.9rem;line-height:1;pointer-events:none;user-select:none">${preset}</span>`;
+        avt.style.background = '#F0FEFE';
+    } else {
+        // Iniciales del usuario con color elegido (o degradado por defecto)
+        const initials = user?.name ? _getInitials(user.name) : '?';
+        const bg = initBg || 'linear-gradient(135deg,#67B8B4,#2F5BB7)';
+        avt.style.background = bg;
+        const fs = initials.length > 1 ? '1.3rem' : '1.6rem';
+        avt.innerHTML = `<span style="font-size:${fs};font-weight:800;color:#fff;pointer-events:none;user-select:none;font-family:'Poppins',sans-serif;letter-spacing:1px">${initials}</span>`;
+    }
+}
+
+/* ── Portada: usa background-image para no tocar el DOM del div ── */
+function applyProfileCover(){
+    const cover = document.getElementById("profileCover");
+    if(!cover) return;
+    const photo  = localStorage.getItem("fynderCoverPhoto");
+    const icon   = cover.querySelector('.profile-cover-default-icon');
+    const delBtn = document.getElementById('coverDelBtn');
+    if(photo){
+        cover.style.backgroundImage    = `url(${photo})`;
+        cover.style.backgroundSize     = 'cover';
+        cover.style.backgroundPosition = 'center';
+        if(icon)   icon.style.visibility = 'hidden';
+        if(delBtn) delBtn.style.display  = 'inline-flex';
+    } else {
+        cover.style.backgroundImage = '';
+        if(icon)   icon.style.visibility = '';
+        if(delBtn) delBtn.style.display  = 'none';
+    }
+}
+
+function onCoverFileSelected(event){
+    const file = event.target.files && event.target.files[0];
+    if(!file) return;
+    if(!file.type.startsWith('image/')){
+        showToast('Selecciona un archivo de imagen.', 'error'); return;
+    }
+    if(file.size > 8 * 1024 * 1024){
+        showToast('La imagen supera 8 MB.', 'error'); return;
+    }
+    const reader = new FileReader();
+    reader.onload = function(e){
+        localStorage.setItem('fynderCoverPhoto', e.target.result);
+        applyProfileCover();
+        showToast('¡Foto de portada actualizada! 🖼️');
+    };
+    reader.readAsDataURL(file);
+    event.target.value = '';
+}
+
+function removeCover(){
+    localStorage.removeItem("fynderCoverPhoto");
+    applyProfileCover();
+    showToast("Foto de portada eliminada.");
+}
+
+/* ── Disparadores de file input — se recrean cada vez para garantizar el disparo del evento ── */
+function _openFilePicker(accept, callback){
+    // Eliminar cualquier input previo
+    const old = document.getElementById('_dynFileInput');
+    if(old) old.remove();
+
+    const inp = document.createElement('input');
+    inp.type = 'file';
+    inp.id   = '_dynFileInput';
+    inp.accept = accept;
+    inp.style.cssText = 'position:fixed;top:-9999px;left:-9999px;opacity:0;width:1px;height:1px';
+    inp.addEventListener('change', function(){
+        if(this.files && this.files[0]) callback(this.files[0]);
+        this.remove();
+    });
+    document.body.appendChild(inp);
+    // Pequeño timeout para que el DOM lo registre antes del click
+    setTimeout(() => inp.click(), 10);
+}
+
+function triggerAvatarPicker(){
+    hideAvatarOptions();
+    _openFilePicker('image/*', (file) => _saveImageToStorage(file, 'avatar'));
+}
+
+function triggerCameraCapture(){
+    hideAvatarOptions();
+    if(navigator.mediaDevices && navigator.mediaDevices.getUserMedia){
+        cameraOpen('avatar');
+    } else {
+        _openFilePicker('image/*', (file) => _saveImageToStorage(file, 'avatar'));
+        showToast('Cámara no disponible. Selecciona una imagen guardada.');
+    }
+}
+
+function triggerCoverPicker(){
+    _openFilePicker('image/*', (file) => _saveImageToStorage(file, 'cover'));
+}
+
+function _saveImageToStorage(file, target){
+    if(!file.type.startsWith('image/')){
+        showToast('Selecciona un archivo de imagen válido.', 'error'); return;
+    }
+    const maxMB = target === 'cover' ? 8 : 5;
+    if(file.size > maxMB * 1024 * 1024){
+        showToast(`La imagen supera ${maxMB} MB. Elige una más pequeña.`, 'error'); return;
+    }
+    const reader = new FileReader();
+    reader.onload = (e) => {
+        const dataUrl = e.target.result;
+        if(target === 'cover'){
+            localStorage.setItem('fynderCoverPhoto', dataUrl);
+            applyProfileCover();
+            showToast('¡Foto de portada actualizada! 🖼️');
+        } else {
+            // Al subir foto real, limpiar preset e inicial
+            localStorage.removeItem('fynderAvatarPreset');
+            localStorage.removeItem('fynderAvatarInitialBg');
+            localStorage.setItem('fynderAvatarPhoto', dataUrl);
+            applyAvatarDisplay();
+            _saveCurrentAccount();  // sincronizar foto en la lista de cuentas
+            showToast('¡Foto de perfil actualizada! 📸');
+        }
+    };
+    reader.readAsDataURL(file);
+}
+
+// handlers de cambio de archivo
+function handleAvatarChange(input){
+    const file = input.files && input.files[0];
+    if(file) _saveImageToStorage(file, 'avatar');
+    input.value = '';   // reset para poder subir el mismo archivo de nuevo
+}
+
+function handleCoverChange(input){
+    const file = input.files && input.files[0];
+    if(file) _saveImageToStorage(file, 'cover');
+    input.value = '';
+}
+
+/* ── Cámara con getUserMedia ── */
+let _cameraStream = null;
+let _cameraTarget = 'avatar'; // 'avatar' | 'cover'
+
+function cameraOpen(target){
+    _cameraTarget = target || 'avatar';
+    const modal = document.getElementById('cameraModal');
+    const video = document.getElementById('cameraVideo');
+    if(!modal || !video) return;
+
+    navigator.mediaDevices.getUserMedia({ video: { width:640, height:480, facingMode:'user' }, audio:false })
+        .then(stream => {
+            _cameraStream = stream;
+            video.srcObject = stream;
+            modal.style.display = 'flex';
+            document.body.style.overflow = 'hidden';
+        })
+        .catch(err => {
+            console.warn('Camera error:', err);
+            // Fallback a input file si la cámara falla
+            _openFilePicker('image/*', (file) => _saveImageToStorage(file, _cameraTarget));
+            showToast('No se pudo acceder a la cámara. Selecciona una foto guardada.', 'error');
+        });
+}
+
+function cameraSnap(){
+    const video  = document.getElementById('cameraVideo');
+    const canvas = document.getElementById('cameraCanvas');
+    if(!video || !canvas) return;
+
+    canvas.width  = video.videoWidth  || 640;
+    canvas.height = video.videoHeight || 480;
+    const ctx = canvas.getContext('2d');
+    // Espejo horizontal (selfie natural)
+    ctx.translate(canvas.width, 0);
+    ctx.scale(-1, 1);
+    ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
+
+    const dataUrl = canvas.toDataURL('image/jpeg', 0.88);
+    cameraClose();
+
+    if(_cameraTarget === 'cover'){
+        localStorage.setItem('fynderCoverPhoto', dataUrl);
+        applyProfileCover();
+        showToast('¡Foto de portada tomada! 🖼️');
+    } else {
+        localStorage.removeItem('fynderAvatarPreset');
+        localStorage.removeItem('fynderAvatarInitialBg');
+        localStorage.setItem('fynderAvatarPhoto', dataUrl);
+        applyAvatarDisplay();
+        _saveCurrentAccount();  // sincronizar foto en la lista de cuentas
+        showToast('¡Foto de perfil tomada! 📸');
+    }
+}
+
+function cameraClose(){
+    const modal = document.getElementById('cameraModal');
+    if(modal) modal.style.display = 'none';
+    document.body.style.overflow = '';
+    if(_cameraStream){
+        _cameraStream.getTracks().forEach(t => t.stop());
+        _cameraStream = null;
+    }
+}
+
+/* ── Panel de opciones de avatar ── */
+
+// colores del avatar
+const INITIAL_COLORS = [
+    'linear-gradient(135deg,#67B8B4,#2F5BB7)',
+    'linear-gradient(135deg,#EF4444,#EC4899)',
+    'linear-gradient(135deg,#F59E0B,#EF4444)',
+    'linear-gradient(135deg,#10B981,#0EA5E9)',
+    'linear-gradient(135deg,#8B5CF6,#EC4899)',
+    'linear-gradient(135deg,#0EA5E9,#2F5BB7)',
+    'linear-gradient(135deg,#F97316,#FBBF24)',
+    'linear-gradient(135deg,#6366F1,#8B5CF6)',
+];
+
+// emojis predeterminados
+const AVATAR_PRESETS = [
+    '🦊','🐺','🦁','🐯','🐻','🐼',
+    '🐨','🐸','🦋','🐙','🦄','🐲',
+    '🤖','👾','👻','🎃','🐦‍⬛','🐋',
+    '🎯','🚀','⚡','🌟','🔥','💎',
+    '💀','🐱','🦝','🐞','🦈','🐌',
+    '🐝','🐍','🦖','🐢','🦑','🐬',
+    '🐦‍🔥','🦥','🦇','🐹','🐭','🐰',
+    '🦭','🐶','🐙','🦕','🦉','👽',
+];
+
+function showAvatarOptions(){
+    const panel = document.getElementById("avatarOptionsPanel");
+    if(!panel) return;
+    const isHidden = panel.classList.contains("hide");
+    if(isHidden){
+        _buildInitialsGrid();
+        _buildPresetsGrid();
+        panel.classList.remove("hide");
+    } else {
+        panel.classList.add("hide");
+    }
+}
+
+function hideAvatarOptions(){
+    const panel = document.getElementById("avatarOptionsPanel");
+    if(panel) panel.classList.add("hide");
+}
+
+function _buildInitialsGrid(){
+    const container = document.getElementById("avatarInitialsGrid");
+    if(!container) return;
+    const user     = JSON.parse(localStorage.getItem("fynderUser"));
+    const initials = user?.name ? _getInitials(user.name) : '?';
+    const current  = localStorage.getItem("fynderAvatarInitialBg");
+
+    container.innerHTML = INITIAL_COLORS.map((bg, i) => {
+        const sel = (!localStorage.getItem("fynderAvatarPhoto") && !localStorage.getItem("fynderAvatarPreset") && bg === (current || INITIAL_COLORS[0])) ? 'selected' : '';
+        return `<button class="avatar-initial-chip ${sel}" style="background:${bg}" onclick="setAvatarInitial('${bg}')" title="Iniciales ${initials}">${initials}</button>`;
+    }).join('');
+}
+
+function _buildPresetsGrid(){
+    const container = document.getElementById("avatarPresetsGrid");
+    if(!container) return;
+    const current = localStorage.getItem("fynderAvatarPreset");
+
+    container.innerHTML = AVATAR_PRESETS.map(emoji => {
+        const sel = emoji === current ? 'selected' : '';
+        return `<button class="avatar-preset-item ${sel}" onclick="setAvatarPreset('${emoji}')" title="${emoji}">${emoji}</button>`;
+    }).join('');
+}
+
+function setAvatarInitial(bg){
+    localStorage.removeItem("fynderAvatarPhoto");
+    localStorage.removeItem("fynderAvatarPreset");
+    localStorage.setItem("fynderAvatarInitialBg", bg);
+    applyAvatarDisplay();
+    hideAvatarOptions();
+    showToast("¡Avatar de inicial actualizado! ✨");
+}
+
+function setAvatarPreset(emoji){
+    localStorage.removeItem("fynderAvatarPhoto");
+    localStorage.removeItem("fynderAvatarInitialBg");
+    localStorage.setItem("fynderAvatarPreset", emoji);
+    applyAvatarDisplay();
+    hideAvatarOptions();
+    showToast(`¡Avatar ${emoji} seleccionado!`);
+}
+
+function removeAvatar(){
+    localStorage.removeItem("fynderAvatarPhoto");
+    localStorage.removeItem("fynderAvatarPreset");
+    localStorage.removeItem("fynderAvatarInitialBg");
+    applyAvatarDisplay();
+    hideAvatarOptions();
+    showToast("Foto de perfil eliminada.");
+}
+
+/* ── Estado del usuario ── */
+const STATUS_CONFIG = {
+    active:    { label:'Activo',        color:'#22C55E', bg:'#DCFCE7', textColor:'#16A34A', dot:'●' },
+    away:      { label:'Ausente',       color:'#F59E0B', bg:'#FEF3C7', textColor:'#D97706', dot:'●' },
+    busy:      { label:'Ocupado',       color:'#EF4444', bg:'#FEF2F2', textColor:'#DC2626', dot:'●' },
+    dnd:       { label:'No molestar',   color:'#6B7280', bg:'#F3F4F6', textColor:'#4B5563', dot:'⊘' },
+    invisible: { label:'Invisible',     color:'#9CA3AF', bg:'#F9FAFB', textColor:'#6B7280', dot:'○' },
+    offline:   { label:'Desactivado',   color:'#374151', bg:'#F3F4F6', textColor:'#374151', dot:'●' },
+};
+
+function toggleStatusDropdown(){
+    const dd = document.getElementById('statusDropdown');
+    if(!dd) return;
+    dd.classList.toggle('hide');
+    // Cerrar al hacer click fuera
+    if(!dd.classList.contains('hide')){
+        setTimeout(() => {
+            document.addEventListener('click', _closeStatusDropdown, { once: true });
+        }, 10);
+    }
+}
+
+function _closeStatusDropdown(e){
+    const wrap = document.getElementById('statusBadgeWrap');
+    if(wrap && wrap.contains(e.target)) return;
+    const dd = document.getElementById('statusDropdown');
+    if(dd) dd.classList.add('hide');
+}
+
+function setUserStatus(status){
+    localStorage.setItem('fynderUserStatus', status);
+    applyStatusUI(status);
+    // Cerrar dropdown
+    const dd = document.getElementById('statusDropdown');
+    if(dd) dd.classList.add('hide');
+    showToast(`Estado: ${STATUS_CONFIG[status]?.label || status}`);
+}
+
+function applyStatusUI(status){
+    const cfg = STATUS_CONFIG[status] || STATUS_CONFIG.active;
+
+    // Badge en la cabecera
+    const dot   = document.getElementById('statusDotBadge');
+    const label = document.getElementById('profileStatusLabel');
+    const badge = document.getElementById('profileStatusBadge');
+    if(dot)   dot.style.color   = cfg.color;
+    if(label) label.textContent = cfg.label;
+    if(badge){
+        badge.style.background = cfg.bg        || '#DCFCE7';
+        badge.style.color      = cfg.textColor || '#16A34A';
+    }
+
+    // Dot en el título de la tarjeta
+    const titleDot = document.getElementById('statusDotTitle');
+    if(titleDot) titleDot.style.color = cfg.color;
+
+    // Marcar la opción activa en la tarjeta de estado
+    document.querySelectorAll('.status-option').forEach(btn => {
+        btn.classList.toggle('status-option-active', btn.dataset.status === status);
+    });
+
+    // Marcar el item activo en el dropdown del badge
+    document.querySelectorAll('.status-dropdown-item').forEach(btn => {
+        const s = btn.getAttribute('onclick')?.match(/'(\w+)'/)?.[1];
+        btn.style.fontWeight = s === status ? '700' : '';
+        btn.style.background = s === status ? cfg.bg : '';
+        btn.style.color      = s === status ? cfg.textColor : '';
+    });
+}
+
+function updateBioCount(){
+    const bio = document.getElementById("profileEditBio");
+    const counter = document.getElementById("bioCount");
+    if(bio && counter) counter.textContent = bio.value.length;
+}
+
+function saveProfile(event){
+    event.preventDefault();
+    const user = JSON.parse(localStorage.getItem("fynderUser"));
+    if(!user) return;
+    user.name  = document.getElementById("profileEditName").value.trim()  || user.name;
+    user.email = document.getElementById("profileEditEmail").value.trim() || user.email;
+    user.phone = document.getElementById("profileEditPhone").value.trim();
+    user.city  = document.getElementById("profileEditCity")?.value.trim() || '';
+    user.bio   = document.getElementById("profileEditBio")?.value.trim()  || '';
+    localStorage.setItem("fynderUser", JSON.stringify(user));
+    document.getElementById("userName").textContent = "Hola, " + user.name;
+    _saveCurrentAccount();  // sincronizar cambios en la lista de cuentas
+    showToast("¡Perfil actualizado correctamente! ✓");
+    loadProfile();
+}
+
+function changePassword(event){
+    event.preventDefault();
+    const user        = JSON.parse(localStorage.getItem("fynderUser"));
+    const current     = document.getElementById("currentPass").value;
+    const newP        = document.getElementById("newPass").value;
+    const confirmNewP = document.getElementById("confirmNewPass").value;
+    if(!user) return;
+    if(current !== user.pass){
+        showToast("La contraseña actual no es correcta.", "error"); return;
+    }
+    if(newP !== confirmNewP){
+        showToast("Las contraseñas nuevas no coinciden.", "error"); return;
+    }
+    if(newP.length < 6){
+        showToast("La contraseña debe tener al menos 6 caracteres.", "error"); return;
+    }
+    user.pass = newP;
+    localStorage.setItem("fynderUser", JSON.stringify(user));
+    document.getElementById("passForm").reset();
+    showToast("¡Contraseña actualizada correctamente! 🔐");
+}
+
+function deleteAccount(){
+    if(!confirm("¿Seguro que deseas eliminar tu cuenta? Esta acción no se puede deshacer.")) return;
+    const user = JSON.parse(localStorage.getItem("fynderUser") || 'null');
+    // Eliminar del array de cuentas guardadas
+    if(user){
+        const accounts = _getSavedAccounts().filter(a => a.email !== user.email);
+        _setSavedAccounts(accounts);
+    }
+    localStorage.removeItem("fynderUser");
+    localStorage.removeItem("fynderLogged");
+    _clearProfileVisualData();
+    favorites.clear();
+    localStorage.removeItem("fynderFavorites");
+    document.getElementById("userName").textContent = "";
+    updateNav();
+    showToast("Cuenta eliminada. ¡Hasta pronto!");
+    goPage("home");
+}
+
+function togglePassVisibility(inputId, btn){
+    const input = document.getElementById(inputId);
+    const icon  = btn.querySelector("i");
+    if(input.type === "password"){
+        input.type = "text";
+        icon.classList.replace("fa-eye", "fa-eye-slash");
+    }else{
+        input.type = "password";
+        icon.classList.replace("fa-eye-slash", "fa-eye");
+    }
+}
+
+function showToast(msg, type = "success"){
+    let toast = document.getElementById("fynderToast");
+    if(!toast){
+        toast = document.createElement("div");
+        toast.id = "fynderToast";
+        document.body.appendChild(toast);
+    }
+    toast.textContent = msg;
+    toast.className = "fynder-toast " + (type === "error" ? "toast-error" : "toast-ok");
+    toast.classList.add("toast-show");
+    clearTimeout(toast._timer);
+    toast._timer = setTimeout(()=> toast.classList.remove("toast-show"), 3500);
+}
+
+window.addEventListener("load", ()=>{
+    const logged = localStorage.getItem("fynderLogged");
+    const user   = JSON.parse(localStorage.getItem("fynderUser"));
+    if(logged && user){
+        document.getElementById("userName").textContent = "Hola, " + user.name;
+    }
+    updateNav();
+});
+
+function registerBusiness(event) {
+    event.preventDefault();
+
+    const name      = document.getElementById("bizName").value.trim();
+    const category  = document.getElementById("bizCategory").value;
+    const desc      = document.getElementById("bizDesc").value.trim();
+    const address   = document.getElementById("bizAddress").value.trim();
+    const phone     = document.getElementById("bizPhone").value.trim();
+    const hours     = document.getElementById("bizHours").value.trim();
+    const website   = document.getElementById("bizWebsite").value.trim();
+    const instagram = document.getElementById("bizInstagram").value.trim();
+    const facebook  = document.getElementById("bizFacebook").value.trim();
+
+    const business = { name, category, desc, address, phone, hours, website, instagram, facebook };
+
+    // Guardar en localStorage (demo)
+    const saved = JSON.parse(localStorage.getItem("fynderBusinesses") || "[]");
+    saved.push(business);
+    localStorage.setItem("fynderBusinesses", JSON.stringify(saved));
+
+    showToast("¡Negocio publicado exitosamente! 🚀 Ya está visible en el directorio.");
+    document.getElementById("businessForm").reset();
+    goPage("home");
+}
+
+function subscribeBlog(event) {
+    event.preventDefault();
+    const email = document.getElementById("blogEmail").value.trim();
+    if (!email) return;
+    // Demo: guardar en localStorage
+    const subs = JSON.parse(localStorage.getItem("fynderBlogSubs") || "[]");
+    if (subs.includes(email)) {
+        showToast("Este correo ya está suscrito.", "error");
+        return;
+    }
+    subs.push(email);
+    localStorage.setItem("fynderBlogSubs", JSON.stringify(subs));
+    document.getElementById("blogEmail").value = "";
+    showToast("¡Suscripción exitosa! Te avisaremos cuando haya nuevo contenido 📬");
+}
+
+function openArticle(id) {
+  const articles = {
+    "1": {
+      title: "Cómo llevar tu negocio local al siguiente nivel con presencia digital",
+      category: "Emprendimiento", color: "#67B8B4",
+      author: "Ana Martínez", authorInitial: "A", authorGrad: "135deg,#67B8B4,#2F5BB7",
+      date: "15 jun 2026", readTime: "5 min",
+      image: "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=900&h=450&fit=crop&auto=format",
+      body: `<p>En un mundo cada vez más conectado, tener visibilidad digital ya no es opcional para los negocios locales. Los estudios muestran que el <strong>87% de los consumidores</strong> busca información en línea antes de visitar un negocio físico.</p>
+<h3>¿Por qué importa la presencia digital?</h3>
+<p>Un negocio sin presencia en internet es prácticamente invisible para una generación entera de consumidores. Sin embargo, estar en línea no significa tener una web costosa o compleja. Plataformas como FYNDER te dan visibilidad inmediata y gratuita.</p>
+<h3>Pasos para empezar hoy mismo</h3>
+<p><strong>1. Registra tu negocio en FYNDER.</strong> Es gratis, toma menos de 2 minutos y te coloca frente a miles de usuarios locales que buscan exactamente lo que ofreces.</p>
+<p><strong>2. Completa tu perfil al 100%.</strong> Agrega fotos de calidad, horarios actualizados y una descripción clara de tus servicios. Los negocios con perfiles completos reciben hasta 3 veces más visitas.</p>
+<p><strong>3. Activa tus redes sociales.</strong> No necesitas estar en todas. Elige una o dos plataformas donde esté tu cliente ideal y publica de forma constante.</p>
+<p><strong>4. Pide reseñas a tus clientes.</strong> Las opiniones positivas son el mejor marketing que existe. Un cliente satisfecho que deja una reseña vale oro.</p>
+<h3>El impacto real de dar el salto digital</h3>
+<p>Los negocios que dan el salto digital reportan en promedio un <strong>23% más de clientes</strong> en los primeros 6 meses. No es magia, es visibilidad. Cuando alguien en tu ciudad busca lo que vendes, tú apareces.</p>
+<p>FYNDER fue creado exactamente para esto: eliminar las barreras digitales para los emprendedores locales. No necesitas saber de tecnología, no necesitas presupuesto. Solo necesitas empezar.</p>`
+    },
+    "2": {
+      title: "5 razones para preferir los restaurantes de tu barrio",
+      category: "Gastronomía", color: "#EF4444",
+      author: "Carlos Vega", authorInitial: "C", authorGrad: "135deg,#EF4444,#F97316",
+      date: "10 jun 2026", readTime: "4 min",
+      image: "https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=900&h=450&fit=crop&auto=format",
+      body: `<p>Cadenas internacionales y franquicias dominan el paisaje gastronómico urbano. Sin embargo, los restaurantes locales tienen algo que ninguna cadena puede replicar: <strong>alma, historia e ingredientes del territorio</strong>.</p>
+<h3>1. Ingredientes más frescos</h3>
+<p>Los restaurantes locales suelen abastecerse de mercados y productores cercanos. Eso se traduce en ingredientes más frescos, más nutritivos y con mejor sabor que los productos procesados a escala industrial.</p>
+<h3>2. Recetas únicas e irrepetibles</h3>
+<p>Detrás de cada plato hay una historia familiar, una tradición que se ha pasado de generación en generación. Es imposible encontrar ese sancocho de gallina o esa sopa de frijoles en ningún otro lugar del mundo.</p>
+<h3>3. Tu dinero se queda en la comunidad</h3>
+<p>Estudios económicos demuestran que el <strong>68% del dinero gastado</strong> en negocios locales permanece circulando en la comunidad, frente al 43% en cadenas nacionales y apenas el 28% en franquicias internacionales.</p>
+<h3>4. Atención personalizada</h3>
+<p>En el restaurante de tu barrio, el dueño te conoce por tu nombre, recuerda que no te gusta el picante y sabe cuál es tu plato favorito. Ese nivel de atención es imposible de escalar en una franquicia.</p>
+<h3>5. Apoya a tu vecino</h3>
+<p>Detrás de cada restaurante local hay una familia que trabaja duro para sacar adelante un sueño. Cada vez que eliges su menú sobre el de una cadena, estás invirtiendo en la historia de tu comunidad.</p>`
+    },
+    "3": {
+      title: "Guía para registrar tu negocio en FYNDER paso a paso",
+      category: "Emprendimiento", color: "#2F5BB7",
+      author: "María López", authorInitial: "M", authorGrad: "135deg,#2F5BB7,#67B8B4",
+      date: "5 jun 2026", readTime: "3 min",
+      image: "https://images.unsplash.com/photo-1556742111-a301076d9d18?w=900&h=450&fit=crop&auto=format",
+      body: `<p>Registrar tu negocio en FYNDER es completamente gratuito y toma menos de 2 minutos. Aquí te explicamos cada paso para que tu perfil quede impecable desde el primer día.</p>
+<h3>Paso 1: Haz clic en "Registrar negocio"</h3>
+<p>Encontrarás este botón en la barra de navegación superior o en la sección principal de la página de inicio. Te llevará directamente al formulario de registro.</p>
+<h3>Paso 2: Completa la información básica</h3>
+<p>Nombre del negocio, categoría, descripción, dirección, teléfono y horario. Tómate tu tiempo para escribir una buena descripción: es lo primero que verán los clientes potenciales.</p>
+<h3>Paso 3: Agrega tus redes sociales</h3>
+<p>Si tienes Instagram, Facebook o página web, añádelos. Los usuarios podrán seguirte directamente desde tu perfil en FYNDER.</p>
+<h3>Paso 4: Publica</h3>
+<p>Haz clic en "Publicar negocio" y listo. Tu negocio aparecerá instantáneamente en el directorio y estará visible para todos los usuarios de tu área.</p>
+<h3>Consejos para un perfil exitoso</h3>
+<p>✓ Usa una descripción clara y específica de lo que ofreces.</p>
+<p>✓ Mantén tus horarios actualizados, especialmente en días festivos.</p>
+<p>✓ Responde rápido cuando los clientes te contacten a través de tus redes.</p>`
+    },
+    "4": {
+      title: "Los mejores salones de belleza en tu ciudad: ¿cómo elegir el tuyo?",
+      category: "Estilo de vida", color: "#EC4899",
+      author: "Laura Soto", authorInitial: "L", authorGrad: "135deg,#EC4899,#8B5CF6",
+      date: "1 jun 2026", readTime: "4 min",
+      image: "https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?w=900&h=450&fit=crop&auto=format",
+      body: `<p>Encontrar el salón de belleza ideal puede ser una odisea si no sabes qué buscar. Más allá del precio, hay varios factores que determinan si un lugar realmente vale la pena.</p>
+<h3>La especialidad importa</h3>
+<p>No todos los salones son expertos en todos los servicios. Algunos se especializan en coloración, otros en tratamientos capilares o en uñas. Antes de ir, investiga en qué destacan.</p>
+<h3>Lee las reseñas con criterio</h3>
+<p>Las opiniones de otros clientes son invaluables. Busca reseñas específicas sobre el servicio que te interesa. Una calificación alta en cortes no garantiza que los tratamientos de keratina sean igualmente buenos.</p>
+<h3>La consulta inicial lo dice todo</h3>
+<p>Un buen estilista siempre preguntará sobre el historial de tu cabello antes de aplicar cualquier producto. Si no lo hace, es una señal de alerta.</p>
+<h3>El ambiente y la limpieza</h3>
+<p>Un salón limpio y ordenado refleja la profesionalidad del equipo. Fíjate en los instrumentos de trabajo: deben estar desinfectados y en buen estado.</p>
+<h3>Cómo usar FYNDER para encontrarlo</h3>
+<p>Filtra por la categoría "Belleza" en nuestro directorio y compara los perfiles. Revisa las fotos, las reseñas de clientes reales y los servicios específicos de cada salón antes de hacer tu cita.</p>`
+    },
+    "5": {
+      title: "Dónde reparar tu smartphone sin salir del barrio",
+      category: "Tecnología", color: "#2F5BB7",
+      author: "Roberto Díaz", authorInitial: "R", authorGrad: "135deg,#2F5BB7,#1E8F8B",
+      date: "28 may 2026", readTime: "3 min",
+      image: "https://images.unsplash.com/photo-1518770660439-4636190af475?w=900&h=450&fit=crop&auto=format",
+      body: `<p>La pantalla rota de un smartphone es hoy tan común como un grifo que gotea. Y al igual que para el grifo, no hay razón para llamar a alguien de la otra punta de la ciudad cuando hay un especialista a pocas cuadras de tu casa.</p>
+<h3>¿Por qué evitar las cadenas de reparación masivas?</h3>
+<p>Los centros de reparación de las grandes cadenas suelen tener tiempos de espera largos, precios inflados y a veces usan repuestos genéricos. Los técnicos locales especializados, en cambio, conocen cada modelo al dedillo y trabajan con piezas de calidad.</p>
+<h3>Qué buscar en un buen técnico</h3>
+<p><strong>Garantía escrita.</strong> Un técnico confiable siempre te da garantía por el trabajo realizado, generalmente entre 30 y 90 días.</p>
+<p><strong>Diagnóstico gratuito.</strong> Antes de comprometerte a pagar, tienes derecho a saber exactamente qué le pasa a tu equipo y cuánto costará arreglarlo.</p>
+<p><strong>Repuestos originales o certificados.</strong> Pregunta siempre qué tipo de piezas van a usar.</p>
+<h3>Usa FYNDER para encontrar técnicos certificados</h3>
+<p>En nuestra categoría "Tecnología" encontrarás talleres de reparación verificados cerca de ti. Lee las reseñas de clientes anteriores para elegir con confianza.</p>`
+    },
+    "6": {
+      title: "El impacto real de comprar local: datos que sorprenden",
+      category: "Comunidad", color: "#10B981",
+      author: "Paola Ruiz", authorInitial: "P", authorGrad: "135deg,#10B981,#67B8B4",
+      date: "22 may 2026", readTime: "5 min",
+      image: "https://images.unsplash.com/photo-1542838132-92c53300491e?w=900&h=450&fit=crop&auto=format",
+      body: `<p>Detrás de cada compra local hay una cadena de efectos positivos que van mucho más allá del simple intercambio comercial. Los números son contundentes y deberían cambiar la forma en que todos tomamos decisiones de consumo.</p>
+<h3>El efecto multiplicador del dinero local</h3>
+<p>Según investigaciones del Institute for Local Self-Reliance, por cada <strong>$100 gastados en un negocio local</strong>, $68 permanecen en la comunidad, frente a $43 de cadenas nacionales y apenas $28 de grandes franquicias internacionales.</p>
+<h3>Empleos de calidad</h3>
+<p>Los pequeños negocios locales generan el <strong>60-80% de los nuevos empleos</strong> en economías en desarrollo. Son empleos con horarios humanos, cercanía al hogar y trato personalizado que las cadenas rara vez ofrecen.</p>
+<h3>Diversidad económica y resiliencia</h3>
+<p>Las ciudades con economías dominadas por negocios locales diversificados son más resistentes a las crisis económicas que aquellas dependientes de pocas cadenas grandes. Cuando cierran los gigantes, los locales siguen.</p>
+<h3>El impacto medioambiental</h3>
+<p>Comprar local generalmente significa cadenas de suministro más cortas, menos embalaje industrial y menor huella de carbono. El pan que compras en la panadería de la esquina recorrió muchísimos menos kilómetros que el de la gran cadena de supermercados.</p>
+<h3>¿Qué puedes hacer tú hoy?</h3>
+<p>La próxima vez que necesites algo, busca primero en FYNDER si hay un negocio local cerca que lo ofrezca. El cambio empieza con decisiones pequeñas y cotidianas.</p>`
+    },
+    "7": {
+      title: "7 fotos que transformarán el perfil de tu negocio",
+      category: "Consejos", color: "#F97316",
+      author: "Jorge Castillo", authorInitial: "J", authorGrad: "135deg,#F97316,#F4D35E",
+      date: "18 may 2026", readTime: "4 min",
+      image: "https://images.unsplash.com/photo-1551836022-d5d88e9218df?w=900&h=450&fit=crop&auto=format",
+      body: `<p>Una imagen vale más que mil palabras, especialmente en el mundo digital. Los perfiles con al menos 5 fotos de calidad reciben hasta <strong>3 veces más clics</strong> que los que no tienen imágenes. Y lo mejor: no necesitas un fotógrafo profesional.</p>
+<h3>Foto 1: La fachada o entrada</h3>
+<p>Que los clientes reconozcan tu negocio cuando lleguen. Una foto clara de la entrada, tomada con buena luz natural, es esencial.</p>
+<h3>Foto 2: El ambiente interior</h3>
+<p>Muestra cómo se siente estar dentro. Busca la mejor iluminación, ordena el espacio y captura la esencia de tu negocio.</p>
+<h3>Foto 3: Tu producto o servicio estrella</h3>
+<p>¿Cuál es el plato más pedido? ¿El producto del que más te enorgulleces? Esa foto tiene que brillar.</p>
+<h3>Foto 4: El equipo humano</h3>
+<p>Las personas detrás de un negocio generan confianza. Una foto del equipo sonriente humaniza tu marca y crea conexión emocional.</p>
+<h3>Foto 5: El proceso</h3>
+<p>Un pastelero decorando una torta, un mecánico revisando un motor, una estilista trabajando. El proceso en acción genera credibilidad.</p>
+<h3>Fotos 6 y 7: Clientes felices y detalles únicos</h3>
+<p>Con su permiso, fotografía a clientes satisfechos. Y captura esos pequeños detalles que hacen especial a tu negocio: la pizarra del menú, el detalle en el empaque, la planta en el mostrador.</p>
+<h3>Tip final</h3>
+<p>Usa siempre luz natural cuando sea posible, limpia el lente del celular antes de fotografiar y toma varias opciones para elegir la mejor. La fotografía móvil actual es más que suficiente para brillar en FYNDER.</p>`
+    }
+  };
+
+  const art = articles[id];
+  if(!art){ showToast("Artículo no encontrado.", "error"); return; }
+
+  // Llenar la página de artículo
+  document.getElementById('artHeroImg').src = art.image;
+  document.getElementById('artHeroImg').alt = art.title;
+  document.getElementById('artCatLabel').textContent = art.category;
+  document.getElementById('artCatLabel').style.color = art.color;
+  document.getElementById('artTitle').textContent = art.title;
+  document.getElementById('artAuthorAv').style.background = `linear-gradient(${art.authorGrad})`;
+  document.getElementById('artAuthorAv').textContent = art.authorInitial;
+  document.getElementById('artAuthorName').textContent = art.author;
+  document.getElementById('artDate').textContent = art.date;
+  document.getElementById('artReadTime').textContent = art.readTime;
+  document.getElementById('artBody').innerHTML = art.body;
+
+  _currentArticleId = id;
+  renderArticleComments(id);
+
+  goPage('article');
+}
+
+/* ── Sistema de comentarios de artículos ── */
+let _currentArticleId = null;
+const ART_COMMENT_COLORS = [
+  'linear-gradient(135deg,#67B8B4,#2F5BB7)',
+  'linear-gradient(135deg,#EF4444,#F97316)',
+  'linear-gradient(135deg,#10B981,#67B8B4)',
+  'linear-gradient(135deg,#8B5CF6,#EC4899)',
+  'linear-gradient(135deg,#2F5BB7,#1E8F8B)',
+  'linear-gradient(135deg,#F97316,#F4D35E)',
+];
+
+function _getArticleComments(articleId) {
+  try { return JSON.parse(localStorage.getItem('fynderComments_' + articleId) || '[]'); }
+  catch(e){ return []; }
+}
+function _saveArticleComments(articleId, comments) {
+  localStorage.setItem('fynderComments_' + articleId, JSON.stringify(comments));
+}
+
+function _getInitials(name) {
+  if(!name || !name.trim()) return '?';
+  const parts = name.trim().split(/\s+/);
+  if(parts.length === 1) return parts[0].charAt(0).toUpperCase();
+  return (parts[0].charAt(0) + parts[parts.length - 1].charAt(0)).toUpperCase();
+}
+
+function _getUserAvatarHTML(size = 36) {
+  const stored  = localStorage.getItem('fynderAvatarPhoto');
+  const preset  = localStorage.getItem('fynderAvatarPreset');
+  const initBg  = localStorage.getItem('fynderAvatarInitialBg');
+  const user    = JSON.parse(localStorage.getItem('fynderUser') || 'null');
+  const name    = user?.name || 'Visitante';
+  const initials = _getInitials(name);
+
+  const base = `width:${size}px;height:${size}px;border-radius:50%;flex-shrink:0;overflow:hidden;display:flex;align-items:center;justify-content:center;`;
+  if(stored) {
+    return `<div style="${base}"><img src="${stored}" style="width:100%;height:100%;object-fit:cover;border-radius:50%;display:block" alt="avatar"></div>`;
+  } else if(preset) {
+    return `<div style="${base}background:#F0FEFE;font-size:${size*0.55}px;line-height:1">${preset}</div>`;
+  } else {
+    const bg = initBg || 'linear-gradient(135deg,#67B8B4,#2F5BB7)';
+    const fs = initials.length > 1 ? size*0.38 : size*0.45;
+    return `<div style="${base}background:${bg};font-weight:700;font-size:${fs}px;color:#fff;font-family:'Poppins',sans-serif;letter-spacing:.5px">${initials}</div>`;
+  }
+}
+
+function renderArticleComments(articleId) {
+  const comments = _getArticleComments(articleId);
+  const list = document.getElementById('artCommentList');
+  const countEl = document.getElementById('artCommentCount');
+  if(countEl) countEl.textContent = comments.length;
+  if(!list) return;
+
+  if(comments.length === 0) {
+    list.innerHTML = `<div class="article-no-comments"><i class="fas fa-comments"></i>Sé el primero en comentar este artículo.</div>`;
+    return;
+  }
+
+  const logged = !!localStorage.getItem('fynderLogged');
+  const user   = JSON.parse(localStorage.getItem('fynderUser') || 'null');
+  const likedKey = 'fynderCommentLikes_' + articleId;
+  const liked = JSON.parse(localStorage.getItem(likedKey) || '[]');
+
+  list.innerHTML = comments.slice()
+    .sort((a, b) => {
+      // Primero por likes DESC, empate por fecha (id timestamp) DESC
+      const likeDiff = (b.likes || 0) - (a.likes || 0);
+      if (likeDiff !== 0) return likeDiff;
+      return parseInt(b.id) - parseInt(a.id);
+    })
+    .map((c) => {
+    const isLiked = liked.includes(c.id);
+    const isOwn   = logged && user && c.userId === (user.email || user.name);
+    const colorIdx = c.colorIdx !== undefined ? c.colorIdx : 0;
+    // Si el comentario guardó avatarPhoto, úsala; si no, usa el color
+    let avatarHTML;
+    if(c.avatarPhoto) {
+      avatarHTML = `<img src="${c.avatarPhoto}" style="width:36px;height:36px;border-radius:50%;object-fit:cover;flex-shrink:0;display:block" alt="avatar">`;
+    } else if(c.avatarPreset) {
+      avatarHTML = `<div class="article-comment-av" style="background:#F0FEFE;font-size:1.1rem">${c.avatarPreset}</div>`;
+    } else {
+      const initFs = (c.initial && c.initial.length > 1) ? '.7rem' : '.9rem';
+      avatarHTML = `<div class="article-comment-av" style="background:${ART_COMMENT_COLORS[colorIdx]};font-size:${initFs};letter-spacing:.5px">${c.initial}</div>`;
+    }
+    return `
+    <div class="article-comment" id="comment-${c.id}">
+      <div class="article-comment-header">
+        ${avatarHTML}
+        <div class="article-comment-meta">
+          <span class="article-comment-name">${c.name}</span>
+          <span class="article-comment-date">${c.date}</span>
+        </div>
+      </div>
+      <div class="article-comment-text">${escapeHtml(c.text)}</div>
+      <div class="article-comment-actions">
+        <button class="article-comment-like-btn ${isLiked ? 'liked' : ''}" onclick="likeComment('${articleId}','${c.id}',this)">
+          <i class="fas fa-heart"></i> ${c.likes || 0}
+        </button>
+        ${isOwn ? `<button class="article-comment-delete-btn" onclick="deleteComment('${articleId}','${c.id}')"><i class="fas fa-trash-alt"></i> Eliminar</button>` : ''}
+      </div>
+    </div>`;
+  }).join('');
+}
+
+function artCommentCharCount(el) {
+  const c = document.getElementById('artCommentChars');
+  if(c) c.textContent = el.value.length + ' / 500';
+}
+
+function submitArticleComment() {
+  const ta = document.getElementById('artCommentText');
+  const text = ta ? ta.value.trim() : '';
+  if(!text) { showToast('Escribe algo antes de comentar.', 'error'); return; }
+  if(text.length < 3) { showToast('El comentario es demasiado corto.', 'error'); return; }
+
+  const logged = !!localStorage.getItem('fynderLogged');
+  const user   = JSON.parse(localStorage.getItem('fynderUser') || 'null');
+  const name   = logged && user ? user.name : 'Visitante';
+  const initial = _getInitials(name);
+  const userId  = logged && user ? (user.email || user.name) : null;
+  const colorIdx = Math.floor(Math.random() * ART_COMMENT_COLORS.length);
+
+  // Capturar avatar actual del usuario
+  const avatarPhoto  = localStorage.getItem('fynderAvatarPhoto') || null;
+  const avatarPreset = !avatarPhoto ? (localStorage.getItem('fynderAvatarPreset') || null) : null;
+  const avatarInitBg = (!avatarPhoto && !avatarPreset) ? (localStorage.getItem('fynderAvatarInitialBg') || null) : null;
+
+  const now = new Date();
+  const dateStr = now.toLocaleDateString('es-ES', { day: 'numeric', month: 'short', year: 'numeric' });
+
+  const comment = {
+    id: Date.now().toString(),
+    name, initial, userId, colorIdx,
+    avatarPhoto, avatarPreset, avatarInitBg,
+    text,
+    date: dateStr,
+    likes: 0,
+  };
+
+  const comments = _getArticleComments(_currentArticleId);
+  comments.push(comment);
+  _saveArticleComments(_currentArticleId, comments);
+
+  ta.value = '';
+  artCommentCharCount(ta);
+  renderArticleComments(_currentArticleId);
+  showToast('¡Comentario publicado! 💬');
+}
+
+function likeComment(articleId, commentId, btn) {
+  const likedKey = 'fynderCommentLikes_' + articleId;
+  const liked = JSON.parse(localStorage.getItem(likedKey) || '[]');
+  const comments = _getArticleComments(articleId);
+  const idx = comments.findIndex(c => c.id === commentId);
+  if(idx === -1) return;
+
+  if(liked.includes(commentId)) {
+    // unlike
+    comments[idx].likes = Math.max(0, (comments[idx].likes || 0) - 1);
+    const newLiked = liked.filter(l => l !== commentId);
+    localStorage.setItem(likedKey, JSON.stringify(newLiked));
+  } else {
+    comments[idx].likes = (comments[idx].likes || 0) + 1;
+    liked.push(commentId);
+    localStorage.setItem(likedKey, JSON.stringify(liked));
+    // Animación del corazón al dar like
+    if(btn) {
+      btn.classList.add('like-pop');
+      setTimeout(() => btn.classList.remove('like-pop'), 350);
+    }
+  }
+  _saveArticleComments(articleId, comments);
+  renderArticleComments(articleId);
+}
+
+function deleteComment(articleId, commentId) {
+  const comments = _getArticleComments(articleId);
+  const newComments = comments.filter(c => c.id !== commentId);
+  _saveArticleComments(articleId, newComments);
+  renderArticleComments(articleId);
+  showToast('Comentario eliminado.');
+}
+
+function escapeHtml(str) {
+  return str
+    .replace(/&/g,'&amp;')
+    .replace(/</g,'&lt;')
+    .replace(/>/g,'&gt;')
+    .replace(/"/g,'&quot;')
+    .replace(/\n/g,'<br>');
+}
+
+function sendSupport(event) {
+    event.preventDefault();
+    const name    = document.getElementById("supportName").value.trim();
+    const email   = document.getElementById("supportEmail").value.trim();
+    const subject = document.getElementById("supportSubject").value;
+    const msg     = document.getElementById("supportMsg").value.trim();
+    if (!name || !email || !subject || !msg) return;
+    // Demo: guardar en localStorage
+    const tickets = JSON.parse(localStorage.getItem("fynderSupportTickets") || "[]");
+    tickets.push({ name, email, subject, msg, date: new Date().toISOString() });
+    localStorage.setItem("fynderSupportTickets", JSON.stringify(tickets));
+    document.getElementById("supportForm").reset();
+    showToast("¡Mensaje enviado! Te responderemos en menos de 24 horas 💬");
+}
 
 /*modo oscuro*/
 function toggleDarkMode(){
@@ -1369,6 +2298,503 @@ window.addEventListener('beforeunload', function(){
         localStorage.setItem('fynderUserStatus', 'offline');
     }
 });
+
+
+// panel del usuario
+
+// datos de planes
+const PLAN_DATA = {
+  basico: {
+    name: 'Básico',
+    price: '$0',
+    period: 'para siempre',
+    icon: '🏪',
+    iconBg: '#E6F5F4',
+    iconColor: '#67B8B4',
+    badge: 'dash-plan-badge-free',
+    level: 0
+  },
+  pro: {
+    name: 'Pro',
+    price: '$9.99',
+    period: '/ mes',
+    icon: '⚡',
+    iconBg: 'linear-gradient(135deg,#1E8F8B,#2F5BB7)',
+    iconColor: '#fff',
+    badge: 'dash-plan-badge-pro',
+    level: 1
+  },
+  business: {
+    name: 'Business',
+    price: '$24.99',
+    period: '/ mes',
+    icon: '🏢',
+    iconBg: '#EEF2FF',
+    iconColor: '#2F5BB7',
+    badge: 'dash-plan-badge-biz',
+    level: 2
+  },
+  premium: {
+    name: 'Premium',
+    price: '$59.99',
+    period: '/ mes',
+    icon: '👑',
+    iconBg: 'linear-gradient(135deg,#7c3aed,#a855f7)',
+    iconColor: '#fff',
+    badge: 'dash-plan-badge-premium',
+    level: 3
+  }
+};
+
+// datos de analiticas simulados
+function generateAnalytics(period) {
+  const bizCount = JSON.parse(localStorage.getItem('fynderBusinesses') || '[]').length;
+  const base = Math.max(bizCount * 15, 5);
+  const seed = period === '7d' ? 1 : period === '30d' ? 4.5 : 12;
+
+  const rand = (min, max) => Math.floor(Math.random() * (max - min + 1)) + min;
+  const views   = rand(Math.floor(base * seed * 0.8), Math.floor(base * seed * 1.4));
+  const saves   = rand(Math.floor(views * 0.12), Math.floor(views * 0.22));
+  const clicks  = rand(Math.floor(views * 0.08), Math.floor(views * 0.18));
+  const reviews = rand(0, Math.max(1, Math.floor(views * 0.04)));
+
+  const deltaViews   = rand(-15, 35);
+  const deltaSaves   = rand(-10, 40);
+  const deltaClicks  = rand(-8, 30);
+  const deltaReviews = rand(0, 20);
+
+  return { views, saves, clicks, reviews, deltaViews, deltaSaves, deltaClicks, deltaReviews };
+}
+
+// etiquetas para la grafica
+function generateChartLabels(period) {
+  const days = period === '7d' ? 7 : period === '30d' ? 10 : 12;
+  const labels = [];
+  const now = new Date();
+  const step = period === '90d' ? 7 : (period === '30d' ? 3 : 1);
+  for (let i = days - 1; i >= 0; i--) {
+    const d = new Date(now);
+    d.setDate(d.getDate() - i * step);
+    labels.push(d.getDate() + '/' + (d.getMonth() + 1));
+  }
+  return labels;
+}
+
+// datos de visitas
+function generateChartData(period) {
+  const points = period === '7d' ? 7 : period === '30d' ? 10 : 12;
+  const base = Math.max(JSON.parse(localStorage.getItem('fynderBusinesses') || '[]').length * 2, 2);
+  const multiplier = period === '7d' ? 8 : period === '30d' ? 20 : 60;
+  return Array.from({ length: points }, () =>
+    Math.floor(Math.random() * base * multiplier + base * 3)
+  );
+}
+
+let dashChart = null;
+
+function renderDashChart(period) {
+  const canvas = document.getElementById('dashChartVisits');
+  if (!canvas) return;
+
+  const labels = generateChartLabels(period);
+  const data   = generateChartData(period);
+  const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+
+  const gridColor  = isDark ? 'rgba(255,255,255,.07)' : 'rgba(0,0,0,.06)';
+  const labelColor = isDark ? '#94A3B8' : '#6B7280';
+  const lineColor  = '#67B8B4';
+  const fillColor  = isDark ? 'rgba(103,184,180,.12)' : 'rgba(103,184,180,.15)';
+
+  // Destruir gráfica anterior si existe
+  if (dashChart) { dashChart.destroy(); dashChart = null; }
+
+  // Usamos Canvas API directamente (sin Chart.js para no añadir dependencias)
+  const ctx = canvas.getContext('2d');
+  const W = canvas.offsetWidth || 700;
+  const H = 220;
+  canvas.width  = W;
+  canvas.height = H;
+
+  const pad = { top: 20, right: 20, bottom: 40, left: 44 };
+  const chartW = W - pad.left - pad.right;
+  const chartH = H - pad.top - pad.bottom;
+  const maxVal = Math.max(...data) * 1.15 || 10;
+
+  ctx.clearRect(0, 0, W, H);
+
+  // Grid lines
+  const gridLines = 5;
+  ctx.strokeStyle = gridColor;
+  ctx.lineWidth = 1;
+  for (let i = 0; i <= gridLines; i++) {
+    const y = pad.top + (chartH / gridLines) * i;
+    ctx.beginPath(); ctx.moveTo(pad.left, y); ctx.lineTo(W - pad.right, y); ctx.stroke();
+
+    // Labels eje Y
+    const val = Math.round(maxVal - (maxVal / gridLines) * i);
+    ctx.fillStyle = labelColor;
+    ctx.font = '11px Inter, sans-serif';
+    ctx.textAlign = 'right';
+    ctx.fillText(val >= 1000 ? (val/1000).toFixed(1)+'k' : val, pad.left - 6, y + 4);
+  }
+
+  // Points x
+  const xs = labels.map((_, i) => pad.left + (chartW / (labels.length - 1)) * i);
+  const ys = data.map(v => pad.top + chartH - (v / maxVal) * chartH);
+
+  // Fill area
+  const grad = ctx.createLinearGradient(0, pad.top, 0, pad.top + chartH);
+  grad.addColorStop(0, fillColor);
+  grad.addColorStop(1, 'rgba(103,184,180,0)');
+  ctx.beginPath();
+  ctx.moveTo(xs[0], ys[0]);
+  for (let i = 1; i < xs.length; i++) {
+    const cpx = (xs[i-1] + xs[i]) / 2;
+    ctx.bezierCurveTo(cpx, ys[i-1], cpx, ys[i], xs[i], ys[i]);
+  }
+  ctx.lineTo(xs[xs.length-1], pad.top + chartH);
+  ctx.lineTo(xs[0], pad.top + chartH);
+  ctx.closePath();
+  ctx.fillStyle = grad;
+  ctx.fill();
+
+  // Line
+  ctx.beginPath();
+  ctx.moveTo(xs[0], ys[0]);
+  for (let i = 1; i < xs.length; i++) {
+    const cpx = (xs[i-1] + xs[i]) / 2;
+    ctx.bezierCurveTo(cpx, ys[i-1], cpx, ys[i], xs[i], ys[i]);
+  }
+  ctx.strokeStyle = lineColor;
+  ctx.lineWidth = 2.5;
+  ctx.stroke();
+
+  // Dots
+  xs.forEach((x, i) => {
+    ctx.beginPath();
+    ctx.arc(x, ys[i], 4, 0, Math.PI * 2);
+    ctx.fillStyle = '#fff';
+    ctx.fill();
+    ctx.strokeStyle = lineColor;
+    ctx.lineWidth = 2;
+    ctx.stroke();
+  });
+
+  // Labels eje X
+  ctx.fillStyle = labelColor;
+  ctx.font = '11px Inter, sans-serif';
+  ctx.textAlign = 'center';
+  const step = Math.max(1, Math.floor(labels.length / 7));
+  labels.forEach((lbl, i) => {
+    if (i % step === 0 || i === labels.length - 1) {
+      ctx.fillText(lbl, xs[i], H - 10);
+    }
+  });
+}
+
+let currentDashPeriod = '7d';
+
+function changePeriod(period, btn) {
+  currentDashPeriod = period;
+  document.querySelectorAll('.dash-period-btn').forEach(b => b.classList.remove('active'));
+  if (btn) btn.classList.add('active');
+  updateDashStats(period);
+  renderDashChart(period);
+}
+
+function updateDashStats(period) {
+  const plan = localStorage.getItem('fynderPlan') || 'basico';
+  const isLocked = plan === 'basico';
+
+  const statIds = ['statViews','statSaves','statClicks','statReviews'];
+  const deltaIds = ['statViewsDelta','statSavesDelta','statClicksDelta','statReviewsDelta'];
+
+  if (isLocked) {
+    statIds.forEach(id => { const el = document.getElementById(id); if(el) el.textContent = '—'; });
+    deltaIds.forEach(id => { const el = document.getElementById(id); if(el) el.textContent = ''; });
+    return;
+  }
+
+  const d = generateAnalytics(period);
+  const vals   = [d.views, d.saves, d.clicks, d.reviews];
+  const deltas = [d.deltaViews, d.deltaSaves, d.deltaClicks, d.deltaReviews];
+
+  statIds.forEach((id, i) => {
+    const el = document.getElementById(id);
+    if (el) el.textContent = vals[i].toLocaleString('es');
+  });
+
+  deltaIds.forEach((id, i) => {
+    const el = document.getElementById(id);
+    if (!el) return;
+    const delta = deltas[i];
+    const sign  = delta >= 0 ? '+' : '';
+    el.textContent = sign + delta + '% vs período anterior';
+    el.className   = 'dash-stat-delta ' + (delta >= 0 ? 'up' : 'down');
+  });
+}
+
+function loadDashboard() {
+  const user = JSON.parse(localStorage.getItem('fynderUser'));
+  if (!user) { goPage('login'); return; }
+
+  // Bienvenida
+  const welcome = document.getElementById('dashWelcome');
+  if (welcome) welcome.textContent = 'Hola, ' + user.name + ' 👋';
+
+  const plan = localStorage.getItem('fynderPlan') || 'basico';
+  const planInfo = PLAN_DATA[plan] || PLAN_DATA.basico;
+
+  // ---- Plan card ----
+  const planCard = document.getElementById('dashPlanCard');
+  if (planCard) {
+    const since = localStorage.getItem('fynderPlanSince') || 'Hoy';
+    planCard.innerHTML = `
+      <div class="dash-plan-icon" style="background:${planInfo.iconBg};color:${planInfo.iconColor};font-size:1.6rem">
+        ${planInfo.icon}
+      </div>
+      <div class="dash-plan-info">
+        <h3 class="dash-plan-name">Plan ${planInfo.name}</h3>
+        <p class="dash-plan-meta">Activo desde: ${since}</p>
+        <span class="dash-plan-badge ${planInfo.badge}">
+          <i class="fas fa-circle" style="font-size:.4rem"></i> Activo
+        </span>
+      </div>
+      <div class="dash-plan-price-block">
+        <div class="dash-plan-price">${planInfo.price}</div>
+        <span class="dash-plan-period">${planInfo.period}</span>
+        <div style="margin-top:12px">
+          <button class="dash-biz-btn" onclick="goPage('plans')" style="font-size:.78rem">
+            <i class="fas fa-arrow-right-arrow-left"></i> Cambiar plan
+          </button>
+        </div>
+      </div>
+    `;
+  }
+
+  // ---- Upgrade strip ----
+  const upgradeStrip = document.getElementById('dashUpgradeStrip');
+  if (upgradeStrip) upgradeStrip.style.display = planInfo.level >= 3 ? 'none' : 'flex';
+
+  // ---- Plan badge en gráfica ----
+  const chartBadge = document.getElementById('dashPlanBadgeChart');
+  if (chartBadge) {
+    chartBadge.textContent = 'Plan ' + planInfo.name;
+    chartBadge.className = 'dash-chart-badge ' + planInfo.badge;
+  }
+
+  // ---- Locked overlay ----
+  const lockedOverlay = document.getElementById('dashLockedOverlay');
+  const isLocked = planInfo.level === 0;
+  if (lockedOverlay) lockedOverlay.style.display = isLocked ? 'flex' : 'none';
+
+  // ---- Stats ----
+  updateDashStats(currentDashPeriod);
+
+  // ---- Gráfica ----
+  setTimeout(() => renderDashChart(currentDashPeriod), 80);
+
+  // ---- Negocios ----
+  const bizList = document.getElementById('dashBizList');
+  if (bizList) {
+    const businesses = JSON.parse(localStorage.getItem('fynderBusinesses') || '[]');
+    if (businesses.length === 0) {
+      bizList.innerHTML = `
+        <div class="dash-biz-empty">
+          <i class="fas fa-store"></i>
+          Aún no tienes negocios registrados.
+          <br><br>
+          <button class="btn-teal" style="padding:10px 20px" onclick="goPage('business')">
+            <i class="fas fa-plus" style="font-size:.7rem"></i> Registrar negocio
+          </button>
+        </div>
+      `;
+    } else {
+      bizList.innerHTML = businesses.map((biz, i) => {
+        const catObj = CATEGORIES.find(c => c.id === biz.category);
+        const emoji  = catObj ? '' : '🏪';
+        return `
+          <div class="dash-biz-item">
+            <div class="dash-biz-emoji" style="${catObj ? 'background:'+catObj.bg+';' : ''}">
+              ${catObj ? catObj.svg : emoji}
+            </div>
+            <div class="dash-biz-info">
+              <p class="dash-biz-name">${biz.name || 'Sin nombre'}</p>
+              <span class="dash-biz-cat">${catObj ? catObj.label : (biz.category || 'Sin categoría')} ${biz.city ? '· ' + biz.city : ''}</span>
+            </div>
+            <div class="dash-biz-actions">
+              <button class="dash-biz-btn" onclick="openBusinessDetail(${i})">
+                <i class="fas fa-eye"></i> Ver
+              </button>
+            </div>
+          </div>
+        `;
+      }).join('');
+    }
+  }
+
+  // ---- Actividad reciente ----
+  const activityList = document.getElementById('dashActivityList');
+  if (activityList) {
+    const businesses = JSON.parse(localStorage.getItem('fynderBusinesses') || '[]');
+    const activities = [];
+
+    activities.push({ dot: '#10B981', text: 'Sesión iniciada correctamente', time: 'Ahora' });
+    if (businesses.length > 0) {
+      activities.push({ dot: '#67B8B4', text: `Negocio "${businesses[businesses.length-1].name || 'Sin nombre'}" registrado`, time: 'Reciente' });
+    }
+    if (favorites && favorites.size > 0) {
+      activities.push({ dot: '#F4D35E', text: `${favorites.size} negocio${favorites.size!==1?'s':''} guardado${favorites.size!==1?'s':''}`, time: 'Esta sesión' });
+    }
+    activities.push({ dot: '#2F5BB7', text: `Plan ${planInfo.name} activo`, time: since || 'Hoy' });
+
+    activityList.innerHTML = activities.map(a => `
+      <div class="dash-activity-item">
+        <span class="dash-activity-dot" style="background:${a.dot}"></span>
+        <span class="dash-activity-text">${a.text}</span>
+        <span class="dash-activity-time">${a.time}</span>
+      </div>
+    `).join('');
+  }
+}
+
+// abre detalle del negocio
+function openBusinessDetail(index) {
+  const businesses = JSON.parse(localStorage.getItem('fynderBusinesses') || '[]');
+  const biz = businesses[index];
+  if (!biz) return;
+  // Buscar en BUSINESSES por nombre
+  const match = BUSINESSES.find(b => b.name === biz.name);
+  if (match) {
+    openModal(match.id);
+  } else {
+    showToast('Este negocio aún no está en el directorio público.');
+  }
+}
+
+
+// animaciones pagina saber mas
+
+let fynderObserver = null;
+
+function initFynderAnimations() {
+  const page = document.getElementById('page-fynder');
+  if (!page) return;
+
+  // Marcar elementos animables
+  const animTargets = [
+    { sel: '.fyl-what-card',    parent: '.fyl-what-grid' },
+    { sel: '.fyl-feature',      parent: '.fyl-features-grid' },
+    { sel: '.fyl-step',         parent: '.fyl-steps' },
+    { sel: '.fyl-impact-card',  parent: '.fyl-impact-grid' },
+    { sel: '.fyl-testi',        parent: '.fyl-testimonials' },
+    { sel: '.fyl-for-card',     parent: '.fyl-for-grid' },
+    { sel: '.fyl-cat',          parent: '.fyl-cats' },
+  ];
+
+  animTargets.forEach(({ sel }) => {
+    page.querySelectorAll(sel).forEach(el => {
+      el.classList.add('fyl-animate-child');
+    });
+  });
+
+  // Secciones completas
+  page.querySelectorAll('.fyl-section-label, .fyl-section-title, .fyl-section-lead, .fyl-steps, .fyl-compare, .fyl-faq, .fyl-impact-grid, .fyl-cta, .fyl-what-grid, .fyl-features-grid, .fyl-cats, .fyl-testimonials, .fyl-for-grid').forEach(el => {
+    if (!el.classList.contains('fyl-animate-child')) {
+      el.classList.add('fyl-animate');
+    }
+  });
+
+  // Disconnect observer anterior si existe
+  if (fynderObserver) fynderObserver.disconnect();
+
+  fynderObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('fyl-visible');
+        // Una vez visible no necesitamos seguir observando
+        fynderObserver.unobserve(entry.target);
+      }
+    });
+  }, {
+    root: null,
+    threshold: 0.08,
+    rootMargin: '0px 0px -40px 0px'
+  });
+
+  // Observar todos los elementos animables
+  page.querySelectorAll('.fyl-animate, .fyl-animate-child').forEach(el => {
+    fynderObserver.observe(el);
+  });
+
+  // Hero visible inmediatamente
+  page.querySelectorAll('.fyl-hero-content > *, .fyl-hero-visual, .fyl-hero-badge').forEach((el, i) => {
+    el.style.animation = `fyl-fade-up .5s cubic-bezier(.22,1,.36,1) ${i * 0.1}s both`;
+  });
+
+  // Añadir efecto ripple a botones de categoría al click
+  page.querySelectorAll('.fyl-cat').forEach(btn => {
+    btn.addEventListener('click', createRipple, { once: false });
+  });
+
+  // Ripple en botones principales también
+  page.querySelectorAll('.fyl-btn-primary, .fyl-for-btn-teal, .fyl-for-btn-purple, .fyl-cta-btn').forEach(btn => {
+    btn.addEventListener('click', createRipple);
+  });
+}
+
+function createRipple(e) {
+  const btn = e.currentTarget;
+  // Evitar duplicar el listener
+  const existing = btn.querySelector('.fyl-ripple-el');
+  if (existing) existing.remove();
+
+  const rect   = btn.getBoundingClientRect();
+  const size   = Math.max(rect.width, rect.height) * 2;
+  const x      = e.clientX - rect.left - size / 2;
+  const y      = e.clientY - rect.top  - size / 2;
+
+  const ripple = document.createElement('span');
+  ripple.className = 'fyl-ripple-el';
+  ripple.style.cssText = `
+    position:absolute;
+    width:${size}px;height:${size}px;
+    left:${x}px;top:${y}px;
+    border-radius:50%;
+    background:rgba(255,255,255,.28);
+    transform:scale(0);
+    animation:fyl-ripple .55s linear forwards;
+    pointer-events:none;
+    z-index:0;
+  `;
+  btn.style.position = btn.style.position || 'relative';
+  btn.style.overflow = 'hidden';
+  btn.appendChild(ripple);
+  setTimeout(() => ripple.remove(), 600);
+}
+
+
+// menu movil
+
+function toggleMobileMenu() {
+  const drawer  = document.getElementById('mobileMenuDrawer');
+  const overlay = document.getElementById('mobileMenuOverlay');
+  const burger  = document.getElementById('navHamburger');
+  const isOpen  = drawer.classList.contains('open');
+  if (isOpen) {
+    closeMobileMenu();
+  } else {
+    drawer.classList.add('open');
+    overlay.classList.add('open');
+    if (burger) burger.classList.add('open');
+    document.body.style.overflow = 'hidden';
+    updateMobileMenuActions();
+    // Mostrar/ocultar botón Salir según sesión
+    const salirBtn = document.getElementById('mobileMenuSalirBtn');
+    if (salirBtn) salirBtn.style.display = localStorage.getItem('fynderLogged') ? '' : 'none';
+    setTimeout(_applyDrawerAvatarBg, 10);
+  }
+}
 
 function closeMobileMenu() {
   document.getElementById('mobileMenuDrawer').classList.remove('open');
@@ -1665,6 +3091,465 @@ document.addEventListener('click', e => {
 document.addEventListener('keydown', e => {
   if (e.key === 'Escape') closeMobileMenu();
 });
+
+
+// animaciones pagina about
+
+function initAboutPage() {
+  spawnAboutParticles();
+  animateAboutBars();
+  animateAboutCounters();
+}
+
+function spawnAboutParticles() {
+  const wrap = document.getElementById('aboutParticles');
+  if (!wrap) return;
+  wrap.innerHTML = '';
+  for (let i = 0; i < 18; i++) {
+    const p = document.createElement('div');
+    p.className = 'about-particle';
+    p.style.cssText = `
+      left:${Math.random()*100}%;
+      top:${40 + Math.random()*50}%;
+      animation-delay:${Math.random()*3}s;
+      animation-duration:${2.5 + Math.random()*2}s;
+      width:${3 + Math.random()*4}px;
+      height:${3 + Math.random()*4}px;
+      background:rgba(${Math.random()>.5?'103,184,180':'244,211,94'},${0.4+Math.random()*.4});
+    `;
+    wrap.appendChild(p);
+  }
+}
+
+function animateAboutBars() {
+  const bars = document.querySelectorAll('#page-about .about-impact-bar-fill');
+  if (!bars.length) return;
+  setTimeout(() => {
+    bars.forEach(bar => {
+      const w = bar.style.width;
+      bar.style.width = '0';
+      requestAnimationFrame(() => { bar.style.width = w; });
+    });
+  }, 300);
+}
+
+function animateAboutCounters() {
+  // Stat 0: 85 negocios
+  animateCount('aStat0', 0, 85, 1200, '', '');
+  // Stat 2: 4.8 rating
+  animateCount('aStat2', 0, 4.8, 1400, '', '★', 1);
+}
+
+function animateCount(id, from, to, duration, prefix, suffix, decimals = 0) {
+  const el = document.getElementById(id);
+  if (!el) return;
+  const start = performance.now();
+  function step(now) {
+    const p = Math.min((now - start) / duration, 1);
+    const ease = 1 - Math.pow(1 - p, 3);
+    const val = from + (to - from) * ease;
+    el.textContent = prefix + (decimals ? val.toFixed(decimals) : Math.round(val)) + suffix;
+    if (p < 1) requestAnimationFrame(step);
+  }
+  requestAnimationFrame(step);
+}
+
+
+/* MAPA DE NEGOCIOS — Motor completo */
+
+// Coordenadas de los negocios (Panama City y alrededores)
+const BIZ_COORDS = {
+  "1":  [8.9936, -79.5197],  // Centro
+  "2":  [8.9914, -79.5302],  // Zona Rosa
+  "3":  [9.0007, -79.5200],  // Plaza
+  "5":  [8.9878, -79.5150],  // Barrio El Jardín
+  "6":  [8.9945, -79.5260],  // Col. Médica
+  "7":  [9.0021, -79.5185],  // Paseo Comercial
+  "8":  [9.0044, -79.5310],  // Las Palmas Blvd Norte
+  "9":  [8.9830, -79.5280],  // Calle 50 Miraflores
+  "10": [8.9921, -79.5350],  // Vía Argentina
+  "11": [8.9880, -79.5420],  // Av. Balboa Bella Vista
+  "12": [8.9505, -79.5348],  // San Felipe
+  "13": [9.0100, -79.5230],  // Tumba Muerto
+  "14": [8.9832, -79.4978],  // Paitilla
+  "15": [8.9521, -79.5340],  // Casco Viejo
+  "16": [8.9898, -79.5275],  // Bella Vista
+  "17": [8.9958, -79.5078],  // San Francisco
+  "18": [8.9630, -79.5412],  // El Chorrillo
+  "19": [9.0080, -79.5140],  // Av. Ricardo Alfaro
+  "20": [9.0170, -79.5155],  // El Dorado
+  "21": [8.9802, -79.5055],  // Punta Pacífica
+  "22": [8.9841, -79.5090],  // Calle 50 San Francisco
+  "23": [8.9905, -79.5330],  // El Cangrejo
+  "300":[9.0052, -79.5320],
+  "301":[9.0210, -79.5200],
+  "302":[8.9744, -79.5115],
+  "303":[9.0310, -79.5010],
+  "304":[8.9590, -79.5460],
+  "305":[9.0650, -79.6820],  // Canal de Panamá
+  "306":[9.5620, -78.9830],  // San Blas
+  "307":[9.1100, -79.6700],  // Parque Soberanía
+  "308":[8.9520, -79.5338],  // Casco Viejo
+  "309":[8.8080, -82.5400],  // Volcán Barú
+  "310":[8.9960, -79.5180],
+  "311":[9.0088, -79.5090],
+  "312":[8.9523, -79.5345],
+  "313":[9.0200, -79.5100],
+  "314":[8.9940, -79.5170],
+  "315":[9.0031, -79.5255],
+  "316":[9.0144, -79.5085],
+  "317":[8.9883, -79.5032],
+  "318":[9.0200, -79.5060],
+  "319":[8.9935, -79.5145],
+  "320":[9.0060, -79.5270],
+  "321":[9.0120, -79.5340],
+  "322":[9.0245, -79.5180],
+  "323":[9.0015, -79.5300],
+  "324":[9.0068, -79.5220]
+};
+
+// ── Estado del mapa ──
+let _map            = null;   // instancia Leaflet
+let _mapMarkers     = {};     // { bizId: L.marker }
+let _mapActiveCat   = '';     // categoría filtrada
+let _mapSelectedId  = null;   // id negocio seleccionado
+let _mapInitialized = false;
+
+// ── Entrada principal ──
+function initMap() {
+  // Si ya está inicializado solo actualizar tamaño y redibuja filtros
+  if (_mapInitialized) {
+    _map.invalidateSize();
+    _filterAndRenderMap();
+    return;
+  }
+  _mapInitialized = true;
+
+  // Detectar modo oscuro para tiles
+  const dark = document.documentElement.getAttribute('data-theme') === 'dark';
+
+  _map = L.map('mapCanvas', {
+    center: [9.0, -79.52],
+    zoom: 13,
+    zoomControl: false
+  });
+
+  // Tiles — CartoDB claro/oscuro (sin API key)
+  const tileUrl = dark
+    ? 'https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png'
+    : 'https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png';
+
+  L.tileLayer(tileUrl, {
+    attribution: '© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> | © <a href="https://carto.com">CARTO</a>',
+    subdomains: 'abcd',
+    maxZoom: 19
+  }).addTo(_map);
+
+  // Zoom control en esquina superior derecha
+  L.control.zoom({ position: 'topright' }).addTo(_map);
+
+  // Chips de categoría
+  _buildMapCatFilters();
+
+  // Marcadores
+  _placeAllMarkers();
+
+  // Panel lateral
+  _filterAndRenderMap();
+
+  // Cierra popup al click en mapa vacío
+  _map.on('click', () => closeMapPopup());
+}
+
+// ── Cambia tiles cuando cambia el tema ──
+document.addEventListener('themeChanged', () => {
+  if (!_mapInitialized || !_map) return;
+  _map.eachLayer(l => { if (l._url) _map.removeLayer(l); });
+  const dark = document.documentElement.getAttribute('data-theme') === 'dark';
+  L.tileLayer(
+    dark
+      ? 'https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png'
+      : 'https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png',
+    { attribution: '© OpenStreetMap | © CARTO', subdomains: 'abcd', maxZoom: 19 }
+  ).addTo(_map);
+});
+
+// ── Chips de filtro por categoría ──
+function _buildMapCatFilters() {
+  const wrap = document.getElementById('mapCatFilters');
+  if (!wrap) return;
+
+  // Chip "Todos"
+  const all = _chipEl('Todos', '', _mapActiveCat === '');
+  all.onclick = () => _setMapCat('');
+  wrap.appendChild(all);
+
+  // Una chip por categoría que tenga negocios con coords
+  const usedCats = new Set(
+    BUSINESSES
+      .filter(b => BIZ_COORDS[b.id])
+      .map(b => b.categoryId)
+  );
+
+  CATEGORIES.forEach(cat => {
+    if (!usedCats.has(cat.id)) return;
+    const chip = _chipEl(cat.label, cat.id, false);
+    chip.style.setProperty('--chip-color', cat.color);
+    chip.onclick = () => _setMapCat(cat.id);
+    wrap.appendChild(chip);
+  });
+}
+
+function _chipEl(label, catId, active) {
+  const el = document.createElement('button');
+  el.className = 'map-filter-chip' + (active ? ' active' : '');
+  el.dataset.catId = catId;
+  el.textContent = label;
+  return el;
+}
+
+function _setMapCat(catId) {
+  _mapActiveCat = catId;
+  // Actualizar chips
+  document.querySelectorAll('.map-filter-chip').forEach(chip => {
+    chip.classList.toggle('active', chip.dataset.catId === catId);
+  });
+  _filterAndRenderMap();
+}
+
+// ── Coloca todos los marcadores en el mapa ──
+function _placeAllMarkers() {
+  BUSINESSES.forEach(biz => {
+    const coords = BIZ_COORDS[biz.id];
+    if (!coords) return;
+
+    const cat = CATEGORIES.find(c => c.id === biz.categoryId);
+    const color = cat ? cat.color : '#67B8B4';
+
+    const icon = L.divIcon({
+      className: '',
+      html: `<div class="map-marker" style="background:${color}">
+               <div class="map-marker-inner">${_catEmoji(biz.categoryId)}</div>
+             </div>`,
+      iconSize: [32, 32],
+      iconAnchor: [16, 32],
+      popupAnchor: [0, -34]
+    });
+
+    const marker = L.marker(coords, { icon })
+      .addTo(_map)
+      .on('click', () => _selectBiz(biz));
+
+    _mapMarkers[biz.id] = marker;
+  });
+}
+
+// ── Emoji por categoría ──
+function _catEmoji(catId) {
+  const map = {
+    restaurantes: '🍽️',
+    salud:        '❤️',
+    belleza:      '💄',
+    transporte:   '🚗',
+    turismo:      '✈️',
+    hogar:        '🏠',
+    tecnologia:   '💻',
+    ropa:         '👗',
+    deportes:     '⚽'
+  };
+  return map[catId] || '📍';
+}
+
+// ── Filtra marcadores visibles y actualiza panel + badge ──
+function _filterAndRenderMap() {
+  const q = (document.getElementById('mapSearch')?.value || '').toLowerCase().trim();
+
+  const visible = BUSINESSES.filter(b => {
+    if (!BIZ_COORDS[b.id]) return false;
+    if (_mapActiveCat && b.categoryId !== _mapActiveCat) return false;
+    if (q && !b.name.toLowerCase().includes(q) && !b.category.toLowerCase().includes(q) && !b.address.toLowerCase().includes(q)) return false;
+    return true;
+  });
+
+  // Mostrar/ocultar marcadores
+  Object.entries(_mapMarkers).forEach(([id, marker]) => {
+    const show = visible.some(b => b.id === id);
+    if (show) {
+      if (!_map.hasLayer(marker)) marker.addTo(_map);
+    } else {
+      if (_map.hasLayer(marker)) _map.removeLayer(marker);
+    }
+  });
+
+  // Badge
+  const badge = document.getElementById('mapCount');
+  if (badge) badge.textContent = `${visible.length} negocio${visible.length !== 1 ? 's' : ''}`;
+
+  // Clear button en buscador
+  const clearBtn = document.getElementById('mapClear');
+  if (clearBtn) clearBtn.classList.toggle('hide', !q);
+
+  // Panel lateral
+  _renderMapPanel(visible);
+}
+
+// ── Panel lateral de resultados ──
+function _renderMapPanel(list) {
+  const container = document.getElementById('mapPanelList');
+  const panel     = document.getElementById('mapPanel');
+  if (!container) return;
+
+  if (!list.length) {
+    container.innerHTML = `<div style="padding:24px 16px;text-align:center;color:var(--muted);font-size:.875rem">
+      <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="margin:0 auto 12px;display:block;opacity:.35"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
+      Sin resultados para esta búsqueda
+    </div>`;
+    if (panel) panel.classList.remove('hidden');
+    return;
+  }
+
+  container.innerHTML = list.map(b => {
+    const cat   = CATEGORIES.find(c => c.id === b.categoryId);
+    const color = cat ? cat.color : '#67B8B4';
+    const stars = `<svg xmlns="http://www.w3.org/2000/svg" width="11" height="11" viewBox="0 0 24 24" fill="#F4D35E" stroke="#F4D35E" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>`;
+    const isSelected = _mapSelectedId === b.id;
+    return `<div class="map-list-card${isSelected ? ' selected' : ''}" onclick="javascript:_selectBiz(BUSINESSES.find(x=>x.id==='${b.id}'))" data-map-card="${b.id}">
+      <img class="map-list-img" src="${b.image}" alt="${b.name}" onerror="this.src='https://images.unsplash.com/photo-1560472354-b33ff0c44a43?w=56&h=56&fit=crop'">
+      <div class="map-list-body">
+        <div class="map-list-name">${b.name}</div>
+        <div class="map-list-cat" style="color:${color}">${b.category}</div>
+        <div class="map-list-addr">${b.address}</div>
+        <div class="map-list-rating">${stars} ${b.rating} <span style="color:var(--muted);font-weight:400">(${b.reviews})</span></div>
+      </div>
+    </div>`;
+  }).join('');
+
+  if (panel) panel.classList.remove('hidden');
+}
+
+// ── Seleccionar un negocio (click en marcador o card) ──
+function _selectBiz(biz) {
+  if (!biz) return;
+
+  // Deseleccionar anterior
+  if (_mapSelectedId && _mapMarkers[_mapSelectedId]) {
+    _mapMarkers[_mapSelectedId].getElement()?.querySelector('.map-marker')?.classList.remove('selected');
+  }
+
+  _mapSelectedId = biz.id;
+
+  // Resaltar marcador seleccionado
+  const markerEl = _mapMarkers[biz.id]?.getElement()?.querySelector('.map-marker');
+  if (markerEl) markerEl.classList.add('selected');
+
+  // Centrar mapa
+  const coords = BIZ_COORDS[biz.id];
+  if (coords) _map.panTo(coords, { animate: true });
+
+  // Resaltar card en panel
+  document.querySelectorAll('.map-list-card').forEach(el => {
+    el.classList.toggle('selected', el.dataset.mapCard === biz.id);
+  });
+
+  // Scroll panel al card
+  const card = document.querySelector(`[data-map-card="${biz.id}"]`);
+  card?.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+
+  // Abrir popup
+  _openMapPopup(biz);
+}
+
+// ── Popup flotante ──
+function _openMapPopup(biz) {
+  const cat   = CATEGORIES.find(c => c.id === biz.categoryId);
+  const color = cat ? cat.color : '#67B8B4';
+  const stars = starsHTML(biz.rating);
+
+  document.getElementById('mpImg').src   = biz.image;
+  document.getElementById('mpImg').alt   = biz.name;
+  document.getElementById('mpCat').textContent    = biz.category;
+  document.getElementById('mpCat').style.color    = color;
+  document.getElementById('mpName').textContent   = biz.name;
+  document.getElementById('mpAddrText').textContent = biz.address;
+
+  const ratingEl = document.getElementById('mpRating');
+  ratingEl.innerHTML = `${stars}
+    <strong style="margin-left:4px">${biz.rating}</strong>
+    <span style="font-weight:400;color:var(--muted)">(${biz.reviews} reseñas)</span>`;
+
+  // Botón "Ver detalle"
+  const btnDetail = document.getElementById('mpBtnDetail');
+  btnDetail.onclick = () => { closeMapPopup(); openModal(biz.id); };
+
+  // Botón Google Maps
+  const btnGmaps = document.getElementById('mpBtnGmaps');
+  btnGmaps.href = `https://www.google.com/maps/search/?api=1&query=${biz.mapQuery || encodeURIComponent(biz.address)}`;
+
+  // Teléfono rápido si existe
+  let phoneHtml = '';
+  if (biz.phone) {
+    phoneHtml = `<a href="tel:${biz.phone}" class="map-popup-btn map-popup-btn-phone" style="flex:0 0 auto;padding:9px 12px;border-radius:12px;background:rgba(16,185,129,.1);color:#10B981;border:none;cursor:pointer;display:flex;align-items:center;gap:5px;font-size:.8rem;font-weight:600;font-family:'Poppins',sans-serif;text-decoration:none">
+      <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 13a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 2.18h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 9.91a16 16 0 0 0 6.09 6.09l.91-.91a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+      Llamar
+    </a>`;
+  }
+
+  // Inyectar botón de llamada si no existe
+  const actionsEl = document.querySelector('.map-popup-actions');
+  if (actionsEl) {
+    const existingPhone = actionsEl.querySelector('.map-popup-btn-phone');
+    if (existingPhone) existingPhone.remove();
+    if (biz.phone) actionsEl.insertAdjacentHTML('beforeend', phoneHtml);
+  }
+
+  // Deal badge
+  const dealBadge = document.getElementById('mpDeal');
+  if (dealBadge) {
+    if (biz.deal) {
+      dealBadge.textContent  = biz.deal.label;
+      dealBadge.style.background = biz.deal.color;
+      dealBadge.style.display    = 'inline-block';
+    } else {
+      dealBadge.style.display = 'none';
+    }
+  }
+
+  document.getElementById('mapBizPopup').classList.add('visible');
+}
+
+function closeMapPopup() {
+  document.getElementById('mapBizPopup')?.classList.remove('visible');
+  if (_mapSelectedId && _mapMarkers[_mapSelectedId]) {
+    _mapMarkers[_mapSelectedId].getElement()?.querySelector('.map-marker')?.classList.remove('selected');
+  }
+  _mapSelectedId = null;
+  document.querySelectorAll('.map-list-card').forEach(el => el.classList.remove('selected'));
+}
+
+function closeMapPanel() {
+  document.getElementById('mapPanel')?.classList.add('hidden');
+}
+
+function filterMapMarkers() {
+  _filterAndRenderMap();
+}
+
+function clearMapSearch() {
+  const input = document.getElementById('mapSearch');
+  if (input) input.value = '';
+  _filterAndRenderMap();
+}
+
+// Reinicializar mapa cuando se cambia el tema (para tiles)
+const _origToggleDark = typeof toggleDarkMode === 'function' ? toggleDarkMode : null;
+if (_origToggleDark) {
+  // El evento 'themeChanged' se dispara desde toggleDarkMode si lo emitimos
+  const _realToggle = toggleDarkMode;
+  window.toggleDarkMode = function() {
+    _realToggle();
+    document.dispatchEvent(new Event('themeChanged'));
+  };
+}
 
 
 /* GLOBO TERRÁQUEO FYNDER — versión completa con texturas reales, shader día/noche, nubes, arcos tipo tubo, labels flotantes, tarjetas orbitantes, ticker y controles de zoom. Panamá 🇵🇦 destacado como hub principal. */
@@ -2249,7 +4134,2465 @@ function openChatFromModal() {
 function openChat(bizId, biz) {
   _activeChatBizId = String(bizId);
 
+  // Cerrar el panel de info si estaba abierto (nuevo chat seleccionado)
+  closeWaChatInfoPanel();
 
+  // Asegurar que la conversación existe
+  let convs = _getConversations();
+  if (!convs.find(c => String(c.id) === String(bizId))) {
+    convs.unshift({ id: String(bizId), name: biz.name, cat: biz.category, image: biz.image || null, unread: 0, lastMsg: '', lastTime: '' });
+    _saveConversations(convs);
+  }
+
+  // Helper: rellena los elementos de header por ID
+  function _fillHeader(nameId, subId, avaId, onlineId) {
+    const nameEl   = document.getElementById(nameId);
+    const subEl    = document.getElementById(subId);
+    const avaEl    = document.getElementById(avaId);
+    const onlineEl = document.getElementById(onlineId);
+    if (nameEl) nameEl.textContent = biz.name;
+    if (subEl)  { subEl.textContent = 'en línea'; subEl.classList.add('online'); }
+    if (onlineEl) onlineEl.classList.add('visible');
+    if (avaEl) {
+      if (biz.image) {
+        avaEl.innerHTML = `<img src="${biz.image}" alt="${biz.name}" loading="lazy">`;
+        avaEl.style.background = '';
+      } else {
+        avaEl.innerHTML = '';
+        avaEl.textContent = (biz.name || '?')[0].toUpperCase();
+        avaEl.style.background = _avatarColor(biz.name);
+      }
+    }
+  }
+
+  // Rellena header del área desktop (wa-chat-area) y del page-chat móvil
+  _fillHeader('chatHeaderName','chatHeaderSub','chatHeaderAvatar','chatHeaderOnline');
+  _fillHeader('chatHeaderNameMobile','chatHeaderSubMobile','chatHeaderAvatarMobile','chatHeaderOnlineMobile');
+
+  // Botón llamar desktop
+  const callBtn = document.getElementById('waChatCallBtn');
+  if (callBtn) {
+    callBtn.onclick = biz.phone
+      ? () => { window.location.href = 'tel:' + biz.phone.replace(/\s/g,''); }
+      : () => showToast('Teléfono no disponible');
+  }
+
+  // Si no tiene mensajes, agregar mensaje de bienvenida
+  let msgs = _getMsgs(bizId);
+  if (msgs.length === 0) {
+    const welcomeMsg = {
+      id: Date.now(), from: 'biz',
+      text: `¡Hola! 👋 Bienvenido a ${biz.name}. ¿En qué podemos ayudarte?`,
+      time: _fmtTime(new Date()), date: _fmtDate(new Date())
+    };
+    msgs = [welcomeMsg];
+    _saveMsgs(bizId, msgs);
+    _updateConvLastMsg(bizId, welcomeMsg.text, welcomeMsg.time);
+    pushNotification({ type:'chat', title:biz.name,
+      body: welcomeMsg.text.slice(0,80)+(welcomeMsg.text.length>80?'…':''),
+      bizId:biz.id, image:biz.image||null });
+  }
+
+  const isDesktop = window.innerWidth >= 769;
+  if (isDesktop) {
+    // Layout WA Web: mostrar wa-chat-area dentro de page-messages
+    const welcome  = document.getElementById('waWelcome');
+    const chatArea = document.getElementById('waChatArea');
+    if (welcome)  welcome.style.display  = 'none';
+    if (chatArea) chatArea.style.display = 'flex';
+    goPage('messages'); renderConversations();
+    renderChatMessages(bizId);   // renderiza en #chatMessages (desktop)
+    // Marcar activo en la lista
+    document.querySelectorAll('.msg-chat-item').forEach(el => el.classList.remove('wa-active'));
+    const activeItem = document.querySelector(`.msg-chat-item[data-biz-id="${bizId}"]`);
+    if (activeItem) activeItem.classList.add('wa-active');
+  } else {
+    // Móvil: renderiza en #chatMessagesMobile y navega a page-chat
+    renderChatMessagesMobile(bizId);
+    goPage('chat');
+  }
+
+  // Simular que el negocio lee los mensajes al abrir el chat
+  setTimeout(() => {
+    const allMsgs = _getMsgs(bizId);
+    let changed = false;
+    allMsgs.forEach(m => {
+      if (m.from === 'user' && m.status !== 'read') {
+        m.status = 'read';
+        m.read   = true;
+        changed  = true;
+      }
+    });
+    if (changed) {
+      _saveMsgs(bizId, allMsgs);
+      if (_activeChatBizId === bizId) {
+        if (window.innerWidth >= 769) renderChatMessages(bizId);
+        else renderChatMessagesMobile(bizId);
+      }
+    }
+  }, 1200);
+
+  // Aplicar ajustes guardados
+  _loadMsgSettings();
+  if (_msgSettings.bubbleColor) _applyChatBubbleColor(_msgSettings.bubbleColor);
+  if (_msgSettings.fontSize)    _applyChatFontSize(_msgSettings.fontSize);
+
+  // Resetear input y mostrar botón mic (en caso de que quedara texto de un chat anterior)
+  const chatInput = document.getElementById('chatInput');
+  if (chatInput) { chatInput.value = ''; }
+  chatInputChange();
+}
+
+// ---- Renderizar mensajes (desktop: #chatMessages) ----
+function renderChatMessages(bizId) {
+  const container = document.getElementById('chatMessages');
+  _renderMsgsInto(container, bizId);
+}
+
+// ---- Renderizar mensajes (móvil: #chatMessagesMobile) ----
+function renderChatMessagesMobile(bizId) {
+  const container = document.getElementById('chatMessagesMobile');
+  _renderMsgsInto(container, bizId);
+}
+
+// ---- Renderizador compartido ----
+function _renderMsgsInto(container, bizId) {
+  if (!container) return;
+  const msgs = _getMsgs(bizId);
+
+  let html = '';
+  let prevDate = '';
+  let prevFrom = '';
+
+  msgs.forEach((msg, i) => {
+    const isOut = (msg.from === 'user');
+    const isIn  = !isOut;
+
+    if (msg.date && msg.date !== prevDate) {
+      html += `<div class="chat-date-sep">${msg.date}</div>`;
+      prevDate = msg.date;
+    }
+
+    const nextMsg  = msgs[i + 1];
+    const isLastInGroup  = !nextMsg  || nextMsg.from  !== msg.from;
+    const isFirstInGroup = prevFrom !== msg.from;
+
+    const biz = BUSINESSES.find(b => String(b.id) === String(bizId));
+    const bizInitial = biz ? (biz.name || '?')[0].toUpperCase() : '?';
+    const bizAvaHtml = biz && biz.image ? `<img src="${biz.image}" alt="">` : bizInitial;
+    const bizAvaBg   = biz ? _avatarColor(biz.name) : '#4a4d55';
+
+    let avaHtml = '';
+    if (isIn) {
+      avaHtml = isFirstInGroup
+        ? `<div class="chat-msg-ava" style="${biz && !biz.image ? 'background:'+bizAvaBg : ''}">${bizAvaHtml}</div>`
+        : `<div class="chat-msg-ava" style="visibility:hidden"></div>`;
+    }
+
+    let bubbleClass = 'chat-bubble';
+    if (isIn  && isLastInGroup) bubbleClass += ' chat-bubble-tail-in';
+    if (!isIn && isLastInGroup) bubbleClass += ' chat-bubble-tail-out';
+
+    const ticks = isOut ? _buildTickHtml(msg) : '';
+
+    html += `
+      <div class="${isIn ? 'chat-msg-row in' : 'chat-msg-row out'}">
+        ${isIn ? avaHtml : ''}
+        <div>
+          <div class="${bubbleClass}">
+            ${escapeHtml(msg.text)}
+            <div class="chat-bubble-meta">
+              <span class="chat-bubble-time">${msg.time || ''}</span>
+              ${ticks}
+            </div>
+          </div>
+        </div>
+      </div>`;
+    prevFrom = msg.from;
+  });
+
+  container.innerHTML = html;
+  requestAnimationFrame(() => { container.scrollTop = container.scrollHeight; });
+}
+
+// ---- Enviar mensaje (desktop: #chatInput) ----
+function sendChatMessage() {
+  _doSendMessage('chatInput', _activeChatBizId, renderChatMessages);
+}
+
+// ---- Enviar mensaje (móvil: #chatInputMobile) ----
+function sendChatMessageMobile() {
+  _doSendMessage('chatInputMobile', _activeChatBizId, renderChatMessagesMobile);
+}
+
+function _doSendMessage(inputId, bizId, renderFn) {
+  const input = document.getElementById(inputId);
+  if (!input || !bizId) return;
+  const text = input.value.trim();
+  if (!text) return;
+
+  if (!localStorage.getItem('fynderLogged')) {
+    showToast('Inicia sesión para enviar mensajes'); return;
+  }
+
+  const now = new Date();
+  // status: 'pending' → 'sent' → 'delivered' → 'read'
+  const msg = { id: Date.now(), from: 'user', text,
+    time: _fmtTime(now), date: _fmtDate(now), read: false, status: 'pending' };
+
+  const msgs = _getMsgs(bizId);
+  msgs.push(msg);
+  _saveMsgs(bizId, msgs);
+  _updateConvLastMsg(bizId, text, msg.time);
+  renderConversations();
+
+  input.value = '';
+  chatInputChange(); // restaurar botón mic después de enviar
+  renderFn(bizId);
+
+  // Simular progresión de estados: pending → sent → delivered → read
+  setTimeout(() => _advanceMsgStatus(bizId, msg.id, 'sent',      renderFn), 400);
+  setTimeout(() => _advanceMsgStatus(bizId, msg.id, 'delivered', renderFn), 900);
+  setTimeout(() => _advanceMsgStatus(bizId, msg.id, 'read',      renderFn), 2200);
+  setTimeout(() => _bizAutoReply(bizId, renderFn), 1400);
+}
+
+/** Avanza el estado de un mensaje y re-renderiza */
+function _advanceMsgStatus(bizId, msgId, newStatus, renderFn) {
+  const msgs = _getMsgs(bizId);
+  const m = msgs.find(x => x.id === msgId);
+  if (!m) return;
+  m.status = newStatus;
+  if (newStatus === 'read') m.read = true;
+  _saveMsgs(bizId, msgs);
+  if (_activeChatBizId === bizId && renderFn) renderFn(bizId);
+}
+
+// ---- Respuesta automática del negocio ----
+function _bizAutoReply(bizId, renderFn) {
+  if (_activeChatBizId !== bizId) return;
+
+  // Marcar todos los mensajes del usuario como 'read' (el negocio los leyó)
+  const msgs = _getMsgs(bizId);
+  let changed = false;
+  msgs.forEach(m => {
+    if (m.from === 'user' && m.status !== 'read') {
+      m.status = 'read';
+      m.read   = true;
+      changed  = true;
+    }
+  });
+
+  // Obtener el último mensaje del usuario para responder con contexto
+  const userMsgs = msgs.filter(m => m.from === 'user');
+  const lastUserText = userMsgs.length > 0
+    ? (userMsgs[userMsgs.length - 1].text || '').toLowerCase()
+    : '';
+
+  // Obtener el último mensaje del bot para entender el contexto
+  const bizMsgs = msgs.filter(m => m.from === 'biz');
+  const lastBizText = bizMsgs.length > 0
+    ? (bizMsgs[bizMsgs.length - 1].text || '').toLowerCase()
+    : '';
+
+  const biz = BUSINESSES.find(b => String(b.id) === String(bizId));
+  const cat = biz ? (biz.categoryId || biz.category || '').toLowerCase() : '';
+  const bizName = biz ? biz.name : 'nosotros';
+
+  const text = _getSmartReply(lastUserText, cat, bizName, biz, lastBizText);
+  const now  = new Date();
+  const reply = { id: Date.now(), from: 'biz', text, time: _fmtTime(now), date: _fmtDate(now) };
+  msgs.push(reply);
+  _saveMsgs(bizId, msgs);
+  _updateConvLastMsg(bizId, text, reply.time);
+  renderConversations();
+  // Usa la función de render pasada, o detecta cuál aplica
+  if (renderFn) {
+    renderFn(bizId);
+  } else {
+    if (window.innerWidth >= 769) renderChatMessages(bizId);
+    else renderChatMessagesMobile(bizId);
+  }
+}
+
+// ---- Renderizar lista de conversaciones ----
+function renderConversations() {
+  const convs = _getConversations();
+  const list  = document.getElementById('msgChatList');
+  const empty = document.getElementById('msgEmptyChats');
+  if (!list) return;
+
+  if (convs.length === 0) {
+    list.innerHTML = '';
+    if (empty) empty.classList.remove('hide');
+    return;
+  }
+  if (empty) empty.classList.add('hide');
+
+  list.innerHTML = convs.map(c => {
+    const initial = (c.name || '?')[0].toUpperCase();
+    const bg      = _avatarColor(c.name);
+    const avatar  = c.image
+      ? `<img src="${c.image}" alt="${c.name}" loading="lazy">`
+      : `<span style="color:#fff;font-size:1.1rem;font-weight:700;font-family:'Poppins',sans-serif">${initial}</span>`;
+    const unread  = c.unread > 0 ? `<span class="msg-chat-unread">${c.unread}</span>` : '';
+    const isActive = String(c.id) === String(_activeChatBizId);
+    return `
+      <div class="msg-chat-item${isActive ? ' wa-active' : ''}" data-biz-id="${c.id}" onclick="openChatById('${c.id}')">
+        <div class="msg-chat-avatar-wrap">
+          <div class="msg-chat-avatar" style="background:${bg}">${avatar}</div>
+          <span class="msg-chat-online"></span>
+        </div>
+        <div class="msg-chat-body">
+          <div class="msg-chat-top">
+            <span class="msg-chat-name">${escapeHtml(c.name)}</span>
+            <span class="msg-chat-time">${c.lastTime || ''}</span>
+          </div>
+          <span class="msg-chat-preview">${escapeHtml(c.lastMsg || 'Toca para ver el chat')}</span>
+        </div>
+        <div class="msg-chat-actions">
+          ${unread}
+          <button class="msg-chat-menu" onclick="event.stopPropagation();msgConvMenu('${c.id}')" title="Más opciones">
+            <i class="fas fa-ellipsis-vertical"></i>
+          </button>
+        </div>
+      </div>`;
+  }).join('');
+}
+
+// ---- Abrir chat por ID ----
+function openChatById(bizId) {
+  const biz = BUSINESSES.find(b => String(b.id) === String(bizId));
+  let convs = _getConversations();
+  const conv = convs.find(c => String(c.id) === String(bizId));
+  if (conv) { conv.unread = 0; _saveConversations(convs); }
+  updateMsgBadge();
+  // Limpiar notificaciones de este negocio al abrir el chat
+  clearNotifsByBizId(bizId);
+
+  if (biz) {
+    openChat(bizId, biz);
+  } else {
+    // Negocio no encontrado — mostrar igualmente
+    _activeChatBizId = String(bizId);
+    const isDesktop = window.innerWidth >= 769;
+
+    function _fill(nameId, subId, avaId) {
+      const nameEl = document.getElementById(nameId);
+      const subEl  = document.getElementById(subId);
+      const avaEl  = document.getElementById(avaId);
+      if (nameEl) nameEl.textContent = conv ? conv.name : 'Negocio';
+      if (subEl)  subEl.textContent  = conv ? (conv.cat || 'Negocio local') : 'Negocio local';
+      if (avaEl)  {
+        avaEl.innerHTML = '';
+        avaEl.textContent = (conv ? conv.name : 'N')[0].toUpperCase();
+        avaEl.style.background = _avatarColor(conv ? conv.name : 'N');
+      }
+    }
+
+    if (isDesktop) {
+      _fill('chatHeaderName','chatHeaderSub','chatHeaderAvatar');
+      const welcome  = document.getElementById('waWelcome');
+      const chatArea = document.getElementById('waChatArea');
+      if (welcome)  welcome.style.display  = 'none';
+      if (chatArea) chatArea.style.display = 'flex';
+      renderChatMessages(bizId);
+      document.querySelectorAll('.msg-chat-item').forEach(el => el.classList.remove('wa-active'));
+      const activeItem = document.querySelector(`.msg-chat-item[data-biz-id="${bizId}"]`);
+      if (activeItem) activeItem.classList.add('wa-active');
+    } else {
+      _fill('chatHeaderNameMobile','chatHeaderSubMobile','chatHeaderAvatarMobile');
+      renderChatMessagesMobile(bizId);
+      goPage('chat');
+    }
+  }
+}
+
+// ---- Menú contextual de conversación ----
+function msgConvMenu(bizId) {
+  const bmarks = _getBookmarks();
+  const isBookmarked = bmarks.includes(String(bizId));
+  const action1 = isBookmarked ? 'Quitar de marcadores' : 'Añadir a marcadores';
+  const icon1   = isBookmarked ? 'fa-bookmark-slash' : 'fa-bookmark';
+  showToast(`${action1}… (próximamente)`);
+}
+
+// ---- Tab switch ----
+function msgSwitchTab(tab) {
+  // Limpiar búsqueda al cambiar de tab
+  _convSearchQuery = '';
+  const searchInput = document.getElementById('msgSearchInput');
+  if (searchInput) searchInput.value = '';
+
+  // Actualizar botones
+  document.getElementById('msgTabChats')    .classList.toggle('active', tab === 'chats');
+  document.getElementById('msgTabBookmarks').classList.toggle('active', tab === 'bookmarks');
+  const tabNotif = document.getElementById('msgTabNotif');
+  if (tabNotif) tabNotif.classList.remove('active');
+
+  // Mostrar panel
+  document.getElementById('msgPanelChats')    .classList.toggle('active', tab === 'chats');
+  document.getElementById('msgPanelBookmarks').classList.toggle('active', tab === 'bookmarks');
+  document.getElementById('msgPanelNotif')    .classList.remove('active');
+
+  if (tab === 'chats')     renderConversations();
+  if (tab === 'bookmarks') renderBookmarks();
+}
+
+function msgSwitchSection(section) {
+  // Botón "Notificaciones" en el header
+  document.getElementById('msgPanelChats')    .classList.remove('active');
+  document.getElementById('msgPanelBookmarks').classList.remove('active');
+  document.getElementById('msgPanelNotif')    .classList.toggle('active', section === 'notif');
+  document.getElementById('msgTabChats')    .classList.remove('active');
+  document.getElementById('msgTabBookmarks').classList.remove('active');
+  const tabNotif = document.getElementById('msgTabNotif');
+  if (tabNotif) tabNotif.classList.toggle('active', section === 'notif');
+  if (section === 'notif') renderNotifications();
+}
+
+// ---- Marcadores ----
+function renderBookmarks() {
+  const bmarks = _getBookmarks();
+  const list   = document.getElementById('msgBookmarkList');
+  const empty  = document.getElementById('msgEmptyBookmarks');
+  if (!list) return;
+
+  if (bmarks.length === 0) {
+    list.innerHTML = '';
+    if (empty) empty.style.display = 'flex';
+    return;
+  }
+  if (empty) empty.style.display = 'none';
+
+  const convs = _getConversations();
+  list.innerHTML = bmarks.map(id => {
+    const c = convs.find(x => String(x.id) === String(id));
+    if (!c) return '';
+    const initial = (c.name || '?')[0].toUpperCase();
+    const bg      = _avatarColor(c.name);
+    const avatar  = c.image
+      ? `<img src="${c.image}" alt="${c.name}" loading="lazy">`
+      : `<span style="color:#fff;font-size:1.1rem;font-weight:700">${initial}</span>`;
+    return `
+      <div class="msg-chat-item" onclick="openChatById('${c.id}')">
+        <div class="msg-chat-avatar-wrap">
+          <div class="msg-chat-avatar" style="background:${bg}">${avatar}</div>
+        </div>
+        <div class="msg-chat-body">
+          <div class="msg-chat-top">
+            <span class="msg-chat-name">${escapeHtml(c.name)}</span>
+            <span class="msg-chat-time">${c.lastTime || ''}</span>
+          </div>
+          <span class="msg-chat-preview">${escapeHtml(c.lastMsg || '')}</span>
+        </div>
+      </div>`;
+  }).join('');
+}
+
+// ---- Notificaciones — sistema real ----
+
+const NOTIF_KEY = 'fynderNotifications';
+
+/** Carga todas las notificaciones guardadas en localStorage */
+function _getNotifications() {
+  try { return JSON.parse(localStorage.getItem(NOTIF_KEY)) || []; }
+  catch { return []; }
+}
+
+/** Guarda la lista de notificaciones */
+function _saveNotifications(list) {
+  localStorage.setItem(NOTIF_KEY, JSON.stringify(list));
+}
+
+/**
+ * Agrega una nueva notificación al almacén.
+ * @param {Object} opts - { type, title, body, icon, bizId, image }
+ */
+function pushNotification({ type = 'info', title, body, icon = '🔔', bizId = null, image = null } = {}) {
+  const notifs = _getNotifications();
+  notifs.unshift({
+    id:    Date.now() + Math.random(),
+    type,          // 'welcome'|'fav'|'chat'|'promo'|'info'
+    title,
+    body,
+    icon,
+    bizId,
+    image,
+    ts:    Date.now(),
+    read:  false
+  });
+  // Máximo 50 notificaciones
+  if (notifs.length > 50) notifs.length = 50;
+  _saveNotifications(notifs);
+  updateNotifBadge();
+
+  // Dispara notificación nativa del navegador si el permiso está concedido
+  if (Notification.permission === 'granted' && _msgSettings.notif) {
+    try {
+      new Notification(title, {
+        body,
+        icon: '/favicon.ico',
+        badge: '/favicon.ico',
+        tag: String(bizId || type)
+      });
+    } catch (e) { /* Safari puede lanzar en algunos contextos */ }
+  }
+}
+
+/** Elimina todas las notificaciones de un negocio específico */
+function clearNotifsByBizId(bizId) {
+  const notifs = _getNotifications().filter(n => String(n.bizId) !== String(bizId));
+  _saveNotifications(notifs);
+  updateNotifBadge();
+  // Si el tab de notificaciones está visible, re-renderizar
+  const tabNotif = document.getElementById('msgTabNotif');
+  if (tabNotif && tabNotif.classList.contains('active')) renderNotifications();
+}
+
+/** Marca todas las notificaciones como leídas */
+function markAllNotifsRead() {
+  const notifs = _getNotifications().map(n => ({ ...n, read: true }));
+  _saveNotifications(notifs);
+  updateNotifBadge();
+}
+
+/** Marca una notificación individual como leída */
+function markNotifRead(id) {
+  const notifs = _getNotifications().map(n => n.id === id ? { ...n, read: true } : n);
+  _saveNotifications(notifs);
+  updateNotifBadge();
+}
+
+/** Elimina una notificación */
+function deleteNotif(id) {
+  const notifs = _getNotifications().filter(n => n.id !== id);
+  _saveNotifications(notifs);
+  renderNotifications();
+  updateNotifBadge();
+}
+
+/** Actualiza el badge del botón "Notificaciones" en el header de mensajes */
+function updateNotifBadge() {
+  const unread = _getNotifications().filter(n => !n.read).length;
+  // Badge en el tab del header
+  const tabBtn = document.getElementById('msgTabNotif');
+  if (tabBtn) {
+    let dot = tabBtn.querySelector('.msg-notif-dot');
+    if (unread > 0) {
+      if (!dot) {
+        dot = document.createElement('span');
+        dot.className = 'msg-notif-dot';
+        tabBtn.appendChild(dot);
+      }
+      dot.textContent = unread > 9 ? '9+' : unread;
+    } else {
+      if (dot) dot.remove();
+    }
+  }
+}
+
+/** Solicita permiso de notificaciones al navegador */
+async function requestNotifPermission() {
+  if (!('Notification' in window)) {
+    showToast('Tu navegador no soporta notificaciones');
+    return;
+  }
+  if (Notification.permission === 'granted') {
+    showToast('¡Las notificaciones ya están activadas!');
+    _hideNotifBanner();
+    _setNotifBtnActivated();
+    return;
+  }
+  if (Notification.permission === 'denied') {
+    showToast('Notificaciones bloqueadas. Actívalas desde la configuración del navegador.');
+    return;
+  }
+  const perm = await Notification.requestPermission();
+  if (perm === 'granted') {
+    _setNotifBtnActivated();
+    showToast('✅ ¡Notificaciones activadas!');
+    setTimeout(() => _hideNotifBanner(), 1200);
+    pushNotification({
+      type: 'welcome',
+      title: '¡Bienvenido a Fynder!',
+      body: 'Ahora recibirás actualizaciones sobre negocios y ofertas.',
+      icon: '🎉'
+    });
+    renderNotifications();
+    settSyncNotif(); // actualiza el estado en ajustes también
+  } else {
+    showToast('Notificaciones no activadas');
+  }
+}
+
+/** Marca el botón del banner como "Activado" visualmente */
+function _setNotifBtnActivated() {
+  const btn = document.getElementById('notifBannerBtn');
+  if (btn) {
+    btn.innerHTML = '<i class="fas fa-bell"></i> Activado';
+    btn.classList.add('activated');
+  }
+  // Ajustes: actualizar el botón y estado
+  const settBtn = document.getElementById('settNotifActivarBtn');
+  if (settBtn) {
+    settBtn.textContent = '✓ Activado';
+    settBtn.style.background = '#10B981';
+    settBtn.style.color = '#fff';
+    settBtn.style.borderColor = '#10B981';
+    settBtn.disabled = true;
+  }
+}
+
+/** Manejador del botón "Activar" del banner — actualiza UI antes de la promesa */
+async function handleNotifBannerClick(btn) {
+  if (!('Notification' in window)) {
+    showToast('Tu navegador no soporta notificaciones');
+    return;
+  }
+  if (Notification.permission === 'granted') {
+    btn.innerHTML = '<i class="fas fa-bell"></i> Activado';
+    btn.classList.add('activated');
+    showToast('¡Las notificaciones ya están activadas!');
+    setTimeout(() => _hideNotifBanner(), 1200);
+    return;
+  }
+  if (Notification.permission === 'denied') {
+    showToast('Notificaciones bloqueadas. Actívalas desde la configuración del navegador.');
+    return;
+  }
+  // Mostrar estado de carga
+  btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Activando...';
+  btn.disabled = true;
+  const perm = await Notification.requestPermission();
+  if (perm === 'granted') {
+    btn.innerHTML = '<i class="fas fa-bell"></i> Activado';
+    btn.classList.add('activated');
+    btn.disabled = false;
+    showToast('✅ ¡Notificaciones activadas!');
+    setTimeout(() => _hideNotifBanner(), 1500);
+    pushNotification({
+      type: 'welcome',
+      title: '¡Bienvenido a Fynder!',
+      body: 'Ahora recibirás actualizaciones sobre negocios y ofertas.',
+      icon: '🎉'
+    });
+    renderNotifications();
+    settSyncNotif();
+  } else {
+    btn.innerHTML = '<i class="fas fa-bell-slash"></i> Bloqueado';
+    btn.style.background = '#EF4444';
+    btn.disabled = false;
+    showToast('Notificaciones no activadas');
+  }
+}
+
+function _hideNotifBanner() {
+  const banner = document.querySelector('.msg-notif-banner');
+  if (banner) banner.style.display = 'none';
+}
+
+/* ── Modal de ajustes administrados por la organización ── */
+function showOrgInfoModal() {
+  const modal = document.getElementById('orgInfoModal');
+  if (modal) modal.classList.add('open');
+}
+function closeOrgInfoModal() {
+  const modal = document.getElementById('orgInfoModal');
+  if (modal) modal.classList.remove('open');
+}
+// Cerrar con Escape
+document.addEventListener('keydown', e => {
+  if (e.key === 'Escape') closeOrgInfoModal();
+});
+
+/** Formatea una fecha para las notificaciones (relativa al presente real) */
+function _fmtNotifDate(ts) {
+  const diff = Date.now() - ts;
+  const min  = Math.floor(diff / 60000);
+  const hrs  = Math.floor(diff / 3600000);
+  const days = Math.floor(diff / 86400000);
+  if (min < 1)   return 'Ahora mismo';
+  if (min < 60)  return `Hace ${min} min`;
+  if (hrs < 24)  return `Hace ${hrs} h`;
+  if (days < 7)  return `Hace ${days} día${days > 1 ? 's' : ''}`;
+  return new Date(ts).toLocaleDateString('es', { day: 'numeric', month: 'short' });
+}
+
+/** Ícono por tipo de notificación */
+function _notifTypeIcon(type) {
+  const map = {
+    welcome: '🎉',
+    fav:     '❤️',
+    chat:    '💬',
+    promo:   '🏷️',
+    info:    '📢'
+  };
+  return map[type] || '🔔';
+}
+
+function renderNotifications() {
+  const list = document.getElementById('msgNotifList');
+  if (!list) return;
+
+  // Actualizar visibilidad del banner según permiso
+  const banner = document.querySelector('.msg-notif-banner');
+  if (banner) {
+    const shouldShow = !('Notification' in window) || Notification.permission !== 'granted';
+    banner.style.display = shouldShow ? 'flex' : 'none';
+  }
+
+  const notifs = _getNotifications();
+
+  if (notifs.length === 0) {
+    list.innerHTML = `
+      <div class="msg-empty" style="display:flex">
+        <div class="msg-empty-icon"><i class="fas fa-bell-slash"></i></div>
+        <p class="msg-empty-title">Sin notificaciones</p>
+        <p class="msg-empty-sub">Cuando haya novedades de negocios o tus actividades, aparecerán aquí.</p>
+      </div>`;
+    return;
+  }
+
+  // Cabecera con "Marcar todas como leídas"
+  const unread = notifs.filter(n => !n.read).length;
+  const header = unread > 0
+    ? `<div class="msg-notif-actions-row">
+         <span class="msg-notif-count">${unread} sin leer</span>
+         <button class="msg-notif-markall" onclick="markAllNotifsRead();renderNotifications()">
+           <i class="fas fa-check-double"></i> Marcar todas
+         </button>
+       </div>`
+    : '';
+
+  list.innerHTML = header + notifs.map(n => {
+    const icon = n.image
+      ? `<img class="msg-notif-card-img" src="${n.image}" alt="${n.title}" loading="lazy">`
+      : `<div class="msg-notif-card-emoji">${_notifTypeIcon(n.type)}</div>`;
+
+    const action = n.bizId
+      ? `<button class="msg-notif-card-btn"
+           onclick="event.stopPropagation();deleteNotif(${n.id});openChatById('${n.bizId}')">
+           Ver más
+         </button>`
+      : '';
+
+    return `
+      <div class="msg-notif-card${n.read ? ' msg-notif-card--read' : ''}"
+           onclick="deleteNotif(${n.id})${n.bizId ? `;openChatById('${n.bizId}')` : ''}">
+        ${icon}
+        <div class="msg-notif-card-body">
+          <div class="msg-notif-card-header">
+            <p class="msg-notif-card-title">${escapeHtml(n.title)}</p>
+            <button class="msg-notif-card-del" title="Eliminar"
+              onclick="event.stopPropagation();deleteNotif(${n.id})">
+              <i class="fas fa-xmark"></i>
+            </button>
+          </div>
+          <p class="msg-notif-card-date">${_fmtNotifDate(n.ts)}</p>
+          <p class="msg-notif-card-desc">${escapeHtml(n.body)}</p>
+          ${action}
+        </div>
+      </div>`;
+  }).join('');
+}
+
+// ---- Badge de mensajes no leídos ----
+function updateMsgBadge() {
+  const convs  = _getConversations();
+  const unread = convs.reduce((s, c) => s + (c.unread || 0), 0);
+
+  // Badge en el nuevo nav-link "Mensajes"
+  const badge = document.getElementById('navMsgBadge');
+  if (badge) {
+    badge.textContent = unread > 9 ? '9+' : unread;
+    badge.style.display = unread > 0 ? 'flex' : 'none';
+  }
+
+  // Badge en el bottom-nav de la página de mensajes
+  const bnavBadge = document.getElementById('msgBnavBadge');
+  if (bnavBadge) {
+    bnavBadge.textContent = unread > 9 ? '9+' : unread;
+    bnavBadge.style.display = unread > 0 ? 'flex' : 'none';
+  }
+}
+
+// ---- Helpers ----
+function _updateConvLastMsg(bizId, text, time) {
+  let convs = _getConversations();
+  const idx = convs.findIndex(c => String(c.id) === String(bizId));
+  if (idx > -1) {
+    convs[idx].lastMsg  = text;
+    convs[idx].lastTime = time;
+    // Mover al principio
+    const [conv] = convs.splice(idx, 1);
+    convs.unshift(conv);
+    _saveConversations(convs);
+  }
+}
+function _fmtTime(d) {
+  return d.toLocaleTimeString('es', { hour: '2-digit', minute: '2-digit', hour12: true });
+}
+function _fmtDate(d) {
+  const today = new Date();
+  const isToday = d.toDateString() === today.toDateString();
+  if (isToday) return 'Hoy';
+  const yesterday = new Date(today); yesterday.setDate(today.getDate() - 1);
+  if (d.toDateString() === yesterday.toDateString()) return 'Ayer';
+  return d.toLocaleDateString('es', { day: 'numeric', month: 'short' });
+}
+function _fmtRelativeDate() {
+  const now = new Date();
+  const d   = new Date(now.getFullYear(), now.getMonth(), now.getDate() - Math.floor(Math.random() * 7));
+  return _fmtDate(d);
+}
+function _avatarColor(name) {
+  const colors = ['#67B8B4','#2F5BB7','#F97316','#8B5CF6','#EC4899','#10B981','#EF4444','#F4D35E'];
+  let hash = 0;
+  for (let i = 0; i < (name||'').length; i++) hash = (name||'').charCodeAt(i) + ((hash << 5) - hash);
+  return colors[Math.abs(hash) % colors.length];
+}
+function escapeHtml(str) {
+  if (!str) return '';
+  return String(str).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+}
+
+// ---- Hook en goPage para inicializar mensajes ----
+// La inicialización se hace directamente desde el goPage original modificado arriba
+// y desde el DOMContentLoaded abajo.
+
+// ---- Inicialización al cargar ----
+document.addEventListener('DOMContentLoaded', () => {
+  updateMsgBadge();
+  updateNotifBadge();
+
+  // Genera notificaciones de bienvenida la primera vez que el usuario abre la app
+  const SEED_KEY = 'fynderNotifSeeded';
+  if (!localStorage.getItem(SEED_KEY)) {
+    localStorage.setItem(SEED_KEY, '1');
+    const promos = BUSINESSES.filter(b => b.isFeatured).slice(0, 3);
+    promos.forEach((b, i) => {
+      setTimeout(() => {
+        pushNotification({
+          type:  'promo',
+          title: `Novedad de ${b.name}`,
+          body:  b.description ? b.description.slice(0, 90) + (b.description.length > 90 ? '…' : '') : '¡Visita su perfil!',
+          bizId: b.id,
+          image: b.image || null
+        });
+      }, i * 50); // ligero stagger para timestamps distintos
+    });
+    // Notificación de bienvenida a Fynder
+    setTimeout(() => {
+      pushNotification({
+        type:  'welcome',
+        title: '¡Bienvenido a Fynder!',
+        body:  'Descubre negocios locales, guarda tus favoritos y chatea directamente con ellos.',
+        icon:  '🎉'
+      });
+    }, 200);
+  }
+});
+
+
+/* PERFIL DEL NEGOCIO DESDE CHAT */
+
+function openChatProfile() {
+  if (!_activeChatBizId) return;
+  const biz = BUSINESSES.find(b => String(b.id) === String(_activeChatBizId));
+  const isDesktop = window.innerWidth >= 769;
+
+  if (isDesktop) {
+    // ── Desktop: abrir panel lateral de info ──
+    _populateChatInfoPanel(biz);
+    const panel = document.getElementById('waChatInfoPanel');
+    if (panel) panel.classList.add('open');
+    return;
+  }
+
+  // ── Móvil: navegar a la página chat-profile ──
+  _populateChatProfilePage(biz);
+  goPage('chat-profile');
+}
+
+/* Rellena el panel lateral de info (desktop) */
+function _populateChatInfoPanel(biz) {
+  // Avatar
+  const avaEl = document.getElementById('waCproAvatar');
+  if (avaEl) {
+    if (biz && (biz.logo || biz.image)) {
+      avaEl.innerHTML = `<img src="${biz.logo || biz.image}" alt="${biz ? biz.name : ''}">`;
+      avaEl.style.background = '';
+    } else {
+      avaEl.innerHTML = '';
+      const initial = biz ? (biz.name || '?')[0].toUpperCase() : '?';
+      avaEl.textContent = initial;
+      avaEl.style.background = _avatarColor(biz ? biz.name : '');
+    }
+  }
+  // Nombre y teléfono
+  const nameEl  = document.getElementById('waCproName');
+  const phoneEl = document.getElementById('waCproPhone');
+  if (nameEl)  nameEl.textContent  = biz ? biz.name  : '—';
+  if (phoneEl) phoneEl.textContent = biz && biz.phone ? biz.phone : '';
+
+  // Botón llamar
+  const callBtn = document.getElementById('waCproCallBtn');
+  if (callBtn) {
+    if (biz && biz.phone) {
+      callBtn.onclick = () => { window.location.href = 'tel:' + biz.phone.replace(/\s/g,''); };
+    } else {
+      callBtn.onclick = () => showToast('Teléfono no disponible');
+    }
+  }
+
+  // Media strip
+  const strip   = document.getElementById('waCproMediaStrip');
+  const countEl = document.getElementById('waCproMediaCount');
+  if (strip) {
+    const imgs = [];
+    if (biz && biz.logo)  imgs.push(biz.logo);
+    if (biz && biz.image) imgs.push(biz.image);
+    strip.innerHTML = imgs.map(url =>
+      `<img class="cpro-media-thumb" src="${url}" alt="" loading="lazy">`
+    ).join('');
+    if (countEl) {
+      countEl.textContent = imgs.length + ' ›';
+      countEl.onclick = openPhotoLightbox;
+      countEl.style.cursor = 'pointer';
+    }
+  }
+
+  // Lista de info
+  const infoList = document.getElementById('waCproInfoList');
+  if (infoList && biz) {
+    infoList.innerHTML = _buildCproInfoRows(biz);
+  }
+}
+
+/* Rellena la página de perfil (móvil) */
+function _populateChatProfilePage(biz) {
+  // Título del header
+  const titleEl = document.getElementById('cproHeaderTitle');
+  if (titleEl) titleEl.textContent = biz ? biz.name : 'Información';
+
+  // Avatar grande
+  const avaEl = document.getElementById('cproAvatar');
+  if (avaEl) {
+    if (biz && (biz.logo || biz.image)) {
+      avaEl.innerHTML = `<img src="${biz.logo || biz.image}" alt="${biz ? biz.name : ''}">`;
+      avaEl.style.background = '';
+    } else {
+      avaEl.innerHTML = '';
+      const initial = biz ? (biz.name || '?')[0].toUpperCase() : '?';
+      avaEl.textContent = initial;
+      avaEl.style.background = _avatarColor(biz ? biz.name : '');
+    }
+  }
+
+  // Nombre y teléfono
+  const nameEl  = document.getElementById('cproName');
+  const phoneEl = document.getElementById('cproPhone');
+  if (nameEl)  nameEl.textContent  = biz ? biz.name  : '—';
+  if (phoneEl) phoneEl.textContent = biz && biz.phone ? biz.phone : '';
+
+  // Botón llamar
+  const callBtn = document.getElementById('cproCallBtn');
+  if (callBtn && biz && biz.phone) {
+    callBtn.onclick = () => { window.location.href = 'tel:' + biz.phone.replace(/\s/g,''); };
+  } else if (callBtn) {
+    callBtn.onclick = () => showToast('Teléfono no disponible');
+  }
+
+  // Media strip
+  const strip   = document.getElementById('cproMediaStrip');
+  const countEl = document.getElementById('cproMediaCount');
+  if (strip) {
+    const imgs = [];
+    if (biz && biz.logo)  imgs.push(biz.logo);
+    if (biz && biz.image) imgs.push(biz.image);
+    strip.innerHTML = imgs.map(url =>
+      `<img class="cpro-media-thumb" src="${url}" alt="" loading="lazy">`
+    ).join('');
+    if (countEl) {
+      countEl.textContent = imgs.length + ' ›';
+      countEl.onclick = openPhotoLightbox;
+      countEl.style.cursor = 'pointer';
+    }
+  }
+
+  // Lista de info
+  const infoList = document.getElementById('cproInfoList');
+  if (infoList && biz) {
+    infoList.innerHTML = _buildCproInfoRows(biz);
+  }
+}
+
+/* Construye las filas de info comunes a ambos destinos */
+function _buildCproInfoRows(biz) {
+  const rows = [];
+  
+  // Dirección - hace click para abrir en mapa
+  if (biz.address) rows.push({ 
+    icon: 'fa-location-dot', 
+    title: biz.address, 
+    sub: biz.category || '',
+    action: `onclick="openChatProfileMap()" style="cursor:pointer"`
+  });
+  
+  // Horario - solo informativo
+  if (biz.hours) rows.push({ 
+    icon: 'fa-clock', 
+    title: biz.hours, 
+    sub: 'Horario',
+    action: ''
+  });
+  
+  // Teléfono - hace click para llamar
+  if (biz.phone) rows.push({ 
+    icon: 'fa-phone', 
+    title: biz.phone, 
+    sub: 'Teléfono',
+    action: `onclick="window.location.href='tel:${biz.phone.replace(/\\s/g,'')}'" style="cursor:pointer"`
+  });
+  
+  // Sitio web - hace click para abrir
+  if (biz.website) rows.push({ 
+    icon: 'fa-globe', 
+    title: biz.website, 
+    sub: 'Sitio web',
+    action: `onclick="window.open('${biz.website.startsWith('http') ? biz.website : 'https://' + biz.website}','_blank')" style="cursor:pointer"`
+  });
+  
+  // Instagram - hace click para abrir
+  if (biz.instagram) rows.push({ 
+    icon: 'fa-instagram', 
+    title: biz.instagram, 
+    sub: 'Instagram',
+    action: `onclick="window.open('https://instagram.com/${biz.instagram.replace('@','')}','_blank')" style="cursor:pointer"`
+  });
+  
+  // Facebook - hace click para abrir
+  if (biz.facebook) rows.push({ 
+    icon: 'fa-facebook', 
+    title: biz.facebook, 
+    sub: 'Facebook',
+    action: `onclick="window.open('${biz.facebook.startsWith('http') ? biz.facebook : 'https://facebook.com/' + biz.facebook}','_blank')" style="cursor:pointer"`
+  });
+  
+  // Descripción - solo informativo
+  if (biz.description) rows.push({ 
+    icon: 'fa-circle-info', 
+    title: biz.description, 
+    sub: 'Descripción',
+    action: ''
+  });
+  
+  // Valoración - hace click para abrir el modal con reseñas
+  if (biz.rating) rows.push({ 
+    icon: 'fa-star', 
+    title: `${biz.rating} ⭐  (${biz.reviews || 0} reseñas)`, 
+    sub: 'Valoración',
+    action: `onclick="openModal('${biz.id}');setTimeout(()=>document.getElementById('modalTabReviews')?.click(),100)" style="cursor:pointer"`
+  });
+
+  return rows.map(r => `
+    <div class="cpro-settings-item" ${r.action}>
+      <div class="cpro-settings-icon"><i class="fas ${r.icon}"></i></div>
+      <div class="cpro-settings-text">
+        <span class="cpro-settings-title">${escapeHtml(r.title)}</span>
+        ${r.sub ? `<span class="cpro-settings-sub">${escapeHtml(r.sub)}</span>` : ''}
+      </div>
+      ${r.action ? '<i class="fas fa-chevron-right cpro-settings-arrow"></i>' : ''}
+    </div>`).join('');
+}
+
+/* Cierra el panel lateral de info */
+function closeWaChatInfoPanel() {
+  const panel = document.getElementById('waChatInfoPanel');
+  if (panel) panel.classList.remove('open');
+  closeWaCproMenu(); // Cerrar menú si estaba abierto
+}
+
+/* Abre/Cierra el menú contextual del panel lateral */
+let _waCproMenuOpen = false;
+function toggleWaCproMenu(btn) {
+  const menu = document.getElementById('waCproCtxMenu');
+  if (!menu) return;
+  _waCproMenuOpen = !_waCproMenuOpen;
+  menu.style.display = _waCproMenuOpen ? 'flex' : 'none';
+}
+
+function closeWaCproMenu() {
+  const menu = document.getElementById('waCproCtxMenu');
+  if (menu) menu.style.display = 'none';
+  _waCproMenuOpen = false;
+}
+
+// Cerrar el menú del panel de info al hacer click fuera
+document.addEventListener('click', (e) => {
+  const menu = document.getElementById('waCproCtxMenu');
+  const btn  = document.getElementById('waCproMenuBtn');
+  if (!menu || menu.style.display === 'none') return;
+  if (btn && btn.contains(e.target)) return;
+  if (!menu.contains(e.target)) closeWaCproMenu();
+});
+
+function openChatProfileMap() {
+  if (!_activeChatBizId) return;
+  const biz = BUSINESSES.find(b => String(b.id) === String(_activeChatBizId));
+  if (biz && biz.mapQuery) {
+    window.open('https://maps.google.com/?q=' + encodeURIComponent(biz.mapQuery), '_blank');
+  } else {
+    showToast('Ubicación no disponible');
+  }
+}
+
+function deleteChatHistory() {
+  if (!_activeChatBizId) return;
+  if (!confirm('¿Borrar todo el historial de este chat?')) return;
+  
+  localStorage.removeItem('fynderChat_' + _activeChatBizId);
+  
+  // Actualizar conversación
+  let convs = _getConversations();
+  const idx = convs.findIndex(c => String(c.id) === String(_activeChatBizId));
+  if (idx > -1) { 
+    convs[idx].lastMsg = ''; 
+    convs[idx].lastTime = ''; 
+    _saveConversations(convs); 
+  }
+  
+  showToast('Historial borrado');
+  
+  // En desktop: recargar mensajes del chat activo
+  const isDesktop = window.innerWidth >= 769;
+  if (isDesktop) {
+    closeWaChatInfoPanel();
+    renderChatMessages();
+    renderConversations();
+  } else {
+    goPage('chat');
+  }
+}
+
+function blockBiz() {
+  if (!_activeChatBizId) return;
+  
+  if (!confirm('¿Bloquear este negocio? Ya no recibirás mensajes.')) return;
+  
+  // Aquí iría la lógica real de bloqueo (localStorage, etc.)
+  let blocked = JSON.parse(localStorage.getItem('fynderBlocked') || '[]');
+  if (!blocked.includes(_activeChatBizId)) {
+    blocked.push(_activeChatBizId);
+    localStorage.setItem('fynderBlocked', JSON.stringify(blocked));
+  }
+  
+  showToast('Negocio bloqueado');
+  
+  // En desktop: cerrar panel y chat
+  const isDesktop = window.innerWidth >= 769;
+  if (isDesktop) {
+    closeWaChatInfoPanel();
+    waCloseChat();
+    renderConversations();
+  } else {
+    goPage('messages');
+  }
+}
+
+
+/* MENÚ CONTEXTUAL DE CHAT (⋮) */
+
+let _ctxMenuBizId = null;
+
+function openMsgCtxMenu(bizId, event) {
+  if (event) event.stopPropagation();
+  _ctxMenuBizId = String(bizId);
+
+  const convs = _getConversations();
+  const conv  = convs.find(c => String(c.id) === String(bizId));
+  const biz   = BUSINESSES.find(b => String(b.id) === String(bizId));
+
+  // Header del menú
+  const ava  = document.getElementById('msgCtxAva');
+  const name = document.getElementById('msgCtxName');
+  if (ava) {
+    const src = (conv && conv.image) || (biz && biz.image) || '';
+    const lbl = conv ? conv.name : (biz ? biz.name : '?');
+    if (src) {
+      ava.innerHTML = `<img src="${src}" alt="">`;
+    } else {
+      ava.innerHTML = '';
+      ava.textContent = lbl[0].toUpperCase();
+      ava.style.background = _avatarColor(lbl);
+    }
+  }
+  if (name) name.textContent = conv ? conv.name : (biz ? biz.name : '');
+
+  // Estado de marcador
+  const bmarks = _getBookmarks();
+  const isBookmarked = bmarks.includes(String(bizId));
+  const icon  = document.getElementById('msgCtxBookmarkIcon');
+  const label = document.getElementById('msgCtxBookmarkLabel');
+  if (icon)  icon.className  = isBookmarked ? 'fas fa-bookmark-slash' : 'fas fa-bookmark';
+  if (label) label.textContent = isBookmarked ? 'Quitar de marcadores' : 'Añadir a marcadores';
+
+  document.getElementById('msgCtxOverlay').classList.add('open');
+  document.getElementById('msgCtxMenu').classList.add('open');
+}
+
+function closeMsgCtxMenu() {
+  document.getElementById('msgCtxOverlay').classList.remove('open');
+  document.getElementById('msgCtxMenu').classList.remove('open');
+}
+
+function toggleMsgBookmark() {
+  if (!_ctxMenuBizId) return;
+  let bmarks = _getBookmarks();
+  const id   = String(_ctxMenuBizId);
+  const idx  = bmarks.indexOf(id);
+  if (idx > -1) {
+    bmarks.splice(idx, 1);
+    showToast('Eliminado de marcadores');
+  } else {
+    bmarks.unshift(id);
+    showToast('Añadido a marcadores ⭐');
+  }
+  _saveBookmarks(bmarks);
+  closeMsgCtxMenu();
+  renderConversations(); // refrescar lista
+}
+
+function msgCtxOpenChat() {
+  closeMsgCtxMenu();
+  if (_ctxMenuBizId) openChatById(_ctxMenuBizId);
+}
+
+function msgCtxViewProfile() {
+  closeMsgCtxMenu();
+  if (!_ctxMenuBizId) return;
+  _activeChatBizId = _ctxMenuBizId;
+  openChatProfile();
+}
+
+function msgCtxMarkRead() {
+  if (!_ctxMenuBizId) return;
+  let convs = _getConversations();
+  const conv = convs.find(c => String(c.id) === String(_ctxMenuBizId));
+  if (conv) { conv.unread = 0; _saveConversations(convs); }
+  updateMsgBadge();
+  renderConversations();
+  showToast('Marcado como leído');
+  closeMsgCtxMenu();
+}
+
+function msgCtxDeleteChat() {
+  if (!_ctxMenuBizId) return;
+  closeMsgCtxMenu();
+  if (!confirm('¿Eliminar esta conversación?')) return;
+  // Borrar mensajes
+  localStorage.removeItem('fynderChat_' + _ctxMenuBizId);
+  // Quitar de lista de conversaciones
+  let convs = _getConversations();
+  convs = convs.filter(c => String(c.id) !== String(_ctxMenuBizId));
+  _saveConversations(convs);
+  // Quitar de marcadores
+  let bmarks = _getBookmarks();
+  bmarks = bmarks.filter(id => id !== String(_ctxMenuBizId));
+  _saveBookmarks(bmarks);
+  updateMsgBadge();
+  renderConversations();
+  showToast('Conversación eliminada');
+}
+
+/* Actualizar renderConversations para usar openMsgCtxMenu */
+// (Sobreescribe la función anterior con la nueva que pasa bizId al menú)
+
+/** Query activo del buscador de chats — se mantiene entre renders */
+let _convSearchQuery = '';
+
+function renderConversations() {
+  let convs = _getConversations();
+  const list  = document.getElementById('msgChatList');
+  const empty = document.getElementById('msgEmptyChats');
+  if (!list) return;
+
+  // Aplicar filtro de búsqueda
+  if (_convSearchQuery) {
+    const q = _convSearchQuery;
+    convs = convs.filter(c =>
+      (c.name    || '').toLowerCase().includes(q) ||
+      (c.lastMsg || '').toLowerCase().includes(q)
+    );
+  }
+
+  if (convs.length === 0) {
+    list.innerHTML = _convSearchQuery
+      ? `<div class="msg-search-empty"><i class="fas fa-magnifying-glass"></i><p>Sin resultados para "<b>${escapeHtml(_convSearchQuery)}</b>"</p></div>`
+      : '';
+    if (empty) {
+      if (_convSearchQuery) empty.classList.add('hide');
+      else empty.classList.remove('hide');
+    }
+    return;
+  }
+  if (empty) empty.classList.add('hide');
+
+  list.innerHTML = convs.map(c => {
+    const initial = (c.name || '?')[0].toUpperCase();
+    const bg      = _avatarColor(c.name);
+    const avatar  = c.image
+      ? `<img src="${c.image}" alt="${escapeHtml(c.name)}" loading="lazy">`
+      : `<span style="color:#fff;font-size:1rem;font-weight:700;font-family:'Poppins',sans-serif">${initial}</span>`;
+    const unread  = c.unread > 0 ? `<span class="msg-chat-unread">${c.unread}</span>` : '';
+
+    // Punto de marcador
+    const bmarks = _getBookmarks();
+    const starBadge = bmarks.includes(String(c.id))
+      ? `<span class="msg-chat-bookmark-dot" title="Marcado"><i class="fas fa-bookmark" style="font-size:.6rem;color:#F4D35E"></i></span>`
+      : '';
+
+    // Preview: resaltar término buscado
+    let preview = escapeHtml(c.lastMsg || 'Toca para ver el chat');
+    if (_convSearchQuery && c.lastMsg) {
+      const idx = c.lastMsg.toLowerCase().indexOf(_convSearchQuery);
+      if (idx > -1) {
+        const raw = escapeHtml(c.lastMsg);
+        const esc = escapeHtml(_convSearchQuery);
+        preview = raw.replace(new RegExp(esc, 'gi'), m => `<mark class="msg-search-mark">${m}</mark>`);
+      }
+    }
+
+    return `
+      <div class="msg-chat-item" onclick="openChatById('${c.id}')">
+        <div class="msg-chat-avatar-wrap">
+          <div class="msg-chat-avatar" style="background:${bg}">${avatar}</div>
+          <span class="msg-chat-online"></span>
+        </div>
+        <div class="msg-chat-body">
+          <div class="msg-chat-top">
+            <span class="msg-chat-name">${escapeHtml(c.name)}${starBadge}</span>
+            <span class="msg-chat-time">${c.lastTime || ''}</span>
+          </div>
+          <span class="msg-chat-preview">${preview}</span>
+        </div>
+        <div class="msg-chat-actions">
+          ${unread}
+          <button class="msg-chat-menu" onclick="openMsgCtxMenu('${c.id}', event)" title="Más opciones">
+            <i class="fas fa-ellipsis-vertical"></i>
+          </button>
+        </div>
+      </div>`;
+  }).join('');
+}
+
+/* EMOJI PICKER */
+
+const EMOJI_SKIN_TONES = ['','\uD83C\uDFFB','\uD83C\uDFFC','\uD83C\uDFFD','\uD83C\uDFFE','\uD83C\uDFFF'];
+const EMOJI_SKIN_BASE = ['👋','🤚','🖐','✋','🖖','👌','🤏','✌','🤞','🤟','🤘','🤙','👈','👉','👆','🖕','👇','☝','👍','👎','✊','👊','🤛','🤜','�','🦵','🦶','👂','🦻','👃','💅','🤳','👶','🧒','👦','👧','🧑','👱','👨','🧔','👩','🧓','👴','👵','🙍','🙎','🙅','🙆','💁','🙋','🧏','🙇','🤦','🤷','💆','💇','🚶','🧍','🧍','🏃'];
+let _emojiSkinTone = 0;
+const EMOJI_CATS = [
+  { id:'recent',  icon:'🕐', label:'Recientes',  emojis:[] },
+  { id:'faces',   icon:'😀', label:'Emoticonos', emojis:['😀','😃','😄','😁','😆','😅','🤣','😂','🙂','🙃','😉','😊','😇','🥰','😍','🤩','😘','😗','☺','😚','😙','🥲','😋','😛','😜','🤪','😝','🤑','🤗','🤭','🤫','🤔','🤐','🤨','😐','😑','😶','😏','😒','🙄','😬','🤥','😌','😔','😪','🤤','😴','😷','🤒','🤕','🤢','🤮','🤧','🥵','🥶','🥴','😵','🤯','🤠','🥳','🥸','😎','🤓','🧐','😕','😟','🙁','☹','😮','😯','😲','😳','🥺','😦','😧','😨','😰','😥','😢','😭','😱','😖','😣','😞','😓','😩','😫','🥱','😤','😡','😠','🤬','😈','👿','💀','☠','💩','🤡','👹','👺','👻','👽','👾','🤖','😺','😸','😹','😻','😼','😽','🙀','😿','😾','🫠','🫡','🫢','🫣','🫤','🫥'] },
+  { id:'people',  icon:'🧑', label:'Personas',   emojis:['👋','🤚','🖐','✋','🖖','🫱','🫲','🫳','🫴','👌','🤌','🤏','✌','🤞','🫰','🤟','🤘','🤙','👈','👉','👆','🖕','👇','☝','🫵','👍','👎','✊','👊','🤛','🤜','👏','🙌','🫶','🤲','🤝','🙏','✍','💅','🤳','💪','🦾','🦿','🦵','🦶','👂','🦻','👃','🧠','🫀','🫁','🦷','🦴','👀','👁','👅','👄','🫦','🫂','👶','🧒','👦','👧','🧑','👱','👨','🧔','👩','🧓','👴','👵','🙍','🙍‍♂️','🙍‍♀️','🙎','🙎‍♂️','🙎‍♀️','🙅','🙅‍♂️','🙅‍♀️','🙆','🙆‍♂️','🙆‍♀️','💁','💁‍♂️','💁‍♀️','🙋','🙋‍♂️','🙋‍♀️','🧏','🧏‍♂️','🧏‍♀️','🙇','🙇‍♂️','🙇‍♀️','🤦','🤦‍♂️','🤦‍♀️','🤷','🤷‍♂️','🤷‍♀️','🧑‍⚕️','👨‍⚕️','👩‍⚕️','🧑‍🎓','👨‍🎓','👩‍🎓','🧑‍🏫','👨‍🏫','👩‍🏫','🧑‍⚖️','👨‍⚖️','👩‍⚖️','🧑‍🌾','👨‍🌾','👩‍🌾','🧑‍🍳','👨‍🍳','👩‍🍳','🧑‍🔧','👨‍🔧','👩‍🔧','🧑‍🏭','👨‍🏭','👩‍🏭','🧑‍💼','👨‍💼','👩‍💼','🧑‍🔬','👨‍🔬','👩‍🔬','🧑‍🎨','👨‍🎨','👩‍🎨','🧑‍🚒','👨‍🚒','👩‍🚒','🧑‍✈️','👨‍✈️','👩‍✈️','🧑‍🚀','👨‍🚀','👩‍🚀','🧑‍💻','👨‍💻','👩‍💻','👮','👮‍♂️','👮‍♀️','🕵️','💂','💂‍♂️','💂‍♀️','🥷','👷','👷‍♂️','👷‍♀️','🤴','👸','👰','👰‍♂️','👰‍♀️','🤵','🤵‍♂️','🤵‍♀️','🦸','🦸‍♂️','🦸‍♀️','🦹','🦹‍♂️','🦹‍♀️','🧙','🧙‍♂️','🧙‍♀️','🧝','🧝‍♂️','🧝‍♀️','🧛','🧛‍♂️','🧛‍♀️','🧟','🧟‍♂️','🧟‍♀️','🧞','🧞‍♂️','🧞‍♀️','🧜','🧜‍♂️','🧜‍♀️','🧚','🧚‍♂️','🧚‍♀️','🧌','👼','🎅','🤶','🧑‍🎄','💆','💆‍♂️','💆‍♀️','💇','💇‍♂️','💇‍♀️','🚶','🚶‍♂️','🚶‍♀️','🧍','🧍‍♂️','🧍‍♀️','🧎','🧎‍♂️','🧎‍♀️','🏃','🏃‍♂️','🏃‍♀️','💃','🕺','🕴','👯','👯‍♂️','👯‍♀️','🧖','🧖‍♂️','🧖‍♀️','🧗','🧗‍♂️','🧗‍♀️','🤸','🤸‍♂️','🤸‍♀️','⛹️','⛹️‍♂️','⛹️‍♀️','🤺','🏊','🏊‍♂️','🏊‍♀️','🚴','🚴‍♂️','🚴‍♀️','🏋️','🏋️‍♂️','🏋️‍♀️','🤼','🤼‍♂️','🤼‍♀️','🤽','🤽‍♂️','🤽‍♀️','🤾','🤾‍♂️','🤾‍♀️','🤹','🧘','🧘‍♂️','🧘‍♀️','🛀','🧑‍🤝‍🧑','👫','👬','👭','💑','💏','👨‍👩‍👦','👨‍👩‍👧','👨‍👩‍👧‍👦','👨‍👩‍👦‍👦','👨‍👩‍👧‍👧','👨‍👨‍👦','👩‍👩‍👦','👨‍👧','👨‍👦','👩‍👧','👩‍👦'] },
+  { id:'nature',  icon:'🐶', label:'Animales',   emojis:['🐶','🐱','🐭','🐹','🐰','🦊','🐻','🐼','🐨','🐯','🦁','🐮','🐷','🐸','🐵','🙈','🙉','🙊','🐒','🐔','🐧','🐦','🐤','🐣','🐥','🦆','🦅','🦉','🦇','🐺','🐗','🐴','🦄','🐝','🪱','🐛','🦋','🐌','🐞','🐜','🪲','🦟','🦗','🪳','🕷','🦂','🐢','🐍','🦎','🦖','🦕','🐙','🦑','🦐','🦞','🦀','🐡','🐠','🐟','🐬','🐳','🐋','🦈','🐊','🐅','🐆','🦓','🦍','🦧','🦣','🐘','🦛','🦏','🐪','🐫','🦒','🦘','🦬','🐃','🐂','🐄','🐎','🐖','🐏','🐑','🦙','🐐','🦌','🐕','🐩','🦮','🐕‍🦺','🐈','🐈‍⬛','🪶','🐓','🦃','🦤','🦚','🦜','🦢','🦩','🕊','🐇','🦝','🦨','🦡','🦫','🦦','🦥','🐁','🐀','🐿','🦔','🌵','🎄','🌲','🌳','🌴','🪵','🌱','🌿','☘','🍀','🎍','🪴','🎋','🍃','🍂','🍁','🍄','🐚','🌾','💐','🌷','🌹','🥀','🪷','🌺','🌸','🌼','🌻','🌞','🌝','🌛','🌜','🌚','🌕','🌖','🌗','🌘','🌑','🌒','🌓','🌔','🌙','🌟','⭐','🌠','🌌','☀','🌤','⛅','🌥','☁','🌦','🌧','⛈','🌩','🌨','❄','☃','⛄','🌬','💨','💧','💦','🫧','🌊','🌫'] },
+  { id:'food',    icon:'🍕', label:'Comida',     emojis:['🍕','🍔','🍟','🌭','🍿','🧂','🥓','🥚','🍳','🧇','🥞','🧈','🍞','🥐','🥖','🫓','🥨','🥯','🧀','🥗','🥙','🥪','🌮','🌯','🫔','🧆','🍱','🍘','🍙','🍚','🍛','🍜','🍝','🍠','🍢','🍣','🍤','🍥','🥮','🍡','🥟','🥠','🥡','🦀','🦞','🦐','🦑','🦪','🍦','🍧','🍨','🍩','🍪','🎂','🍰','🧁','🥧','🍫','🍬','🍭','🍮','🍯','🍼','🥛','☕','🫖','🍵','🍶','🍾','🍷','🍸','🍹','🍺','🍻','🥂','🥃','🫗','🥤','🧋','🧃','🧉','🧊','🫙','🍽','🍴','🥄','🔪','🫕','🥘','🍲','🫚','🫛','🌽','🥕','🥦','🥬','🥒','🌶','🫑','🧄','🧅','🥔','🍠','🥐','🥯','🍞','🥖','🫓','🥨','🧀','🥚','🍳','🧇','🥞','🧈','🥓','🥩','🍗','🍖','🌭','🍔','🍟','🍕','🫓','🥪','🥙','🧆','🌮','🌯','🫔','🥗','🥘','🫕','🍲','🍛','🍜','🍝','🍠','🍣','🍱','🥟','🦪','🍤','🍙','🍚','🍘','🍥','🥮','🍢','🧆','🥡'] },
+  { id:'travel',  icon:'✈', label:'Viajes',     emojis:['🚗','🚕','🚙','🚌','🚎','🏎','🚓','🚑','🚒','🚐','🛻','🚚','🚛','🚜','🏍','🛵','🛺','🚲','🛴','🛹','🛼','🚏','🛣','🛤','⛽','🚨','🚥','🚦','🛑','🚧','⚓','🛟','⛵','🛶','🚤','🛳','⛴','🛥','🚢','✈','🛩','🛫','🛬','🪂','💺','🚁','🚟','🚠','🚡','🛸','🚀','🛰','🪐','🌍','🌎','🌏','🌐','🗺','🧭','🏔','⛰','🌋','🗻','🏕','🏖','🏜','🏝','🏟','🏛','🏗','🧱','🪨','🪵','🛖','🏘','🏚','🏠','🏡','🏢','🏣','🏤','🏥','🏦','🏨','🏩','🏪','🏫','🏬','🏭','🏯','🏰','💒','🗼','🗽','⛪','🕌','🛕','⛩','🕋','⛲','⛺','🌁','🌃','🌄','🌅','🌆','🌇','🌉','🎠','🎡','🎢','💈','🎪','🎭','🎨','🎬','🎤','🎧','🎼','🎹','🎸','🎺','🎻','🥁','🪘','🪗','🎷','🥁','🎯','⛳','🎣','🤿','🎽','🎿','🛷','🥌','🎱','🎳','🏸','🥊','🥋','🎮','🕹','🎲','🧩','🪀','🪁','🀄','🃏','🎴','🏆','🥇','🥈','🥉','🏅','🎖','🏵','🎗','🎫','🎟'] },
+  { id:'objects', icon:'💡', label:'Objetos',    emojis:['⌚','📱','📲','💻','⌨','🖥','🖨','🖱','🖲','💽','💾','💿','📀','🧮','📷','📸','📹','🎥','📽','🎞','📞','☎','📟','📠','📺','📻','🧭','⏱','⏲','⏰','🕰','⌛','⏳','📡','🔋','🪫','🔌','💡','🔦','🕯','🪔','🧯','💰','🪙','💴','💵','💶','💷','💸','💳','📧','📨','📩','📤','📥','📦','📫','📪','📬','📭','📮','🗳','✏','✒','🖋','🖊','📝','📁','📂','🗂','📅','📆','🗒','🗓','📇','📈','📉','📊','📋','📌','📍','🗃','🗄','🗑','🔒','🔓','🔏','🔐','🔑','🗝','🔨','🪓','⛏','⚒','🛠','🗡','⚔','🛡','🪚','🔧','🪛','🔩','⚙','🗜','⚖','🦯','🔗','⛓','🪝','🧲','🪜','⚗','🔭','🔬','🩺','💊','🩹','🩼','🩻','🌡','🪤','🧰','🪣','🧹','🧺','🧻','🧼','🫧','🪥','🧽','🛒','🚪','🛗','🪞','🪟','🛏','🛋','🚽','🪠','🚿','🛁','🪒','🧴','🧷','🧸','🪆','🖼','🪅','🎀','🎊','🎉','🎈','🧧','🎁','🎗','🎟','🎫','🎖','📿','💎','🔮','🪬','🧿','💈','🔭','🔬','🩺','🩻','💉','🩸','💊','🩹','🩼','🌡','🧬','🦠','🧫','🧪','🌡','⚗','🔭','🔬','🕳','💣','🪤','🔫','🗡','⚔','🛡','🪃','🏹','🪚','🔧','🪛','🔩','⚙','🗜','🔗','⛓','🪝','🧲','🪜','🧰','🪤','🪣'] },
+  { id:'symbols', icon:'❤', label:'Símbolos',   emojis:['❤','🧡','💛','💚','💙','💜','🖤','🤍','🤎','💔','❣','💕','💞','💓','💗','💖','💘','💝','💟','☮','✝','☪','🪯','🕉','☸','✡','🔯','🕎','☯','☦','🛐','⛎','♈','♉','♊','♋','♌','♍','♎','♏','♐','♑','♒','♓','🆔','⚛','🉑','☢','☣','📴','📳','🈶','🈚','🈸','🈺','🈷','✴','🆚','💮','🉐','㊙','㊗','🈴','🈵','🈹','🈲','🅰','🅱','🆎','🆑','🅾','🆘','❌','⭕','🛑','⛔','📛','🚫','💯','💢','♨','🚷','🚯','🚳','🚱','🔞','📵','🔇','🔈','🔉','🔊','📣','📢','🔔','🔕','🎵','🎶','⚠','🚸','🔱','⚜','🔰','♻','✅','🆗','🆙','🆒','🆕','🆓','🔟','🔂','🔁','🔀','▶','⏩','⏭','⏯','◀','⏪','⏮','🔼','⏫','🔽','⏬','⏸','⏹','⏺','🔅','🔆','📶','🔣','🔤','🔡','🔢','🔠','💱','💲','⁉','⚡','🌈','🔥','💥','✨','💫','🕳','💤','💢','💬','💭','🗨','🗯','💯'] },
+];
+
+let _emojiActiveCat = 0;
+let _emojiOpen = false;
+
+function toggleEmojiPicker() {
+  _emojiOpen ? closeEmojiPicker() : openEmojiPicker();
+}
+
+function openEmojiPicker() {
+  _emojiOpen = true;
+  // Construir tabs
+  const tabsEl = document.getElementById('emojiPickerTabs');
+  if (tabsEl && !tabsEl.children.length) {
+    tabsEl.innerHTML = EMOJI_CATS.map((cat, i) =>
+      `<button class="emoji-tab-btn${i === 0 ? ' active' : ''}" onclick="emojiSelectCat(${i})" title="${cat.label}">${cat.icon}</button>`
+    ).join('');
+  }
+  // Renderizar primera categoría
+  renderEmojiCat(_emojiActiveCat);
+
+  document.getElementById('emojiOverlay').classList.add('open');
+  document.getElementById('emojiPicker').classList.add('open');
+  document.getElementById('emojiSearch').value = '';
+  document.getElementById('emojiSearch').focus();
+}
+
+function closeEmojiPicker() {
+  _emojiOpen = false;
+  document.getElementById('emojiOverlay').classList.remove('open');
+  document.getElementById('emojiPicker').classList.remove('open');
+}
+
+function emojiSelectCat(idx) {
+  _emojiActiveCat = idx;
+  document.querySelectorAll('.emoji-tab-btn').forEach((b, i) => b.classList.toggle('active', i === idx));
+  document.getElementById('emojiSearch').value = '';
+  renderEmojiCat(idx);
+}
+
+function renderEmojiCat(idx) {
+  const grid = document.getElementById('emojiGrid');
+  if (!grid) return;
+  grid.innerHTML = EMOJI_CATS[idx].emojis.map(e =>
+    `<button class="emoji-btn" onclick="insertEmoji('${e}')">${e}</button>`
+  ).join('');
+}
+
+function filterEmojis() {
+  const q    = document.getElementById('emojiSearch').value.toLowerCase().trim();
+  const grid = document.getElementById('emojiGrid');
+  if (!grid) return;
+  if (!q) { renderEmojiCat(_emojiActiveCat); return; }
+
+  // Buscar en todas las categorías
+  const allEmojis = EMOJI_CATS.flatMap(cat => cat.emojis);
+  const filtered  = allEmojis.filter((e, i, arr) => arr.indexOf(e) === i); // deduplicate
+  grid.innerHTML = filtered.map(e =>
+    `<button class="emoji-btn" onclick="insertEmoji('${e}')">${e}</button>`
+  ).join('');
+}
+
+function insertEmoji(emoji) {
+  const input = document.getElementById('chatInput');
+  if (!input) return;
+  const start = input.selectionStart;
+  const end   = input.selectionEnd;
+  const val   = input.value;
+  input.value = val.slice(0, start) + emoji + val.slice(end);
+  input.setSelectionRange(start + emoji.length, start + emoji.length);
+  input.focus();
+  closeEmojiPicker();
+}
+
+/* AJUSTES DE MENSAJES */
+
+const _msgSettings = {
+  notif:       true,
+  sound:       false,
+  read:        true,
+  online:      true,
+  bubbleColor: '#1a5c34',
+  fontSize:    'normal',
+  wallpaper:   'default'
+};
+
+function _loadMsgSettings() {
+  try {
+    const saved = JSON.parse(localStorage.getItem('fynderMsgSettings') || '{}');
+    Object.assign(_msgSettings, saved);
+  } catch(e) {}
+}
+function _saveMsgSettings() {
+  localStorage.setItem('fynderMsgSettings', JSON.stringify(_msgSettings));
+}
+
+function openMsgSettings() {
+  _loadMsgSettings();
+
+  // Sync toggles de notif / sonido / leído
+  ['notif','sound','read'].forEach(k => {
+    const el = document.getElementById('setting' + k.charAt(0).toUpperCase() + k.slice(1) + 'Toggle');
+    if (el) el.classList.toggle('on', _msgSettings[k] !== false);
+  });
+
+  // Sync toggle de "en línea"
+  const onlineToggle = document.getElementById('settingOnlineToggle');
+  if (onlineToggle) onlineToggle.classList.toggle('on', _msgSettings.online !== false);
+
+  // Sync toggle de tema oscuro
+  const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+  const themeToggle = document.getElementById('settingThemeToggle');
+  const themeIcon   = document.getElementById('settingThemeIcon');
+  const themeSub    = document.getElementById('settingThemeSub');
+  if (themeToggle) themeToggle.classList.toggle('on', isDark);
+  if (themeIcon) themeIcon.innerHTML = isDark ? '<i class="fas fa-moon"></i>' : '<i class="fas fa-sun"></i>';
+  if (themeSub) themeSub.textContent = isDark ? 'Tema actual: oscuro' : 'Tema actual: claro';
+
+  // Sync color dots
+  document.querySelectorAll('.msg-color-dot').forEach(dot => {
+    dot.classList.toggle('active', dot.dataset.color === _msgSettings.bubbleColor);
+  });
+
+  // Sync font sub
+  const fontLabels = { small:'Pequeño', normal:'Normal', large:'Grande' };
+  const fontSubEl = document.getElementById('settingFontSub');
+  if (fontSubEl) fontSubEl.textContent = fontLabels[_msgSettings.fontSize] || 'Normal';
+
+  // Sync font buttons
+  document.querySelectorAll('.msg-font-btn').forEach((btn, i) => {
+    const sizes = ['small','normal','large'];
+    btn.classList.toggle('active', sizes[i] === (_msgSettings.fontSize || 'normal'));
+  });
+
+  // Sync color sub
+  const colorNames = {
+    '#67B8B4':'Teal Fynder',
+    '#7b3838':'Rojo oscuro',
+    '#1e4d7b':'Azul oscuro',
+    '#1a5c34':'Verde oscuro',
+    '#5b2d82':'Morado',
+    '#7a4a1a':'Naranja',
+    '#2b5c5c':'Verde azulado'
+  };
+  const colorSubEl = document.getElementById('settingColorSub');
+  if (colorSubEl) colorSubEl.textContent = colorNames[_msgSettings.bubbleColor] || 'Personalizado';
+
+  // Sync wallpaper dots
+  const wpNames = {
+    default: 'Por defecto',
+    dots: 'Patrón de puntos',
+    gradient: 'Gradiente',
+    dark: 'Oscuro total',
+    nature: 'Verde natural'
+  };
+  document.querySelectorAll('.msg-wallpaper-dot').forEach(dot => {
+    dot.classList.toggle('active', dot.dataset.wp === (_msgSettings.wallpaper || 'default'));
+  });
+  const wpSubEl = document.getElementById('settingWallpaperSub');
+  if (wpSubEl) wpSubEl.textContent = wpNames[_msgSettings.wallpaper || 'default'] || 'Por defecto';
+
+  document.getElementById('msgSettingsOverlay').classList.add('open');
+  document.getElementById('msgSettingsPanel').classList.add('open');
+}
+
+function closeMsgSettings() {
+  document.getElementById('msgSettingsOverlay').classList.remove('open');
+  document.getElementById('msgSettingsPanel').classList.remove('open');
+}
+
+function toggleMsgSetting(key) {
+  _loadMsgSettings();
+  _msgSettings[key] = !_msgSettings[key];
+  _saveMsgSettings();
+  const idMap = { notif:'settingNotifToggle', sound:'settingSoundToggle', read:'settingReadToggle', online:'settingOnlineToggle' };
+  const el = document.getElementById(idMap[key]);
+  if (el) el.classList.toggle('on', _msgSettings[key]);
+  showToast(_msgSettings[key] ? 'Activado' : 'Desactivado');
+}
+
+function msgToggleSetting(key, toggleId) {
+  toggleMsgSetting(key);
+}
+
+function msgToggleTheme() {
+  const current = document.documentElement.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+  document.documentElement.setAttribute('data-theme', current);
+  localStorage.setItem('fynderTheme', current);
+  
+  const icon = document.getElementById('settingThemeIcon');
+  const sub = document.getElementById('settingThemeSub');
+  const toggle = document.getElementById('settingThemeToggle');
+  
+  if (current === 'dark') {
+    if (icon) icon.innerHTML = '<i class="fas fa-moon"></i>';
+    if (sub) sub.textContent = 'Tema actual: oscuro';
+    if (toggle) toggle.classList.add('on');
+  } else {
+    if (icon) icon.innerHTML = '<i class="fas fa-sun"></i>';
+    if (sub) sub.textContent = 'Tema actual: claro';
+    if (toggle) toggle.classList.remove('on');
+  }
+  
+  showToast(`Tema ${current === 'dark' ? 'oscuro' : 'claro'} activado`);
+}
+
+function setChatWallpaper(wp, btn) {
+  _loadMsgSettings();
+  _msgSettings.wallpaper = wp;
+  _saveMsgSettings();
+  _applyChatWallpaper(wp);
+  
+  // Actualizar UI
+  document.querySelectorAll('.msg-wallpaper-dot').forEach(d => d.classList.remove('active'));
+  if (btn) btn.classList.add('active');
+  
+  const names = { 
+    default: 'Por defecto', 
+    dots: 'Patrón de puntos', 
+    gradient: 'Gradiente', 
+    dark: 'Oscuro total', 
+    nature: 'Verde natural' 
+  };
+  
+  const subEl = document.getElementById('settingWallpaperSub');
+  if (subEl) subEl.textContent = names[wp] || 'Por defecto';
+  
+  showToast('Fondo actualizado');
+}
+
+function _applyChatWallpaper(wp) {
+  const msgs = document.querySelector('.wa-chat-area .chat-messages');
+  if (!msgs) return;
+  
+  ['wp-default', 'wp-dots', 'wp-gradient', 'wp-dark', 'wp-nature'].forEach(c => msgs.classList.remove(c));
+  msgs.classList.add('wp-' + wp);
+}
+
+function clearAllChats() {
+  if (!confirm('¿Borrar TODOS los chats y conversaciones? Esta acción no se puede deshacer.')) return;
+  
+  // Borrar todos los chats del localStorage
+  const keys = Object.keys(localStorage);
+  keys.forEach(key => {
+    if (key.startsWith('fynderChat_')) {
+      localStorage.removeItem(key);
+    }
+  });
+  
+  // Limpiar conversaciones
+  _saveConversations([]);
+  
+  showToast('Todos los chats han sido borrados');
+  closeMsgSettings();
+  
+  // Actualizar UI
+  renderConversations();
+  
+  // Si estaba en un chat, cerrar
+  const isDesktop = window.innerWidth >= 769;
+  if (isDesktop) {
+    waCloseChat();
+  } else {
+    goPage('messages');
+  }
+}
+
+function setChatBubbleColor(color, name, btn) {
+  _loadMsgSettings();
+  _msgSettings.bubbleColor = color;
+  _saveMsgSettings();
+  
+  // Actualizar CSS en tiempo real
+  _applyChatBubbleColor(color);
+  
+  // Actualizar TODOS los dots de color (panel de mensajes Y página de ajustes)
+  document.querySelectorAll('.msg-color-dot, .sett-color-dot').forEach(d => {
+    d.classList.toggle('active', d.dataset.color === color);
+  });
+  
+  // Actualizar label en el panel de mensajes
+  const colorSubEl = document.getElementById('settingColorSub');
+  if (colorSubEl) colorSubEl.textContent = name;
+  
+  showToast('Color actualizado');
+}
+
+function _applyChatBubbleColor(color) {
+  let styleEl = document.getElementById('chatBubbleColorStyle');
+  if (!styleEl) {
+    styleEl = document.createElement('style');
+    styleEl.id = 'chatBubbleColorStyle';
+    document.head.appendChild(styleEl);
+  }
+  styleEl.textContent = `.chat-msg-row.out .chat-bubble { background: ${color} !important; }`;
+}
+
+function setChatFontSize(size, label) {
+  _loadMsgSettings();
+  _msgSettings.fontSize = size;
+  _saveMsgSettings();
+  
+  // Aplicar tamaño
+  _applyChatFontSize(size);
+  
+  // Actualizar label en el panel de mensajes
+  const fontSubEl = document.getElementById('settingFontSub');
+  if (fontSubEl) fontSubEl.textContent = label;
+  
+  // Actualizar TODOS los botones de tamaño (panel de mensajes Y página de ajustes)
+  document.querySelectorAll('.msg-font-btn, .sett-font-btn').forEach((btn, i) => {
+    const sizes = ['small','normal','large'];
+    btn.classList.toggle('active', sizes[i] === size);
+  });
+  
+  showToast('Tamaño actualizado');
+}
+
+function _applyChatFontSize(size) {
+  const msgs = document.getElementById('chatMessages');
+  if (!msgs) return;
+  ['font-small','font-normal','font-large'].forEach(c => msgs.classList.remove(c));
+  msgs.classList.add('font-' + size);
+}
+
+function exportChats() {
+  const convs = _getConversations();
+  if (convs.length === 0) { showToast('No hay conversaciones para exportar'); return; }
+  let txt = 'Conversaciones de Fynder\n' + '='.repeat(40) + '\n\n';
+  convs.forEach(c => {
+    const msgs = _getMsgs(c.id);
+    txt += `=== ${c.name} ===\n`;
+    msgs.forEach(m => { txt += `[${m.date} ${m.time}] ${m.from === 'user' ? 'Yo' : c.name}: ${m.text}\n`; });
+    txt += '\n';
+  });
+  const blob = new Blob([txt], { type: 'text/plain;charset=utf-8' });
+  const url  = URL.createObjectURL(blob);
+  const a    = document.createElement('a');
+  a.href = url; a.download = 'fynder-chats.txt'; a.click();
+  URL.revokeObjectURL(url);
+  showToast('Conversaciones exportadas');
+}
+
+function clearAllChats() {
+  if (!confirm('¿Borrar TODOS los chats? Esta acción no se puede deshacer.')) return;
+  const convs = _getConversations();
+  convs.forEach(c => localStorage.removeItem('fynderChat_' + c.id));
+  _saveConversations([]);
+  _saveBookmarks([]);
+  updateMsgBadge();
+  renderConversations();
+  closeMsgSettings();
+  showToast('Todos los chats eliminados');
+}
+
+// ---- Aplicar ajustes al iniciar ----
+document.addEventListener('DOMContentLoaded', () => {
+  _loadMsgSettings();
+  if (_msgSettings.bubbleColor) _applyChatBubbleColor(_msgSettings.bubbleColor);
+  if (_msgSettings.fontSize)    _applyChatFontSize(_msgSettings.fontSize);
+});
+
+/* PHOTO LIGHTBOX – abre galería de fotos del negocio */
+
+function openPhotoLightbox() {
+  if (!_activeChatBizId) return;
+  const biz = BUSINESSES.find(b => String(b.id) === String(_activeChatBizId));
+  if (!biz) return;
+  const imgs = [];
+  if (biz.logo)  imgs.push({ src: biz.logo,  caption: 'Logo' });
+  if (biz.image) imgs.push({ src: biz.image, caption: biz.name });
+
+  if (!imgs.length) { showToast('Sin fotos disponibles'); return; }
+
+  let currentIdx = 0;
+  const overlay = document.createElement('div');
+  overlay.id = 'photoLightbox';
+  overlay.style.cssText = 'position:fixed;inset:0;z-index:9999;background:rgba(0,0,0,.92);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:16px;';
+
+  function render() {
+    const img = imgs[currentIdx];
+    overlay.innerHTML = `
+      <button onclick="document.getElementById('photoLightbox').remove()" style="position:absolute;top:16px;right:16px;background:rgba(255,255,255,.15);border:none;color:#fff;width:40px;height:40px;border-radius:50%;font-size:1.2rem;cursor:pointer;display:flex;align-items:center;justify-content:center;"><i class="fas fa-xmark"></i></button>
+      <img src="${img.src}" style="max-width:90vw;max-height:70dvh;border-radius:16px;object-fit:contain;box-shadow:0 8px 40px rgba(0,0,0,.6);" loading="lazy">
+      <p style="color:rgba(255,255,255,.7);font-size:.875rem;font-family:'Inter',sans-serif;margin:0;">${escapeHtml(img.caption)} · ${currentIdx+1}/${imgs.length}</p>
+      ${imgs.length > 1 ? `
+      <div style="display:flex;gap:12px;">
+        <button onclick="lightboxNav(-1)" style="background:rgba(255,255,255,.15);border:none;color:#fff;padding:10px 20px;border-radius:10px;cursor:pointer;font-size:.875rem;">‹ Anterior</button>
+        <button onclick="lightboxNav(1)"  style="background:rgba(255,255,255,.15);border:none;color:#fff;padding:10px 20px;border-radius:10px;cursor:pointer;font-size:.875rem;">Siguiente ›</button>
+      </div>` : ''}
+    `;
+  }
+  window.lightboxNav = (dir) => {
+    currentIdx = (currentIdx + dir + imgs.length) % imgs.length;
+    render();
+  };
+  render();
+  document.body.appendChild(overlay);
+}
+
+/* PÁGINA DE AJUSTES */
+
+/** Navega a una sección del panel de ajustes */
+function settGoSection(id, btn) {
+  document.querySelectorAll('#page-settings .sett-section').forEach(s => s.classList.remove('active'));
+  document.querySelectorAll('#page-settings .sett-nav-item').forEach(b => b.classList.remove('active'));
+
+  const sec = document.getElementById('sett-' + id);
+  if (sec) sec.classList.add('active');
+  if (btn) btn.classList.add('active');
+
+  // Sync específico al entrar en cada sección
+  if (id === 'cuenta')         settSyncAccount();
+  if (id === 'apariencia')     settSyncAppearance();
+  if (id === 'notificaciones') settSyncNotif();
+  if (id === 'privacidad')     settSyncNotif();   // read toggle vive aquí también
+  if (id === 'accesibilidad')  settSyncAccessibility();
+  if (id === 'datos')          settSyncStorage();
+  if (id === 'rendimiento')    settSyncRendimiento();
+  if (id === 'sistema')        settSyncSistema();
+  if (id === 'herramientas')   settSyncHerramientas();
+  if (id === 'idioma')         settSyncIdioma();
+  if (id === 'amigos')         settSyncAmigos();
+  if (id === 'mensajes')       settSyncMensajesSection();
+}
+
+/** Helper para navegar desde dentro del contenido (sin referencia al botón) */
+function settGoToSection(id) {
+  const btn = document.querySelector(`#page-settings .sett-nav-item[data-section="${id}"]`);
+  settGoSection(id, btn);
+}
+
+/** Inicializa la página cada vez que se navega a ella */
+function initSettingsPage() {
+  // Activar sección "cuenta" por defecto
+  const firstBtn = document.querySelector('#page-settings .sett-nav-item[data-section="cuenta"]');
+  settGoSection('cuenta', firstBtn);
+}
+
+// ── CUENTA ─────────────────────────────────────────────────────────────────
+
+function settSyncAccount() {
+  const logged = !!localStorage.getItem('fynderLogged');
+  const user = logged ? JSON.parse(localStorage.getItem('fynderUser') || '{}') : {};
+
+  const nameEl  = document.getElementById('settUserName');
+  const emailEl = document.getElementById('settUserEmail');
+  const avaEl   = document.getElementById('settUserAvatar');
+
+  if (nameEl)  nameEl.textContent  = logged ? (user.name  || 'Usuario') : '';
+  if (emailEl) emailEl.textContent = logged ? (user.email || '—') : '';
+
+  if (avaEl) {
+    if (!logged) {
+      avaEl.innerHTML = '';
+      avaEl.textContent = '';
+    } else {
+      const photo  = localStorage.getItem('fynderAvatarPhoto');
+      const preset = localStorage.getItem('fynderAvatarPreset');
+      if (photo) {
+        avaEl.innerHTML = `<img src="${photo}" alt="avatar" style="width:100%;height:100%;object-fit:cover;border-radius:50%">`;
+      } else if (preset) {
+        avaEl.innerHTML = '';
+        avaEl.textContent = preset;
+      } else {
+        avaEl.innerHTML = '';
+        avaEl.textContent = (user.name || 'U')[0].toUpperCase();
+        const bg = localStorage.getItem('fynderAvatarInitialBg');
+        if (bg) avaEl.style.background = bg;
+      }
+    }
+  }
+
+  const planEl = document.getElementById('settPlanLabel');
+  if (planEl) {
+    const bizList = JSON.parse(localStorage.getItem('fynderBusinesses') || '[]');
+    planEl.textContent = bizList[0]?.plan || 'Free';
+  }
+  // Sincronizar modo invisible
+  _syncInvisibleSetting();
+  // Sincronizar conteo de amigos
+  _updateFriendCount();
+}
+
+/** Cierra sesión correctamente usando la función centralizada */
+function settLogout() {
+  if (!confirm('¿Cerrar sesión?')) return;
+  logout();   // llama a la función completa que limpia todo
+}
+
+// ── APARIENCIA ──────────────────────────────────────────────────────────────
+
+function settSyncAppearance() {
+  _loadMsgSettings();
+
+  // Modo oscuro
+  const darkBtn = document.getElementById('settDarkToggle');
+  if (darkBtn) {
+    darkBtn.classList.toggle('on', document.documentElement.getAttribute('data-theme') === 'dark');
+  }
+
+  // Tamaño de fuente del chat
+  const fontBtns = document.querySelectorAll('#sett-apariencia .sett-font-btn');
+  const sizes = ['small', 'normal', 'large'];
+  const currentSize = _msgSettings.fontSize || 'normal';
+  fontBtns.forEach((btn, i) => btn.classList.toggle('active', sizes[i] === currentSize));
+
+  // Color de burbujas
+  const currentColor = _msgSettings.bubbleColor || '#1a5c34';
+  document.querySelectorAll('#sett-apariencia .sett-color-dot').forEach(dot => {
+    dot.classList.toggle('active', dot.dataset.color === currentColor);
+  });
+}
+
+function settToggleDark() {
+  toggleDarkMode();
+  const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+  const btn = document.getElementById('settDarkToggle');
+  if (btn) btn.classList.toggle('on', isDark);
+}
+
+// ── NOTIFICACIONES / PRIVACIDAD ─────────────────────────────────────────────
+
+function settSyncNotif() {
+  _loadMsgSettings();
+
+  // Estado del permiso nativo del navegador
+  const statusEl = document.getElementById('settNotifStatusLabel');
+  if (statusEl) {
+    if (!('Notification' in window)) {
+      statusEl.textContent = '⚠️ No compatible con este navegador';
+    } else {
+      const map = { granted: '✅ Activadas', denied: '🚫 Bloqueadas por el navegador', default: 'Sin configurar — haz clic en Activar' };
+      statusEl.textContent = map[Notification.permission] || 'Sin configurar';
+    }
+  }
+
+  // Botón "Activar": cambiar texto/estado según permiso
+  const activarBtn = document.getElementById('settNotifActivarBtn');
+  if (activarBtn) {
+    const perm = ('Notification' in window) ? Notification.permission : 'unsupported';
+    if (perm === 'granted') {
+      activarBtn.textContent = '✓ Activado';
+      activarBtn.style.background = '#10B981';
+      activarBtn.style.color = '#fff';
+      activarBtn.style.borderColor = '#10B981';
+      activarBtn.disabled = true;
+      activarBtn.onclick = null;
+    } else if (perm === 'denied') {
+      activarBtn.textContent = '🚫 Bloqueado';
+      activarBtn.style.background = '';
+      activarBtn.style.color = '#EF4444';
+      activarBtn.style.borderColor = '#EF4444';
+      activarBtn.disabled = true;
+      activarBtn.onclick = null;
+    } else if (perm === 'unsupported') {
+      activarBtn.style.display = 'none';
+    } else {
+      activarBtn.textContent = 'Activar';
+      activarBtn.style.background = '';
+      activarBtn.style.color = '';
+      activarBtn.style.borderColor = '';
+      activarBtn.disabled = false;
+      activarBtn.onclick = () => handleNotifBannerClick(activarBtn).then(() => settSyncNotif());
+    }
+  }
+
+  // Toggles de notificaciones de chat y sonido
+  const chatT  = document.getElementById('settNotifChatToggle');
+  const soundT = document.getElementById('settSoundToggle2');
+  if (chatT)  chatT.classList.toggle('on', _msgSettings.notif);
+  if (soundT) soundT.classList.toggle('on', _msgSettings.sound);
+
+  // Toggle de confirmación de lectura (sección privacidad)
+  const readT = document.getElementById('settReadToggle2');
+  if (readT) readT.classList.toggle('on', _msgSettings.read);
+}
+
+/** Toggle genérico de preferencias de mensajes/ajustes */
+function settToggleSetting(key, btnId) {
+  // Claves de mensajes (legacy _msgSettings)
+  const msgKeys = ['notif', 'sound', 'read'];
+  if (msgKeys.includes(key)) {
+    _loadMsgSettings();
+    _msgSettings[key] = !_msgSettings[key];
+    _saveMsgSettings();
+    const btn = document.getElementById(btnId);
+    if (btn) btn.classList.toggle('on', _msgSettings[key]);
+    const mirror = { notif: 'settingNotifToggle', sound: 'settingSoundToggle', read: 'settingReadToggle' };
+    const mirrorEl = document.getElementById(mirror[key]);
+    if (mirrorEl) mirrorEl.classList.toggle('on', _msgSettings[key]);
+    showToast(_msgSettings[key] ? 'Activado' : 'Desactivado');
+    return;
+  }
+
+  // Claves de ajustes generales (localStorage fynder_key)
+  const lsKey = 'fynder_' + key;
+  const btn = document.getElementById(btnId);
+  const currentVal = btn ? btn.classList.contains('on') : localStorage.getItem(lsKey) === '1';
+  const newVal = !currentVal;
+  localStorage.setItem(lsKey, newVal ? '1' : '0');
+  if (btn) btn.classList.toggle('on', newVal);
+  showToast(newVal ? 'Activado' : 'Desactivado');
+}
+
+// ── ACCESIBILIDAD ───────────────────────────────────────────────────────────
+
+function settSyncAccessibility() {
+  // Tamaño de fuente UI
+  const sel = document.getElementById('settUIFontSize');
+  if (sel) {
+    const saved = localStorage.getItem('fynderUIFontSize') || 'normal';
+    sel.value = saved;
+  }
+
+  // Reducir animaciones
+  const rmBtn = document.getElementById('settReduceMotion');
+  if (rmBtn) rmBtn.classList.toggle('on', document.documentElement.hasAttribute('data-reduce-motion'));
+}
+
+function settSetUIFontSize(val) {
+  const map = { normal: '16px', large: '18px', xlarge: '20px' };
+  document.documentElement.style.fontSize = map[val] || '16px';
+  localStorage.setItem('fynderUIFontSize', val);
+  showToast('Tamaño de fuente actualizado');
+}
+
+function settToggleReduceMotion() {
+  const btn = document.getElementById('settReduceMotion');
+  const active = document.documentElement.hasAttribute('data-reduce-motion');
+  if (active) {
+    document.documentElement.removeAttribute('data-reduce-motion');
+    localStorage.removeItem('fynderReduceMotion');
+    if (btn) btn.classList.remove('on');
+    showToast('Animaciones activadas');
+  } else {
+    document.documentElement.setAttribute('data-reduce-motion', '1');
+    localStorage.setItem('fynderReduceMotion', '1');
+    if (btn) btn.classList.add('on');
+    showToast('Animaciones reducidas');
+  }
+}
+
+// ── DATOS ────────────────────────────────────────────────────────────────────
+
+function settSyncStorage() {
+  const el = document.getElementById('settStorageLabel');
+  if (!el) return;
+  let bytes = 0;
+  for (let i = 0; i < localStorage.length; i++) {
+    const k = localStorage.key(i);
+    if (k && k.startsWith('fynder')) {
+      bytes += ((localStorage.getItem(k) || '').length * 2); // UTF-16
+    }
+  }
+  const kb = (bytes / 1024).toFixed(1);
+  el.textContent = `${kb} KB usados (localStorage)`;
+
+  // Barra de progreso (localStorage máx ~5MB)
+  const bar = document.getElementById('settStorageBar');
+  if (bar) {
+    const pct = Math.min((bytes / (5 * 1024 * 1024)) * 100, 100).toFixed(1);
+    bar.style.width = pct + '%';
+  }
+}
+
+function settClearData() {
+  if (!confirm('¿Limpiar caché y preferencias locales?\n\nSe perderán: conversaciones, favoritos guardados y ajustes de la app.\nTu cuenta (nombre y contraseña) se mantendrá.')) return;
+
+  const keep = ['fynderUser', 'fynderLogged', 'fynderTheme'];
+  const toRemove = [];
+  for (let i = 0; i < localStorage.length; i++) {
+    const k = localStorage.key(i);
+    if (k && k.startsWith('fynder') && !keep.includes(k)) toRemove.push(k);
+  }
+  toRemove.forEach(k => localStorage.removeItem(k));
+
+  // Reinicializar estado en memoria
+  favorites.clear();
+  updateNav();
+
+  showToast('✅ Datos limpiados correctamente');
+  settSyncStorage();
+}
+
+// ── HELPERS ──────────────────────────────────────────────────────────────────
+
+/** Sincroniza los controles de apariencia del panel de mensajes cuando se cambian desde Ajustes */
+function settSyncMsgUI() {
+  _loadMsgSettings();
+  
+  // Sincronizar dots de color (panel de mensajes)
+  document.querySelectorAll('.msg-color-dot').forEach(d => {
+    d.classList.toggle('active', d.dataset.color === _msgSettings.bubbleColor);
+  });
+  
+  // Sincronizar dots de color (página de ajustes)
+  document.querySelectorAll('.sett-color-dot').forEach(d => {
+    d.classList.toggle('active', d.dataset.color === _msgSettings.bubbleColor);
+  });
+  
+  // Sincronizar botones de fuente (panel de mensajes)
+  document.querySelectorAll('.msg-font-btn').forEach((btn, i) => {
+    const sizes = ['small', 'normal', 'large'];
+    btn.classList.toggle('active', sizes[i] === (_msgSettings.fontSize || 'normal'));
+  });
+  
+  // Sincronizar botones de fuente (página de ajustes)
+  document.querySelectorAll('.sett-font-btn').forEach((btn, i) => {
+    const sizes = ['small', 'normal', 'large'];
+    btn.classList.toggle('active', sizes[i] === (_msgSettings.fontSize || 'normal'));
+  });
+}
+
+/** Sincroniza los toggles y labels de la sección de ajustes de Mensajes */
+function settSyncMensajesSection() {
+  // Restringir chat
+  const restBtn = document.getElementById('settRestringirToggle');
+  if (restBtn) restBtn.classList.toggle('on', localStorage.getItem('fynder_restringirChat') === '1');
+
+  // Privacidad avanzada
+  const privBtn = document.getElementById('settPrivAdvToggle');
+  const privVal = localStorage.getItem('fynder_privAvanzada') === '1';
+  if (privBtn) privBtn.classList.toggle('on', privVal);
+  const privLabel = document.getElementById('settPrivAdvLabel');
+  if (privLabel) privLabel.textContent = privVal ? 'Activada' : 'Desactivada';
+
+  // Traducir mensajes
+  const tradBtn = document.getElementById('settTraducirToggle');
+  if (tradBtn) tradBtn.classList.toggle('on', localStorage.getItem('fynder_traducirMensajes') === '1');
+
+  // Idioma de transcripciones
+  const transcLabel = document.getElementById('settTranscripcionLabel');
+  if (transcLabel) {
+    const lang = localStorage.getItem('fynder_transcripcionLang') || 'Español';
+    transcLabel.textContent = lang;
+  }
+}
+
+/** Toggle especial para privacidad avanzada (actualiza el label) */
+function settToggleMsgPriv() {
+  const currentVal = localStorage.getItem('fynder_privAvanzada') === '1';
+  const newVal = !currentVal;
+  localStorage.setItem('fynder_privAvanzada', newVal ? '1' : '0');
+  const btn = document.getElementById('settPrivAdvToggle');
+  if (btn) btn.classList.toggle('on', newVal);
+  const label = document.getElementById('settPrivAdvLabel');
+  if (label) label.textContent = newVal ? 'Activada' : 'Desactivada';
+  showToast(newVal ? 'Privacidad avanzada activada' : 'Privacidad avanzada desactivada');
+}
+
+/** Filtro de búsqueda en el sidebar */
+function settFilterSections(q) {
+  const query = q.toLowerCase().trim();
+  document.querySelectorAll('#page-settings .sett-nav-item').forEach(btn => {
+    const text = btn.textContent.toLowerCase();
+    btn.style.display = (!query || text.includes(query)) ? '' : 'none';
+  });
+  document.querySelectorAll('#page-settings .sett-nav-divider').forEach(d => {
+    d.style.display = query ? 'none' : '';
+  });
+}
+
+// ── HERRAMIENTAS ─────────────────────────────────────────────────────────────
+
+function settSyncHerramientas() {
+  // Cerrar todos los expandibles al entrar a la sección
+  document.querySelectorAll('#sett-herramientas .sett-expandable').forEach(e => e.classList.remove('open'));
+  document.querySelectorAll('#sett-herramientas .sett-row-expandable').forEach(r => r.classList.remove('expanded'));
+}
+
+/** Abre/cierra un bloque expandible dentro de ajustes */
+function settToggleExpand(id, row) {
+  const panel = document.getElementById(id);
+  if (!panel) return;
+  const isOpen = panel.classList.contains('open');
+
+  // Cerrar los demás del mismo grupo
+  const parentSection = row.closest('.sett-section');
+  if (parentSection) {
+    parentSection.querySelectorAll('.sett-expandable.open').forEach(p => {
+      if (p !== panel) {
+        p.classList.remove('open');
+        const sibRow = p.previousElementSibling;
+        if (sibRow) sibRow.classList.remove('expanded');
+      }
+    });
+  }
+
+  panel.classList.toggle('open', !isOpen);
+  row.classList.toggle('expanded', !isOpen);
+}
+
+// ── RENDIMIENTO ───────────────────────────────────────────────────────────────
+
+function settSyncRendimiento() {
+  // Sincronizar toggles de rendimiento desde localStorage
+  const toggleMap = {
+    perfAlerts:  'settPerfAlertsToggle',
+    inactiveTabs:'settInactiveTabsToggle',
+    memSaver:    'settMemSaverToggle',
+    preload:     'settPreloadToggle',
+  };
+  Object.entries(toggleMap).forEach(([key, id]) => {
+    const el = document.getElementById(id);
+    if (el) {
+      const saved = localStorage.getItem('fynder_' + key);
+      // Default: activado excepto memSaver
+      const defaultOn = key !== 'memSaver';
+      const isOn = saved !== null ? saved === '1' : defaultOn;
+      el.classList.toggle('on', isOn);
+    }
+  });
+
+  // Ahorro de energía
+  const energyBtn = document.getElementById('settEnergySaverToggle');
+  if (energyBtn) energyBtn.classList.toggle('on', localStorage.getItem('fynderEnergySaver') === '1');
+
+  // Modo de energía
+  const eMode = parseInt(localStorage.getItem('fynderEnergyMode') || '1');
+  settSelectEnergyMode(eMode);
+
+  // Modo de precarga
+  const pMode = parseInt(localStorage.getItem('fynderPreloadMode') || '2');
+  settSelectPreloadMode(pMode);
+}
+
+function settSyncSistema() {
+  const sysToggles = {
+    bgRun:    'settBgRunToggle',
+    hwAccel:  'settHwAccelToggle',
+    sysNotif: 'settSysNotifToggle',
+    localAI:  'settLocalAIToggle',
+  };
+  Object.entries(sysToggles).forEach(([key, id]) => {
+    const el = document.getElementById(id);
+    if (el) {
+      const saved = localStorage.getItem('fynder_' + key);
+      const isOn = saved !== null ? saved === '1' : true; // todos on por defecto
+      el.classList.toggle('on', isOn);
+    }
+  });
+}
+
+function settToggleEnergySaver() {
+  const btn = document.getElementById('settEnergySaverToggle');
+  const isOn = btn && btn.classList.contains('on');
+  if (btn) btn.classList.toggle('on', !isOn);
+  localStorage.setItem('fynderEnergySaver', !isOn ? '1' : '');
+  showToast(!isOn ? 'Ahorro de energía activado' : 'Ahorro de energía desactivado');
+}
+
+function settSelectEnergyMode(mode) {
+  const d1 = document.getElementById('settEnergyOpt1');
+  const d2 = document.getElementById('settEnergyOpt2');
+  if (d1) d1.classList.toggle('active', mode === 1);
+  if (d2) d2.classList.toggle('active', mode === 2);
+  localStorage.setItem('fynderEnergyMode', mode);
+}
+
+function settSelectPreloadMode(mode) {
+  const d1 = document.getElementById('settPreloadOpt1');
+  const d2 = document.getElementById('settPreloadOpt2');
+  if (d1) d1.classList.toggle('active', mode === 1);
+  if (d2) d2.classList.toggle('active', mode === 2);
+  localStorage.setItem('fynderPreloadMode', mode);
+  showToast(mode === 1 ? 'Precarga ampliada activada' : 'Precarga estándar activada');
+}
+
+// ── RESTABLECER ───────────────────────────────────────────────────────────────
+
+function settResetConfig() {
+  if (!confirm('¿Restaurar todos los ajustes a sus valores predeterminados?\n\nTus datos de cuenta y negocios no se verán afectados.')) return;
+
+  // Eliminar solo claves de ajustes (no datos de cuenta)
+  const keepKeys = ['fynderUser', 'fynderLogged', 'fynderBusinesses', 'fynderChats'];
+  const toRemove = [];
+  for (let i = 0; i < localStorage.length; i++) {
+    const k = localStorage.key(i);
+    if (k && k.startsWith('fynder') && !keepKeys.includes(k)) toRemove.push(k);
+  }
+  toRemove.forEach(k => localStorage.removeItem(k));
+
+  // Restaurar tema claro
+  document.documentElement.removeAttribute('data-theme');
+  document.documentElement.style.fontSize = '16px';
+  document.documentElement.removeAttribute('data-reduce-motion');
+
+  showToast('✅ Ajustes restablecidos a valores predeterminados');
+  // Recargar la sección actual
+  const btn = document.querySelector('#page-settings .sett-nav-item.active');
+  if (btn) settGoSection(btn.dataset.section, btn);
+}
+
+
+// ── INICIALIZACIÓN ────────────────────────────────────────────────────────────
+
+document.addEventListener('DOMContentLoaded', () => {
+  // Restaurar tamaño de fuente UI
+  const savedFont = localStorage.getItem('fynderUIFontSize');
+  if (savedFont) {
+    const map = { normal: '16px', large: '18px', xlarge: '20px' };
+    document.documentElement.style.fontSize = map[savedFont] || '16px';
+  }
+  // Restaurar reducción de animaciones
+  if (localStorage.getItem('fynderReduceMotion')) {
+    document.documentElement.setAttribute('data-reduce-motion', '1');
+  }
+  // Auto-traducción al iniciar
+  _initAutoTranslate();
+});
+
+// ══════════════════════════════════════════════════════════════════════════════
+// MODO INVISIBLE
+// ══════════════════════════════════════════════════════════════════════════════
+
+function settToggleInvisible() {
+  const isOn = localStorage.getItem('fynderInvisible') === '1';
+  const newVal = !isOn;
+  localStorage.setItem('fynderInvisible', newVal ? '1' : '0');
+
+  const btn = document.getElementById('settInvisibleToggle');
+  const sub = document.getElementById('settInvisibleSub');
+  if (btn) btn.classList.toggle('on', newVal);
+  if (sub) sub.textContent = newVal
+    ? 'Estás invisible — nadie ve que estás en línea'
+    : 'Los demás ven que estás en línea';
+  showToast(newVal ? '🕵️ Modo invisible activado' : '👁️ Modo invisible desactivado');
+
+  // Aplicar indicador visual de estado
+  _applyInvisibleMode(newVal);
+}
+
+function _applyInvisibleMode(invisible) {
+  // Oculta o muestra el indicador verde de "en línea" en el avatar del navbar
+  const onlineDots = document.querySelectorAll('.online-dot, .user-online-badge');
+  onlineDots.forEach(d => d.style.display = invisible ? 'none' : '');
+}
+
+function _syncInvisibleSetting() {
+  const isOn = localStorage.getItem('fynderInvisible') === '1';
+  const btn = document.getElementById('settInvisibleToggle');
+  const sub = document.getElementById('settInvisibleSub');
+  if (btn) btn.classList.toggle('on', isOn);
+  if (sub) sub.textContent = isOn
+    ? 'Estás invisible — nadie ve que estás en línea'
+    : 'Los demás ven que estás en línea';
+  _applyInvisibleMode(isOn);
+}
+
+// ══════════════════════════════════════════════════════════════════════════════
+// AMIGOS
+// ══════════════════════════════════════════════════════════════════════════════
+
+function _getFriends()        { return JSON.parse(localStorage.getItem('fynderFriends')  || '[]'); }
+function _getFriendRequests() { return JSON.parse(localStorage.getItem('fynderFriendReqs') || '[]'); }
+function _saveFriends(arr)    { localStorage.setItem('fynderFriends', JSON.stringify(arr)); }
+function _saveFriendReqs(arr) { localStorage.setItem('fynderFriendReqs', JSON.stringify(arr)); }
+
+/** Inicializa datos de demo para amigos si no hay ninguno */
+function _seedFriendsDemo() {
+  if (_getFriends().length > 0) return;
+  const demo = [
+    { id:'f1', name:'Ana García',    email:'ana@ejemplo.com',    online:true  },
+    { id:'f2', name:'Carlos López',  email:'carlos@ejemplo.com', online:false },
+    { id:'f3', name:'María Pérez',   email:'maria@ejemplo.com',  online:true  },
+  ];
+  _saveFriends(demo);
+  const req = [
+    { id:'r1', name:'Juan Rodríguez', email:'juan@ejemplo.com' },
+  ];
+  _saveFriendReqs(req);
+}
+
+function settSyncAmigos() {
+  _seedFriendsDemo();
+  _renderFriendRequests();
+  _renderFriendList();
+  _updateFriendCount();
+}
+
+function _updateFriendCount() {
+  const friends = _getFriends();
+  const reqs    = _getFriendRequests();
+  const total   = document.getElementById('settFriendTotal');
+  if (total) total.textContent = `(${friends.length})`;
+
+  const badge = document.getElementById('settFriendReqBadge');
+  if (badge) {
+    badge.textContent = reqs.length;
+    badge.style.display = reqs.length > 0 ? 'inline-flex' : 'none';
+  }
+
+  // Actualizar sub en "Tú y Fynder"
+  const sub = document.getElementById('settFriendCountSub');
+  if (sub) sub.textContent = friends.length > 0 ? `${friends.length} amigo${friends.length !== 1 ? 's' : ''}` : 'Ver lista de amigos';
+}
+
+function _renderFriendRequests() {
+  const cont = document.getElementById('settFriendRequests');
+  if (!cont) return;
+  const reqs = _getFriendRequests();
+  if (reqs.length === 0) {
+    cont.innerHTML = '<div class="sett-empty-state"><i class="fas fa-user-check"></i><span>Sin solicitudes pendientes</span></div>';
+    return;
+  }
+  cont.innerHTML = reqs.map(r => `
+    <div class="sett-req-row" id="req-${r.id}">
+      <div class="sett-friend-avatar" style="background:#2F5BB7">${r.name[0].toUpperCase()}</div>
+      <div class="sett-friend-info">
+        <span class="sett-friend-name">${r.name}</span>
+        <span class="sett-friend-email">${r.email}</span>
+      </div>
+      <div class="sett-friend-actions">
+        <button class="sett-req-accept" onclick="acceptFriendReq('${r.id}')"><i class="fas fa-check"></i> Aceptar</button>
+        <button class="sett-req-decline" onclick="declineFriendReq('${r.id}')"><i class="fas fa-xmark"></i></button>
+      </div>
+    </div>`).join('');
+}
+
+function _renderFriendList(filter) {
+  const cont = document.getElementById('settFriendList');
+  if (!cont) return;
+  let friends = _getFriends();
+  if (filter) friends = friends.filter(f =>
+    f.name.toLowerCase().includes(filter) || (f.email || '').toLowerCase().includes(filter));
+
+  if (friends.length === 0) {
+    cont.innerHTML = filter
+      ? '<div class="sett-empty-state"><i class="fas fa-magnifying-glass"></i><span>Sin resultados</span></div>'
+      : '<div class="sett-empty-state"><i class="fas fa-user-group"></i><span>Aún no tienes amigos agregados</span></div>';
+    return;
+  }
+  cont.innerHTML = friends.map(f => `
+    <div class="sett-friend-row" id="fr-${f.id}">
+      <div class="sett-friend-avatar">${f.name[0].toUpperCase()}</div>
+      <div class="sett-friend-status ${f.online ? '' : 'offline'}"></div>
+      <div class="sett-friend-info">
+        <span class="sett-friend-name">${f.name}</span>
+        <span class="sett-friend-email">${f.online ? '🟢 En línea' : '⚫ Desconectado'} · ${f.email}</span>
+      </div>
+      <div class="sett-friend-actions">
+        <button class="sett-friend-btn" onclick="msgFriend('${f.id}','${f.name}')"><i class="fas fa-comment-dots"></i> Mensaje</button>
+        <button class="sett-friend-btn danger" onclick="removeFriend('${f.id}')"><i class="fas fa-user-minus"></i></button>
+      </div>
+    </div>`).join('');
+}
+
+function settSearchFriends(q) {
+  _renderFriendList(q.toLowerCase().trim() || undefined);
+}
+
+function acceptFriendReq(id) {
+  const reqs    = _getFriendRequests();
+  const idx     = reqs.findIndex(r => r.id === id);
+  if (idx === -1) return;
+  const [req]   = reqs.splice(idx, 1);
+  _saveFriendReqs(reqs);
+  const friends = _getFriends();
+  friends.push({ id: req.id, name: req.name, email: req.email, online: false });
+  _saveFriends(friends);
+  _renderFriendRequests();
+  _renderFriendList();
+  _updateFriendCount();
+  showToast(`✅ ¡Ahora eres amigo de ${req.name}!`);
+}
+
+function declineFriendReq(id) {
+  const reqs = _getFriendRequests().filter(r => r.id !== id);
+  _saveFriendReqs(reqs);
+  _renderFriendRequests();
+  _updateFriendCount();
+  showToast('Solicitud rechazada');
+}
+
+function removeFriend(id) {
+  const friends = _getFriends();
+  const f = friends.find(x => x.id === id);
+  if (!f) return;
+  if (!confirm(`¿Eliminar a ${f.name} de tus amigos?`)) return;
+  _saveFriends(friends.filter(x => x.id !== id));
+  _renderFriendList();
+  _updateFriendCount();
+  showToast(`${f.name} eliminado de tus amigos`);
+}
+
+function msgFriend(id, name) {
+  showToast(`💬 Abriendo chat con ${name}...`);
+  setTimeout(() => goPage('messages'), 600);
+}
+
+// ══════════════════════════════════════════════════════════════════════════════
 // IDIOMA / TRADUCCIÓN — Sistema propio con diccionario
 // ══════════════════════════════════════════════════════════════════════════════
 
@@ -2730,7 +7073,6 @@ function submitFeedback() {
   closeFeedbackModal();
   showToast('¡Gracias por tu opinión! 🙌');
 }
-
 
 // ── LAYOUT WHATSAPP WEB ──────────────────────────────────────────────────────
 
@@ -4959,5 +9301,793 @@ function _getSmartReply(userText, cat, bizName, biz, lastBizText = '') {
   ]);
 }
 
+
+/* CHAT: REACCIONES Y MENÚ CONTEXTUAL DE MENSAJES */
+
+// Emojis de reacción rápida (mismos que WhatsApp)
+const QUICK_REACTIONS = ['👍','❤️','😂','😮','😢','🙏'];
+
+// Estado interno del contexto activo
+let _ctxBizId  = null;   // bizId del chat activo
+let _ctxMsgId  = null;   // id del mensaje sobre el que se abrió el menú
+let _ctxIsOut  = false;  // si el mensaje es del usuario (outgoing)
+
+// ---- Guardar / leer reacciones en localStorage ----
+function _getReactions(bizId) {
+  try { return JSON.parse(localStorage.getItem('fynderReactions_' + bizId) || '{}'); }
+  catch(e) { return {}; }
 }
+function _saveReactions(bizId, obj) {
+  localStorage.setItem('fynderReactions_' + bizId, JSON.stringify(obj));
+}
+
+// ---- Añadir/quitar reacción a un mensaje ----
+function toggleMsgReaction(bizId, msgId, emoji) {
+  const reactions = _getReactions(bizId);
+  if (!reactions[msgId]) reactions[msgId] = {};
+  const mine = reactions[msgId]['__mine__'];
+  if (mine === emoji) {
+    // quitar
+    delete reactions[msgId]['__mine__'];
+    if (reactions[msgId][emoji]) {
+      reactions[msgId][emoji]--;
+      if (reactions[msgId][emoji] <= 0) delete reactions[msgId][emoji];
+    }
+  } else {
+    // quitar anterior si existía
+    if (mine) {
+      if (reactions[msgId][mine]) {
+        reactions[msgId][mine]--;
+        if (reactions[msgId][mine] <= 0) delete reactions[msgId][mine];
+      }
+    }
+    // agregar nueva
+    reactions[msgId]['__mine__'] = emoji;
+    reactions[msgId][emoji] = (reactions[msgId][emoji] || 0) + 1;
+  }
+  _saveReactions(bizId, reactions);
+
+  // Cerrar menú y re-renderizar
+  closeMsgBubbleCtxMenu();
+  if (typeof renderChatMessages === 'function' && _activeChatBizId === bizId) {
+    renderChatMessages(bizId);
+  }
+}
+
+// ---- Construir HTML de badges de reacción para un mensaje ----
+function _buildReactionBadgesHTML(bizId, msgId) {
+  const reactions = _getReactions(bizId);
+  const msgReacts = reactions[msgId];
+  if (!msgReacts) return '';
+  const mine = msgReacts['__mine__'];
+  const badges = Object.entries(msgReacts)
+    .filter(([k]) => k !== '__mine__')
+    .map(([emoji, count]) => {
+      const isMine = mine === emoji ? 'mine' : '';
+      return `<button class="chat-bubble-reaction-badge ${isMine}"
+        onclick="event.stopPropagation();toggleMsgReaction('${bizId}','${msgId}','${emoji}')"
+        title="${isMine ? 'Quitar reacción' : 'Reaccionar con ' + emoji}">
+        ${emoji}${count > 1 ? `<span class="react-count">${count}</span>` : ''}
+      </button>`;
+    });
+  if (!badges.length) return '';
+  return `<div class="chat-bubble-reactions">${badges.join('')}</div>`;
+}
+
+// ---- Abrir menú contextual de burbuja ----
+function openMsgBubbleCtxMenu(event, bizId, msgId, isOut) {
+  event.preventDefault();
+  event.stopPropagation();
+
+  // Cerrar la barra de reacciones si estaba abierta
+  _closeReactionBar();
+
+  _ctxBizId = bizId;
+  _ctxMsgId = msgId;
+  _ctxIsOut = isOut;
+
+  // Construir tira de reacciones
+  const strip = document.getElementById('ctxReactionStrip');
+  if (strip) {
+    const reactions = _getReactions(bizId);
+    const mine = reactions[msgId] && reactions[msgId]['__mine__'];
+    strip.innerHTML = QUICK_REACTIONS.map(em => {
+      const reacted = mine === em ? 'reacted' : '';
+      return `<button class="chat-reaction-btn ${reacted}"
+        onclick="toggleMsgReaction('${bizId}','${msgId}','${em}');closeMsgBubbleCtxMenu();"
+        title="${em}">${em}</button>`;
+    }).join('') +
+    `<button class="react-more"
+      onclick="closeMsgBubbleCtxMenu();openReactionEmojiPicker('${bizId}','${msgId}');"
+      title="Más emojis">+</button>`;
+  }
+
+  // Actualizar etiqueta "Fijar" según estado actual
+  const msgs = _getMsgs(bizId);
+  const msg  = msgs.find(m => String(m.id) === String(msgId));
+  const pinItem = document.querySelector('#msgBubbleCtxMenu .ctx-menu-item[onclick*="pin"]');
+  if (pinItem && msg) {
+    pinItem.innerHTML = msg.pinned
+      ? `<i class="fas fa-thumbtack"></i> Desfijar`
+      : `<i class="fas fa-thumbtack"></i> Fijar`;
+  }
+  const starItem = document.querySelector('#msgBubbleCtxMenu .ctx-menu-item[onclick*="star"]');
+  if (starItem && msg) {
+    starItem.innerHTML = msg.starred
+      ? `<i class="fas fa-star" style="color:#f59e0b"></i> Quitar destacado`
+      : `<i class="fas fa-star"></i> Destacar`;
+  }
+
+  // Posicionamiento
+  const menu = document.getElementById('msgBubbleCtxMenu');
+  if (!menu) return;
+  menu.classList.remove('open');
+
+  const x = event.clientX || (event.touches && event.touches[0].clientX) || 0;
+  const y = event.clientY || (event.touches && event.touches[0].clientY) || 0;
+
+  // Poner provisionalmente para medir tamaño
+  menu.style.left = x + 'px';
+  menu.style.top  = y + 'px';
+  menu.classList.add('open');
+
+  // Ajustar para que no se salga del viewport
+  requestAnimationFrame(() => {
+    const rect = menu.getBoundingClientRect();
+    const vw = window.innerWidth;
+    const vh = window.innerHeight;
+    let finalX = x;
+    let finalY = y;
+    if (finalX + rect.width > vw - 8)  finalX = vw - rect.width - 8;
+    if (finalY + rect.height > vh - 8) finalY = vh - rect.height - 8;
+    if (finalX < 8) finalX = 8;
+    if (finalY < 8) finalY = 8;
+    menu.style.left = finalX + 'px';
+    menu.style.top  = finalY  + 'px';
+    menu.style.transformOrigin = isOut ? 'top right' : 'top left';
+  });
+}
+
+// ---- Cerrar menú contextual ----
+function closeMsgBubbleCtxMenu() {
+  const menu = document.getElementById('msgBubbleCtxMenu');
+  if (menu) menu.classList.remove('open');
+  _ctxBizId = null;
+  _ctxMsgId = null;
+}
+
+// ---- Ejecutar acción del menú ----
+function chatCtxAction(action) {
+  const bizId = _ctxBizId;
+  const msgId = _ctxMsgId;
+  closeMsgBubbleCtxMenu();
+  if (!bizId || !msgId) return;
+
+  const msgs = _getMsgs(bizId);
+  const msg  = msgs.find(m => String(m.id) === String(msgId));
+  if (!msg && action !== 'select') return;
+
+  switch (action) {
+
+    case 'reply': {
+      // Mostrar barra de respuesta sobre el input
+      const bar = _getOrCreateReplyBar();
+      if (bar) {
+        const preview = msg.text
+          ? msg.text.slice(0, 60) + (msg.text.length > 60 ? '…' : '')
+          : (msg.attach ? '📎 Adjunto' : '');
+        bar.dataset.quoteId   = msgId;
+        bar.dataset.quoteBizId = bizId;
+        bar.querySelector('.reply-text').textContent = preview;
+        bar.style.display = 'flex';
+        // Foco al input
+        const inp = document.getElementById('chatInput') || document.getElementById('chatInputMobile');
+        if (inp) inp.focus();
+      }
+      break;
+    }
+
+    case 'copy': {
+      const text = msg.text || (msg.attach ? msg.attach.name : '');
+      if (text) {
+        if (navigator.clipboard) {
+          navigator.clipboard.writeText(text).then(() => showToast('Mensaje copiado'));
+        } else {
+          // fallback
+          const ta = document.createElement('textarea');
+          ta.value = text;
+          document.body.appendChild(ta);
+          ta.select();
+          document.execCommand('copy');
+          document.body.removeChild(ta);
+          showToast('Mensaje copiado');
+        }
+      }
+      break;
+    }
+
+    case 'forward': {
+      const text = msg.text || '';
+      // Abrir nueva conversación o simplemente copiar — mostramos toast informativo
+      showToast('Mensaje copiado para reenviar', 'info');
+      if (navigator.clipboard && text) navigator.clipboard.writeText(text);
+      break;
+    }
+
+    case 'pin': {
+      msg.pinned = !msg.pinned;
+      _saveMsgs(bizId, msgs);
+      showToast(msg.pinned ? '📌 Mensaje fijado' : 'Mensaje desfijado');
+      if (typeof renderChatMessages === 'function') renderChatMessages(bizId);
+      break;
+    }
+
+    case 'star': {
+      msg.starred = !msg.starred;
+      _saveMsgs(bizId, msgs);
+      showToast(msg.starred ? '⭐ Mensaje destacado' : 'Destacado eliminado');
+      if (typeof renderChatMessages === 'function') renderChatMessages(bizId);
+      break;
+    }
+
+    case 'select': {
+      // Entrar en modo selección y marcar este mensaje
+      enterSelectMode(bizId, msgId);
+      break;
+    }
+
+    case 'report': {
+      showToast('Mensaje reportado', 'info');
+      break;
+    }
+
+    case 'delete': {
+      // Abrir modal estilo WhatsApp
+      openDeleteMsgModal(bizId, msgId);
+      break;
+    }
+  }
+}
+
+// ---- Barra de respuesta (reply bar) ----
+function _getOrCreateReplyBar() {
+  // Buscar input container del chat activo
+  const inputWrap = document.querySelector('.chat-input-bar') ||
+                    document.querySelector('.wa-input-bar')   ||
+                    document.querySelector('#chatInputWrap');
+  if (!inputWrap) return null;
+  let bar = document.getElementById('chatReplyBar');
+  if (!bar) {
+    bar = document.createElement('div');
+    bar.id = 'chatReplyBar';
+    bar.className = 'chat-reply-bar';
+    bar.style.display = 'none';
+    bar.innerHTML = `<i class="fas fa-reply" style="color:var(--primary);font-size:.85rem;flex-shrink:0"></i>
+      <span class="reply-text"></span>
+      <button class="reply-close" onclick="dismissReplyBar()" title="Cancelar">
+        <i class="fas fa-times"></i>
+      </button>`;
+    inputWrap.insertBefore(bar, inputWrap.firstChild);
+  }
+  return bar;
+}
+
+function dismissReplyBar() {
+  const bar = document.getElementById('chatReplyBar');
+  if (bar) { bar.style.display = 'none'; bar.dataset.quoteId = ''; }
+}
+
+// ---- Parche al renderizador: agrega reacciones, iconos de fijado/destacado,
+//      y event listeners para hover-bar y menú contextual ----
+(function patchRenderForReactions() {
+  const _origRender = window._renderMsgsInto;
+  if (!_origRender) return;
+
+  window._renderMsgsInto = function(container, bizId) {
+    _origRender.call(this, container, bizId);
+
+    const msgs = _getMsgs(bizId);
+    container.querySelectorAll('.chat-msg-row').forEach((row, i) => {
+      const msg = msgs[i];
+      if (!msg) return;
+      const isOut = msg.from === 'user';
+      const bubble = row.querySelector('.chat-bubble');
+      if (!bubble) return;
+
+      // 1. Ícono de fijado
+      if (msg.pinned) {
+        const meta = bubble.querySelector('.chat-bubble-meta');
+        if (meta && !meta.querySelector('.chat-bubble-pinned-icon')) {
+          const pin = document.createElement('span');
+          pin.className = 'chat-bubble-pinned-icon';
+          pin.innerHTML = '<i class="fas fa-thumbtack"></i>';
+          pin.title = 'Fijado';
+          meta.insertBefore(pin, meta.firstChild);
+        }
+      }
+
+      // 2. Ícono de destacado
+      if (msg.starred) {
+        const meta = bubble.querySelector('.chat-bubble-meta');
+        if (meta && !meta.querySelector('.chat-bubble-starred-icon')) {
+          const star = document.createElement('span');
+          star.className = 'chat-bubble-starred-icon';
+          star.innerHTML = '<i class="fas fa-star"></i>';
+          star.title = 'Destacado';
+          meta.insertBefore(star, meta.firstChild);
+        }
+      }
+
+      // 3. Cita (reply quote)
+      if (msg.quoteText && !bubble.querySelector('.chat-bubble-quote')) {
+        const quote = document.createElement('div');
+        quote.className = 'chat-bubble-quote';
+        quote.textContent = msg.quoteText;
+        bubble.insertBefore(quote, bubble.firstChild);
+      }
+
+      // 4. Badges de reacciones — envolver bubble en .chat-bubble-wrap
+      let wrap = bubble.closest('.chat-bubble-wrap');
+      if (!wrap) {
+        wrap = document.createElement('div');
+        wrap.className = 'chat-bubble-wrap';
+        bubble.parentNode.insertBefore(wrap, bubble);
+        wrap.appendChild(bubble);
+      }
+      wrap.querySelectorAll('.chat-bubble-reactions').forEach(el => el.remove());
+      row.classList.remove('has-reactions');
+      const badgesHTML = _buildReactionBadgesHTML(bizId, msg.id);
+      if (badgesHTML) {
+        wrap.insertAdjacentHTML('beforeend', badgesHTML);
+        row.classList.add('has-reactions');
+      }
+
+      // 5b. Botón chevron ∨ dentro del bubble (abre menú contextual completo)
+      let wrapForChevron = bubble.closest('.chat-bubble-wrap') || bubble.parentElement;
+      if (wrapForChevron && !wrapForChevron.querySelector('.chat-bubble-menu-btn')) {
+        const chevron = document.createElement('button');
+        chevron.className = 'chat-bubble-menu-btn';
+        chevron.title = 'Opciones';
+        chevron.innerHTML = '<i class="fas fa-chevron-down"></i>';
+        chevron.addEventListener('click', (e) => {
+          e.stopPropagation();
+          openMsgBubbleCtxMenu(e, bizId, msg.id, isOut);
+        });
+        wrapForChevron.appendChild(chevron);
+      }
+
+      // 6. Clic derecho → menú contextual
+      row.addEventListener('contextmenu', (e) => {
+        openMsgBubbleCtxMenu(e, bizId, msg.id, isOut);
+      });
+
+      // 7. Long press (móvil) → menú contextual
+      let _lpTimer = null;
+      row.addEventListener('touchstart', (e) => {
+        _lpTimer = setTimeout(() => openMsgBubbleCtxMenu(e, bizId, msg.id, isOut), 500);
+      }, { passive: true });
+      row.addEventListener('touchend',  () => clearTimeout(_lpTimer));
+      row.addEventListener('touchmove', () => clearTimeout(_lpTimer));
+    });
+  };
+})();
+
+// ── Barra de reacciones flotante global (shared, one instance) ──────────────
+let _reactBarBizId = null;
+let _reactBarMsgId = null;
+
+function _getOrCreateReactBar() {
+  let bar = document.getElementById('globalReactionBar');
+  if (!bar) {
+    bar = document.createElement('div');
+    bar.id = 'globalReactionBar';
+    bar.className = 'chat-reaction-bar';
+    document.body.appendChild(bar);
+    // Cerrar al hacer clic fuera de la barra
+    document.addEventListener('click', (e) => {
+      if (!bar.contains(e.target)) _closeReactionBar();
+    }, true);
+  }
+  return bar;
+}
+
+function _openReactionBar(triggerEvent, bizId, msgId, isOut, onClose) {
+  const bar = _getOrCreateReactBar();
+  _reactBarBizId = bizId;
+  _reactBarMsgId = msgId;
+
+  const reactions = _getReactions(bizId);
+  const mine = reactions[msgId] && reactions[msgId]['__mine__'];
+
+  bar.innerHTML = QUICK_REACTIONS.map(em => {
+    const reacted = mine === em ? 'reacted' : '';
+    return `<button class="chat-reaction-btn ${reacted}"
+      onclick="event.stopPropagation();toggleMsgReaction('${bizId}','${msgId}','${em}');_closeReactionBar();"
+      title="${em}">${em}</button>`;
+  }).join('') +
+  `<button class="react-more"
+    onclick="event.stopPropagation();_closeReactionBar();openReactionEmojiPicker('${bizId}','${msgId}');"
+    title="Más emojis">+</button>`;
+
+  // Guardar callback para cuando se cierre
+  bar._onClose = onClose || null;
+
+  // Posicionar encima del botón que la disparó
+  bar.classList.remove('open');
+  bar.style.visibility = 'hidden';
+  bar.classList.add('open');
+
+  requestAnimationFrame(() => {
+    const btnRect = triggerEvent.currentTarget
+      ? triggerEvent.currentTarget.getBoundingClientRect()
+      : { left: triggerEvent.clientX, top: triggerEvent.clientY, width: 0, height: 0 };
+    const barRect = bar.getBoundingClientRect();
+    const vw = window.innerWidth;
+
+    let x = isOut
+      ? btnRect.left - barRect.width + btnRect.width + 8
+      : btnRect.left - 8;
+    let y = btnRect.top - barRect.height - 8;
+
+    if (x + barRect.width > vw - 8) x = vw - barRect.width - 8;
+    if (x < 8) x = 8;
+    if (y < 8) y = btnRect.bottom + 8;
+
+    bar.style.left       = x + 'px';
+    bar.style.top        = y + 'px';
+    bar.style.visibility = '';
+  });
+}
+
+function _closeReactionBar() {
+  const bar = document.getElementById('globalReactionBar');
+  if (bar) {
+    if (typeof bar._onClose === 'function') bar._onClose();
+    bar._onClose = null;
+    bar.classList.remove('open');
+  }
+  _reactBarBizId = null;
+  _reactBarMsgId = null;
+}
+
+/* (botón "+")Reutiliza el emoji picker existente se aplica como reacción al mensaje en lugar de insertarlo en el input*/
+
+// Estado del modo reacción
+let _reactionPickerBizId = null;
+let _reactionPickerMsgId = null;
+
+function openReactionEmojiPicker(bizId, msgId) {
+  _reactionPickerBizId = bizId;
+  _reactionPickerMsgId = msgId;
+
+  // Construir tabs si no existen
+  const tabsEl = document.getElementById('emojiPickerTabs');
+  if (tabsEl && !tabsEl.children.length) {
+    tabsEl.innerHTML = EMOJI_CATS.map((cat, i) =>
+      `<button class="emoji-tab-btn${i === 0 ? ' active' : ''}" onclick="emojiSelectCat(${i})" title="${cat.label}">${cat.icon}</button>`
+    ).join('');
+  }
+
+  // aplique la reacción al mensaje activo h
+  window._prevInsertEmoji = window.insertEmoji;
+  window.insertEmoji = function(emoji) {
+    if (_reactionPickerBizId && _reactionPickerMsgId) {
+      toggleMsgReaction(_reactionPickerBizId, _reactionPickerMsgId, emoji);
+    }
+    // Restaurar comportamiento normal y cerrar picker
+    window.insertEmoji = window._prevInsertEmoji;
+    _reactionPickerBizId = null;
+    _reactionPickerMsgId = null;
+    closeEmojiPicker();
+  };
+
+  // Mostrar titulo de "Escoge una reaccion" en el picker
+  const picker = document.getElementById('emojiPicker');
+  if (picker) {
+    let lbl = picker.querySelector('.emoji-reaction-label');
+    if (!lbl) {
+      lbl = document.createElement('div');
+      lbl.className = 'emoji-reaction-label';
+      picker.insertBefore(lbl, picker.firstChild);
+    }
+    lbl.textContent = 'Escoge una reacción';
+    lbl.style.cssText = 'font-size:.75rem;color:var(--primary,#67b8b4);font-weight:600;padding:6px 12px 0;';
+  }
+
+  // Renderizar primera categoria y abrir
+  renderEmojiCat(0);
+  document.getElementById('emojiSearch').value = '';
+  document.getElementById('emojiOverlay').classList.add('open');
+  document.getElementById('emojiPicker').classList.add('open');
+
+  // Al cerrar el overlay (clic en overlay o Escape) restaurar insertEmoji
+  const overlayEl = document.getElementById('emojiOverlay');
+  const _restore = () => {
+    if (window.insertEmoji !== window._prevInsertEmoji && window._prevInsertEmoji) {
+      window.insertEmoji = window._prevInsertEmoji;
+    }
+    _reactionPickerBizId = null;
+    _reactionPickerMsgId = null;
+    // quitar el label
+    const lbl = document.getElementById('emojiPicker')?.querySelector('.emoji-reaction-label');
+    if (lbl) lbl.remove();
+    overlayEl.removeEventListener('click', _restore);
+  };
+  overlayEl.addEventListener('click', _restore, { once: true });
+}
+
+// ---- cerrar menu al hacer clic fuera ----
+document.addEventListener('click', (e) => {
+  const menu = document.getElementById('msgBubbleCtxMenu');
+  if (menu && menu.classList.contains('open') && !menu.contains(e.target)) {
+    closeMsgBubbleCtxMenu();
+  }
+});
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'Escape') {
+    closeMsgBubbleCtxMenu();
+    // Si el picker estaba en modo reaccion, restaurar insertEmoji
+    if (_reactionPickerBizId && window._prevInsertEmoji) {
+      window.insertEmoji = window._prevInsertEmoji;
+      _reactionPickerBizId = null;
+      _reactionPickerMsgId = null;
+    }
+  }
+});
+
+
+/* Modal con "Eliminar para todos" whatsApp de temu/ "Eliminar para mí" */
+
+let _deleteMsgBizId = null;
+let _deleteMsgId    = null;
+
+function openDeleteMsgModal(bizId, msgId) {
+  _deleteMsgBizId = bizId;
+  _deleteMsgId    = msgId;
+  const overlay = document.getElementById('deleteMsgOverlay');
+  const modal   = document.getElementById('deleteMsgModal');
+  if (!overlay || !modal) return;
+  overlay.style.display = 'block';
+  modal.style.display   = 'block';
+}
+
+function closeDeleteMsgModal() {
+  const overlay = document.getElementById('deleteMsgOverlay');
+  const modal   = document.getElementById('deleteMsgModal');
+  if (overlay) overlay.style.display = 'none';
+  if (modal)   modal.style.display   = 'none';
+  _deleteMsgBizId = null;
+  _deleteMsgId    = null;
+}
+
+function confirmDeleteMsg(type) {
+  const bizId = _deleteMsgBizId;
+  const msgId = _deleteMsgId;
+  closeDeleteMsgModal();
+  if (!bizId || !msgId) return;
+
+  const msgs = _getMsgs(bizId);
+  const msg  = msgs.find(m => String(m.id) === String(msgId));
+  if (!msg) return;
+
+  if (type === 'me') {
+    // Solo para mí marcar como hidden, no se renderiza
+    msg.deletedForMe = true;
+    _saveMsgs(bizId, msgs);
+    showToast('Mensaje eliminado');
+  } else {
+    // Para todos reemplazar contenido con aviso
+    msg.deletedForAll = true;
+    msg.text  = '';
+    msg.attach = null;
+    _saveMsgs(bizId, msgs);
+    showToast('Mensaje eliminado para todos');
+  }
+
+  // Re-renderizar
+  const _rf = window.innerWidth >= 769 ? renderChatMessages : renderChatMessagesMobile;
+  if (typeof _rf === 'function') _rf(bizId);
+}
+
+/*SELECCIÓN DE MENSAJES Checkboxes + barra inferior con "X seleccionados" no sirve hay que correjirlo */
+
+let _selectModeBizId  = null;
+const _selectedMsgIds = new Set();
+
+function enterSelectMode(bizId, firstMsgId) {
+  _selectModeBizId = bizId;
+  _selectedMsgIds.clear();
+  if (firstMsgId) _selectedMsgIds.add(String(firstMsgId));
+
+  document.body.classList.add('select-mode');
+  _renderSelectCheckboxes(bizId);
+  _updateSelectBar();
+  document.getElementById('msgSelectBar').style.display = 'flex';
+}
+
+function exitSelectMode() {
+  document.body.classList.remove('select-mode');
+  _selectedMsgIds.clear();
+  _selectModeBizId = null;
+
+  // Quitar checkboxes del DOM
+  document.querySelectorAll('.msg-checkbox').forEach(el => el.remove());
+  document.querySelectorAll('.chat-msg-row').forEach(r => r.classList.remove('selected-msg'));
+  document.getElementById('msgSelectBar').style.display = 'none';
+}
+
+function _renderSelectCheckboxes(bizId) {
+  const msgs = _getMsgs(bizId);
+  const containers = [
+    document.getElementById('chatMessages'),
+    document.getElementById('chatMessagesMobile')
+  ];
+  containers.forEach(container => {
+    if (!container) return;
+    container.querySelectorAll('.chat-msg-row').forEach((row, i) => {
+      if (row.querySelector('.msg-checkbox')) return;
+      const msg = msgs[i];
+      if (!msg) return;
+      const cb = document.createElement('input');
+      cb.type  = 'checkbox';
+      cb.className = 'msg-checkbox';
+      cb.checked   = _selectedMsgIds.has(String(msg.id));
+      cb.addEventListener('change', () => {
+        if (cb.checked) {
+          _selectedMsgIds.add(String(msg.id));
+          row.classList.add('selected-msg');
+        } else {
+          _selectedMsgIds.delete(String(msg.id));
+          row.classList.remove('selected-msg');
+        }
+        _updateSelectBar();
+      });
+      if (row.classList.contains('out')) {
+        row.appendChild(cb);
+      } else {
+        row.insertBefore(cb, row.firstChild);
+      }
+      // Marcar si ya estaba seleccionado
+      if (_selectedMsgIds.has(String(msg.id))) row.classList.add('selected-msg');
+    });
+  });
+}
+
+function _updateSelectBar() {
+  const n = _selectedMsgIds.size;
+  const countEl = document.getElementById('msgSelectCount');
+  if (countEl) countEl.textContent = `${n} seleccionado${n !== 1 ? 's' : ''}`;
+  // Habilitar/deshabilitar botones según si hay selección
+  document.querySelectorAll('.msg-select-action').forEach(btn => {
+    btn.style.opacity = n > 0 ? '1' : '.35';
+    btn.disabled = n === 0;
+  });
+}
+
+function deleteSelectedMsgs() {
+  if (!_selectModeBizId || !_selectedMsgIds.size) return;
+  openDeleteMsgModal(_selectModeBizId, [..._selectedMsgIds][0]);
+  // Sobreescribir temporalmente confirmDeleteMsg para manejar múltiples mensajes
+  const _origConfirm = window.confirmDeleteMsg;
+  window.confirmDeleteMsg = function(type) {
+    window.confirmDeleteMsg = _origConfirm;
+    const bizId = _deleteMsgBizId;
+    closeDeleteMsgModal();
+    if (!bizId) return;
+    const msgs = _getMsgs(bizId);
+    _selectedMsgIds.forEach(mid => {
+      const m = msgs.find(x => String(x.id) === String(mid));
+      if (!m) return;
+      if (type === 'me') {
+        m.deletedForMe = true;
+      } else {
+        m.deletedForAll = true;
+        m.text  = '';
+        m.attach = null;
+      }
+    });
+    _saveMsgs(bizId, msgs);
+    showToast(type === 'me' ? 'Mensajes eliminados' : 'Mensajes eliminados para todos');
+    exitSelectMode();
+    const _rf = window.innerWidth >= 769 ? renderChatMessages : renderChatMessagesMobile;
+    if (typeof _rf === 'function') _rf(bizId);
+  };
+}
+
+function shareSelectedMsgs() {
+  if (!_selectedMsgIds.size) return;
+  const bizId = _selectModeBizId;
+  const msgs  = _getMsgs(bizId);
+  const texts = [..._selectedMsgIds].map(mid => {
+    const m = msgs.find(x => String(x.id) === String(mid));
+    if (!m || m.deletedForMe || m.deletedForAll) return null;
+    const who = m.from === 'user' ? 'Yo' : 'Negocio';
+    return `[${m.time}] ${who}: ${m.text || '[Adjunto]'}`;
+  }).filter(Boolean);
+
+  const shareText = texts.join('\n');
+  if (navigator.share) {
+    navigator.share({ text: shareText }).catch(() => {});
+  } else if (navigator.clipboard) {
+    navigator.clipboard.writeText(shareText);
+    showToast(`${_selectedMsgIds.size} mensaje${_selectedMsgIds.size !== 1 ? 's' : ''} copiado${_selectedMsgIds.size !== 1 ? 's' : ''}`);
+  }
+  exitSelectMode();
+}
+//  mostrar el bubble especial para "eliminado para todos"
+(function patchRenderForDeleted() {
+  const _prev = window._renderMsgsInto;
+  if (!_prev) return;
+  window._renderMsgsInto = function(container, bizId) {
+    // Filtrar temporalmente los deletedForMe antes de renderizar
+    const _origGet = window._getMsgs;
+    window._getMsgs = function(id) {
+      const all = _origGet(id);
+      return all.filter(m => !m.deletedForMe);
+    };
+    _prev.call(this, container, bizId);
+    window._getMsgs = _origGet;
+
+    // Marcar bubbles deletedForAll con clase especial
+    const allMsgs = _origGet(bizId).filter(m => !m.deletedForMe);
+    container.querySelectorAll('.chat-msg-row').forEach((row, i) => {
+      const msg = allMsgs[i];
+      if (!msg || !msg.deletedForAll) return;
+      const bubble = row.querySelector('.chat-bubble');
+      if (!bubble) return;
+      bubble.classList.add('deleted-for-all');
+      // Reemplazar contenido con el aviso
+      const isOut = msg.from === 'user';
+      const icon  = isOut ? '🚫' : '🚫';
+      const label = isOut ? 'Eliminaste este mensaje.' : 'Se eliminó este mensaje.';
+      // Preservar solo la meta (tiempo + ticks)
+      const meta = bubble.querySelector('.chat-bubble-meta');
+      bubble.innerHTML = `<span style="opacity:.7">${icon} ${label}</span>`;
+      if (meta) bubble.appendChild(meta);
+    });
+
+    // Re-aplicar checkboxes si estamos en modo selección
+    if (document.body.classList.contains('select-mode') && _selectModeBizId === bizId) {
+      _renderSelectCheckboxes(bizId);
+    }
+  };
+})();
+
+
+/*Se muestra solo si el usuario no tiene sesión y no lo ha descartado en esta visita*/
+(function initWelcomeModal() {
+  function _show() {
+    // Solo mostrar si NO hay sesión activa
+    const logged = localStorage.getItem('fynderLogged') === 'true';
+    if (logged) return;
+
+    // Si ya lo descartó en esta carga (no en toda la sesión de pestaña),
+    // usar un flag de instancia en memoria — se resetea al recargar
+    if (window._fynderWelcomeShown) return;
+
+    const overlay = document.getElementById('welcomeModalOverlay');
+    if (!overlay) return;
+
+    window._fynderWelcomeShown = true;
+    setTimeout(() => {
+      overlay.classList.add('active');
+    }, 900);
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', _show);
+  } else {
+    _show();
+  }
+})();
+
+function closeWelcomeModal(e) {
+  if (e && e.target !== document.getElementById('welcomeModalOverlay')) return;
+  dismissWelcomeModal();
+}
+
+function dismissWelcomeModal() {
+  const overlay = document.getElementById('welcomeModalOverlay');
+  if (!overlay) return;
+  overlay.classList.remove('active');
 }
