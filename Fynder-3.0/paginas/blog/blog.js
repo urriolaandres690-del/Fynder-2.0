@@ -1,4 +1,5 @@
-﻿function subscribeBlog(event) {
+﻿(function(){
+function subscribeBlog(event) {
     event.preventDefault();
     const email = document.getElementById("blogEmail").value.trim();
     if (!email) return;
@@ -179,4 +180,4 @@ const ART_COMMENT_COLORS = [
   'linear-gradient(135deg,#2F5BB7,#1E8F8B)',
   'linear-gradient(135deg,#F97316,#F4D35E)',
 ];
-
+})();

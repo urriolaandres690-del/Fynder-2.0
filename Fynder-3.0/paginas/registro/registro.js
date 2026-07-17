@@ -1,4 +1,5 @@
-﻿/* ── registro.js — Lógica de Registro de usuario ── */
+﻿(function(){
+/* ── registro.js — Lógica de Registro de usuario ── */
 
 function registerUser(event){
   event.preventDefault();
@@ -48,3 +49,4 @@ function registerUser(event){
   showToast("¡Cuenta creada! Bienvenido a FYNDER, " + name + " 🎉");
   goPage("home");
 }
+})();

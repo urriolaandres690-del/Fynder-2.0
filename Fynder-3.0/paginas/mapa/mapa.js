@@ -1,4 +1,5 @@
-﻿function initMap() {
+﻿(function(){
+function initMap() {
   // Si ya está inicializado solo actualizar tamaño y redibuja filtros
   if (_mapInitialized) {
     _map.invalidateSize();
@@ -844,6 +845,4 @@ if (_origToggleDark) {
   };
 
 }()); // fin IIFE
-
-
-
+})();

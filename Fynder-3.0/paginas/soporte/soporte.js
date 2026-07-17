@@ -1,4 +1,5 @@
-﻿function sendSupport(event) {
+﻿(function(){
+function sendSupport(event) {
     event.preventDefault();
     const name    = document.getElementById("supportName").value.trim();
     const email   = document.getElementById("supportEmail").value.trim();
@@ -12,4 +13,4 @@
     document.getElementById("supportForm").reset();
     showToast("¡Mensaje enviado! Te responderemos en menos de 24 horas 💬");
 }
-
+})();

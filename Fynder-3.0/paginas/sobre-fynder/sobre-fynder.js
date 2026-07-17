@@ -1,4 +1,5 @@
-﻿function initAboutPage() {
+﻿(function(){
+function initAboutPage() {
   spawnAboutParticles();
   animateAboutBars();
   animateAboutCounters();
@@ -119,3 +120,4 @@ let _mapSelectedId  = null;   // id negocio seleccionado
 let _mapInitialized = false;
 
 // ── Entrada principal ──
+})();

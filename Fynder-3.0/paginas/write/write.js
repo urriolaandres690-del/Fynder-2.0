@@ -1,4 +1,5 @@
-﻿function updateCoverPreview(url) {
+﻿(function(){
+function updateCoverPreview(url) {
   const img   = document.getElementById('writeCoverImg');
   const ph    = document.getElementById('writeCoverPlaceholder');
   const rmBtn = document.getElementById('writeCoverRemove');
@@ -171,3 +172,4 @@ function publishArticle() {
   showToast('¡Artículo publicado exitosamente! 🎉');
   goPage('blog');
 }
+})();

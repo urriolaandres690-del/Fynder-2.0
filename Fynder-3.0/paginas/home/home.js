@@ -1,4 +1,5 @@
-﻿function buildHome(){
+﻿(function(){
+function buildHome(){
   document.getElementById('featuredGrid').innerHTML=BUSINESSES.filter(b=>b.isFeatured).map(gridCardHTML).join('');
   document.getElementById('popularList').innerHTML=BUSINESSES.filter(b=>b.isPopular).map(listCardHTML).join('');
   _initCarouselDrag('featuredGrid');
@@ -159,5 +160,5 @@ function openStatModal(type){
 function closeStatModal(){
   document.getElementById('statModalOverlay').classList.add('hide');
   document.body.style.overflow='';
-} 
-
+}
+})();

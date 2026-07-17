@@ -1,4 +1,5 @@
-﻿function generateAnalytics(period) {
+﻿(function(){
+function generateAnalytics(period) {
   const bizCount = JSON.parse(localStorage.getItem('fynderBusinesses') || '[]').length;
   const base = Math.max(bizCount * 15, 5);
   const seed = period === '7d' ? 1 : period === '30d' ? 4.5 : 12;
@@ -327,4 +328,4 @@ function openBusinessDetail(index) {
 // animaciones pagina saber mas
 
 let fynderObserver = null;
-
+})();

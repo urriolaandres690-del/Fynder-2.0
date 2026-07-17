@@ -1,4 +1,5 @@
-﻿function cproGoBack() {
+﻿(function(){
+function cproGoBack() {
   const isDesktop = window.innerWidth >= 769;
   if (isDesktop) {
     closeWaChatInfoPanel();
@@ -26,3 +27,4 @@ function cproShareProfile() {
 function cproSearchInChat() {
   showToast('Búsqueda en el chat próximamente');
 }
+})();

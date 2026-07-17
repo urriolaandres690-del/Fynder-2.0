@@ -1,4 +1,4 @@
-﻿
+﻿(function(){
 /** Navega a una sección del panel de ajustes */
 function settGoSection(id, btn) {
   document.querySelectorAll('#page-settings .sett-section').forEach(s => s.classList.remove('active'));
@@ -1073,3 +1073,4 @@ function submitFeedback() {
   closeFeedbackModal();
   showToast('¡Gracias por tu opinión! 🙌');
 }
+})();

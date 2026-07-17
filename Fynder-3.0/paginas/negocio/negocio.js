@@ -1,4 +1,5 @@
-﻿function registerBusiness(event) {
+﻿(function(){
+function registerBusiness(event) {
     event.preventDefault();
 
     const name      = document.getElementById("bizName").value.trim();
@@ -22,4 +23,4 @@
     document.getElementById("businessForm").reset();
     goPage("home");
 }
-
+})();

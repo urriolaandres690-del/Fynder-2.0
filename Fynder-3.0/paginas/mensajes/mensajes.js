@@ -1,4 +1,4 @@
-﻿
+﻿(function(){
 // ---- Storage helpers ----
 function _getMsgs(bizId) {
   try { return JSON.parse(localStorage.getItem('fynderChat_' + bizId) || '[]'); }
@@ -2449,3 +2449,4 @@ function dismissWelcomeModal() {
   if (!overlay) return;
   overlay.classList.remove('active');
 }
+})();

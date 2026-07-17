@@ -1,4 +1,5 @@
-﻿function renderFavorites(){
+﻿(function(){
+function renderFavorites(){
   const el = document.getElementById('favsResults');
   const fc = document.getElementById('favsCount');
 
@@ -30,4 +31,4 @@ buildCategories();buildHome();updateNav();
 // drag scroll en filtros
 // tambien se llama desde goPage
 document.addEventListener('DOMContentLoaded', ()=>{ setTimeout(initCatFiltersDrag, 200); });
-
+})();

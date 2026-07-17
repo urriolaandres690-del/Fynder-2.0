@@ -1,4 +1,5 @@
-﻿function _getArticleComments(articleId) {
+﻿(function(){
+function _getArticleComments(articleId) {
   try { return JSON.parse(localStorage.getItem('fynderComments_' + articleId) || '[]'); }
   catch(e){ return []; }
 }
@@ -178,4 +179,4 @@ function escapeHtml(str) {
     .replace(/"/g,'&quot;')
     .replace(/\n/g,'<br>');
 }
-
+})();

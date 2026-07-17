@@ -1,4 +1,5 @@
-﻿function registerUser(event){
+﻿(function(){
+function registerUser(event){
     event.preventDefault();
 
     const name  = document.getElementById("regName").value.trim();
@@ -139,4 +140,4 @@ function forgotPassword(){
 }
 
 // logout() definido más abajo (línea ~3114) — esta referencia se elimina para evitar sobreescritura
-
+})();

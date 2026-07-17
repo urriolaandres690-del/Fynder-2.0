@@ -1,4 +1,5 @@
-﻿function loadProfile(){
+﻿(function(){
+function loadProfile(){
     const user = JSON.parse(localStorage.getItem("fynderUser"));
     if(!user){
         showToast("Debes iniciar sesión para ver tu perfil.", "error");
@@ -507,4 +508,4 @@ function togglePassVisibility(inputId, btn){
         icon.classList.replace("fa-eye-slash", "fa-eye");
     }
 }
-
+})();

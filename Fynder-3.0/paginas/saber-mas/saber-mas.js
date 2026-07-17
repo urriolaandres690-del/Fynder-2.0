@@ -1,4 +1,5 @@
-﻿function initFynderAnimations() {
+﻿(function(){
+function initFynderAnimations() {
   const page = document.getElementById('page-fynder');
   if (!page) return;
 
@@ -63,4 +64,4 @@
     btn.addEventListener('click', createRipple);
   });
 }
-
+})();

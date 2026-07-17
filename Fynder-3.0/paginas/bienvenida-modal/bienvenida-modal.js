@@ -1,4 +1,5 @@
-﻿(function initWelcomeModal() {
+﻿(function(){
+(function initWelcomeModal() {
   function _show() {
     // Solo mostrar si NO hay sesión activa
     const logged = localStorage.getItem('fynderLogged') === 'true';
@@ -34,3 +35,4 @@ function dismissWelcomeModal() {
   if (!overlay) return;
   overlay.classList.remove('active');
 }
+})();
