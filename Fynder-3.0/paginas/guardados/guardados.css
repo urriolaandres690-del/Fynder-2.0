@@ -1,5 +1,17 @@
-﻿button, input, select, textarea {
-}
+﻿    /* favoritos */ 
+
+    .favs-header { padding: 96px 24px 40px; max-width: 1280px; margin: 0 auto; } 
+
+    .favs-title { font-size: 2rem; font-weight: 700; color: var(--fg); margin-bottom: 4px; } 
+
+    .favs-sub { font-size: .9375rem; color: var(--muted); } 
+
+    .favs-content { max-width: 1280px; margin: 0 auto; padding: 0 24px 64px; } 
+
+    .fav-empty-icon { width: 96px; height: 96px; border-radius: 50%; background: #FEF2F2; display: flex; align-items: center; justify-content: center; margin-bottom: 24px; } 
+
+    .fav-empty-icon svg { width: 40px; height: 40px; color: #FCA5A5; } 
+
 /* favoritos modo oscuro */
 [data-theme="dark"] #page-favorites { background: var(--bg) !important; }
 [data-theme="dark"] .favs-title     { color: var(--fg); }

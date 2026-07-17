@@ -1,5 +1,387 @@
-﻿button, input, select, textarea {
+﻿/* paginas de acceso */
+
+#page-login,
+#page-register {
+  min-height: 100vh;
+  background:
+    radial-gradient(circle at top left, rgba(103,184,180,.18), transparent 40%),
+    radial-gradient(circle at bottom right, rgba(47,91,183,.10), transparent 40%),
+    #F7FAFC;
 }
+
+.auth-topbar {
+  padding: 20px 32px;
+}
+
+.back-home {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: #fff;
+  border: 1px solid var(--border);
+  padding: 10px 20px;
+  border-radius: 99px;
+  font-size: .875rem;
+  font-weight: 600;
+  color: var(--fg);
+  cursor: pointer;
+  box-shadow: var(--shadow-sm);
+  transition: box-shadow .2s, transform .2s;
+}
+
+.back-home:hover {
+  box-shadow: var(--shadow-md);
+  transform: translateY(-1px);
+}
+
+.auth-container {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 0 24px 64px;
+}
+
+.auth-card {
+  width: 100%;
+  max-width: 480px;
+  background: #fff;
+  border-radius: 28px;
+  padding: 40px;
+  box-shadow: var(--shadow-lg);
+  border: 1px solid var(--border);
+  animation: authFadeUp .4s ease;
+}
+
+@keyframes authFadeUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.auth-logo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  margin-bottom: 24px;
+}
+
+.auth-card h1 {
+  font-size: 1.75rem;
+  font-weight: 800;
+  color: var(--fg);
+  text-align: center;
+  margin-bottom: 6px;
+}
+
+.auth-card > p,
+.auth-card form > p:first-of-type {
+  text-align: center;
+  color: var(--muted);
+  font-size: .9375rem;
+  margin-bottom: 28px;
+}
+
+/* Input groups */
+.input-group {
+  margin-bottom: 18px;
+}
+
+.input-group label {
+  display: block;
+  font-size: .8125rem;
+  font-weight: 600;
+  color: var(--fg);
+  margin-bottom: 6px;
+}
+
+.input-group .optional {
+  font-weight: 400;
+  color: var(--muted);
+  font-size: .75rem;
+}
+
+.input-wrap {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.input-wrap .input-icon {
+  position: absolute;
+  left: 14px;
+  color: #94A3B8;
+  font-size: .875rem;
+  pointer-events: none;
+}
+
+.input-wrap input {
+  width: 100%;
+  padding: 13px 44px 13px 40px;
+  border: 1.5px solid #E2E8F0;
+  border-radius: 14px;
+  font-size: .9375rem;
+  font-family: 'Inter', sans-serif;
+  color: var(--fg);
+  background: #FAFBFC;
+  transition: border-color .2s, box-shadow .2s;
+  outline: none;
+}
+
+.input-wrap input:focus {
+  border-color: var(--primary);
+  background: #fff;
+  box-shadow: 0 0 0 3px rgba(103,184,180,.18);
+}
+
+.toggle-pass {
+  position: absolute;
+  right: 12px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: #94A3B8;
+  font-size: .875rem;
+  padding: 4px;
+  transition: color .2s;
+}
+
+.toggle-pass:hover { color: var(--primary); }
+
+.field-error {
+  font-size: .75rem;
+  color: #EF4444;
+  margin-top: 5px;
+}
+
+/* Extras row (remember me + forgot) */
+.extras {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+  font-size: .8125rem;
+}
+
+.remember-me {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  cursor: pointer;
+  color: var(--muted);
+}
+
+.extras a {
+  color: var(--primary);
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.extras a:hover { text-decoration: underline; }
+
+/* Terms checkbox */
+.terms-check {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  margin-bottom: 20px;
+  font-size: .8125rem;
+  color: var(--muted);
+  line-height: 1.5;
+}
+
+.terms-check input[type="checkbox"] { margin-top: 2px; flex-shrink: 0; }
+
+.terms-check a {
+  color: var(--primary);
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.terms-check a:hover { text-decoration: underline; }
+
+/* Full-width button */
+.btn-full {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 14px;
+  font-size: 1rem;
+  border-radius: 14px;
+  margin-bottom: 20px;
+}
+
+/* registro / login link below button */
+.register-link {
+  text-align: center;
+  font-size: .875rem;
+  color: var(--muted);
+}
+
+.register-link a {
+  color: var(--primary);
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.register-link a:hover { text-decoration: underline; }
+
+/* notificacion toast */
+.fynder-toast {
+  position: fixed;
+  bottom: 28px;
+  left: 50%;
+  transform: translateX(-50%) translateY(20px);
+  background: var(--fg);
+  color: #fff;
+  padding: 13px 24px;
+  border-radius: 14px;
+  font-size: .9rem;
+  font-weight: 500;
+  box-shadow: var(--shadow-lg);
+  z-index: 9999;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity .3s, transform .3s;
+  white-space: nowrap;
+  max-width: 90vw;
+  text-align: center;
+}
+
+.fynder-toast.toast-show {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+}
+
+.fynder-toast.toast-ok   { background: #0F766E; }
+.fynder-toast.toast-error { background: #DC2626; }
+
+
+/* boton iniciar sesion */
+.btn-login-nav {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 8px 18px;
+  border-radius: 12px;
+  border: 1.5px solid var(--primary);
+  background: transparent;
+  color: var(--primary);
+  font-family: 'Poppins', sans-serif;
+  font-size: .875rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background .2s, color .2s, transform .15s;
+  line-height: 1;
+  white-space: nowrap;
+}
+
+.btn-login-nav:hover {
+  background: var(--primary);
+  color: #fff;
+  transform: translateY(-1px);
+}
+
+/* On hero (before scroll) make it match the white-on-gradient look */
+.btn-login-nav.on-hero {
+  border-color: rgba(255,255,255,.5);
+  color: #fff;
+}
+
+.btn-login-nav.on-hero:hover {
+  background: rgba(255,255,255,.2);
+  border-color: #fff;
+}
+
+.input-wrap input,
+.input-wrap input:focus,
+.input-wrap input:focus-visible {
+  border: 1.5px solid #E2E8F0 !important;
+  border-radius: 14px !important;
+  box-shadow: none !important;
+  outline: none !important;
+  padding: 13px 44px 13px 40px !important;
+  background: #FAFBFC !important;
+  font-family: 'Inter', sans-serif !important;
+  font-size: .9375rem !important;
+  color: var(--fg) !important;
+  width: 100% !important;
+}
+
+.input-wrap input:focus {
+  border-color: var(--primary) !important;
+  background: #fff !important;
+  box-shadow: 0 0 0 3px rgba(103,184,180,.18) !important;
+}
+
+#loginForm .input-wrap input,
+#registerForm .input-wrap input {
+  display: block;
+}
+
+.btn-teal, .btn-ghost, .btn-login-nav,
+.nav-link, .bcard-btn, .hero-search-btn,
+.btn-yellow, .btn-outline-white {
+  line-height: 1 !important;
+}
+
+.btn-teal, .btn-login-nav {
+  font-family: 'Poppins', sans-serif !important;
+}
+
+.btn-ghost {
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 6px !important;
+  padding: 8px 14px !important;
+  border-radius: 10px !important;
+  font-family: 'Inter', sans-serif !important;
+  font-size: .875rem !important;
+  font-weight: 500 !important;
+  background: none !important;
+  border: none !important;
+  cursor: pointer !important;
+  color: var(--muted) !important;
+  line-height: 1 !important;
+  transition: color .2s, background .2s !important;
+}
+
+.btn-ghost:hover {
+  color: #1F2937 !important;
+  background: #F1F5F9 !important;
+}
+
+.btn-teal {
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 6px !important;
+  padding: 8px 18px !important;
+  border-radius: 12px !important;
+  border: none !important;
+  cursor: pointer !important;
+  background: var(--primary) !important;
+  color: #fff !important;
+  font-size: .875rem !important;
+  font-weight: 600 !important;
+  transition: background .2s !important;
+}
+
+.btn-teal:hover {
+  background: var(--primary-d) !important;
+}
+
+.auth-card .btn-teal,
+.btn-full {
+  width: 100% !important;
+  padding: 14px !important;
+  font-size: 1rem !important;
+  border-radius: 14px !important;
+  justify-content: center !important;
+  margin-bottom: 20px !important;
+}
+
+
 /* login registro */
 [data-theme="dark"] #page-login,
 [data-theme="dark"] #page-register {
