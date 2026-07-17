@@ -274,15 +274,101 @@ function listCardHTML(b){
   const dealTag=b.deal?`<span class="tag" style="background:color-mix(in srgb,${b.deal.color} 12%,white);color:${b.deal.color};border:1px solid ${b.deal.color}40"><i class="fas fa-tags" style="font-size:.6rem"></i> ${b.deal.label} · ${b.deal.desc}</span>`:'';
   return`<div class="bcard-list" onclick="openModal('${b.id}')"><div class="bcard-list-img"><img src="${b.image}" alt="${b.name}" loading="lazy" style="width:100%;height:100%;object-fit:cover" onerror="this.closest('.bcard-list').style.display='none'"/></div><div class="bcard-list-body"><div><div class="bcard-list-top"><span class="bcard-list-name">${b.name}</span><button onclick="event.stopPropagation();toggleFav('${b.id}')" style="background:none;border:none;cursor:pointer;flex-shrink:0;padding:2px" data-fav-id="${b.id}" data-fav-size="sm">${_heartSVG(isFav,'sm')}</button></div><p class="bcard-list-desc line-clamp-2">${b.description}</p><div class="bcard-list-tags">${tags}${dealTag}</div></div><div class="bcard-list-meta"><div class="bcard-list-meta-item"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>${b.hours}</div><div class="bcard-list-meta-item"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>${b.address.split(',')[0]}</div><div class="bcard-list-rating"><div class="stars">${starsHTML(b.rating)}</div><strong style="font-size:.75rem;color:#1F2937">${b.rating}</strong><span style="font-size:.75rem;color:#6B7280">(${b.reviews})</span></div></div></div></div>`;
 }
-function goPage(p){
+// Mapa de páginas a su carpeta en paginas/
+const PAGE_FOLDER_MAP = {
+  'home':          'home',
+  'directory':     'directorio',
+  'map':           'mapa',
+  'favorites':     'guardados',
+  'login':         'login',
+  'register':      'registro',
+  'business':      'negocio',
+  'profile':       'perfil',
+  'fynder':        'saber-mas',
+  'about':         'sobre-fynder',
+  'blog':          'blog',
+  'write':         'write',
+  'terms':         'terminos',
+  'privacy':       'privacidad',
+  'plans':         'planes',
+  'dashboard':     'dashboard',
+  'support':       'soporte',
+  'article':       'articulo',
+  'messages':      'mensajes',
+  'chat':          'chat',
+  'chat-profile':  'chat-profile',
+  'settings':      'ajustes',
+};
+
+// Cache de páginas ya cargadas
+const _pageCache = new Set(['home']); // home viene en el HTML inicial
+
+async function _loadPageHTML(p) {
+  if (_pageCache.has(p)) return true;
+  const folder = PAGE_FOLDER_MAP[p];
+  if (!folder) return false;
+  const url = `paginas/${folder}/${folder}.html`;
+  try {
+    const res = await fetch(url);
+    if (!res.ok) { console.warn('goPage: no se pudo cargar', url); return false; }
+    const html = await res.text();
+    // Crear contenedor y añadir al body
+    const wrapper = document.createElement('div');
+    wrapper.innerHTML = html;
+    const pageEl = wrapper.firstElementChild;
+    if (pageEl) {
+      document.body.appendChild(pageEl);
+      _pageCache.add(p);
+      // Cargar CSS de la página si no está ya cargado
+      _loadPageCSS(folder);
+      // Cargar JS de la página si no está ya cargado
+      await _loadPageJS(folder);
+    }
+    return true;
+  } catch(e) {
+    console.error('goPage fetch error:', e);
+    return false;
+  }
+}
+
+function _loadPageCSS(folder) {
+  const id = 'css-page-' + folder;
+  if (document.getElementById(id)) return;
+  const link = document.createElement('link');
+  link.id   = id;
+  link.rel  = 'stylesheet';
+  link.href = `paginas/${folder}/${folder}.css`;
+  document.head.appendChild(link);
+}
+
+function _loadPageJS(folder) {
+  return new Promise(resolve => {
+    const id = 'js-page-' + folder;
+    if (document.getElementById(id)) { resolve(); return; }
+    const script = document.createElement('script');
+    script.id  = id;
+    script.src = `paginas/${folder}/${folder}.js`;
+    script.onload = () => resolve();
+    script.onerror = () => resolve(); // no bloquear si falla
+    document.body.appendChild(script);
+  });
+}
+
+async function goPage(p) {
     const authRequired = ['messages','chat','chat-profile','profile','dashboard'];
     if(authRequired.includes(p) && !localStorage.getItem('fynderLogged')){
         showToast('Debes iniciar sesión para acceder a esta sección.', 'error');
         p = 'login';
     }
 
-    const target = document.getElementById('page-'+p);
-    if(!target){ console.warn('goPage: no existe page-'+p); return; }
+    // Cargar el HTML de la página si aún no está en el DOM
+    let target = document.getElementById('page-'+p);
+    if (!target) {
+        const loaded = await _loadPageHTML(p);
+        if (!loaded) { console.warn('goPage: no existe page-'+p); return; }
+        target = document.getElementById('page-'+p);
+        if (!target) { console.warn('goPage: HTML cargado pero no se encontró page-'+p); return; }
+    }
 
     const legalPages = ['terms','privacy'];
     const noHistoryPages = ['messages','chat','chat-profile'];
@@ -324,7 +410,6 @@ function goPage(p){
     if(p==='messages')  {
       if(typeof msgSwitchTab==='function') msgSwitchTab('chats');
       if(typeof updateMsgBadge==='function') updateMsgBadge();
-      // En desktop, mostrar welcome si no hay chat activo
       if(window.innerWidth >= 769 && !_activeChatBizId) {
         const welcome  = document.getElementById('waWelcome');
         const chatArea = document.getElementById('waChatArea');
@@ -333,8 +418,6 @@ function goPage(p){
       }
     }
     if(p!=='messages' && p!=='chat') { if(typeof updateMsgBadge==='function') updateMsgBadge(); }
-
-    // La pagina de mensajes siempre oculta el navbar (tiene su propio header pa q no estorbe)
 }
 
 function goBack(){
