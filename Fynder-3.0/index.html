@@ -74,3 +74,57 @@
     </div>
   </div>
 </nav>
+
+<!-- ── MENÚ MÓVIL ── -->
+<div class="mobile-menu-overlay" id="mobileMenuOverlay" onclick="closeMobileMenu()"></div>
+<div class="mobile-menu-drawer" id="mobileMenuDrawer">
+  <div class="mobile-menu-header">
+    <button class="logo mobile-menu-logo" onclick="closeMobileMenu();goPage('home')">
+      <div class="logo-icon"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="white" stroke="white" stroke-width="2"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg></div>
+      <span class="logo-text"><span class="fyn">FYN</span><span class="der">DER</span></span>
+    </button>
+    <button class="mobile-menu-close" onclick="closeMobileMenu()"><i class="fas fa-times"></i></button>
+  </div>
+  <nav class="mobile-menu-nav">
+    <button onclick="closeMobileMenu();goPage('home')"><i class="fas fa-house"></i> Inicio</button>
+    <button onclick="closeMobileMenu();goPage('directory')"><i class="fas fa-compass"></i> Directorio</button>
+    <button onclick="closeMobileMenu();goPage('favorites')"><i class="fas fa-heart"></i> Guardados</button>
+    <button onclick="closeMobileMenu();goPage('messages')"><i class="fas fa-comment-dots"></i> Mensajes</button>
+    <button onclick="closeMobileMenu();goPage('plans')"><i class="fas fa-gem"></i> Planes</button>
+    <button onclick="closeMobileMenu();goPage('about')"><i class="fas fa-circle-info"></i> Sobre Fynder</button>
+    <button onclick="closeMobileMenu();goPage('fynder')"><i class="fas fa-bolt"></i> Saber más</button>
+    <button class="mobile-menu-tool-item mobile-menu-has-sub" onclick="toggleMobileSubMenu('sub-blog',this)">
+      <i class="fas fa-newspaper"></i><span>Blog</span>
+      <i class="fas fa-chevron-right mobile-sub-arrow" id="arrow-sub-blog"></i>
+    </button>
+    <div class="mobile-submenu" id="sub-blog">
+      <button onclick="closeMobileMenu();goPage('blog')"><i class="fas fa-bell"></i> Novedades</button>
+      <button onclick="closeMobileMenu();openFeedbackModal()"><i class="fas fa-bullhorn"></i> Dar tu opinión</button>
+    </div>
+    <button onclick="closeMobileMenu();goPage('support')"><i class="fas fa-headset"></i> Soporte</button>
+    <button onclick="closeMobileMenu();goPage('map')"><i class="fas fa-map-location-dot"></i> Mapa de negocios</button>
+    <div class="mobile-menu-divider"></div>
+    <button class="mobile-menu-tool-item mobile-menu-has-sub" onclick="toggleMobileSubMenu('sub-ayuda',this)">
+      <i class="fas fa-circle-question"></i><span>Ayuda</span>
+      <i class="fas fa-chevron-right mobile-sub-arrow" id="arrow-sub-ayuda"></i>
+    </button>
+    <div class="mobile-submenu" id="sub-ayuda">
+      <button onclick="closeMobileMenu();goPage('support')"><i class="fas fa-headset"></i> Centro de soporte</button>
+      <button onclick="closeMobileMenu();goPage('about')"><i class="fas fa-circle-info"></i> Sobre Fynder</button>
+      <button onclick="closeMobileMenu();goPage('terms')"><i class="fas fa-file-lines"></i> Términos de servicio</button>
+      <button onclick="closeMobileMenu();goPage('privacy')"><i class="fas fa-shield-halved"></i> Política de privacidad</button>
+    </div>
+    <button class="mobile-menu-tool-item" onclick="closeMobileMenu();goPage('settings')">
+      <i class="fas fa-gear"></i><span>Configuración</span>
+    </button>
+    <button class="mobile-menu-tool-item mobile-menu-tool-danger" id="mobileMenuSalirBtn" onclick="closeMobileMenu();logout()">
+      <i class="fas fa-right-from-bracket"></i><span>Salir</span>
+    </button>
+    <div class="mobile-menu-divider"></div>
+    <div class="mobile-menu-org-footer">
+      <i class="fas fa-building-columns"></i>
+      <span>Gestionado por tu organización</span>
+    </div>
+  </nav>
+  <div class="mobile-menu-actions" id="mobileMenuActions"><!-- rellenado por JS --></div>
+</div>
