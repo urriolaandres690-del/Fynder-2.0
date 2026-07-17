@@ -1451,3 +1451,4 @@ body.select-mode .chat-msg-row .msg-checkbox { display: flex; align-items: cente
 .chat-msg-row.out .chat-bubble.deleted-for-all {
   border-color: rgba(255,255,255,.15) !important;
 }
+

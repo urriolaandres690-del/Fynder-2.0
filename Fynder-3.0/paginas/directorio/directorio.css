@@ -62,3 +62,4 @@
 [data-theme="dark"] .filter-chip    { background: rgba(255,255,255,.07); color: var(--muted); }
 [data-theme="dark"] .filter-chip:hover { background: rgba(103,184,180,.15); color: var(--primary); }
 [data-theme="dark"] .dir-count      { color: var(--muted); }
+

@@ -565,3 +565,4 @@
 /* Login/Register back-home btn */
 [data-theme="dark"] .back-home         { background: rgba(255,255,255,.08) !important; color: rgba(255,255,255,.85) !important; }
 [data-theme="dark"] .back-home:hover   { background: rgba(255,255,255,.14) !important; color: #fff !important; }
+

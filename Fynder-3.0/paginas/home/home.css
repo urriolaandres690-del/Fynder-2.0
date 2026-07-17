@@ -663,3 +663,4 @@
 /* Sections con background inline en home */
 [data-theme="dark"] .section[style*="background:#F8FAFC"],
 [data-theme="dark"] .section[style*="background:#F0FEFE"] { background: var(--bg) !important; }
+

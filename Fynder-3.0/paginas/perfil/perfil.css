@@ -792,3 +792,4 @@ select option {
 [data-theme="dark"] .avatar-options-close { background: var(--card); border-color: rgba(255,255,255,.1); color: var(--muted); }
 [data-theme="dark"] .avatar-options-close:hover { background: rgba(255,255,255,.08); color: var(--fg); }
 [data-theme="dark"] .avatar-preset-item  { background: rgba(103,184,180,.1); }
+
