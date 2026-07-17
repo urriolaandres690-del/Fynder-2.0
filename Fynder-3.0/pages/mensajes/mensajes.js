@@ -1114,16 +1114,6 @@ document.addEventListener('click', (e) => {
   if (!menu.contains(e.target)) closeWaCproMenu();
 });
 
-function openChatProfileMap() {
-  if (!_activeChatBizId) return;
-  const biz = BUSINESSES.find(b => String(b.id) === String(_activeChatBizId));
-  if (biz && biz.mapQuery) {
-    window.open('https://maps.google.com/?q=' + encodeURIComponent(biz.mapQuery), '_blank');
-  } else {
-    showToast('Ubicación no disponible');
-  }
-}
-
 function deleteChatHistory() {
   if (!_activeChatBizId) return;
   if (!confirm('¿Borrar todo el historial de este chat?')) return;
@@ -1626,6 +1616,8 @@ function clearAllChats() {
   closeMsgSettings();
   showToast('Todos los chats eliminados');
 }
+
+function setChatBubbleColor(color, name, btn) {
   _loadMsgSettings();
   _msgSettings.bubbleColor = color;
   _saveMsgSettings();
