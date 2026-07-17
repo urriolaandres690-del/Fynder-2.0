@@ -161,3 +161,49 @@
     </div>
   </div>
 </div>
+
+<!-- ── MODAL: CÁMARA ── -->
+<div id="cameraModal" style="display:none;position:fixed;inset:0;z-index:9999;background:rgba(0,0,0,.85);align-items:center;justify-content:center;flex-direction:column;gap:16px">
+  <p style="color:#fff;font-family:'Poppins',sans-serif;font-size:1rem;font-weight:600;text-align:center;margin:0">Toma tu foto</p>
+  <div style="position:relative;border-radius:16px;overflow:hidden;box-shadow:0 8px 40px rgba(0,0,0,.6)">
+    <video id="cameraVideo" autoplay playsinline style="display:block;width:min(480px,90vw);aspect-ratio:4/3;object-fit:cover;background:#000"></video>
+    <canvas id="cameraCanvas" style="display:none"></canvas>
+  </div>
+  <div style="display:flex;gap:12px;flex-wrap:wrap;justify-content:center">
+    <button id="cameraCaptureBtn" onclick="cameraSnap()" style="padding:13px 32px;border-radius:99px;border:none;background:#67B8B4;color:#fff;font-family:'Poppins',sans-serif;font-size:.9375rem;font-weight:700;cursor:pointer;display:flex;align-items:center;gap:8px">
+      <i class="fas fa-camera"></i> Tomar foto
+    </button>
+    <button onclick="cameraClose()" style="padding:13px 24px;border-radius:99px;border:1px solid rgba(255,255,255,.3);background:transparent;color:rgba(255,255,255,.8);font-family:'Inter',sans-serif;font-size:.875rem;cursor:pointer">Cancelar</button>
+  </div>
+</div>
+
+<!-- ── MODAL: ESTADÍSTICAS ── -->
+<div class="smodal-overlay hide" id="statModalOverlay" onclick="closeStatModal()"></div>
+
+<!-- ── MENÚ CONTEXTUAL: LISTA DE MENSAJES ── -->
+<div class="msg-ctx-overlay" id="msgCtxOverlay" onclick="closeMsgCtxMenu()"></div>
+<div class="msg-ctx-menu" id="msgCtxMenu">
+  <div class="msg-ctx-header" id="msgCtxHeader">
+    <div class="msg-ctx-ava" id="msgCtxAva"></div>
+    <span class="msg-ctx-name" id="msgCtxName"></span>
+  </div>
+  <button class="msg-ctx-item" id="msgCtxBookmark" onclick="toggleMsgBookmark()">
+    <i class="fas fa-bookmark" id="msgCtxBookmarkIcon"></i>
+    <span id="msgCtxBookmarkLabel">Añadir a favoritos</span>
+  </button>
+  <button class="msg-ctx-item" onclick="msgCtxOpenChat()"><i class="fas fa-comment-dots"></i><span>Abrir chat</span></button>
+  <button class="msg-ctx-item" onclick="msgCtxViewProfile()"><i class="fas fa-circle-info"></i><span>Ver información</span></button>
+  <button class="msg-ctx-item" onclick="msgCtxMarkRead()"><i class="fas fa-check-double"></i><span>Marcar como leído</span></button>
+  <div class="msg-ctx-divider"></div>
+  <button class="msg-ctx-item msg-ctx-item-danger" onclick="msgCtxDeleteChat()"><i class="fas fa-trash-can"></i><span>Borrar conversación</span></button>
+</div>
+
+<!-- ── EMOJI PICKER ── -->
+<div class="emoji-overlay" id="emojiOverlay" onclick="closeEmojiPicker()"></div>
+<div class="emoji-picker" id="emojiPicker">
+  <div class="emoji-picker-tabs" id="emojiPickerTabs"></div>
+  <div class="emoji-picker-search">
+    <input type="text" id="emojiSearch" placeholder="Buscar emoji..." oninput="filterEmojis()" autocomplete="off">
+  </div>
+  <div class="emoji-picker-grid" id="emojiGrid"></div>
+</div>
