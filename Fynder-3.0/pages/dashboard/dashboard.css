@@ -578,6 +578,7 @@
 
 /* SABER MÁS – Animaciones, efectos y mejoras de botones */
 
+@media (max-width: 768px) {
   /* Dashboard stats */
   .dash-stats-grid { grid-template-columns: repeat(2, 1fr); }
 
