@@ -1784,14 +1784,6 @@ function settGoSection(id, btn) {
   document.querySelectorAll('#page-settings .sett-section').forEach(s => s.classList.remove('active'));
   document.querySelectorAll('#page-settings .sett-nav-item').forEach(b => b.classList.remove('active'));
 
-
-/* PÁGINA DE AJUSTES */
-
-/** Navega a una sección del panel de ajustes */
-function settGoSection(id, btn) {
-  document.querySelectorAll('#page-settings .sett-section').forEach(s => s.classList.remove('active'));
-  document.querySelectorAll('#page-settings .sett-nav-item').forEach(b => b.classList.remove('active'));
-
   const sec = document.getElementById('sett-' + id);
   if (sec) sec.classList.add('active');
   if (btn) btn.classList.add('active');
