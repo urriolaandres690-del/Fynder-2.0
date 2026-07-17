@@ -1327,11 +1327,41 @@ function logout(silent) {
   // Al cerrar sesión, volver siempre a modo claro
   document.documentElement.setAttribute('data-theme', 'light');
   localStorage.setItem('fynderTheme', 'light');
+  // Limpiar formularios de login y registro para no mostrar datos del usuario anterior
+  _clearAuthForms();
   updateNav();
   if (!silent) {
     showToast('Sesión cerrada. ¡Hasta pronto!');
     goPage('home');
   }
+}
+
+/* Limpia los campos de los formularios de inicio de sesión y crear cuenta */
+function _clearAuthForms() {
+  // Formulario de login
+  const loginEmail = document.getElementById('loginEmail');
+  const loginPass  = document.getElementById('loginPass');
+  if (loginEmail) loginEmail.value = '';
+  if (loginPass)  loginPass.value  = '';
+
+  // Checkbox "Recordarme"
+  const rememberMe = document.querySelector('#page-login input[type="checkbox"]');
+  if (rememberMe) rememberMe.checked = false;
+
+  // Formulario de registro (crear cuenta)
+  const regName    = document.getElementById('registerName')  || document.getElementById('regName')  || document.getElementById('signupName');
+  const regEmail   = document.getElementById('registerEmail') || document.getElementById('regEmail') || document.getElementById('signupEmail');
+  const regPhone   = document.getElementById('registerPhone') || document.getElementById('regPhone') || document.getElementById('signupPhone');
+  const regPass    = document.getElementById('registerPass')  || document.getElementById('regPass')  || document.getElementById('signupPass');
+  const regPass2   = document.getElementById('registerPass2') || document.getElementById('regPass2') || document.getElementById('signupPass2') || document.getElementById('confirmPass');
+  const regTerms   = document.querySelector('#page-register input[type="checkbox"]');
+
+  if (regName)  regName.value  = '';
+  if (regEmail) regEmail.value = '';
+  if (regPhone) regPhone.value = '';
+  if (regPass)  regPass.value  = '';
+  if (regPass2) regPass2.value = '';
+  if (regTerms) regTerms.checked = false;
 }
 
 /* Elimina las claves de perfil visual de la sesión activa */
