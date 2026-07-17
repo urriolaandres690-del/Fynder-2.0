@@ -2738,12 +2738,6 @@ let _mediaRecorder  = null;
 let _audioChunks    = [];
 let _recordTimer    = null;
 let _recordSeconds  = 0;
-
-/* CHAT: GRABACIÓN DE AUDIO (micrófono) */
-let _mediaRecorder  = null;
-let _audioChunks    = [];
-let _recordTimer    = null;
-let _recordSeconds  = 0;
 let _isRecording    = false;
 
 function toggleAudioRecord() {
