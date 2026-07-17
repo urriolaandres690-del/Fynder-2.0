@@ -1344,17 +1344,17 @@ function _clearAuthForms() {
   if (loginEmail) loginEmail.value = '';
   if (loginPass)  loginPass.value  = '';
 
-  // Checkbox "Recordarme"
+  // Checkbox "Recordarme" del login
   const rememberMe = document.querySelector('#page-login input[type="checkbox"]');
   if (rememberMe) rememberMe.checked = false;
 
   // Formulario de registro (crear cuenta)
-  const regName    = document.getElementById('registerName')  || document.getElementById('regName')  || document.getElementById('signupName');
-  const regEmail   = document.getElementById('registerEmail') || document.getElementById('regEmail') || document.getElementById('signupEmail');
-  const regPhone   = document.getElementById('registerPhone') || document.getElementById('regPhone') || document.getElementById('signupPhone');
-  const regPass    = document.getElementById('registerPass')  || document.getElementById('regPass')  || document.getElementById('signupPass');
-  const regPass2   = document.getElementById('registerPass2') || document.getElementById('regPass2') || document.getElementById('signupPass2') || document.getElementById('confirmPass');
-  const regTerms   = document.querySelector('#page-register input[type="checkbox"]');
+  const regName  = document.getElementById('regName');
+  const regEmail = document.getElementById('regEmail');
+  const regPhone = document.getElementById('regPhone');
+  const regPass  = document.getElementById('regPass');
+  const regPass2 = document.getElementById('regPass2');
+  const regTerms = document.getElementById('acceptTerms');
 
   if (regName)  regName.value  = '';
   if (regEmail) regEmail.value = '';
@@ -1362,6 +1362,12 @@ function _clearAuthForms() {
   if (regPass)  regPass.value  = '';
   if (regPass2) regPass2.value = '';
   if (regTerms) regTerms.checked = false;
+
+  // Ocultar mensajes de error del formulario de registro
+  const passError       = document.getElementById('passError');
+  const passLengthError = document.getElementById('passLengthError');
+  if (passError)       passError.classList.add('hide');
+  if (passLengthError) passLengthError.classList.add('hide');
 }
 
 /* Elimina las claves de perfil visual de la sesión activa */
