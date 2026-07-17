@@ -1370,11 +1370,6 @@ window.addEventListener('beforeunload', function(){
     }
 });
 
-
-
-  }
-}
-
 function closeMobileMenu() {
   document.getElementById('mobileMenuDrawer').classList.remove('open');
   document.getElementById('mobileMenuOverlay').classList.remove('open');
@@ -1670,11 +1665,6 @@ document.addEventListener('click', e => {
 document.addEventListener('keydown', e => {
   if (e.key === 'Escape') closeMobileMenu();
 });
-
-
-
-  };
-}
 
 
 /* GLOBO TERRÁQUEO FYNDER — versión completa con texturas reales, shader día/noche, nubes, arcos tipo tubo, labels flotantes, tarjetas orbitantes, ticker y controles de zoom. Panamá 🇵🇦 destacado como hub principal. */
@@ -4971,4 +4961,4 @@ function _getSmartReply(userText, cat, bizName, biz, lastBizText = '') {
 
 
 /* CHAT: REACCIONES Y MENÚ CONTEXTUAL DE MENSAJES */
-
+
