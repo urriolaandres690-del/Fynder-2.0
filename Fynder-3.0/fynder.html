@@ -157,181 +157,57 @@
 
 <!-- ── PÁGINAS ── -->
 
-<!-- ── PÁGINAS (cargadas dinámicamente) ── -->
-<div id="pages-container">
-  <div id="placeholder-page-home"></div>
-  <div id="placeholder-page-directory"></div>
-  <div id="placeholder-page-map"></div>
-  <div id="placeholder-page-favorites"></div>
-  <div id="placeholder-page-login"></div>
-  <div id="placeholder-page-register"></div>
-  <div id="placeholder-page-business"></div>
-  <div id="placeholder-page-profile"></div>
-  <div id="placeholder-page-fynder"></div>
-  <div id="placeholder-page-about"></div>
-  <div id="placeholder-page-blog"></div>
-  <div id="placeholder-page-write"></div>
-  <div id="placeholder-page-terms"></div>
-  <div id="placeholder-page-privacy"></div>
-  <div id="placeholder-page-plans"></div>
-  <div id="placeholder-page-dashboard"></div>
-  <div id="placeholder-page-support"></div>
-  <div id="placeholder-page-article"></div>
-  <div id="placeholder-page-messages"></div>
-  <div id="placeholder-page-chat"></div>
-  <div id="placeholder-page-chat-profile"></div>
-  <div id="placeholder-page-settings"></div>
-  <div id="placeholder-welcome-modal"></div>
-</div>
+<!-- ── PÁGINAS ── -->
+<div id="pages-container"></div>
 
 <!-- ── MODALES GLOBALES ── -->
-<!-- ── MODAL: INFO ORGANIZACIÓN ── -->
-<div class="org-modal-overlay" id="orgInfoModal" onclick="if(event.target===this)closeOrgInfoModal()">
-  <div class="org-modal-box">
-    <div class="org-modal-header">
-      <div class="org-modal-icon"><i class="fas fa-building-columns"></i></div>
-      <div>
-        <h3 class="org-modal-title">Ajustes administrados</h3>
-        <p class="org-modal-sub">Gestionado por Fynder</p>
-      </div>
-      <button class="org-modal-close" onclick="closeOrgInfoModal()"><i class="fas fa-xmark"></i></button>
-    </div>
-    <div class="org-modal-body">
-      <p>Algunos ajustes de esta aplicación están controlados por la organización que la gestiona. Esto significa que:</p>
-      <ul class="org-modal-list">
-        <li><i class="fas fa-lock"></i> Ciertos ajustes pueden estar bloqueados o predefinidos</li>
-        <li><i class="fas fa-shield-halved"></i> Las políticas de privacidad y seguridad son aplicadas automáticamente</li>
-        <li><i class="fas fa-rotate"></i> Algunos valores se restablecen al valor organizacional al cerrar sesión</li>
-        <li><i class="fas fa-circle-info"></i> Los ajustes que puedes modificar son los marcados sin candado</li>
-      </ul>
-      <p class="org-modal-note">Para más información sobre las políticas aplicadas, visita la sección de <button class="sett-org-link" onclick="closeOrgInfoModal();goPage('privacy')">Política de privacidad</button>.</p>
-    </div>
-    <div class="org-modal-footer">
-      <button class="org-modal-btn" onclick="closeOrgInfoModal()">Entendido</button>
-    </div>
-  </div>
-</div>
 
-<!-- ── MODAL: DAR TU OPINIÓN ── -->
-<div class="org-modal-overlay" id="feedbackModal" onclick="if(event.target===this)closeFeedbackModal()">
-  <div class="org-modal-box">
-    <div class="org-modal-header">
-      <div class="org-modal-icon" style="background:linear-gradient(135deg,#67B8B4,#2F5BB7)"><i class="fas fa-bullhorn" style="color:#fff"></i></div>
-      <div>
-        <h3 class="org-modal-title">Dar tu opinión</h3>
-        <p class="org-modal-sub">Ayúdanos a mejorar Fynder</p>
-      </div>
-      <button class="org-modal-close" onclick="closeFeedbackModal()"><i class="fas fa-xmark"></i></button>
-    </div>
-    <div class="org-modal-body">
-      <p style="margin-bottom:12px">¿Qué tan satisfecho estás con Fynder?</p>
-      <div style="display:flex;gap:8px;margin-bottom:18px" id="feedbackStars">
-        <button class="feedback-star-btn" onclick="setFeedbackStar(1)">😞</button>
-        <button class="feedback-star-btn" onclick="setFeedbackStar(2)">😐</button>
-        <button class="feedback-star-btn" onclick="setFeedbackStar(3)">🙂</button>
-        <button class="feedback-star-btn" onclick="setFeedbackStar(4)">😊</button>
-        <button class="feedback-star-btn" onclick="setFeedbackStar(5)">🤩</button>
-      </div>
-      <textarea id="feedbackText" class="feedback-textarea" placeholder="Cuéntanos qué podría mejorar o qué te encanta de Fynder..." rows="4"></textarea>
-    </div>
-    <div class="org-modal-footer">
-      <button class="org-modal-btn" onclick="submitFeedback()">Enviar opinión</button>
-    </div>
-  </div>
-</div>
-
-
-<script src="compartido/fynder.js"></script>
-<!-- Scripts por página -->
-<script src="paginas/ajustes/ajustes.js"></script>
-<script src="paginas/articulo/articulo.js"></script>
-<script src="paginas/bienvenida-modal/bienvenida-modal.js"></script>
-<script src="paginas/blog/blog.js"></script>
-<script src="paginas/chat-profile/chat-profile.js"></script>
-<script src="paginas/dashboard/dashboard.js"></script>
-<script src="paginas/directorio/directorio.js"></script>
-<script src="paginas/guardados/guardados.js"></script>
-<script src="paginas/home/home.js"></script>
-<script src="paginas/login/login.js"></script>
-<script src="paginas/mapa/mapa.js"></script>
-<script src="paginas/mensajes/mensajes.js"></script>
-<script src="paginas/negocio/negocio.js"></script>
-<script src="paginas/perfil/perfil.js"></script>
-<script src="paginas/registro/registro.js"></script>
-<script src="paginas/saber-mas/saber-mas.js"></script>
-<script src="paginas/sobre-fynder/sobre-fynder.js"></script>
-<script src="paginas/soporte/soporte.js"></script>
-<script src="paginas/write/write.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
-
-</body>
-</html>
 
 <script>
-// ── Carga dinámica de páginas ──
-function loadPage(url, placeholderId) {
-  fetch(url)
-    .then(r => r.text())
-    .then(html => {
-      const el = document.getElementById(placeholderId);
-      if (el) el.outerHTML = html;
-    })
-    .catch(err => console.warn('No se pudo cargar ' + url, err));
-}
-
-Promise.all([
-  loadPage('paginas/home/home.html', 'placeholder-page-home');
-  loadPage('paginas/directorio/directorio.html', 'placeholder-page-directory');
-  loadPage('paginas/mapa/mapa.html', 'placeholder-page-map');
-  loadPage('paginas/guardados/guardados.html', 'placeholder-page-favorites');
-  loadPage('paginas/login/login.html', 'placeholder-page-login');
-  loadPage('paginas/registro/registro.html', 'placeholder-page-register');
-  loadPage('paginas/negocio/negocio.html', 'placeholder-page-business');
-  loadPage('paginas/perfil/perfil.html', 'placeholder-page-profile');
-  loadPage('paginas/saber-mas/saber-mas.html', 'placeholder-page-fynder');
-  loadPage('paginas/sobre-fynder/sobre-fynder.html', 'placeholder-page-about');
-  loadPage('paginas/blog/blog.html', 'placeholder-page-blog');
-  loadPage('paginas/write/write.html', 'placeholder-page-write');
-  loadPage('paginas/terminos/terminos.html', 'placeholder-page-terms');
-  loadPage('paginas/privacidad/privacidad.html', 'placeholder-page-privacy');
-  loadPage('paginas/planes/planes.html', 'placeholder-page-plans');
-  loadPage('paginas/dashboard/dashboard.html', 'placeholder-page-dashboard');
-  loadPage('paginas/soporte/soporte.html', 'placeholder-page-support');
-  loadPage('paginas/articulo/articulo.html', 'placeholder-page-article');
-  loadPage('paginas/mensajes/mensajes.html', 'placeholder-page-messages');
-  loadPage('paginas/chat/chat.html', 'placeholder-page-chat');
-  loadPage('paginas/chat-profile/chat-profile.html', 'placeholder-page-chat-profile');
-  loadPage('paginas/ajustes/ajustes.html', 'placeholder-page-settings');
-  loadPage('paginas/bienvenida-modal/bienvenida-modal.html', 'placeholder-welcome-modal');
-].map(() => Promise.resolve()))
-.then(() => {
-  // Re-ejecutar inicialización después de que todas las páginas carguen
-});
-
-// Cargar todas las páginas
-  loadPage('paginas/home/home.html', 'placeholder-page-home');
-  loadPage('paginas/directorio/directorio.html', 'placeholder-page-directory');
-  loadPage('paginas/mapa/mapa.html', 'placeholder-page-map');
-  loadPage('paginas/guardados/guardados.html', 'placeholder-page-favorites');
-  loadPage('paginas/login/login.html', 'placeholder-page-login');
-  loadPage('paginas/registro/registro.html', 'placeholder-page-register');
-  loadPage('paginas/negocio/negocio.html', 'placeholder-page-business');
-  loadPage('paginas/perfil/perfil.html', 'placeholder-page-profile');
-  loadPage('paginas/saber-mas/saber-mas.html', 'placeholder-page-fynder');
-  loadPage('paginas/sobre-fynder/sobre-fynder.html', 'placeholder-page-about');
-  loadPage('paginas/blog/blog.html', 'placeholder-page-blog');
-  loadPage('paginas/write/write.html', 'placeholder-page-write');
-  loadPage('paginas/terminos/terminos.html', 'placeholder-page-terms');
-  loadPage('paginas/privacidad/privacidad.html', 'placeholder-page-privacy');
-  loadPage('paginas/planes/planes.html', 'placeholder-page-plans');
-  loadPage('paginas/dashboard/dashboard.html', 'placeholder-page-dashboard');
-  loadPage('paginas/soporte/soporte.html', 'placeholder-page-support');
-  loadPage('paginas/articulo/articulo.html', 'placeholder-page-article');
-  loadPage('paginas/mensajes/mensajes.html', 'placeholder-page-messages');
-  loadPage('paginas/chat/chat.html', 'placeholder-page-chat');
-  loadPage('paginas/chat-profile/chat-profile.html', 'placeholder-page-chat-profile');
-  loadPage('paginas/ajustes/ajustes.html', 'placeholder-page-settings');
-  loadPage('paginas/bienvenida-modal/bienvenida-modal.html', 'placeholder-welcome-modal');
+(function() {
+  var pages = [
+    'paginas/home/home.html',
+    'paginas/directorio/directorio.html',
+    'paginas/mapa/mapa.html',
+    'paginas/guardados/guardados.html',
+    'paginas/login/login.html',
+    'paginas/registro/registro.html',
+    'paginas/negocio/negocio.html',
+    'paginas/perfil/perfil.html',
+    'paginas/saber-mas/saber-mas.html',
+    'paginas/sobre-fynder/sobre-fynder.html',
+    'paginas/blog/blog.html',
+    'paginas/write/write.html',
+    'paginas/terminos/terminos.html',
+    'paginas/privacidad/privacidad.html',
+    'paginas/planes/planes.html',
+    'paginas/dashboard/dashboard.html',
+    'paginas/soporte/soporte.html',
+    'paginas/articulo/articulo.html',
+    'paginas/mensajes/mensajes.html',
+    'paginas/chat/chat.html',
+    'paginas/chat-profile/chat-profile.html',
+    'paginas/ajustes/ajustes.html',
+    'paginas/bienvenida-modal/bienvenida-modal.html'
+  ];
+  var container = document.getElementById('pages-container');
+  pages.forEach(function(url) {
+    var xhr = new XMLHttpRequest();
+    xhr.open('GET', url, false); // síncrono
+    try {
+      xhr.send(null);
+      if (xhr.status === 200 || xhr.status === 0) {
+        var tmp = document.createElement('div');
+        tmp.innerHTML = xhr.responseText;
+        while (tmp.firstChild) container.appendChild(tmp.firstChild);
+      }
+    } catch(e) {
+      console.warn('No se pudo cargar ' + url, e);
+    }
+  });
+})();
 </script>
+
+
 </body>
 </html>
