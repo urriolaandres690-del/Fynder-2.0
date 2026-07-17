@@ -5334,5 +5334,3 @@ body:has(#page-fynder.active) #navbar:not(.scrolled) .nav-dots-btn:hover {
 @media (min-width: 1025px) {
   .hero-stats-mobile { display: none !important; }
 }
-
-
