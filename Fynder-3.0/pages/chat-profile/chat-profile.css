@@ -1,0 +1,15 @@
+/*
+ * ═══════════════════════════════════════════════════════════════
+ *  Fynder — CSS de: chat-profile
+ *  Extraído de fynder.css
+ *
+ *  Los estilos GLOBALES y los de mensajes están en
+ *  shared/fynder.css y pages/mensajes/mensajes.css
+ *  Este archivo solo contiene overrides adicionales para
+ *  la página de perfil del negocio (desde el chat).
+ * ═══════════════════════════════════════════════════════════════
+ */
+
+/* La página chat-profile hereda la mayor parte de sus estilos
+   de mensajes.css (.chat-profile-page, .cpro-*, etc.).
+   Agrega aquí cualquier override específico de esta vista. */
