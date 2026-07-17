@@ -4958,7 +4958,3 @@ function _getSmartReply(userText, cat, bizName, biz, lastBizText = '') {
     `¡Hola! Cuéntanos qué buscas y encontramos la solución 🌟`,
   ]);
 }
-
-
-/* CHAT: REACCIONES Y MENÚ CONTEXTUAL DE MENSAJES */
-
