@@ -3308,9 +3308,6 @@ document.addEventListener('DOMContentLoaded', () => {
   if (_origGoPageRail) {
     const _patchedGoPage = function(p) {
       _origGoPageRail(p);
-
-    const _patchedGoPage = function(p) {
-      _origGoPageRail(p);
       if (p === 'messages') {
         waRailSyncAvatar();
         waRailUpdateBadge();
