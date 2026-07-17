@@ -714,7 +714,7 @@ label.avatar-option-btn:hover { background: var(--teal-light); border-color: rgb
   .profile-stat:last-child { border-bottom: none; }
 }
 
-/* responsive movido desde shared/fynder.css (@media max-width: 600px) */
+/* responsive movido desde compartido/fynder.css (@media max-width: 600px) */
 @media (max-width: 600px) {
   .profile-name    { font-size: 1.3rem; }
   .profile-card    { padding: 20px 16px; }

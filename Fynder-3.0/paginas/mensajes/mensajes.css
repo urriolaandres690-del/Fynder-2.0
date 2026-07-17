@@ -1446,7 +1446,7 @@ body.select-mode .chat-msg-row .msg-checkbox { display: flex; align-items: cente
 
 /* ══════════════════════════════════════════════════════════════════
    BUBBLE AVANZADO — reacciones, menú contextual, selección, eliminado
-   (movido desde shared/fynder.css)
+   (movido desde compartido/fynder.css)
    ══════════════════════════════════════════════════════════════════ */
 
 /* Wrapper del mensaje — necesario para posicionar badges y hover-bar */
