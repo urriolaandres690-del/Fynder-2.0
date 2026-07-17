@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Fynder – Descubre Negocios Locales</title>
+
+  <!-- Fuentes -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800;900&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+  <!-- Leaflet (mapa de negocios) -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+  <!-- Three.js (globo terráqueo) -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+
+  <!-- Google Translate -->
+  <script type="text/javascript">
+    function googleTranslateElementInit() {
+      new google.translate.TranslateElement({
+        pageLanguage: 'es',
+        includedLanguages: 'es,en,fr,pt,de,it,zh-CN,ja,ko,ar,ru',
+        autoDisplay: false,
+        multilanguagePage: false,
+        layout: google.translate.TranslateElement.InlineLayout.SIMPLE
+      }, 'google_translate_element');
+    }
+  </script>
+  <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
+  <!-- CSS principal (shared) -->
+  <link rel="stylesheet" href="shared/fynder.css">
+</head>
+
+<body>
+
+<!-- ═══════════════════════════════════════════════
+     SHARED: Navbar + Menú móvil
+═══════════════════════════════════════════════ -->
+<div id="shared-navbar"></div>
+
+<!-- ═══════════════════════════════════════════════
+     PÁGINAS (cada una en su carpeta)
+═══════════════════════════════════════════════ -->
+
+<!-- Inicio -->
+<div id="slot-home"></div>
+
+<!-- Directorio -->
+<div id="slot-directorio"></div>
+
+<!-- Mapa de negocios -->
+<div id="slot-mapa"></div>
+
+<!-- Guardados -->
+<div id="slot-guardados"></div>
+
+<!-- Login -->
+<div id="slot-login"></div>
+
+<!-- Registro -->
+<div id="slot-registro"></div>
+
+<!-- Registrar negocio -->
+<div id="slot-negocio"></div>
+
+<!-- Perfil -->
+<div id="slot-perfil"></div>
+
+<!-- Saber más -->
+<div id="slot-saber-mas"></div>
+
+<!-- Sobre Fynder -->
+<div id="slot-sobre-fynder"></div>
+
+<!-- Blog -->
+<div id="slot-blog"></div>
+
+<!-- Escribir artículo (dentro de blog) -->
+<div id="slot-write"></div>
+
+<!-- Artículo -->
+<div id="slot-articulo"></div>
+
+<!-- Términos -->
+<div id="slot-terminos"></div>
+
+<!-- Privacidad -->
+<div id="slot-privacidad"></div>
+
+<!-- Planes -->
+<div id="slot-planes"></div>
+
+<!-- Dashboard -->
+<div id="slot-dashboard"></div>
+
+<!-- Soporte -->
+<div id="slot-soporte"></div>
+
+<!-- Mensajes (layout WhatsApp Web) -->
+<div id="slot-mensajes"></div>
+
+<!-- Chat individual (móvil) -->
+<div id="slot-chat"></div>
+
+<!-- Perfil del negocio desde chat -->
+<div id="slot-chat-profile"></div>
+
+<!-- Ajustes -->
+<div id="slot-ajustes"></div>
+
+<!-- ═══════════════════════════════════════════════
+     MODALES GLOBALES
+═══════════════════════════════════════════════ -->
+
+<!-- Modal: detalle de negocio -->
+<div id="slot-modal-business"></div>
+
+<!-- Modal: cámara -->
+<div id="slot-modal-camera"></div>
+
+<!-- Modal: estadísticas hero -->
+<div id="slot-modal-stats"></div>
+
+<!-- Modal: org info (ajustes) -->
+<div id="slot-modal-org"></div>
+
+<!-- Modal: feedback -->
+<div id="slot-modal-feedback"></div>
+
+<!-- Modal: nuevo artículo (blog) -->
+<div id="slot-modal-article"></div>
+
+<!-- Modal: eliminar mensaje -->
+<div id="slot-modal-delete-msg"></div>
+
+<!-- Barra selección mensajes -->
+<div id="slot-msg-select-bar"></div>
+
+<!-- Menú contextual burbuja chat -->
+<div id="slot-msg-bubble-ctx"></div>
+
+<!-- Modal: bienvenida/login sugerido -->
+<div id="slot-bienvenida-modal"></div>
+
+<!-- ═══════════════════════════════════════════════
+     SCRIPTS
+     Bootstrap debe ir antes de fynder.js
+═══════════════════════════════════════════════ -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+
+<!-- Cargador de fragmentos HTML -->
+<script>
+  /**
+   * Carga un fragmento HTML en un slot del DOM.
+   * @param {string} slotId   - ID del elemento contenedor
+   * @param {string} filePath - Ruta al archivo HTML parcial
+   */
+  async function loadSlot(slotId, filePath) {
+    try {
+      const response = await fetch(filePath);
+      if (!response.ok) throw new Error(`HTTP ${response.status} al cargar ${filePath}`);
+      const html = await response.text();
+      const slot = document.getElementById(slotId);
+      if (slot) slot.innerHTML = html;
+    } catch (err) {
+      console.warn(`[Fynder] No se pudo cargar ${filePath}:`, err.message);
+    }
+  }
+
+  /**
+   * Carga todos los fragmentos en paralelo y luego inicializa la app.
+   */
+  async function loadAllFragments() {
+    const fragments = [
+      // Shared
+      ['shared-navbar',          'shared/navbar.html'],
+
+      // Páginas
+      ['slot-home',              'pages/home/home.html'],
+      ['slot-directorio',        'pages/directorio/directorio.html'],
+      ['slot-mapa',              'pages/mapa/mapa.html'],
+      ['slot-guardados',         'pages/guardados/guardados.html'],
+      ['slot-login',             'pages/login/login.html'],
+      ['slot-registro',          'pages/registro/registro.html'],
+      ['slot-negocio',           'pages/negocio/negocio.html'],
+      ['slot-perfil',            'pages/perfil/perfil.html'],
+      ['slot-saber-mas',         'pages/saber-mas/saber-mas.html'],
+      ['slot-sobre-fynder',      'pages/sobre-fynder/sobre-fynder.html'],
+      ['slot-blog',              'pages/blog/blog.html'],
+      ['slot-write',             'pages/blog/write.html'],
+      ['slot-articulo',          'pages/articulo/articulo.html'],
+      ['slot-terminos',          'pages/terminos/terminos.html'],
+      ['slot-privacidad',        'pages/privacidad/privacidad.html'],
+      ['slot-planes',            'pages/planes/planes.html'],
+      ['slot-dashboard',         'pages/dashboard/dashboard.html'],
+      ['slot-soporte',           'pages/soporte/soporte.html'],
+      ['slot-mensajes',          'pages/mensajes/mensajes.html'],
+      ['slot-chat',              'pages/mensajes/chat.html'],
+      ['slot-chat-profile',      'pages/mensajes/chat-profile.html'],
+      ['slot-ajustes',           'pages/ajustes/ajustes.html'],
+
+      // Modales globales
+      ['slot-modal-business',    'shared/modal-business-detail.html'],
+      ['slot-modal-camera',      'shared/modal-camera.html'],
+      ['slot-modal-stats',       'shared/modal-stats.html'],
+      ['slot-modal-org',         'shared/modal-org-info.html'],
+      ['slot-modal-feedback',    'shared/modal-feedback.html'],
+      ['slot-modal-article',     'pages/blog/modal-new-article.html'],
+      ['slot-modal-delete-msg',  'pages/mensajes/modal-delete-msg.html'],
+      ['slot-msg-select-bar',    'pages/mensajes/msg-select-bar.html'],
+      ['slot-msg-bubble-ctx',    'pages/mensajes/msg-bubble-ctx.html'],
+      ['slot-bienvenida-modal',  'pages/bienvenida-modal/bienvenida-modal.html'],
+    ];
+
+    // Cargar todos en paralelo
+    await Promise.all(fragments.map(([id, path]) => loadSlot(id, path)));
+
+    // Una vez todo el HTML está en el DOM, inicializar la app
+    initApp();
+  }
+
+  /**
+   * Inicializa la aplicación Fynder una vez que todos los fragmentos
+   * están montados en el DOM.
+   */
+  function initApp() {
+    // Cargar el script principal de la app
+    const script = document.createElement('script');
+    script.src = 'shared/fynder.js';
+    script.onload = () => {
+      console.log('[Fynder] App inicializada correctamente.');
+    };
+    script.onerror = () => {
+      console.error('[Fynder] Error al cargar shared/fynder.js');
+    };
+    document.body.appendChild(script);
+  }
+
+  // Arrancar cuando el DOM esté listo
+  document.addEventListener('DOMContentLoaded', loadAllFragments);
+</script>
+
+</body>
+</html>
