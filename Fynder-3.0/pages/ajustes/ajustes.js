@@ -1,4 +1,4 @@
-﻿/**
+/**
  * ═══════════════════════════════════════════════════════════════
  *  Fynder — JS de: ajustes
  *  Extraído de fynder.js
@@ -825,102 +825,6 @@ function _applyI18N() {
 }
 
 /** Aplica el idioma: guarda, actualiza UI, traduce con Google Translate */
-function settApplyLanguage(langCode) {
-  localStorage.setItem('fynderLang', langCode);
-
-  const sel = document.getElementById('settLangSelect');
-  if (sel) sel.value = langCode;
-
-  const nowRow = document.getElementById('settTranslateNowRow');
-  const nowSub = document.getElementById('settTranslateNowSub');
-  if (nowRow) nowRow.style.display = langCode !== 'es' ? '' : 'none';
-  if (nowSub) nowSub.textContent = `Idioma activo: ${LANG_NAMES[langCode] || 'Español'}`;
-
-  _renderPreferredLangs(langCode);
-  _applyI18N();
-
-  // Intentar usar el combo de Google Translate primero (sin recargar)
-  const combo = document.querySelector('.goog-te-combo');
-  if (combo) {
-    combo.value = langCode;
-    combo.dispatchEvent(new Event('change'));
-    showToast(`${_langFlag(langCode)} Idioma cambiado a ${LANG_NAMES[langCode] || langCode}`);
-    return;
-  }
-
-  // Si no hay combo disponible: usar cookie + recarga (funciona con servidor web)
-  if (langCode !== 'es') {
-    _gtApplyViaCookie(langCode);
-  } else {
-    _gtRemoveTranslation();
-    showToast(`🇪🇸 Idioma restaurado a Español`);
-  }
-}
-
-function _initAutoTranslate() {
-  const autoOn = localStorage.getItem('fynderAutoTranslate') === '1';
-  const saved  = localStorage.getItem('fynderLang') || (autoOn ? _detectBrowserLang() : 'es');
-  _applyI18N();
-  if (autoOn && saved !== 'es') {
-    localStorage.setItem('fynderLang', saved);
-  }
-}
-
-function settSyncIdioma() {
-  const browserLang = _detectBrowserLang();
-  const saved  = localStorage.getItem('fynderLang') || browserLang;
-  const autoOn = localStorage.getItem('fynderAutoTranslate') === '1';
-
-  const sel = document.getElementById('settLangSelect');
-  if (sel) sel.value = LANG_NAMES[saved] ? saved : 'es';
-
-  const sub = document.getElementById('settLangDetectedSub');
-  if (sub) sub.textContent = `Idioma del sistema: ${LANG_NAMES[browserLang] || 'Español'}`;
-
-  const toggle = document.getElementById('settAutoTranslateToggle');
-  if (toggle) toggle.classList.toggle('on', autoOn);
-
-  const nowRow = document.getElementById('settTranslateNowRow');
-  const nowSub = document.getElementById('settTranslateNowSub');
-  if (nowRow) nowRow.style.display = saved !== 'es' ? '' : 'none';
-  if (nowSub) nowSub.textContent = `Idioma activo: ${LANG_NAMES[saved] || 'Español'}`;
-
-  _renderPreferredLangs(saved);
-}
-
-function _renderPreferredLangs(current) {
-  const cont = document.getElementById('settPreferredLangs');
-  if (!cont) return;
-  const browserLang = _detectBrowserLang();
-  const langs = [...new Set([current, browserLang, 'es'])].slice(0, 3);
-  cont.innerHTML = langs.map((l, i) => `
-    <div class="sett-row" onclick="settApplyLanguage('${l}')" style="cursor:pointer">
-      <div class="sett-row-left">
-        <div class="sett-row-icon" style="background:#F8FAFC;color:var(--fg);font-size:1.1rem">${_langFlag(l)}</div>
-        <div>
-          <span class="sett-row-label">${LANG_NAMES[l] || l}</span>
-          <span class="sett-row-sub">${i===0?'Idioma activo':i===1?'Idioma del sistema':'Predeterminado'}</span>
-        </div>
-      </div>
-      ${l===current?'<i class="fas fa-check" style="color:var(--primary)"></i>':'<i class="fas fa-chevron-right sett-row-arrow"></i>'}
-    </div>`).join('');
-}
-
-function settToggleAutoTranslate() {
-  const isOn   = localStorage.getItem('fynderAutoTranslate') === '1';
-  const newVal = !isOn;
-  localStorage.setItem('fynderAutoTranslate', newVal ? '1' : '0');
-  const btn = document.getElementById('settAutoTranslateToggle');
-  if (btn) btn.classList.toggle('on', newVal);
-  if (newVal) {
-    const detected = _detectBrowserLang();
-    if (detected !== 'es') settApplyLanguage(detected);
-    else showToast(`✅ Traducción automática activada`);
-  } else {
-    showToast('Traducción automática desactivada');
-  }
-}
-
 /**
  * Aplica traducción usando la cookie de Google Translate.
  * Esto traduce la página in-place igual que el botón "Traducir" de Chrome,
@@ -1806,47 +1710,4 @@ function submitFeedback() {
   closeFeedbackModal();
   showToast('¡Gracias por tu opinión! 🙌');
 }
-
-// ── LAYOUT WHATSAPP WEB ──────────────────────────────────────────────────────
-
-/** Cierra el chat en desktop y muestra la pantalla de bienvenida */
-function waCloseChat() {
-
-function openFeedbackModal() {
-  _feedbackStar = 0;
-  const txt = document.getElementById('feedbackText');
-  if (txt) txt.value = '';
-  document.querySelectorAll('.feedback-star-btn').forEach(b => b.classList.remove('selected'));
-  const m = document.getElementById('feedbackModal');
-  if (m) m.classList.add('open');
-}
-
-function closeFeedbackModal() {
-  const m = document.getElementById('feedbackModal');
-  if (m) m.classList.remove('open');
-}
-
-function setFeedbackStar(n) {
-  _feedbackStar = n;
-  document.querySelectorAll('.feedback-star-btn').forEach((b, i) => {
-    b.classList.toggle('selected', i < n);
-  });
-}
-
-function submitFeedback() {
-  const txt = (document.getElementById('feedbackText')?.value || '').trim();
-  if (!_feedbackStar) { showToast('Elige una valoración primero 😊'); return; }
-  // Guardamos localmente (en un proyecto real iría a un servidor)
-  const entry = { stars: _feedbackStar, text: txt, date: new Date().toLocaleDateString('es') };
-  const prev = JSON.parse(localStorage.getItem('fynderFeedback') || '[]');
-  prev.push(entry);
-  localStorage.setItem('fynderFeedback', JSON.stringify(prev));
-  closeFeedbackModal();
-  showToast('¡Gracias por tu opinión! 🙌');
-}
-
-// ── LAYOUT WHATSAPP WEB ──────────────────────────────────────────────────────
-
-/** Cierra el chat en desktop y muestra la pantalla de bienvenida */
-function waCloseChat() {
 
