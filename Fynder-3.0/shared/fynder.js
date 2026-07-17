@@ -1163,10 +1163,34 @@ document.addEventListener('DOMContentLoaded', ()=>{ setTimeout(initCatFiltersDra
 
 // ── registerUser, loginUser, forgotPassword → paginas/login/login.js y paginas/registro/registro.js ──
 
-// ── loadProfile y funciones de perfil → paginas/perfil/perfil.js ──
+// ── loadProfile y todas las funciones de perfil → paginas/perfil/perfil.js ──
 
-function loadProfile(){
-    const user = JSON.parse(localStorage.getItem("fynderUser"));
+function showToast(msg, type = "success"){
+    let toast = document.getElementById("fynderToast");
+    if(!toast){
+        toast = document.createElement("div");
+        toast.id = "fynderToast";
+        document.body.appendChild(toast);
+    }
+    toast.textContent = msg;
+    toast.className = "fynder-toast " + (type === "error" ? "toast-error" : "toast-ok");
+    toast.classList.add("toast-show");
+    clearTimeout(toast._timer);
+    toast._timer = setTimeout(()=> toast.classList.remove("toast-show"), 3500);
+}
+
+window.addEventListener("load", ()=>{
+    const logged = localStorage.getItem("fynderLogged");
+    const user   = JSON.parse(localStorage.getItem("fynderUser"));
+    if(logged && user){
+        document.getElementById("userName").textContent = "Hola, " + user.name;
+    }
+    updateNav();
+});
+
+// ── registerBusiness → paginas/negocio/negocio.js ──
+// ── subscribeBlog, openArticle → paginas/blog/blog.js ──
+// ── _getArticleComments, renderArticleComments, etc. → paginas/articulo/articulo.js ──
     if(!user){
         showToast("Debes iniciar sesión para ver tu perfil.", "error");
         goPage("login");
