@@ -943,6 +943,7 @@ function _initCarouselDrag(id) {
   if (!el) return;
   let isDown = false, startX = 0, scrollLeft = 0, moved = false;
 
+  // ── Mouse ──
   el.addEventListener('mousedown', e => {
     isDown = true; moved = false;
     startX = e.pageX - el.offsetLeft;
@@ -953,7 +954,7 @@ function _initCarouselDrag(id) {
   el.addEventListener('mouseup', e => {
     isDown = false;
     el.classList.remove('is-dragging');
-  if (moved) e.stopPropagation();
+    if (moved) e.stopPropagation();
   });
   el.addEventListener('mousemove', e => {
     if (!isDown) return;
@@ -963,6 +964,24 @@ function _initCarouselDrag(id) {
     if (Math.abs(walk) > 5) moved = true;
     el.scrollLeft = scrollLeft - walk;
   });
+
+  // ── Touch (móvil) ──
+  el.addEventListener('touchstart', e => {
+    moved = false;
+    startX = e.touches[0].pageX - el.offsetLeft;
+    scrollLeft = el.scrollLeft;
+  }, { passive: true });
+  el.addEventListener('touchmove', e => {
+    const x = e.touches[0].pageX - el.offsetLeft;
+    const walk = (x - startX) * 1.4;
+    if (Math.abs(walk) > 5) moved = true;
+    el.scrollLeft = scrollLeft - walk;
+  }, { passive: true });
+  el.addEventListener('touchend', e => {
+    if (moved) e.stopPropagation();
+  });
+
+  // Bloquea el click si hubo movimiento (mouse o touch)
   el.addEventListener('click', e => { if (moved) { e.stopPropagation(); moved = false; } }, true);
 }
 
