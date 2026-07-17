@@ -71,3 +71,39 @@ body:has(#page-home.active) #navbar:not(.scrolled) {
 .hero-stat-lbl { font-size: .75rem; color: var(--muted); }
 .hero-wave { position: absolute; bottom: 0; left: 0; right: 0; line-height: 0; }
 .hero-wave svg { width: 100%; }
+
+/* ── Secciones ── */
+.section { padding: 72px 0; }
+.section-inner { max-width: 1280px; margin: 0 auto; padding: 0 24px; }
+.section-header { display: flex; align-items: flex-end; justify-content: space-between; margin-bottom: 40px; }
+.section-label { font-size: .75rem; font-weight: 600; color: var(--primary); text-transform: uppercase; letter-spacing: .08em; margin-bottom: 4px; }
+.section-title { font-size: 1.875rem; font-weight: 700; color: var(--fg); }
+.section-link { font-size: .875rem; font-weight: 500; color: var(--primary); background: none; border: none; cursor: pointer; display: flex; align-items: center; gap: 4px; transition: gap .2s; white-space: nowrap; }
+.section-link:hover { gap: 8px; }
+
+/* ── Categorías ── */
+.cat-grid { display: grid; grid-template-columns: repeat(8,1fr); gap: 12px; }
+.cat-card { display: flex; flex-direction: column; align-items: center; gap: 10px; padding: 16px 8px; border-radius: 18px; border: 1px solid var(--border); background: var(--card); cursor: pointer; transition: all .2s; }
+.cat-card:hover { border-color: rgba(103,184,180,.4); box-shadow: var(--shadow-md); }
+.cat-icon { width: 48px; height: 48px; border-radius: 14px; display: flex; align-items: center; justify-content: center; transition: transform .2s; }
+.cat-card:hover .cat-icon { transform: scale(1.1); }
+.cat-name { font-size: .7rem; font-weight: 600; color: var(--fg); text-align: center; line-height: 1.3; }
+.cat-count { font-size: .65rem; color: var(--muted); }
+
+/* ── Carrusel destacados ── */
+.featured-carousel-wrap {
+  position: relative;
+  -webkit-mask-image: linear-gradient(to right, transparent 0%, black 3%, black 97%, transparent 100%);
+          mask-image: linear-gradient(to right, transparent 0%, black 3%, black 97%, transparent 100%);
+}
+.featured-carousel { display: flex; gap: 20px; overflow-x: auto; overflow-y: visible; scroll-behavior: smooth; padding: 8px 16px 16px; cursor: grab; user-select: none; -webkit-overflow-scrolling: touch; scrollbar-width: none; -ms-overflow-style: none; }
+.featured-carousel::-webkit-scrollbar { display: none; }
+.featured-carousel.is-dragging { cursor: grabbing; scroll-behavior: auto; }
+.featured-carousel .bcard { flex: 0 0 260px; width: 260px; min-width: 260px; }
+
+/* ── Popular scroll ── */
+.popular-scroll-wrap { max-height: 520px; overflow-y: auto; overflow-x: hidden; padding-right: 6px; scroll-behavior: smooth; -webkit-mask-image: linear-gradient(to bottom, black 80%, transparent 100%); mask-image: linear-gradient(to bottom, black 80%, transparent 100%); }
+.popular-scroll-wrap::-webkit-scrollbar { width: 5px; }
+.popular-scroll-wrap::-webkit-scrollbar-track { background: transparent; }
+.popular-scroll-wrap::-webkit-scrollbar-thumb { background: #CBD5E1; border-radius: 99px; }
+.popular-scroll-wrap.scrolled-end { -webkit-mask-image: none; mask-image: none; }
