@@ -385,6 +385,7 @@
   .plan-card-pro { transform: none; }
   .plan-card-pro:hover { transform: translateY(-3px); }
   .plans-faq-grid { grid-template-columns: 1fr; }
+}
 
 /* FAQ planes */
 [data-theme="dark"] .plans-faq-title { color: var(--fg); }
