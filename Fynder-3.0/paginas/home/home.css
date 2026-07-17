@@ -17,3 +17,32 @@ body:has(#page-home.active) #navbar:not(.scrolled) {
   background: rgba(15, 23, 42, 0.4);
 }
 #page-home { background: #ffffff; }
+
+/* ── Hero ── */
+.hero {
+  position: relative; min-height: 100vh; display: flex; align-items: center;
+  overflow-x: hidden; overflow-y: visible;
+  background: linear-gradient(135deg, #1E8F8B 0%, #67B8B4 45%, #2F5BB7 100%);
+}
+.hero-bg-glow {
+  position: absolute; inset: 0; pointer-events: none;
+  background: radial-gradient(circle at 20% 50%, rgba(244,211,94,.18) 0%, transparent 50%),
+              radial-gradient(circle at 80% 20%, rgba(255,255,255,.1) 0%, transparent 40%);
+}
+.hero-blob1 { position: absolute; top: 80px; right: 40px; width: 280px; height: 280px; border-radius: 50%; background: rgba(244,211,94,.15); filter: blur(60px); pointer-events: none; }
+.hero-blob2 { position: absolute; bottom: 80px; left: 40px; width: 320px; height: 320px; border-radius: 50%; background: rgba(47,91,183,.2); filter: blur(70px); pointer-events: none; }
+.hero-inner {
+  position: relative; max-width: 1280px; margin: 0 auto; padding: 80px 24px 64px;
+  width: 100%; display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center;
+}
+.hero-pill {
+  display: inline-flex; align-items: center; gap: 8px; padding: 6px 16px; border-radius: 99px;
+  background: rgba(255,255,255,.15); border: 1px solid rgba(255,255,255,.2);
+  color: rgba(255,255,255,.9); font-size: .75rem; font-weight: 500; margin-bottom: 20px;
+  cursor: pointer; transition: background .2s, border-color .2s, transform .2s, gap .2s;
+}
+.hero-pill:hover { background: rgba(255,255,255,.24); border-color: rgba(255,255,255,.4); transform: translateY(-2px); gap: 10px; }
+.hero-pill svg { color: var(--yellow); width:13px; height:13px; }
+.hero h1 { font-size: clamp(2.5rem,5vw,3.5rem); font-weight: 900; color: #fff; line-height: 1.15; margin-bottom: 20px; }
+.hero h1 span { color: var(--yellow); }
+.hero p { font-size: 1.125rem; color: rgba(255,255,255,.75); line-height: 1.7; margin-bottom: 32px; max-width: 500px; }
