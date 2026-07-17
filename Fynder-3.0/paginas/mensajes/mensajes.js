@@ -1417,24 +1417,34 @@ function openEmojiPicker() {
 
   const picker  = document.getElementById('emojiPicker');
   const overlay = document.getElementById('emojiOverlay');
-  overlay.classList.add('open');
 
-  // En desktop: posicionar el picker encima del botón emoji
-  if (window.innerWidth >= 769) {
+  // En desktop: posicionar el picker encima del botón emoji ANTES de mostrarlo
+  if (window.innerWidth >= 769 && picker) {
     const btn = document.getElementById('chatEmojiBtn');
-    if (btn && picker) {
-      const rect = btn.getBoundingClientRect();
-      picker.style.left   = rect.left + 'px';
+    if (btn) {
+      const rect   = btn.getBoundingClientRect();
+      const pickerW = 340;
+      let left = rect.left;
+      // No salirse por la derecha
+      if (left + pickerW > window.innerWidth - 8) {
+        left = window.innerWidth - pickerW - 8;
+      }
+      picker.style.left   = left + 'px';
       picker.style.bottom = (window.innerHeight - rect.top + 8) + 'px';
+      picker.style.top    = 'auto';
+      picker.style.right  = 'auto';
     }
-  } else {
-    if (picker) {
-      picker.style.left   = '';
-      picker.style.bottom = '';
-    }
+  } else if (picker) {
+    // Móvil: reset inline styles para que funcione el bottom sheet CSS
+    picker.style.left   = '';
+    picker.style.bottom = '';
+    picker.style.top    = '';
+    picker.style.right  = '';
   }
 
+  overlay.classList.add('open');
   picker.classList.add('open');
+
   const searchEl = document.getElementById('emojiSearch');
   if (searchEl) { searchEl.value = ''; searchEl.focus(); }
 }
