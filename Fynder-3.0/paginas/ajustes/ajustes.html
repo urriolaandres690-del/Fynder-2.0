@@ -866,3 +866,106 @@
     </main>
   </div>
 </div>
+
+
+<!-- ── MODAL: DETALLE NEGOCIO ── -->
+<div class="fynder-modal-overlay hide" id="modalOverlay" onclick="closeModal(event)">
+  <div class="fynder-modal" id="modal">
+    <div class="modal-img">
+      <img id="modalImg" src="" alt="" onerror="this.style.opacity='.3'" />
+      <div class="modal-img-overlay"></div>
+      <button class="modal-close" onclick="closeModalDirect()"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg></button>
+      <div class="modal-header-info">
+        <div class="modal-logo"><img id="modalLogo" src="" alt="" /></div>
+        <div>
+          <div class="modal-name" id="modalName"></div>
+          <div class="modal-meta"><span class="modal-cat" id="modalCat"></span><span style="color:rgba(255,255,255,.4)">·</span><div id="modalStars" class="stars"></div><span id="modalRating" style="color:#fff;font-weight:700;font-size:.875rem"></span><span id="modalReviews" style="color:rgba(255,255,255,.6);font-size:.75rem"></span></div>
+        </div>
+      </div>
+    </div>
+    <div class="modal-body">
+      <div class="modal-actions">
+        <button class="btn-sm btn-fav" id="modalFavBtn" onclick="toggleModalFav()"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/></svg><span id="modalFavLabel">Guardar</span></button>
+        <button class="btn-sm btn-share" id="modalShareBtn"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" x2="15.42" y1="13.51" y2="17.49"/><line x1="15.41" x2="8.59" y1="6.51" y2="10.49"/></svg>Compartir</button>
+        <button class="btn-sm btn-contact" id="modalContactBtn"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.99 12 19.79 19.79 0 0 1 1.93 3.38 2 2 0 0 1 3.91 1h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 8.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>Contactar</button>
+        <button class="btn-sm btn-msg-biz" id="modalMsgBtn" onclick="openChatFromModal()"><i class="fas fa-comment-dots"></i>Mensajear</button>
+      </div>
+      <div class="modal-tags" id="modalTags"></div>
+      <div><p class="modal-section-title">Sobre el negocio</p><p class="modal-desc" id="modalDesc"></p></div>
+      <div><p class="modal-section-title">Información</p><div class="info-grid" id="modalInfo"></div></div>
+      <div id="modalSocialWrap"><p class="modal-section-title">Redes Sociales</p><div class="social-btns" id="modalSocial"></div></div>
+      <div id="modalReviewsWrap"></div>
+      <div><p class="modal-section-title">Ubicación</p><div id="modalMapWrap" class="modal-map-wrap"></div></div>
+      <button class="btn-map" style="display:none"></button>
+    </div>
+  </div>
+</div>
+
+<!-- ── MODAL: CÁMARA ── -->
+<div id="cameraModal" style="display:none;position:fixed;inset:0;z-index:9999;background:rgba(0,0,0,.85);align-items:center;justify-content:center;flex-direction:column;gap:16px">
+  <p style="color:#fff;font-family:'Poppins',sans-serif;font-size:1rem;font-weight:600;text-align:center;margin:0">Toma tu foto</p>
+  <div style="position:relative;border-radius:16px;overflow:hidden;box-shadow:0 8px 40px rgba(0,0,0,.6)">
+    <video id="cameraVideo" autoplay playsinline style="display:block;width:min(480px,90vw);aspect-ratio:4/3;object-fit:cover;background:#000"></video>
+    <canvas id="cameraCanvas" style="display:none"></canvas>
+  </div>
+  <div style="display:flex;gap:12px;flex-wrap:wrap;justify-content:center">
+    <button id="cameraCaptureBtn" onclick="cameraSnap()" style="padding:13px 32px;border-radius:99px;border:none;background:#67B8B4;color:#fff;font-family:'Poppins',sans-serif;font-size:.9375rem;font-weight:700;cursor:pointer;display:flex;align-items:center;gap:8px">
+      <i class="fas fa-camera"></i> Tomar foto
+    </button>
+    <button onclick="cameraClose()" style="padding:13px 24px;border-radius:99px;border:1px solid rgba(255,255,255,.3);background:transparent;color:rgba(255,255,255,.8);font-family:'Inter',sans-serif;font-size:.875rem;cursor:pointer">Cancelar</button>
+  </div>
+</div>
+
+<!-- ── MODAL: ESTADÍSTICAS ── -->
+<div class="smodal-overlay hide" id="statModalOverlay" onclick="closeStatModal()"></div>
+
+<!-- ── MENÚ CONTEXTUAL: LISTA DE MENSAJES ── -->
+<div class="msg-ctx-overlay" id="msgCtxOverlay" onclick="closeMsgCtxMenu()"></div>
+<div class="msg-ctx-menu" id="msgCtxMenu">
+  <div class="msg-ctx-header" id="msgCtxHeader">
+    <div class="msg-ctx-ava" id="msgCtxAva"></div>
+    <span class="msg-ctx-name" id="msgCtxName"></span>
+  </div>
+  <button class="msg-ctx-item" id="msgCtxBookmark" onclick="toggleMsgBookmark()">
+    <i class="fas fa-bookmark" id="msgCtxBookmarkIcon"></i>
+    <span id="msgCtxBookmarkLabel">Añadir a favoritos</span>
+  </button>
+  <button class="msg-ctx-item" onclick="msgCtxOpenChat()"><i class="fas fa-comment-dots"></i><span>Abrir chat</span></button>
+  <button class="msg-ctx-item" onclick="msgCtxViewProfile()"><i class="fas fa-circle-info"></i><span>Ver información</span></button>
+  <button class="msg-ctx-item" onclick="msgCtxMarkRead()"><i class="fas fa-check-double"></i><span>Marcar como leído</span></button>
+  <div class="msg-ctx-divider"></div>
+  <button class="msg-ctx-item msg-ctx-item-danger" onclick="msgCtxDeleteChat()"><i class="fas fa-trash-can"></i><span>Borrar conversación</span></button>
+</div>
+
+<!-- ── EMOJI PICKER ── -->
+<div class="emoji-overlay" id="emojiOverlay" onclick="closeEmojiPicker()"></div>
+<div class="emoji-picker" id="emojiPicker">
+  <div class="emoji-picker-tabs" id="emojiPickerTabs"></div>
+  <div class="emoji-picker-search">
+    <input type="text" id="emojiSearch" placeholder="Buscar emoji..." oninput="filterEmojis()" autocomplete="off">
+  </div>
+  <div class="emoji-picker-grid" id="emojiGrid"></div>
+</div>
+
+<!-- ── PANEL: AJUSTES DE MENSAJES ── -->
+<div class="msg-settings-overlay" id="msgSettingsOverlay" onclick="closeMsgSettings()"></div>
+<div class="msg-settings-panel" id="msgSettingsPanel">
+  <div class="msg-settings-header">
+    <div style="display:flex;align-items:center;gap:10px;">
+      <div style="width:32px;height:32px;border-radius:10px;background:rgba(103,184,180,.15);display:flex;align-items:center;justify-content:center;color:var(--msg-accent);font-size:.9rem;"><i class="fas fa-gear"></i></div>
+      <h3 class="msg-settings-title">Ajustes del chat</h3>
+    </div>
+    <button class="msg-icon-btn" onclick="closeMsgSettings()"><i class="fas fa-xmark"></i></button>
+  </div>
+  <div class="msg-settings-body">
+    <div class="msg-settings-section-title">Apariencia</div>
+    <div class="msg-settings-item">
+      <div class="msg-settings-item-left">
+        <div class="msg-settings-icon" id="settingThemeIcon"><i class="fas fa-moon"></i></div>
+        <div><span class="msg-settings-label">Modo oscuro</span><span class="msg-settings-sub" id="settingThemeSub">Tema actual: oscuro</span></div>
+      </div>
+      <button class="msg-settings-toggle" id="settingThemeToggle" onclick="msgToggleTheme()"></button>
+    </div>
+    <div class="msg-settings-item">
+      <div class="msg-settings-item-left">
+        <div class="msg-settings-icon"><i class="fas fa-image"></i></div>
