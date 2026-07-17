@@ -293,9 +293,6 @@
 
 /* ── Ajustes: Amigos & Idioma ── */
 .sett-friend-search {
-
-/* ── Ajustes: Amigos & Idioma ── */
-.sett-friend-search {
   flex: 1;
   border: none;
   outline: none;
@@ -505,6 +502,21 @@ body { top: 0 !important; }
 
 /* Banner organizacional tipo Chrome */
 .sett-org-banner {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 14px 18px;
+  background: rgba(47,91,183,.08);
+  border: 1px solid rgba(47,91,183,.2);
+  border-radius: 12px;
+  margin-bottom: 20px;
+  font-size: .8125rem;
+  color: var(--fg);
+}
+[data-theme="dark"] .sett-org-banner {
+  background: rgba(47,91,183,.12);
+  border-color: rgba(47,91,183,.25);
+}
 
 /* Etiqueta de grupo (subtítulo de sección) */
 .sett-group-label {
