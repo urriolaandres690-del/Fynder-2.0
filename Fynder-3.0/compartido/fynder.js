@@ -335,7 +335,6 @@ function goPage(p){
     if(p!=='messages' && p!=='chat') { if(typeof updateMsgBadge==='function') updateMsgBadge(); }
 
     // La pagina de mensajes siempre oculta el navbar (tiene su propio header pa q no estorbe)
-    }); // fin _loadPageThen
 }
 
 function goBack(){
