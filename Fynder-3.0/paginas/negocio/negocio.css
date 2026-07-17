@@ -1,12 +1,10 @@
-﻿/* Página de registro de negocio */
-
+﻿
 .biz-reg-inner {
   max-width: 860px;
   margin: 0 auto;
   padding: 0 24px;
 }
 
-/* Header */
 .biz-reg-header {
   display: flex;
   align-items: flex-start;
@@ -42,7 +40,6 @@
   line-height: 1.5;
 }
 
-/* Perks */
 .biz-reg-perks {
   display: flex;
   gap: 12px;
@@ -71,7 +68,6 @@
 
 .biz-reg-perk:active { transform: translateY(0); }
 
-/* Ícono circular */
 .biz-perk-icon {
   width: 36px;
   height: 36px;
@@ -86,12 +82,10 @@
 
 .biz-reg-perk:hover .biz-perk-icon { transform: scale(1.15) rotate(-5deg); }
 
-/* Texto */
 .biz-perk-text { display: flex; flex-direction: column; gap: 1px; }
 .biz-perk-title { font-size: .8125rem; font-weight: 700; line-height: 1.2; }
 .biz-perk-sub   { font-size: .6875rem; font-weight: 400; opacity: .75; }
 
-/* Variantes de color */
 .biz-perk-green {
   background: #ECFDF5;
   border-color: rgba(16,185,129,.2);
@@ -124,7 +118,6 @@
 .biz-perk-teal .biz-perk-icon { background: rgba(103,184,180,.15); color: var(--primary); }
 .biz-perk-teal:hover { border-color: rgba(103,184,180,.5); box-shadow: 0 8px 24px rgba(103,184,180,.2); }
 
-/* Dark mode perks */
 [data-theme="dark"] .biz-perk-green  { background: rgba(16,185,129,.1);  color: #6EE7B7; border-color: rgba(16,185,129,.2); }
 [data-theme="dark"] .biz-perk-yellow { background: rgba(244,211,94,.08); color: #FCD34D; border-color: rgba(244,211,94,.2); }
 [data-theme="dark"] .biz-perk-blue   { background: rgba(47,91,183,.12);  color: #93C5FD; border-color: rgba(47,91,183,.2); }
@@ -134,7 +127,6 @@
 [data-theme="dark"] .biz-perk-blue .biz-perk-icon   { background: rgba(47,91,183,.2);   color: #93C5FD; }
 [data-theme="dark"] .biz-perk-teal .biz-perk-icon   { background: rgba(103,184,180,.2); color: #67B8B4; }
 
-/* Tarjeta del formulario */
 .biz-reg-card {
   background: #fff;
   border-radius: 24px;
@@ -143,7 +135,6 @@
   overflow: hidden;
 }
 
-/* Secciones internas */
 .biz-reg-section {
   padding: 28px 32px;
   border-bottom: 1px solid #F1F5F9;
@@ -176,7 +167,6 @@
   flex-shrink: 0;
 }
 
-/* Grid 2 columnas */
 .biz-reg-grid-2 {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -186,7 +176,6 @@
 
 .biz-reg-grid-2:last-child { margin-bottom: 0; }
 
-/* Campo individual */
 .biz-reg-field {
   display: flex;
   flex-direction: column;
@@ -205,7 +194,6 @@
 .biz-required { color: #EF4444; font-size: .75rem; }
 .biz-optional-lbl { font-weight: 400; color: var(--muted); font-size: .75rem; }
 
-/* Input wrap */
 .biz-input-wrap {
   position: relative;
   display: flex;
@@ -287,10 +275,8 @@
   box-shadow: 0 0 0 3.5px rgba(103,184,180,.18) !important;
 }
 
-/* Campo sin icono (textarea full) */
 .biz-textarea-wrap { align-items: flex-start; border-radius: 20px; }
 
-/* Submit */
 .biz-reg-submit-wrap {
   padding: 28px 32px;
   background: #F8FAFC;
@@ -343,7 +329,6 @@
 
 .biz-reg-disclaimer a:hover { text-decoration: underline; }
 
-/* Responsive */
 @media (max-width: 700px) {
   .biz-reg-grid-2 { grid-template-columns: 1fr; }
   .biz-reg-section { padding: 22px 20px; }
@@ -353,7 +338,6 @@
 }
 
 
-/* aislamiento bootstrap en modal */
 
 .fynder-modal .modal-body {
   display: flex !important;
@@ -372,7 +356,6 @@
 }
 
 
-/* registro negocio modo oscuro */
 [data-theme="dark"] #page-business   { background: var(--bg) !important; }
 [data-theme="dark"] .biz-reg-card    { background: var(--card); border-color: rgba(255,255,255,.07); }
 [data-theme="dark"] .biz-reg-title   { color: var(--fg); }

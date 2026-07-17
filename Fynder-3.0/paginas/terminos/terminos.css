@@ -1,11 +1,9 @@
-﻿/* paginas legales */
-
+﻿
 .legal-page {
   min-height: 100vh;
   background: #F8FAFC;
 }
 
-/* Hero banner */
 .legal-hero {
   padding: 56px 24px 48px;
   position: relative;
@@ -35,7 +33,6 @@
   position: relative;
 }
 
-/* Botón de regreso en el hero */
 .back-legal-btn {
   display: inline-flex;
   align-items: center;
@@ -104,7 +101,6 @@
   color: rgba(255,255,255,.65);
 }
 
-/* Layout de dos columnas */
 .legal-content-wrap {
   max-width: 1100px;
   margin: 0 auto;
@@ -115,7 +111,6 @@
   align-items: start;
 }
 
-/* TOC lateral */
 .legal-toc {
   position: sticky;
   top: 24px;
@@ -206,7 +201,6 @@
   color: #fff;
 }
 
-/* Contenido principal */
 .legal-body {
   display: flex;
   flex-direction: column;
@@ -265,7 +259,6 @@
   font-size: .875rem;
 }
 
-/* Listas legales */
 .legal-list {
   list-style: none;
   padding: 0;
@@ -296,7 +289,6 @@
   flex-shrink: 0;
 }
 
-/* Destacado informativo */
 .legal-highlight {
   margin-top: 14px;
   padding: 12px 16px;
@@ -327,7 +319,6 @@
   color: #F59E0B;
 }
 
-/* Tarjeta de contacto */
 .legal-contact-card {
   display: flex;
   align-items: center;
@@ -363,7 +354,6 @@
   font-weight: 500;
 }
 
-/* Botones de acción al final */
 .legal-footer-actions {
   display: flex;
   gap: 12px;
@@ -404,7 +394,6 @@
   color: #fff;
 }
 
-/* Responsive */
 @media (max-width: 768px) {
   .legal-content-wrap {
     grid-template-columns: 1fr;
@@ -421,7 +410,6 @@
 }
 
 
-/* legal */
 [data-theme="dark"] .legal-page  { background: var(--bg); }
 [data-theme="dark"] .legal-content-wrap { background: var(--bg); }
 
@@ -495,7 +483,5 @@
 [data-theme="dark"] .legal-action-btn-primary { background: var(--primary); color: #fff; }
 [data-theme="dark"] .legal-action-btn-primary:hover { background: var(--primary-d); }
 
-/* Legal section icons */
 [data-theme="dark"] .legal-section-icon   { background: rgba(255,255,255,.06) !important; }
 
-/* fyl-section-alt en dark */

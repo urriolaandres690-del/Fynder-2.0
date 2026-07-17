@@ -1,4 +1,3 @@
-﻿/* ── Abrir perfil del negocio desde el chat móvil ── */
-function openChatProfile() {
+﻿function openChatProfile() {
   goPage('chat-profile');
 }

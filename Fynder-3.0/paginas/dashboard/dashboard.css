@@ -1,12 +1,10 @@
-﻿/* DASHBOARD – Panel de administración de plan y analíticas */
-
+﻿
 .dashboard-inner {
   max-width: 1100px;
   margin: 0 auto;
   padding: 40px 24px 80px;
 }
 
-/* Cabecera */
 .dashboard-header {
   display: flex;
   align-items: center;
@@ -46,7 +44,6 @@
   margin: 0;
 }
 
-/* Sección genérica */
 .dash-section {
   margin-bottom: 48px;
   position: relative;
@@ -81,7 +78,6 @@
   font-size: 1rem;
 }
 
-/* ---- Plan card ---- */
 .dash-plan-card {
   background: var(--card);
   border: 1.5px solid var(--border);
@@ -169,7 +165,6 @@
 [data-theme="dark"] .dash-plan-badge-biz     { background: rgba(47,91,183,.15); }
 [data-theme="dark"] .dash-plan-badge-premium { background: rgba(124,58,237,.15); color: #c084fc; }
 
-/* Upgrade strip */
 .dash-upgrade-strip {
   display: flex;
   align-items: center;
@@ -212,7 +207,6 @@
   color: var(--muted);
 }
 
-/* ---- Tabs de período ---- */
 .dash-period-tabs {
   display: flex;
   gap: 4px;
@@ -248,7 +242,6 @@
   color: var(--fg);
 }
 
-/* ---- Stats grid ---- */
 .dash-stats-grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
@@ -319,7 +312,6 @@
 .dash-stat-delta.up   { color: #10B981; }
 .dash-stat-delta.down { color: #EF4444; }
 
-/* ---- Gráfica ---- */
 .dash-chart-card {
   background: var(--card);
   border: 1.5px solid var(--border);
@@ -359,7 +351,6 @@
   overflow: hidden;
 }
 
-/* ---- Locked overlay ---- */
 .dash-locked-overlay {
   position: absolute;
   inset: 0;
@@ -413,7 +404,6 @@
   line-height: 1.6;
 }
 
-/* ---- Negocios list ---- */
 .dash-biz-list {
   display: flex;
   flex-direction: column;
@@ -515,7 +505,6 @@
   opacity: .5;
 }
 
-/* ---- Actividad reciente ---- */
 .dash-activity-list {
   display: flex;
   flex-direction: column;
@@ -556,7 +545,6 @@
   flex-shrink: 0;
 }
 
-/* ---- Responsive ---- */
 @media (max-width: 600px) {
   .dash-plan-card { flex-direction: column; align-items: flex-start; }
   .dash-plan-price-block { text-align: left; }

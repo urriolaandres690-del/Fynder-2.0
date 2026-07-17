@@ -1,5 +1,4 @@
-﻿    /* hero */ 
-
+﻿
     .hero { 
 
       position: relative; min-height: 100vh; display: flex; align-items: center; overflow-x: hidden; overflow-y: visible; 
@@ -126,7 +125,6 @@
 
     .hero-wave svg { width: 100%; } 
 
-    /* secciones */
 
     .section { padding: 72px 0; } 
 
@@ -142,7 +140,6 @@
 
     .section-link:hover { gap: 8px; } 
 
-    /* categorias */ 
 
     .cat-grid { display: grid; grid-template-columns: repeat(8,1fr); gap: 12px; } 
 
@@ -158,11 +155,9 @@
 
     .cat-count { font-size: .65rem; color: var(--muted); } 
 
-    /* tarjetas */ 
 
     .cards-grid { display: grid; grid-template-columns: repeat(auto-fill,minmax(240px,1fr)); gap: 20px; }
 
-    /* ── Scroll vertical seccion Más Populares ── */
     .popular-scroll-wrap {
       max-height: 520px;
       overflow-y: auto;
@@ -175,16 +170,13 @@
     .popular-scroll-wrap::-webkit-scrollbar { width: 5px; }
     .popular-scroll-wrap::-webkit-scrollbar-track { background: transparent; }
     .popular-scroll-wrap::-webkit-scrollbar-thumb { background: #CBD5E1; border-radius: 99px; }
-    /* Cuando está siendo scrolleado quitamos el fade para no cortar contenido */
     .popular-scroll-wrap.scrolled-end {
       -webkit-mask-image: none;
               mask-image: none;
     }
 
-    /* ── Carrusel de destacados ── */
     .featured-carousel-wrap {
       position: relative;
-      /* fade en los bordes para indicar scroll */
       -webkit-mask-image: linear-gradient(to right, transparent 0%, black 3%, black 97%, transparent 100%);
               mask-image: linear-gradient(to right, transparent 0%, black 3%, black 97%, transparent 100%);
     }
@@ -198,13 +190,11 @@
       cursor: grab;
       user-select: none;
       -webkit-overflow-scrolling: touch;
-      /* ocultar scrollbar visualmente */
       scrollbar-width: none;
       -ms-overflow-style: none;
     }
     .featured-carousel::-webkit-scrollbar { display: none; }
     .featured-carousel.is-dragging { cursor: grabbing; scroll-behavior: auto; }
-    /* Cada tarjeta en el carrusel tiene ancho fijo */
     .featured-carousel .bcard {
       flex: 0 0 260px;
       width: 260px;
@@ -293,7 +283,6 @@
 
     .star-off { fill: #E5E7EB; color: #E5E7EB; width: 13px; height: 13px; } 
 
-    /* como funciona */
 
     .how-section {
       padding: 96px 0;
@@ -361,7 +350,6 @@
     .how-tag-blue  { color: #6B8DE3; border-color: rgba(47,91,183,.35);   background: rgba(47,91,183,.08);   }
     .how-tag-green { color: #34D399; border-color: rgba(16,185,129,.35);   background: rgba(16,185,129,.08);  }
 
-    /* boton principal */ 
 
     .cta-section { padding: 88px 0 120px; background: linear-gradient(135deg,#2F5BB7 0%,#1E8F8B 100%); } 
 
@@ -393,7 +381,6 @@
 
     .cta-perk svg { width: 15px; height: 15px; } 
 
-    /* pie de pagina */
 
     footer {
       position: relative;
@@ -410,7 +397,6 @@
         inset 0 1px 0 rgba(255,255,255,.04);
     }
 
-    /* particulas flotantes */
     .footer-particles {
       position: absolute;
       inset: 0;
@@ -428,7 +414,6 @@
       animation: particleRise 8s ease-in infinite;
       opacity: 0;
     }
-    /* Variaciones de tamaño y color para dar diversidad */
     .footer-particles span:nth-child(3n) {
       width: 2px; height: 2px;
       background: rgba(47, 91, 183, 0.8);
@@ -462,7 +447,6 @@
 
     .footer-brand-desc { font-size: .875rem; color: rgba(255,255,255,.45); line-height: 1.6; margin-top: 12px; }
 
-    /* logo del footer */
     .footer-logo {
       display: inline-flex;
       align-items: center;
@@ -509,7 +493,6 @@
       100% { background-position: 200%; }
     }
 
-    /* linea animada */
     .footer-line-anim {
       width: 100%;
       height: 2px;
@@ -524,7 +507,6 @@
       100% { background-position: 200%; }
     }
 
-    /* Iconos de redes sociales */
     .footer-social {
       display: flex;
       gap: 8px;
@@ -607,7 +589,6 @@
     }
     .footer-bottom p { font-size: .78rem; color: rgba(255,255,255,.6); letter-spacing: .02em; }
 
-/* hero modo oscuro */
 [data-theme="dark"] #page-home { background: var(--bg); }
 [data-theme="dark"] .hero { background: linear-gradient(135deg, #0F172A 0%, #1E293B 60%, #0F172A 100%); }
 [data-theme="dark"] .hero-search  { background: rgba(30,41,59,.9); border-color: rgba(103,184,180,.25); }
@@ -618,12 +599,10 @@
 [data-theme="dark"] .hero-stat-card { background: rgba(30,41,59,.85); border-color: rgba(103,184,180,.15); }
 [data-theme="dark"] .hero-stat-icon { background: rgba(255,255,255,.05); }
 
-/* secciones modo oscuro */
 [data-theme="dark"] .section { background: var(--bg) !important; }
 [data-theme="dark"] .section-title { color: var(--fg); }
 [data-theme="dark"] .section-label { color: var(--primary); }
 
-/* tarjetas de negocio */
 [data-theme="dark"] .bcard       { background: var(--card); border-color: rgba(255,255,255,.07); }
 [data-theme="dark"] .bcard-name  { color: var(--fg); }
 [data-theme="dark"] .bcard-desc  { color: var(--muted); }
@@ -633,12 +612,10 @@
 [data-theme="dark"] .bcard-list-name { color: var(--fg); }
 [data-theme="dark"] .bcard-list-desc { color: var(--muted); }
 
-/* categorias modo oscuro */
 [data-theme="dark"] .cat-card { background: var(--card); border-color: rgba(255,255,255,.07); }
 [data-theme="dark"] .cat-name { color: var(--fg); }
 [data-theme="dark"] .cat-count { color: var(--muted); }
 
-/* como funciona modo oscuro */
 [data-theme="dark"] .how-section { background: #0F172A !important; }
 [data-theme="dark"] .how-section::before { background-image: radial-gradient(rgba(255,255,255,.04) 1px, transparent 1px); }
 [data-theme="dark"] .how-card { background: rgba(30,41,59,.8); border-color: rgba(255,255,255,.07); }
@@ -648,11 +625,9 @@
 [data-theme="dark"] .how-main-title { color: var(--fg); }
 [data-theme="dark"] .how-subtitle  { color: var(--muted); }
 
-/* Hero wave SVG fill – usa CSS variable para que cambie con el tema */
 [data-theme="dark"] .hero-wave path { fill: var(--bg) !important; }
 [data-theme="dark"] .fyl-hero-wave path { fill: var(--fyl-bg) !important; }
 
-/* heroes oscuros en modo oscuro */
 [data-theme="dark"] .fyl-hero {
   background: linear-gradient(135deg, #0F172A 0%, #1E293B 55%, #0A1628 100%);
 }
@@ -660,7 +635,6 @@
   background: linear-gradient(135deg, #0F172A 0%, #1E293B 55%, #0A1628 100%);
 }
 
-/* Sections con background inline en home */
 [data-theme="dark"] .section[style*="background:#F8FAFC"],
 [data-theme="dark"] .section[style*="background:#F0FEFE"] { background: var(--bg) !important; }
 

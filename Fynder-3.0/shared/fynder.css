@@ -1,10 +1,4 @@
-﻿/* ============================================================
-   FYNDER — CSS GLOBAL
-   Variables, reset, navbar, modal detalle negocio, dark mode,
-   responsive global y componentes compartidos.
-   Los estilos de cada página están en paginas/{nombre}/{nombre}.css
-   ============================================================ */
-
+﻿
 button, input, select, textarea {
   font-family: 'Inter', sans-serif;
   font-size: inherit;
@@ -96,7 +90,6 @@ input, button, select, textarea {
   line-clamp: 2;
   }
 
-    /* navbar */ 
 
     #navbar.scrolled{
         background: rgba(255,255,255,.85);
@@ -203,7 +196,6 @@ input, button, select, textarea {
 
     .nav-actions { display: flex; align-items: center; gap: 12px; margin-left: auto; }
 
-    /* Separador entre links de nav y acciones */
     .nav-links + .nav-actions { margin-left: auto; padding-left: 16px; border-left: 1px solid rgba(103,184,180,.2); } 
 
     .btn-ghost { font-size: .875rem; font-weight: 500; background: none; border: none; cursor: pointer; color: var(--muted); transition: color .2s, background .2s; } 
@@ -226,25 +218,21 @@ input, button, select, textarea {
 
     .btn-teal:hover { background: var(--primary-d); } 
 
-    /* paginas */
     
         #page-home{
         background:#ffffff;
         }
         
-        /* Evita que el fondo blanco del body se vea detrás del navbar transparente sobre el hero */
         body:has(#page-home.active) {
           background: linear-gradient(135deg, #1E8F8B 0%, #67B8B4 45%, #2F5BB7 100%);
           background-attachment: fixed;
         }
 
-        /* Navbar sobre el hero en modo claro fondo semitransparente del color del hero */
         body:has(#page-home.active) #navbar:not(.scrolled) {
           background: rgba(15, 90, 87, 0.25);
           backdrop-filter: blur(4px);
         }
 
-        /* En modo oscuro, mantener el fondo oscuro */
         [data-theme="dark"] body:has(#page-home.active) {
           background: linear-gradient(135deg, #0F172A 0%, #1E293B 60%, #0F172A 100%);
           background-attachment: fixed;
@@ -253,7 +241,6 @@ input, button, select, textarea {
           background: rgba(15, 23, 42, 0.4);
         }
 
-        /* pagina saber mas: hero turquesa en dia, oscuro en noche */
         body:has(#page-fynder.active) {
           background: linear-gradient(135deg, #1E8F8B 0%, #67B8B4 45%, #2F5BB7 100%);
           background-attachment: fixed;
@@ -270,7 +257,6 @@ input, button, select, textarea {
           backdrop-filter: blur(4px);
         }
 
-        /* pagina sobre fynder: mismo tratamiento */
         body:has(#page-about.active) {
           background: linear-gradient(135deg, #1E8F8B 0%, #67B8B4 45%, #2F5BB7 100%);
           background-attachment: fixed;
@@ -308,7 +294,6 @@ input, button, select, textarea {
 
     .page.active { display: block; } 
 
-    /* Paginas internas con fondo y padding estandar */
     .page-inner {
       min-height: 100vh;
       background: var(--bg);
@@ -316,7 +301,6 @@ input, button, select, textarea {
       padding-bottom: 80px;
     }
 
-    /* modal */ 
 
     .fynder-modal-overlay { position: fixed; inset: 0; z-index: 200; display: flex; align-items: center; justify-content: center; padding: 16px; background: rgba(0,0,0,.5); backdrop-filter: blur(6px); } 
 
@@ -405,7 +389,6 @@ input, button, select, textarea {
 
     .btn-map svg { width: 16px; height: 16px; } 
 
-    /* responsive */
 
     @media(max-width:1100px) { 
 
@@ -1023,7 +1006,6 @@ body{
 }
 
 
-/* boton de tema */
 .dark-toggle-btn {
   width: 38px; height: 38px;
   border-radius: 50%;
@@ -1043,14 +1025,11 @@ body{
   box-shadow: var(--shadow-md);
   border-color: var(--primary);
 }
-/* luna visible en modo claro, sol oculto */
 .dark-toggle-btn .icon-moon { display: block; }
 .dark-toggle-btn .icon-sun  { display: none;  }
-/* sol visible en modo oscuro, luna oculta */
 [data-theme="dark"] .dark-toggle-btn .icon-moon { display: none;  }
 [data-theme="dark"] .dark-toggle-btn .icon-sun  { display: block; }
 
-/* variables modo oscuro */
 [data-theme="dark"] {
   --bg:         #0F172A;
   --fg:         #E2E8F0;
@@ -1064,10 +1043,8 @@ body{
   --shadow-lg:  0 8px 32px rgba(0,0,0,.55);
 }
 
-/* base */
 [data-theme="dark"] body { background: var(--bg); color: var(--fg); }
 
-/* navbar modo oscuro */
 [data-theme="dark"] #navbar { background: rgba(15,23,42,.7); }
 [data-theme="dark"] #navbar.scrolled {
   background: rgba(15,23,42,.95);
@@ -1170,7 +1147,6 @@ body{
 [data-theme="dark"] .share-panel-close   { border-color: rgba(255,255,255,.1); color: var(--muted); }
 [data-theme="dark"] .share-panel-close:hover { background: rgba(255,255,255,.06); color: var(--fg); }
 
-/* transicion de tema */
 *:not(svg):not(path):not(polygon):not(circle):not(rect):not(line):not(polyline),
 *:not(svg):not(path):not(polygon):not(circle):not(rect):not(line):not(polyline)::before,
 *:not(svg):not(path):not(polygon):not(circle):not(rect):not(line):not(polyline)::after {
@@ -1180,11 +1156,9 @@ body{
     color .2s ease,
     box-shadow .3s ease !important;
 }
-/* Los SVG y sus hijos nunca se animan con el cambio de tema */
 svg, svg *, path, polygon, circle, rect, line, polyline {
   transition: none !important;
 }
-/* Excepciones: no animar transforms ni animaciones propias */
 [class*="animation"],
 [style*="animation"],
 .footer-particles span,
@@ -1193,16 +1167,12 @@ svg, svg *, path, polygon, circle, rect, line, polyline {
 .footer-logo-texto {
   transition: none !important;
 }
-/* Solo el scale del hover del botón fav va animado */
 .bcard-fav {
   transition: transform .15s ease !important;
 }
 
 
-/* Modal de estadísticas con gráfica */
-/* Modal de estadísticas con gráfica */
 
-/* Tarjetas hero-stat interactivas */
 .hero-stat-card {
   position: relative;
   transition: transform .2s, box-shadow .25s;
@@ -1225,7 +1195,6 @@ svg, svg *, path, polygon, circle, rect, line, polyline {
 }
 .hero-stat-card:hover .hero-stat-tap { opacity: 1; }
 
-/* Overlay */
 .smodal-overlay {
   position: fixed;
   inset: 0;
@@ -1244,7 +1213,6 @@ svg, svg *, path, polygon, circle, rect, line, polyline {
 }
 .smodal-overlay.hide { display: none !important; }
 
-/* Caja del modal */
 .smodal-box {
   position: relative;
   width: 100%;
@@ -1262,7 +1230,6 @@ svg, svg *, path, polygon, circle, rect, line, polyline {
   to   { transform: translateY(0);    opacity: 1; }
 }
 
-/* Handle drag visual */
 .smodal-box::before {
   content: '';
   display: block;
@@ -1273,7 +1240,6 @@ svg, svg *, path, polygon, circle, rect, line, polyline {
   margin: 0 auto 20px;
 }
 
-/* Botón cerrar */
 .smodal-close {
   position: absolute;
   top: 18px;
@@ -1293,7 +1259,6 @@ svg, svg *, path, polygon, circle, rect, line, polyline {
 }
 .smodal-close:hover { background: #E2E8F0; color: #1F2937; }
 
-/* Encabezado del modal */
 .smodal-header {
   display: flex;
   align-items: center;
@@ -1307,7 +1272,6 @@ svg, svg *, path, polygon, circle, rect, line, polyline {
   border: 1px solid color-mix(in srgb, var(--scolor, #67B8B4) 20%, transparent);
 }
 
-/* Fallback para browsers sin color-mix */
 @supports not (color: color-mix(in srgb, red 10%, white)) {
   .smodal-header { background: #F0FEFE; border: 1px solid rgba(103,184,180,.2); }
 }
@@ -1327,7 +1291,6 @@ svg, svg *, path, polygon, circle, rect, line, polyline {
   font-weight: 500;
 }
 
-/* Título y desc */
 .smodal-title {
   font-size: 1.0625rem;
   font-weight: 700;
@@ -1341,7 +1304,6 @@ svg, svg *, path, polygon, circle, rect, line, polyline {
   margin-bottom: 16px;
 }
 
-/* Filas de datos extra */
 .smodal-extras {
   background: #F8FAFC;
   border-radius: 14px;
@@ -1360,7 +1322,6 @@ svg, svg *, path, polygon, circle, rect, line, polyline {
 .smodal-extra-row span { color: #6B7280; }
 .smodal-extra-row strong { font-weight: 700; font-size: .875rem; }
 
-/* Sección de gráfica */
 .smodal-chart-section { margin-top: 4px; }
 .smodal-chart-title {
   font-size: .75rem;
@@ -1371,7 +1332,6 @@ svg, svg *, path, polygon, circle, rect, line, polyline {
   margin-bottom: 14px;
 }
 
-/* Barras */
 .smodal-bars { display: flex; flex-direction: column; gap: 10px; }
 
 .smodal-bar-row {
@@ -1415,7 +1375,6 @@ svg, svg *, path, polygon, circle, rect, line, polyline {
   white-space: nowrap;
 }
 
-/* Dark mode */
 [data-theme="dark"] .smodal-box {
   background: #1E293B;
   color: #F1F5F9;
@@ -1432,7 +1391,6 @@ svg, svg *, path, polygon, circle, rect, line, polyline {
 [data-theme="dark"] .smodal-chart-title { color: #64748B; }
 [data-theme="dark"] .hero-stat-card { background: rgba(30,41,59,.9); }
 
-/* Desktop: modal centrado en lugar de bottom sheet */
 @media (min-width: 640px) {
   .smodal-overlay {
     align-items: center;
@@ -1445,7 +1403,6 @@ svg, svg *, path, polygon, circle, rect, line, polyline {
   .smodal-box::before { display: none; }
 }
 
-/* fyl-section-alt en dark */
 [data-theme="dark"] .fyl-section-alt  { background: #1E293B; }
 [data-theme="dark"] #page-fynder      { background: var(--bg) !important; }
 [data-theme="dark"] .fyl-impact-card  { background: var(--card); border-color: rgba(255,255,255,.07); }
@@ -1473,12 +1430,9 @@ svg, svg *, path, polygon, circle, rect, line, polyline {
 [data-theme="dark"] .fyl-section-lead  { color: var(--muted); }
 [data-theme="dark"] .fyl-cat          { background: var(--card); border-color: rgba(255,255,255,.08); }
 
-/* ── Fynder section-alt dark override (evita duplicado) ── */
 [data-theme="dark"] .fyl-section-alt { background: #1E293B !important; border-color: rgba(255,255,255,.07) !important; }
 
-/* Página de planes */
 
-/* Grid de 4 columnas */
 .plans-grid-4 {
   grid-template-columns: repeat(4, 1fr) !important;
   gap: 16px !important;
@@ -1486,7 +1440,6 @@ svg, svg *, path, polygon, circle, rect, line, polyline {
 @media (max-width: 1100px) { .plans-grid-4 { grid-template-columns: repeat(2,1fr) !important; } }
 @media (max-width: 600px)  { .plans-grid-4 { grid-template-columns: 1fr !important; } }
 
-/* Plan Premium card */
 .plan-card-premium {
   background: linear-gradient(155deg, #1a0533 0%, #2d1060 50%, #1a0533 100%);
   border-color: rgba(196,130,255,.25);
@@ -1502,18 +1455,15 @@ svg, svg *, path, polygon, circle, rect, line, polyline {
 .plan-card-premium .plan-features li  { color: rgba(255,255,255,.88); }
 .plan-card-premium .plan-features .fa-check { color: #c084fc; }
 
-/* Badge Premium */
 .plan-badge-premium {
   background: rgba(196,130,255,.2);
   color: #c084fc;
   border: 1px solid rgba(196,130,255,.3);
 }
 
-/* Icon Premium */
 .plan-icon-premium { background: rgba(196,130,255,.18); color: #c084fc; }
 [data-theme="dark"] .plan-icon-premium { background: rgba(139,92,246,.2); color: #a78bfa; }
 
-/* Botón Premium */
 .plan-btn-premium {
   background: linear-gradient(135deg, #8B5CF6, #C084FC) !important;
   border: none !important;
@@ -1526,13 +1476,11 @@ svg, svg *, path, polygon, circle, rect, line, polyline {
   box-shadow: 0 10px 28px rgba(139,92,246,.45);
 }
 
-/* Tabla: columna Premium */
 .plans-th-premium {
   background: linear-gradient(135deg, #7C3AED, #A855F7);
   color: #fff !important;
 }
 
-/* Tabla: filas de grupo (encabezados de sección) */
 .plans-tr-group td {
   background: #F1F5F9;
   font-weight: 700;
@@ -1548,7 +1496,6 @@ svg, svg *, path, polygon, circle, rect, line, polyline {
   color: #64748B !important;
 }
 
-/* Tabla: fila de precios final */
 .plans-tr-price td {
   background: linear-gradient(135deg, #F8FAFC, #EFF6FF);
   font-size: 1.1rem;
@@ -1558,14 +1505,11 @@ svg, svg *, path, polygon, circle, rect, line, polyline {
 .plans-tr-price td span { font-size: .75rem; color: var(--muted); }
 [data-theme="dark"] .plans-tr-price td { background: rgba(255,255,255,.04) !important; }
 
-/* Tabla con 5 columnas */
 .plans-table th:first-child,
 .plans-table td:first-child { width: 36%; }
 
 
-/* RESPONSIVE GLOBAL – Correcciones para móvil, tablet, desktop */
 
-/* ---- Hamburger button ---- */
 .nav-hamburger {
   display: none;
   flex-direction: column;
@@ -1593,7 +1537,6 @@ svg, svg *, path, polygon, circle, rect, line, polyline {
 .nav-hamburger.open span:nth-child(2) { opacity: 0; }
 .nav-hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
 
-/* ---- Mobile drawer overlay ---- */
 .mobile-menu-overlay {
   display: none;
   position: fixed;
@@ -1604,7 +1547,6 @@ svg, svg *, path, polygon, circle, rect, line, polyline {
 }
 .mobile-menu-overlay.open { display: block; }
 
-/* ---- Mobile drawer ---- */
 .mobile-menu-drawer {
   position: fixed;
   top: 0;
@@ -1715,7 +1657,6 @@ svg, svg *, path, polygon, circle, rect, line, polyline {
   transition: all .2s;
 }
 
-/* ── Herramientas tipo Chrome en el menú ── */
 .mobile-menu-tool-item {
   display: flex !important;
   align-items: center !important;
@@ -1748,7 +1689,6 @@ svg, svg *, path, polygon, circle, rect, line, polyline {
 }
 .mobile-menu-tool-item:hover > i { color: var(--primary) !important; }
 
-/* Ítem con submenú */
 .mobile-menu-has-sub .mobile-sub-arrow {
   font-size: .7rem !important;
   color: var(--muted) !important;
@@ -1759,7 +1699,6 @@ svg, svg *, path, polygon, circle, rect, line, polyline {
   transform: rotate(90deg) !important;
 }
 
-/* Submenú desplegable */
 .mobile-submenu {
   display: none;
   flex-direction: column;
@@ -1799,7 +1738,6 @@ svg, svg *, path, polygon, circle, rect, line, polyline {
 }
 .mobile-submenu button:hover i { color: var(--primary) !important; }
 
-/* Ítem de salir (peligro) */
 .mobile-menu-tool-danger {
   color: #EF4444 !important;
 }
@@ -1827,7 +1765,6 @@ svg, svg *, path, polygon, circle, rect, line, polyline {
   flex-shrink: 0;
 }
 
-/* Dark mode para los nuevos elementos */
 [data-theme="dark"] .mobile-menu-tool-item { color: var(--fg) !important; }
 [data-theme="dark"] .mobile-menu-tool-item:hover { background: rgba(103,184,180,.1) !important; }
 [data-theme="dark"] .mobile-menu-tool-danger { color: #F87171 !important; }
@@ -1853,7 +1790,6 @@ svg, svg *, path, polygon, circle, rect, line, polyline {
   color: #EF4444;
 }
 
-/* DARK MODE – correcciones drawer móvil */
 [data-theme="dark"] .mobile-menu-drawer {
   background: var(--card);
   box-shadow: -8px 0 32px rgba(0,0,0,.5);
@@ -1873,14 +1809,11 @@ svg, svg *, path, polygon, circle, rect, line, polyline {
 }
 
 
-/* ESCALA MÓVIL – Reducción de tamaños en pantallas pequeñas */
 
 @media (max-width: 600px) {
 
-  /* ---- Tipografía global ---- */
   html { font-size: 15px; }
 
-  /* ---- Hero ---- */
   .hero h1         { font-size: 1.75rem !important; line-height: 1.2; }
   .hero p          { font-size: .9375rem; margin-bottom: 24px; }
   .hero-pill       { font-size: .75rem; padding: 6px 12px; }
@@ -1888,34 +1821,28 @@ svg, svg *, path, polygon, circle, rect, line, polyline {
   .hero-search input { font-size: .9rem; }
   .hero-search-btn { padding: 10px 18px; font-size: .875rem; }
 
-  /* ---- Secciones ---- */
   .section         { padding: 44px 0; }
   .section-title   { font-size: 1.35rem !important; }
   .section-inner   { padding: 0 16px; }
   .section-header  { margin-bottom: 24px; }
 
-  /* ---- Cards de negocios ---- */
   .bcard-name      { font-size: .9rem; }
   .bcard-desc      { font-size: .8rem; }
   .bcard-hours     { font-size: .75rem; }
   .bcard-btn       { font-size: .8rem; padding: 8px 14px; }
   .bcard-body      { padding: 14px; }
 
-  /* ---- Cards list ---- */
   .bcard-list-name { font-size: .9rem; }
   .bcard-list-desc { font-size: .8rem; }
 
-  /* ---- Categorías ---- */
   .cat-item-label  { font-size: .7rem; }
 
-  /* ---- Sección de acción ---- */
   .cta-inner h2    { font-size: 1.5rem !important; }
   .cta-inner p     { font-size: .875rem; }
   .cta-section     { padding: 44px 0; }
   .cta-inner       { padding: 40px 20px; border-radius: 20px; }
   .btn-yellow, .btn-outline-white { font-size: .875rem; padding: 12px 20px; }
 
-  /* ---- How section ---- */
   .how-section     { padding: 44px 0; }
   .how-main-title  { font-size: 1.5rem; }
   .how-subtitle    { font-size: .875rem; }
@@ -1925,7 +1852,6 @@ svg, svg *, path, polygon, circle, rect, line, polyline {
   .how-num         { font-size: 3.5rem; }
   .how-icon        { width: 54px; height: 54px; }
 
-  /* ---- Planes ---- */
   .plans-inner     { padding: 40px 16px 60px; }
   .plans-title     { font-size: 1.5rem !important; }
   .plans-lead      { font-size: .875rem; }
@@ -1934,12 +1860,10 @@ svg, svg *, path, polygon, circle, rect, line, polyline {
   .plan-price-amount { font-size: 1.9rem; }
   .plan-features li { font-size: .82rem; }
 
-  /* ---- Perfil ---- */
   .profile-name    { font-size: 1.3rem; }
   .profile-card    { padding: 20px 16px; }
   .profile-section-title { font-size: .95rem; }
 
-  /* ---- Saber más (fynder landing) ---- */
   .fyl-hero-title  { font-size: 1.6rem !important; }
   .fyl-hero-lead   { font-size: .9rem; }
   .fyl-section-title { font-size: 1.3rem !important; }
@@ -1952,33 +1876,27 @@ svg, svg *, path, polygon, circle, rect, line, polyline {
   .fyl-step-body h3 { font-size: .95rem; }
   .fyl-step-body p { font-size: .82rem; }
 
-  /* ---- About ---- */
   .about-title     { font-size: 1.5rem !important; }
   .about-lead      { font-size: .9rem; }
   .about-impact-num { font-size: 1.75rem !important; }
   .about-stat-num  { font-size: 1.5rem; }
   .about-card      { padding: 24px 18px; }
 
-  /* ---- Soporte ---- */
   .support-title   { font-size: 1.5rem !important; }
   .support-inner   { padding: 40px 16px 60px; }
   .support-channel { padding: 24px 18px; }
 
-  /* ---- Blog ---- */
   .blog-title      { font-size: 1.5rem !important; }
   .blog-inner      { padding: 40px 16px 60px; }
 
-  /* ---- Legal ---- */
   .legal-hero-title { font-size: 1.5rem !important; }
   .legal-inner     { padding: 24px 16px; }
 
-  /* ---- Dashboard ---- */
   .dashboard-title { font-size: 1.3rem; }
   .dash-stat-value { font-size: 1.25rem; }
   .dash-plan-name  { font-size: 1rem; }
   .dash-plan-price { font-size: 1.6rem; }
 
-  /* ---- Footer ---- */
   .footer-inner    { padding: 40px 16px 24px; }
   .footer-brand-desc { font-size: .82rem; }
   .footer-col p, .footer-col button { font-size: .82rem; }
@@ -1988,7 +1906,6 @@ svg, svg *, path, polygon, circle, rect, line, polyline {
 
   html { font-size: 14.5px; }
 
-  /* Hero más compacto */
   .hero            { min-height: auto; padding: 80px 16px 36px; }
   .hero h1         { font-size: 1.55rem !important; }
   .hero p          { font-size: .875rem; }
@@ -1997,20 +1914,16 @@ svg, svg *, path, polygon, circle, rect, line, polyline {
   .hero-stat-card .stat-num { font-size: 1.25rem; }
   .hero-stat-card .stat-label { font-size: .7rem; }
 
-  /* Categorías home más pequeñas */
   .cat-grid        { gap: 8px; }
   .cat-item        { padding: 12px 6px; border-radius: 14px; }
   .cat-item-label  { font-size: .65rem; }
 
-  /* Section spacing */
   .section         { padding: 36px 0; }
   .section-title   { font-size: 1.2rem !important; }
 
-  /* Cards */
   .bcard           { border-radius: 14px; }
   .bcard-img       { height: 150px; }
 
-  /* Llamada a la acción */
   .cta-inner h2    { font-size: 1.3rem !important; }
   .cta-inner       { padding: 32px 16px; border-radius: 16px; }
   .cta-btns        { flex-direction: column; gap: 10px; }
@@ -2118,7 +2031,6 @@ svg, svg *, path, polygon, circle, rect, line, polyline {
 }
 .mobile-action-logout:hover { background: rgba(239,68,68,.08); }
 
-/* ---- Panel de cuentas múltiples ---- */
 .mobile-accounts-panel {
   display: none;
   flex-direction: column;
@@ -2223,7 +2135,6 @@ svg, svg *, path, polygon, circle, rect, line, polyline {
 }
 
 
-/* ---- Mobile drawer: separador y links legales ---- */
 .mobile-menu-divider {
   height: 1px;
   background: var(--border);
@@ -2240,7 +2151,6 @@ svg, svg *, path, polygon, circle, rect, line, polyline {
 .mobile-menu-nav-small:hover i { color: var(--primary) !important; }
 
 
-/* ---- Botón tres puntitos (desktop) / hamburguesa (mobile) ---- */
 .nav-dots-btn {
   display: flex;
   align-items: center;
@@ -2276,7 +2186,6 @@ svg, svg *, path, polygon, circle, rect, line, polyline {
   border-color: var(--primary);
 }
 
-/* En mobile el mismo botón muestra tres barras */
 .nav-icon-mobile  { display: none !important; }
 .nav-icon-desktop { display: block !important; }
 
@@ -2290,13 +2199,11 @@ svg, svg *, path, polygon, circle, rect, line, polyline {
   }
 }
 
-/* Quitar el nav-hamburger que ya no existe */
 .nav-hamburger { display: none !important; }
 
 
 /* RESPONSIVE MÓVIL – CORRECCIONES COMPLETAS — Aplicadas al final para que tengan máxima prioridad */
 
-/* ---- viewport meta fix: evitar zoom al tocar inputs ---- */
 @media (max-width: 768px) {
   input, select, textarea { font-size: 16px !important; }
 }
@@ -2317,7 +2224,6 @@ svg, svg *, path, polygon, circle, rect, line, polyline {
 
 /* TABLET PEQUEÑA / MÓVIL GRANDE (≤ 768px) */
 @media (max-width: 768px) {
-  /* ---- Navbar ---- */
   .nav-links      { display: none !important; }
   .nav-right .nav-links { display: none !important; }
   .btn-ghost      { display: none !important; }
@@ -2346,7 +2252,6 @@ svg, svg *, path, polygon, circle, rect, line, polyline {
     white-space: nowrap;
   }
 
-  /* ---- Hero ---- */
   .hero {
     min-height: auto;
     padding: 0;
@@ -2391,7 +2296,6 @@ svg, svg *, path, polygon, circle, rect, line, polyline {
   .hero-stat-lbl { font-size: .7rem; }
   .hero-stat-tap { display: none; }
 
-  /* ---- Secciones ---- */
   .section { padding: 44px 0; }
   .section-inner { padding: 0 16px; }
   .section-header {
@@ -2403,14 +2307,12 @@ svg, svg *, path, polygon, circle, rect, line, polyline {
   .section-title { font-size: 1.4rem !important; }
   .section-label { font-size: .72rem; }
 
-  /* ---- Categorías ---- */
   .cat-grid { grid-template-columns: repeat(4, 1fr) !important; gap: 10px; }
   .cat-card { padding: 14px 6px; border-radius: 14px; gap: 8px; }
   .cat-icon { width: 42px; height: 42px; border-radius: 12px; }
   .cat-name { font-size: .65rem; }
   .cat-count { font-size: .6rem; }
 
-  /* ---- Cards de negocios ---- */
   .cards-grid { grid-template-columns: 1fr 1fr !important; gap: 12px; }
   .bcard { border-radius: 16px; }
   .bcard-img { height: 160px; }
@@ -2419,14 +2321,11 @@ svg, svg *, path, polygon, circle, rect, line, polyline {
   .bcard-desc { font-size: .78rem; }
   .bcard-btn  { font-size: .78rem; padding: 8px 12px; }
 
-  /* Lista de cards */
   .bcard-list { flex-direction: column; gap: 0; }
   .bcard-list-img { width: 100%; height: 160px; border-radius: 14px 14px 0 0; }
 
-  /* ---- Populares ---- */
   .cards-list { display: flex; flex-direction: column; gap: 12px; }
 
-  /* ---- Cómo funciona ---- */
   .how-section { padding: 48px 0; }
   .how-grid    { grid-template-columns: 1fr; gap: 16px; }
   .how-connector { display: none; }
@@ -2435,7 +2334,6 @@ svg, svg *, path, polygon, circle, rect, line, polyline {
   .how-main-title { font-size: 1.6rem; }
   .how-card { padding: 28px 20px 24px; }
 
-  /* ---- CTA section ---- */
   .cta-section { padding: 48px 0 80px; }
   .cta-inner { padding: 0 16px; }
   .cta-inner h2 { font-size: 1.6rem; }
@@ -2444,7 +2342,6 @@ svg, svg *, path, polygon, circle, rect, line, polyline {
   .btn-outline-white { width: 100%; justify-content: center; padding: 14px 20px; }
   .cta-perks { gap: 16px; }
 
-  /* ---- Footer ---- */
   footer { border-radius: 24px 24px 0 0; padding-top: 48px; margin-top: -24px; }
   .footer-inner { padding: 0 16px; }
   .footer-grid { grid-template-columns: 1fr 1fr !important; gap: 24px; margin-bottom: 32px; }
@@ -2456,7 +2353,6 @@ svg, svg *, path, polygon, circle, rect, line, polyline {
     padding: 16px 0 20px;
   }
 
-  /* ---- Directorio ---- */
   .dir-toolbar { top: 56px; }
   .dir-toolbar-inner { flex-wrap: wrap; gap: 8px; padding: 10px 16px; }
   .search-box { width: 100%; }
@@ -2464,14 +2360,11 @@ svg, svg *, path, polygon, circle, rect, line, polyline {
   .view-toggle { margin-left: auto; }
   .dir-content { padding: 0 16px; }
 
-  /* ---- Mapa ---- */
   .map-panel { display: none; }
   .map-toolbar { top: 56px; }
 
-  /* ---- Página business register ---- */
   .biz-reg-grid-2 { grid-template-columns: 1fr; }
 
-  /* ---- Modal ---- */
   .fynder-modal-overlay { padding: 0; align-items: flex-end; }
   .fynder-modal {
     border-radius: 20px 20px 0 0;
@@ -2479,16 +2372,13 @@ svg, svg *, path, polygon, circle, rect, line, polyline {
     overflow-y: auto;
   }
 
-  /* ---- Share panel ---- */
   .share-panel-box { width: 100%; border-radius: 20px 20px 0 0; }
 
-  /* ---- Menú móvil drawer más ancho ---- */
   .mobile-menu-drawer { width: min(320px, 88vw) !important; }
 }
 
 /* MÓVIL (≤ 600px) – ajustes adicionales */
 @media (max-width: 600px) {
-  /* Hero aún más compacto */
   .hero-inner { padding: 72px 14px 40px; }
   .hero h1 { font-size: 1.75rem !important; }
   .hero-stats { grid-template-columns: 1fr 1fr; gap: 8px; }
@@ -2496,21 +2386,16 @@ svg, svg *, path, polygon, circle, rect, line, polyline {
   .hero-stat-icon { width: 32px; height: 32px; border-radius: 10px; }
   .hero-stat-icon svg { width: 16px; height: 16px; }
 
-  /* Categorías: 4 cols */
   .cat-grid { grid-template-columns: repeat(4, 1fr) !important; gap: 8px; }
 
-  /* Cards: 1 columna en móvil chico */
   .cards-grid { grid-template-columns: 1fr !important; }
   .bcard-img  { height: 180px; }
 
-  /* Footer: 1 columna */
   .footer-grid { grid-template-columns: 1fr !important; gap: 20px; }
   .footer-col ul { display: grid; grid-template-columns: 1fr 1fr; gap: 4px 16px; }
 
-  /* Sección popular: stack */
   .cards-list .bcard-list { flex-direction: column; }
 
-  /* Section header always stacked */
   .section-header { flex-direction: column !important; align-items: flex-start !important; }
 }
 
@@ -2522,27 +2407,21 @@ svg, svg *, path, polygon, circle, rect, line, polyline {
   .hero h1 { font-size: 1.55rem !important; }
   .hero p  { font-size: .875rem; }
 
-  /* Categorías: 4 columnas */
   .cat-grid { grid-template-columns: repeat(4, 1fr) !important; gap: 6px; }
   .cat-card { padding: 10px 4px; border-radius: 12px; }
   .cat-icon { width: 36px; height: 36px; border-radius: 10px; }
   .cat-name { font-size: .6rem; }
 
-  /* Cards */
   .bcard-img { height: 160px; }
 
-  /* Footer */
   .footer-col ul { grid-template-columns: 1fr; }
   .footer-social { gap: 6px; }
 
-  /* CTA */
   .cta-inner h2 { font-size: 1.35rem !important; }
   .cta-perks    { flex-direction: column; align-items: center; gap: 10px; }
 
-  /* Drawer un poco más angosto */
   .mobile-menu-drawer { width: 82vw !important; }
 
-  /* Stat cards en hero: compactos */
   .hero-stat-card { padding: 8px 10px; border-radius: 12px; }
 }
 
@@ -2555,7 +2434,6 @@ svg, svg *, path, polygon, circle, rect, line, polyline {
   .nav-inner { padding: 0 10px; }
 }
 
-/* DARK MODE – ajustes adicionales en móvil */
 @media (max-width: 768px) {
   [data-theme="dark"] .hero-search {
     background: rgba(255,255,255,.12);
@@ -2569,13 +2447,11 @@ svg, svg *, path, polygon, circle, rect, line, polyline {
   [data-theme="dark"] .hero-search-btn { background: var(--primary); }
 }
 
-/* DESKTOP – asegurar que el hero-right se muestre correctamente */
 @media (min-width: 1025px) {
   .hero-right { display: flex !important; }
   .hero-inner { grid-template-columns: 1fr 1fr; padding: 80px 24px 64px; }
 }
 
-/* TOUCH TARGETS – mínimo 44px en todos los botones táctiles */
 @media (max-width: 768px) {
   .hero-tag,
   .filter-chip,
@@ -2606,7 +2482,6 @@ svg, svg *, path, polygon, circle, rect, line, polyline {
 }
 
 
-/* ---- Hero stats mobile: ocultas en desktop, visibles en móvil ---- */
 .hero-stats-mobile {
   display: none;
   margin-top: 24px;
@@ -2644,7 +2519,6 @@ svg, svg *, path, polygon, circle, rect, line, polyline {
 /* MODO OSCURO — COMPLEMENTO COMPLETO — Cubre todos los elementos que usaban colores hardcoded (#fff, #F8FAFC, etc.) y que no estaban cubiertos por las reglas anteriores. */
 /* MODO OSCURO — COMPLEMENTO COMPLETO — Cubre todos los elementos que usaban colores hardcoded (#fff, #F8FAFC, etc.) y que no estaban cubiertos por las reglas anteriores. */
 
-/* ---- Navbar complementos ---- */
 [data-theme="dark"] .nav-icon-btn { background: rgba(255,255,255,.05); color: var(--muted); border-color: rgba(255,255,255,.08); }
 [data-theme="dark"] .nav-icon-btn:hover { background: rgba(255,255,255,.1); color: var(--fg); }
 [data-theme="dark"] .nav-username { color: var(--fg); }
@@ -2659,7 +2533,6 @@ svg, svg *, path, polygon, circle, rect, line, polyline {
   color: #fff;
 }
 
-/* ---- Ajustes (Settings) complementos ---- */
 [data-theme="dark"] #page-settings        { background: var(--bg); }
 [data-theme="dark"] .sett-sidebar         { background: var(--bg); border-right-color: rgba(255,255,255,.07); }
 [data-theme="dark"] .sett-sidebar-title   { color: var(--fg); }
@@ -2689,14 +2562,12 @@ svg, svg *, path, polygon, circle, rect, line, polyline {
 [data-theme="dark"] .sett-select         { background: var(--card); border-color: rgba(255,255,255,.1); color: var(--fg); }
 [data-theme="dark"] .sett-storage-bar-wrap { background: rgba(255,255,255,.08); }
 
-/* ---- input-wrap genérico (formularios de auth, contacto, etc.) ---- */
 [data-theme="dark"] .input-wrap           { background: rgba(255,255,255,.06); border-color: rgba(255,255,255,.1); }
 [data-theme="dark"] .input-wrap input     { background: transparent; color: var(--fg); }
 [data-theme="dark"] .input-wrap input::placeholder { color: var(--muted); }
 [data-theme="dark"] .input-wrap input:focus { background: rgba(255,255,255,.08) !important; }
 [data-theme="dark"] .input-wrap .input-icon { color: var(--muted); }
 
-/* ---- Formulario soporte – campos ---- */
 [data-theme="dark"] .support-field input,
 [data-theme="dark"] .support-field select,
 [data-theme="dark"] .support-field textarea {
@@ -2710,7 +2581,6 @@ svg, svg *, path, polygon, circle, rect, line, polyline {
 [data-theme="dark"] .support-field select:focus,
 [data-theme="dark"] .support-field textarea:focus { border-color: var(--primary); }
 
-/* ---- Mapa – popup y controles ---- */
 [data-theme="dark"] .map-popup            { background: var(--card); border-color: rgba(255,255,255,.1); }
 [data-theme="dark"] .map-popup-close      { background: rgba(255,255,255,.08); color: var(--muted); }
 [data-theme="dark"] .map-popup-close:hover { background: rgba(255,255,255,.15); color: var(--fg); }
@@ -2727,7 +2597,6 @@ svg, svg *, path, polygon, circle, rect, line, polyline {
 [data-theme="dark"] .map-list-rating span { color: var(--muted); }
 [data-theme="dark"] #page-map             { background: var(--bg) !important; }
 
-/* ---- Dashboard complementos ---- */
 [data-theme="dark"] #page-dashboard       { background: var(--bg) !important; }
 [data-theme="dark"] .dash-section-title   { color: var(--fg); }
 [data-theme="dark"] .dash-plan-card       { background: var(--card); border-color: rgba(255,255,255,.07); }
@@ -2755,7 +2624,6 @@ svg, svg *, path, polygon, circle, rect, line, polyline {
 [data-theme="dark"] .dash-locked-box h3   { color: var(--fg); }
 [data-theme="dark"] .dash-locked-box p    { color: var(--muted); }
 
-/* ---- Mobile menu drawer complementos ---- */
 [data-theme="dark"] .mobile-menu-header   { border-bottom-color: rgba(255,255,255,.07); }
 [data-theme="dark"] .mobile-menu-close    { color: var(--muted); }
 [data-theme="dark"] .mobile-menu-close:hover { background: rgba(255,255,255,.06); color: var(--fg); }
@@ -2764,7 +2632,6 @@ svg, svg *, path, polygon, circle, rect, line, polyline {
 [data-theme="dark"] .mobile-menu-nav button { color: var(--muted); }
 
 
-/* ---- Fynder (saber más) page ---- */
 [data-theme="dark"] #page-fynder          { background: var(--bg) !important; }
 [data-theme="dark"] .fynder-hero-title    { color: #fff; }
 [data-theme="dark"] .fynder-card          { background: var(--card); border-color: rgba(255,255,255,.07); }
@@ -2777,17 +2644,13 @@ svg, svg *, path, polygon, circle, rect, line, polyline {
 [data-theme="dark"] .fynder-feature-card h3 { color: var(--fg); }
 [data-theme="dark"] .fynder-feature-card p  { color: var(--muted); }
 
-/* ---- back-home (login/register) ---- */
 [data-theme="dark"] .back-home { color: rgba(255,255,255,.7); }
 [data-theme="dark"] .back-home:hover { color: #fff; }
 
-/* ---- Toast ---- */
 [data-theme="dark"] .toast { background: #1E293B; color: var(--fg); border-color: rgba(255,255,255,.1); box-shadow: 0 8px 32px rgba(0,0,0,.5); }
 
-/* ---- Stat hero card val en modo oscuro ---- */
 [data-theme="dark"] .hero-stat-val { color: var(--fg); }
 
-/* ---- Página de registro de negocio ---- */
 [data-theme="dark"] .biz-steps-header     { background: var(--bg); }
 [data-theme="dark"] .biz-step-label       { color: var(--muted); }
 [data-theme="dark"] .biz-step.active .biz-step-label { color: var(--primary); }
@@ -2800,42 +2663,33 @@ svg, svg *, path, polygon, circle, rect, line, polyline {
 [data-theme="dark"] .biz-time-range       { background: rgba(255,255,255,.06); border-color: rgba(255,255,255,.1); color: var(--fg); }
 [data-theme="dark"] .biz-form-actions     { border-top-color: rgba(255,255,255,.07); background: var(--bg); }
 
-/* ---- Sección de mapa interno en modal ---- */
 [data-theme="dark"] .modal-map-wrap       { border-color: rgba(255,255,255,.1); }
 [data-theme="dark"] .modal-map-ext-link   { background: rgba(255,255,255,.06); color: var(--primary); border-top-color: rgba(255,255,255,.08); }
 [data-theme="dark"] .modal-map-ext-link:hover { background: rgba(103,184,180,.12); color: var(--primary); }
 [data-theme="dark"] .modal-map-ext-link svg { stroke: var(--primary); }
 
-/* ---- Botón volver general ---- */
 [data-theme="dark"] .back-page-btn        { background: rgba(255,255,255,.06); border-color: rgba(255,255,255,.1); color: var(--muted); }
 [data-theme="dark"] .back-page-btn:hover  { background: rgba(103,184,180,.12); color: var(--primary); border-color: rgba(103,184,180,.3); }
 
-/* ---- Filter chip activo ---- */
 [data-theme="dark"] .filter-chip.active   { background: var(--primary); color: #fff; border-color: var(--primary); }
 [data-theme="dark"] .filter-chip.active:hover { background: var(--primary-d); }
 
-/* ---- Bcard – botón ---- */
 [data-theme="dark"] .bcard-btn            { background: rgba(103,184,180,.12); color: var(--primary); }
 [data-theme="dark"] .bcard-btn:hover      { background: var(--primary); color: #fff; }
 [data-theme="dark"] .bcard-hours          { color: var(--muted); }
 [data-theme="dark"] .bcard-fav            { background: rgba(30,41,59,.9); }
 
-/* ---- Tags en tarjetas ---- */
 [data-theme="dark"] .tag-teal             { background: rgba(103,184,180,.12); color: var(--primary); }
 
-/* ---- Section header link ---- */
 [data-theme="dark"] .section-link         { color: var(--primary); }
 [data-theme="dark"] .section-header h2    { color: var(--fg); }
 
-/* ---- Página de favoritos: estado vacío ---- */
 [data-theme="dark"] .favs-empty           { color: var(--muted); }
 [data-theme="dark"] .favs-empty-icon      { opacity: .3; }
 
-/* ---- Dir count ---- */
 [data-theme="dark"] .dir-count            { color: var(--muted); }
 [data-theme="dark"] .dir-empty            { color: var(--muted); }
 
-/* ---- Modal de negocio: botones de acción ---- */
 [data-theme="dark"] .biz-modal-btn        { background: rgba(255,255,255,.07); border-color: rgba(255,255,255,.12); color: var(--fg); }
 [data-theme="dark"] .biz-modal-btn:hover  { background: rgba(103,184,180,.15); color: var(--primary); }
 [data-theme="dark"] .modal-close-btn      { background: rgba(255,255,255,.08); color: var(--muted); }
@@ -2845,18 +2699,14 @@ svg, svg *, path, polygon, circle, rect, line, polyline {
 [data-theme="dark"] .info-row-label       { color: var(--muted); }
 [data-theme="dark"] .info-row-val         { color: var(--fg); }
 
-/* ---- Plan card: divider ---- */
 [data-theme="dark"] .plan-divider         { background: rgba(255,255,255,.07); }
 
-/* reacciones y menu contextual */
 
 /* Wrapper del mensaje — necesario para posicionar badges y hover-bar */
 .chat-msg-row {
   position: relative;
-  /* margen inferior para que los badges no se encimen con el siguiente mensaje */
   margin-bottom: 2px;
 }
-/* extra espacio cuando hay badges */
 .chat-msg-row.has-reactions {
   margin-bottom: 18px;
 }
@@ -2884,10 +2734,8 @@ svg, svg *, path, polygon, circle, rect, line, polyline {
   opacity: 1;
   pointer-events: auto;
 }
-/* El bubble-wrap necesita position:relative para que el botón se posicione bien */
 .chat-bubble-wrap { position: relative; }
 
-/* ── Barra de reacciones rápidas (desplegable al hacer clic en la carita) ── */
 .chat-reaction-bar {
   position: fixed;
   display: flex;
@@ -2957,7 +2805,6 @@ svg, svg *, path, polygon, circle, rect, line, polyline {
   position: relative;
   display: inline-block; /* se ajusta al ancho del bubble */
 }
-/* Contenedor de badges, posicionado encima del margen inferior del row */
 .chat-bubble-reactions {
   position: absolute;
   bottom: -14px;
@@ -2965,12 +2812,9 @@ svg, svg *, path, polygon, circle, rect, line, polyline {
   gap: 3px;
   z-index: 10;
 }
-/* lado izquierdo (mensajes entrantes) */
 .chat-msg-row.in  .chat-bubble-reactions { left: 6px; }
-/* lado derecho (mensajes salientes) */
 .chat-msg-row.out .chat-bubble-reactions { right: 6px; }
 
-/* Chip individual de reacción */
 .chat-bubble-reaction-badge {
   display: inline-flex;
   align-items: center;
@@ -2999,11 +2843,9 @@ svg, svg *, path, polygon, circle, rect, line, polyline {
   min-width: 8px;
 }
 
-/* modo oscuro whatsappp de temu */
 #msgBubbleCtxMenu {
   position: fixed;
   z-index: 9999;
-  /* fondo oscuro como WhatsApp, funciona en ambos temas */
   background: #1e2328;
   border: none;
   border-radius: 18px;
@@ -3023,7 +2865,6 @@ svg, svg *, path, polygon, circle, rect, line, polyline {
   transform: scale(1);
 }
 
-/* ── Tira de emojis rápidos ── */
 #msgBubbleCtxMenu .ctx-reaction-strip {
   display: flex;
   align-items: center;
@@ -3061,7 +2902,6 @@ svg, svg *, path, polygon, circle, rect, line, polyline {
   transform: scale(1.1);
 }
 
-/* ── Ítems del menú ── */
 .ctx-menu-item {
   display: flex;
   align-items: center;
@@ -3078,7 +2918,6 @@ svg, svg *, path, polygon, circle, rect, line, polyline {
 .ctx-menu-item:first-of-type { margin-top: 2px; }
 .ctx-menu-item:hover { background: rgba(255,255,255,.07); }
 
-/* Ícono de cada ítem */
 .ctx-menu-item i {
   width: 20px;
   text-align: center;
@@ -3098,19 +2937,16 @@ svg, svg *, path, polygon, circle, rect, line, polyline {
 .ctx-menu-item[onclick*="reply"] i { color: #fff; }
 .ctx-menu-item[onclick*="reply"]:hover { background: rgba(37,211,102,.1); }
 
-/* Danger */
 .ctx-menu-item.danger { color: #ff6b6b; }
 .ctx-menu-item.danger i { color: #ff6b6b; }
 .ctx-menu-item.danger:hover { background: rgba(239,68,68,.1); }
 
-/* Separador */
 .ctx-menu-separator {
   height: 1px;
   background: rgba(255,255,255,.07);
   margin: 4px 0;
 }
 
-/* Mensaje con highlight (al responder/fijar) */
 .chat-bubble.highlighted {
   outline: 2px solid var(--primary, #67b8b4);
   outline-offset: 2px;
@@ -3137,7 +2973,6 @@ svg, svg *, path, polygon, circle, rect, line, polyline {
   vertical-align: middle;
 }
 
-/* Barra de respuesta (quote) */
 .chat-reply-bar {
   display: flex;
   align-items: center;
@@ -3169,7 +3004,6 @@ svg, svg *, path, polygon, circle, rect, line, polyline {
   to   { opacity: 1; transform: translateY(0); }
 }
 
-/* Burbuja con cita (reply quote inside bubble) */
 .chat-bubble-quote {
   background: rgba(0,0,0,.07);
   border-left: 3px solid var(--primary, #67b8b4);
@@ -3186,27 +3020,22 @@ svg, svg *, path, polygon, circle, rect, line, polyline {
 .chat-msg-row.out .chat-bubble-quote { border-left-color: rgba(255,255,255,.7); }
 
 
-/* Asegura que los badges posicionados absolutamente no se corten */
 .chat-messages {
   overflow-x: visible !important;
   padding-bottom: 20px;
 }
-/* El contenedor de mensajes del chat WA también */
 .wa-chat-messages {
   overflow-x: visible !important;
   padding-bottom: 20px;
 }
 
 
-/* El row no debe cortar el botón de carita que sale por los lados */
 .chat-msg-row {
   overflow: visible !important;
 }
 
 
-/* ELIMINAR MENSAJE ESTILO WHATSAPP */
 
-/* Overlay oscuro detrás del modal */
 .del-msg-overlay {
   position: fixed;
   inset: 0;
@@ -3215,7 +3044,6 @@ svg, svg *, path, polygon, circle, rect, line, polyline {
   animation: fadeIn .15s ease;
 }
 
-/* Modal centrado */
 .del-msg-modal {
   position: fixed;
   top: 50%; left: 50%;
@@ -3243,7 +3071,6 @@ svg, svg *, path, polygon, circle, rect, line, polyline {
   text-align: left;
 }
 
-/* Botones del modal */
 .del-msg-btn {
   display: block;
   width: 100%;
@@ -3280,9 +3107,7 @@ svg, svg *, path, polygon, circle, rect, line, polyline {
 }
 .del-msg-cancel:hover { color: #a0adb8; }
 
-/* MODO SELECCION DE MENSAJES NO SIRVE */
 
-/* Barra inferior de selección */
 .msg-select-bar {
   position: fixed;
   bottom: 0; left: 0; right: 0;
@@ -3340,7 +3165,6 @@ svg, svg *, path, polygon, circle, rect, line, polyline {
 .msg-select-action.danger { color: #e05454; }
 .msg-select-action.danger:hover { background: rgba(224,84,84,.12); color: #ff6b6b; }
 
-/* Checkbox en cada mensaje cuando está en modo selección */
 .chat-msg-row .msg-checkbox {
   display: none;
   width: 20px; height: 20px;
@@ -3352,7 +3176,6 @@ svg, svg *, path, polygon, circle, rect, line, polyline {
 .chat-msg-row.out .msg-checkbox { margin: auto 0 auto 8px; order: 1; }
 body.select-mode .chat-msg-row .msg-checkbox { display: flex; align-items: center; }
 
-/* En modo selección, el row seleccionado tiene fondo */
 .chat-msg-row.selected-msg {
   background: rgba(37,211,102,.08);
   border-radius: 8px;

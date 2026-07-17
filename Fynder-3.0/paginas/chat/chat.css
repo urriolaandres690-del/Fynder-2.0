@@ -28,7 +28,6 @@
   .wa-resize-handle { display: none; }
 }
 
-/* CHAT: MENÚ DE ADJUNTAR */
 .chat-attach-wrap {
   position: relative;
   flex-shrink: 0;
@@ -86,7 +85,6 @@
   flex-shrink: 0;
 }
 
-/* ── Burbujas de ubicación y contacto ── */
 .chat-bubble-location {
   display: flex;
   align-items: center;
@@ -138,7 +136,6 @@
   background: #5aa6a2 !important;
   transform: scale(1.08);
 }
-/* Animación de pulso cuando se está grabando */
 @keyframes recordPulse {
   0%   { box-shadow: 0 0 0 0 rgba(239,68,68,.5); }
   70%  { box-shadow: 0 0 0 8px rgba(239,68,68,0); }
@@ -149,7 +146,6 @@
   animation: recordPulse 1.2s ease-out infinite;
 }
 
-/* CHAT: BARRA DE GRABACIÓN DE AUDIO */
 .chat-record-bar {
   background: var(--msg-bg);
   border-top: 1px solid var(--msg-border);
@@ -208,7 +204,6 @@
 }
 .chat-record-send:hover { background: #5aa6a2; transform: scale(1.08); }
 
-/* CHAT: BURBUJAS DE ARCHIVOS / MEDIA / AUDIO */
 .chat-bubble-file {
   display: flex;
   align-items: center;
@@ -308,7 +303,6 @@
   white-space: nowrap;
 }
 
-/* CHAT HEADER menú contextual de los tres puntos */
 .wa-chat-area {
   position: relative; /* necesario para el menú absoluto */
 }
@@ -389,13 +383,10 @@
   z-index: 2;
 }
 
-/* En desktop, mostrar el rail */
 @media (min-width: 769px) {
   .wa-icon-rail { display: flex; }
-  /* En móvil el rail se convierte en barra inferior horizontal */
 }
 
-/* En móvil: rail como barra inferior */
 @media (max-width: 768px) {
   .wa-icon-rail {
     display: flex;
@@ -414,7 +405,6 @@
   .wa-rail-bottom { flex-direction: row; gap: 4px; }
 }
 
-/* Logo Fynder en el rail */
 .wa-rail-logo {
   width: 44px; height: 44px;
   border-radius: 14px;
@@ -433,7 +423,6 @@
 }
 .wa-rail-logo-icon svg { display: block; }
 
-/* Sección de nav y bottom */
 .wa-rail-nav {
   display: flex;
   flex-direction: column;
@@ -449,7 +438,6 @@
   margin-top: auto;
 }
 
-/* Botones del rail */
 .wa-rail-btn {
   position: relative;
   width: 46px; height: 46px;
@@ -492,7 +480,6 @@
   }
 }
 
-/* Badge de mensajes no leídos en el rail */
 .wa-rail-badge {
   position: absolute;
   top: 4px; right: 4px;
@@ -507,7 +494,6 @@
   border: 2px solid var(--msg-bg2);
 }
 
-/* Avatar del usuario en el rail */
 .wa-rail-avatar-btn {
   overflow: hidden;
 }
@@ -517,12 +503,9 @@
   border-radius: 50%;
 }
 
-/* Ocultar el bottom-nav antiguo siempre (lo reemplaza el rail) */
 .msg-bottom-nav { display: none !important; }
 
-/* AJUSTES DEL CHAT wallpapers y mejoras visuales */
 
-/* Dots de fondo del chat */
 .msg-settings-wallpapers {
   display: flex;
   gap: 8px;
@@ -539,7 +522,6 @@
 .msg-wallpaper-dot:hover  { transform: scale(1.15); }
 .msg-wallpaper-dot.active { border-color: var(--msg-accent); box-shadow: 0 0 0 2px rgba(103,184,180,.4); }
 
-/* Fondos de chat */
 .chat-messages.wp-dots {
   background-image: radial-gradient(rgba(103,184,180,.15) 1.5px, transparent 1.5px) !important;
   background-size: 22px 22px !important;
@@ -558,12 +540,10 @@
   background-position: 0 0, 10px 10px !important;
 }
 
-/* Animación de entrada del panel de ajustes de chat mejorada */
 .msg-settings-panel {
   border-radius: 0 16px 16px 0;  /* esquinas redondeadas en el lado derecho */
 }
 
-/* ---- Búsqueda de chats: sin resultados y resaltado ---- */
 .msg-search-empty {
   display: flex;
   flex-direction: column;
@@ -627,7 +607,6 @@ mark.msg-search-mark {
   margin: 0 auto;
 }
 
-/* ── Tarjeta de patrocinador ── */
 .about-sponsor-card {
   position: relative;
   background: var(--card-bg, #fff);
@@ -662,7 +641,6 @@ mark.msg-search-mark {
 .about-sponsor-glow.bg-gold { background: radial-gradient(circle, #F4D35E, #F97316); }
 .about-sponsor-glow.bg-teal { background: radial-gradient(circle, #67B8B4, #2F5BB7); }
 
-/* Badge */
 .about-sponsor-badge {
   display: inline-flex;
   align-items: center;
@@ -685,7 +663,6 @@ mark.msg-search-mark {
   border-color: #67B8B4;
 }
 
-/* Logo */
 .about-sponsor-logo-wrap {
   display: flex;
   align-items: center;
@@ -714,7 +691,6 @@ mark.msg-search-mark {
   font-family: 'Poppins', sans-serif;
 }
 
-/* Info */
 .about-sponsor-info {
   display: flex;
   flex-direction: column;
@@ -776,7 +752,6 @@ mark.msg-search-mark {
   border-color: rgba(47,91,183,.3);
 }
 
-/* Botón */
 .about-sponsor-btn {
   display: inline-flex;
   align-items: center;
@@ -814,7 +789,6 @@ mark.msg-search-mark {
   box-shadow: 0 8px 20px rgba(103,184,180,.45);
 }
 
-/* Divider decorativo entre secciones */
 .about-sponsors-section::before {
   content: '';
   position: absolute;
@@ -830,7 +804,6 @@ mark.msg-search-mark {
   .about-sponsor-card  { padding: 24px 20px; }
 }
 
-/* ── Handle fbgsantiago ── */
 .about-sponsor-handle {
   display: flex;
   align-items: center;
@@ -867,13 +840,11 @@ mark.msg-search-mark {
   border-color: rgba(244,211,94,.2);
 }
 
-/* ── Logo Supérate (estrella dorada) ── */
 .about-sponsor-logo-superate {
   background: linear-gradient(135deg, #e8a000, #f7c520, #f5a623) !important;
   box-shadow: 0 4px 16px rgba(247,197,32,.45) !important;
 }
 
-/* ── Stats dentro de tarjeta patrocinador ── */
 .about-sponsor-stats {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -911,13 +882,11 @@ mark.msg-search-mark {
   line-height: 1.3;
 }
 
-/* Grid más amplio para las tarjetas */
 .about-sponsors-grid {
   max-width: 1100px !important;
   grid-template-columns: repeat(auto-fit, minmax(440px, 1fr)) !important;
 }
 
-/* ── Ocultar barra de Google Translate y elementos no deseados ── */
 #google_translate_element { display: none !important; }
 .goog-te-banner-frame,
 .goog-te-ftab-float,
@@ -929,15 +898,12 @@ body { top: 0 !important; }
 iframe.goog-te-menu-frame { box-shadow: 0 4px 20px rgba(0,0,0,.15) !important; border-radius: 8px !important; }
 
 
-/* reacciones y menu contextual */
 
 /* Wrapper del mensaje — necesario para posicionar badges y hover-bar */
 .chat-msg-row {
   position: relative;
-  /* margen inferior para que los badges no se encimen con el siguiente mensaje */
   margin-bottom: 2px;
 }
-/* extra espacio cuando hay badges */
 .chat-msg-row.has-reactions {
   margin-bottom: 18px;
 }
@@ -965,10 +931,8 @@ iframe.goog-te-menu-frame { box-shadow: 0 4px 20px rgba(0,0,0,.15) !important; b
   opacity: 1;
   pointer-events: auto;
 }
-/* El bubble-wrap necesita position:relative para que el botón se posicione bien */
 .chat-bubble-wrap { position: relative; }
 
-/* ── Barra de reacciones rápidas (desplegable al hacer clic en la carita) ── */
 .chat-reaction-bar {
   position: fixed;
   display: flex;
@@ -1038,7 +1002,6 @@ iframe.goog-te-menu-frame { box-shadow: 0 4px 20px rgba(0,0,0,.15) !important; b
   position: relative;
   display: inline-block; /* se ajusta al ancho del bubble */
 }
-/* Contenedor de badges, posicionado encima del margen inferior del row */
 .chat-bubble-reactions {
   position: absolute;
   bottom: -14px;
@@ -1046,12 +1009,9 @@ iframe.goog-te-menu-frame { box-shadow: 0 4px 20px rgba(0,0,0,.15) !important; b
   gap: 3px;
   z-index: 10;
 }
-/* lado izquierdo (mensajes entrantes) */
 .chat-msg-row.in  .chat-bubble-reactions { left: 6px; }
-/* lado derecho (mensajes salientes) */
 .chat-msg-row.out .chat-bubble-reactions { right: 6px; }
 
-/* Chip individual de reacción */
 .chat-bubble-reaction-badge {
   display: inline-flex;
   align-items: center;
@@ -1080,11 +1040,9 @@ iframe.goog-te-menu-frame { box-shadow: 0 4px 20px rgba(0,0,0,.15) !important; b
   min-width: 8px;
 }
 
-/* modo oscuro whatsappp de temu */
 #msgBubbleCtxMenu {
   position: fixed;
   z-index: 9999;
-  /* fondo oscuro como WhatsApp, funciona en ambos temas */
   background: #1e2328;
   border: none;
   border-radius: 18px;
@@ -1104,7 +1062,6 @@ iframe.goog-te-menu-frame { box-shadow: 0 4px 20px rgba(0,0,0,.15) !important; b
   transform: scale(1);
 }
 
-/* ── Tira de emojis rápidos ── */
 #msgBubbleCtxMenu .ctx-reaction-strip {
   display: flex;
   align-items: center;
@@ -1142,7 +1099,6 @@ iframe.goog-te-menu-frame { box-shadow: 0 4px 20px rgba(0,0,0,.15) !important; b
   transform: scale(1.1);
 }
 
-/* ── Ítems del menú ── */
 .ctx-menu-item {
   display: flex;
   align-items: center;
@@ -1159,7 +1115,6 @@ iframe.goog-te-menu-frame { box-shadow: 0 4px 20px rgba(0,0,0,.15) !important; b
 .ctx-menu-item:first-of-type { margin-top: 2px; }
 .ctx-menu-item:hover { background: rgba(255,255,255,.07); }
 
-/* Ícono de cada ítem */
 .ctx-menu-item i {
   width: 20px;
   text-align: center;
@@ -1179,19 +1134,16 @@ iframe.goog-te-menu-frame { box-shadow: 0 4px 20px rgba(0,0,0,.15) !important; b
 .ctx-menu-item[onclick*="reply"] i { color: #fff; }
 .ctx-menu-item[onclick*="reply"]:hover { background: rgba(37,211,102,.1); }
 
-/* Danger */
 .ctx-menu-item.danger { color: #ff6b6b; }
 .ctx-menu-item.danger i { color: #ff6b6b; }
 .ctx-menu-item.danger:hover { background: rgba(239,68,68,.1); }
 
-/* Separador */
 .ctx-menu-separator {
   height: 1px;
   background: rgba(255,255,255,.07);
   margin: 4px 0;
 }
 
-/* Mensaje con highlight (al responder/fijar) */
 .chat-bubble.highlighted {
   outline: 2px solid var(--primary, #67b8b4);
   outline-offset: 2px;
@@ -1218,7 +1170,6 @@ iframe.goog-te-menu-frame { box-shadow: 0 4px 20px rgba(0,0,0,.15) !important; b
   vertical-align: middle;
 }
 
-/* Barra de respuesta (quote) */
 .chat-reply-bar {
   display: flex;
   align-items: center;
@@ -1250,7 +1201,6 @@ iframe.goog-te-menu-frame { box-shadow: 0 4px 20px rgba(0,0,0,.15) !important; b
   to   { opacity: 1; transform: translateY(0); }
 }
 
-/* Burbuja con cita (reply quote inside bubble) */
 .chat-bubble-quote {
   background: rgba(0,0,0,.07);
   border-left: 3px solid var(--primary, #67b8b4);
@@ -1267,27 +1217,22 @@ iframe.goog-te-menu-frame { box-shadow: 0 4px 20px rgba(0,0,0,.15) !important; b
 .chat-msg-row.out .chat-bubble-quote { border-left-color: rgba(255,255,255,.7); }
 
 
-/* Asegura que los badges posicionados absolutamente no se corten */
 .chat-messages {
   overflow-x: visible !important;
   padding-bottom: 20px;
 }
-/* El contenedor de mensajes del chat WA también */
 .wa-chat-messages {
   overflow-x: visible !important;
   padding-bottom: 20px;
 }
 
 
-/* El row no debe cortar el botón de carita que sale por los lados */
 .chat-msg-row {
   overflow: visible !important;
 }
 
 
-/* ELIMINAR MENSAJE ESTILO WHATSAPP */
 
-/* Overlay oscuro detrás del modal */
 .del-msg-overlay {
   position: fixed;
   inset: 0;
@@ -1296,7 +1241,6 @@ iframe.goog-te-menu-frame { box-shadow: 0 4px 20px rgba(0,0,0,.15) !important; b
   animation: fadeIn .15s ease;
 }
 
-/* Modal centrado */
 .del-msg-modal {
   position: fixed;
   top: 50%; left: 50%;
@@ -1324,7 +1268,6 @@ iframe.goog-te-menu-frame { box-shadow: 0 4px 20px rgba(0,0,0,.15) !important; b
   text-align: left;
 }
 
-/* Botones del modal */
 .del-msg-btn {
   display: block;
   width: 100%;
@@ -1361,9 +1304,7 @@ iframe.goog-te-menu-frame { box-shadow: 0 4px 20px rgba(0,0,0,.15) !important; b
 }
 .del-msg-cancel:hover { color: #a0adb8; }
 
-/* MODO SELECCION DE MENSAJES NO SIRVE */
 
-/* Barra inferior de selección */
 .msg-select-bar {
   position: fixed;
   bottom: 0; left: 0; right: 0;
@@ -1421,7 +1362,6 @@ iframe.goog-te-menu-frame { box-shadow: 0 4px 20px rgba(0,0,0,.15) !important; b
 .msg-select-action.danger { color: #e05454; }
 .msg-select-action.danger:hover { background: rgba(224,84,84,.12); color: #ff6b6b; }
 
-/* Checkbox en cada mensaje cuando está en modo selección */
 .chat-msg-row .msg-checkbox {
   display: none;
   width: 20px; height: 20px;
@@ -1433,7 +1373,6 @@ iframe.goog-te-menu-frame { box-shadow: 0 4px 20px rgba(0,0,0,.15) !important; b
 .chat-msg-row.out .msg-checkbox { margin: auto 0 auto 8px; order: 1; }
 body.select-mode .chat-msg-row .msg-checkbox { display: flex; align-items: center; }
 
-/* En modo selección, el row seleccionado tiene fondo */
 .chat-msg-row.selected-msg {
   background: rgba(37,211,102,.08);
   border-radius: 8px;

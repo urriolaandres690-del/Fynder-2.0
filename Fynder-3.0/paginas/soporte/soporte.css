@@ -1,5 +1,4 @@
-﻿/* Página de soporte */
-
+﻿
 .support-inner {
   max-width: 900px;
   margin: 0 auto;
@@ -42,7 +41,6 @@
   line-height: 1.7;
 }
 
-/* Canales de contacto */
 .support-channels {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -109,7 +107,6 @@
   color: #fff;
 }
 
-/* Formulario de contacto */
 .support-form-wrap {
   margin-bottom: 64px;
 }
@@ -264,7 +261,6 @@
 
 .support-faq-item strong { color: var(--fg); font-weight: 600; }
 
-/* Responsive soporte */
 @media (max-width: 700px) {
   .support-channels { grid-template-columns: 1fr; }
   .support-form-card { padding: 24px 20px; }
@@ -272,7 +268,6 @@
   .support-form-header { flex-direction: column; text-align: center; }
 }
 
-/* boton volver */
 .back-page-btn {
   display: inline-flex;
   align-items: center;
@@ -296,7 +291,6 @@
   border-color: rgba(103,184,180,.3);
 }
 
-/* soporte */
 [data-theme="dark"] #page-support { background: var(--bg) !important; }
 [data-theme="dark"] .support-title { color: var(--fg); }
 [data-theme="dark"] .support-lead  { color: var(--muted); }
@@ -346,7 +340,6 @@
   color: #fff;
 }
 
-/* boton volver */
 [data-theme="dark"] .back-page-btn {
   background: rgba(255,255,255,.06);
   border-color: rgba(255,255,255,.12);

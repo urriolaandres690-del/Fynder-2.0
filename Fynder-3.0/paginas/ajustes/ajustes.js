@@ -1,5 +1,4 @@
-﻿/* PÁGINA DE AJUSTES */
-
+﻿
 /** Navega a una sección del panel de ajustes */
 function settGoSection(id, btn) {
   document.querySelectorAll('#page-settings .sett-section').forEach(s => s.classList.remove('active'));

@@ -1,5 +1,4 @@
-﻿/* SISTEMA DE MENSAJES – FYNDER */
-
+﻿
 // ---- Storage helpers ----
 function _getMsgs(bizId) {
   try { return JSON.parse(localStorage.getItem('fynderChat_' + bizId) || '[]'); }
@@ -552,7 +551,6 @@ function toggleEmojiPickerMobile() {
   });
 })();
 
-/* CHAT: BOTÓN ENVIAR / MICRÓFONO (toggle según haya texto) */
 function chatInputChange() {
   const input   = document.getElementById('chatInput');
   const sendBtn = document.getElementById('chatSendBtn');
@@ -574,7 +572,6 @@ function chatInputChange() {
   });
 })();
 
-/* CHAT: MENÚ DE ADJUNTAR */
 let _attachMenuOpen = false;
 
 function toggleAttachMenu() {
@@ -594,7 +591,6 @@ document.addEventListener('click', (e) => {
   }
 });
 
-/* CHAT: ENVIAR ARCHIVOS ADJUNTOS */
 
 /** Enviar ubicación actual como mensaje */
 function sendChatLocation() {
@@ -906,7 +902,6 @@ function _openImgLightbox(src, caption) {
   document.body.appendChild(overlay);
 }
 
-/* CHAT: GRABACIÓN DE AUDIO (micrófono) */
 let _mediaRecorder  = null;
 let _audioChunks    = [];
 let _recordTimer    = null;
@@ -1115,7 +1110,6 @@ function _buildTickHtml(msg) {
   });
 })();
 
-/* CHAT HEADER: funciones de los botones */
 
 /** Llamar al teléfono del negocio si está disponible */
 function waChatCall() {
@@ -1266,7 +1260,6 @@ function toggleChatMute() {
   }
 }
 
-/* CHAT PROFILE: botones funcionales */
 
 /** Flecha atrás — vuelve al chat si estaba activo, si no a mensajes */
 function cproGoBack() {
@@ -1391,7 +1384,6 @@ document.addEventListener('click', (e) => {
   if (!menu.contains(e.target)) closeCproMenu();
 });
 
-/* RAIL DE ÍCONOS: lógica de navegación y avatar */
 
 /** Cambia la sección activa del rail */
 function waRailSwitch(section, btn) {
@@ -1670,7 +1662,6 @@ function _getBizSubtype(biz) {
 }
 
 
-/* CHAT: REACCIONES Y MENÚ CONTEXTUAL DE MENSAJES */
 
 // Emojis de reacción rápida (mismos que WhatsApp)
 const QUICK_REACTIONS = ['👍','❤️','😂','😮','😢','🙏'];
@@ -2422,7 +2413,6 @@ function shareSelectedMsgs() {
 })();
 
 
-/*Se muestra solo si el usuario no tiene sesión y no lo ha descartado en esta visita*/
 (function initWelcomeModal() {
   function _show() {
     // Solo mostrar si NO hay sesión activa

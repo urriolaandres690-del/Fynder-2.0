@@ -1,5 +1,4 @@
-﻿/* ── Navegación ── */
-function cproGoBack() {
+﻿function cproGoBack() {
   const isDesktop = window.innerWidth >= 769;
   if (isDesktop) {
     closeWaChatInfoPanel();
@@ -8,7 +7,6 @@ function cproGoBack() {
   }
 }
 
-/* ── Menú contextual ── */
 function toggleCproMenu(btn) {
   const menu = document.getElementById('cproCtxMenu');
   if (!menu) return;
@@ -21,12 +19,10 @@ function closeCproMenu() {
   if (menu) menu.style.display = 'none';
 }
 
-/* ── Compartir perfil ── */
 function cproShareProfile() {
   showToast('Compartir perfil próximamente');
 }
 
-/* ── Buscar en el chat ── */
 function cproSearchInChat() {
   showToast('Búsqueda en el chat próximamente');
 }

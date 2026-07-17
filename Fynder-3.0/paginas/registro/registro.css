@@ -1,5 +1,4 @@
-﻿/* paginas de autenticacion – Login y Registro */
-
+﻿
 .auth-page.active {
   display: grid !important;
   grid-template-columns: 420px 1fr;
@@ -55,7 +54,6 @@
   opacity: .07;
 }
 
-/* Botón volver */
 .auth-panel .back-home {
   align-self: flex-start;
   background: rgba(255,255,255,.12);
@@ -79,7 +77,6 @@
   box-shadow: none;
 }
 
-/* Logo en el panel */
 .auth-panel-logo {
   display: flex;
   align-items: center;
@@ -97,7 +94,6 @@
   font-size: 1.5rem !important;
 }
 
-/* Título y descripción del panel */
 .auth-panel-title {
   font-family: 'Poppins', sans-serif;
   font-size: 1.625rem;
@@ -114,7 +110,6 @@
   margin-bottom: 40px;
 }
 
-/* Perks */
 .auth-perks {
   display: flex;
   flex-direction: column;
@@ -144,7 +139,6 @@
   flex-shrink: 0;
 }
 
-/* panel del formulario */
 .auth-form-side {
   display: flex;
   align-items: center;
@@ -153,7 +147,6 @@
   overflow-y: auto;
 }
 
-/* Tarjeta del formulario */
 .auth-card {
   width: 100%;
   max-width: 460px;
@@ -166,7 +159,6 @@
   animation: authFadeUp .4s ease;
 }
 
-/* Header de la tarjeta */
 .auth-card-header {
   text-align: center;
   margin-bottom: 32px;
@@ -204,7 +196,6 @@
   margin: 0;
 }
 
-/* campos del formulario */
 .auth-field {
   margin-bottom: 18px;
 }
@@ -242,7 +233,6 @@
   font-size: .75rem;
 }
 
-/* Input wrap */
 .auth-input-wrap {
   position: relative;
   display: flex;
@@ -274,7 +264,6 @@
   appearance: none;
 }
 
-/* Ocultar el ojo nativo del browser (Edge/Chrome) en inputs de contraseña */
 .auth-input-wrap input[type="password"]::-ms-reveal,
 .auth-input-wrap input[type="password"]::-ms-clear {
   display: none !important;
@@ -315,7 +304,6 @@
 
 .auth-eye-btn:hover { color: var(--primary) !important; }
 
-/* Error de campo */
 .auth-field-error {
   display: flex;
   align-items: center;
@@ -326,14 +314,12 @@
   font-weight: 500;
 }
 
-/* Campos en fila (contraseñas) */
 .auth-fields-row {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 14px;
 }
 
-/* Checkbox recordarme */
 .auth-remember {
   display: flex;
   align-items: center;
@@ -355,7 +341,6 @@
   flex-shrink: 0;
 }
 
-/* terminos */
 .auth-terms {
   display: flex;
   align-items: flex-start;
@@ -376,7 +361,6 @@
 
 .auth-link:hover { text-decoration: underline; }
 
-/* Boton principal submit */
 .auth-submit-btn {
   width: 100%;
   display: flex;
@@ -418,7 +402,6 @@
   box-shadow: 0 10px 28px rgba(15,118,110,.42);
 }
 
-/* Divider */
 .auth-divider {
   display: flex;
   align-items: center;
@@ -436,7 +419,6 @@
   background: #E5E7EB;
 }
 
-/* Botón alternativo (ir a registro / login) */
 .auth-alt-btn {
   width: 100%;
   display: flex;
@@ -463,7 +445,6 @@
   transform: translateY(-1px);
 }
 
-/* responsive auth */
 @media (max-width: 900px) {
   .auth-page {
     grid-template-columns: 1fr;
@@ -516,7 +497,6 @@
 }
 
 
-/* login registro */
 [data-theme="dark"] #page-login,
 [data-theme="dark"] #page-register {
   background:
@@ -531,7 +511,6 @@
 [data-theme="dark"] .auth-card-header p  { color: var(--muted); }
 [data-theme="dark"] .auth-field label { color: var(--fg); }
 
-/* Inputs: fondo oscuro con !important para vencer los estilos base */
 [data-theme="dark"] .auth-input-wrap input {
   background: rgba(255,255,255,.06) !important;
   border-color: rgba(255,255,255,.12) !important;
@@ -562,7 +541,6 @@
   color: var(--primary) !important;
 }
 
-/* Login/Register back-home btn */
 [data-theme="dark"] .back-home         { background: rgba(255,255,255,.08) !important; color: rgba(255,255,255,.85) !important; }
 [data-theme="dark"] .back-home:hover   { background: rgba(255,255,255,.14) !important; color: #fff !important; }
 

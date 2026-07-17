@@ -1,12 +1,10 @@
-﻿/* Página de redacción de artículos */
-
+﻿
 .write-inner {
   max-width: 860px;
   margin: 0 auto;
   padding: 0 24px 80px;
 }
 
-/* Topbar */
 .write-topbar {
   display: flex;
   align-items: center;
@@ -63,7 +61,6 @@
   box-shadow: 0 6px 20px rgba(103,184,180,.45);
 }
 
-/* Secciones del editor */
 .write-section {
   background: #fff;
   border-radius: 18px;
@@ -73,7 +70,6 @@
   box-shadow: var(--shadow-sm);
 }
 
-/* Portada */
 .write-cover-preview {
   position: relative;
   width: 100%;
@@ -116,7 +112,6 @@
 .write-cover-remove:hover { background: rgba(239,68,68,.8); }
 .write-cover-url-row { display: flex; gap: 10px; align-items: center; }
 
-/* Inputs */
 .write-input-wrap {
   position: relative;
   display: flex;
@@ -146,7 +141,6 @@
 }
 .write-input-wrap input::placeholder { color: #9CA3AF; }
 
-/* Meta row */
 .write-meta-row {
   display: flex;
   gap: 14px;
@@ -181,7 +175,6 @@
   cursor: pointer;
 }
 
-/* Título */
 .write-title-input {
   width: 100%;
   border: none;
@@ -204,7 +197,6 @@
   font-family: 'Poppins', sans-serif;
 }
 
-/* Toolbar del editor */
 .write-toolbar {
   display: flex;
   align-items: center;
@@ -243,7 +235,6 @@
 .write-tool-clear { color: #EF4444; margin-left: auto; }
 .write-tool-clear:hover { background: #FEF2F2; color: #DC2626; }
 
-/* Editor contenteditable */
 .write-editor {
   min-height: 300px;
   outline: none;
@@ -314,7 +305,6 @@
   font-family: 'Poppins', sans-serif;
 }
 
-/* Preview panel */
 .write-preview-panel {
   background: #fff;
   border-radius: 18px;
@@ -372,10 +362,8 @@
   border-bottom: 1px solid var(--border);
 }
 
-/* Blog en la página write */
 #page-write .blog-inner { padding-top: 0; }
 
-/* Responsive */
 @media (max-width: 600px) {
   .write-topbar { padding: 12px 0 16px; }
   .write-section { padding: 16px; }
@@ -384,7 +372,6 @@
   .write-toolbar { gap: 2px; }
 }
 
-/* Dark mode – Write page */
 [data-theme="dark"] #page-write              { background: var(--bg) !important; }
 [data-theme="dark"] .write-section           { background: var(--card); border-color: rgba(255,255,255,.07); }
 [data-theme="dark"] .write-cover-preview     { background: #1E293B; border-color: rgba(255,255,255,.1); }
@@ -415,6 +402,5 @@
 [data-theme="dark"] .write-toolbar-sep       { background: rgba(255,255,255,.08); }
 [data-theme="dark"] .write-char-count        { color: #475569; }
 
-/* Página Saber más */
 :root { --fyl-bg: #F8FAFC; }
 [data-theme="dark"] { --fyl-bg: #0F172A; }

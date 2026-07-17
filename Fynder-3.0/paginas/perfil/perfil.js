@@ -56,8 +56,6 @@
     hideAvatarOptions();
 }
 
-/* ── Avatar ── */
-/* ── Avatar ── */
 function applyAvatarDisplay(){
     const avt = document.getElementById("profileAvatar");
     if(!avt) return;
@@ -84,7 +82,6 @@ function applyAvatarDisplay(){
     }
 }
 
-/* ── Portada: usa background-image para no tocar el DOM del div ── */
 function applyProfileCover(){
     const cover = document.getElementById("profileCover");
     if(!cover) return;
@@ -209,7 +206,6 @@ function handleCoverChange(input){
     input.value = '';
 }
 
-/* ── Cámara con getUserMedia ── */
 let _cameraStream = null;
 let _cameraTarget = 'avatar'; // 'avatar' | 'cover'
 
@@ -274,7 +270,6 @@ function cameraClose(){
     }
 }
 
-/* ── Panel de opciones de avatar ── */
 
 // colores del avatar
 const INITIAL_COLORS = [
@@ -369,7 +364,6 @@ function removeAvatar(){
     showToast("Foto de perfil eliminada.");
 }
 
-/* ── Estado del usuario ── */
 const STATUS_CONFIG = {
     active:    { label:'Activo',        color:'#22C55E', bg:'#DCFCE7', textColor:'#16A34A', dot:'●' },
     away:      { label:'Ausente',       color:'#F59E0B', bg:'#FEF3C7', textColor:'#D97706', dot:'●' },

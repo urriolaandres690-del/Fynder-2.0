@@ -1,5 +1,4 @@
-﻿/* ── Topbar ── */
-.write-topbar {
+﻿.write-topbar {
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -46,7 +45,6 @@
 }
 .write-btn-publish:hover { background: var(--primary-d); transform: translateY(-1px); }
 
-/* ── Layout ── */
 .write-inner {
   max-width: 860px;
   margin: 0 auto;
@@ -57,7 +55,6 @@
   padding: 32px 24px;
 }
 
-/* ── Sections ── */
 .write-section {
   margin-bottom: 28px;
 }
@@ -72,7 +69,6 @@
   letter-spacing: .04em;
 }
 
-/* ── Portada ── */
 .write-cover-preview {
   position: relative;
   width: 100%;
@@ -121,7 +117,6 @@
   gap: 10px;
 }
 
-/* ── Inputs ── */
 .write-input-wrap {
   position: relative;
   display: flex;
@@ -150,7 +145,6 @@
 }
 .write-input-wrap input:focus { border-color: var(--primary); }
 
-/* ── Meta row ── */
 .write-meta-row {
   display: flex;
   gap: 16px;
@@ -176,7 +170,6 @@
 }
 .write-select:focus { border-color: var(--primary); }
 
-/* ── Título ── */
 .write-title-input {
   width: 100%;
   padding: 16px;
@@ -202,7 +195,6 @@
   margin-top: 6px;
 }
 
-/* ── Toolbar ── */
 .write-toolbar {
   display: flex;
   align-items: center;
@@ -248,7 +240,6 @@
 .write-tool-clear { margin-left: auto; color: #ef4444 !important; }
 .write-tool-clear:hover { background: rgba(239,68,68,.1) !important; }
 
-/* ── Editor ── */
 .write-editor {
   min-height: 320px;
   padding: 18px;
@@ -287,7 +278,6 @@
   padding: 0 4px;
 }
 
-/* ── Preview ── */
 .write-preview-panel {
   background: var(--card);
   border-radius: 20px;
@@ -341,13 +331,11 @@
   margin-bottom: 24px;
 }
 
-/* ── Dark mode ── */
 [data-theme="dark"] .write-topbar   { background: var(--card); border-bottom-color: var(--border); }
 [data-theme="dark"] .write-toolbar  { background: var(--card); }
 [data-theme="dark"] .write-editor   { background: var(--card); }
 [data-theme="dark"] .write-preview-panel { background: var(--card); }
 
-/* ── Responsive ── */
 @media (max-width: 600px) {
   .write-layout   { padding: 20px 16px; }
   .write-meta-row { flex-direction: column; }

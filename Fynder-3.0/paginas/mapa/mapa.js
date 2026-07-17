@@ -340,7 +340,6 @@ if (_origToggleDark) {
 
   let _globeReady = false;
 
-  /* Se llama desde initMap() */
   window.initGlobe = function () {
     if (_globeReady) return;
     if (typeof THREE === 'undefined') {
@@ -362,7 +361,6 @@ if (_origToggleDark) {
     const ttInfo      = document.getElementById('gTtInfo');
     if (!wrap || !canvas) return;
 
-    /* ── Loading manager ── */
     const manager = new THREE.LoadingManager();
     manager.onProgress = (url, loaded, total) => {
       if (loaderText) loaderText.textContent =
@@ -374,7 +372,6 @@ if (_origToggleDark) {
     };
     const texLoader = new THREE.TextureLoader(manager);
 
-    /* ── Escena ── */
     const scene  = new THREE.Scene();
     const camera = new THREE.PerspectiveCamera(42, wrap.clientWidth / wrap.clientHeight, 0.1, 2000);
     const BASE_Z = 285;
@@ -387,7 +384,6 @@ if (_origToggleDark) {
 
     const RADIUS = 100;
 
-    /* ── Estrellas ── */
     const starCount = 1400;
     const starGeo   = new THREE.BufferGeometry();
     const starPos   = new Float32Array(starCount * 3);
@@ -410,16 +406,13 @@ if (_origToggleDark) {
     }));
     scene.add(starField);
 
-    /* ── Grupo globo ── */
     const globeGroup = new THREE.Group();
     scene.add(globeGroup);
 
-    /* Texturas */
     const dayTex   = texLoader.load('https://threejs.org/examples/textures/planets/earth_atmos_2048.jpg');
     const nightTex = texLoader.load('https://threejs.org/examples/textures/planets/earth_lights_2048.png');
     const cloudTex = texLoader.load('https://threejs.org/examples/textures/planets/earth_clouds_1024.png');
 
-    /* Textura de glow generada en canvas */
     function _makeGlowTex() {
       const sz = 128, cv = document.createElement('canvas');
       cv.width = sz; cv.height = sz;
@@ -433,7 +426,6 @@ if (_origToggleDark) {
     }
     const glowTex = _makeGlowTex();
 
-    /* ── Sol ── */
     let sunAngle = Math.atan2(0.8, 0.6);
     const sunDir = new THREE.Vector3(0.6, 0.35, 0.8).normalize();
     const sunDirLive = new THREE.Vector3();
@@ -444,7 +436,6 @@ if (_origToggleDark) {
     sunSprite.scale.set(195, 195, 1);
     scene.add(sunSprite);
 
-    /* ── Shader Tierra día/noche ── */
     const earthMat = new THREE.ShaderMaterial({
       uniforms: {
         dayTexture:   { value: dayTex },
@@ -475,7 +466,6 @@ if (_origToggleDark) {
     });
     globeGroup.add(new THREE.Mesh(new THREE.SphereGeometry(RADIUS, 96, 96), earthMat));
 
-    /* ── Nubes ── */
     const cloudMesh = new THREE.Mesh(
       new THREE.SphereGeometry(RADIUS + 1.5, 64, 64),
       new THREE.MeshBasicMaterial({
@@ -485,7 +475,6 @@ if (_origToggleDark) {
     );
     globeGroup.add(cloudMesh);
 
-    /* ── Atmósfera glow ── */
     globeGroup.add(new THREE.Mesh(
       new THREE.SphereGeometry(RADIUS + 6, 64, 64),
       new THREE.ShaderMaterial({
@@ -514,7 +503,6 @@ if (_origToggleDark) {
       );
     }
 
-    /* ── Ciudades ── */
     const cityData = [
       { name:'Nueva York',       lat:40.7,   lon:-74.0,   label:true,  info:'Hub financiero global' },
       { name:'Londres',          lat:51.5,   lon:-0.1,    label:true,  info:'Capital europea de negocios' },
@@ -583,7 +571,6 @@ if (_origToggleDark) {
       return { ...c, mesh, halo, ring, ringT: Math.random(), labelEl, phase: Math.random() * Math.PI * 2 };
     });
 
-    /* ── Arcos tipo tubo ── */
     const arcPairs = [
       ['Nueva York',      'Londres'],
       ['Londres',         'El Cairo'],
@@ -699,7 +686,6 @@ if (_origToggleDark) {
       renderer.setSize(w, h);
     });
 
-    /* ── Raycaster para click en ciudades ── */
     const raycaster = new THREE.Raycaster();
     const mouse     = new THREE.Vector2();
     let   ttTimeout = null;
@@ -733,7 +719,6 @@ if (_origToggleDark) {
       if (tooltip) tooltip.style.opacity = '0';
     }
 
-    /* ── Count-up del número de negocios ── */
     function _startCountUp() {
       const el = document.getElementById('gStatNumber');
       if (!el) return;
@@ -748,7 +733,6 @@ if (_origToggleDark) {
       requestAnimationFrame(tick);
     }
 
-    /* ── Tarjetas orbitantes ── */
     const orbitCards = [
       { el: document.getElementById('gCardLeft'),  angle: Math.PI * 0.78, speed: 0.10,  rx: 0.47, ry: 0.40, dir:  1 },
       { el: document.getElementById('gCardRight'), angle:-Math.PI * 0.22, speed: 0.075, rx: 0.45, ry: 0.36, dir: -1 },
@@ -770,7 +754,6 @@ if (_origToggleDark) {
     }
     _updateOrbitCards(0);
 
-    /* ── Labels flotantes ── */
     const tmpVec    = new THREE.Vector3();
     const tmpNormal = new THREE.Vector3();
     const camDir    = new THREE.Vector3();
@@ -792,7 +775,6 @@ if (_origToggleDark) {
       });
     }
 
-    /* ── Loop de animación ── */
     const clock = new THREE.Clock();
 
     function animate() {
@@ -806,19 +788,15 @@ if (_origToggleDark) {
         velX *= 0.94;
       }
 
-      /* Zoom suave */
       camera.position.z += (targetZ - camera.position.z) * 0.08;
 
-      /* Sol orbita */
       sunAngle += delta * 0.01;
       sunDirLive.set(Math.cos(sunAngle), 0.35, Math.sin(sunAngle)).normalize();
       earthMat.uniforms.sunDirection.value.copy(sunDirLive);
       sunSprite.position.copy(sunDirLive).multiplyScalar(480);
 
-      /* Nubes giran lento */
       cloudMesh.rotation.y += 0.00018;
 
-      /* Pulso de marcadores */
       cities.forEach(c => {
         const base = c.highlight ? 1.9 : 1;
         const s    = base * (1 + Math.sin(t * 2 + c.phase) * 0.18);
@@ -833,7 +811,6 @@ if (_origToggleDark) {
         }
       });
 
-      /* Cometas en arcos */
       arcs.forEach(arc => {
         arc.t += arc.speed;
         if (arc.t > 1.15) arc.t = -0.15;
@@ -845,10 +822,8 @@ if (_origToggleDark) {
         });
       });
 
-      /* Estrellas derivan lento */
       starField.rotation.y += 0.00006;
 
-      /* Paralaje de cámara con el mouse */
       camera.position.x = baseCameraPos.x + pointerNormX * 12;
       camera.position.y = baseCameraPos.y - pointerNormY * 8;
       camera.lookAt(0, 0, 0);
@@ -862,7 +837,6 @@ if (_origToggleDark) {
 
   } // fin _bootGlobe
 
-  /* ── Hook a initMap ── */
   const _prevInitMap = window.initMap;
   window.initMap = function () {
     if (typeof _prevInitMap === 'function') _prevInitMap();

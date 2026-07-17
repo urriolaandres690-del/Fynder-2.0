@@ -1,7 +1,5 @@
-﻿/* Profile page */
-.profile-inner { max-width: 960px; margin: 0 auto; padding: 0 24px; }
+﻿.profile-inner { max-width: 960px; margin: 0 auto; padding: 0 24px; }
 
-/* portada del perfil */
 .profile-cover-wrap {
   border-radius: 24px;
   /* overflow: hidden ELIMINADO — causaba que el avatar y el panel quedaran recortados */
@@ -42,14 +40,12 @@
   display: flex;
   gap: 6px;
   align-items: center;
-  /* ocultos por defecto, aparecen al hacer hover en la portada */
   opacity: 0;
   transform: translateY(6px);
   transition: opacity .25s ease, transform .25s ease;
   pointer-events: none;
 }
 
-/* mostrar al pasar el mouse sobre la portada */
 .profile-cover:hover .profile-cover-btns {
   opacity: 1;
   transform: translateY(0);
@@ -106,7 +102,6 @@ label.profile-cover-edit-btn:hover {
 }
 .profile-cover-del-btn:hover { background: rgba(239,68,68,.5) !important; color: #fff; }
 
-/* cabecera del perfil */
 .profile-header {
   display: flex;
   align-items: center;
@@ -147,7 +142,6 @@ label.profile-cover-edit-btn:hover {
   border-radius: 50%;
 }
 
-/* Overlay al hover */
 .profile-avatar-overlay {
   position: absolute;
   inset: 0;
@@ -219,7 +213,6 @@ label.profile-cover-edit-btn:hover {
   cursor: default;
 }
 
-/* Badge de estado es un botón clickeable */
 button.profile-badge {
   cursor: pointer;
   transition: background .2s, box-shadow .2s;
@@ -233,7 +226,6 @@ button.profile-badge:hover {
   color: #2F5BB7;
 }
 
-/* dropdown de estado */
 .profile-status-badge-wrap {
   position: relative;
   display: inline-flex;
@@ -311,7 +303,6 @@ button.profile-badge:hover {
 }
 .profile-action-chip:hover { background: var(--teal-light); color: var(--primary); border-color: rgba(103,184,180,.3); }
 
-/* opciones de avatar */
 .avatar-options-panel {
   background: #fff;
   border-radius: 20px;
@@ -340,7 +331,6 @@ button.profile-badge:hover {
 }
 .avatar-options-title i { color: var(--primary); }
 
-/* Etiquetas de sección dentro del panel */
 .avatar-section-label {
   font-size: .7rem;
   font-weight: 700;
@@ -405,7 +395,6 @@ label.avatar-option-btn:hover { background: var(--teal-light); border-color: rgb
   line-height: 1.4;
 }
 
-/* Iniciales con color */
 .avatar-initials-grid {
   display: flex;
   flex-wrap: wrap;
@@ -435,7 +424,6 @@ label.avatar-option-btn:hover { background: var(--teal-light); border-color: rgb
   box-shadow: 0 0 0 3px var(--primary);
 }
 
-/* Grid de avatares predeterminados */
 .avatar-presets-grid {
   display: grid;
   grid-template-columns: repeat(6, 1fr);
@@ -488,7 +476,6 @@ label.avatar-option-btn:hover { background: var(--teal-light); border-color: rgb
   .avatar-presets-grid { grid-template-columns: repeat(5, 1fr); }
 }
 
-/* selector de estado */
 .profile-status-card { background: #fff; }
 
 .profile-status-desc {
@@ -578,7 +565,6 @@ label.avatar-option-btn:hover { background: var(--teal-light); border-color: rgb
   .status-options { grid-template-columns: 1fr; }
 }
 
-/* grid del perfil */
 .profile-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -645,7 +631,6 @@ label.avatar-option-btn:hover { background: var(--teal-light); border-color: rgb
 .profile-save-btn-alt { background: #2F5BB7; }
 .profile-save-btn-alt:hover { background: #264fa0; }
 
-/* actividad del usuario */
 .profile-stats {
   display: flex;
   gap: 0;
@@ -682,7 +667,6 @@ label.avatar-option-btn:hover { background: var(--teal-light); border-color: rgb
 }
 .profile-stat-lbl { font-size: .75rem; color: var(--muted); font-weight: 500; }
 
-/* zona de peligro */
 .profile-danger-card { border-color: #FEE2E2; }
 
 .profile-danger-row {
@@ -731,7 +715,6 @@ label.avatar-option-btn:hover { background: var(--teal-light); border-color: rgb
 }
 
 
-/* perfil modo oscuro */
 [data-theme="dark"] #page-profile  { background: var(--bg) !important; }
 [data-theme="dark"] .profile-card  { background: var(--card); border-color: rgba(255,255,255,.07); }
 [data-theme="dark"] .profile-card-title { color: var(--fg); }
@@ -763,7 +746,6 @@ label.avatar-option-btn:hover { background: var(--teal-light); border-color: rgb
 [data-theme="dark"] .biz-input-wrap input::placeholder,
 [data-theme="dark"] .biz-input-wrap textarea::placeholder { color: #9CA3AF !important; }
 
-/* opciones del select: forzar colores legibles en todos los temas */
 select option {
   background-color: #ffffff;
   color: #1F2937;
@@ -773,7 +755,6 @@ select option {
   color: #E2E8F0;
 }
 
-/* select base en modo oscuro */
 [data-theme="dark"] select {
   background-color: var(--card);
   color: var(--fg);

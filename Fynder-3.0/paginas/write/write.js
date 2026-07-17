@@ -1,5 +1,4 @@
-﻿/* ── Portada ── */
-function updateCoverPreview(url) {
+﻿function updateCoverPreview(url) {
   const img   = document.getElementById('writeCoverImg');
   const ph    = document.getElementById('writeCoverPlaceholder');
   const rmBtn = document.getElementById('writeCoverRemove');
@@ -24,7 +23,6 @@ function removeCoverImage() {
   updateCoverPreview('');
 }
 
-/* ── Helpers de conteo ── */
 function updateWriteCharCount(inputId, countId, max) {
   const input = document.getElementById(inputId);
   const count = document.getElementById(countId);
@@ -36,7 +34,6 @@ function autoResizeTextarea(el) {
   el.style.height = el.scrollHeight + 'px';
 }
 
-/* ── Formato y herramientas del editor ── */
 function writeFormat(cmd) {
   document.getElementById('writeEditor')?.focus();
   document.execCommand(cmd, false, null);
@@ -91,7 +88,6 @@ function handleWriteEditorKey(e) {
   if (e.key === 'i' && (e.ctrlKey || e.metaKey)) { e.preventDefault(); writeFormat('italic'); }
 }
 
-/* ── Preview ── */
 function toggleWritePreview() {
   const previewPanel = document.getElementById('writePreviewPanel');
   const btn          = document.getElementById('writeBtnPreview');
@@ -139,7 +135,6 @@ function updateWritePreview() {
   }
 }
 
-/* ── Publicar artículo ── */
 function publishArticle() {
   const title    = (document.getElementById('writeTitle')    || {}).value?.trim();
   const category = (document.getElementById('writeCategory') || {}).value;

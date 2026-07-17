@@ -1,5 +1,4 @@
-﻿    /* directorio */
-
+﻿
     .dir-toolbar { position: sticky; top: 64px; z-index: 50; background: rgba(255,255,255,.95); backdrop-filter: blur(12px); border-bottom: 1px solid var(--border); box-shadow: var(--shadow-sm); }
 
     .dir-toolbar-inner { max-width: 1280px; margin: 0 auto; padding: 14px 24px; display: flex; align-items: center; gap: 14px; } 
@@ -54,7 +53,6 @@
 
     .empty-desc { font-size: .9375rem; color: var(--muted); } 
 
-/* directorio modo oscuro */
 [data-theme="dark"] #page-directory { background: var(--bg) !important; }
 [data-theme="dark"] .dir-toolbar    { background: rgba(15,23,42,.95); border-bottom-color: rgba(103,184,180,.15); }
 [data-theme="dark"] .search-box input { background: rgba(255,255,255,.07); color: var(--fg); }

@@ -1,5 +1,4 @@
-﻿/* PÁGINA DE AJUSTES */
-#page-settings {
+﻿#page-settings {
   min-height: 100vh;
   background: var(--bg);
   padding-top: 64px;
@@ -11,7 +10,6 @@
   margin: 0 auto;
 }
 
-/* ---- Sidebar ---- */
 .sett-sidebar {
   width: 260px;
   flex-shrink: 0;
@@ -44,7 +42,6 @@
   color: var(--fg);
 }
 
-/* Buscador */
 .sett-search-wrap {
   position: relative;
   margin-bottom: 20px;
@@ -71,7 +68,6 @@
 }
 .sett-search-input:focus { border-color: var(--primary); }
 
-/* Nav items */
 .sett-nav { display: flex; flex-direction: column; gap: 2px; padding-right: 24px; }
 .sett-nav-item {
   display: flex;
@@ -95,14 +91,12 @@
 [data-theme="dark"] .sett-nav-item.active { background: rgba(103,184,180,.15); }
 .sett-nav-divider { height: 1px; background: var(--border); margin: 8px 0; }
 
-/* ---- Contenido ---- */
 .sett-content {
   flex: 1;
   padding: 36px 40px;
   overflow-y: auto;
 }
 
-/* Secciones */
 .sett-section { display: none; }
 .sett-section.active { display: block; }
 .sett-section-title {
@@ -113,7 +107,6 @@
   margin-bottom: 24px;
 }
 
-/* Tarjeta de usuario */
 .sett-user-card {
   display: flex;
   align-items: center;
@@ -145,7 +138,6 @@
 .sett-user-email { font-size: .8125rem; color: var(--muted); margin: 0; }
 .sett-user-arrow { color: var(--muted); font-size: .8rem; }
 
-/* Grupos de filas */
 .sett-group {
   background: var(--card);
   border-radius: 16px;
@@ -181,7 +173,6 @@
 [data-theme="dark"] .sett-row-danger:hover { background: rgba(239,68,68,.08); }
 .sett-danger-text { color: #EF4444 !important; }
 
-/* Toggle switch */
 .sett-toggle {
   width: 44px; height: 24px;
   border-radius: 99px;
@@ -205,7 +196,6 @@
 .sett-toggle.on { background: var(--primary); }
 .sett-toggle.on::after { left: 23px; }
 
-/* Botón pequeño */
 .sett-btn-sm {
   padding: 6px 14px;
   border-radius: 22px;
@@ -221,7 +211,6 @@
 }
 .sett-btn-sm:hover { background: var(--primary); color: #fff; }
 
-/* Font size buttons */
 .sett-font-btns { display: flex; gap: 6px; flex-shrink: 0; }
 .sett-font-btn {
   display: flex;
@@ -243,7 +232,6 @@
 .sett-font-btn:nth-child(3) { font-size: 1.05rem; }
 .sett-font-btn.active { border-color: var(--primary); color: var(--primary); background: var(--teal-light); }
 
-/* Color dots */
 .sett-colors { display: flex; gap: 8px; flex-shrink: 0; }
 .sett-color-dot {
   width: 24px; height: 24px;
@@ -255,7 +243,6 @@
 .sett-color-dot:hover { transform: scale(1.15); }
 .sett-color-dot.active { border-color: #fff; box-shadow: 0 0 0 2px var(--primary); }
 
-/* Select */
 .sett-select {
   padding: 6px 10px;
   border-radius: 10px;
@@ -270,7 +257,6 @@
 }
 .sett-select:focus { border-color: var(--primary); }
 
-/* Responsive */
 @media (max-width: 768px) {
   .sett-sidebar {
     display: none;
@@ -320,7 +306,6 @@
   vertical-align: middle;
 }
 
-/* Fila de amigo */
 .sett-friend-row {
   display: flex;
   align-items: center;
@@ -370,7 +355,6 @@
 .sett-friend-btn:hover { border-color: var(--primary); color: var(--primary); background: var(--teal-light); }
 .sett-friend-btn.danger:hover { border-color: #EF4444; color: #EF4444; background: #FEF2F2; }
 
-/* Solicitud de amistad */
 .sett-req-row {
   display: flex;
   align-items: center;
@@ -405,13 +389,11 @@
 }
 .sett-req-decline:hover { border-color: #EF4444; color: #EF4444; }
 
-/* Ocultar barra de Google Translate */
 .goog-te-banner-frame, .skiptranslate { display: none !important; }
 body { top: 0 !important; }
 .goog-te-gadget { display: none !important; }
 
 
-/* Fila expandible en ajustes */
 .sett-row-expandable { cursor: pointer; }
 .sett-expand-arrow {
   transition: transform .25s !important;
@@ -421,7 +403,6 @@ body { top: 0 !important; }
   transform: rotate(90deg);
 }
 
-/* Submenú expandible dentro de ajustes */
 .sett-expandable {
   display: none;
   flex-direction: column;
@@ -462,7 +443,6 @@ body { top: 0 !important; }
 [data-theme="dark"] .sett-expandable { background: rgba(255,255,255,.02); border-bottom-color: rgba(255,255,255,.06); }
 [data-theme="dark"] .sett-sub-item:hover { background: rgba(103,184,180,.1); }
 
-/* Barra de almacenamiento */
 .sett-storage-bar-wrap {
   width: 100%;
   height: 4px;
@@ -479,7 +459,6 @@ body { top: 0 !important; }
   transition: width .5s ease;
 }
 
-/* Reducir animaciones cuando está activado */
 [data-reduce-motion] *,
 [data-reduce-motion] *::before,
 [data-reduce-motion] *::after {
@@ -489,7 +468,6 @@ body { top: 0 !important; }
   scroll-behavior: auto !important;
 }
 
-/* Banner organizacional tipo Chrome */
 .sett-org-banner {
   display: flex;
   align-items: center;
@@ -507,7 +485,6 @@ body { top: 0 !important; }
   border-color: rgba(47,91,183,.25);
 }
 
-/* Etiqueta de grupo (subtítulo de sección) */
 .sett-group-label {
   font-size: .75rem;
   font-weight: 700;
@@ -518,7 +495,6 @@ body { top: 0 !important; }
 }
 .sett-group-label:first-child { margin-top: 0; }
 
-/* Radio dot (selección única) */
 .sett-radio-dot {
   width: 18px; height: 18px;
   border-radius: 50%;
@@ -544,7 +520,6 @@ body { top: 0 !important; }
 .sett-radio-row:hover { background: #F8FAFC; }
 [data-theme="dark"] .sett-radio-row:hover { background: rgba(255,255,255,.04); }
 
-/* Caja de información de restauración */
 .sett-restore-info {
   display: flex;
   align-items: flex-start;
@@ -574,7 +549,6 @@ body { top: 0 !important; }
 /* MODO OSCURO — COMPLEMENTO COMPLETO — Cubre todos los elementos que usaban colores hardcoded (#fff, #F8FAFC, etc.) y que no estaban cubiertos por las reglas anteriores. */
 
 
-/* ---- Ajustes (Settings) complementos ---- */
 [data-theme="dark"] #page-settings        { background: var(--bg); }
 [data-theme="dark"] .sett-sidebar         { background: var(--bg); border-right-color: rgba(255,255,255,.07); }
 [data-theme="dark"] .sett-sidebar-title   { color: var(--fg); }
@@ -604,7 +578,6 @@ body { top: 0 !important; }
 [data-theme="dark"] .sett-select         { background: var(--card); border-color: rgba(255,255,255,.1); color: var(--fg); }
 [data-theme="dark"] .sett-storage-bar-wrap { background: rgba(255,255,255,.08); }
 
-/* ---- input-wrap genérico (formularios de auth, contacto, etc.) ---- */
 [data-theme="dark"] .input-wrap           { background: rgba(255,255,255,.06); border-color: rgba(255,255,255,.1); }
 [data-theme="dark"] .input-wrap input     { background: transparent; color: var(--fg); }
 

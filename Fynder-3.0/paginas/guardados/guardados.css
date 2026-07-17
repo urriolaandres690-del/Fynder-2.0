@@ -1,5 +1,4 @@
-﻿    /* favoritos */ 
-
+﻿
     .favs-header { padding: 96px 24px 40px; max-width: 1280px; margin: 0 auto; } 
 
     .favs-title { font-size: 2rem; font-weight: 700; color: var(--fg); margin-bottom: 4px; } 
@@ -12,12 +11,9 @@
 
     .fav-empty-icon svg { width: 40px; height: 40px; color: #FCA5A5; } 
 
-/* favoritos modo oscuro */
 [data-theme="dark"] #page-favorites { background: var(--bg) !important; }
 [data-theme="dark"] .favs-title     { color: var(--fg); }
 [data-theme="dark"] .favs-sub       { color: var(--muted); }
 
-/* Favoritos empty state */
 [data-theme="dark"] .fav-empty-icon    { background: rgba(239,68,68,.12) !important; }
 
-/* Business form footer bar */

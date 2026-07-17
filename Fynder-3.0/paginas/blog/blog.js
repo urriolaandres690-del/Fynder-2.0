@@ -170,7 +170,6 @@ function openArticle(id) {
   goPage('article');
 }
 
-/* ── Sistema de comentarios de artículos ── */
 let _currentArticleId = null;
 const ART_COMMENT_COLORS = [
   'linear-gradient(135deg,#67B8B4,#2F5BB7)',

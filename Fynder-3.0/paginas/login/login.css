@@ -1,5 +1,4 @@
-﻿/* paginas de acceso */
-
+﻿
 #page-login,
 #page-register {
   min-height: 100vh;
@@ -81,7 +80,6 @@
   margin-bottom: 28px;
 }
 
-/* Input groups */
 .input-group {
   margin-bottom: 18px;
 }
@@ -178,7 +176,6 @@
 
 .extras a:hover { text-decoration: underline; }
 
-/* Terms checkbox */
 .terms-check {
   display: flex;
   align-items: flex-start;
@@ -199,7 +196,6 @@
 
 .terms-check a:hover { text-decoration: underline; }
 
-/* Full-width button */
 .btn-full {
   width: 100%;
   display: flex;
@@ -212,7 +208,6 @@
   margin-bottom: 20px;
 }
 
-/* registro / login link below button */
 .register-link {
   text-align: center;
   font-size: .875rem;
@@ -227,7 +222,6 @@
 
 .register-link a:hover { text-decoration: underline; }
 
-/* notificacion toast */
 .fynder-toast {
   position: fixed;
   bottom: 28px;
@@ -258,7 +252,6 @@
 .fynder-toast.toast-error { background: #DC2626; }
 
 
-/* boton iniciar sesion */
 .btn-login-nav {
   display: inline-flex;
   align-items: center;
@@ -283,7 +276,6 @@
   transform: translateY(-1px);
 }
 
-/* On hero (before scroll) make it match the white-on-gradient look */
 .btn-login-nav.on-hero {
   border-color: rgba(255,255,255,.5);
   color: #fff;
@@ -382,7 +374,6 @@
 }
 
 
-/* login registro */
 [data-theme="dark"] #page-login,
 [data-theme="dark"] #page-register {
   background:
@@ -397,7 +388,6 @@
 [data-theme="dark"] .auth-card-header p  { color: var(--muted); }
 [data-theme="dark"] .auth-field label { color: var(--fg); }
 
-/* Inputs: fondo oscuro con !important para vencer los estilos base */
 [data-theme="dark"] .auth-input-wrap input {
   background: rgba(255,255,255,.06) !important;
   border-color: rgba(255,255,255,.12) !important;
@@ -428,7 +418,6 @@
   color: var(--primary) !important;
 }
 
-/* Login/Register back-home btn */
 [data-theme="dark"] .back-home         { background: rgba(255,255,255,.08) !important; color: rgba(255,255,255,.85) !important; }
 [data-theme="dark"] .back-home:hover   { background: rgba(255,255,255,.14) !important; color: #fff !important; }
 

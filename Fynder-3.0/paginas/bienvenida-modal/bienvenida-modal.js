@@ -1,5 +1,4 @@
-﻿/*Se muestra solo si el usuario no tiene sesión y no lo ha descartado en esta visita*/
-(function initWelcomeModal() {
+﻿(function initWelcomeModal() {
   function _show() {
     // Solo mostrar si NO hay sesión activa
     const logged = localStorage.getItem('fynderLogged') === 'true';
