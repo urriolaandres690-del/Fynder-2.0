@@ -1,15 +1,13 @@
-﻿// ── home.js ──
+﻿// ── home.js — lógica exclusiva de la página Home ──
+
+const USERS_EST = Math.max(1200, BUSINESSES.length * 14);
 
 function buildCategories(){
   document.getElementById('catGrid').innerHTML=CATEGORIES.map(c=>{
     const count=BUSINESSES.filter(b=>b.categoryId===c.id).length;
     return`<button class="cat-card" onclick="goDirectoryQuery('','${c.id}')"><div class="cat-icon" style="background:${c.bg};color:${c.color}">${c.svg}</div><div class="cat-name">${c.label}</div><div class="cat-count">${count} negocio${count!==1?'s':''}</div></button>`;
   }).join('');
-} 
-
-/**
- * Habilita arrastre con mouse (drag-to-scroll) en un carrusel horizontal.
- * @param {string} id - id del elemento con overflow-x:auto
+}
 
 function buildHome(){
   document.getElementById('featuredGrid').innerHTML=BUSINESSES.filter(b=>b.isFeatured).map(gridCardHTML).join('');
@@ -29,8 +27,6 @@ function buildHome(){
 
   // ── Cifras reales calculadas desde BUSINESSES y REVIEWS ──
   const total = BUSINESSES.length;
-  const totalReviews = Object.values(REVIEWS).reduce((s,arr)=>s+arr.length,0);
-  const totalReviewCount = BUSINESSES.reduce((s,b)=>s+(b.reviews||0),0);
   const allRatings = BUSINESSES.map(b=>b.rating).filter(Boolean);
   const avgRating = allRatings.length ? (allRatings.reduce((a,b)=>a+b,0)/allRatings.length).toFixed(1) : '4.8';
   const highSat = BUSINESSES.filter(b=>b.rating>=4.0).length;
@@ -54,8 +50,6 @@ function buildHome(){
   if(loginCount) loginCount.textContent=`+${total} negocios registrados`;
 }
 
-// calculo de usuarios
-const USERS_EST = Math.max(1200, BUSINESSES.length * 14);
 function openStatModal(type){
   const total=BUSINESSES.length;
   const allRatings=BUSINESSES.map(b=>b.rating).filter(Boolean);
@@ -67,7 +61,6 @@ function openStatModal(type){
     label:c.label,color:c.color,bg:c.bg,
     count:BUSINESSES.filter(b=>b.categoryId===c.id).length
   })).filter(x=>x.count>0).sort((a,b)=>b.count-a.count);
-  const maxCount=Math.max(...byCat.map(x=>x.count));
 
   const configs={
     negocios:{
@@ -159,7 +152,6 @@ function openStatModal(type){
   const ov=document.getElementById('statModalOverlay');
   ov.classList.remove('hide');
   document.body.style.overflow='hidden';
-  // Animar barras con delay
   requestAnimationFrame(()=>{
     ov.querySelectorAll('.smodal-bar-fill').forEach((el,i)=>{
       const w=el.dataset.pct+'%';
@@ -172,9 +164,10 @@ function openStatModal(type){
 function closeStatModal(){
   document.getElementById('statModalOverlay').classList.add('hide');
   document.body.style.overflow='';
-} 
+}
 
-buildCategories();buildHome();updateNav();
-// drag scroll en filtros
-// tambien se llama desde goPage
+// ── Inicialización ──
+buildCategories();
+buildHome();
+updateNav();
 document.addEventListener('DOMContentLoaded', ()=>{ setTimeout(initCatFiltersDrag, 200); });
