@@ -2898,16 +2898,6 @@ function _buildTickHtml(msg) {
     if (!handle || !sidebar) return;
 
     // Eliminar listeners anteriores clonando el nodo
-
-/* CHAT: DIVISOR REDIMENSIONABLE — RANGO AMPLIADO — Min: 200px | Max: 65% del viewport */
-// Parchar el resizer existente para ampliar los límites
-(function patchWaResizer() {
-  document.addEventListener('DOMContentLoaded', () => {
-    const handle  = document.getElementById('waResizeHandle');
-    const sidebar = document.querySelector('.wa-sidebar');
-    if (!handle || !sidebar) return;
-
-    // Eliminar listeners anteriores clonando el nodo
     const newHandle = handle.cloneNode(true);
     handle.parentNode.replaceChild(newHandle, handle);
 
