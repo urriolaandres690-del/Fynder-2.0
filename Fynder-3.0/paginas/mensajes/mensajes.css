@@ -1,15 +1,4 @@
-﻿/*
- * ═══════════════════════════════════════════════════════════════
- *  Fynder — CSS de: mensajes
- *  Extraído de fynder.css
- *
- *  Los estilos GLOBALES (variables, reset, nav, cards, modal) 
- *  están en shared/fynder.css — este archivo solo contiene
- *  los bloques específicos de esta sección.
- * ═══════════════════════════════════════════════════════════════
- */
-
-/* SISTEMA DE MENSAJES – FYNDER — Variables adaptables: modo día (claro) y noche (oscuro) */
+﻿/* SISTEMA DE MENSAJES – FYNDER — Variables adaptables: modo día (claro) y noche (oscuro) */
 
 /* Variables del sistema de mensajes en modo claro */
 :root {

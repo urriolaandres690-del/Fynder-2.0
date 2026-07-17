@@ -1,15 +1,4 @@
-﻿/*
- * ═══════════════════════════════════════════════════════════════
- *  Fynder — CSS de: sobre-fynder
- *  Extraído de fynder.css
- *
- *  Los estilos GLOBALES (variables, reset, nav, cards, modal) 
- *  están en shared/fynder.css — este archivo solo contiene
- *  los bloques específicos de esta sección.
- * ═══════════════════════════════════════════════════════════════
- */
-
-/* About page */
+﻿/* About page */
 .about-inner { max-width: 1060px; margin: 0 auto; padding: 0 24px; }
 
 #page-about { background: #F8FAFC; }

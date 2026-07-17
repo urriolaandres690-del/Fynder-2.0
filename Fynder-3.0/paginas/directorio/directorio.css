@@ -1,15 +1,4 @@
-﻿/*
- * ═══════════════════════════════════════════════════════════════
- *  Fynder — CSS de: directorio
- *  Extraído de fynder.css
- *
- *  Los estilos GLOBALES (variables, reset, nav, cards, modal) 
- *  están en shared/fynder.css — este archivo solo contiene
- *  los bloques específicos de esta sección.
- * ═══════════════════════════════════════════════════════════════
- */
-
-    /* directorio */
+﻿/* directorio */
 
     .dir-toolbar { position: sticky; top: 64px; z-index: 50; background: rgba(255,255,255,.95); backdrop-filter: blur(12px); border-bottom: 1px solid var(--border); box-shadow: var(--shadow-sm); }
 

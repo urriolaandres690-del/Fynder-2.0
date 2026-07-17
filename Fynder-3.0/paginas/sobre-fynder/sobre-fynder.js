@@ -1,15 +1,4 @@
-﻿/**
- * ═══════════════════════════════════════════════════════════════
- *  Fynder — JS de: sobre-fynder
- *  Extraído de fynder.js
- *
- *  Las funciones GLOBALES (goPage, toggleFav, showToast, etc.)
- *  están en shared/fynder.js — este archivo contiene solo
- *  las funciones específicas de esta sección.
- * ═══════════════════════════════════════════════════════════════
- */
-
-function initAboutPage() {
+﻿function initAboutPage() {
   spawnAboutParticles();
   animateAboutBars();
   animateAboutCounters();

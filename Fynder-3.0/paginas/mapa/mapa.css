@@ -1,15 +1,4 @@
-﻿/*
- * ═══════════════════════════════════════════════════════════════
- *  Fynder — CSS de: mapa
- *  Extraído de fynder.css
- *
- *  Los estilos GLOBALES (variables, reset, nav, cards, modal) 
- *  están en shared/fynder.css — este archivo solo contiene
- *  los bloques específicos de esta sección.
- * ═══════════════════════════════════════════════════════════════
- */
-
-/* ── pagina mapa de negocios ── */
+﻿/* ── pagina mapa de negocios ── */
 
 #page-map {
   display: none;

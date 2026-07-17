@@ -1,15 +1,4 @@
-﻿/**
- * ═══════════════════════════════════════════════════════════════
- *  Fynder — JS de: blog
- *  Extraído de fynder.js
- *
- *  Las funciones GLOBALES (goPage, toggleFav, showToast, etc.)
- *  están en shared/fynder.js — este archivo contiene solo
- *  las funciones específicas de esta sección.
- * ═══════════════════════════════════════════════════════════════
- */
-
-/* ── Newsletter ── */
+﻿/* ── Newsletter ── */
 function subscribeBlog(event) {
     event.preventDefault();
     const email = document.getElementById("blogEmail").value.trim();

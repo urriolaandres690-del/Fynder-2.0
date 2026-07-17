@@ -1,15 +1,4 @@
-/**
- * ═══════════════════════════════════════════════════════════════
- *  Fynder — JS de: ajustes
- *  Extraído de fynder.js
- *
- *  Las funciones GLOBALES (goPage, toggleFav, showToast, etc.)
- *  están en shared/fynder.js — este archivo contiene solo
- *  las funciones específicas de esta sección.
- * ═══════════════════════════════════════════════════════════════
- */
-
-/* PÁGINA DE AJUSTES */
+﻿/* PÁGINA DE AJUSTES */
 
 /** Navega a una sección del panel de ajustes */
 function settGoSection(id, btn) {

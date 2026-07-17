@@ -1,15 +1,4 @@
-/**
- * ═══════════════════════════════════════════════════════════════
- *  Fynder — JS de: write
- *  Extraído de fynder.js (blog.js)
- *
- *  Las funciones GLOBALES (goPage, toggleFav, showToast, etc.)
- *  están en shared/fynder.js — este archivo contiene solo
- *  las funciones específicas del editor de artículos.
- * ═══════════════════════════════════════════════════════════════
- */
-
-/* ── Portada ── */
+﻿/* ── Portada ── */
 function updateCoverPreview(url) {
   const img   = document.getElementById('writeCoverImg');
   const ph    = document.getElementById('writeCoverPlaceholder');

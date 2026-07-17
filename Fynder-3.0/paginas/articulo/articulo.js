@@ -1,15 +1,4 @@
-﻿/**
- * ═══════════════════════════════════════════════════════════════
- *  Fynder — JS de: articulo
- *  Extraído de fynder.js
- *
- *  Las funciones GLOBALES (goPage, toggleFav, showToast, etc.)
- *  están en shared/fynder.js — este archivo contiene solo
- *  las funciones específicas de esta sección.
- * ═══════════════════════════════════════════════════════════════
- */
-
-function openArticle(id) {
+﻿function openArticle(id) {
   const articles = {
     "1": {
       title: "Cómo llevar tu negocio local al siguiente nivel con presencia digital",

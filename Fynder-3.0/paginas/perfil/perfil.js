@@ -1,15 +1,4 @@
-﻿/**
- * ═══════════════════════════════════════════════════════════════
- *  Fynder — JS de: perfil
- *  Extraído de fynder.js
- *
- *  Las funciones GLOBALES (goPage, toggleFav, showToast, etc.)
- *  están en shared/fynder.js — este archivo contiene solo
- *  las funciones específicas de esta sección.
- * ═══════════════════════════════════════════════════════════════
- */
-
-function loadProfile(){
+﻿function loadProfile(){
     const user = JSON.parse(localStorage.getItem("fynderUser"));
     if(!user){
         showToast("Debes iniciar sesión para ver tu perfil.", "error");

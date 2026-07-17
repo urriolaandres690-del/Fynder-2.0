@@ -1,27 +1,16 @@
-/**
- * ---------------------------------------------------------------
- *  Fynder — JS de: mapa
- *  Extraído de fynder.js
- *
- *  Las funciones GLOBALES (goPage, toggleFav, showToast, etc.)
- *  están en shared/fynder.js — este archivo contiene solo
- *  las funciones específicas de esta sección.
- * ---------------------------------------------------------------
- */
-
-/* MAPA DE NEGOCIOS — Motor completo */
+ï»¿/* MAPA DE NEGOCIOS ï¿½ Motor completo */
 
 // Coordenadas de los negocios (Panama City y alrededores)
 const BIZ_COORDS = {
   "1":  [8.9936, -79.5197],  // Centro
   "2":  [8.9914, -79.5302],  // Zona Rosa
   "3":  [9.0007, -79.5200],  // Plaza
-  "5":  [8.9878, -79.5150],  // Barrio El Jardín
-  "6":  [8.9945, -79.5260],  // Col. Médica
+  "5":  [8.9878, -79.5150],  // Barrio El Jardï¿½n
+  "6":  [8.9945, -79.5260],  // Col. Mï¿½dica
   "7":  [9.0021, -79.5185],  // Paseo Comercial
   "8":  [9.0044, -79.5310],  // Las Palmas Blvd Norte
   "9":  [8.9830, -79.5280],  // Calle 50 Miraflores
-  "10": [8.9921, -79.5350],  // Vía Argentina
+  "10": [8.9921, -79.5350],  // Vï¿½a Argentina
   "11": [8.9880, -79.5420],  // Av. Balboa Bella Vista
   "12": [8.9505, -79.5348],  // San Felipe
   "13": [9.0100, -79.5230],  // Tumba Muerto
@@ -32,7 +21,7 @@ const BIZ_COORDS = {
   "18": [8.9630, -79.5412],  // El Chorrillo
   "19": [9.0080, -79.5140],  // Av. Ricardo Alfaro
   "20": [9.0170, -79.5155],  // El Dorado
-  "21": [8.9802, -79.5055],  // Punta Pacífica
+  "21": [8.9802, -79.5055],  // Punta Pacï¿½fica
   "22": [8.9841, -79.5090],  // Calle 50 San Francisco
   "23": [8.9905, -79.5330],  // El Cangrejo
   "300":[9.0052, -79.5320],
@@ -40,11 +29,11 @@ const BIZ_COORDS = {
   "302":[8.9744, -79.5115],
   "303":[9.0310, -79.5010],
   "304":[8.9590, -79.5460],
-  "305":[9.0650, -79.6820],  // Canal de Panamá
+  "305":[9.0650, -79.6820],  // Canal de Panamï¿½
   "306":[9.5620, -78.9830],  // San Blas
-  "307":[9.1100, -79.6700],  // Parque Soberanía
+  "307":[9.1100, -79.6700],  // Parque Soberanï¿½a
   "308":[8.9520, -79.5338],  // Casco Viejo
-  "309":[8.8080, -82.5400],  // Volcán Barú
+  "309":[8.8080, -82.5400],  // Volcï¿½n Barï¿½
   "310":[8.9960, -79.5180],
   "311":[9.0088, -79.5090],
   "312":[8.9523, -79.5345],
@@ -65,13 +54,13 @@ const BIZ_COORDS = {
 // -- Estado del mapa --
 let _map            = null;   // instancia Leaflet
 let _mapMarkers     = {};     // { bizId: L.marker }
-let _mapActiveCat   = '';     // categoría filtrada
+let _mapActiveCat   = '';     // categorï¿½a filtrada
 let _mapSelectedId  = null;   // id negocio seleccionado
 let _mapInitialized = false;
 
 // -- Entrada principal --
 function initMap() {
-  // Si ya está inicializado solo actualizar tamaño y redibuja filtros
+  // Si ya estï¿½ inicializado solo actualizar tamaï¿½o y redibuja filtros
   if (_mapInitialized) {
     _map.invalidateSize();
     _filterAndRenderMap();
@@ -88,13 +77,13 @@ function initMap() {
     zoomControl: false
   });
 
-  // Tiles — CartoDB claro/oscuro (sin API key)
+  // Tiles ï¿½ CartoDB claro/oscuro (sin API key)
   const tileUrl = dark
     ? 'https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png'
     : 'https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png';
 
   L.tileLayer(tileUrl, {
-    attribution: '© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> | © <a href="https://carto.com">CARTO</a>',
+    attribution: 'ï¿½ <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> | ï¿½ <a href="https://carto.com">CARTO</a>',
     subdomains: 'abcd',
     maxZoom: 19
   }).addTo(_map);
@@ -102,7 +91,7 @@ function initMap() {
   // Zoom control en esquina superior derecha
   L.control.zoom({ position: 'topright' }).addTo(_map);
 
-  // Chips de categoría
+  // Chips de categorï¿½a
   _buildMapCatFilters();
 
   // Marcadores
@@ -111,7 +100,7 @@ function initMap() {
   // Panel lateral
   _filterAndRenderMap();
 
-  // Cierra popup al click en mapa vacío
+  // Cierra popup al click en mapa vacï¿½o
   _map.on('click', () => closeMapPopup());
 }
 
@@ -124,11 +113,11 @@ document.addEventListener('themeChanged', () => {
     dark
       ? 'https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png'
       : 'https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png',
-    { attribution: '© OpenStreetMap | © CARTO', subdomains: 'abcd', maxZoom: 19 }
+    { attribution: 'ï¿½ OpenStreetMap | ï¿½ CARTO', subdomains: 'abcd', maxZoom: 19 }
   ).addTo(_map);
 });
 
-// -- Chips de filtro por categoría --
+// -- Chips de filtro por categorï¿½a --
 function _buildMapCatFilters() {
   const wrap = document.getElementById('mapCatFilters');
   if (!wrap) return;
@@ -138,7 +127,7 @@ function _buildMapCatFilters() {
   all.onclick = () => _setMapCat('');
   wrap.appendChild(all);
 
-  // Una chip por categoría que tenga negocios con coords
+  // Una chip por categorï¿½a que tenga negocios con coords
   const usedCats = new Set(
     BUSINESSES
       .filter(b => BIZ_COORDS[b.id])
@@ -198,7 +187,7 @@ function _placeAllMarkers() {
   });
 }
 
-// -- Emoji por categoría --
+// -- Emoji por categorï¿½a --
 function _catEmoji(catId) {
   const map = {
     restaurantes: '???',
@@ -256,7 +245,7 @@ function _renderMapPanel(list) {
   if (!list.length) {
     container.innerHTML = `<div style="padding:24px 16px;text-align:center;color:var(--muted);font-size:.875rem">
       <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="margin:0 auto 12px;display:block;opacity:.35"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
-      Sin resultados para esta búsqueda
+      Sin resultados para esta bï¿½squeda
     </div>`;
     if (panel) panel.classList.remove('hidden');
     return;
@@ -329,17 +318,17 @@ function _openMapPopup(biz) {
   const ratingEl = document.getElementById('mpRating');
   ratingEl.innerHTML = `${stars}
     <strong style="margin-left:4px">${biz.rating}</strong>
-    <span style="font-weight:400;color:var(--muted)">(${biz.reviews} reseñas)</span>`;
+    <span style="font-weight:400;color:var(--muted)">(${biz.reviews} reseï¿½as)</span>`;
 
-  // Botón "Ver detalle"
+  // Botï¿½n "Ver detalle"
   const btnDetail = document.getElementById('mpBtnDetail');
   btnDetail.onclick = () => { closeMapPopup(); openModal(biz.id); };
 
-  // Botón Google Maps
+  // Botï¿½n Google Maps
   const btnGmaps = document.getElementById('mpBtnGmaps');
   btnGmaps.href = `https://www.google.com/maps/search/?api=1&query=${biz.mapQuery || encodeURIComponent(biz.address)}`;
 
-  // Teléfono rápido si existe
+  // Telï¿½fono rï¿½pido si existe
   let phoneHtml = '';
   if (biz.phone) {
     phoneHtml = `<a href="tel:${biz.phone}" class="map-popup-btn map-popup-btn-phone" style="flex:0 0 auto;padding:9px 12px;border-radius:12px;background:rgba(16,185,129,.1);color:#10B981;border:none;cursor:pointer;display:flex;align-items:center;gap:5px;font-size:.8rem;font-weight:600;font-family:'Poppins',sans-serif;text-decoration:none">
@@ -348,7 +337,7 @@ function _openMapPopup(biz) {
     </a>`;
   }
 
-  // Inyectar botón de llamada si no existe
+  // Inyectar botï¿½n de llamada si no existe
   const actionsEl = document.querySelector('.map-popup-actions');
   if (actionsEl) {
     const existingPhone = actionsEl.querySelector('.map-popup-btn-phone');

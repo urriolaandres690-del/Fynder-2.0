@@ -1,15 +1,4 @@
-﻿/*
- * ═══════════════════════════════════════════════════════════════
- *  Fynder — CSS de: planes
- *  Extraído de fynder.css
- *
- *  Los estilos GLOBALES (variables, reset, nav, cards, modal) 
- *  están en shared/fynder.css — este archivo solo contiene
- *  los bloques específicos de esta sección.
- * ═══════════════════════════════════════════════════════════════
- */
-
-/* Página de planes */
+﻿/* Página de planes */
 
 .plans-inner {
   max-width: 1100px;

@@ -1,15 +1,4 @@
-﻿/**
- * ═══════════════════════════════════════════════════════════════
- *  Fynder — JS de: soporte
- *  Extraído de fynder.js
- *
- *  Las funciones GLOBALES (goPage, toggleFav, showToast, etc.)
- *  están en shared/fynder.js — este archivo contiene solo
- *  las funciones específicas de esta sección.
- * ═══════════════════════════════════════════════════════════════
- */
-
-function sendSupport(event) {
+﻿function sendSupport(event) {
     event.preventDefault();
     const name    = document.getElementById("supportName").value.trim();
     const email   = document.getElementById("supportEmail").value.trim();

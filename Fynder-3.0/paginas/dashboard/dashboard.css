@@ -1,15 +1,4 @@
-﻿/*
- * ═══════════════════════════════════════════════════════════════
- *  Fynder — CSS de: dashboard
- *  Extraído de fynder.css
- *
- *  Los estilos GLOBALES (variables, reset, nav, cards, modal) 
- *  están en shared/fynder.css — este archivo solo contiene
- *  los bloques específicos de esta sección.
- * ═══════════════════════════════════════════════════════════════
- */
-
-/* DASHBOARD – Panel de administración de plan y analíticas */
+﻿/* DASHBOARD – Panel de administración de plan y analíticas */
 
 .dashboard-inner {
   max-width: 1100px;

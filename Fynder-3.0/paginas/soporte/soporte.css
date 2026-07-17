@@ -1,15 +1,4 @@
-﻿/*
- * ═══════════════════════════════════════════════════════════════
- *  Fynder — CSS de: soporte
- *  Extraído de fynder.css
- *
- *  Los estilos GLOBALES (variables, reset, nav, cards, modal) 
- *  están en shared/fynder.css — este archivo solo contiene
- *  los bloques específicos de esta sección.
- * ═══════════════════════════════════════════════════════════════
- */
-
-/* Support channel icons */
+﻿/* Support channel icons */
 [data-theme="dark"] .support-channel-icon { background: rgba(103,184,180,.15) !important; color: var(--primary) !important; }
 
 /* Legal section icons */

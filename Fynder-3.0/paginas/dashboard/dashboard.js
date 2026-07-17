@@ -1,15 +1,4 @@
-﻿/**
- * ═══════════════════════════════════════════════════════════════
- *  Fynder — JS de: dashboard
- *  Extraído de fynder.js
- *
- *  Las funciones GLOBALES (goPage, toggleFav, showToast, etc.)
- *  están en shared/fynder.js — este archivo contiene solo
- *  las funciones específicas de esta sección.
- * ═══════════════════════════════════════════════════════════════
- */
-
-function generateAnalytics(period) {
+﻿function generateAnalytics(period) {
   const bizCount = JSON.parse(localStorage.getItem('fynderBusinesses') || '[]').length;
   const base = Math.max(bizCount * 15, 5);
   const seed = period === '7d' ? 1 : period === '30d' ? 4.5 : 12;

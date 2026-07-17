@@ -1,15 +1,4 @@
-﻿/*
- * ═══════════════════════════════════════════════════════════════
- *  Fynder — CSS de: articulo
- *  Extraído de fynder.css
- *
- *  Los estilos GLOBALES (variables, reset, nav, cards, modal) 
- *  están en shared/fynder.css — este archivo solo contiene
- *  los bloques específicos de esta sección.
- * ═══════════════════════════════════════════════════════════════
- */
-
-/* Article body wrap */
+﻿/* Article body wrap */
 [data-theme="dark"] .article-body-wrap     { background: var(--bg); }
 [data-theme="dark"] .article-comments-section { background: var(--bg); }
 [data-theme="dark"] .article-meta-bar      { background: var(--bg); }

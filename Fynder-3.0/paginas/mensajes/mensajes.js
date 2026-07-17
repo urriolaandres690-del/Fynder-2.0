@@ -1,15 +1,4 @@
-﻿/**
- * ═══════════════════════════════════════════════════════════════
- *  Fynder — JS de: mensajes
- *  Extraído de fynder.js
- *
- *  Las funciones GLOBALES (goPage, toggleFav, showToast, etc.)
- *  están en shared/fynder.js — este archivo contiene solo
- *  las funciones específicas de esta sección.
- * ═══════════════════════════════════════════════════════════════
- */
-
-/* SISTEMA DE MENSAJES – FYNDER */
+﻿/* SISTEMA DE MENSAJES – FYNDER */
 
 // ---- Storage helpers ----
 function _getMsgs(bizId) {

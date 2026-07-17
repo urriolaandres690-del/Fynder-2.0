@@ -1,15 +1,4 @@
-﻿/*
- * ═══════════════════════════════════════════════════════════════
- *  Fynder — CSS de: guardados
- *  Extraído de fynder.css
- *
- *  Los estilos GLOBALES (variables, reset, nav, cards, modal) 
- *  están en shared/fynder.css — este archivo solo contiene
- *  los bloques específicos de esta sección.
- * ═══════════════════════════════════════════════════════════════
- */
-
-/* favoritos modo oscuro */
+﻿/* favoritos modo oscuro */
 [data-theme="dark"] #page-favorites { background: var(--bg) !important; }
 [data-theme="dark"] .favs-title     { color: var(--fg); }
 [data-theme="dark"] .favs-sub       { color: var(--muted); }

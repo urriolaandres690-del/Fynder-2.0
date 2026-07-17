@@ -1,15 +1,4 @@
-﻿/**
- * ═══════════════════════════════════════════════════════════════
- *  Fynder — JS de: bienvenida-modal
- *  Extraído de fynder.js
- *
- *  Las funciones GLOBALES (goPage, toggleFav, showToast, etc.)
- *  están en shared/fynder.js — este archivo contiene solo
- *  las funciones específicas de esta sección.
- * ═══════════════════════════════════════════════════════════════
- */
-
-/*Se muestra solo si el usuario no tiene sesión y no lo ha descartado en esta visita*/
+﻿/*Se muestra solo si el usuario no tiene sesión y no lo ha descartado en esta visita*/
 (function initWelcomeModal() {
   function _show() {
     // Solo mostrar si NO hay sesión activa

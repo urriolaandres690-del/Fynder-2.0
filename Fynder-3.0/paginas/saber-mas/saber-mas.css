@@ -1,15 +1,4 @@
-﻿/*
- * ═══════════════════════════════════════════════════════════════
- *  Fynder — CSS de: saber-mas
- *  Extraído de fynder.css
- *
- *  Los estilos GLOBALES (variables, reset, nav, cards, modal) 
- *  están en shared/fynder.css — este archivo solo contiene
- *  los bloques específicos de esta sección.
- * ═══════════════════════════════════════════════════════════════
- */
-
-/* Hero de saber más */
+﻿/* Hero de saber más */
 .fyl-hero {
   position: relative;
   background: linear-gradient(135deg, #1E8F8B 0%, #67B8B4 45%, #2F5BB7 100%);

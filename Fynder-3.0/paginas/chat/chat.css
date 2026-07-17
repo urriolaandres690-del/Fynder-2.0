@@ -1,16 +1,4 @@
-/*
- * ═══════════════════════════════════════════════════════════════
- *  Fynder — CSS de: chat
- *  Extraído de fynder.css
- *
- *  Los estilos GLOBALES y los de mensajes están en
- *  shared/fynder.css y pages/mensajes/mensajes.css
- *  Este archivo solo contiene overrides adicionales para
- *  la página de chat individual (solo móvil).
- * ═══════════════════════════════════════════════════════════════
- */
-
-/* La página de chat móvil hereda la mayor parte de sus estilos
+﻿/* La página de chat móvil hereda la mayor parte de sus estilos
    de mensajes.css (.chat-page, .chat-header, .chat-messages,
    .chat-input-bar, etc.).
    Agrega aquí cualquier override específico de esta vista. */
