@@ -30,3 +30,47 @@
   <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 </head>
 <body>
+
+<!-- ── BARRA DE NAVEGACIÓN ── -->
+<nav id="navbar">
+  <div class="nav-inner">
+    <button id="mainLogo" class="logo" onclick="goPage('home')">
+      <div class="logo-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="white" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg>
+      </div>
+      <span class="logo-text" id="logoText"><span class="fyn">FYN</span><span class="der">DER</span></span>
+    </button>
+    <div class="nav-right">
+      <div class="nav-links">
+        <button class="nav-link active" id="nl-home"      onclick="goPage('home')"      data-i18n="nav.home">Inicio</button>
+        <button class="nav-link"        id="nl-directory" onclick="goPage('directory')" data-i18n="nav.directory">Directorio</button>
+        <button class="nav-link"        id="nl-favorites" onclick="goPage('favorites')" data-i18n="nav.saved">Guardados<span class="nav-badge" id="navBadge" style="display:none">0</span></button>
+        <button class="nav-link"        id="nl-messages"  onclick="goPage('messages')"  data-i18n="nav.messages">Mensajes<span class="nav-badge" id="navMsgBadge" style="display:none">0</span></button>
+      </div>
+      <div class="nav-actions">
+        <span id="userName" class="nav-username"></span>
+        <button class="nav-icon-btn" id="navBtnProfile"   onclick="goPage('profile')"   style="display:none" title="Mi perfil"><i class="fas fa-user-circle"></i></button>
+        <button class="nav-icon-btn" id="navBtnDashboard" onclick="goPage('dashboard')" style="display:none" title="Mi panel"><i class="fas fa-chart-line"></i></button>
+        <button class="btn-login-nav" id="navBtnLogin" onclick="goPage('login')">
+          <i class="fas fa-right-to-bracket"></i>
+          <span data-i18n="nav.login">Iniciar sesión</span>
+        </button>
+        <button class="btn-teal" onclick="goPage('business')">
+          <i class="fas fa-plus" style="font-size:.75rem"></i>
+          <span data-i18n="nav.register">Registrar negocio</span>
+        </button>
+        <button id="darkToggle" class="dark-toggle-btn" onclick="toggleDarkMode()" title="Cambiar tema">
+          <span class="dark-toggle-icon">
+            <svg class="icon-moon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/></svg>
+            <svg class="icon-sun"  xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg>
+          </span>
+        </button>
+        <button class="nav-dots-btn" id="navHamburger" onclick="toggleMobileMenu()" aria-label="Más opciones" title="Más opciones">
+          <i class="fas fa-ellipsis-vertical nav-icon-desktop"></i>
+          <i class="fas fa-bars nav-icon-mobile"></i>
+        </button>
+        <button class="nav-settings-btn" id="navSettingsBtn" onclick="goPage('settings')" title="Ajustes"><i class="fas fa-gear"></i></button>
+      </div>
+    </div>
+  </div>
+</nav>
