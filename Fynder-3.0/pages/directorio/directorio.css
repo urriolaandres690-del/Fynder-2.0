@@ -1,7 +1,13 @@
-﻿/* ═══════════════════════════════════════════════
- *  Fynder — Directorio
- *  Archivo: pages/directorio/directorio.css
- * ═══════════════════════════════════════════════ */
+﻿/*
+ * ═══════════════════════════════════════════════════════════════
+ *  Fynder — CSS de: directorio
+ *  Extraído de fynder.css
+ *
+ *  Los estilos GLOBALES (variables, reset, nav, cards, modal) 
+ *  están en shared/fynder.css — este archivo solo contiene
+ *  los bloques específicos de esta sección.
+ * ═══════════════════════════════════════════════════════════════
+ */
 
     /* directorio */
 
@@ -354,15 +360,6 @@
     color:white;
    }
 
-    /* NOTE: .bcard:hover with scale was removed — it displaced the "Ver más" button
-       making it unclickable. The clean hover is defined earlier in the file. */
-
-    .auth-card{
-        width:100%;
-        max-width:500px;
-
-        background:white;
-
 
 /* directorio modo oscuro */
 [data-theme="dark"] #page-directory { background: var(--bg) !important; }
@@ -374,10 +371,6 @@
 [data-theme="dark"] .dir-count      { color: var(--muted); }
 
 /* favoritos modo oscuro */
-[data-theme="dark"] #page-favorites { background: var(--bg) !important; }
-[data-theme="dark"] .favs-title     { color: var(--fg); }
-[data-theme="dark"] .favs-sub       { color: var(--muted); }
-
 
   /* ---- Directorio ---- */
   .dir-toolbar { top: 56px; }
@@ -392,38 +385,10 @@
   .map-toolbar { top: 56px; }
 
   /* ---- Página business register ---- */
-  .biz-reg-grid-2 { grid-template-columns: 1fr; }
-
-  /* ---- Modal ---- */
-  .fynder-modal-overlay { padding: 0; align-items: flex-end; }
-  .fynder-modal {
-    border-radius: 20px 20px 0 0;
-    max-height: 90dvh;
-    overflow-y: auto;
-  }
-
-  /* ---- Share panel ---- */
-  .share-panel-box { width: 100%; border-radius: 20px 20px 0 0; }
-
-  /* ---- Menú móvil drawer más ancho ---- */
-  .mobile-menu-drawer { width: min(320px, 88vw) !important; }
-}
-
-/* MÓVIL (≤ 600px) – ajustes adicionales */
 
 /* ---- Dir count ---- */
 [data-theme="dark"] .dir-count            { color: var(--muted); }
 [data-theme="dark"] .dir-empty            { color: var(--muted); }
 
 /* ---- Modal de negocio: botones de acción ---- */
-[data-theme="dark"] .biz-modal-btn        { background: rgba(255,255,255,.07); border-color: rgba(255,255,255,.12); color: var(--fg); }
-[data-theme="dark"] .biz-modal-btn:hover  { background: rgba(103,184,180,.15); color: var(--primary); }
-[data-theme="dark"] .modal-close-btn      { background: rgba(255,255,255,.08); color: var(--muted); }
-[data-theme="dark"] .modal-close-btn:hover { background: rgba(255,255,255,.14); color: var(--fg); }
-[data-theme="dark"] .modal-scroll-body    { background: var(--card); }
-[data-theme="dark"] .modal-rating-val     { color: var(--fg); }
-[data-theme="dark"] .info-row-label       { color: var(--muted); }
-[data-theme="dark"] .info-row-val         { color: var(--fg); }
-
-/* ---- Plan card: divider ---- */
 

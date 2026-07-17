@@ -1,7 +1,13 @@
-﻿/* ═══════════════════════════════════════════════
- *  Fynder — Blog
- *  Archivo: pages/blog/blog.css
- * ═══════════════════════════════════════════════ */
+﻿/*
+ * ═══════════════════════════════════════════════════════════════
+ *  Fynder — CSS de: blog
+ *  Extraído de fynder.css
+ *
+ *  Los estilos GLOBALES (variables, reset, nav, cards, modal) 
+ *  están en shared/fynder.css — este archivo solo contiene
+ *  los bloques específicos de esta sección.
+ * ═══════════════════════════════════════════════════════════════
+ */
 
 /* Página de blog */
 
@@ -412,11 +418,6 @@
 
 /* Hero de saber más */
 .fyl-hero {
-  position: relative;
-  background: linear-gradient(135deg, #1E8F8B 0%, #67B8B4 45%, #2F5BB7 100%);
-  padding: 100px 24px 0;
-  overflow: visible;
-  display: flex;
 
 /* Blog: post body paragraphs */
 [data-theme="dark"] .blog-featured-body { background: var(--card); }
@@ -445,14 +446,4 @@
 
   /* ---- Dashboard ---- */
   .dashboard-title { font-size: 1.3rem; }
-  .dash-stat-value { font-size: 1.25rem; }
-  .dash-plan-name  { font-size: 1rem; }
-  .dash-plan-price { font-size: 1.6rem; }
-
-  /* ---- Footer ---- */
-  .footer-inner    { padding: 40px 16px 24px; }
-  .footer-brand-desc { font-size: .82rem; }
-  .footer-col p, .footer-col button { font-size: .82rem; }
-}
-
 

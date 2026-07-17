@@ -1,7 +1,13 @@
-﻿/* ═══════════════════════════════════════════════
- *  Fynder — Sobre Fynder
- *  Archivo: pages/sobre-fynder/sobre-fynder.css
- * ═══════════════════════════════════════════════ */
+﻿/*
+ * ═══════════════════════════════════════════════════════════════
+ *  Fynder — CSS de: sobre-fynder
+ *  Extraído de fynder.css
+ *
+ *  Los estilos GLOBALES (variables, reset, nav, cards, modal) 
+ *  están en shared/fynder.css — este archivo solo contiene
+ *  los bloques específicos de esta sección.
+ * ═══════════════════════════════════════════════════════════════
+ */
 
 /* About page */
 .about-inner { max-width: 1060px; margin: 0 auto; padding: 0 24px; }
@@ -402,151 +408,6 @@
 }
 
 /* seccion final about */
-.about-cta {
-  text-align: center;
-
-/* seccion final about */
-.about-cta {
-  text-align: center;
-  background: linear-gradient(135deg, #0F172A 0%, #1E293B 50%, #0F2A4A 100%);
-  border-radius: 28px;
-  padding: 60px 40px;
-  color: #fff;
-  position: relative;
-  overflow: hidden;
-}
-.about-cta-glow {
-  position: absolute;
-  top: -60px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 400px;
-  height: 200px;
-  background: radial-gradient(ellipse, rgba(103,184,180,.25) 0%, transparent 70%);
-  pointer-events: none;
-}
-.about-cta-inner { position: relative; z-index: 1; }
-.about-cta-badge {
-  display: inline-flex;
-  align-items: center;
-  gap: 7px;
-  padding: 6px 16px;
-  background: rgba(103,184,180,.15);
-  border: 1px solid rgba(103,184,180,.3);
-  border-radius: 99px;
-  font-size: .75rem;
-  font-weight: 700;
-  color: #67B8B4;
-  font-family: 'Poppins', sans-serif;
-  text-transform: uppercase;
-  letter-spacing: .06em;
-  margin-bottom: 20px;
-}
-.about-cta h2 {
-  font-size: clamp(1.75rem, 3.5vw, 2.25rem);
-  font-weight: 900;
-  margin-bottom: 14px;
-  line-height: 1.2;
-}
-.about-cta h2 span { color: #67B8B4; }
-.about-cta > .about-cta-inner > p {
-  color: rgba(255,255,255,.7);
-  font-size: .9375rem;
-  max-width: 480px;
-  margin: 0 auto 32px;
-  line-height: 1.7;
-}
-.about-cta-btns {
-  display: flex;
-  gap: 14px;
-  justify-content: center;
-  flex-wrap: wrap;
-  margin-bottom: 28px;
-}
-.about-cta-btn-primary,
-.about-cta-btn-secondary {
-  display: inline-flex;
-  align-items: center;
-  gap: 12px;
-  padding: 14px 22px;
-  border-radius: 16px;
-  border: none;
-  cursor: pointer;
-  font-family: 'Poppins', sans-serif;
-  transition: all .2s;
-  text-align: left;
-  min-width: 220px;
-}
-.about-cta-btn-primary {
-  background: #67B8B4;
-  color: #fff;
-  box-shadow: 0 6px 24px rgba(103,184,180,.4);
-}
-.about-cta-btn-primary:hover {
-  background: #1E8F8B;
-  transform: translateY(-2px);
-  box-shadow: 0 10px 32px rgba(103,184,180,.5);
-}
-.about-cta-btn-secondary {
-  background: rgba(255,255,255,.1);
-  border: 1.5px solid rgba(255,255,255,.2) !important;
-  color: #fff;
-}
-.about-cta-btn-secondary:hover {
-  background: rgba(255,255,255,.18);
-  transform: translateY(-2px);
-}
-.about-cta-btn-primary i,
-.about-cta-btn-secondary i {
-  font-size: 1.25rem;
-  flex-shrink: 0;
-}
-.about-cta-btn-primary span,
-.about-cta-btn-secondary span {
-  display: flex;
-  flex-direction: column;
-  gap: 2px;
-}
-.about-cta-btn-primary strong,
-.about-cta-btn-secondary strong {
-  font-size: .9375rem;
-  font-weight: 700;
-  display: block;
-}
-.about-cta-btn-primary small,
-.about-cta-btn-secondary small {
-  font-size: .75rem;
-  opacity: .75;
-  font-weight: 400;
-  display: block;
-}
-.about-cta-perks {
-  display: flex;
-  justify-content: center;
-  gap: 20px;
-  flex-wrap: wrap;
-}
-.about-cta-perks span {
-  display: flex;
-  align-items: center;
-  gap: 7px;
-  font-size: .8125rem;
-  color: rgba(255,255,255,.6);
-  font-weight: 500;
-}
-.about-cta-perks i { color: #67B8B4; font-size: .75rem; }
-
-@media (max-width: 768px) {
-  .about-origin-content { grid-template-columns: 1fr; }
-  .about-origin-visual { padding: 24px 20px; }
-  .about-impact-grid { grid-template-columns: 1fr; }
-  .about-team-banner { flex-direction: column; text-align: center; }
-  .about-cta { padding: 44px 24px; }
-  .about-cta-btns { flex-direction: column; align-items: center; }
-  .about-cta-btn-primary,
-  .about-cta-btn-secondary { width: 100%; max-width: 320px; }
-  .about-cta-perks { gap: 12px; }
-}
 
 /* Dark mode – nuevas secciones about */
 [data-theme="dark"] .about-origin       { background: linear-gradient(135deg, #0a0f1e 0%, #0d1a2e 100%); }
@@ -565,14 +426,6 @@
 [data-theme="dark"] .about-cta { background: linear-gradient(135deg, #060D1A 0%, #0F172A 50%, #091829 100%); }
 
 /* Profile page */
-.profile-inner { max-width: 960px; margin: 0 auto; padding: 0 24px; }
-
-/* portada del perfil */
-.profile-cover-wrap {
-  border-radius: 24px;
-  /* overflow: hidden ELIMINADO — causaba que el avatar y el panel quedaran recortados */
-  box-shadow: var(--shadow-md);
-  margin-bottom: 20px;
 
 /* About nuevas secciones – origin, team, impact */
 [data-theme="dark"] .about-origin-text h2 { color: var(--fg); }
@@ -587,25 +440,50 @@
 /* Write page: bg de página */
 [data-theme="dark"] #page-write { background: var(--bg) !important; }
 
-/* Modales en dark: fondo del input de reseña */
-[data-theme="dark"] .bizCommentInput { background: rgba(255,255,255,.06) !important; color: var(--fg) !important; border-color: rgba(255,255,255,.1) !important; }
+  /* About cards: 3→2 cols */
+  .about-cards { grid-template-columns: 1fr 1fr; }
+  .about-impact-grid { grid-template-columns: 1fr 1fr; }
 
-/* ── Hero wave fill adaptable ── */
-.hero-wave-fill { fill: #F8FAFC; }
-[data-theme="dark"] .hero-wave-fill { fill: #0F172A; }
+  /* About origin */
+  .about-origin-content { grid-template-columns: 1fr; }
+  .about-origin-visual { display: none; }
 
-/* ── Fynder hero wave fill ── */
-.fyl-wave-fill { fill: #F8FAFC; }
-[data-theme="dark"] .fyl-wave-fill { fill: #0F172A; }
+  /* Dashboard stats */
+  .dash-stats-grid { grid-template-columns: repeat(2, 1fr); }
 
-/* ── Fynder section-alt dark override (evita duplicado) ── */
-[data-theme="dark"] .fyl-section-alt { background: #1E293B !important; border-color: rgba(255,255,255,.07) !important; }
+  /* Plans grid */
+  .plans-grid-4 { grid-template-columns: repeat(2, 1fr); }
+  .plan-card-pro { transform: none; }
+  .plan-card-pro:hover { transform: translateY(-3px); }
 
-/* Página de planes */
+  /* ---- About ---- */
+  .about-title     { font-size: 1.5rem !important; }
+  .about-lead      { font-size: .9rem; }
+  .about-impact-num { font-size: 1.75rem !important; }
+  .about-stat-num  { font-size: 1.5rem; }
+  .about-card      { padding: 24px 18px; }
 
-/* Grid de 4 columnas */
-.plans-grid-4 {
-  grid-template-columns: repeat(4, 1fr) !important;
+  /* ---- Soporte ---- */
+  .support-title   { font-size: 1.5rem !important; }
+  .support-inner   { padding: 40px 16px 60px; }
+  .support-channel { padding: 24px 18px; }
+
+  /* ---- Blog ---- */
+  .blog-title      { font-size: 1.5rem !important; }
+  .blog-inner      { padding: 40px 16px 60px; }
+
+  /* ---- Legal ---- */
+  .legal-hero-title { font-size: 1.5rem !important; }
+  .legal-inner     { padding: 24px 16px; }
+
+  /* ---- Dashboard ---- */
+  .dashboard-title { font-size: 1.3rem; }
+  .dash-stat-value { font-size: 1.25rem; }
+  .dash-plan-name  { font-size: 1rem; }
+  .dash-plan-price { font-size: 1.6rem; }
+
+  /* ---- Footer ---- */
+  .footer-inner    { padding: 40px 16px 24px; }
 
 /* ABOUT PAGE V2 – Rediseño visual completo */
 
@@ -1083,67 +961,6 @@
 /* ── pagina mapa de negocios ── */
 
 
-/* TEMA CLARO/OSCURO — Páginas "Saber más" y "Sobre Fynder" — Fix: fondos, bordes, textos y cards adaptables al tema */
-
-/* ── Fondos de sección principal ── */
-.fyl-body { background: var(--bg); }
-.about-body { background: var(--bg); }
-
-/* ── Cards en modo claro: fondo blanco limpio con borde visible ── */
-.fyl-step,
-.fyl-feature,
-.fyl-impact-card,
-.fyl-testi:not(.fyl-testi-featured),
-.fyl-for-card,
-.fyl-faq-item {
-  background: var(--card);
-  border-color: var(--border);
-}
-
-/* Bordes más visibles en modo claro */
-.fyl-step    { border: 1.5px solid rgba(103,184,180,.22); }
-.fyl-feature { border: 1.5px solid rgba(103,184,180,.22); }
-.fyl-impact-card { border: 1.5px solid rgba(103,184,180,.22); }
-.fyl-testi:not(.fyl-testi-featured) { border: 1.5px solid rgba(103,184,180,.22); }
-.fyl-for-card{ border: 1.5px solid rgba(103,184,180,.22); }
-.fyl-faq-item{ border: 1.5px solid rgba(103,184,180,.22); }
-
-/* El featured SIEMPRE tiene su gradiente */
-.fyl-testi-featured {
-  background: linear-gradient(155deg, #1E8F8B, #2F5BB7) !important;
-  border-color: transparent !important;
-}
-
-/* ── Secciones alternadas en modo CLARO: fondo suave diferenciado ── */
-section.fyl-section-alt { background: #EBF6F5 !important; }
-.about-section-alt-bg   { background: #EBF6F5 !important; }
-
-/* ── Textos de cards en modo claro ── */
-.fyl-section-title  { color: var(--fg); }
-.fyl-section-lead   { color: var(--muted); }
-.fyl-step-body h3   { color: var(--fg); }
-.fyl-step-body p    { color: var(--muted); }
-.fyl-feature h4     { color: var(--fg); }
-.fyl-feature p      { color: var(--muted); }
-.fyl-impact-lbl     { color: var(--fg); }
-.fyl-impact-sub     { color: var(--muted); }
-.fyl-testi:not(.fyl-testi-featured) .fyl-testi-text { color: var(--muted); }
-.fyl-testi:not(.fyl-testi-featured) .fyl-testi-author strong { color: var(--fg); }
-.fyl-for-card h3    { color: var(--fg); }
-.fyl-faq-item summary { color: var(--fg); }
-.fyl-faq-item p     { color: var(--muted); }
-
-/* Compare "Sin Fynder" en modo claro */
-.fyl-compare-no { background: #FEF2F2; }
-.fyl-compare-no .fyl-compare-list li { color: #6B7280; }
-
-/* ── About: cards mvv en modo claro ── */
-.about-mvv-card { background: var(--card); border-color: rgba(103,184,180,.22); }
-.about-mvv-card h3 { color: var(--fg); }
-.about-mvv-card p  { color: var(--muted); }
-
-/* ── About: sección origen tarjeta — ver bloque final de fixes ── */
-
 /* ── MODO OSCURO: overrides mejorados ── */
 [data-theme="dark"] section.fyl-section-alt  { background: #1A2744 !important; }
 [data-theme="dark"] .about-section-alt-bg    { background: #1A2744 !important; }
@@ -1414,210 +1231,6 @@ section.fyl-section .fyl-cta {
 
 
 /* REDONDEO GLOBAL + FIX TESTIMONIO FEATURED — Saber más y Sobre Fynder — menos cuadrados, más fluidos */
-
-/* ── FIX CRÍTICO: testimonio del medio (featured) siempre texto blanco ── */
-
-/* ── FIX CRÍTICO: testimonio del medio (featured) siempre texto blanco ── */
-.fyl-testi-featured .fyl-testi-text   { color: rgba(255,255,255,.88) !important; }
-.fyl-testi-featured .fyl-testi-stars  { color: #FDE68A !important; }
-.fyl-testi-featured .fyl-testi-author strong { color: #fff !important; }
-.fyl-testi-featured .fyl-testi-author span   { color: rgba(255,255,255,.65) !important; }
-
-/* ── REDONDEO — cards de "Saber más" ── */
-.fyl-what-card  { border-radius: 28px !important; }
-.fyl-step       { border-radius: 24px !important; }
-.fyl-feature    { border-radius: 22px !important; }
-.fyl-impact-card{ border-radius: 24px !important; }
-.fyl-testi      { border-radius: 28px !important; }
-.fyl-for-card   { border-radius: 28px !important; }
-.fyl-faq-item   { border-radius: 18px !important; }
-.fyl-compare    { border-radius: 32px !important; overflow: hidden; }
-
-/* Botones más redondeados */
-.fyl-btn-primary,
-.fyl-btn-ghost  { border-radius: 18px !important; }
-.fyl-for-btn-teal,
-.fyl-for-btn-purple { border-radius: 16px !important; }
-.fyl-cta-btn    { border-radius: 18px !important; }
-
-/* Pills del hero: ya son 99px, está bien */
-
-/* Iconos de feat y pasos */
-.fyl-feat-icon  { border-radius: 16px !important; }
-.fyl-step-num   { border-radius: 0; } /* número, no card */
-
-/* ── REDONDEO — cards de "Sobre Fynder" ── */
-.about-mvv-card      { border-radius: 28px !important; }
-.about-impact-v2-card{ border-radius: 24px !important; }
-.about-origin-v2-card{ border-radius: 28px !important; }
-.about-origin-logo-big { border-radius: 24px !important; }
-.about-mvv-icon      { border-radius: 18px !important; }
-
-/* Stats grid about */
-.about-stats-v2-grid { border-radius: 28px !important; }
-
-/* Botones del about hero */
-.about-hero-btn-primary,
-.about-hero-btn-ghost { border-radius: 18px !important; }
-.about-cta-v2-primary,
-.about-cta-v2-ghost   { border-radius: 18px !important; }
-
-/* ── Secciones FAQ más redondeadas ── */
-.fyl-faq-item summary { border-radius: 18px !important; }
-.fyl-faq-item[open] summary { border-radius: 18px 18px 0 0 !important; }
-
-/* ── Compare: columnas con esquinas redondeadas en los extremos ── */
-.fyl-compare-no  { border-radius: 32px 0 0 32px !important; }
-.fyl-compare-yes { border-radius: 0 32px 32px 0 !important; }
-
-/* ── Categorías de saber más: ya son pill (99px), ok ── */
-
-/* ── Secciones de fondo alternado: esquinas superiores redondeadas ── */
-section.fyl-section-alt {
-  border-radius: 0 !important; /* full-width, sin esquinas */
-}
-
-
-/* FIX FINAL — Team card redondeo + testimonios */
-
-/* ── Team card: esquinas bien redondeadas y aspecto premium ── */
-.about-team-card {
-  border-radius: 28px !important;
-  margin: 24px !important;
-  /* Ancho real dentro del padding de la sección */
-}
-
-/* La sección que lo contiene: deja espacio para que se vean las esquinas */
-.about-section.about-section-alt-bg:has(.about-team-card) {
-  background: var(--bg) !important;
-  padding: 0 !important;
-}
-
-/* ── Redondeo de los pills de origen ── */
-.about-origin-pill { border-radius: 99px !important; }
-.about-origin-logo-big { border-radius: 24px !important; }
-
-/* ── Testimonio featured: protección total del background ── */
-.fyl-testi.fyl-testi-featured {
-  background: linear-gradient(155deg, #1E8F8B 0%, #2563EB 100%) !important;
-  border-color: transparent !important;
-  color: #fff !important;
-}
-.fyl-testi.fyl-testi-featured .fyl-testi-text   { color: rgba(255,255,255,.9) !important; }
-.fyl-testi.fyl-testi-featured .fyl-testi-stars  { color: #FDE68A !important; }
-.fyl-testi.fyl-testi-featured .fyl-testi-author strong { color: #fff !important; }
-.fyl-testi.fyl-testi-featured .fyl-testi-author span   { color: rgba(255,255,255,.65) !important; }
-
-/* ── About section-alt-bg con team card usa fondo de página ── */
-[data-theme="dark"] .about-section.about-section-alt-bg:has(.about-team-card) {
-  background: var(--bg) !important;
-}
-
-
-/* NAVBAR BLANCO sobre heroes de About y Saber más — Fallback CSS para cuando on-hero no se aplica a tiempo */
-
-/* Nav links blancos sobre el hero de Home, About y Saber más */
-body:has(#page-home.active) #navbar:not(.scrolled) .nav-link,
-body:has(#page-about.active) #navbar:not(.scrolled) .nav-link,
-body:has(#page-fynder.active) #navbar:not(.scrolled) .nav-link {
-  color: rgba(255,255,255,.85);
-}
-body:has(#page-home.active) #navbar:not(.scrolled) .nav-link:hover,
-body:has(#page-about.active) #navbar:not(.scrolled) .nav-link:hover,
-body:has(#page-fynder.active) #navbar:not(.scrolled) .nav-link:hover {
-  background: rgba(255,255,255,.12);
-  color: #fff;
-}
-body:has(#page-home.active) #navbar:not(.scrolled) .nav-link.active,
-body:has(#page-about.active) #navbar:not(.scrolled) .nav-link.active,
-body:has(#page-fynder.active) #navbar:not(.scrolled) .nav-link.active {
-  background: rgba(255,255,255,.18);
-  color: #fff;
-}
-
-/* Botones ghost del navbar (Mi perfil, Mi panel, Cerrar sesión) */
-body:has(#page-home.active) #navbar:not(.scrolled) .btn-ghost,
-body:has(#page-about.active) #navbar:not(.scrolled) .btn-ghost,
-body:has(#page-fynder.active) #navbar:not(.scrolled) .btn-ghost {
-  color: rgba(255,255,255,.85);
-}
-body:has(#page-home.active) #navbar:not(.scrolled) .btn-ghost:hover,
-body:has(#page-about.active) #navbar:not(.scrolled) .btn-ghost:hover,
-body:has(#page-fynder.active) #navbar:not(.scrolled) .btn-ghost:hover {
-  color: #fff;
-  background: rgba(255,255,255,.15);
-  border-radius: 10px;
-}
-
-/* Nombre de usuario */
-body:has(#page-home.active) #navbar:not(.scrolled) #userName,
-body:has(#page-about.active) #navbar:not(.scrolled) #userName,
-body:has(#page-fynder.active) #navbar:not(.scrolled) #userName {
-  color: rgba(255,255,255,.9);
-}
-
-/* Botón Iniciar sesión */
-body:has(#page-home.active) #navbar:not(.scrolled) .btn-login-nav,
-body:has(#page-about.active) #navbar:not(.scrolled) .btn-login-nav,
-body:has(#page-fynder.active) #navbar:not(.scrolled) .btn-login-nav {
-  border-color: rgba(255,255,255,.5);
-  color: #fff;
-}
-body:has(#page-home.active) #navbar:not(.scrolled) .btn-login-nav:hover,
-body:has(#page-about.active) #navbar:not(.scrolled) .btn-login-nav:hover,
-body:has(#page-fynder.active) #navbar:not(.scrolled) .btn-login-nav:hover {
-  background: rgba(255,255,255,.2);
-  border-color: #fff;
-}
-
-/* Separador links/acciones sobre hero */
-body:has(#page-home.active) #navbar:not(.scrolled) .nav-links + .nav-actions,
-body:has(#page-about.active) #navbar:not(.scrolled) .nav-links + .nav-actions,
-body:has(#page-fynder.active) #navbar:not(.scrolled) .nav-links + .nav-actions {
-  border-left-color: rgba(255,255,255,.2);
-}
-
-/* Logo: FYN en blanco sobre hero */
-body:has(#page-home.active) #navbar:not(.scrolled) .logo-text .fyn,
-body:has(#page-about.active) #navbar:not(.scrolled) .logo-text .fyn,
-body:has(#page-fynder.active) #navbar:not(.scrolled) .logo-text .fyn {
-  color: #fff;
-}
-
-/* Botón dark toggle */
-body:has(#page-home.active) #navbar:not(.scrolled) .dark-toggle-btn,
-body:has(#page-about.active) #navbar:not(.scrolled) .dark-toggle-btn,
-body:has(#page-fynder.active) #navbar:not(.scrolled) .dark-toggle-btn {
-  color: rgba(255,255,255,.85);
-  background: rgba(255,255,255,.1);
-}
-
-/* Botón menú hamburguesa/dots */
-body:has(#page-home.active) #navbar:not(.scrolled) .nav-dots-btn,
-body:has(#page-about.active) #navbar:not(.scrolled) .nav-dots-btn,
-body:has(#page-fynder.active) #navbar:not(.scrolled) .nav-dots-btn {
-  color: rgba(255,255,255,.85);
-  border-color: rgba(255,255,255,.35);
-}
-body:has(#page-home.active) #navbar:not(.scrolled) .nav-dots-btn:hover,
-body:has(#page-about.active) #navbar:not(.scrolled) .nav-dots-btn:hover,
-body:has(#page-fynder.active) #navbar:not(.scrolled) .nav-dots-btn:hover {
-  background: rgba(255,255,255,.15);
-  color: #fff;
-  border-color: rgba(255,255,255,.6);
-}
-
-/* Modo oscuro: ya tiene su propio fondo oscuro, no necesita override */
-[data-theme="dark"] body:has(#page-home.active) #navbar:not(.scrolled) .nav-link,
-[data-theme="dark"] body:has(#page-about.active) #navbar:not(.scrolled) .nav-link,
-[data-theme="dark"] body:has(#page-fynder.active) #navbar:not(.scrolled) .nav-link {
-  color: rgba(255,255,255,.75);
-}
-
-
-/* SECCIÓN GLOBO TERRÁQUEO FYNDER — dentro de #page-map */
-
-:root {
 
 /* SECCIÓN PATROCINADORES — página About */
 

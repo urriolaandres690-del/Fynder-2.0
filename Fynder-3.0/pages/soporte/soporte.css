@@ -1,7 +1,13 @@
-﻿/* ═══════════════════════════════════════════════
- *  Fynder — Soporte
- *  Archivo: pages/soporte/soporte.css
- * ═══════════════════════════════════════════════ */
+﻿/*
+ * ═══════════════════════════════════════════════════════════════
+ *  Fynder — CSS de: soporte
+ *  Extraído de fynder.css
+ *
+ *  Los estilos GLOBALES (variables, reset, nav, cards, modal) 
+ *  están en shared/fynder.css — este archivo solo contiene
+ *  los bloques específicos de esta sección.
+ * ═══════════════════════════════════════════════════════════════
+ */
 
 /* Support channel icons (los inline styles no se pueden override así, pero sí con !important en clases derivadas) */
 [data-theme="dark"] .support-channel-icon { background: rgba(103,184,180,.15) !important; color: var(--primary) !important; }
@@ -21,14 +27,6 @@
 
 /* BREAKPOINT: móvil grande (481px – 600px) */
 @media (max-width: 600px) {
-  /* Navbar: mostrar hamburger, ocultar nav-links y acciones grandes */
-  .nav-links         { display: none !important; }
-  .btn-ghost         { display: none !important; }
-  .btn-login-nav     { display: none !important; }
-  .nav-hamburger     { display: flex !important; }
-
-  /* El botón "Registrar negocio" ocupa demasiado en el nav */
-  #navbar .btn-teal  { display: none !important; }
 
 /* ---- Formulario soporte – campos ---- */
 [data-theme="dark"] .support-field input,
@@ -46,21 +44,4 @@
 
 /* ---- Mapa – popup y controles ---- */
 [data-theme="dark"] .map-popup            { background: var(--card); border-color: rgba(255,255,255,.1); }
-[data-theme="dark"] .map-popup-close      { background: rgba(255,255,255,.08); color: var(--muted); }
-[data-theme="dark"] .map-popup-close:hover { background: rgba(255,255,255,.15); color: var(--fg); }
-[data-theme="dark"] .map-popup-name       { color: var(--fg); }
-[data-theme="dark"] .map-popup-addr       { color: var(--muted); }
-[data-theme="dark"] .map-popup-cat        { opacity: .85; }
-[data-theme="dark"] .map-search-box input { background: transparent; color: var(--fg); }
-[data-theme="dark"] .map-search-box input::placeholder { color: var(--muted); }
-[data-theme="dark"] .map-filter-chip      { color: var(--muted); }
-[data-theme="dark"] .map-filter-chip:hover { color: var(--primary); }
-[data-theme="dark"] .map-filter-chip.active { background: var(--primary); color: #fff; border-color: var(--primary); }
-[data-theme="dark"] .map-list-name        { color: var(--fg); }
-[data-theme="dark"] .map-list-cat         { color: var(--muted); }
-[data-theme="dark"] .map-list-rating span { color: var(--muted); }
-[data-theme="dark"] #page-map             { background: var(--bg) !important; }
-
-/* ---- Dashboard complementos ---- */
-[data-theme="dark"] #page-dashboard       { background: var(--bg) !important; }
 

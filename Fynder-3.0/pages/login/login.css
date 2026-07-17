@@ -1,7 +1,13 @@
-﻿/* ═══════════════════════════════════════════════
- *  Fynder — Login — Iniciar Sesión
- *  Archivo: pages/login/login.css
- * ═══════════════════════════════════════════════ */
+﻿/*
+ * ═══════════════════════════════════════════════════════════════
+ *  Fynder — CSS de: login
+ *  Extraído de fynder.css
+ *
+ *  Los estilos GLOBALES (variables, reset, nav, cards, modal) 
+ *  están en shared/fynder.css — este archivo solo contiene
+ *  los bloques específicos de esta sección.
+ * ═══════════════════════════════════════════════════════════════
+ */
 
 /* paginas de autenticacion – Login y Registro */
 
@@ -282,206 +288,6 @@
 /* Ocultar el ojo nativo del browser (Edge/Chrome) en inputs de contraseña */
 .auth-input-wrap input[type="password"]::-ms-reveal,
 .auth-input-wrap input[type="password"]::-ms-clear {
-  display: none !important;
-}
-.auth-input-wrap input[type="password"]::-webkit-credentials-auto-fill-button,
-.auth-input-wrap input[type="password"]::-webkit-textfield-decoration-container {
-  display: none !important;
-  visibility: hidden !important;
-  pointer-events: none !important;
-}
-
-.auth-input-wrap input:hover {
-  border-color: #CBD5E1 !important;
-  background: #fff !important;
-}
-
-.auth-input-wrap input:focus {
-  border-color: var(--primary) !important;
-  background: #fff !important;
-  box-shadow: 0 0 0 3.5px rgba(103,184,180,.18) !important;
-}
-
-.auth-eye-btn {
-  position: absolute;
-  right: 12px;
-  background: none !important;
-  border: none !important;
-  cursor: pointer;
-  color: #9CA3AF !important;
-  font-size: .875rem;
-  padding: 4px;
-  line-height: 1 !important;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: color .2s;
-}
-
-.auth-eye-btn:hover { color: var(--primary) !important; }
-
-/* Error de campo */
-.auth-field-error {
-  display: flex;
-  align-items: center;
-  gap: 5px;
-  font-size: .75rem;
-  color: #EF4444;
-  margin-top: 6px;
-  font-weight: 500;
-}
-
-/* Campos en fila (contraseñas) */
-.auth-fields-row {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 14px;
-}
-
-/* Checkbox recordarme */
-.auth-remember {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  margin-bottom: 22px;
-  cursor: pointer;
-  font-size: .8125rem;
-  color: #4B5563;
-  font-weight: 500;
-  user-select: none;
-}
-
-.auth-remember input[type="checkbox"],
-.auth-terms input[type="checkbox"] {
-  width: 17px;
-  height: 17px;
-  accent-color: var(--primary);
-  cursor: pointer;
-  flex-shrink: 0;
-}
-
-/* terminos */
-.auth-terms {
-  display: flex;
-  align-items: flex-start;
-  gap: 10px;
-  margin-bottom: 22px;
-  cursor: pointer;
-  font-size: .8rem;
-  color: #4B5563;
-  line-height: 1.5;
-  user-select: none;
-}
-
-.auth-link {
-  color: var(--primary);
-  font-weight: 600;
-  text-decoration: none;
-}
-
-.auth-link:hover { text-decoration: underline; }
-
-/* Boton principal submit */
-.auth-submit-btn {
-  width: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 9px;
-  padding: 14px;
-  border: none !important;
-  border-radius: 14px;
-  background: linear-gradient(135deg, #67B8B4 0%, #2F5BB7 100%);
-  color: #fff !important;
-  font-family: 'Poppins', sans-serif !important;
-  font-size: 1rem !important;
-  font-weight: 700 !important;
-  cursor: pointer;
-  box-shadow: 0 6px 20px rgba(103,184,180,.35);
-  transition: transform .2s, box-shadow .2s, opacity .2s;
-  line-height: 1 !important;
-  margin-bottom: 0;
-}
-
-.auth-submit-btn:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 10px 28px rgba(103,184,180,.45);
-  opacity: .95;
-}
-
-.auth-submit-btn:active {
-  transform: translateY(0);
-  box-shadow: 0 4px 12px rgba(103,184,180,.3);
-}
-
-.auth-submit-btn-green {
-  background: linear-gradient(135deg, #0f766e 0%, #1d4ed8 100%);
-  box-shadow: 0 6px 20px rgba(15,118,110,.32);
-}
-
-.auth-submit-btn-green:hover {
-  box-shadow: 0 10px 28px rgba(15,118,110,.42);
-}
-
-/* Divider */
-.auth-divider {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  margin: 20px 0;
-  color: #9CA3AF;
-  font-size: .8rem;
-}
-
-.auth-divider::before,
-.auth-divider::after {
-  content: '';
-  flex: 1;
-  height: 1px;
-  background: #E5E7EB;
-}
-
-/* Botón alternativo (ir a registro / login) */
-.auth-alt-btn {
-  width: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 9px;
-  padding: 13px;
-  border: 1.5px solid #E5E7EB !important;
-  border-radius: 14px;
-  background: #fff !important;
-  color: var(--fg) !important;
-  font-family: 'Inter', sans-serif !important;
-  font-size: .9375rem !important;
-  font-weight: 600 !important;
-  cursor: pointer;
-  transition: border-color .2s, background .2s, transform .2s;
-  line-height: 1 !important;
-}
-
-.auth-alt-btn:hover {
-  border-color: var(--primary) !important;
-  background: var(--teal-light) !important;
-  color: var(--primary) !important;
-  transform: translateY(-1px);
-}
-
-/* responsive auth */
-@media (max-width: 900px) {
-  .auth-page {
-    grid-template-columns: 1fr;
-  }
-
-  .auth-panel {
-    min-height: auto;
-    padding-bottom: 0;
-  }
-
-  .auth-panel-inner {
-    padding: 28px 28px 36px;
-  }
 
 /* login registro */
 [data-theme="dark"] #page-login,
@@ -529,14 +335,6 @@
   color: var(--primary) !important;
 }
 
-/* Divider y textos secundarios */
-[data-theme="dark"] .auth-divider { color: rgba(255,255,255,.35); }
-[data-theme="dark"] .auth-divider::before,
-[data-theme="dark"] .auth-divider::after { background: rgba(255,255,255,.1); }
-[data-theme="dark"] .auth-divider span { background: var(--card); color: rgba(255,255,255,.4); }
-[data-theme="dark"] .auth-remember { color: var(--muted); }
-[data-theme="dark"] .auth-remember span:last-child { color: var(--muted); }
-
 /* Login/Register back-home btn */
 [data-theme="dark"] .back-home         { background: rgba(255,255,255,.08) !important; color: rgba(255,255,255,.85) !important; }
 [data-theme="dark"] .back-home:hover   { background: rgba(255,255,255,.14) !important; color: #fff !important; }
@@ -548,6 +346,4 @@
 [data-theme="dark"] .back-home:hover { color: #fff; }
 
 /* ---- Toast ---- */
-[data-theme="dark"] .toast { background: #1E293B; color: var(--fg); border-color: rgba(255,255,255,.1); box-shadow: 0 8px 32px rgba(0,0,0,.5); }
-
 

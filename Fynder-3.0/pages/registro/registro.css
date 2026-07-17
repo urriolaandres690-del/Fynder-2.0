@@ -1,7 +1,13 @@
-﻿/* ═══════════════════════════════════════════════
- *  Fynder — Registro — Crear Cuenta
- *  Archivo: pages/registro/registro.css
- * ═══════════════════════════════════════════════ */
+﻿/*
+ * ═══════════════════════════════════════════════════════════════
+ *  Fynder — CSS de: registro
+ *  Extraído de fynder.css
+ *
+ *  Los estilos GLOBALES (variables, reset, nav, cards, modal) 
+ *  están en shared/fynder.css — este archivo solo contiene
+ *  los bloques específicos de esta sección.
+ * ═══════════════════════════════════════════════════════════════
+ */
 
 /* paginas de autenticacion – Login y Registro */
 
@@ -472,16 +478,24 @@
 @media (max-width: 900px) {
   .auth-page {
     grid-template-columns: 1fr;
-  }
 
-  .auth-panel {
-    min-height: auto;
-    padding-bottom: 0;
-  }
+/* registro / login link below button */
+.register-link {
+  text-align: center;
+  font-size: .875rem;
+  color: var(--muted);
+}
 
-  .auth-panel-inner {
-    padding: 28px 28px 36px;
-  }
+.register-link a {
+  color: var(--primary);
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.register-link a:hover { text-decoration: underline; }
+
+/* notificacion toast */
+.fynder-toast {
 
 /* login registro */
 [data-theme="dark"] #page-login,
@@ -529,14 +543,6 @@
   color: var(--primary) !important;
 }
 
-/* Divider y textos secundarios */
-[data-theme="dark"] .auth-divider { color: rgba(255,255,255,.35); }
-[data-theme="dark"] .auth-divider::before,
-[data-theme="dark"] .auth-divider::after { background: rgba(255,255,255,.1); }
-[data-theme="dark"] .auth-divider span { background: var(--card); color: rgba(255,255,255,.4); }
-[data-theme="dark"] .auth-remember { color: var(--muted); }
-[data-theme="dark"] .auth-remember span:last-child { color: var(--muted); }
-
 /* Login/Register back-home btn */
 [data-theme="dark"] .back-home         { background: rgba(255,255,255,.08) !important; color: rgba(255,255,255,.85) !important; }
 [data-theme="dark"] .back-home:hover   { background: rgba(255,255,255,.14) !important; color: #fff !important; }
@@ -548,6 +554,4 @@
 [data-theme="dark"] .back-home:hover { color: #fff; }
 
 /* ---- Toast ---- */
-[data-theme="dark"] .toast { background: #1E293B; color: var(--fg); border-color: rgba(255,255,255,.1); box-shadow: 0 8px 32px rgba(0,0,0,.5); }
-
 

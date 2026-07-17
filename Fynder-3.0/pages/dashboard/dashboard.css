@@ -1,7 +1,13 @@
-﻿/* ═══════════════════════════════════════════════
- *  Fynder — Dashboard
- *  Archivo: pages/dashboard/dashboard.css
- * ═══════════════════════════════════════════════ */
+﻿/*
+ * ═══════════════════════════════════════════════════════════════
+ *  Fynder — CSS de: dashboard
+ *  Extraído de fynder.css
+ *
+ *  Los estilos GLOBALES (variables, reset, nav, cards, modal) 
+ *  están en shared/fynder.css — este archivo solo contiene
+ *  los bloques específicos de esta sección.
+ * ═══════════════════════════════════════════════════════════════
+ */
 
 /* DASHBOARD – Panel de administración de plan y analíticas */
 
@@ -572,10 +578,13 @@
 
 /* SABER MÁS – Animaciones, efectos y mejoras de botones */
 
-/* ---- Keyframes ---- */
-@keyframes fyl-fade-up {
-  from { opacity: 0; transform: translateY(32px); }
-  to   { opacity: 1; transform: translateY(0); }
+  /* Dashboard stats */
+  .dash-stats-grid { grid-template-columns: repeat(2, 1fr); }
+
+  /* Plans grid */
+  .plans-grid-4 { grid-template-columns: repeat(2, 1fr); }
+  .plan-card-pro { transform: none; }
+  .plan-card-pro:hover { transform: translateY(-3px); }
 
   /* ---- Dashboard ---- */
   .dashboard-title { font-size: 1.3rem; }
@@ -621,10 +630,4 @@
 /* ---- Mobile menu drawer complementos ---- */
 [data-theme="dark"] .mobile-menu-header   { border-bottom-color: rgba(255,255,255,.07); }
 [data-theme="dark"] .mobile-menu-close    { color: var(--muted); }
-[data-theme="dark"] .mobile-menu-close:hover { background: rgba(255,255,255,.06); color: var(--fg); }
-[data-theme="dark"] .mobile-menu-divider  { background: rgba(255,255,255,.07); }
-[data-theme="dark"] .mobile-menu-actions  { border-top-color: rgba(255,255,255,.07); }
-[data-theme="dark"] .mobile-menu-nav button { color: var(--muted); }
-
-
 

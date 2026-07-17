@@ -1,7 +1,13 @@
-﻿/* ═══════════════════════════════════════════════
- *  Fynder — Política de Privacidad
- *  Archivo: pages/privacidad/privacidad.css
- * ═══════════════════════════════════════════════ */
+﻿/*
+ * ═══════════════════════════════════════════════════════════════
+ *  Fynder — CSS de: privacidad
+ *  Extraído de fynder.css
+ *
+ *  Los estilos GLOBALES (variables, reset, nav, cards, modal) 
+ *  están en shared/fynder.css — este archivo solo contiene
+ *  los bloques específicos de esta sección.
+ * ═══════════════════════════════════════════════════════════════
+ */
 
 /* Hero banner */
 .legal-hero {
@@ -420,53 +426,4 @@
 
 
 /* About page */
-.about-inner { max-width: 1060px; margin: 0 auto; padding: 0 24px; }
-
-#page-about { background: #F8FAFC; }
-
-.about-hero {
-  text-align: center;
-  margin-bottom: 64px;
-  padding-top: 16px;
-}
-
-.about-hero-icon {
-  width: 72px;
-  height: 72px;
-  border-radius: 22px;
-  background: linear-gradient(135deg, var(--primary), #2F5BB7);
-
-/* Legal section icons */
-[data-theme="dark"] .legal-section-icon   { background: rgba(255,255,255,.06) !important; }
-
-/* fyl-section-alt en dark */
-[data-theme="dark"] .fyl-section-alt  { background: #1E293B; }
-[data-theme="dark"] #page-fynder      { background: var(--bg) !important; }
-[data-theme="dark"] .fyl-impact-card  { background: var(--card); border-color: rgba(255,255,255,.07); }
-[data-theme="dark"] .fyl-impact-lbl   { color: var(--fg); }
-[data-theme="dark"] .fyl-impact-sub   { color: var(--muted); }
-[data-theme="dark"] .fyl-compare-no   { background: rgba(239,68,68,.08); }
-[data-theme="dark"] .fyl-compare-no .fyl-compare-list li { color: #94A3B8; }
-[data-theme="dark"] .fyl-testi:not(.fyl-testi-featured) { background: var(--card); border-color: rgba(255,255,255,.07); }
-[data-theme="dark"] .fyl-testi-text   { color: var(--muted); }
-[data-theme="dark"] .fyl-testi-author strong { color: var(--fg); }
-[data-theme="dark"] .fyl-testi-author span   { color: var(--muted); }
-[data-theme="dark"] .fyl-for-card     { background: var(--card); border-color: rgba(255,255,255,.07); }
-[data-theme="dark"] .fyl-for-card h3  { color: var(--fg); }
-[data-theme="dark"] .fyl-for-list li  { color: var(--muted); }
-[data-theme="dark"] .fyl-faq-item     { background: var(--card); border-color: rgba(255,255,255,.07); }
-[data-theme="dark"] .fyl-faq-item[open] { border-color: var(--primary); }
-[data-theme="dark"] .fyl-faq-item summary { color: var(--fg); }
-[data-theme="dark"] .fyl-faq-item p   { color: var(--muted); }
-[data-theme="dark"] .fyl-feature      { background: var(--card); border-color: rgba(255,255,255,.07); }
-[data-theme="dark"] .fyl-feature h4   { color: var(--fg); }
-[data-theme="dark"] .fyl-feature p    { color: var(--muted); }
-[data-theme="dark"] .fyl-step-body h3 { color: var(--fg); }
-[data-theme="dark"] .fyl-step-body p  { color: var(--muted); }
-[data-theme="dark"] .fyl-section-title { color: var(--fg); }
-[data-theme="dark"] .fyl-section-lead  { color: var(--muted); }
-[data-theme="dark"] .fyl-cat          { background: var(--card); border-color: rgba(255,255,255,.08); }
-
-/* About nuevas secciones – origin, team, impact */
-[data-theme="dark"] .about-origin-text h2 { color: var(--fg); }
 
