@@ -288,6 +288,8 @@
 /* Ocultar el ojo nativo del browser (Edge/Chrome) en inputs de contraseña */
 .auth-input-wrap input[type="password"]::-ms-reveal,
 .auth-input-wrap input[type="password"]::-ms-clear {
+  display: none !important;
+}
 
 /* login registro */
 [data-theme="dark"] #page-login,
