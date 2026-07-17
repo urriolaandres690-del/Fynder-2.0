@@ -1026,8 +1026,11 @@ function _initCarouselDrag(id) {
 }
 
 function buildHome(){
-  document.getElementById('featuredGrid').innerHTML=BUSINESSES.filter(b=>b.isFeatured).map(gridCardHTML).join('');
-  document.getElementById('popularList').innerHTML=BUSINESSES.filter(b=>b.isPopular).map(listCardHTML).join('');
+  const fg = document.getElementById('featuredGrid');
+  const pl = document.getElementById('popularList');
+  if(!fg || !pl) return;
+  fg.innerHTML=BUSINESSES.filter(b=>b.isFeatured).map(gridCardHTML).join('');
+  pl.innerHTML=BUSINESSES.filter(b=>b.isPopular).map(listCardHTML).join('');
   _initCarouselDrag('featuredGrid');
 
   // ── Fade del scroll en Más Populares ──
