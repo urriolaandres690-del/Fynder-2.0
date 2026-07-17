@@ -551,10 +551,8 @@
 .plans-table td:first-child { width: 36%; }
 
 
-/* DASHBOARD – Panel de administración de plan y analíticas */
-
-.dashboard-inner {
-
+/* DASHBOARD – responsive (planes grid en panel) */
+@media (max-width: 900px) {
   /* Plans grid */
   .plans-grid-4 { grid-template-columns: repeat(2, 1fr); }
   .plan-card-pro { transform: none; }
@@ -563,33 +561,13 @@
 
 /* BREAKPOINT: tablet (601px – 768px) */
 @media (max-width: 768px) {
-  /* How-grid: apilado */
-  .how-grid { grid-template-columns: 1fr; }
-  .how-grid > .how-card:last-child { grid-column: auto; max-width: 100%; }
-
   /* Plans */
   .plans-grid-4 { grid-template-columns: 1fr; }
   .plans-grid   { grid-template-columns: 1fr; }
 
-  /* About */
-  .about-cards        { grid-template-columns: 1fr; }
-  .about-impact-grid  { grid-template-columns: 1fr 1fr; }
-  .about-stats-row    { grid-template-columns: 1fr 1fr; }
-
-  /* Fynder landing */
-  .fyl-for-grid    { grid-template-columns: 1fr; }
-  .fyl-compare     { flex-direction: column; }
-
   /* Plans table: reducir */
   .plans-table th,
   .plans-table td { padding: 10px 8px; font-size: .75rem; }
-
-  /* About */
-  .about-impact-grid { grid-template-columns: 1fr; }
-  .about-stats-row   { grid-template-columns: 1fr 1fr; }
-
-  /* Fynder landing */
-  .fyl-impact-grid { grid-template-columns: 1fr 1fr; }
 
   /* ---- Planes ---- */
   .plans-inner     { padding: 40px 16px 60px; }
@@ -599,17 +577,7 @@
   .plan-name       { font-size: 1.15rem; }
   .plan-price-amount { font-size: 1.9rem; }
   .plan-features li { font-size: .82rem; }
-
-  /* ---- Perfil ---- */
-  .profile-name    { font-size: 1.3rem; }
-  .profile-card    { padding: 20px 16px; }
-  .profile-section-title { font-size: .95rem; }
-
-  /* ---- Saber más (fynder landing) ---- */
-  .fyl-hero-title  { font-size: 1.6rem !important; }
-  .fyl-hero-lead   { font-size: .9rem; }
-  .fyl-section-title { font-size: 1.3rem !important; }
-  .fyl-section-lead { font-size: .875rem; }
+}
 
 /* ---- Plan card: divider ---- */
 [data-theme="dark"] .plan-divider         { background: rgba(255,255,255,.07); }
