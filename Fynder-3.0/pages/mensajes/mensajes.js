@@ -2340,9 +2340,6 @@ function toggleEmojiPickerMobile() {
 
 /* CHAT: DIVISOR REDIMENSIONABLE (sidebar ↔ área principal) */
 (function initWaResizer() {
-
-/* CHAT: DIVISOR REDIMENSIONABLE (sidebar ↔ área principal) */
-(function initWaResizer() {
   document.addEventListener('DOMContentLoaded', () => {
     const handle  = document.getElementById('waResizeHandle');
     const sidebar = document.querySelector('.wa-sidebar');
@@ -2403,9 +2400,6 @@ function chatInputChange() {
     if (micBtn)  micBtn.style.display  = '';
   });
 })();
-
-/* CHAT: MENÚ DE ADJUNTAR */
-let _attachMenuOpen = false;
 
 /* CHAT: MENÚ DE ADJUNTAR */
 let _attachMenuOpen = false;
