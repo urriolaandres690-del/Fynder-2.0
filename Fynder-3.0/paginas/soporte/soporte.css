@@ -1,34 +1,62 @@
-﻿/* Support channel icons */
-[data-theme="dark"] .support-channel-icon { background: rgba(103,184,180,.15) !important; color: var(--primary) !important; }
+﻿button, input, select, textarea {
+}
+/* soporte */
+[data-theme="dark"] #page-support { background: var(--bg) !important; }
+[data-theme="dark"] .support-title { color: var(--fg); }
+[data-theme="dark"] .support-lead  { color: var(--muted); }
+[data-theme="dark"] .support-header-icon {
+  background: rgba(103,184,180,.15);
+  border-color: rgba(103,184,180,.2);
+  color: var(--primary);
+}
 
-/* Legal section icons */
-[data-theme="dark"] .legal-section-icon   { background: rgba(255,255,255,.06) !important; }
+[data-theme="dark"] .support-channel {
+  background: var(--card);
+  border-color: rgba(255,255,255,.07);
+}
+[data-theme="dark"] .support-channel h3 { color: var(--fg); }
+[data-theme="dark"] .support-channel p  { color: var(--muted); }
 
-/* fyl-section-alt en dark */
-[data-theme="dark"] .fyl-section-alt  { background: #1E293B; }
+[data-theme="dark"] .support-form-card {
+  background: var(--card);
+  border-color: rgba(255,255,255,.07);
+}
+[data-theme="dark"] .support-form-header h2 { color: var(--fg); }
+[data-theme="dark"] .support-form-header p  { color: var(--muted); }
+[data-theme="dark"] .support-form-icon {
+  background: rgba(103,184,180,.15);
+  color: var(--primary);
+}
+[data-theme="dark"] .support-field label { color: var(--fg); }
 
-/* ---- Formulario soporte – campos ---- */
-[data-theme="dark"] .support-field input,
-[data-theme="dark"] .support-field select,
-[data-theme="dark"] .support-field textarea {
+[data-theme="dark"] .support-faq-title { color: var(--fg); }
+[data-theme="dark"] .support-faq-item {
+  background: var(--card);
+  border-color: rgba(255,255,255,.08);
+}
+[data-theme="dark"] .support-faq-item summary { color: var(--fg); }
+[data-theme="dark"] .support-faq-item summary:hover { background: rgba(255,255,255,.04); }
+[data-theme="dark"] .support-faq-item[open] summary { color: var(--primary); }
+[data-theme="dark"] .support-faq-item p { color: var(--muted); }
+[data-theme="dark"] .support-faq-item p strong { color: var(--fg); }
+
+[data-theme="dark"] .support-channel-link {
+  background: rgba(103,184,180,.1);
+  border-color: rgba(103,184,180,.25);
+  color: var(--primary);
+}
+[data-theme="dark"] .support-channel-link:hover {
+  background: var(--primary);
+  color: #fff;
+}
+
+/* boton volver */
+[data-theme="dark"] .back-page-btn {
   background: rgba(255,255,255,.06);
-  border-color: rgba(255,255,255,.1);
+  border-color: rgba(255,255,255,.12);
   color: var(--fg);
 }
-[data-theme="dark"] .support-field input::placeholder,
-[data-theme="dark"] .support-field textarea::placeholder { color: var(--muted); }
-[data-theme="dark"] .support-field input:focus,
-[data-theme="dark"] .support-field select:focus,
-[data-theme="dark"] .support-field textarea:focus { border-color: var(--primary); }
-
-/* ---- Mapa – popup y controles ---- */
-[data-theme="dark"] .map-popup { background: var(--card); border-color: rgba(255,255,255,.1); }
-
-/* BREAKPOINT: móvil grande (≤ 600px) */
-@media (max-width: 600px) {
-  /* Support channels */
-  .support-channels { grid-template-columns: 1fr; }
-
-  /* Dir toolbar sticky top ajustado */
-  .dir-toolbar { top: 56px; }
+[data-theme="dark"] .back-page-btn:hover {
+  background: rgba(103,184,180,.15);
+  color: var(--primary);
 }

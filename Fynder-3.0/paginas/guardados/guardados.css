@@ -1,21 +1,11 @@
-﻿/* favoritos modo oscuro */
+﻿button, input, select, textarea {
+}
+/* favoritos modo oscuro */
 [data-theme="dark"] #page-favorites { background: var(--bg) !important; }
 [data-theme="dark"] .favs-title     { color: var(--fg); }
 [data-theme="dark"] .favs-sub       { color: var(--muted); }
-
-/* modal modo oscuro */
-[data-theme="dark"] #modalOverlay { background: rgba(0,0,0,.7); }
 
 /* Favoritos empty state */
 [data-theme="dark"] .fav-empty-icon    { background: rgba(239,68,68,.12) !important; }
 
 /* Business form footer bar */
-[data-theme="dark"] .biz-reg-submit-wrap { background: var(--card); border-top-color: rgba(255,255,255,.07); }
-
-
-/* ---- Página de favoritos: estado vacío ---- */
-[data-theme="dark"] .favs-empty           { color: var(--muted); }
-[data-theme="dark"] .favs-empty-icon      { opacity: .3; }
-
-/* ---- Dir count ---- */
-

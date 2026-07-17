@@ -1,3 +1,51 @@
-﻿/* ── registro.css — Usa los estilos de login.css ── */
-/* Los estilos de la página de registro están en paginas/login/login.css
-   ya que comparten las clases .auth-page, .auth-panel, .auth-card, etc. */
+﻿button, input, select, textarea {
+}
+/* login registro */
+[data-theme="dark"] #page-login,
+[data-theme="dark"] #page-register {
+  background:
+    radial-gradient(circle at top left, rgba(103,184,180,.12), transparent 40%),
+    radial-gradient(circle at bottom right, rgba(47,91,183,.08), transparent 40%),
+    #0F172A;
+}
+[data-theme="dark"] .auth-card  { background: var(--card); border-color: rgba(255,255,255,.07); }
+[data-theme="dark"] .auth-card h1 { color: var(--fg); }
+[data-theme="dark"] .auth-card p  { color: var(--muted); }
+[data-theme="dark"] .auth-card-header h1 { color: var(--fg); }
+[data-theme="dark"] .auth-card-header p  { color: var(--muted); }
+[data-theme="dark"] .auth-field label { color: var(--fg); }
+
+/* Inputs: fondo oscuro con !important para vencer los estilos base */
+[data-theme="dark"] .auth-input-wrap input {
+  background: rgba(255,255,255,.06) !important;
+  border-color: rgba(255,255,255,.12) !important;
+  color: var(--fg) !important;
+}
+[data-theme="dark"] .auth-input-wrap input:hover {
+  background: rgba(255,255,255,.09) !important;
+  border-color: rgba(255,255,255,.2) !important;
+}
+[data-theme="dark"] .auth-input-wrap input:focus {
+  background: rgba(255,255,255,.09) !important;
+  border-color: var(--primary) !important;
+  box-shadow: 0 0 0 3.5px rgba(103,184,180,.2) !important;
+}
+[data-theme="dark"] .auth-input-wrap input::placeholder { color: rgba(255,255,255,.35) !important; }
+[data-theme="dark"] .auth-input-icon { color: rgba(255,255,255,.4); }
+[data-theme="dark"] .auth-eye-btn { color: rgba(255,255,255,.35) !important; }
+
+/* Botón alternativo (blanco en light → oscuro en dark) */
+[data-theme="dark"] .auth-alt-btn {
+  background: rgba(255,255,255,.06) !important;
+  border-color: rgba(255,255,255,.12) !important;
+  color: var(--fg) !important;
+}
+[data-theme="dark"] .auth-alt-btn:hover {
+  background: rgba(103,184,180,.12) !important;
+  border-color: var(--primary) !important;
+  color: var(--primary) !important;
+}
+
+/* Login/Register back-home btn */
+[data-theme="dark"] .back-home         { background: rgba(255,255,255,.08) !important; color: rgba(255,255,255,.85) !important; }
+[data-theme="dark"] .back-home:hover   { background: rgba(255,255,255,.14) !important; color: #fff !important; }
