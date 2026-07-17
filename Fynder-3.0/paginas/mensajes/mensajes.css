@@ -4067,15 +4067,16 @@ body.select-mode .chat-msg-row .msg-checkbox { display: flex; align-items: cente
 .emoji-overlay {
   display: none;
   position: fixed; inset: 0;
-  z-index: 400;
+  z-index: 9800;
 }
 .emoji-overlay.open { display: block; }
 
+/* Móvil: bottom sheet */
 .emoji-picker {
   position: fixed;
   bottom: -100%;
   left: 0; right: 0;
-  z-index: 401;
+  z-index: 9801;
   background: var(--msg-surface);
   border-radius: 20px 20px 0 0;
   box-shadow: 0 -4px 32px rgba(0,0,0,.3);
@@ -4086,6 +4087,30 @@ body.select-mode .chat-msg-row .msg-checkbox { display: flex; align-items: cente
   overflow: hidden;
 }
 .emoji-picker.open { bottom: 0; }
+
+/* Desktop: popup flotante sobre el input */
+@media (min-width: 769px) {
+  .emoji-picker {
+    left: auto;
+    right: auto;
+    bottom: auto;
+    top: auto;
+    width: 340px;
+    max-height: 420px;
+    border-radius: 16px;
+    box-shadow: 0 8px 40px rgba(0,0,0,.45);
+    transform: scale(.92) translateY(8px);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity .18s ease, transform .18s cubic-bezier(.34,1.56,.64,1);
+  }
+  .emoji-picker.open {
+    bottom: auto;
+    opacity: 1;
+    pointer-events: auto;
+    transform: scale(1) translateY(0);
+  }
+}
 
 .emoji-picker-search {
   padding: 10px 12px 8px;
