@@ -22,13 +22,11 @@
     }
   </script>
   <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
-  <!-- Estilos globales -->
-  <link rel="stylesheet" href="compartido/fynder.css">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-  <!-- Leaflet para el mapa de negocios -->
-  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
-  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
-</head>
+
+  $m = $args[0]
+  $m.Value -replace "  <!-- Leaflet para el mapa de negocios -->",
+    "  <!-- Estilos por pagina -->`n$cssBlock`n`n  <!-- Leaflet para el mapa de negocios -->"
+
 <body>
 
 <!-- ── BARRA DE NAVEGACIÓN ── -->
