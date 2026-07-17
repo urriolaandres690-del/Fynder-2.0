@@ -6,7 +6,7 @@
  *  Las funciones GLOBALES (goPage, showToast, openModal, etc.)
  *  están en shared/fynder.js — las funciones del sistema de
  *  mensajes (cproGoBack, cproCall, cproWhatsApp, etc.) viven
- *  en pages/mensajes/mensajes.js.
+ *  en paginas/mensajes/mensajes.js.
  *  Este archivo es de referencia para funciones específicas
  *  del perfil de negocio en el chat.
  * ═══════════════════════════════════════════════════════════════
