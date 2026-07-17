@@ -1,0 +1,137 @@
+﻿<div id="page-support" class="page page-inner">
+  <div class="support-inner">
+    <button class="back-page-btn" onclick="goBack()"><i class="fas fa-arrow-left"></i> Volver</button>
+    <div class="support-header">
+      <div class="support-header-icon">
+        <i class="fas fa-headset"></i>
+      </div>
+      <p class="section-label" style="text-align:center;margin-bottom:8px">Estamos para ayudarte</p>
+      <h1 class="support-title">Centro de <span>Soporte</span></h1>
+      <p class="support-lead">¿Tienes preguntas o necesitas ayuda? Encuentra respuestas rápidas o contáctanos directamente.</p>
+    </div>
+
+    <!-- Canales de contacto -->
+    <div class="support-channels">
+      <div class="support-channel">
+        <div class="support-channel-icon" style="background:#E6F5F4;color:#67B8B4">
+          <i class="fas fa-envelope"></i>
+        </div>
+        <h3>Correo electrónico</h3>
+        <p>Respuesta en menos de 24 horas en días hábiles.</p>
+        <a href="mailto:fynder37@gmail.com" class="support-channel-link">fynder37@gmail.com</a>
+      </div>
+      <div class="support-channel">
+        <div class="support-channel-icon" style="background:#ECFDF5;color:#10B981">
+          <i class="fab fa-whatsapp"></i>
+        </div>
+        <h3>WhatsApp</h3>
+        <p>Para usuarios con plan Business. Soporte dedicado en tiempo real.</p>
+        <a href="https://wa.me/50760000000" target="_blank" rel="noopener" class="support-channel-link">+507 6000-0000</a>
+      </div>
+      <div class="support-channel">
+        <div class="support-channel-icon" style="background:#EEF2FF;color:#2F5BB7">
+          <i class="fab fa-instagram"></i>
+        </div>
+        <h3>Redes sociales</h3>
+        <p>Síguenos y escríbenos por DM. Respondemos consultas generales.</p>
+        <a href="#" class="support-channel-link">fynder37@gmail.com</a>
+      </div>
+    </div>
+
+    <!-- Formulario de contacto -->
+    <div class="support-form-wrap">
+      <div class="support-form-card">
+        <div class="support-form-header">
+          <div class="support-form-icon"><i class="fas fa-paper-plane"></i></div>
+          <div>
+            <h2>Envíanos un mensaje</h2>
+            <p>Completa el formulario y te contactaremos lo antes posible.</p>
+          </div>
+        </div>
+        <form id="supportForm" onsubmit="sendSupport(event)">
+          <div class="support-form-grid">
+            <div class="support-field">
+              <label for="supportName">Nombre completo</label>
+              <div class="biz-input-wrap">
+                <i class="fas fa-user biz-input-icon"></i>
+                <input id="supportName" type="text" placeholder="Tu nombre" required>
+              </div>
+            </div>
+            <div class="support-field">
+              <label for="supportEmail">Correo electrónico</label>
+              <div class="biz-input-wrap">
+                <i class="fas fa-envelope biz-input-icon"></i>
+                <input id="supportEmail" type="email" placeholder="tu@correo.com" required>
+              </div>
+            </div>
+          </div>
+          <div class="support-field">
+            <label for="supportSubject">Asunto</label>
+            <div class="biz-input-wrap">
+              <i class="fas fa-tag biz-input-icon"></i>
+              <select id="supportSubject" required>
+                <option value="" disabled selected>Selecciona un asunto</option>
+                <option>Problema con mi cuenta</option>
+                <option>Registrar o editar mi negocio</option>
+                <option>Información sobre planes</option>
+                <option>Reportar contenido inapropiado</option>
+                <option>Solicitud de eliminación de datos</option>
+                <option>Otro</option>
+              </select>
+            </div>
+          </div>
+          <div class="support-field">
+            <label for="supportMsg">Mensaje</label>
+            <div class="biz-input-wrap biz-textarea-wrap">
+              <i class="fas fa-align-left biz-input-icon biz-input-icon-top"></i>
+              <textarea id="supportMsg" rows="5" placeholder="Describe tu consulta o problema con el mayor detalle posible..." required></textarea>
+            </div>
+          </div>
+          <button type="submit" class="support-submit-btn">
+            <i class="fas fa-paper-plane"></i>
+            Enviar mensaje
+          </button>
+        </form>
+      </div>
+    </div>
+
+    <!-- Preguntas frecuentes -->
+    <div class="support-faq">
+      <h2 class="support-faq-title">Preguntas frecuentes</h2>
+      <div class="support-faq-list">
+
+        <details class="support-faq-item">
+          <summary><i class="fas fa-chevron-right"></i> ¿Cómo registro mi negocio en FYNDER?</summary>
+          <p>Ve a la sección <strong>Registrar negocio</strong> desde el menú superior o el botón en el inicio. Completa el formulario con la información de tu negocio y haz clic en "Publicar". El proceso es gratuito y toma menos de 2 minutos.</p>
+        </details>
+
+        <details class="support-faq-item">
+          <summary><i class="fas fa-chevron-right"></i> Olvidé mi contraseña, ¿qué hago?</summary>
+          <p>En la pantalla de inicio de sesión, haz clic en <strong>¿Olvidaste tu contraseña?</strong> e ingresa tu correo. El sistema te mostrará cómo recuperar el acceso a tu cuenta.</p>
+        </details>
+
+        <details class="support-faq-item">
+          <summary><i class="fas fa-chevron-right"></i> ¿Puedo eliminar mi cuenta?</summary>
+          <p>Sí. Ve a <strong>Mi perfil → Zona de peligro → Eliminar cuenta</strong>. Esta acción es permanente y borrará todos tus datos almacenados. Si cambias de opinión, tendrás que crear una cuenta nueva.</p>
+        </details>
+
+        <details class="support-faq-item">
+          <summary><i class="fas fa-chevron-right"></i> ¿Cómo actualizo la información de mi negocio?</summary>
+          <p>Actualmente puedes editar tu información de usuario desde Mi perfil. Para actualizar los datos de tu negocio, envíanos un mensaje a través de este formulario o escríbenos a <strong>fynder37@gmail.com</strong>.</p>
+        </details>
+
+        <details class="support-faq-item">
+          <summary><i class="fas fa-chevron-right"></i> ¿FYNDER cobra comisiones por ventas?</summary>
+          <p>No. Fynder es un directorio de negocios, no una plataforma de e-commerce. No cobramos ninguna comisión por ventas ni transacciones entre usuarios y negocios.</p>
+        </details>
+
+        <details class="support-faq-item">
+          <summary><i class="fas fa-chevron-right"></i> Encontré información incorrecta sobre un negocio, ¿cómo lo reporto?</summary>
+          <p>Usa el formulario de contacto de esta página y selecciona el asunto <strong>"Reportar contenido inapropiado"</strong>. Incluye el nombre del negocio y qué información está incorrecta. Revisaremos tu reporte en 48 horas.</p>
+        </details>
+
+      </div>
+    </div>
+
+  </div>
+</div>

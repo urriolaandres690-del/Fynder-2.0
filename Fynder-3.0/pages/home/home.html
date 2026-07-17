@@ -1,0 +1,344 @@
+﻿<div id="page-home" class="page active"> 
+
+  <section class="hero"> 
+
+    <div class="hero-bg-glow"></div> 
+
+    <div class="hero-blob1"></div> 
+
+    <div class="hero-blob2"></div> 
+
+    <div class="hero-inner"> 
+
+      <div> 
+
+        <button class="hero-pill" onclick="goPage('directory')"> 
+
+          <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m12 3-1.912 5.813a2 2 0 0 1-1.275 1.275L3 12l5.813 1.912a2 2 0 0 1 1.275 1.275L12 21l1.912-5.813a2 2 0 0 1 1.275-1.275L21 12l-5.813-1.912a2 2 0 0 1-1.275-1.275L12 3Z"></path></svg> 
+
+          Descubre negocios cerca de ti
+          <i class="fas fa-arrow-right" style="font-size:.65rem;opacity:.7"></i>
+
+        </button> 
+
+        <h1>Encuentra los mejores <span data-i18n="hero.title2">negocios locales</span></h1> 
+
+        <p data-i18n="hero.desc">FYNDER conecta personas con emprendedores y comercios de su comunidad. Descubre, explora y apoya a los negocios que hacen grande tu ciudad.</p> 
+
+        <div class="hero-search"> 
+
+          <svg class="hero-search-icon" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><path d="m21 21-4.3-4.3"></path></svg> 
+
+          <input type="text" id="heroSearch" data-i18n-ph="hero.search.ph" placeholder='Ej: "Pasteles", "Peluquería"...' /> 
+
+          <button class="hero-search-btn" onclick="heroSearchGo()" data-i18n="hero.search.btn">Buscar</button> 
+
+        </div> 
+
+        <div class="hero-popular"> 
+
+          <span class="hero-popular-label" data-i18n="hero.popular">Popular:</span> 
+
+          <button class="hero-tag" onclick="goDirectoryQuery('','restaurantes')">Restaurantes</button> 
+
+          <button class="hero-tag" onclick="goDirectoryQuery('','belleza')">Belleza</button> 
+
+          <button class="hero-tag" onclick="goDirectoryQuery('','tecnologia')">Tecnología</button> 
+
+          <button class="hero-tag" onclick="goDirectoryQuery('','salud')">Salud</button> 
+
+        </div>
+
+        <!-- Stats visibles solo en cel (hero-right se oculta) -->
+        <div class="hero-stats hero-stats-mobile">
+          <div class="hero-stat-card" onclick="openStatModal('negocios')" style="cursor:pointer"><div class="hero-stat-icon"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#67B8B4" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="16" height="20" x="4" y="2" rx="2"/><path d="M9 22v-4h6v4"/><path d="M8 6h.01"/><path d="M16 6h.01"/><path d="M12 6h.01"/><path d="M12 10h.01"/><path d="M12 14h.01"/><path d="M16 10h.01"/><path d="M16 14h.01"/><path d="M8 10h.01"/><path d="M8 14h.01"/></svg></div><div><div class="hero-stat-val" id="heroStatNegociosMobile">—</div><div class="hero-stat-lbl">Negocios</div></div></div>
+          <div class="hero-stat-card" onclick="openStatModal('usuarios')" style="cursor:pointer"><div class="hero-stat-icon"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#2F5BB7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></div><div><div class="hero-stat-val" id="heroStatUsuariosMobile">—</div><div class="hero-stat-lbl">Usuarios</div></div></div>
+          <div class="hero-stat-card" onclick="openStatModal('rating')" style="cursor:pointer"><div class="hero-stat-icon"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="#F4D35E" stroke="#F4D35E" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg></div><div><div class="hero-stat-val" id="heroStatRatingMobile">—</div><div class="hero-stat-lbl">Valoración</div></div></div>
+          <div class="hero-stat-card" onclick="openStatModal('satisfaccion')" style="cursor:pointer"><div class="hero-stat-icon"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#10B981" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 7 13.5 15.5 8.5 10.5 2 17"/><polyline points="16 7 22 7 22 13"/></svg></div><div><div class="hero-stat-val" id="heroStatSatisfaccionMobile">—</div><div class="hero-stat-lbl">Satisfacción</div></div></div>
+        </div>
+
+      </div> 
+
+      <div class="hero-right"> 
+
+        <div class="hero-img"> 
+
+          <img src="https://images.unsplash.com/photo-1767678928443-9617a6f10453?w=800&h=400&fit=crop&auto=format" alt="Mercado local" /> 
+
+          <div class="hero-img-overlay"></div> 
+
+          <div class="hero-img-text"><strong>Mercado Local</strong><span>Tu comunidad, tu economía</span></div> 
+
+        </div> 
+
+        <div class="hero-stats"> 
+
+          <div class="hero-stat-card" onclick="openStatModal('negocios')" style="cursor:pointer"><div class="hero-stat-icon"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#67B8B4" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="16" height="20" x="4" y="2" rx="2"/><path d="M9 22v-4h6v4"/><path d="M8 6h.01"/><path d="M16 6h.01"/><path d="M12 6h.01"/><path d="M12 10h.01"/><path d="M12 14h.01"/><path d="M16 10h.01"/><path d="M16 14h.01"/><path d="M8 10h.01"/><path d="M8 14h.01"/></svg></div><div><div class="hero-stat-val" id="heroStatNegocios">—</div><div class="hero-stat-lbl">Negocios</div></div><div class="hero-stat-tap">↗</div></div> 
+
+          <div class="hero-stat-card" onclick="openStatModal('usuarios')" style="cursor:pointer"><div class="hero-stat-icon"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#2F5BB7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></div><div><div class="hero-stat-val" id="heroStatUsuarios">—</div><div class="hero-stat-lbl">Usuarios</div></div><div class="hero-stat-tap">↗</div></div> 
+
+          <div class="hero-stat-card" onclick="openStatModal('rating')" style="cursor:pointer"><div class="hero-stat-icon"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="#F4D35E" stroke="#F4D35E" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg></div><div><div class="hero-stat-val" id="heroStatRating">—</div><div class="hero-stat-lbl">Valoración</div></div><div class="hero-stat-tap">↗</div></div> 
+
+          <div class="hero-stat-card" onclick="openStatModal('satisfaccion')" style="cursor:pointer"><div class="hero-stat-icon"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#10B981" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 7 13.5 15.5 8.5 10.5 2 17"/><polyline points="16 7 22 7 22 13"/></svg></div><div><div class="hero-stat-val" id="heroStatSatisfaccion">—</div><div class="hero-stat-lbl">Satisfacción</div></div><div class="hero-stat-tap">↗</div></div> 
+
+        </div> 
+
+      </div> 
+
+    </div> 
+
+    <div class="hero-wave"><svg viewBox="0 0 1440 80" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg"><path d="M0 80 C360 80 360 20 720 30 C1080 40 1080 80 1440 80 Z" class="hero-wave-fill"/></svg></div> 
+
+  </section> 
+
+  <section class="section" style="background:#F8FAFC"> 
+
+    <div class="section-inner"> 
+
+      <div class="section-header"> 
+
+        <div><p class="section-label" data-i18n="sec.categories.label">Explorar por categoría</p><h2 class="section-title" data-i18n="sec.categories.title">¿Qué estás buscando?</h2></div> 
+
+        <button class="section-link" onclick="goPage('directory')"><span data-i18n="sec.categories.all">Ver todas</span> <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></button> 
+
+      </div> 
+
+      <div class="cat-grid" id="catGrid"></div> 
+
+    </div> 
+
+  </section>
+ 
+  <section class="section" style="background:#F0FEFE"> 
+
+    <div class="section-inner"> 
+
+      <div class="section-header"> 
+
+        <div> 
+
+          <div style="display:flex;align-items:center;gap:8px;margin-bottom:4px;"><svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#F4D35E" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m12 3-1.912 5.813a2 2 0 0 1-1.275 1.275L3 12l5.813 1.912a2 2 0 0 1 1.275 1.275L12 21l1.912-5.813a2 2 0 0 1 1.275-1.275L21 12l-5.813-1.912a2 2 0 0 1-1.275-1.275L12 3Z"></path></svg><p class="section-label" style="margin:0">Selección destacada</p></div> 
+
+          <h2 class="section-title">Negocios Destacados</h2> 
+
+        </div> 
+
+        <button class="section-link" onclick="goPage('directory')">Ver todos <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></button> 
+
+      </div> 
+
+      <div class="featured-carousel-wrap">
+        <div class="featured-carousel" id="featuredGrid"></div>
+      </div> 
+
+    </div> 
+
+  </section> 
+
+  <section class="how-section"> 
+
+    <div class="section-inner"> 
+
+      <div class="how-header">
+        <p class="section-label how-label" data-i18n="how.label">Simple y rápido</p>
+        <h2 class="how-main-title">¿Cómo funciona <span class="how-title-accent">FYNDER</span>?</h2>
+        <p class="how-subtitle" data-i18n="how.sub">En tres simples pasos conectas con los mejores negocios de tu comunidad.</p>
+      </div>
+
+      <div class="how-grid"> 
+
+        <!-- paso 1 -->
+        <div class="how-card how-card-teal">
+          <div class="how-card-glow how-card-glow-teal"></div>
+          <span class="how-num">01</span>
+          <div class="how-icon-wrap">
+            <div class="how-icon" style="background:rgba(103,184,180,.15);border:1px solid rgba(103,184,180,.3)">
+              <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#67B8B4" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+            </div>
+            <div class="how-icon-ring how-ring-teal"></div>
+          </div>
+          <h3 class="how-title" data-i18n="how.step1.title">Busca lo que necesitas</h3>
+          <p class="how-desc" data-i18n="how.step1.desc">Ingresa el producto, servicio o categoría que estás buscando en nuestro buscador inteligente.</p>
+          <div class="how-step-tag how-tag-teal">Paso 1</div>
+        </div>
+
+        <!-- Conector -->
+        <div class="how-connector">
+          <svg viewBox="0 0 60 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M0 12 Q30 2 60 12" stroke="url(#cg1)" stroke-width="1.5" stroke-dasharray="4 3"/>
+            <defs><linearGradient id="cg1" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stop-color="#67B8B4" stop-opacity=".6"/><stop offset="100%" stop-color="#2F5BB7" stop-opacity=".6"/></linearGradient></defs>
+            <circle cx="55" cy="12" r="3" fill="#2F5BB7" opacity=".7"/>
+          </svg>
+        </div>
+
+        <!-- paso 2 -->
+        <div class="how-card how-card-blue">
+          <div class="how-card-glow how-card-glow-blue"></div>
+          <span class="how-num">02</span>
+          <div class="how-icon-wrap">
+            <div class="how-icon" style="background:rgba(47,91,183,.15);border:1px solid rgba(47,91,183,.3)">
+              <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#2F5BB7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
+            </div>
+            <div class="how-icon-ring how-ring-blue"></div>
+          </div>
+          <h3 class="how-title" data-i18n="how.step2.title">Descubre negocios cercanos</h3>
+          <p class="how-desc" data-i18n="how.step2.desc">Explora el directorio de negocios locales con información completa: horarios, contacto y ubicación.</p>
+          <div class="how-step-tag how-tag-blue">Paso 2</div>
+        </div>
+
+        <!-- Conector -->
+        <div class="how-connector">
+          <svg viewBox="0 0 60 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M0 12 Q30 2 60 12" stroke="url(#cg2)" stroke-width="1.5" stroke-dasharray="4 3"/>
+            <defs><linearGradient id="cg2" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stop-color="#2F5BB7" stop-opacity=".6"/><stop offset="100%" stop-color="#10B981" stop-opacity=".6"/></linearGradient></defs>
+            <circle cx="55" cy="12" r="3" fill="#10B981" opacity=".7"/>
+          </svg>
+        </div>
+
+        <!-- paso 3 -->
+        <div class="how-card how-card-green">
+          <div class="how-card-glow how-card-glow-green"></div>
+          <span class="how-num">03</span>
+          <div class="how-icon-wrap">
+            <div class="how-icon" style="background:rgba(16,185,129,.15);border:1px solid rgba(16,185,129,.3)">
+              <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#10B981" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><path d="m9 11 3 3L22 4"/></svg>
+            </div>
+            <div class="how-icon-ring how-ring-green"></div>
+          </div>
+          <h3 class="how-title" data-i18n="how.step3.title">Conecta y apoya</h3>
+          <p class="how-desc" data-i18n="how.step3.desc">Contacta directamente al negocio, guárdalo en favoritos y comparte con amigos y familia.</p>
+          <div class="how-step-tag how-tag-green">Paso 3</div>
+        </div>
+
+      </div> 
+
+    </div> 
+
+  </section> 
+
+  <section class="section" style="background:#F8FAFC"> 
+
+    <div class="section-inner"> 
+
+      <div class="section-header"><div style="display:flex;align-items:center;gap:10px;"><svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="#EF4444" stroke="#EF4444" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.38-.5-2-1-3-1.072-2.143-.224-4.054 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 1 1-14 0c0-1.153.433-2.294 1-3a2.5 2.5 0 0 0 2.5 2.5z"/></svg><h2 class="section-title">Más Populares</h2></div></div> 
+
+      <div class="popular-scroll-wrap">
+        <div class="cards-list" id="popularList"></div>
+      </div>
+
+    </div> 
+
+  </section>
+
+  <section class="cta-section"> 
+
+    <div class="cta-inner"> 
+
+      <div class="cta-icon"><svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="16" height="20" x="4" y="2" rx="2"/><path d="M9 22v-4h6v4"/><path d="M8 6h.01"/><path d="M16 6h.01"/><path d="M12 6h.01"/><path d="M12 10h.01"/><path d="M12 14h.01"/><path d="M16 10h.01"/><path d="M16 14h.01"/><path d="M8 10h.01"/><path d="M8 14h.01"/></svg></div> 
+
+      <h2><span data-i18n="cta.title1">¿Tienes un negocio?</span><br><span data-i18n="cta.title2">Únete a Fynder gratis</span></h2> 
+
+      <p data-i18n="cta.desc">Registra tu negocio hoy y llega a miles de clientes potenciales en tu comunidad. Sin comisiones, sin costos ocultos.</p> 
+
+      <div class="cta-btns"> 
+
+        <button class="btn-yellow" onclick="goPage('business')"><span data-i18n="cta.btn1"></span>Registrar mi negocio</span> <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 7h10v10"/><path d="M7 17 17 7"/></svg></button> 
+
+        <button class="btn-outline-white" onclick="goPage('fynder')"><span data-i18n="cta.btn2">Saber más</span> <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg></button> 
+
+      </div> 
+
+      <div class="cta-perks"> 
+
+        <div class="cta-perk"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>100% gratuito</div> 
+
+        <div class="cta-perk"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>Activación inmediata</div> 
+
+        <div class="cta-perk"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>Miles de usuarios</div> 
+
+      </div> 
+
+    </div> 
+
+  </section> 
+
+  <footer> 
+
+    <!-- Elementos decorativos de fondo -->
+    <div class="footer-particles">
+      <span style="left:5%;  animation-delay:0s"></span>
+      <span style="left:12%; animation-delay:2s"></span>
+      <span style="left:21%; animation-delay:4s"></span>
+      <span style="left:30%; animation-delay:1s"></span>
+      <span style="left:38%; animation-delay:3.5s"></span>
+      <span style="left:47%; animation-delay:0.5s"></span>
+      <span style="left:55%; animation-delay:2.5s"></span>
+      <span style="left:63%; animation-delay:5s"></span>
+      <span style="left:72%; animation-delay:1.5s"></span>
+      <span style="left:80%; animation-delay:3s"></span>
+      <span style="left:88%; animation-delay:4.5s"></span>
+      <span style="left:95%; animation-delay:0.8s"></span>
+    </div>
+
+    <div class="footer-inner"> 
+
+      <div class="footer-grid"> 
+
+        <div> 
+
+          <button class="footer-logo" onclick="goPage('home')">
+            <div class="footer-logo-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="white" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg>
+            </div>
+            <span class="footer-logo-texto"><span class="footer-fyn">Fyn</span><span class="footer-der">der</span></span>
+          </button> 
+
+          <p class="footer-brand-desc">Conectando comunidades con sus negocios locales.</p>
+
+          <div class="footer-social">
+            <button class="footer-social-btn" title="Instagram" onclick="showToast('¡Próximamente en Instagram!')">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="20" x="2" y="2" rx="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" x2="17.51" y1="6.5" y2="6.5"/></svg>
+            </button>
+            <button class="footer-social-btn" title="Facebook" onclick="showToast('¡Próximamente en Facebook!')">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+            </button>
+            <button class="footer-social-btn" title="Twitter/X" onclick="showToast('¡Próximamente en X!')">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4l16 16"/><path d="M4 20 20 4"/></svg>
+            </button>
+          </div>
+
+        </div> 
+
+        <div class="footer-col"><p class="footer-col-title">Plataforma</p><ul>
+          <li><button onclick="goPage('directory')">Directorio</button></li>
+          <li><button onclick="goDirectoryQuery('','')">Categorías</button></li>
+          <li><button onclick="goDirectoryQuery('',''); setTimeout(()=>setDirCat(''),100)">Nuevos negocios</button></li>
+          <li><button onclick="goPage('directory')">Destacados</button></li>
+        </ul></div> 
+
+        <div class="footer-col"><p class="footer-col-title">Negocios</p><ul>
+          <li><button onclick="goPage('business')">Registrar negocio</button></li>
+          <li><button onclick="goPage('profile')">Gestionar perfil</button></li>
+          <li><button onclick="goPage('plans')">Planes</button></li>
+          <li><button onclick="goPage('support')">Soporte</button></li>
+        </ul></div> 
+
+        <div class="footer-col"><p class="footer-col-title">Empresa</p><ul>
+          <li><button onclick="goPage('about')">Sobre Fynder</button></li>
+          <li><button onclick="goPage('blog')">Blog</button></li>
+          <li><button onclick="goPage('terms')">Términos</button></li>
+          <li><button onclick="goPage('privacy')">Privacidad</button></li>
+        </ul></div> 
+
+      </div>
+
+      <!-- Linea animada q hace brillo -->
+      <div class="footer-line-anim"></div>
+
+      <div class="footer-bottom"><p>© 2025 Fynder. Todos los derechos reservados.</p><p>Hecho con ❤️ para emprendedores locales</p></div> 
+
+    </div> 
+
+  </footer> 
+
+</div> 

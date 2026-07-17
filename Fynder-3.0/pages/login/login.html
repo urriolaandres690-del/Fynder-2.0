@@ -1,0 +1,101 @@
+﻿<div id="page-login" class="page auth-page">
+
+  <!-- Panel izquierdo decorativo -->
+  <div class="auth-panel">
+    <div class="auth-panel-inner">
+      <button onclick="goPage('home')" class="back-home">
+        <i class="fas fa-arrow-left"></i> Volver al inicio
+      </button>
+
+      <div class="auth-panel-logo">
+        <div class="logo-icon logo-icon-lg">
+          <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="white" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg>
+        </div>
+        <span class="logo-text logo-text-lg"><span class="fyn">FYN</span><span class="der">DER</span></span>
+      </div>
+
+      <h2 class="auth-panel-title">Conecta con tu comunidad local</h2>
+      <p class="auth-panel-desc">Accede y descubre los mejores negocios cerca de ti. Guarda tus favoritos, explora categorías y apoya a los emprendedores locales.</p>
+
+      <div class="auth-perks">
+        <div class="auth-perk">
+          <div class="auth-perk-icon"><i class="fas fa-store"></i></div>
+          <span id="loginNegociosCount">85 negocios registrados</span>
+        </div>
+        <div class="auth-perk">
+          <div class="auth-perk-icon"><i class="fas fa-heart"></i></div>
+          <span>Guarda tus favoritos</span>
+        </div>
+        <div class="auth-perk">
+          <div class="auth-perk-icon"><i class="fas fa-bolt"></i></div>
+          <span>Acceso inmediato y gratuito</span>
+        </div>
+      </div>
+
+      <div class="auth-panel-shapes">
+        <div class="auth-shape auth-shape-1"></div>
+        <div class="auth-shape auth-shape-2"></div>
+        <div class="auth-shape auth-shape-3"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Panel derecho formulario -->
+  <div class="auth-form-side">
+    <div class="auth-card">
+
+      <div class="auth-card-header">
+        <div class="auth-avatar">
+          <i class="fas fa-user"></i>
+        </div>
+        <h1>Bienvenido de nuevo</h1>
+        <p>Ingresa tus datos para continuar</p>
+      </div>
+
+      <form id="loginForm" onsubmit="loginUser(event)" autocomplete="on">
+
+        <div class="auth-field">
+          <label for="loginEmail">Correo electrónico</label>
+          <div class="auth-input-wrap">
+            <i class="fas fa-envelope auth-input-icon"></i>
+            <input id="loginEmail" type="email" placeholder="tu@correo.com" required autocomplete="email">
+          </div>
+        </div>
+
+        <div class="auth-field">
+          <div class="auth-field-header">
+            <label for="loginPass">Contraseña</label>
+            <a href="#" class="auth-link-sm" onclick="forgotPassword(); return false;">¿Olvidaste tu contraseña?</a>
+          </div>
+          <div class="auth-input-wrap">
+            <i class="fas fa-lock auth-input-icon"></i>
+            <input id="loginPass" type="password" placeholder="••••••••" required autocomplete="current-password">
+            <button type="button" class="auth-eye-btn" onclick="togglePassVisibility('loginPass', this)" aria-label="Mostrar contraseña">
+              <i class="fas fa-eye"></i>
+            </button>
+          </div>
+        </div>
+
+        <label class="auth-remember">
+          <input type="checkbox" id="rememberMe">
+          <span class="auth-check-box"></span>
+          <span>Recordarme en este dispositivo</span>
+        </label>
+
+        <button type="submit" class="auth-submit-btn">
+          <i class="fas fa-right-to-bracket"></i>
+          Iniciar Sesión
+        </button>
+
+        <div class="auth-divider"><span>¿Nuevo en FYNDER?</span></div>
+
+        <button type="button" class="auth-alt-btn" onclick="goPage('register')">
+          <i class="fas fa-user-plus"></i>
+          Crear una cuenta gratis
+        </button>
+
+      </form>
+    </div>
+  </div>
+
+</div>

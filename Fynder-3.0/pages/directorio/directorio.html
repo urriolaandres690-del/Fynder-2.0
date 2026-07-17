@@ -1,0 +1,33 @@
+﻿<div id="page-directory" class="page" style="min-height:100vh;background:#F8FAFC;padding-top:64px"> 
+
+  <div class="dir-toolbar"> 
+
+    <div class="dir-toolbar-inner"> 
+
+      <div class="search-box"> 
+
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg> 
+
+        <input type="text" id="dirSearch" placeholder="Buscar negocios, productos, servicios..." oninput="filterDir()" /> 
+
+        <button class="search-clear hide" id="dirClear" onclick="clearDirSearch()"><svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg></button> 
+
+      </div> 
+
+      <div class="cat-filters" id="dirCatFilters"></div> 
+
+      <div class="view-toggle"> 
+
+        <button class="view-btn active" id="viewGrid" onclick="setView('grid')" title="Cuadrícula"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="7" height="7" x="3" y="3" rx="1"/><rect width="7" height="7" x="14" y="3" rx="1"/><rect width="7" height="7" x="14" y="14" rx="1"/><rect width="7" height="7" x="3" y="14" rx="1"/></svg></button> 
+
+        <button class="view-btn" id="viewList" onclick="setView('list')" title="Lista"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="8" x2="21" y1="6" y2="6"/><line x1="8" x2="21" y1="12" y2="12"/><line x1="8" x2="21" y1="18" y2="18"/><line x1="3" x2="3.01" y1="6" y2="6"/><line x1="3" x2="3.01" y1="12" y2="12"/><line x1="3" x2="3.01" y1="18" y2="18"/></svg></button> 
+
+      </div> 
+
+    </div> 
+
+  </div> 
+
+  <div class="dir-content"><p class="dir-count" id="dirCount"></p><div id="dirResults"></div></div> 
+
+</div> 

@@ -1,0 +1,118 @@
+﻿<div id="page-map" class="page">
+
+  <!-- toolbar fijo sobre el mapa -->
+  <div class="map-toolbar">
+    <div class="map-toolbar-inner">
+      <div class="map-search-box">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+        <input type="text" id="mapSearch" placeholder="Buscar negocio en el mapa…" oninput="filterMapMarkers()"/>
+        <button class="search-clear hide" id="mapClear" onclick="clearMapSearch()">
+          <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
+        </button>
+      </div>
+      <div class="map-cat-filters" id="mapCatFilters"></div>
+      <div class="map-count-badge" id="mapCount"></div>
+    </div>
+  </div>
+
+  <!-- contenedor mapa + panel lateral -->
+  <div class="map-layout">
+
+    <!-- mapa -->
+    <div id="mapCanvas"></div>
+
+    <!-- panel lateral de resultados -->
+    <div class="map-panel" id="mapPanel">
+      <div class="map-panel-header">
+        <h3 class="map-panel-title">Negocios cercanos</h3>
+        <button class="map-panel-close" id="mapPanelClose" onclick="closeMapPanel()">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
+        </button>
+      </div>
+      <div class="map-panel-list" id="mapPanelList"></div>
+    </div>
+
+  </div>
+
+  <!-- popup seleccionado (en cel, bottom sheet) -->
+  <div class="map-biz-popup" id="mapBizPopup">
+    <button class="map-popup-close" onclick="closeMapPopup()">
+      <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
+    </button>
+    <div class="map-popup-img-wrap">
+      <img id="mpImg" src="" alt=""/>
+      <span id="mpDeal" style="display:none;position:absolute;top:10px;left:10px;padding:3px 10px;border-radius:99px;font-size:.65rem;font-weight:800;color:#fff;font-family:'Poppins',sans-serif"></span>
+    </div>
+    <div class="map-popup-body">
+      <div class="map-popup-cat" id="mpCat"></div>
+      <div class="map-popup-name" id="mpName"></div>
+      <div class="map-popup-addr" id="mpAddr">
+        <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
+        <span id="mpAddrText"></span>
+      </div>
+      <div class="map-popup-rating" id="mpRating"></div>
+      <div class="map-popup-actions">
+        <button class="map-popup-btn map-popup-btn-primary" id="mpBtnDetail">Ver detalle</button>
+        <a class="map-popup-btn map-popup-btn-ghost" id="mpBtnGmaps" target="_blank" rel="noopener">
+          <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
+          Google Maps
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Globo Terráqueo Fynder todavia se puede mejorar esta simple -->
+  <div id="globe-section">
+    <div id="globe-wrap">
+
+      <div id="globe-loader">
+        <div class="globe-spinner"></div>
+        <div id="globe-loader-text">Iniciando red global… 0%</div>
+      </div>
+
+      <canvas id="globeCanvas"></canvas>
+      <div id="globe-vignette"></div>
+      <div class="globe-corner globe-tl"></div>
+      <div class="globe-corner globe-tr"></div>
+      <div class="globe-corner globe-bl"></div>
+      <div class="globe-corner globe-br"></div>
+
+      <div id="globe-brand"><span class="globe-brand-dot"></span> Fynder &middot; Red Global en vivo</div>
+
+      <div id="globe-zoom-ctrl">
+        <button class="globe-zoom-btn" id="gBtnZoomIn"  title="Acercar">+</button>
+        <button class="globe-zoom-btn" id="gBtnZoomOut" title="Alejar">−</button>
+        <button class="globe-zoom-btn globe-zoom-reset" id="gBtnReset" title="Restablecer">↺</button>
+      </div>
+
+      <div id="globe-labels-layer"></div>
+      <div id="globe-city-tooltip">
+        <div class="globe-tt-name" id="gTtName"></div>
+        <div class="globe-tt-info" id="gTtInfo"></div>
+      </div>
+
+      <div class="globe-stat-card" id="gCardLeft">
+        <div class="globe-card-icon">◆ ACTIVIDAD</div>
+        <div class="globe-card-eyebrow">Cada 45 segundos</div>
+        <div class="globe-card-highlight">un nuevo negocio se conecta<br>a través de Fynder</div>
+      </div>
+
+      <div class="globe-stat-card globe-card-right" id="gCardRight">
+        <div class="globe-card-number" id="gStatNumber">85</div>
+        <div class="globe-card-eyebrow">negocios activos</div>
+        <div class="globe-card-highlight globe-card-highlight-warm">en Panamá ahora mismo</div>
+      </div>
+
+      <div class="globe-stat-card globe-card-small" id="gCardSmall">
+        <div class="globe-card-number" style="font-size:18px">🇵🇦</div>
+        <div class="globe-card-eyebrow">hub logístico de las Américas</div>
+      </div>
+
+      <div id="globe-hint">◐ Arrastra · Rueda para zoom · Toca ciudad para info</div>
+
+
+
+    </div>
+  </div>
+
+</div>

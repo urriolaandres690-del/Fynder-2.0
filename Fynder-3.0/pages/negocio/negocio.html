@@ -1,0 +1,182 @@
+﻿<div id="page-business" class="page" style="min-height:100vh; background:#F8FAFC; padding-top:80px; padding-bottom:64px">
+
+  <div class="biz-reg-inner">
+
+    <!-- Encabezado -->
+    <div class="biz-reg-header">
+      <div class="biz-reg-icon">
+        <i class="fas fa-store"></i>
+      </div>
+      <div>
+        <p class="section-label">Únete a FYNDER</p>
+        <h1 class="biz-reg-title">Registra tu negocio</h1>
+        <p class="biz-reg-sub">Llega a miles de clientes en tu comunidad. Sin comisiones, sin costos ocultos.</p>
+      </div>
+    </div>
+
+    <!-- Perks rápidos -->
+    <div class="biz-reg-perks">
+      <div class="biz-reg-perk biz-perk-green" onclick="showToast('Sin costo alguno, siempre.', 'success')">
+        <div class="biz-perk-icon"><i class="fas fa-shield-halved"></i></div>
+        <div class="biz-perk-text">
+          <span class="biz-perk-title">100% gratuito</span>
+          <span class="biz-perk-sub">Sin costos ocultos</span>
+        </div>
+      </div>
+      <div class="biz-reg-perk biz-perk-yellow" onclick="showToast('Tu negocio aparece al instante.', 'success')">
+        <div class="biz-perk-icon"><i class="fas fa-bolt"></i></div>
+        <div class="biz-perk-text">
+          <span class="biz-perk-title">Activación inmediata</span>
+          <span class="biz-perk-sub">Visible en segundos</span>
+        </div>
+      </div>
+      <div class="biz-reg-perk biz-perk-blue" onclick="showToast('+2,400 personas buscan negocios aquí.', 'info')">
+        <div class="biz-perk-icon"><i class="fas fa-users"></i></div>
+        <div class="biz-perk-text">
+          <span class="biz-perk-title">+2,400 usuarios activos</span>
+          <span class="biz-perk-sub">Comunidad real</span>
+        </div>
+      </div>
+      <div class="biz-reg-perk biz-perk-teal" onclick="goPage('plans')">
+        <div class="biz-perk-icon"><i class="fas fa-chart-line"></i></div>
+        <div class="biz-perk-text">
+          <span class="biz-perk-title">Mayor visibilidad local</span>
+          <span class="biz-perk-sub">Ver planes →</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Tarjeta del formulario -->
+    <div class="biz-reg-card">
+
+      <form id="businessForm" onsubmit="registerBusiness(event)">
+
+        <!-- Seccion 1 Informacion basica -->
+        <div class="biz-reg-section">
+          <div class="biz-reg-section-label">
+            <span class="biz-reg-step">1</span>
+            Información básica
+          </div>
+
+          <div class="biz-reg-grid-2">
+            <div class="biz-reg-field">
+              <label for="bizName">Nombre del negocio <span class="biz-required">*</span></label>
+              <div class="biz-input-wrap">
+                <i class="fas fa-store biz-input-icon"></i>
+                <input id="bizName" type="text" placeholder="Ej: Pastelería Luna" required>
+              </div>
+            </div>
+
+            <div class="biz-reg-field">
+              <label for="bizCategory">Categoría <span class="biz-required">*</span></label>
+              <div class="biz-input-wrap">
+                <i class="fas fa-tag biz-input-icon"></i>
+                <select id="bizCategory" required>
+                  <option value="" disabled selected>Selecciona una categoría</option>
+                  <option>Restaurantes</option>
+                  <option>Salud</option>
+                  <option>Belleza</option>
+                  <option>Tecnología</option>
+                  <option>Ropa</option>
+                  <option>Hogar</option>
+                  <option>Transporte</option>
+                  <option>Turismo</option>
+                </select>
+              </div>
+            </div>
+          </div>
+
+          <div class="biz-reg-field">
+            <label for="bizDesc">Descripción del negocio <span class="biz-required">*</span></label>
+            <div class="biz-input-wrap biz-textarea-wrap">
+              <i class="fas fa-align-left biz-input-icon biz-input-icon-top"></i>
+              <textarea id="bizDesc" rows="4" placeholder="Describe tu negocio: qué ofrecen, qué los hace especial, especialidades..." required></textarea>
+            </div>
+          </div>
+        </div>
+
+        <!-- Seccion 2 Ubicacion y contacto -->
+        <div class="biz-reg-section">
+          <div class="biz-reg-section-label">
+            <span class="biz-reg-step">2</span>
+            Ubicación y contacto
+          </div>
+
+          <div class="biz-reg-grid-2">
+            <div class="biz-reg-field">
+              <label for="bizAddress">Dirección <span class="biz-required">*</span></label>
+              <div class="biz-input-wrap">
+                <i class="fas fa-map-marker-alt biz-input-icon"></i>
+                <input id="bizAddress" type="text" placeholder="Calle, número, colonia" required>
+              </div>
+            </div>
+
+            <div class="biz-reg-field">
+              <label for="bizPhone">Teléfono <span class="biz-required">*</span></label>
+              <div class="biz-input-wrap">
+                <i class="fas fa-phone biz-input-icon"></i>
+                <input id="bizPhone" type="tel" placeholder="+507 6000-0000" required>
+              </div>
+            </div>
+          </div>
+
+          <div class="biz-reg-grid-2">
+            <div class="biz-reg-field">
+              <label for="bizHours">Horario de atención <span class="biz-required">*</span></label>
+              <div class="biz-input-wrap">
+                <i class="fas fa-clock biz-input-icon"></i>
+                <input id="bizHours" type="text" placeholder="Lun–Sáb 9:00am – 6:00pm" required>
+              </div>
+            </div>
+
+            <div class="biz-reg-field">
+              <label for="bizWebsite">Sitio web <span class="biz-optional-lbl">(opcional)</span></label>
+              <div class="biz-input-wrap">
+                <i class="fas fa-globe biz-input-icon"></i>
+                <input id="bizWebsite" type="url" placeholder="https://tunegocio.com">
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Seccion 3 Redes sociales -->
+        <div class="biz-reg-section">
+          <div class="biz-reg-section-label">
+            <span class="biz-reg-step">3</span>
+            Redes sociales <span class="biz-optional-lbl">(opcional)</span>
+          </div>
+
+          <div class="biz-reg-grid-2">
+            <div class="biz-reg-field">
+              <label for="bizInstagram">Instagram</label>
+              <div class="biz-input-wrap">
+                <i class="fab fa-instagram biz-input-icon" style="color:#E1306C"></i>
+                <input id="bizInstagram" type="text" placeholder="@tu_negocio">
+              </div>
+            </div>
+
+            <div class="biz-reg-field">
+              <label for="bizFacebook">Facebook</label>
+              <div class="biz-input-wrap">
+                <i class="fab fa-facebook biz-input-icon" style="color:#1877F2"></i>
+                <input id="bizFacebook" type="text" placeholder="NombreEnFacebook">
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Botón submit -->
+        <div class="biz-reg-submit-wrap">
+          <button type="submit" class="biz-reg-submit-btn">
+            <i class="fas fa-rocket"></i>
+            Publicar mi negocio gratis
+          </button>
+          <p class="biz-reg-disclaimer">Al registrar tu negocio aceptas nuestros <a href="#" onclick="event.preventDefault();goPage('terms')">Términos de servicio</a>. Tu información será visible para todos los usuarios de FYNDER.</p>
+        </div>
+
+      </form>
+    </div>
+
+  </div>
+
+</div> 
