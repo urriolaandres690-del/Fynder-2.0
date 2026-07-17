@@ -9,7 +9,7 @@
  * ═══════════════════════════════════════════════════════════════
  */
 
-/* Support channel icons (los inline styles no se pueden override así, pero sí con !important en clases derivadas) */
+/* Support channel icons */
 [data-theme="dark"] .support-channel-icon { background: rgba(103,184,180,.15) !important; color: var(--primary) !important; }
 
 /* Legal section icons */
@@ -17,16 +17,6 @@
 
 /* fyl-section-alt en dark */
 [data-theme="dark"] .fyl-section-alt  { background: #1E293B; }
-
-  /* Support channels */
-  .support-channels { grid-template-columns: 1fr; }
-
-  /* Dir toolbar sticky top ajustado */
-  .dir-toolbar { top: 56px; }
-}
-
-/* BREAKPOINT: móvil grande (481px – 600px) */
-@media (max-width: 600px) {
 
 /* ---- Formulario soporte – campos ---- */
 [data-theme="dark"] .support-field input,
@@ -43,5 +33,13 @@
 [data-theme="dark"] .support-field textarea:focus { border-color: var(--primary); }
 
 /* ---- Mapa – popup y controles ---- */
-[data-theme="dark"] .map-popup            { background: var(--card); border-color: rgba(255,255,255,.1); }
+[data-theme="dark"] .map-popup { background: var(--card); border-color: rgba(255,255,255,.1); }
 
+/* BREAKPOINT: móvil grande (≤ 600px) */
+@media (max-width: 600px) {
+  /* Support channels */
+  .support-channels { grid-template-columns: 1fr; }
+
+  /* Dir toolbar sticky top ajustado */
+  .dir-toolbar { top: 56px; }
+}
