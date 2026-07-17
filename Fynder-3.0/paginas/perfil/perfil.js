@@ -513,5 +513,4 @@ function togglePassVisibility(inputId, btn){
         icon.classList.replace("fa-eye-slash", "fa-eye");
     }
 }
-// showToast — función global manejada desde shared/fynder.js
 

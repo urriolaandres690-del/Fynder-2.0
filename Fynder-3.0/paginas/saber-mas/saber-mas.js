@@ -64,36 +64,3 @@
   });
 }
 
-function createRipple(e) {
-  const btn = e.currentTarget;
-  // Evitar duplicar el listener
-  const existing = btn.querySelector('.fyl-ripple-el');
-  if (existing) existing.remove();
-
-  const rect   = btn.getBoundingClientRect();
-  const size   = Math.max(rect.width, rect.height) * 2;
-  const x      = e.clientX - rect.left - size / 2;
-  const y      = e.clientY - rect.top  - size / 2;
-
-  const ripple = document.createElement('span');
-  ripple.className = 'fyl-ripple-el';
-  ripple.style.cssText = `
-    position:absolute;
-    width:${size}px;height:${size}px;
-    left:${x}px;top:${y}px;
-    border-radius:50%;
-    background:rgba(255,255,255,.28);
-    transform:scale(0);
-    animation:fyl-ripple .55s linear forwards;
-    pointer-events:none;
-    z-index:0;
-  `;
-  btn.style.position = btn.style.position || 'relative';
-  btn.style.overflow = 'hidden';
-  btn.appendChild(ripple);
-  setTimeout(() => ripple.remove(), 600);
-}
-
-
-// menu movil — función global manejada desde shared/fynder.js
-

@@ -13,5 +13,4 @@
     showToast("¡Mensaje enviado! Te responderemos en menos de 24 horas 💬");
 }
 
-/*modo oscuro — función global manejada desde shared/fynder.js */
-
+/*modo oscuro*/

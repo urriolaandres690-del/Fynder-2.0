@@ -35,4 +35,3 @@ function dismissWelcomeModal() {
   if (!overlay) return;
   overlay.classList.remove('active');
 }
-
