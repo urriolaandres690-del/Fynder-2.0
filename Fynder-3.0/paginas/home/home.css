@@ -647,3 +647,19 @@
 [data-theme="dark"] .how-num   { color: rgba(255,255,255,.05); }
 [data-theme="dark"] .how-main-title { color: var(--fg); }
 [data-theme="dark"] .how-subtitle  { color: var(--muted); }
+
+/* Hero wave SVG fill – usa CSS variable para que cambie con el tema */
+[data-theme="dark"] .hero-wave path { fill: var(--bg) !important; }
+[data-theme="dark"] .fyl-hero-wave path { fill: var(--fyl-bg) !important; }
+
+/* heroes oscuros en modo oscuro */
+[data-theme="dark"] .fyl-hero {
+  background: linear-gradient(135deg, #0F172A 0%, #1E293B 55%, #0A1628 100%);
+}
+[data-theme="dark"] .about-hero-v2 {
+  background: linear-gradient(135deg, #0F172A 0%, #1E293B 55%, #0A1628 100%);
+}
+
+/* Sections con background inline en home */
+[data-theme="dark"] .section[style*="background:#F8FAFC"],
+[data-theme="dark"] .section[style*="background:#F0FEFE"] { background: var(--bg) !important; }
