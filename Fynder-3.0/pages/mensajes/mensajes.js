@@ -1,22 +1,18 @@
 ﻿/**
  * ═══════════════════════════════════════════════════════════════
- *  Fynder — JS de la sección: mensajes
+ *  Fynder — Mensajes (WhatsApp Web layout)
  *  Archivo: pages/mensajes/mensajes.js
  *
- *  NOTA: Toda la lógica de la app está en shared/fynder.js
- *  Este archivo es un punto de referencia para saber qué
- *  funciones de fynder.js corresponden a esta sección.
+ *  NOTA: Toda la lógica principal está en shared/fynder.js
+ *  que se carga globalmente desde index.html.
  *
- *  Funciones principales usadas por esta sección:
- *  openChat, openChatFromModal, renderChatMessages, sendChatMessage, renderConversations, openChatById, msgSwitchTab, msgSwitchSection, renderBookmarks, openMsgSettings, closeMsgSettings, toggleEmojiPicker, openNewChatModal, closeNewChatModal, filterConversations, openChatProfile, waCloseChat, waChatCall, toggleWaChatMenu, waRailSwitch, openDeleteMsgModal, closeDeleteMsgModal, confirmDeleteMsg, enterSelectMode, exitSelectMode
+ *  Funciones de shared/fynder.js relevantes para esta sección:
+ *  openChat, openChatFromModal, renderChatMessages, renderChatMessagesMobile, sendChatMessage, sendChatMessageMobile, renderConversations, openChatById, msgConvMenu, msgSwitchTab, msgSwitchSection, renderBookmarks, pushNotification, markAllNotifsRead, markNotifRead, deleteNotif, updateNotifBadge, renderNotifications, updateMsgBadge, openChatProfile, waCloseChat, filterConversations, toggleEmojiPicker, openEmojiPicker, closeEmojiPicker, openNewChatModal, closeNewChatModal, filterNewChatList, openMsgBubbleCtxMenu, closeMsgBubbleCtxMenu, chatCtxAction, toggleAudioRecord, startAudioRecord, stopAndSendAudio, openDeleteMsgModal, closeDeleteMsgModal, confirmDeleteMsg, enterSelectMode, exitSelectMode, deleteSelectedMsgs, shareSelectedMsgs, waRailSwitch, waRailSyncAvatar, waRailUpdateBadge, toggleMsgHeaderMenu, msgMarkAllRead, msgSortChats, msgClearAllChats
  *
- *  Para agregar lógica exclusiva de esta sección,
- *  escríbela aquí y será cargada automáticamente desde index.html
+ *  Agrega aquí cualquier lógica EXCLUSIVA de esta página que
+ *  no sea necesaria en otras secciones.
  * ═══════════════════════════════════════════════════════════════
  */
 
-// Escribe aquí cualquier lógica exclusiva de la sección 'mensajes'
-// Ejemplo:
-// document.addEventListener('DOMContentLoaded', function() {
-//   // código específico de mensajes
-// });
+// Este archivo está reservado para lógica exclusiva de la sección "Mensajes (WhatsApp Web layout)".
+// La lógica actual está en shared/fynder.js — no se necesita duplicar nada aquí.

@@ -1,22 +1,18 @@
 ﻿/**
  * ═══════════════════════════════════════════════════════════════
- *  Fynder — JS de la sección: sobre-fynder
+ *  Fynder — Sobre Fynder
  *  Archivo: pages/sobre-fynder/sobre-fynder.js
  *
- *  NOTA: Toda la lógica de la app está en shared/fynder.js
- *  Este archivo es un punto de referencia para saber qué
- *  funciones de fynder.js corresponden a esta sección.
+ *  NOTA: Toda la lógica principal está en shared/fynder.js
+ *  que se carga globalmente desde index.html.
  *
- *  Funciones principales usadas por esta sección:
- *  initAboutPage, spawnAboutParticles, animateAboutBars, animateAboutCounters
+ *  Funciones de shared/fynder.js relevantes para esta sección:
+ *  initAboutPage, spawnAboutParticles, animateAboutBars, animateAboutCounters, animateCount
  *
- *  Para agregar lógica exclusiva de esta sección,
- *  escríbela aquí y será cargada automáticamente desde index.html
+ *  Agrega aquí cualquier lógica EXCLUSIVA de esta página que
+ *  no sea necesaria en otras secciones.
  * ═══════════════════════════════════════════════════════════════
  */
 
-// Escribe aquí cualquier lógica exclusiva de la sección 'sobre-fynder'
-// Ejemplo:
-// document.addEventListener('DOMContentLoaded', function() {
-//   // código específico de sobre-fynder
-// });
+// Este archivo está reservado para lógica exclusiva de la sección "Sobre Fynder".
+// La lógica actual está en shared/fynder.js — no se necesita duplicar nada aquí.

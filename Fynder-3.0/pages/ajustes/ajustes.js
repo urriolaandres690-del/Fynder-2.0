@@ -1,22 +1,18 @@
 ﻿/**
  * ═══════════════════════════════════════════════════════════════
- *  Fynder — JS de la sección: ajustes
+ *  Fynder — Ajustes
  *  Archivo: pages/ajustes/ajustes.js
  *
- *  NOTA: Toda la lógica de la app está en shared/fynder.js
- *  Este archivo es un punto de referencia para saber qué
- *  funciones de fynder.js corresponden a esta sección.
+ *  NOTA: Toda la lógica principal está en shared/fynder.js
+ *  que se carga globalmente desde index.html.
  *
- *  Funciones principales usadas por esta sección:
- *  initSettingsPage, settGoSection, settSyncAccount, settLogout, settSyncAppearance, settToggleDark, settSyncNotif, settSyncAccessibility, settSyncStorage, settClearData, settSyncMsgUI, settSyncMensajesSection, settFilterSections, settSyncHerramientas, settSyncRendimiento, settSyncSistema, settResetConfig, settToggleInvisible, settSyncAmigos, settSyncIdioma, settApplyLanguage, settToggleAutoTranslate, openFeedbackModal, closeFeedbackModal, showOrgInfoModal, closeOrgInfoModal
+ *  Funciones de shared/fynder.js relevantes para esta sección:
+ *  initSettingsPage, settGoSection, settGoToSection, settSyncAccount, settLogout, settSyncAppearance, settToggleDark, settSyncNotif, settToggleSetting, settSyncAccessibility, settSetUIFontSize, settToggleReduceMotion, settSyncStorage, settClearData, settSyncMsgUI, settSyncMensajesSection, settToggleMsgPriv, settFilterSections, settSyncHerramientas, settToggleExpand, settSyncRendimiento, settSyncSistema, settToggleEnergySaver, settSelectEnergyMode, settSelectPreloadMode, settResetConfig, settToggleInvisible, settSyncAmigos, settSearchFriends, acceptFriendReq, declineFriendReq, removeFriend, msgFriend, settSyncIdioma, settApplyLanguage, settToggleAutoTranslate, settTranslateNow
  *
- *  Para agregar lógica exclusiva de esta sección,
- *  escríbela aquí y será cargada automáticamente desde index.html
+ *  Agrega aquí cualquier lógica EXCLUSIVA de esta página que
+ *  no sea necesaria en otras secciones.
  * ═══════════════════════════════════════════════════════════════
  */
 
-// Escribe aquí cualquier lógica exclusiva de la sección 'ajustes'
-// Ejemplo:
-// document.addEventListener('DOMContentLoaded', function() {
-//   // código específico de ajustes
-// });
+// Este archivo está reservado para lógica exclusiva de la sección "Ajustes".
+// La lógica actual está en shared/fynder.js — no se necesita duplicar nada aquí.

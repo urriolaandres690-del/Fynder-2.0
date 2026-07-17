@@ -1,22 +1,18 @@
 ﻿/**
  * ═══════════════════════════════════════════════════════════════
- *  Fynder — JS de la sección: saber-mas
+ *  Fynder — Saber Más
  *  Archivo: pages/saber-mas/saber-mas.js
  *
- *  NOTA: Toda la lógica de la app está en shared/fynder.js
- *  Este archivo es un punto de referencia para saber qué
- *  funciones de fynder.js corresponden a esta sección.
+ *  NOTA: Toda la lógica principal está en shared/fynder.js
+ *  que se carga globalmente desde index.html.
  *
- *  Funciones principales usadas por esta sección:
- *  initFynderAnimations, goPage, goDirectoryQuery
+ *  Funciones de shared/fynder.js relevantes para esta sección:
+ *  initFynderAnimations, createRipple
  *
- *  Para agregar lógica exclusiva de esta sección,
- *  escríbela aquí y será cargada automáticamente desde index.html
+ *  Agrega aquí cualquier lógica EXCLUSIVA de esta página que
+ *  no sea necesaria en otras secciones.
  * ═══════════════════════════════════════════════════════════════
  */
 
-// Escribe aquí cualquier lógica exclusiva de la sección 'saber-mas'
-// Ejemplo:
-// document.addEventListener('DOMContentLoaded', function() {
-//   // código específico de saber-mas
-// });
+// Este archivo está reservado para lógica exclusiva de la sección "Saber Más".
+// La lógica actual está en shared/fynder.js — no se necesita duplicar nada aquí.

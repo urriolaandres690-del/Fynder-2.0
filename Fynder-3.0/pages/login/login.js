@@ -1,22 +1,18 @@
 ﻿/**
  * ═══════════════════════════════════════════════════════════════
- *  Fynder — JS de la sección: login
+ *  Fynder — Iniciar Sesión
  *  Archivo: pages/login/login.js
  *
- *  NOTA: Toda la lógica de la app está en shared/fynder.js
- *  Este archivo es un punto de referencia para saber qué
- *  funciones de fynder.js corresponden a esta sección.
+ *  NOTA: Toda la lógica principal está en shared/fynder.js
+ *  que se carga globalmente desde index.html.
  *
- *  Funciones principales usadas por esta sección:
+ *  Funciones de shared/fynder.js relevantes para esta sección:
  *  loginUser, forgotPassword, togglePassVisibility
  *
- *  Para agregar lógica exclusiva de esta sección,
- *  escríbela aquí y será cargada automáticamente desde index.html
+ *  Agrega aquí cualquier lógica EXCLUSIVA de esta página que
+ *  no sea necesaria en otras secciones.
  * ═══════════════════════════════════════════════════════════════
  */
 
-// Escribe aquí cualquier lógica exclusiva de la sección 'login'
-// Ejemplo:
-// document.addEventListener('DOMContentLoaded', function() {
-//   // código específico de login
-// });
+// Este archivo está reservado para lógica exclusiva de la sección "Iniciar Sesión".
+// La lógica actual está en shared/fynder.js — no se necesita duplicar nada aquí.

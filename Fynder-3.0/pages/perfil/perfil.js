@@ -1,22 +1,18 @@
 ﻿/**
  * ═══════════════════════════════════════════════════════════════
- *  Fynder — JS de la sección: perfil
+ *  Fynder — Perfil de Usuario
  *  Archivo: pages/perfil/perfil.js
  *
- *  NOTA: Toda la lógica de la app está en shared/fynder.js
- *  Este archivo es un punto de referencia para saber qué
- *  funciones de fynder.js corresponden a esta sección.
+ *  NOTA: Toda la lógica principal está en shared/fynder.js
+ *  que se carga globalmente desde index.html.
  *
- *  Funciones principales usadas por esta sección:
- *  loadProfile, saveProfile, changePassword, deleteAccount, showAvatarOptions, hideAvatarOptions, setUserStatus, handleAvatarChange, handleCoverChange, cameraOpen, cameraSnap, cameraClose, applyAvatarDisplay, applyProfileCover, removeCover, removeAvatar, setAvatarInitial, setAvatarPreset, triggerCameraCapture, updateBioCount
+ *  Funciones de shared/fynder.js relevantes para esta sección:
+ *  loadProfile, applyAvatarDisplay, applyProfileCover, handleAvatarChange, handleCoverChange, removeCover, cameraOpen, cameraSnap, cameraClose, showAvatarOptions, hideAvatarOptions, setAvatarInitial, setAvatarPreset, removeAvatar, toggleStatusDropdown, setUserStatus, applyStatusUI, updateBioCount, saveProfile, changePassword, deleteAccount, togglePassVisibility
  *
- *  Para agregar lógica exclusiva de esta sección,
- *  escríbela aquí y será cargada automáticamente desde index.html
+ *  Agrega aquí cualquier lógica EXCLUSIVA de esta página que
+ *  no sea necesaria en otras secciones.
  * ═══════════════════════════════════════════════════════════════
  */
 
-// Escribe aquí cualquier lógica exclusiva de la sección 'perfil'
-// Ejemplo:
-// document.addEventListener('DOMContentLoaded', function() {
-//   // código específico de perfil
-// });
+// Este archivo está reservado para lógica exclusiva de la sección "Perfil de Usuario".
+// La lógica actual está en shared/fynder.js — no se necesita duplicar nada aquí.

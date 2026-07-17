@@ -1,22 +1,18 @@
 ﻿/**
  * ═══════════════════════════════════════════════════════════════
- *  Fynder — JS de la sección: guardados
+ *  Fynder — Guardados
  *  Archivo: pages/guardados/guardados.js
  *
- *  NOTA: Toda la lógica de la app está en shared/fynder.js
- *  Este archivo es un punto de referencia para saber qué
- *  funciones de fynder.js corresponden a esta sección.
+ *  NOTA: Toda la lógica principal está en shared/fynder.js
+ *  que se carga globalmente desde index.html.
  *
- *  Funciones principales usadas por esta sección:
- *  renderFavorites, toggleFav
+ *  Funciones de shared/fynder.js relevantes para esta sección:
+ *  renderFavorites, toggleFav, refreshFavBtns
  *
- *  Para agregar lógica exclusiva de esta sección,
- *  escríbela aquí y será cargada automáticamente desde index.html
+ *  Agrega aquí cualquier lógica EXCLUSIVA de esta página que
+ *  no sea necesaria en otras secciones.
  * ═══════════════════════════════════════════════════════════════
  */
 
-// Escribe aquí cualquier lógica exclusiva de la sección 'guardados'
-// Ejemplo:
-// document.addEventListener('DOMContentLoaded', function() {
-//   // código específico de guardados
-// });
+// Este archivo está reservado para lógica exclusiva de la sección "Guardados".
+// La lógica actual está en shared/fynder.js — no se necesita duplicar nada aquí.
