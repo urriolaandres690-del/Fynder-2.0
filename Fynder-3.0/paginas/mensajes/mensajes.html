@@ -425,4 +425,29 @@
     <div class="msg-newchat-list" id="newChatList"></div>
   </div>
 
+  <!-- Modal: Eliminar mensaje -->
+  <div id="deleteMsgOverlay" class="del-msg-overlay" style="display:none" onclick="closeDeleteMsgModal()"></div>
+  <div id="deleteMsgModal" class="del-msg-modal" style="display:none">
+    <p class="del-msg-title">¿Quieres eliminar este mensaje?</p>
+    <button class="del-msg-btn del-msg-everyone" onclick="confirmDeleteMsg('all')">Eliminar para todos</button>
+    <button class="del-msg-btn del-msg-me"       onclick="confirmDeleteMsg('me')">Eliminar para mí</button>
+    <button class="del-msg-btn del-msg-cancel"   onclick="closeDeleteMsgModal()">Cancelar</button>
+  </div>
+
+  <!-- Barra de selección de mensajes -->
+  <div id="msgSelectBar" class="msg-select-bar" style="display:none">
+    <button class="msg-select-close" onclick="exitSelectMode()" title="Cancelar">
+      <i class="fas fa-times"></i>
+    </button>
+    <span class="msg-select-count" id="msgSelectCount">0 seleccionados</span>
+    <div class="msg-select-actions">
+      <button class="msg-select-action" onclick="shareSelectedMsgs()" title="Compartir">
+        <i class="fas fa-share-nodes"></i>
+      </button>
+      <button class="msg-select-action danger" onclick="deleteSelectedMsgs()" title="Eliminar">
+        <i class="fas fa-trash"></i>
+      </button>
+    </div>
+  </div>
+
 </div><!-- /page-messages -->
