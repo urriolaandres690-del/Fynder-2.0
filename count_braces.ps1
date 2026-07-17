@@ -1,4 +1,4 @@
-$content = [System.IO.File]::ReadAllText('c:\Users\SupérateSantiago\Fynder\Fynder-3.0\pages\mensajes\mensajes.js')
+$content = Get-Content -Path ".\Fynder-3.0\pages\mensajes\mensajes.js" -Raw -Encoding UTF8
 $o = 0; $c = 0
 foreach ($ch in $content.ToCharArray()) {
     if ($ch -eq '{') { $o++ }
