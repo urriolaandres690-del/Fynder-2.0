@@ -64,7 +64,5 @@ function registerUser(event){
     showToast("¡Cuenta creada! Bienvenido a FYNDER, " + name + " 🎉");
     goPage("home");
 }
-
-function loginUser(event){
-    event.preventDefault();
+// loginUser — función de la sección login, definida en pages/login/login.js
 
