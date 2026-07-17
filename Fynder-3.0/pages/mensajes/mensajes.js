@@ -3317,39 +3317,6 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 });
 
-/* AJUSTES DEL CHAT: modo oscuro y fondo del chat */
-
-/** Toggle modo oscuro/día desde el panel de ajustes del chat */
-function msgToggleTheme() {
-  toggleDarkMode(); // usa la función global existente
-  _syncMsgSettingsTheme();
-}
-
-/** Sincroniza el toggle y label del tema en el panel */
-function _syncMsgSettingsTheme() {
-  const isDark   = document.documentElement.getAttribute('data-theme') === 'dark';
-  const toggle   = document.getElementById('settingThemeToggle');
-  const sub      = document.getElementById('settingThemeSub');
-  const icon     = document.getElementById('settingThemeIcon');
-
-  if (toggle) toggle.classList.toggle('on', isDark);
-  if (sub)    sub.textContent    = isDark ? 'Tema actual: oscuro' : 'Tema actual: claro';
-  if (icon)   icon.innerHTML     = isDark
-    ? '<i class="fas fa-moon"></i>'
-    : '<i class="fas fa-sun" style="color:#F4D35E"></i>';
-}
-
-/** Toggle genérico de ajustes del chat (online, etc.) */
-function msgToggleSetting(key, btnId) {
-  const lsKey  = 'fynderMsgOpt_' + key;
-  const btn    = document.getElementById(btnId);
-  const isOn   = btn ? btn.classList.contains('on') : localStorage.getItem(lsKey) !== '0';
-  const newVal = !isOn;
-  localStorage.setItem(lsKey, newVal ? '1' : '0');
-  if (btn) btn.classList.toggle('on', newVal);
-  showToast(newVal ? 'Activado' : 'Desactivado');
-}
-
 // HEADER CHATS — Menú de tres puntitos (dropdown)
 
 let _msgHeaderMenuOpen = false;
