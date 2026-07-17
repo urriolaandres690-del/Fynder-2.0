@@ -5,7 +5,7 @@
  *
  *  Las funciones GLOBALES (goPage, showToast, etc.) están en
  *  shared/fynder.js — las funciones del sistema de mensajes
- *  están en pages/mensajes/mensajes.js.
+ *  están en paginas/mensajes/mensajes.js.
  *  Este archivo es de referencia; la lógica del chat móvil
  *  (sendChatMessageMobile, toggleEmojiPickerMobile, etc.)
  *  vive en mensajes.js.
