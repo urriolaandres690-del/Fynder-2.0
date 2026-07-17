@@ -812,7 +812,13 @@ section.fyl-section-alt > *:last-child { padding-bottom: 72px; }
 /* ---- What cards: hover lift con borde coloreado ---- */
 .fyl-what-card {
   transition: transform .25s cubic-bezier(.34,1.56,.64,1), box-shadow .25s;
+}
+.fyl-what-card:hover {
+  transform: translateY(-5px);
+  box-shadow: var(--shadow-lg);
+}
 
+@media (max-width: 600px) {
   /* Fynder landing */
   .fyl-for-grid    { grid-template-columns: 1fr; }
   .fyl-compare     { flex-direction: column; }
@@ -836,7 +842,7 @@ section.fyl-section-alt > *:last-child { padding-bottom: 72px; }
   .dir-toolbar { top: 56px; }
 }
 
-
+@media (max-width: 540px) {
   /* Fynder landing */
   .fyl-impact-grid { grid-template-columns: 1fr 1fr; }
   .fyl-hero-actions { flex-direction: column; }
@@ -853,7 +859,6 @@ section.fyl-section-alt > *:last-child { padding-bottom: 72px; }
   .fynder-modal { border-radius: 16px 16px 0 0; }
 }
 
-/* BREAKPOINT: móvil pequeño (≤ 480px) */
 @media (max-width: 480px) {
   /* Tipografía base */
   html { font-size: 15px; }
@@ -880,11 +885,6 @@ section.fyl-section-alt > *:last-child { padding-bottom: 72px; }
   .dirSearch-wrap { width: 100%; }
   #dirSearch { width: 100%; }
 
-  /* Plans table scroll hint */
-  .plans-table-wrap { border-radius: 12px; }
-  .plans-th-pro,
-  .plans-th-premium { font-size: .72rem; }
-
   /* Fynder landing */
   .fyl-what-grid     { grid-template-columns: 1fr; }
   .fyl-impact-grid   { grid-template-columns: 1fr; }
@@ -899,6 +899,7 @@ section.fyl-section-alt > *:last-child { padding-bottom: 72px; }
   .fynder-modal {
     max-height: 92dvh;
     border-radius: 20px 20px 0 0;
+  }
 
   /* ---- Saber más (fynder landing) ---- */
   .fyl-hero-title  { font-size: 1.6rem !important; }
@@ -912,21 +913,7 @@ section.fyl-section-alt > *:last-child { padding-bottom: 72px; }
   .fyl-for-card    { padding: 24px 18px; }
   .fyl-step-body h3 { font-size: .95rem; }
   .fyl-step-body p { font-size: .82rem; }
-
-  /* ---- About ---- */
-  .about-title     { font-size: 1.5rem !important; }
-  .about-lead      { font-size: .9rem; }
-  .about-impact-num { font-size: 1.75rem !important; }
-  .about-stat-num  { font-size: 1.5rem; }
-  .about-card      { padding: 24px 18px; }
-
-  /* ---- Soporte ---- */
-  .support-title   { font-size: 1.5rem !important; }
-  .support-inner   { padding: 40px 16px 60px; }
-  .support-channel { padding: 24px 18px; }
-
-  /* ---- Blog ---- */
-  .blog-title      { font-size: 1.5rem !important; }
+}
 
 /* TEMA CLARO/OSCURO — Páginas "Saber más" y "Sobre Fynder" — Fix: fondos, bordes, textos y cards adaptables al tema */
 
