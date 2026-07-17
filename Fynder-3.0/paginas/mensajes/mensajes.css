@@ -3673,7 +3673,7 @@ body.select-mode .chat-msg-row .msg-checkbox { display: flex; align-items: cente
   background: var(--msg-accent);
   flex-shrink: 0;
 }
-.chat-emoji-btn { color: var(--msg-muted); font-size: 1.2rem; }
+.chat-emoji-btn { color: var(--msg-muted); font-size: 1.2rem; outline: none; -webkit-tap-highlight-color: transparent; }
 
 /* Separador de fecha */
 .chat-date-sep {
