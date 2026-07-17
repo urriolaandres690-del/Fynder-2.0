@@ -24,7 +24,7 @@ function _saveBookmarks(list) {
 }
 
 // ---- Estado activo del chat ----
-let _activeChatBizId = null;
+window._activeChatBizId = null;
 
 // ---- Abrir chat desde el modal del negocio ----
 function openChatFromModal() {
