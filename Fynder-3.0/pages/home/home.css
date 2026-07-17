@@ -1329,5 +1329,19 @@ body:has(#page-fynder.active) #navbar:not(.scrolled) .nav-dots-btn:hover {
 
 /* BOTÓN AJUSTES EN NAVBAR */
 .nav-settings-btn {
-  width: 36px; height: 36px;
-
+  width: 36px;
+  height: 36px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 10px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: var(--muted);
+  transition: background .2s, color .2s;
+}
+.nav-settings-btn:hover {
+  background: #F1F5F9;
+  color: var(--fg);
+}
