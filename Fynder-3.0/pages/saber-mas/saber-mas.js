@@ -106,7 +106,5 @@ function createRipple(e) {
 }
 
 
-// menu movil
-
-function toggleMobileMenu() {
+// menu movil — función global manejada desde shared/fynder.js
 

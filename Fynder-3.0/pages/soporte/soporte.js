@@ -24,8 +24,5 @@ function sendSupport(event) {
     showToast("¡Mensaje enviado! Te responderemos en menos de 24 horas 💬");
 }
 
-/*modo oscuro*/
-function toggleDarkMode(){
-    // Solo permitir modo oscuro si hay sesión activa
-    if (!localStorage.getItem('fynderLogged')) {
+/*modo oscuro — función global manejada desde shared/fynder.js */
 
