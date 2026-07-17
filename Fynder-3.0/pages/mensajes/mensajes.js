@@ -3445,6 +3445,57 @@ function _getBizSubtype(biz) {
   if (!biz) return 'general';
   const haystack = ((biz.tags || []).join(' ') + ' ' + (biz.description || '') + ' ' + (biz.name || '')).toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'');
 
+  // Restaurantes - subtipos (orden importa: más específico primero)
+  if (/panaderia|panadero/.test(haystack) || /pan fresco|pan artesanal|pan de/.test(haystack)) return 'panaderia';
+  if (/baguette|croissant|hojaldre|bolleria/.test(haystack)) return 'panaderia';
+  if (/heladeria|helado|sorbete|gelato/.test(haystack)) return 'heladeria';
+  if (/sushi|ramen|japones|nikkei|sashimi|noodle|tonkotsu|miso/.test(haystack)) return 'sushi_ramen';
+  if (/pizza|horno de lena|napolitano/.test(haystack)) return 'pizzeria';
+  if (/hamburguesa|burger/.test(haystack)) return 'hamburgueseria';
+  if (/mariscos|ceviche|corvina|camaron|langosta|tiradito/.test(haystack)) return 'mariscos';
+  if (/tacos|burrito|mexicano|quesadilla|al pastor/.test(haystack)) return 'mexicano';
+  if (/paste|torta|reposteria|cheesecake|macaron|bizcocho/.test(haystack)) return 'pasteleria';
+  if (/asado|parrilla|bife|costilla|asador|steak/.test(haystack) && !/pizza/.test(haystack)) return 'parrilla';
+  if (/vegano|vegetariano|plant-based|bowl veggie/.test(haystack)) return 'vegano';
+  if (/tailandes|thai|pad thai|curry verde|tom yum/.test(haystack)) return 'tailandes';
+  if (/crepe|wafle|pancake|brunch|huevo benedicto|mimosa/.test(haystack)) return 'brunch';
+  if (/empanada/.test(haystack)) return 'empanadas';
+  if (/smoothie|jugo natural|acai|superalimento/.test(haystack)) return 'jugos';
+  if (/coffee|barista|espresso|cold brew|metodo alternativo|v60|aeropress|chemex/.test(haystack)) return 'cafeteria';
+  if (/cafe literario|cafe boutique|cafe de origen/.test(haystack)) return 'cafeteria';
+  if (/asiatico|wok|dim sum|pho|bao/.test(haystack)) return 'asiatico';
+  if (/panameno|sancocho|patacon|tembleque|bienmesabe|crioll/.test(haystack)) return 'panameno';
+  if (/dulceria|alfajor|cocada|polvoron/.test(haystack)) return 'dulceria';
+
+  // Belleza - subtipos
+  if (/manicure|pedicure|nail|unas/.test(haystack)) return 'nail';
+  if (/masaje|spa|facial|aromaterapia|bienestar|relajante/.test(haystack)) return 'spa';
+  if (/tatuaje|tattoo|piercing/.test(haystack)) return 'tattoo';
+  if (/barberia|barber|fade|afeitado/.test(haystack)) return 'barberia';
+
+  // Salud - subtipos
+  if (/dental|odontolog|ortodoncia|blanqueamiento|implante/.test(haystack)) return 'dental';
+  if (/gym|gimnasio|fitness|crossfit|spinning|zumba/.test(haystack)) return 'gym';
+  if (/optica|lentes|gafas|vision/.test(haystack)) return 'optica';
+
+  // Tecnología - subtipos
+  if (/red|redes|camara de seguridad|cctv|servidor/.test(haystack)) return 'redes';
+
+  // Transporte - subtipos
+  if (/mecanica|taller|frenos|aceite|suspension|diagnostico/.test(haystack)) return 'mecanica';
+  if (/ejecutivo|aeropuerto|premium|chofer/.test(haystack)) return 'transporte_ejecutivo';
+
+  // Hogar - subtipos
+  if (/libreria|libro|literatura|comic|lectura/.test(haystack)) return 'libreria';
+  if (/ferreteria|herramienta|construccion|plomeria/.test(haystack)) return 'ferreteria';
+
+  // Turismo - subtipos
+  if (/fotografia|retrato|sesion|estudio foto/.test(haystack)) return 'fotografia';
+  if (/tour|guia|excursion|canal|casco viejo/.test(haystack)) return 'tours';
+
+  return 'general';
+}
+
 
 /* CHAT: REACCIONES Y MENÚ CONTEXTUAL DE MENSAJES */
 
