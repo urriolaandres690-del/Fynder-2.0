@@ -1,7 +1,7 @@
 ﻿/*
- * shared.js — Referencia de funciones globales de Fynder
+ * compartido.js — Referencia de funciones globales de Fynder
  *
- * Todas estas funciones están implementadas en shared/fynder.js
+ * Todas estas funciones están implementadas en compartido/fynder.js
  * Este archivo es solo documentación.
  *
  * NAVEGACIÓN
