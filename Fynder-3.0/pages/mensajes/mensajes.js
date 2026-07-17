@@ -3408,26 +3408,6 @@ function filterNewChatList(q) {
   _renderNewChatList(q);
 }
 
-function openNewChatModal() {
-  const overlay = document.getElementById('newChatOverlay');
-  const modal   = document.getElementById('newChatModal');
-  const input   = document.getElementById('newChatSearchInput');
-  if (!overlay || !modal) return;
-  overlay.style.display = 'block';
-  modal.style.display   = 'flex';
-  _renderNewChatList('');
-  if (input) { input.value = ''; input.focus(); }
-}
-
-function closeNewChatModal() {
-  document.getElementById('newChatOverlay').style.display = 'none';
-  document.getElementById('newChatModal').style.display   = 'none';
-}
-
-function filterNewChatList(q) {
-  _renderNewChatList(q);
-}
-
 function _renderNewChatList(q) {
   const list = document.getElementById('newChatList');
   if (!list) return;
@@ -4277,4 +4257,3 @@ function dismissWelcomeModal() {
   if (!overlay) return;
   overlay.classList.remove('active');
 }
-
