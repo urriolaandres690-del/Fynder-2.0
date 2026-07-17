@@ -1213,10 +1213,15 @@ function renderFavorites(){
     : `<div class="cards-grid">${favs.map(gridCardHTML).join('')}</div>`;
 } 
 
-buildCategories();buildHome();updateNav();
-// drag scroll en filtros
-// tambien se llama desde goPage
-document.addEventListener('DOMContentLoaded', ()=>{ setTimeout(initCatFiltersDrag, 200); });
+// Arranque dinámico — carga home primero, luego inicializa
+document.addEventListener('DOMContentLoaded', () => {
+  _loadPageThen('home', () => {
+    buildCategories();
+    buildHome();
+    updateNav();
+    setTimeout(initCatFiltersDrag, 200);
+  });
+});
 
 function registerUser(event){
     event.preventDefault();
