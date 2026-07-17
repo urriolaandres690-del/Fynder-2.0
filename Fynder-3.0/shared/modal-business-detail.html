@@ -1,0 +1,63 @@
+﻿<!-- Modal: detalle negocio -->
+
+<div class="fynder-modal-overlay hide" id="modalOverlay" onclick="closeModal(event)"> 
+
+  <div class="fynder-modal" id="modal"> 
+
+    <div class="modal-img"> 
+
+      <img id="modalImg" src="" alt="" onerror="this.style.opacity='.3'" />
+
+      <div class="modal-img-overlay"></div> 
+
+      <button class="modal-close" onclick="closeModalDirect()"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg></button> 
+
+      <div class="modal-header-info"> 
+
+        <div class="modal-logo"><img id="modalLogo" src="" alt="" /></div> 
+
+        <div> 
+
+          <div class="modal-name" id="modalName"></div> 
+
+          <div class="modal-meta"><span class="modal-cat" id="modalCat"></span><span style="color:rgba(255,255,255,.4)">·</span><div id="modalStars" class="stars"></div><span id="modalRating" style="color:#fff;font-weight:700;font-size:.875rem"></span><span id="modalReviews" style="color:rgba(255,255,255,.6);font-size:.75rem"></span></div> 
+
+        </div> 
+
+      </div> 
+
+    </div> 
+
+    <div class="modal-body"> 
+
+      <div class="modal-actions"> 
+
+        <button class="btn-sm btn-fav" id="modalFavBtn" onclick="toggleModalFav()"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/></svg><span id="modalFavLabel">Guardar</span></button> 
+
+        <button class="btn-sm btn-share" id="modalShareBtn"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" x2="15.42" y1="13.51" y2="17.49"/><line x1="15.41" x2="8.59" y1="6.51" y2="10.49"/></svg>Compartir</button> 
+
+        <button class="btn-sm btn-contact" id="modalContactBtn"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.99 12 19.79 19.79 0 0 1 1.93 3.38 2 2 0 0 1 3.91 1h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 8.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>Contactar</button>
+
+        <button class="btn-sm btn-msg-biz" id="modalMsgBtn" onclick="openChatFromModal()"><i class="fas fa-comment-dots"></i>Mensajear</button>
+
+      </div> 
+
+      <div class="modal-tags" id="modalTags"></div> 
+
+      <div><p class="modal-section-title">Sobre el negocio</p><p class="modal-desc" id="modalDesc"></p></div> 
+
+      <div><p class="modal-section-title">Información</p><div class="info-grid" id="modalInfo"></div></div> 
+
+      <div id="modalSocialWrap"><p class="modal-section-title">Redes Sociales</p><div class="social-btns" id="modalSocial"></div></div>
+
+      <div id="modalReviewsWrap"></div>
+
+      <div><p class="modal-section-title">Ubicación</p><div id="modalMapWrap" class="modal-map-wrap"></div></div>
+
+      <button class="btn-map" style="display:none"></button> 
+
+    </div> 
+
+  </div> 
+
+</div> 

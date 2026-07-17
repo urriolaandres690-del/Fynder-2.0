@@ -1,0 +1,31 @@
+﻿<!-- Menú contextual de burbuja de chat -->
+<div id="msgBubbleCtxMenu" role="menu" aria-label="Opciones del mensaje">
+  <!-- Tira de reacciones rápidas -->
+  <div class="ctx-reaction-strip" id="ctxReactionStrip"></div>
+  <!-- Opciones -->
+  <div class="ctx-menu-item" onclick="chatCtxAction('reply')">
+    <i class="fas fa-reply"></i> Responder
+  </div>
+  <div class="ctx-menu-item" onclick="chatCtxAction('copy')">
+    <i class="fas fa-copy"></i> Copiar
+  </div>
+  <div class="ctx-menu-item" onclick="chatCtxAction('forward')">
+    <i class="fas fa-share"></i> Reenviar
+  </div>
+  <div class="ctx-menu-item" onclick="chatCtxAction('pin')">
+    <i class="fas fa-thumbtack"></i> Fijar
+  </div>
+  <div class="ctx-menu-item" onclick="chatCtxAction('star')">
+    <i class="fas fa-star"></i> Destacar
+  </div>
+  <div class="ctx-menu-separator"></div>
+  <div class="ctx-menu-item" onclick="chatCtxAction('select')">
+    <i class="fas fa-check-square"></i> Seleccionar
+  </div>
+  <div class="ctx-menu-item" onclick="chatCtxAction('report')">
+    <i class="fas fa-flag"></i> Reportar
+  </div>
+  <div class="ctx-menu-item danger" onclick="chatCtxAction('delete')">
+    <i class="fas fa-trash"></i> Eliminar
+  </div>
+</div>

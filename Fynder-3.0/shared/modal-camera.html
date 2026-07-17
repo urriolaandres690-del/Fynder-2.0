@@ -1,0 +1,17 @@
+﻿<!-- Modal de cámara -->
+<div id="cameraModal" style="display:none;position:fixed;inset:0;z-index:9999;background:rgba(0,0,0,.85);align-items:center;justify-content:center;flex-direction:column;gap:16px">
+  <p style="color:#fff;font-family:'Poppins',sans-serif;font-size:1rem;font-weight:600;text-align:center;margin:0">Toma tu foto</p>
+  <div style="position:relative;border-radius:16px;overflow:hidden;box-shadow:0 8px 40px rgba(0,0,0,.6)">
+    <video id="cameraVideo" autoplay playsinline style="display:block;width:min(480px,90vw);aspect-ratio:4/3;object-fit:cover;background:#000"></video>
+    <canvas id="cameraCanvas" style="display:none"></canvas>
+  </div>
+  <div style="display:flex;gap:12px;flex-wrap:wrap;justify-content:center">
+    <button id="cameraCaptureBtn" onclick="cameraSnap()" style="padding:13px 32px;border-radius:99px;border:none;background:#67B8B4;color:#fff;font-family:'Poppins',sans-serif;font-size:.9375rem;font-weight:700;cursor:pointer;display:flex;align-items:center;gap:8px">
+      <i class="fas fa-camera"></i> Tomar foto
+    </button>
+    <button onclick="cameraClose()" style="padding:13px 24px;border-radius:99px;border:1px solid rgba(255,255,255,.3);background:transparent;color:rgba(255,255,255,.8);font-family:'Inter',sans-serif;font-size:.875rem;cursor:pointer">
+      Cancelar
+    </button>
+  </div>
+</div>
+

@@ -1,0 +1,15 @@
+﻿<!-- Barra inferior de selección de mensajes -->
+<div id="msgSelectBar" class="msg-select-bar" style="display:none">
+  <button class="msg-select-close" onclick="exitSelectMode()" title="Cancelar">
+    <i class="fas fa-times"></i>
+  </button>
+  <span class="msg-select-count" id="msgSelectCount">0 seleccionados</span>
+  <div class="msg-select-actions">
+    <button class="msg-select-action" onclick="shareSelectedMsgs()" title="Compartir">
+      <i class="fas fa-share-nodes"></i>
+    </button>
+    <button class="msg-select-action danger" onclick="deleteSelectedMsgs()" title="Eliminar">
+      <i class="fas fa-trash"></i>
+    </button>
+  </div>
+</div>

@@ -1,0 +1,27 @@
+﻿<!-- Modal: Dar tu opinión -->
+<div class="org-modal-overlay" id="feedbackModal" onclick="if(event.target===this)closeFeedbackModal()">
+  <div class="org-modal-box">
+    <div class="org-modal-header">
+      <div class="org-modal-icon" style="background:linear-gradient(135deg,#67B8B4,#2F5BB7)"><i class="fas fa-bullhorn" style="color:#fff"></i></div>
+      <div>
+        <h3 class="org-modal-title">Dar tu opinión</h3>
+        <p class="org-modal-sub">Ayúdanos a mejorar Fynder</p>
+      </div>
+      <button class="org-modal-close" onclick="closeFeedbackModal()"><i class="fas fa-xmark"></i></button>
+    </div>
+    <div class="org-modal-body">
+      <p style="margin-bottom:12px">¿Qué tan satisfecho estás con Fynder?</p>
+      <div style="display:flex;gap:8px;margin-bottom:18px" id="feedbackStars">
+        <button class="feedback-star-btn" onclick="setFeedbackStar(1)">😞</button>
+        <button class="feedback-star-btn" onclick="setFeedbackStar(2)">😐</button>
+        <button class="feedback-star-btn" onclick="setFeedbackStar(3)">🙂</button>
+        <button class="feedback-star-btn" onclick="setFeedbackStar(4)">😊</button>
+        <button class="feedback-star-btn" onclick="setFeedbackStar(5)">🤩</button>
+      </div>
+      <textarea id="feedbackText" class="feedback-textarea" placeholder="Cuéntanos qué podría mejorar o qué te encanta de Fynder..." rows="4"></textarea>
+    </div>
+    <div class="org-modal-footer">
+      <button class="org-modal-btn" onclick="submitFeedback()">Enviar opinión</button>
+    </div>
+  </div>
+</div>

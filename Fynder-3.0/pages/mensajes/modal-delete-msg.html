@@ -1,0 +1,8 @@
+﻿<!-- Modal: eliminar mensaje estilo WhatsApp -->
+<div id="deleteMsgOverlay" class="del-msg-overlay" style="display:none" onclick="closeDeleteMsgModal()"></div>
+<div id="deleteMsgModal" class="del-msg-modal" style="display:none">
+  <p class="del-msg-title">¿Quieres eliminar este mensaje?</p>
+  <button class="del-msg-btn del-msg-everyone" onclick="confirmDeleteMsg('all')">Eliminar para todos</button>
+  <button class="del-msg-btn del-msg-me"       onclick="confirmDeleteMsg('me')">Eliminar para mí</button>
+  <button class="del-msg-btn del-msg-cancel"   onclick="closeDeleteMsgModal()">Cancelar</button>
+</div>
