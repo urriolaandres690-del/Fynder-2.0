@@ -1,13 +1,270 @@
-﻿/*
- * ═══════════════════════════════════════════════════════════════
- *  Fynder — Registrar Negocio — Formulario de registro de negocio
+﻿/* ═══════════════════════════════════════════════
+ *  Fynder — Registrar Negocio
  *  Archivo: pages/negocio/negocio.css
- *
- *  NOTA: Los estilos globales están en shared/fynder.css
- *  Este archivo contiene SOLO overrides o estilos exclusivos
- *  de esta sección que no están cubiertos por el CSS compartido.
- * ═══════════════════════════════════════════════════════════════
- */
+ * ═══════════════════════════════════════════════ */
 
-/* Los estilos de esta sección están incluidos en shared/fynder.css    */
-/* Agrega aquí cualquier override exclusivo de esta página si lo necesitas */
+    padding:50px;
+
+    box-shadow:
+        0 10px 30px rgba(0,0,0,.08);
+
+    border:1px solid #F1F5F9;
+
+    transition:.3s;
+}
+
+.login-card:hover{
+
+    transform:translateY(-4px);
+
+    box-shadow:
+        0 20px 40px rgba(0,0,0,.12);
+}
+
+.login-input{
+
+    width:100%;
+
+    padding:16px 18px;
+
+    border:2px solid #E5E7EB;
+
+    border-radius:14px;
+
+    font-size:15px;
+
+    transition:.25s;
+}
+
+.login-input:focus{
+
+    border-color:#21B6AC;
+
+    box-shadow:
+        0 0 0 4px rgba(33,182,172,.15);
+
+    outline:none;
+}
+
+.login-btn{
+
+    width:100%;
+
+    padding:18px;
+
+    border:none;
+
+    border-radius:14px;
+
+    cursor:pointer;
+
+    font-size:18px;
+
+    font-weight:700;
+
+    color:white;
+
+    background:
+        linear-gradient(
+            135deg,
+            #21B6AC,
+            #2CC5BA
+        );
+
+    transition:.3s;
+}
+
+.login-btn:hover{
+
+    transform:translateY(-3px);
+
+    box-shadow:
+        0 12px 24px rgba(33,182,172,.35);
+}
+
+.login-btn:active{
+
+    transform:scale(.98);
+}
+
+.input-group{
+
+    position:relative;
+}
+
+.input-group i{
+
+    position:absolute;
+
+    left:18px;
+
+    top:50%;
+
+    transform:translateY(-50%);
+
+    color:#94A3B8;
+}
+
+.input-group input{
+
+    padding-left:50px;
+}
+
+body{
+
+    background:
+    linear-gradient(
+        135deg,
+        #F8FAFC,
+        #EEF8F8
+    );
+}
+
+.btn-login{
+    width:100%;
+    padding:16px;
+    border:none;
+    border-radius:14px;
+    background:linear-gradient(135deg,#2F5BB7,#67B8B4);
+    color:white;
+    font-size:16px;
+    font-weight:700;
+    cursor:pointer;
+    transition:.3s;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    gap:10px;
+    box-shadow:0 10px 25px rgba(47,91,183,.25);
+}
+
+.btn-login:hover{
+    transform:translateY(-3px);
+    box-shadow:0 15px 30px rgba(47,91,183,.35);
+}
+
+.btn-login:active{
+    transform:scale(.98);
+}
+
+#userName{
+    font-weight: 600;
+    color: #2F5BB7;
+    margin-right: 15px;
+    font-size: 15px;
+    transition: color .2s;
+}
+
+#userName.on-hero {
+    color: rgba(255,255,255,.9);
+}
+
+.btn-teal.on-hero {
+    background: rgba(255,255,255,.15);
+    border: 1.5px solid rgba(255,255,255,.5);
+    color: #fff;
+}
+
+.btn-teal.on-hero:hover {
+    background: rgba(255,255,255,.25);
+    border-color: #fff;
+}
+
+.btn-ghost{
+    padding: 8px 16px;
+    border-radius: 12px;
+    background: none;
+    border: none;
+    color: var(--muted);
+    font-weight: 500;
+    font-size: .875rem;
+    cursor: pointer;
+    transition: color .2s, background .2s;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.btn-ghost:hover{
+    background: #F1F5F9;
+    color: #1F2937;
+    transform: none;
+    box-shadow: none;
+}
+
+.auth-container{
+    min-height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    background:
+    radial-gradient(circle at top right,#dffffd 0%,transparent 35%),
+    linear-gradient(135deg,#f8fcfc,#eef7f8);
+    position:relative;
+}
+
+.auth-container{
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    min-height:100vh;
+
+    padding:40px;
+}
+
+.auth-card{
+    width:500px;
+    background:white;
+    padding:50px;
+    border-radius:30px;
+    box-shadow:
+    0 25px 60px rgba(0,0,0,.08);
+}
+
+.auth-card{
+
+  /* ---- Página business register ---- */
+  .biz-reg-grid-2 { grid-template-columns: 1fr; }
+
+  /* ---- Modal ---- */
+  .fynder-modal-overlay { padding: 0; align-items: flex-end; }
+  .fynder-modal {
+    border-radius: 20px 20px 0 0;
+    max-height: 90dvh;
+    overflow-y: auto;
+  }
+
+  /* ---- Share panel ---- */
+  .share-panel-box { width: 100%; border-radius: 20px 20px 0 0; }
+
+  /* ---- Menú móvil drawer más ancho ---- */
+  .mobile-menu-drawer { width: min(320px, 88vw) !important; }
+}
+
+/* MÓVIL (≤ 600px) – ajustes adicionales */
+
+/* ---- Página de registro de negocio ---- */
+[data-theme="dark"] .biz-steps-header     { background: var(--bg); }
+[data-theme="dark"] .biz-step-label       { color: var(--muted); }
+[data-theme="dark"] .biz-step.active .biz-step-label { color: var(--primary); }
+[data-theme="dark"] .biz-form-card        { background: var(--card); border-color: rgba(255,255,255,.07); }
+[data-theme="dark"] .biz-section-title    { color: var(--fg); }
+[data-theme="dark"] .biz-img-upload-zone  { background: rgba(255,255,255,.04); border-color: rgba(255,255,255,.1); }
+[data-theme="dark"] .biz-img-upload-zone:hover { background: rgba(103,184,180,.08); }
+[data-theme="dark"] .biz-schedule-row     { border-bottom-color: rgba(255,255,255,.06); }
+[data-theme="dark"] .biz-schedule-day     { color: var(--fg); }
+[data-theme="dark"] .biz-time-range       { background: rgba(255,255,255,.06); border-color: rgba(255,255,255,.1); color: var(--fg); }
+[data-theme="dark"] .biz-form-actions     { border-top-color: rgba(255,255,255,.07); background: var(--bg); }
+
+/* ---- Sección de mapa interno en modal ---- */
+[data-theme="dark"] .modal-map-wrap       { border-color: rgba(255,255,255,.1); }
+[data-theme="dark"] .modal-map-ext-link   { background: rgba(255,255,255,.06); color: var(--primary); border-top-color: rgba(255,255,255,.08); }
+[data-theme="dark"] .modal-map-ext-link:hover { background: rgba(103,184,180,.12); color: var(--primary); }
+[data-theme="dark"] .modal-map-ext-link svg { stroke: var(--primary); }
+
+/* ---- Botón volver general ---- */
+[data-theme="dark"] .back-page-btn        { background: rgba(255,255,255,.06); border-color: rgba(255,255,255,.1); color: var(--muted); }
+[data-theme="dark"] .back-page-btn:hover  { background: rgba(103,184,180,.12); color: var(--primary); border-color: rgba(103,184,180,.3); }
+

@@ -1,13 +1,67 @@
-﻿/*
- * ═══════════════════════════════════════════════════════════════
- *  Fynder — Guardados — Header, lista de negocios guardados
+﻿/* ═══════════════════════════════════════════════
+ *  Fynder — Guardados / Favoritos
  *  Archivo: pages/guardados/guardados.css
- *
- *  NOTA: Los estilos globales están en shared/fynder.css
- *  Este archivo contiene SOLO overrides o estilos exclusivos
- *  de esta sección que no están cubiertos por el CSS compartido.
- * ═══════════════════════════════════════════════════════════════
- */
+ * ═══════════════════════════════════════════════ */
 
-/* Los estilos de esta sección están incluidos en shared/fynder.css    */
-/* Agrega aquí cualquier override exclusivo de esta página si lo necesitas */
+        padding:40px;
+
+        box-shadow:
+          0 20px 50px rgba(0,0,0,.12);
+    }    
+
+
+    /* NOTE: Old .auth-page { display:flex } removed — it overrode .page { display:none }
+       causing login/register to always be visible. The new .auth-page.active handles this. */
+
+.login-header{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    margin-bottom:40px;
+}
+
+.back-btn{
+    color:#21B6AC;
+    text-decoration:none;
+    font-weight:600;
+    font-size:15px;
+}
+
+.logo-login img{
+    height:50px;
+}
+
+.login-card{
+
+    width:100%;
+    max-width:520px;
+
+    background:white;
+
+    border-radius:30px;
+
+    padding:50px;
+
+/* favoritos modo oscuro */
+[data-theme="dark"] #page-favorites { background: var(--bg) !important; }
+[data-theme="dark"] .favs-title     { color: var(--fg); }
+[data-theme="dark"] .favs-sub       { color: var(--muted); }
+
+/* modal modo oscuro */
+[data-theme="dark"] #modalOverlay { background: rgba(0,0,0,.7); }
+
+/* Favoritos empty state */
+[data-theme="dark"] .fav-empty-icon    { background: rgba(239,68,68,.12) !important; }
+
+/* Business form footer bar */
+[data-theme="dark"] .biz-reg-submit-wrap { background: var(--card); border-top-color: rgba(255,255,255,.07); }
+
+
+/* ---- Página de favoritos: estado vacío ---- */
+[data-theme="dark"] .favs-empty           { color: var(--muted); }
+[data-theme="dark"] .favs-empty-icon      { opacity: .3; }
+
+/* ---- Dir count ---- */
+[data-theme="dark"] .dir-count            { color: var(--muted); }
+[data-theme="dark"] .dir-empty            { color: var(--muted); }
+
