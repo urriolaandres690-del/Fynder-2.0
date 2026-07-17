@@ -1931,7 +1931,6 @@ svg, svg *, path, polygon, circle, rect, line, polyline {
 }
 
 
-/* ---- Mobile drawer: user info + botones de acción ---- */
 .mobile-menu-user-info {
   display: flex;
   align-items: center;

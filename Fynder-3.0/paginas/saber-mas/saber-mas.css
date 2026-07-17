@@ -858,7 +858,6 @@ section.fyl-section-alt > *:last-child { padding-bottom: 72px; }
   animation: fyl-glow-pulse 5s ease-in-out infinite reverse;
 }
 
-/* ---- Botones primarios: ripple + pulse ---- */
 .fyl-btn-primary,
 .fyl-for-btn-teal,
 .fyl-for-btn-purple {
@@ -908,7 +907,6 @@ section.fyl-section-alt > *:last-child { padding-bottom: 72px; }
 }
 .fyl-btn-ghost:hover::before { opacity: 1; }
 
-/* ---- Botones de categoría: bounce al click + scale ---- */
 .fyl-cat {
   transition: all .22s cubic-bezier(.34,1.56,.64,1);
   position: relative;
