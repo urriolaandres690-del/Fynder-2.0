@@ -43,35 +43,6 @@
   margin-bottom: 20px;
 }
 
-/* registro / login link below button */
-
-  /* Business register */
-  .biz-reg-grid-2 { grid-template-columns: 1fr; }
-
-  /* Profile */
-  .profile-cover-btns { flex-wrap: wrap; }
-  .profile-header { flex-direction: column; }
-  .profile-header-actions { width: 100%; }
-}
-
-/* BREAKPOINT: móvil muy pequeño (≤ 360px) */
-@media (max-width: 360px) {
-  html { font-size: 14px; }
-  .hero h1 { font-size: 1.45rem; }
-  .cat-grid { grid-template-columns: repeat(2, 1fr); }
-  .fyl-cat { padding: 8px 10px; font-size: .75rem; }
-  .bcard-body { padding: 12px; }
-  .plan-price-amount { font-size: 1.75rem; }
-}
-
-/* DARK MODE – correcciones drawer móvil */
-
-  /* ---- Página business register ---- */
-  .biz-reg-grid-2 { grid-template-columns: 1fr; }
-
-  /* ---- Modal ---- */
-  .fynder-modal-overlay { padding: 0; align-items: flex-end; }
-
 /* ---- Página de registro de negocio ---- */
 [data-theme="dark"] .biz-steps-header     { background: var(--bg); }
 [data-theme="dark"] .biz-step-label       { color: var(--muted); }
