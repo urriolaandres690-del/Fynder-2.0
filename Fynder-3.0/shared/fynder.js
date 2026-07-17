@@ -301,7 +301,7 @@ const PAGE_FOLDER_MAP = {
 };
 
 // Cache de páginas ya cargadas
-const _pageCache = new Set(['home']); // home viene en el HTML inicial
+const _pageCache = new Set();
 
 async function _loadPageHTML(p) {
   if (_pageCache.has(p)) return true;
