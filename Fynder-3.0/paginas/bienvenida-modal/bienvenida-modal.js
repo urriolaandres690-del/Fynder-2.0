@@ -1,6 +1,4 @@
-﻿// bienvenida-modal.js — lógica específica de esta sección
-// Funciones: initWelcomeModal (IIFE), closeWelcomeModal, dismissWelcomeModal
-// Las funciones globales están en compartido/fynder.js
+﻿// ── bienvenida-modal.js ──
 
 (function initWelcomeModal() {
   function _show() {
