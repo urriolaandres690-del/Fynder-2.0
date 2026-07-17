@@ -1213,15 +1213,9 @@ function renderFavorites(){
     : `<div class="cards-grid">${favs.map(gridCardHTML).join('')}</div>`;
 } 
 
-// Arranque dinámico — carga home primero, luego inicializa
-document.addEventListener('DOMContentLoaded', () => {
-  _loadPageThen('home', () => {
-    buildCategories();
-    buildHome();
-    updateNav();
-    setTimeout(initCatFiltersDrag, 200);
-  });
-});
+buildCategories();buildHome();updateNav();
+// drag scroll en filtros
+document.addEventListener('DOMContentLoaded', ()=>{ setTimeout(initCatFiltersDrag, 200); });
 
 function registerUser(event){
     event.preventDefault();
