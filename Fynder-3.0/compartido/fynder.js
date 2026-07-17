@@ -325,7 +325,7 @@ function goPage(p){
       if(typeof msgSwitchTab==='function') msgSwitchTab('chats');
       if(typeof updateMsgBadge==='function') updateMsgBadge();
       // En desktop, mostrar welcome si no hay chat activo
-      if(window.innerWidth >= 769 && !_activeChatBizId) {
+      if(window.innerWidth >= 769 && !window._activeChatBizId) {
         const welcome  = document.getElementById('waWelcome');
         const chatArea = document.getElementById('waChatArea');
         if(welcome)  welcome.style.display  = 'flex';
