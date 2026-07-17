@@ -1034,51 +1034,8 @@ function _initCarouselDrag(id) {
   el.addEventListener('click', e => { if (moved) { e.stopPropagation(); moved = false; } }, true);
 }
 
-function buildHome(){
-  document.getElementById('featuredGrid').innerHTML=BUSINESSES.filter(b=>b.isFeatured).map(gridCardHTML).join('');
-  document.getElementById('popularList').innerHTML=BUSINESSES.filter(b=>b.isPopular).map(listCardHTML).join('');
-  _initCarouselDrag('featuredGrid');
+// ── buildHome, USERS_EST, openStatModal, closeStatModal → paginas/home/home.js ──
 
-  // ── Fade del scroll en Más Populares ──
-  const popWrap = document.querySelector('.popular-scroll-wrap');
-  if(popWrap){
-    const updateFade = () => {
-      const atEnd = popWrap.scrollTop + popWrap.clientHeight >= popWrap.scrollHeight - 8;
-      popWrap.classList.toggle('scrolled-end', atEnd);
-    };
-    popWrap.addEventListener('scroll', updateFade, {passive:true});
-    updateFade();
-  }
-
-  // ── Cifras reales calculadas desde BUSINESSES y REVIEWS ──
-  const total = BUSINESSES.length;
-  const totalReviews = Object.values(REVIEWS).reduce((s,arr)=>s+arr.length,0);
-  const totalReviewCount = BUSINESSES.reduce((s,b)=>s+(b.reviews||0),0);
-  const allRatings = BUSINESSES.map(b=>b.rating).filter(Boolean);
-  const avgRating = allRatings.length ? (allRatings.reduce((a,b)=>a+b,0)/allRatings.length).toFixed(1) : '4.8';
-  const highSat = BUSINESSES.filter(b=>b.rating>=4.0).length;
-  const satPct = Math.round((highSat/total)*100);
-  const usersEst = USERS_EST;
-
-  const heroStat=document.getElementById('heroStatNegocios');
-  if(heroStat) heroStat.textContent=total;
-  const heroStatUsers=document.getElementById('heroStatUsuarios');
-  if(heroStatUsers) heroStatUsers.textContent=usersEst.toLocaleString('es')+'+';
-  const heroStatRating=document.getElementById('heroStatRating');
-  if(heroStatRating) heroStatRating.textContent=avgRating;
-  const heroStatSat=document.getElementById('heroStatSatisfaccion');
-  if(heroStatSat) heroStatSat.textContent=satPct+'%';
-
-  const m1=document.getElementById('heroStatNegociosMobile');   if(m1) m1.textContent=total;
-  const m2=document.getElementById('heroStatUsuariosMobile');   if(m2) m2.textContent=usersEst.toLocaleString('es')+'+';
-  const m3=document.getElementById('heroStatRatingMobile');     if(m3) m3.textContent=avgRating;
-  const m4=document.getElementById('heroStatSatisfaccionMobile');if(m4) m4.textContent=satPct+'%';
-  const loginCount=document.getElementById('loginNegociosCount');
-  if(loginCount) loginCount.textContent=`+${total} negocios registrados`;
-}
-
-// calculo de usuarios
-const USERS_EST = Math.max(1200, BUSINESSES.length * 14);
 function openStatModal(type){
   const total=BUSINESSES.length;
   const allRatings=BUSINESSES.map(b=>b.rating).filter(Boolean);
