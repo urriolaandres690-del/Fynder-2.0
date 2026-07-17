@@ -1177,7 +1177,6 @@ function renderFavorites(){
 buildCategories();buildHome();updateNav();
 // drag scroll en filtros
 document.addEventListener('DOMContentLoaded', ()=>{ setTimeout(initCatFiltersDrag, 200); });
-});
 
 function registerUser(event){
     event.preventDefault();
