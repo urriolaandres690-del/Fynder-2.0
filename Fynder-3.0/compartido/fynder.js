@@ -985,7 +985,9 @@ function initCatFiltersDrag(){
 }
 
 function buildCategories(){
-  document.getElementById('catGrid').innerHTML=CATEGORIES.map(c=>{
+  const el = document.getElementById('catGrid');
+  if(!el) return;
+  el.innerHTML=CATEGORIES.map(c=>{
     const count=BUSINESSES.filter(b=>b.categoryId===c.id).length;
     return`<button class="cat-card" onclick="goDirectoryQuery('','${c.id}')"><div class="cat-icon" style="background:${c.bg};color:${c.color}">${c.svg}</div><div class="cat-name">${c.label}</div><div class="cat-count">${count} negocio${count!==1?'s':''}</div></button>`;
   }).join('');
