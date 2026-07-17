@@ -773,39 +773,6 @@
   .footer-col p, .footer-col button { font-size: .82rem; }
 }
 
-@media (max-width: 480px) {
-
-  html { font-size: 14.5px; }
-
-  /* Hero más compacto */
-  .hero            { min-height: auto; padding: 80px 16px 36px; }
-  .hero h1         { font-size: 1.55rem !important; }
-  .hero p          { font-size: .875rem; }
-  .hero-stats      { gap: 8px; }
-  .hero-stat-card  { padding: 14px 12px; }
-  .hero-stat-card .stat-num { font-size: 1.25rem; }
-  .hero-stat-card .stat-label { font-size: .7rem; }
-
-  /* Categorías home más pequeñas */
-  .cat-grid        { gap: 8px; }
-  .cat-item        { padding: 12px 6px; border-radius: 14px; }
-  .cat-item-label  { font-size: .65rem; }
-
-  /* Section spacing */
-  .section         { padding: 36px 0; }
-  .section-title   { font-size: 1.2rem !important; }
-
-  /* Cards */
-  .bcard           { border-radius: 14px; }
-  .bcard-img       { height: 150px; }
-
-  /* Llamada a la acción */
-  .cta-inner h2    { font-size: 1.3rem !important; }
-  .cta-inner       { padding: 32px 16px; border-radius: 16px; }
-  .cta-btns        { flex-direction: column; gap: 10px; }
-  .btn-yellow, .btn-outline-white { width: 100%; justify-content: center; }
-}
-
 
 /* ---- Mobile drawer: user info + botones de acción ---- */
 
