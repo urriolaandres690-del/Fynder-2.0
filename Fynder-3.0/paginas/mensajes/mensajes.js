@@ -1403,6 +1403,8 @@ function toggleEmojiPicker() {
 
 function openEmojiPicker() {
   _emojiOpen = true;
+  _emojiTargetId = 'chatInput';
+
   // Construir tabs
   const tabsEl = document.getElementById('emojiPickerTabs');
   if (tabsEl && !tabsEl.children.length) {
@@ -1411,12 +1413,30 @@ function openEmojiPicker() {
     ).join('');
   }
   // Renderizar primera categoría
-  renderEmojiCat(_emojiActiveCat);
+  renderEmojiCat(_emojiActiveCat !== undefined ? _emojiActiveCat : 0);
 
-  document.getElementById('emojiOverlay').classList.add('open');
-  document.getElementById('emojiPicker').classList.add('open');
-  document.getElementById('emojiSearch').value = '';
-  document.getElementById('emojiSearch').focus();
+  const picker  = document.getElementById('emojiPicker');
+  const overlay = document.getElementById('emojiOverlay');
+  overlay.classList.add('open');
+
+  // En desktop: posicionar el picker encima del botón emoji
+  if (window.innerWidth >= 769) {
+    const btn = document.getElementById('chatEmojiBtn');
+    if (btn && picker) {
+      const rect = btn.getBoundingClientRect();
+      picker.style.left   = rect.left + 'px';
+      picker.style.bottom = (window.innerHeight - rect.top + 8) + 'px';
+    }
+  } else {
+    if (picker) {
+      picker.style.left   = '';
+      picker.style.bottom = '';
+    }
+  }
+
+  picker.classList.add('open');
+  const searchEl = document.getElementById('emojiSearch');
+  if (searchEl) { searchEl.value = ''; searchEl.focus(); }
 }
 
 function closeEmojiPicker() {
