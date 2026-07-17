@@ -274,51 +274,6 @@ function listCardHTML(b){
   const dealTag=b.deal?`<span class="tag" style="background:color-mix(in srgb,${b.deal.color} 12%,white);color:${b.deal.color};border:1px solid ${b.deal.color}40"><i class="fas fa-tags" style="font-size:.6rem"></i> ${b.deal.label} · ${b.deal.desc}</span>`:'';
   return`<div class="bcard-list" onclick="openModal('${b.id}')"><div class="bcard-list-img"><img src="${b.image}" alt="${b.name}" loading="lazy" style="width:100%;height:100%;object-fit:cover" onerror="this.closest('.bcard-list').style.display='none'"/></div><div class="bcard-list-body"><div><div class="bcard-list-top"><span class="bcard-list-name">${b.name}</span><button onclick="event.stopPropagation();toggleFav('${b.id}')" style="background:none;border:none;cursor:pointer;flex-shrink:0;padding:2px" data-fav-id="${b.id}" data-fav-size="sm">${_heartSVG(isFav,'sm')}</button></div><p class="bcard-list-desc line-clamp-2">${b.description}</p><div class="bcard-list-tags">${tags}${dealTag}</div></div><div class="bcard-list-meta"><div class="bcard-list-meta-item"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>${b.hours}</div><div class="bcard-list-meta-item"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>${b.address.split(',')[0]}</div><div class="bcard-list-rating"><div class="stars">${starsHTML(b.rating)}</div><strong style="font-size:.75rem;color:#1F2937">${b.rating}</strong><span style="font-size:.75rem;color:#6B7280">(${b.reviews})</span></div></div></div></div>`;
 }
-// Mapa de páginas a sus rutas de fragmento HTML
-const PAGE_PATHS = {
-    'home':            'paginas/home/home.html',
-    'directory':       'paginas/directorio/directorio.html',
-    'map':             'paginas/mapa/mapa.html',
-    'favorites':       'paginas/guardados/guardados.html',
-    'login':           'paginas/login/login.html',
-    'register':        'paginas/registro/registro.html',
-    'business':        'paginas/negocio/negocio.html',
-    'profile':         'paginas/perfil/perfil.html',
-    'fynder':          'paginas/saber-mas/saber-mas.html',
-    'about':           'paginas/sobre-fynder/sobre-fynder.html',
-    'blog':            'paginas/blog/blog.html',
-    'write':           'paginas/write/write.html',
-    'terms':           'paginas/terminos/terminos.html',
-    'privacy':         'paginas/privacidad/privacidad.html',
-    'plans':           'paginas/planes/planes.html',
-    'dashboard':       'paginas/dashboard/dashboard.html',
-    'support':         'paginas/soporte/soporte.html',
-    'article':         'paginas/articulo/articulo.html',
-    'messages':        'paginas/mensajes/mensajes.html',
-    'chat':            'paginas/chat/chat.html',
-    'chat-profile':    'paginas/chat-profile/chat-profile.html',
-    'settings':        'paginas/ajustes/ajustes.html',
-};
-
-function _loadPageThen(p, callback){
-    const existing = document.getElementById('page-'+p);
-    if(existing){ callback(existing); return; }
-
-    const path = PAGE_PATHS[p];
-    if(!path){ console.warn('goPage: ruta no definida para', p); return; }
-
-    fetch(path)
-        .then(r => r.text())
-        .then(html => {
-            const container = document.getElementById('pages-container');
-            container.insertAdjacentHTML('beforeend', html);
-            const el = document.getElementById('page-'+p);
-            if(!el){ console.warn('goPage: page-'+p+' no encontrado en el fragmento'); return; }
-            callback(el);
-        })
-        .catch(err => console.error('goPage fetch error:', p, err));
-}
-
 function goPage(p){
     const authRequired = ['messages','chat','chat-profile','profile','dashboard'];
     if(authRequired.includes(p) && !localStorage.getItem('fynderLogged')){
@@ -326,7 +281,9 @@ function goPage(p){
         p = 'login';
     }
 
-    _loadPageThen(p, function(target){
+    const target = document.getElementById('page-'+p);
+    if(!target){ console.warn('goPage: no existe page-'+p); return; }
+
     const legalPages = ['terms','privacy'];
     const noHistoryPages = ['messages','chat','chat-profile'];
     if(!legalPages.includes(currentPage) && !noHistoryPages.includes(currentPage)){
