@@ -334,50 +334,7 @@ function _bizAutoReply(bizId, renderFn) {
   }
 }
 
-// ---- Renderizar lista de conversaciones ----
-function renderConversations() {
-  const convs = _getConversations();
-  const list  = document.getElementById('msgChatList');
-  const empty = document.getElementById('msgEmptyChats');
-  if (!list) return;
-
-  if (convs.length === 0) {
-    list.innerHTML = '';
-    if (empty) empty.classList.remove('hide');
-    return;
-  }
-  if (empty) empty.classList.add('hide');
-
-  list.innerHTML = convs.map(c => {
-    const initial = (c.name || '?')[0].toUpperCase();
-    const bg      = _avatarColor(c.name);
-    const avatar  = c.image
-      ? `<img src="${c.image}" alt="${c.name}" loading="lazy">`
-      : `<span style="color:#fff;font-size:1.1rem;font-weight:700;font-family:'Poppins',sans-serif">${initial}</span>`;
-    const unread  = c.unread > 0 ? `<span class="msg-chat-unread">${c.unread}</span>` : '';
-    const isActive = String(c.id) === String(_activeChatBizId);
-    return `
-      <div class="msg-chat-item${isActive ? ' wa-active' : ''}" data-biz-id="${c.id}" onclick="openChatById('${c.id}')">
-        <div class="msg-chat-avatar-wrap">
-          <div class="msg-chat-avatar" style="background:${bg}">${avatar}</div>
-          <span class="msg-chat-online"></span>
-        </div>
-        <div class="msg-chat-body">
-          <div class="msg-chat-top">
-            <span class="msg-chat-name">${escapeHtml(c.name)}</span>
-            <span class="msg-chat-time">${c.lastTime || ''}</span>
-          </div>
-          <span class="msg-chat-preview">${escapeHtml(c.lastMsg || 'Toca para ver el chat')}</span>
-        </div>
-        <div class="msg-chat-actions">
-          ${unread}
-          <button class="msg-chat-menu" onclick="event.stopPropagation();msgConvMenu('${c.id}')" title="Más opciones">
-            <i class="fas fa-ellipsis-vertical"></i>
-          </button>
-        </div>
-      </div>`;
-  }).join('');
-}
+// ---- Renderizar lista de conversaciones (versión completa con búsqueda y menú contextual) ----
 
 // ---- Abrir chat por ID ----
 function openChatById(bizId) {
@@ -913,10 +870,6 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 });
 
-
-/* PERFIL DEL NEGOCIO DESDE CHAT */
-
-function openChatProfile() {
 
 /* PERFIL DEL NEGOCIO DESDE CHAT */
 
