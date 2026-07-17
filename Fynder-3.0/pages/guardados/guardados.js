@@ -42,6 +42,3 @@ buildCategories();buildHome();updateNav();
 // tambien se llama desde goPage
 document.addEventListener('DOMContentLoaded', ()=>{ setTimeout(initCatFiltersDrag, 200); });
 
-function registerUser(event){
-    event.preventDefault();
-

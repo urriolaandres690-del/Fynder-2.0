@@ -339,5 +339,3 @@ function openBusinessDetail(index) {
 
 let fynderObserver = null;
 
-function initFynderAnimations() {
-

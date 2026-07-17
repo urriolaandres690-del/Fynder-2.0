@@ -36,4 +36,9 @@ function registerBusiness(event) {
 
 function subscribeBlog(event) {
     event.preventDefault();
+    const email = document.getElementById("blogEmail")?.value?.trim();
+    if (!email) return;
+    showToast("¡Suscripción confirmada! Te notificaremos de nuevos artículos. 📬");
+    if (document.getElementById("blogEmail")) document.getElementById("blogEmail").value = "";
+}
 
