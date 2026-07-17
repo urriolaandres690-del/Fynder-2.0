@@ -1,6 +1,4 @@
-﻿// soporte.js — lógica específica de esta sección
-// Funciones: sendSupport
-// Las funciones globales están en compartido/fynder.js
+﻿// ── soporte.js ──
 
 function sendSupport(event) {
     event.preventDefault();

@@ -1,6 +1,4 @@
-﻿// blog.js — lógica específica de esta sección
-// Funciones: subscribeBlog
-// Las funciones globales están en compartido/fynder.js
+﻿// ── blog.js ──
 
 function subscribeBlog(event) {
     event.preventDefault();

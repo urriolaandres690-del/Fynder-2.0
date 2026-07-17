@@ -1,6 +1,4 @@
-﻿// negocio.js — lógica específica de esta sección
-// Funciones: registerBusiness
-// Las funciones globales están en compartido/fynder.js
+﻿// ── negocio.js ──
 
 function registerBusiness(event) {
     event.preventDefault();

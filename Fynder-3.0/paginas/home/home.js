@@ -1,4 +1,4 @@
-﻿// ── home.js — lógica exclusiva de la página Home ──
+﻿// ── home.js ──
 
 function buildCategories(){
   document.getElementById('catGrid').innerHTML=CATEGORIES.map(c=>{
