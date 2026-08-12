@@ -3,10 +3,12 @@
     <mask id="pinCutLight">
       <rect width="520" height="160" fill="white"/>
       <circle cx="73" cy="68" r="42" fill="black"/>
-      <circle cx="73" cy="68" r="35" fill="white"/>
-      <circle cx="73" cy="68" r="22" fill="black"/>
-      <line x1="90" y1="85" x2="130" y2="125"
-            stroke="black" stroke-width="22" stroke-linecap="round"/>
+      <circle cx="73" cy="68" r="34" fill="white"/>
+      <circle cx="73" cy="68" r="21" fill="black"/>
+      <line x1="88" y1="83" x2="130" y2="125"
+            stroke="black" stroke-width="26" stroke-linecap="round"/>
+      <line x1="91" y1="86" x2="124" y2="119"
+            stroke="white" stroke-width="14" stroke-linecap="round"/>
     </mask>
   </defs>
 

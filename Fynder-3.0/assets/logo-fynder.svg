@@ -2,18 +2,26 @@
   <defs>
     <mask id="pinCut">
       <rect width="520" height="160" fill="white"/>
-      <!-- Recortar zona grande alrededor de la lupa (gap + exterior) -->
+
+      <!-- Quitar TODO alrededor + dentro de la lupa (zona grande) -->
       <circle cx="73" cy="68" r="42" fill="black"/>
-      <!-- Devolver el anillo del trazo amarillo solamente -->
-      <circle cx="73" cy="68" r="35" fill="white"/>
-      <circle cx="73" cy="68" r="22" fill="black"/>
-      <!-- Recortar mango con gap -->
-      <line x1="90" y1="85" x2="130" y2="125"
-            stroke="black" stroke-width="22" stroke-linecap="round"/>
+
+      <!-- Devolver SOLO donde va el trazo amarillo del aro -->
+      <!-- aro r=27, stroke=13 → va de r=20.5 a r=33.5 -->
+      <circle cx="73" cy="68" r="34" fill="white"/>
+      <circle cx="73" cy="68" r="21" fill="black"/>
+
+      <!-- Quitar el mango + zona alrededor del mango -->
+      <line x1="88" y1="83" x2="130" y2="125"
+            stroke="black" stroke-width="26" stroke-linecap="round"/>
+
+      <!-- Devolver solo el trazo del mango amarillo -->
+      <line x1="91" y1="86" x2="124" y2="119"
+            stroke="white" stroke-width="14" stroke-linecap="round"/>
     </mask>
   </defs>
 
-  <!-- Pin teal -->
+  <!-- Pin teal con recortes precisos -->
   <path d="M 75 6 C 40 6 11 35 11 70 C 11 103 75 155 75 155
            C 75 155 139 103 139 70 C 139 35 110 6 75 6 Z"
         fill="#45C6C0" mask="url(#pinCut)"/>
