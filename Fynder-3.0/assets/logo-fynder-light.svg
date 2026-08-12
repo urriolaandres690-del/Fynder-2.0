@@ -3,8 +3,8 @@
     <mask id="pinCutLight">
       <rect width="520" height="160" fill="white"/>
       <circle cx="73" cy="68" r="44" fill="black"/>
-      <circle cx="73" cy="68" r="33" fill="white"/>
-      <circle cx="73" cy="68" r="20" fill="black"/>
+      <circle cx="73" cy="68" r="34" fill="white"/>
+      <circle cx="73" cy="68" r="27" fill="black"/>
       <line x1="87" y1="82" x2="132" y2="127"
             stroke="black" stroke-width="28" stroke-linecap="round"/>
       <line x1="91" y1="86" x2="124" y2="119"
