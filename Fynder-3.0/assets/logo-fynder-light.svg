@@ -1,33 +1,36 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 150">
 
-  <!-- ── ÍCONO PIN + LUPA ── -->
-  <g transform="translate(8, 5)">
+  <!-- ── ÍCONO: PIN GOOGLE + LUPA ── -->
+  <g transform="translate(6, 4)">
 
-    <!-- Cuerpo del pin teal -->
-    <path d="M 66 0 C 30 0 2 28 2 64 C 2 94 66 140 66 140 C 66 140 130 94 130 64 C 130 28 102 0 66 0 Z" fill="#4EC9C4"/>
+    <!-- Pin estilo Google Maps -->
+    <path d="
+      M 68 0
+      C 32 0 4 28 4 64
+      C 4 96 68 148 68 148
+      C 68 148 132 96 132 64
+      C 132 28 104 0 68 0 Z
+    " fill="#4EC9C4"/>
 
-    <!-- Anillo blanco -->
-    <circle cx="66" cy="60" r="38" fill="white"/>
+    <!-- Aro amarillo grueso -->
+    <circle cx="62" cy="58" r="28"
+            fill="none"
+            stroke="#F6C700"
+            stroke-width="13"/>
 
-    <!-- Relleno teal dentro del anillo -->
-    <circle cx="66" cy="60" r="30" fill="#4EC9C4"/>
-
-    <!-- Lupa interior blanco (hueco) -->
-    <circle cx="60" cy="53" r="17" fill="white"/>
-
-    <!-- Lupa: aro amarillo -->
-    <circle cx="60" cy="53" r="17" fill="none" stroke="#F6C700" stroke-width="9"/>
-
-    <!-- Lupa: mango amarillo diagonal -->
-    <line x1="72" y1="66" x2="90" y2="85" stroke="#F6C700" stroke-width="9" stroke-linecap="round"/>
+    <!-- Mango diagonal -->
+    <line x1="82" y1="78" x2="110" y2="106"
+          stroke="#F6C700"
+          stroke-width="14"
+          stroke-linecap="round"/>
 
   </g>
 
-  <!-- ── TEXTO: FYN teal · DER teal oscuro ── (para fondos claros) -->
+  <!-- FYN teal claro · DER teal oscuro (para fondos claros) -->
   <text
-    x="152" y="105"
+    x="158" y="103"
     font-family="'Montserrat','Arial Black','Arial',sans-serif"
-    font-size="72"
+    font-size="70"
     font-weight="900"
     letter-spacing="1">
     <tspan fill="#4EC9C4">FYN</tspan><tspan fill="#1C8A85">DER</tspan>
