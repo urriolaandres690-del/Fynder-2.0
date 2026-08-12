@@ -1,0 +1,51 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 260" width="900" height="260">
+
+  <!-- Fondo blanco (necesario para que FYN blanco sea visible) -->
+  <rect width="900" height="260" fill="white"/>
+
+  <!-- ── ÍCONO PIN + LUPA ── -->
+  <g transform="translate(30, 20)">
+
+    <!-- Cuerpo del pin teal -->
+    <path d="
+      M 100 10
+      C 55 10 18 47 18 92
+      C 18 132 100 210 100 210
+      C 100 210 182 132 182 92
+      C 182 47 145 10 100 10 Z
+    " fill="#4EC9C4"/>
+
+    <!-- Anillo blanco grueso interior -->
+    <circle cx="100" cy="88" r="52" fill="white"/>
+
+    <!-- Relleno teal dentro del anillo -->
+    <circle cx="100" cy="88" r="43" fill="#4EC9C4"/>
+
+    <!-- Lupa: aro amarillo (trazo fino-medio) -->
+    <circle cx="93" cy="80" r="26"
+            fill="none"
+            stroke="#F6C700"
+            stroke-width="10"/>
+
+    <!-- Lupa: interior blanco -->
+    <circle cx="93" cy="80" r="16" fill="white"/>
+
+    <!-- Lupa: mango amarillo diagonal -->
+    <line x1="112" y1="100" x2="135" y2="123"
+          stroke="#F6C700"
+          stroke-width="11"
+          stroke-linecap="round"/>
+
+  </g>
+
+  <!-- ── TEXTO: FYN en blanco, DER en teal ── -->
+  <text
+    x="230" y="168"
+    font-family="'Montserrat','Arial Black','Arial',sans-serif"
+    font-size="110"
+    font-weight="900"
+    letter-spacing="2">
+    <tspan fill="white">FYN</tspan><tspan fill="#1C8A85">DER</tspan>
+  </text>
+
+</svg>
