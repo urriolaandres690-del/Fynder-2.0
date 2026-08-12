@@ -1,47 +1,40 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 520 160">
   <defs>
-    <!-- Máscara: blanco = visible, negro = transparente -->
-    <!-- Recorta del pin el área donde va la lupa (aro + centro + mango) -->
-    <mask id="pinMask">
-      <!-- Todo el pin visible en blanco -->
-      <path d="M 70 2 C 33 2 3 32 3 69 C 3 103 70 152 70 152 C 70 152 137 103 137 69 C 137 32 107 2 70 2 Z"
-            fill="white"/>
-      <!-- Recorte: centro del aro (transparente) -->
-      <circle cx="63" cy="63" r="18" fill="black"/>
-      <!-- Recorte: grosor del aro hacia afuera (área exterior del aro) -->
-      <circle cx="63" cy="63" r="39" fill="black"/>
-      <!-- Volvemos a pintar el anillo del aro de blanco para que quede solo el trazo -->
-      <circle cx="63" cy="63" r="39" fill="white"/>
-      <circle cx="63" cy="63" r="18" fill="white"/>
-      <!-- Recorte del aro completo (quita aro + centro) -->
-      <circle cx="63" cy="63" r="39" fill="black"/>
-
-      <!-- Recorte mango de la lupa -->
-      <line x1="84" y1="84" x2="118" y2="118"
-            stroke="black" stroke-width="18" stroke-linecap="round"/>
+    <!--
+      Máscara para el pin:
+      - blanco = se pinta
+      - negro  = transparente (se ve el fondo)
+      Queremos quitar del pin: el trazo del aro + su interior + el mango
+    -->
+    <mask id="cutout">
+      <!-- Pin completo visible -->
+      <rect width="520" height="160" fill="white"/>
+      <!-- Quitar el círculo completo de la lupa (aro + interior) -->
+      <circle cx="68" cy="68" r="43" fill="black"/>
+      <!-- Devolver solo el trazo del aro: anillo interior de vuelta a blanco -->
+      <circle cx="68" cy="68" r="30" fill="white"/>
+      <!-- Quitar el interior del aro -->
+      <circle cx="68" cy="68" r="17" fill="black"/>
+      <!-- Quitar el mango -->
+      <line x1="91" y1="91" x2="122" y2="122"
+            stroke="black" stroke-width="17" stroke-linecap="round"/>
     </mask>
   </defs>
 
-  <!-- ══ ÍCONO ══ -->
-  <g transform="translate(5, 5)">
-
-    <!-- Pin con máscara: el área de la lupa queda transparente -->
-    <path d="M 70 2 C 33 2 3 32 3 69 C 3 103 70 152 70 152 C 70 152 137 103 137 69 C 137 32 107 2 70 2 Z"
+  <!-- ══ PIN con recortes de la lupa ══ -->
+  <g transform="translate(5, 4)">
+    <path d="M 70 2 C 33 2 3 32 3 69 C 3 103 70 152 70 152
+             C 70 152 137 103 137 69 C 137 32 107 2 70 2 Z"
           fill="#45C6C0"
-          mask="url(#pinMask)"/>
+          mask="url(#cutout)"/>
 
-    <!-- Aro de la lupa amarillo — dibujado encima, fondo visible en el centro -->
+    <!-- Aro de la lupa amarillo -->
     <circle cx="68" cy="68" r="30"
-            fill="none"
-            stroke="#F9C200"
-            stroke-width="13"/>
+            fill="none" stroke="#F9C200" stroke-width="13"/>
 
-    <!-- Mango de la lupa -->
-    <line x1="91" y1="91" x2="118" y2="118"
-          stroke="#F9C200"
-          stroke-width="14"
-          stroke-linecap="round"/>
-
+    <!-- Mango de la lupa amarillo -->
+    <line x1="91" y1="91" x2="120" y2="120"
+          stroke="#F9C200" stroke-width="14" stroke-linecap="round"/>
   </g>
 
   <!-- ══ TEXTO ══ -->
