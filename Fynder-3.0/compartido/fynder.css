@@ -5339,49 +5339,25 @@ body:has(#page-fynder.active) #navbar:not(.scrolled) .nav-dots-btn:hover {
 .logo-img-btn {
   background: none !important;
   border: none !important;
-  padding: 2px 0 !important;
+  padding: 0 !important;
   cursor: pointer;
   display: flex;
   align-items: center;
   box-shadow: none !important;
 }
-.logo-img {
-  height: 38px;
-  width: auto;
+.logo-img,
+.footer-logo-img,
+.auth-panel-logo-img,
+.wa-rail-logo-img {
   display: block;
   object-fit: contain;
-  /* El logo tiene fondo blanco en la imagen original,
-     usar background-color: white para que no se vea el recorte */
-  border-radius: 6px;
-}
-/* Navbar: logo sobre fondo teal/oscuro — añade fondo blanco pequeño */
-#navbar .logo-img {
-  height: 38px;
-  border-radius: 6px;
-  padding: 2px 6px;
-  background: white;
-}
-/* Móvil drawer */
-.mobile-menu-logo .logo-img {
-  height: 34px;
-  border-radius: 6px;
-  padding: 2px 6px;
-  background: white;
-}
-/* Footer */
-.footer-logo-img {
-  height: 32px;
-  border-radius: 6px;
-  padding: 2px 6px;
-  background: white;
-}
-/* Auth panel (login/registro) */
-.auth-panel-logo-img {
-  height: 48px;
   border-radius: 8px;
-  padding: 4px 8px;
-  background: white;
 }
+/* Tamaños por contexto */
+#navbar .logo-img          { height: 42px; width: auto; }
+.mobile-menu-logo .logo-img { height: 38px; width: auto; }
+.footer-logo-img            { height: 36px; width: auto; }
+.auth-panel-logo-img        { height: 52px; width: auto; }
 /* Rail de mensajes */
 .wa-rail-logo {
   background: none;
@@ -5392,11 +5368,4 @@ body:has(#page-fynder.active) #navbar:not(.scrolled) .nav-dots-btn:hover {
   justify-content: center;
   padding: 4px;
 }
-.wa-rail-logo-img {
-  height: 32px;
-  width: auto;
-  object-fit: contain;
-  border-radius: 6px;
-  padding: 2px 4px;
-  background: white;
-}
+.wa-rail-logo-img { height: 36px; width: auto; }
