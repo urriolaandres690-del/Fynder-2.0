@@ -1,6 +1,4 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 150" width="500" height="150">
-  <!-- Fondo blanco para que el logo original se vea igual que en la imagen compartida -->
-  <rect width="500" height="150" fill="white" rx="10"/>
 
   <!-- Pin de ubicación teal (izquierda) -->
   <g transform="translate(14, 6)">
@@ -16,12 +14,11 @@
     <line x1="64" y1="63" x2="77" y2="76" stroke="#F5C11C" stroke-width="7.5" stroke-linecap="round"/>
   </g>
 
-  <!-- FYN en blanco (como en el logo original — visible sobre el fondo blanco del SVG) -->
+  <!-- Texto FYNDER todo en teal oscuro, visible sobre cualquier fondo -->
   <text x="152" y="106"
         font-family="'Montserrat','Arial Black','Impact',sans-serif"
         font-size="78"
         font-weight="900"
-        letter-spacing="-1">
-    <tspan fill="white">FYN</tspan><tspan fill="#1C8A85">DER</tspan>
-  </text>
+        fill="#1C8A85"
+        letter-spacing="-1">FYNDER</text>
 </svg>
