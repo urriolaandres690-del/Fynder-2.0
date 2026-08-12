@@ -1,30 +1,38 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 520 160">
   <defs>
-    <mask id="cutout">
-      <rect width="520" height="160" fill="white"/>
-      <circle cx="68" cy="68" r="43" fill="black"/>
-      <circle cx="68" cy="68" r="30" fill="white"/>
-      <circle cx="68" cy="68" r="17" fill="black"/>
-      <line x1="91" y1="91" x2="122" y2="122"
-            stroke="black" stroke-width="17" stroke-linecap="round"/>
+    <mask id="pinCutLight">
+      <rect width="200" height="160" fill="white"/>
+      <!-- Recortar hueco interior del aro -->
+      <circle cx="73" cy="68" r="19" fill="black"/>
+      <!-- Recortar mango -->
+      <line x1="94" y1="89" x2="124" y2="119"
+            stroke="black" stroke-width="16" stroke-linecap="round"/>
     </mask>
   </defs>
 
-  <g transform="translate(5, 4)">
-    <path d="M 70 2 C 33 2 3 32 3 69 C 3 103 70 152 70 152
-             C 70 152 137 103 137 69 C 137 32 107 2 70 2 Z"
-          fill="#45C6C0"
-          mask="url(#cutout)"/>
+  <!-- Pin teal con huecos -->
+  <path d="M 75 6
+           C 40 6 11 35 11 70
+           C 11 103 75 155 75 155
+           C 75 155 139 103 139 70
+           C 139 35 110 6 75 6 Z"
+        fill="#45C6C0"
+        mask="url(#pinCutLight)"/>
 
-    <circle cx="68" cy="68" r="30"
-            fill="none" stroke="#F9C200" stroke-width="13"/>
+  <!-- Aro amarillo -->
+  <circle cx="73" cy="68" r="27"
+          fill="none"
+          stroke="#F9C200"
+          stroke-width="12"/>
 
-    <line x1="91" y1="91" x2="120" y2="120"
-          stroke="#F9C200" stroke-width="14" stroke-linecap="round"/>
-  </g>
+  <!-- Mango amarillo -->
+  <line x1="93" y1="88" x2="122" y2="117"
+        stroke="#F9C200"
+        stroke-width="13"
+        stroke-linecap="round"/>
 
-  <!-- FYN teal · DER teal oscuro -->
-  <text x="162" y="107"
+  <!-- TEXTO: FYN teal · DER teal oscuro -->
+  <text x="158" y="107"
         font-family="'Montserrat','Arial Black','Arial',sans-serif"
         font-size="74" font-weight="900" letter-spacing="0">
     <tspan fill="#45C6C0">FYN</tspan><tspan fill="#1A8C87">DER</tspan>
