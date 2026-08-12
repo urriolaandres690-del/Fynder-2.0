@@ -2,17 +2,11 @@
   <defs>
     <mask id="pinCut">
       <rect width="520" height="160" fill="white"/>
-      <!-- Quitar zona completa lupa + gap -->
       <circle cx="73" cy="68" r="44" fill="black"/>
-      <!-- Devolver solo el trazo del aro -->
-      <circle cx="73" cy="68" r="33" fill="white"/>
-      <!-- Quitar interior — r exactamente igual al borde interior del stroke -->
-      <!-- aro r=27, stroke=13 → borde interior = 27 - 6.5 = 20.5, usar 20 -->
-      <circle cx="73" cy="68" r="20" fill="black"/>
-      <!-- Quitar mango + gap -->
+      <circle cx="73" cy="68" r="34" fill="white"/>
+      <circle cx="73" cy="68" r="27" fill="black"/>
       <line x1="87" y1="82" x2="132" y2="127"
             stroke="black" stroke-width="28" stroke-linecap="round"/>
-      <!-- Devolver trazo exacto mango -->
       <line x1="91" y1="86" x2="124" y2="119"
             stroke="white" stroke-width="13" stroke-linecap="round"/>
     </mask>
