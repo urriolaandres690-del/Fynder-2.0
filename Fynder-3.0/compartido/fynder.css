@@ -5351,10 +5351,10 @@ body:has(#page-fynder.active) #navbar:not(.scrolled) .nav-dots-btn:hover {
 .wa-rail-logo-img {
   display: block;
   object-fit: contain;
-  border-radius: 8px;
+  background: none;
 }
 /* Tamaños por contexto */
-#navbar .logo-img          { height: 42px; width: auto; }
+#navbar .logo-img           { height: 42px; width: auto; }
 .mobile-menu-logo .logo-img { height: 38px; width: auto; }
 .footer-logo-img            { height: 36px; width: auto; }
 .auth-panel-logo-img        { height: 52px; width: auto; }
