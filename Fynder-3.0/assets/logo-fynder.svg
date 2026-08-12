@@ -1,28 +1,27 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 150" width="500" height="150">
-  <rect width="500" height="150" fill="white"/>
+  <!-- Fondo blanco para que el logo original se vea igual que en la imagen compartida -->
+  <rect width="500" height="150" fill="white" rx="10"/>
 
-  <!-- Pin de ubicación teal -->
+  <!-- Pin de ubicación teal (izquierda) -->
   <g transform="translate(14, 6)">
-    <!-- Cuerpo del pin -->
+    <!-- Cuerpo del pin / gota -->
     <path d="M58 0 C26 0 0 26 0 58 C0 90 58 138 58 138 C58 138 116 90 116 58 C116 26 90 0 58 0 Z" fill="#4DBFBA"/>
-    <!-- Anillo blanco grueso -->
+    <!-- Anillo blanco -->
     <circle cx="58" cy="56" r="32" fill="white"/>
     <!-- Relleno teal central -->
     <circle cx="58" cy="56" r="26" fill="#4DBFBA"/>
     <!-- Lupa: aro amarillo -->
-    <circle cx="54" cy="52" r="14" fill="none" stroke="#F5C11C" stroke-width="7"/>
+    <circle cx="54" cy="52" r="14" fill="none" stroke="#F5C11C" stroke-width="7.5"/>
     <!-- Lupa: mango amarillo -->
-    <line x1="64" y1="63" x2="76" y2="75" stroke="#F5C11C" stroke-width="7" stroke-linecap="round"/>
+    <line x1="64" y1="63" x2="77" y2="76" stroke="#F5C11C" stroke-width="7.5" stroke-linecap="round"/>
   </g>
 
-  <!-- Texto FYN en blanco (invisible sobre blanco, igual que en el logo original) -->
-  <!-- En el logo original "FYN" aparece en blanco sobre el fondo blanco de la imagen -->
-  <!-- Para que funcione sobre cualquier fondo, ponemos "FYN" en el mismo color teal -->
-  <text x="150" y="106"
-        font-family="'Montserrat','Arial Black','Poppins',sans-serif"
+  <!-- FYN en blanco (como en el logo original — visible sobre el fondo blanco del SVG) -->
+  <text x="152" y="106"
+        font-family="'Montserrat','Arial Black','Impact',sans-serif"
         font-size="78"
         font-weight="900"
         letter-spacing="-1">
-    <tspan fill="#2A9D98">FYN</tspan><tspan fill="#1C7A75">DER</tspan>
+    <tspan fill="white">FYN</tspan><tspan fill="#1C8A85">DER</tspan>
   </text>
 </svg>
