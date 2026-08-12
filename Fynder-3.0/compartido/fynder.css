@@ -5334,3 +5334,41 @@ body:has(#page-fynder.active) #navbar:not(.scrolled) .nav-dots-btn:hover {
 @media (min-width: 1025px) {
   .hero-stats-mobile { display: none !important; }
 }
+
+/* ── NUEVO LOGO ── */
+.logo-img-btn {
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+}
+.logo-img {
+  height: 36px;
+  width: auto;
+  display: block;
+  object-fit: contain;
+}
+.footer-logo-img {
+  height: 30px;
+}
+.auth-panel-logo-img {
+  height: 44px;
+  /* en el panel oscuro del auth, el SVG tiene colores propios (teal) 
+     así que se ve bien sobre fondo oscuro sin filtro */
+}
+.wa-rail-logo {
+  background: none;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 6px;
+}
+.wa-rail-logo-img {
+  height: 28px;
+  width: auto;
+  object-fit: contain;
+}
