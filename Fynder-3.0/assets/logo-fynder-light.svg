@@ -1,38 +1,32 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 520 160">
+  <defs>
+    <mask id="cutout">
+      <rect width="520" height="160" fill="white"/>
+      <circle cx="68" cy="68" r="43" fill="black"/>
+      <circle cx="68" cy="68" r="30" fill="white"/>
+      <circle cx="68" cy="68" r="17" fill="black"/>
+      <line x1="91" y1="91" x2="122" y2="122"
+            stroke="black" stroke-width="17" stroke-linecap="round"/>
+    </mask>
+  </defs>
 
-  <!-- ══ ÍCONO ══ -->
-  <g transform="translate(5, 5)">
+  <g transform="translate(5, 4)">
+    <path d="M 70 2 C 33 2 3 32 3 69 C 3 103 70 152 70 152
+             C 70 152 137 103 137 69 C 137 32 107 2 70 2 Z"
+          fill="#45C6C0"
+          mask="url(#cutout)"/>
 
-    <!-- Pin Google Maps -->
-    <path d="M 70 2
-             C 33 2 3 32 3 69
-             C 3 103 70 152 70 152
-             C 70 152 137 103 137 69
-             C 137 32 107 2 70 2 Z"
-          fill="#45C6C0"/>
+    <circle cx="68" cy="68" r="30"
+            fill="none" stroke="#F9C200" stroke-width="13"/>
 
-    <!-- Aro de la lupa amarillo grueso -->
-    <circle cx="63" cy="63" r="32"
-            fill="none"
-            stroke="#F9C200"
-            stroke-width="14"/>
-
-    <!-- Mango diagonal -->
-    <line x1="87" y1="87" x2="118" y2="118"
-          stroke="#F9C200"
-          stroke-width="15"
-          stroke-linecap="round"/>
-
+    <line x1="91" y1="91" x2="120" y2="120"
+          stroke="#F9C200" stroke-width="14" stroke-linecap="round"/>
   </g>
 
-  <!-- FYN teal · DER teal oscuro (fondo claro) -->
-  <text
-    x="162" y="107"
-    font-family="'Montserrat','Arial Black','Arial',sans-serif"
-    font-size="74"
-    font-weight="900"
-    letter-spacing="0">
+  <!-- FYN teal · DER teal oscuro -->
+  <text x="162" y="107"
+        font-family="'Montserrat','Arial Black','Arial',sans-serif"
+        font-size="74" font-weight="900" letter-spacing="0">
     <tspan fill="#45C6C0">FYN</tspan><tspan fill="#1A8C87">DER</tspan>
   </text>
-
 </svg>
