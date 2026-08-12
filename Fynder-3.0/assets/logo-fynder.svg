@@ -1,50 +1,43 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 520 160">
   <defs>
     <!--
-      Máscara del pin:
-      blanco = se pinta el teal
-      negro  = transparente (se ve el fondo)
-
-      Recortamos:
-        1. El interior del aro de la lupa (círculo pequeño)
-        2. El área fuera del aro pero donde el pin no debería verse
-           por el hueco exterior (no aplica, la lupa solo corta el interior)
-        3. El mango donde cruza el pin
+      Máscara para el pin:
+      - blanco = se pinta
+      - negro  = transparente (se ve el fondo)
+      Queremos quitar del pin: el trazo del aro + su interior + el mango
     -->
-    <mask id="m">
-      <!-- Todo blanco: pin entero visible por defecto -->
-      <path d="M 70 2 C 33 2 3 32 3 69 C 3 103 70 152 70 152
-               C 70 152 137 103 137 69 C 137 32 107 2 70 2 Z"
-            fill="white"/>
-      <!-- Negro: interior del aro (debe quedar transparente) -->
-      <circle cx="68" cy="66" r="17" fill="black"/>
-      <!-- Negro: mango de la lupa que cruza el pin -->
-      <line x1="90" y1="88" x2="122" y2="120"
-            stroke="black" stroke-width="16" stroke-linecap="round"/>
+    <mask id="cutout">
+      <!-- Pin completo visible -->
+      <rect width="520" height="160" fill="white"/>
+      <!-- Quitar el círculo completo de la lupa (aro + interior) -->
+      <circle cx="68" cy="68" r="43" fill="black"/>
+      <!-- Devolver solo el trazo del aro: anillo interior de vuelta a blanco -->
+      <circle cx="68" cy="68" r="30" fill="white"/>
+      <!-- Quitar el interior del aro -->
+      <circle cx="68" cy="68" r="17" fill="black"/>
+      <!-- Quitar el mango -->
+      <line x1="91" y1="91" x2="122" y2="122"
+            stroke="black" stroke-width="17" stroke-linecap="round"/>
     </mask>
   </defs>
 
+  <!-- ══ PIN con recortes de la lupa ══ -->
   <g transform="translate(5, 4)">
-    <!-- Pin teal con hueco en el interior de la lupa y en el mango -->
     <path d="M 70 2 C 33 2 3 32 3 69 C 3 103 70 152 70 152
              C 70 152 137 103 137 69 C 137 32 107 2 70 2 Z"
           fill="#45C6C0"
-          mask="url(#m)"/>
+          mask="url(#cutout)"/>
 
-    <!-- Aro amarillo de la lupa encima -->
-    <circle cx="68" cy="66" r="28"
-            fill="none"
-            stroke="#F9C200"
-            stroke-width="13"/>
+    <!-- Aro de la lupa amarillo -->
+    <circle cx="68" cy="68" r="30"
+            fill="none" stroke="#F9C200" stroke-width="13"/>
 
-    <!-- Mango amarillo de la lupa -->
-    <line x1="90" y1="88" x2="120" y2="118"
-          stroke="#F9C200"
-          stroke-width="14"
-          stroke-linecap="round"/>
+    <!-- Mango de la lupa amarillo -->
+    <line x1="91" y1="91" x2="120" y2="120"
+          stroke="#F9C200" stroke-width="14" stroke-linecap="round"/>
   </g>
 
-  <!-- TEXTO: FYN blanco · DER teal -->
+  <!-- ══ TEXTO ══ -->
   <text x="162" y="107"
         font-family="'Montserrat','Arial Black','Arial',sans-serif"
         font-size="74" font-weight="900" letter-spacing="0">
