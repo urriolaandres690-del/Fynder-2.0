@@ -3,35 +3,34 @@
     <mask id="pinCut">
       <rect width="520" height="160" fill="white"/>
 
-      <!-- Quitar TODO alrededor + dentro de la lupa (zona grande) -->
-      <circle cx="73" cy="68" r="42" fill="black"/>
+      <!-- Quitar zona completa de la lupa + gap -->
+      <circle cx="73" cy="68" r="44" fill="black"/>
 
-      <!-- Devolver SOLO donde va el trazo amarillo del aro -->
-      <!-- aro r=27, stroke=13 → va de r=20.5 a r=33.5 -->
-      <circle cx="73" cy="68" r="34" fill="white"/>
+      <!-- Devolver exactamente donde va el trazo del aro -->
+      <!-- aro centro r=27, stroke=13 → exterior r=33.5, interior r=20.5 -->
+      <circle cx="73" cy="68" r="33" fill="white"/>
       <circle cx="73" cy="68" r="21" fill="black"/>
 
-      <!-- Quitar el mango + zona alrededor del mango -->
-      <line x1="88" y1="83" x2="130" y2="125"
-            stroke="black" stroke-width="26" stroke-linecap="round"/>
-
-      <!-- Devolver solo el trazo del mango amarillo -->
+      <!-- Quitar zona del mango + gap alrededor -->
+      <line x1="87" y1="82" x2="132" y2="127"
+            stroke="black" stroke-width="28" stroke-linecap="round"/>
+      <!-- Devolver solo el trazo exacto del mango -->
       <line x1="91" y1="86" x2="124" y2="119"
-            stroke="white" stroke-width="14" stroke-linecap="round"/>
+            stroke="white" stroke-width="13" stroke-linecap="round"/>
     </mask>
   </defs>
 
-  <!-- Pin teal con recortes precisos -->
+  <!-- Pin teal -->
   <path d="M 75 6 C 40 6 11 35 11 70 C 11 103 75 155 75 155
            C 75 155 139 103 139 70 C 139 35 110 6 75 6 Z"
         fill="#45C6C0" mask="url(#pinCut)"/>
 
-  <!-- Aro lupa amarillo -->
+  <!-- Aro amarillo exacto -->
   <circle cx="73" cy="68" r="27" fill="none" stroke="#F9C200" stroke-width="13"/>
 
-  <!-- Mango lupa -->
+  <!-- Mango amarillo -->
   <line x1="91" y1="86" x2="124" y2="119"
-        stroke="#F9C200" stroke-width="14" stroke-linecap="round"/>
+        stroke="#F9C200" stroke-width="13" stroke-linecap="round"/>
 
   <!-- TEXTO -->
   <text x="158" y="107"
