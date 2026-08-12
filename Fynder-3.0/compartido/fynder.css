@@ -5337,27 +5337,52 @@ body:has(#page-fynder.active) #navbar:not(.scrolled) .nav-dots-btn:hover {
 
 /* ── NUEVO LOGO ── */
 .logo-img-btn {
-  background: none;
-  border: none;
-  padding: 0;
+  background: none !important;
+  border: none !important;
+  padding: 2px 0 !important;
   cursor: pointer;
   display: flex;
   align-items: center;
+  box-shadow: none !important;
 }
 .logo-img {
-  height: 36px;
+  height: 38px;
   width: auto;
   display: block;
   object-fit: contain;
+  /* El logo tiene fondo blanco en la imagen original,
+     usar background-color: white para que no se vea el recorte */
+  border-radius: 6px;
 }
+/* Navbar: logo sobre fondo teal/oscuro — añade fondo blanco pequeño */
+#navbar .logo-img {
+  height: 38px;
+  border-radius: 6px;
+  padding: 2px 6px;
+  background: white;
+}
+/* Móvil drawer */
+.mobile-menu-logo .logo-img {
+  height: 34px;
+  border-radius: 6px;
+  padding: 2px 6px;
+  background: white;
+}
+/* Footer */
 .footer-logo-img {
-  height: 30px;
+  height: 32px;
+  border-radius: 6px;
+  padding: 2px 6px;
+  background: white;
 }
+/* Auth panel (login/registro) */
 .auth-panel-logo-img {
-  height: 44px;
-  /* en el panel oscuro del auth, el SVG tiene colores propios (teal) 
-     así que se ve bien sobre fondo oscuro sin filtro */
+  height: 48px;
+  border-radius: 8px;
+  padding: 4px 8px;
+  background: white;
 }
+/* Rail de mensajes */
 .wa-rail-logo {
   background: none;
   border: none;
@@ -5365,10 +5390,13 @@ body:has(#page-fynder.active) #navbar:not(.scrolled) .nav-dots-btn:hover {
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 6px;
+  padding: 4px;
 }
 .wa-rail-logo-img {
-  height: 28px;
+  height: 32px;
   width: auto;
   object-fit: contain;
+  border-radius: 6px;
+  padding: 2px 4px;
+  background: white;
 }
