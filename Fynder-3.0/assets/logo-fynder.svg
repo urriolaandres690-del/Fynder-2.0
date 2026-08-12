@@ -1,39 +1,30 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 520 160">
   <defs>
-    <!-- Máscara: blanco=visible, negro=transparente -->
     <mask id="pinCut">
-      <!-- Todo blanco primero (todo visible) -->
-      <rect width="200" height="160" fill="white"/>
-      <!-- Recortar el hueco interior del aro (centro de la lupa) -->
-      <circle cx="73" cy="68" r="19" fill="black"/>
-      <!-- Recortar el mango -->
-      <line x1="94" y1="89" x2="124" y2="119"
-            stroke="black" stroke-width="16" stroke-linecap="round"/>
+      <!-- Todo visible -->
+      <rect width="520" height="160" fill="white"/>
+      <!-- Hueco centro lupa — radio = stroke/2 interior del aro -->
+      <!-- aro r=27, stroke=12 → interior = 27-6 = 21, hacemos 22 para asegurar -->
+      <circle cx="73" cy="68" r="22" fill="black"/>
+      <!-- Hueco mango — mismo grosor que el trazo amarillo -->
+      <line x1="93" y1="88" x2="124" y2="119"
+            stroke="black" stroke-width="14" stroke-linecap="round"/>
     </mask>
   </defs>
 
-  <!-- Pin teal con huecos recortados -->
-  <path d="M 75 6
-           C 40 6 11 35 11 70
-           C 11 103 75 155 75 155
-           C 75 155 139 103 139 70
-           C 139 35 110 6 75 6 Z"
-        fill="#45C6C0"
-        mask="url(#pinCut)"/>
+  <!-- Pin teal con recortes -->
+  <path d="M 75 6 C 40 6 11 35 11 70 C 11 103 75 155 75 155
+           C 75 155 139 103 139 70 C 139 35 110 6 75 6 Z"
+        fill="#45C6C0" mask="url(#pinCut)"/>
 
-  <!-- Aro de la lupa amarillo grueso (solo trazo, sin relleno) -->
-  <circle cx="73" cy="68" r="27"
-          fill="none"
-          stroke="#F9C200"
-          stroke-width="12"/>
+  <!-- Aro lupa amarillo — solo borde, fill=none -->
+  <circle cx="73" cy="68" r="27" fill="none" stroke="#F9C200" stroke-width="12"/>
 
-  <!-- Mango de la lupa amarillo -->
+  <!-- Mango lupa -->
   <line x1="93" y1="88" x2="122" y2="117"
-        stroke="#F9C200"
-        stroke-width="13"
-        stroke-linecap="round"/>
+        stroke="#F9C200" stroke-width="13" stroke-linecap="round"/>
 
-  <!-- TEXTO: FYN blanco · DER teal -->
+  <!-- TEXTO -->
   <text x="158" y="107"
         font-family="'Montserrat','Arial Black','Arial',sans-serif"
         font-size="74" font-weight="900" letter-spacing="0">
