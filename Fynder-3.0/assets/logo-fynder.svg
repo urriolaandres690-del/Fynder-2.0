@@ -1,22 +1,21 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 150" width="500" height="150">
 
-  <!-- Pin de ubicación teal -->
-  <g transform="translate(10, 4)">
+  <!-- Pin de ubicación teal (izquierda) -->
+  <g transform="translate(14, 6)">
     <!-- Cuerpo del pin / gota -->
-    <path d="M62 0 C28 0 0 28 0 62 C0 96 62 144 62 144 C62 144 124 96 124 62 C124 28 96 0 62 0 Z" fill="#4DBFBA"/>
-
-    <!-- Lupa: aro amarillo grueso -->
-    <circle cx="60" cy="58" r="26" fill="none" stroke="#F5C11C" stroke-width="13"/>
-    <!-- Lupa: interior negro/oscuro -->
-    <circle cx="60" cy="58" r="13" fill="#1a1a1a"/>
-    <!-- Lupa: interior blanco pequeño (reflejo) -->
-    <circle cx="60" cy="58" r="9" fill="none" stroke="#1a1a1a" stroke-width="0"/>
-    <!-- Mango de la lupa amarillo, sale abajo-derecha, grueso y redondeado -->
-    <line x1="79" y1="77" x2="98" y2="96" stroke="#F5C11C" stroke-width="13" stroke-linecap="round"/>
+    <path d="M58 0 C26 0 0 26 0 58 C0 90 58 138 58 138 C58 138 116 90 116 58 C116 26 90 0 58 0 Z" fill="#4DBFBA"/>
+    <!-- Anillo blanco -->
+    <circle cx="58" cy="56" r="32" fill="white"/>
+    <!-- Relleno teal central -->
+    <circle cx="58" cy="56" r="26" fill="#4DBFBA"/>
+    <!-- Lupa: aro amarillo -->
+    <circle cx="54" cy="52" r="14" fill="none" stroke="#F5C11C" stroke-width="7.5"/>
+    <!-- Lupa: mango amarillo -->
+    <line x1="64" y1="63" x2="77" y2="76" stroke="#F5C11C" stroke-width="7.5" stroke-linecap="round"/>
   </g>
 
-  <!-- Texto FYNDER en teal oscuro -->
-  <text x="155" y="106"
+  <!-- Texto FYNDER todo en teal oscuro, visible sobre cualquier fondo -->
+  <text x="152" y="106"
         font-family="'Montserrat','Arial Black','Impact',sans-serif"
         font-size="78"
         font-weight="900"
