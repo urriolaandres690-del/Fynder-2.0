@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 260 90" width="260" height="90">
+  <!-- Pin de ubicación teal -->
+  <g transform="translate(10, 5)">
+    <!-- Cuerpo del pin -->
+    <path d="M35 5 C18 5 5 18 5 35 C5 55 35 80 35 80 C35 80 65 55 65 35 C65 18 52 5 35 5 Z" fill="#5DC8C4"/>
+    <!-- Círculo interior blanco -->
+    <circle cx="35" cy="33" r="14" fill="white"/>
+    <!-- Lupa amarilla -->
+    <circle cx="32" cy="30" r="8" fill="none" stroke="#F5C518" stroke-width="4"/>
+    <line x1="38" y1="37" x2="45" y2="44" stroke="#F5C518" stroke-width="4" stroke-linecap="round"/>
+  </g>
+  <!-- Texto FYNDER -->
+  <text x="90" y="60" font-family="'Poppins', 'Arial', sans-serif" font-size="44" font-weight="800" fill="#2A8E8A" letter-spacing="1">FYNDER</text>
+</svg>
