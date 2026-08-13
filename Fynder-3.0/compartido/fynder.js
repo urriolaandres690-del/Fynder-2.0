@@ -311,6 +311,7 @@ function goPage(p){
     window.__scrolled = false;
     document.getElementById('navbar').classList.remove('scrolled');
     updateNav();
+    _updateNavLogo();
     window.scrollTo({top:0,behavior:'smooth'});
 
     if(p==='directory') renderDirectory();
