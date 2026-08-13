@@ -413,9 +413,22 @@ function goDirectoryQuery(q,cat=''){document.getElementById('dirSearch').value=q
 
 function heroSearchGo(){const q=document.getElementById('heroSearch').value.trim();goDirectoryQuery(q);} 
 
-window.__scrolled=false; 
+window.__scrolled=false;
 
-window.addEventListener('scroll',()=>{const s=window.scrollY>40;if(s!==window.__scrolled){window.__scrolled=s;document.getElementById('navbar').classList.toggle('scrolled',s);updateNav();}},{passive:true}); 
+function _updateNavLogo(){
+  const img = document.querySelector('#mainLogo .logo-img');
+  if(!img) return;
+  const dark = document.documentElement.getAttribute('data-theme')==='dark';
+  if(dark){
+    img.src = 'assets/logo-fynder.svg'; // FYN blanco sobre oscuro
+  } else if(window.__scrolled){
+    img.src = 'assets/logo-fynder-light.svg'; // FYN turquesa + DER amarillo sobre blanco
+  } else {
+    img.src = 'assets/logo-fynder.svg'; // FYN blanco sobre hero teal
+  }
+}
+
+window.addEventListener('scroll',()=>{const s=window.scrollY>40;if(s!==window.__scrolled){window.__scrolled=s;document.getElementById('navbar').classList.toggle('scrolled',s);updateNav();_updateNavLogo();}},{passive:true}); 
 
 function toggleFav(id){
   // Bloquear si no hay sesion activa
