@@ -1014,7 +1014,6 @@ window.addEventListener("load", ()=>{
 
 
 function toggleDarkMode(){
-    // Solo permitir modo oscuro si hay sesión activa
     if (!localStorage.getItem('fynderLogged')) {
       showToast('Inicia sesión para activar el modo oscuro 🌙', 'info');
       return;
@@ -1023,8 +1022,8 @@ function toggleDarkMode(){
     const next   = isDark ? 'light' : 'dark';
     document.documentElement.setAttribute('data-theme', next);
     localStorage.setItem('fynderTheme', next);
-    // Actualizar navbar scrolled en modo oscuro
     _applyNavbarTheme();
+    _updateNavLogo();
 }
 
 function _applyNavbarTheme(){
