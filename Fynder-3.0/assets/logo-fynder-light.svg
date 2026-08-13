@@ -2,12 +2,14 @@
   <defs>
     <mask id="pinCutLight">
       <rect width="520" height="160" fill="white"/>
-      <circle cx="73" cy="68" r="44" fill="black"/>
+
+      <circle cx="73" cy="68" r="45" fill="black"/>
       <circle cx="73" cy="68" r="34" fill="white"/>
-      <circle cx="73" cy="68" r="27" fill="black"/>
-      <line x1="87" y1="82" x2="132" y2="127"
-            stroke="black" stroke-width="28" stroke-linecap="round"/>
-      <line x1="91" y1="86" x2="124" y2="119"
+      <circle cx="73" cy="68" r="20" fill="black"/>
+
+      <line x1="97" y1="92" x2="130" y2="125"
+            stroke="black" stroke-width="30" stroke-linecap="round"/>
+      <line x1="97" y1="92" x2="124" y2="119"
             stroke="white" stroke-width="13" stroke-linecap="round"/>
     </mask>
   </defs>
@@ -17,10 +19,9 @@
         fill="#45C6C0" mask="url(#pinCutLight)"/>
 
   <circle cx="73" cy="68" r="27" fill="none" stroke="#F9C200" stroke-width="13"/>
-  <line x1="91" y1="86" x2="124" y2="119"
+  <line x1="92" y1="87" x2="122" y2="117"
         stroke="#F9C200" stroke-width="13" stroke-linecap="round"/>
 
-  <!-- FYN turquesa · DER amarillo -->
   <text x="158" y="107"
         font-family="'Montserrat','Arial Black','Arial',sans-serif"
         font-size="74" font-weight="900" letter-spacing="0">
