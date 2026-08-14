@@ -466,7 +466,7 @@
   margin-bottom: 20px;
   flex-shrink: 0;
   transition: transform .2s, box-shadow .2s;
-  box-shadow: 0 2px 10px rgba(0,0,0,.2);
+  box-shadow: 0 2px 10px rgba(0,0,0,.3);
 }
 .wa-rail-logo:hover {
   transform: scale(1.08);
@@ -5775,7 +5775,7 @@ body { top: 0 !important; }
   margin-bottom: 20px;
   flex-shrink: 0;
   transition: transform .2s, box-shadow .2s;
-  box-shadow: 0 2px 10px rgba(0,0,0,.2);
+  box-shadow: 0 2px 10px rgba(0,0,0,.3);
 }
 .wa-rail-logo:hover {
   transform: scale(1.08);
@@ -6801,6 +6801,7 @@ body.select-mode .chat-msg-row .msg-checkbox { display: flex; align-items: cente
 .chat-msg-row.out .chat-bubble.deleted-for-all {
   border-color: rgba(255,255,255,.15) !important;
 }
+
 
 
 
