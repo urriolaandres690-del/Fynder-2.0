@@ -49,7 +49,7 @@
   border-color: rgba(255,255,255,.12);
 }
 
-/* CHAT: DIVISOR REDIMENSIONABLE (sidebar ? área principal) */
+/* CHAT: DIVISOR REDIMENSIONABLE (sidebar ? ï¿½rea principal) */
 .wa-resize-handle {
   width: 5px;
   cursor: col-resize;
@@ -175,7 +175,7 @@
 .chat-bubble-contact-name  { font-weight: 600; font-size: .875rem; }
 .chat-bubble-contact-sub   { font-size: .75rem; opacity: .65; }
 
-/* CHAT: INPUT BAR estilo WhatsApp — micrófono */
+/* CHAT: INPUT BAR estilo WhatsApp ï¿½ micrï¿½fono */
 .chat-mic-btn {
   transition: background .2s, transform .15s, box-shadow .2s;
 }
@@ -355,7 +355,7 @@
 }
 
 .wa-chat-area {
-  position: relative; /* necesario para el menú absoluto */
+  position: relative; /* necesario para el menï¿½ absoluto */
 }
 .wa-chat-header-actions {
   display: flex;
@@ -403,9 +403,9 @@
   margin: 4px 8px;
 }
 
-/* CHAT PROFILE: menú contextual del ? y ajustes varios */
+/* CHAT PROFILE: menï¿½ contextual del ? y ajustes varios */
 .chat-profile-page {
-  position: relative; /* para el menú absoluto */
+  position: relative; /* para el menï¿½ absoluto */
 }
 .cpro-ctx-menu {
   top: 56px;
@@ -418,7 +418,7 @@
   flex-shrink: 0;
 }
 
-/* RAIL DE ÍCONOS IZQUIERDO — estilo WhatsApp Web */
+/* RAIL DE ï¿½CONOS IZQUIERDO ï¿½ estilo WhatsApp Web */
 .wa-icon-rail {
   width: 68px;
   flex-shrink: 0;
@@ -617,7 +617,7 @@ mark.msg-search-mark {
   padding: 0 1px;
 }
 
-/* SECCIÓN PATROCINADORES — página About */
+/* SECCIï¿½N PATROCINADORES ï¿½ pï¿½gina About */
 
 .about-sponsors-section {
   position: relative;
@@ -950,7 +950,7 @@ iframe.goog-te-menu-frame { box-shadow: 0 4px 20px rgba(0,0,0,.15) !important; b
 
 
 
-/* Wrapper del mensaje — necesario para posicionar badges y hover-bar */
+/* Wrapper del mensaje ï¿½ necesario para posicionar badges y hover-bar */
 .chat-msg-row {
   position: relative;
   margin-bottom: 2px;
@@ -959,7 +959,7 @@ iframe.goog-te-menu-frame { box-shadow: 0 4px 20px rgba(0,0,0,.15) !important; b
   margin-bottom: 18px;
 }
 
-/* -- Botón chevron ? dentro del bubble (esquina superior derecha al hover) -- */
+/* -- Botï¿½n chevron ? dentro del bubble (esquina superior derecha al hover) -- */
 .chat-bubble-menu-btn {
   position: absolute;
   top: 4px;
@@ -1007,7 +1007,7 @@ iframe.goog-te-menu-frame { box-shadow: 0 4px 20px rgba(0,0,0,.15) !important; b
   transform: scale(1) translateY(0);
 }
 
-/* Botones de emoji en la barra — grandes y sin fondo por defecto */
+/* Botones de emoji en la barra ï¿½ grandes y sin fondo por defecto */
 .chat-reaction-btn {
   width: 36px; height: 36px;
   border-radius: 50%;
@@ -1028,7 +1028,7 @@ iframe.goog-te-menu-frame { box-shadow: 0 4px 20px rgba(0,0,0,.15) !important; b
   opacity: .45;
 }
 
-/* Boton "+" — circulo gris oscuro bien definido */
+/* Boton "+" ï¿½ circulo gris oscuro bien definido */
 .chat-reaction-bar .react-more {
   width: 32px; height: 32px;
   border-radius: 50%;
@@ -1047,7 +1047,7 @@ iframe.goog-te-menu-frame { box-shadow: 0 4px 20px rgba(0,0,0,.15) !important; b
   transform: scale(1.1);
 }
 
-/* -- Badge de reacción pegado a la esquina inferior del bubble ----- */
+/* -- Badge de reacciï¿½n pegado a la esquina inferior del bubble ----- */
 /* El bubble wrapper (el <div> que envuelve la burbuja) es el padre */
 .chat-bubble-wrap {
   position: relative;
@@ -1132,7 +1132,7 @@ iframe.goog-te-menu-frame { box-shadow: 0 4px 20px rgba(0,0,0,.15) !important; b
   background: rgba(255,255,255,.13);
   transform: scale(1.35);
 }
-/* Botón "+" en la tira del menú */
+/* Botï¿½n "+" en la tira del menï¿½ */
 #msgBubbleCtxMenu .ctx-reaction-strip .react-more {
   width: 32px; height: 32px;
   border-radius: 50%;
@@ -1174,7 +1174,7 @@ iframe.goog-te-menu-frame { box-shadow: 0 4px 20px rgba(0,0,0,.15) !important; b
   flex-shrink: 0;
 }
 
-/* "Responder" — borde verde resaltado como en la imagen */
+/* "Responder" ï¿½ borde verde resaltado como en la imagen */
 .ctx-menu-item[onclick*="reply"] {
   margin: 8px 10px 4px;
   border: 1.5px solid #25d366;
@@ -1429,7 +1429,7 @@ body.select-mode .chat-msg-row .msg-checkbox { display: flex; align-items: cente
   border-radius: 8px;
 }
 
-/* Mensaje eliminado "para todos" — bubble especial */
+/* Mensaje eliminado "para todos" ï¿½ bubble especial */
 .chat-bubble.deleted-for-all {
   background: transparent !important;
   border: 1px solid rgba(255,255,255,.12) !important;
@@ -1445,11 +1445,11 @@ body.select-mode .chat-msg-row .msg-checkbox { display: flex; align-items: cente
 
 
 /* ------------------------------------------------------------------
-   BUBBLE AVANZADO — reacciones, menú contextual, selección, eliminado
+   BUBBLE AVANZADO ï¿½ reacciones, menï¿½ contextual, selecciï¿½n, eliminado
    (movido desde compartido/fynder.css)
    ------------------------------------------------------------------ */
 
-/* Wrapper del mensaje — necesario para posicionar badges y hover-bar */
+/* Wrapper del mensaje ï¿½ necesario para posicionar badges y hover-bar */
 .chat-msg-row {
   position: relative;
   margin-bottom: 2px;
@@ -1458,7 +1458,7 @@ body.select-mode .chat-msg-row .msg-checkbox { display: flex; align-items: cente
   margin-bottom: 18px;
 }
 
-/* -- Botón chevron ? dentro del bubble (esquina superior derecha al hover) -- */
+/* -- Botï¿½n chevron ? dentro del bubble (esquina superior derecha al hover) -- */
 .chat-bubble-menu-btn {
   position: absolute;
   top: 4px;
@@ -1506,7 +1506,7 @@ body.select-mode .chat-msg-row .msg-checkbox { display: flex; align-items: cente
   transform: scale(1) translateY(0);
 }
 
-/* Botones de emoji en la barra — grandes y sin fondo por defecto */
+/* Botones de emoji en la barra ï¿½ grandes y sin fondo por defecto */
 .chat-reaction-btn {
   width: 36px; height: 36px;
   border-radius: 50%;
@@ -1527,7 +1527,7 @@ body.select-mode .chat-msg-row .msg-checkbox { display: flex; align-items: cente
   opacity: .45;
 }
 
-/* Boton "+" — circulo gris oscuro bien definido */
+/* Boton "+" ï¿½ circulo gris oscuro bien definido */
 .chat-reaction-bar .react-more {
   width: 32px; height: 32px;
   border-radius: 50%;
@@ -1546,7 +1546,7 @@ body.select-mode .chat-msg-row .msg-checkbox { display: flex; align-items: cente
   transform: scale(1.1);
 }
 
-/* -- Badge de reacción pegado a la esquina inferior del bubble ----- */
+/* -- Badge de reacciï¿½n pegado a la esquina inferior del bubble ----- */
 .chat-bubble-wrap {
   position: relative;
   display: inline-block;
@@ -1671,7 +1671,7 @@ body.select-mode .chat-msg-row .msg-checkbox { display: flex; align-items: cente
   flex-shrink: 0;
 }
 
-/* "Responder" — borde verde resaltado */
+/* "Responder" ï¿½ borde verde resaltado */
 .ctx-menu-item[onclick*="reply"] {
   margin: 8px 10px 4px;
   border: 1.5px solid #25d366;
@@ -1849,7 +1849,7 @@ body.select-mode .chat-msg-row .msg-checkbox { display: flex; align-items: cente
 }
 .del-msg-cancel:hover { color: #a0adb8; }
 
-/* -- Barra de selección múltiple ------------------------------------- */
+/* -- Barra de selecciï¿½n mï¿½ltiple ------------------------------------- */
 .msg-select-bar {
   position: fixed;
   bottom: 0; left: 0; right: 0;
@@ -1923,7 +1923,7 @@ body.select-mode .chat-msg-row .msg-checkbox { display: flex; align-items: cente
   border-radius: 8px;
 }
 
-/* Mensaje eliminado "para todos" — bubble especial */
+/* Mensaje eliminado "para todos" ï¿½ bubble especial */
 .chat-bubble.deleted-for-all {
   background: transparent !important;
   border: 1px solid rgba(255,255,255,.12) !important;
@@ -1937,7 +1937,7 @@ body.select-mode .chat-msg-row .msg-checkbox { display: flex; align-items: cente
 }
 
 /* -- Movido desde fynder.css -- */
-/* SISTEMA DE MENSAJES – FYNDER — Variables adaptables: modo día (claro) y noche (oscuro) */
+/* SISTEMA DE MENSAJES ï¿½ FYNDER ï¿½ Variables adaptables: modo dï¿½a (claro) y noche (oscuro) */
 
 /* Variables del sistema de mensajes en modo claro */
 :root {
@@ -1948,7 +1948,7 @@ body.select-mode .chat-msg-row .msg-checkbox { display: flex; align-items: cente
   --msg-surface2:   #F0F2F5;
   /* Bordes */
   --msg-border:     rgba(0,0,0,.09);
-  /* Texto – oscuro para máximo contraste en día */
+  /* Texto ï¿½ oscuro para mï¿½ximo contraste en dï¿½a */
   --msg-text:       #050505;
   --msg-muted:      #444950;
   --msg-title:      #000000;
@@ -1969,9 +1969,9 @@ body.select-mode .chat-msg-row .msg-checkbox { display: flex; align-items: cente
   --msg-avatar-bg:  #BEC3C9;
   /* Separador fecha */
   --msg-sep-line:   rgba(0,0,0,.12);
-  /* Tick leído */
+  /* Tick leï¿½do */
   --msg-tick-read:  #67B8B4;
-  /* Notificaciones – colores explícitos modo día */
+  /* Notificaciones ï¿½ colores explï¿½citos modo dï¿½a */
   --msg-notif-title:   #000000;
   --msg-notif-desc:    #1C1E21;
   --msg-notif-date:    #444950;
@@ -2005,15 +2005,15 @@ body.select-mode .chat-msg-row .msg-checkbox { display: flex; align-items: cente
   --msg-avatar-bg:  #4A4D55;
   --msg-sep-line:   rgba(255,255,255,.08);
   --msg-tick-read:  #67B8B4;
-  /* Notificaciones – colores explícitos modo noche */
+  /* Notificaciones ï¿½ colores explï¿½citos modo noche */
   --msg-notif-title:   #FFFFFF;
   --msg-notif-desc:    #E5E7EB;
   --msg-notif-date:    #B0B7C0;
   --msg-notif-card-bg: #2B2D31;
 }
 
-/* ---- Página raíz ---- */
-/* LAYOUT BASE – página de mensajes */
+/* ---- Pï¿½gina raï¿½z ---- */
+/* LAYOUT BASE ï¿½ pï¿½gina de mensajes */
 .msg-page {
   display: none;
   height: 100dvh;
@@ -2027,7 +2027,7 @@ body.select-mode .chat-msg-row .msg-checkbox { display: flex; align-items: cente
 }
 .msg-page.active { display: flex; flex-direction: column; }
 
-/* chat-page solo se usa en móvil (la página separada legacy) */
+/* chat-page solo se usa en mï¿½vil (la pï¿½gina separada legacy) */
 .chat-page {
   display: none;
   flex-direction: column;
@@ -2042,9 +2042,9 @@ body.select-mode .chat-msg-row .msg-checkbox { display: flex; align-items: cente
 }
 .chat-page.active { display: flex; }
 
-/* LAYOUT WHATSAPP WEB – DESKTOP (=769px) */
+/* LAYOUT WHATSAPP WEB ï¿½ DESKTOP (=769px) */
 @media (min-width: 769px) {
-  /* La página ocupa TODO — el navbar está oculto en mensajes */
+  /* La pï¿½gina ocupa TODO ï¿½ el navbar estï¿½ oculto en mensajes */
   .msg-page.active {
     padding-top: 0;
     flex-direction: row;
@@ -2127,7 +2127,7 @@ body.select-mode .chat-msg-row .msg-checkbox { display: flex; align-items: cente
   /* Bottom nav oculto en desktop */
   .msg-bottom-nav { display: none; }
 
-  /* -- Área principal (chat activo) -- */
+  /* -- ï¿½rea principal (chat activo) -- */
   .wa-main {
     flex: 1;
     display: flex;
@@ -2138,12 +2138,12 @@ body.select-mode .chat-msg-row .msg-checkbox { display: flex; align-items: cente
     background: var(--msg-bg2);
   }
 
-  /* Fondo tipo WhatsApp con patrón sutil */
+  /* Fondo tipo WhatsApp con patrï¿½n sutil */
   .wa-main::before {
     content: '';
     position: absolute;
     top: 0; left: 0;
-    /* Solo cubre el área de chat, no el panel de info */
+    /* Solo cubre el ï¿½rea de chat, no el panel de info */
     right: 0;
     bottom: 0;
     background-image: radial-gradient(var(--msg-border) 1px, transparent 1px);
@@ -2170,11 +2170,10 @@ body.select-mode .chat-msg-row .msg-checkbox { display: flex; align-items: cente
   }
   .wa-welcome-icon {
     width: 120px; height: 120px;
-    border-radius: 50%;
-    background: var(--msg-surface);
-    border: 2px solid var(--msg-border);
+    border-radius: 26px;
+    background: #2D3748;
+    border: none;
     display: flex; align-items: center; justify-content: center;
-    color: var(--msg-muted);
     margin-bottom: 8px;
   }
   .wa-welcome-title {
@@ -2201,7 +2200,7 @@ body.select-mode .chat-msg-row .msg-checkbox { display: flex; align-items: cente
   }
   .wa-welcome-btn:hover { background: #5aa6a2; transform: translateY(-2px); }
 
-  /* Área de chat activa */
+  /* ï¿½rea de chat activa */
   .wa-chat-area {
     flex: 1;
     min-width: 0;
@@ -2233,10 +2232,10 @@ body.select-mode .chat-msg-row .msg-checkbox { display: flex; align-items: cente
   }
   .wa-input-bar .chat-input { border-radius: 26px; padding: 11px 18px; }
 
-  /* Botón back: en desktop muestra la flecha (cierra el chat activo y muestra welcome) */
+  /* Botï¿½n back: en desktop muestra la flecha (cierra el chat activo y muestra welcome) */
   .wa-chat-back-btn { display: flex; }
 
-  /* Botón back solo en móvil dentro del chat area desktop */
+  /* Botï¿½n back solo en mï¿½vil dentro del chat area desktop */
   .wa-chat-back-mobile { display: none; }
 
   /* Chat item activo en la lista */
@@ -2246,7 +2245,7 @@ body.select-mode .chat-msg-row .msg-checkbox { display: flex; align-items: cente
   }
 }
 
-/* -- Móvil: sidebar ocupa toda la pantalla, wa-main oculto -- */
+/* -- Mï¿½vil: sidebar ocupa toda la pantalla, wa-main oculto -- */
 @media (max-width: 768px) {
   .msg-page.active {
     flex-direction: column;
@@ -2258,16 +2257,16 @@ body.select-mode .chat-msg-row .msg-checkbox { display: flex; align-items: cente
     overflow: hidden;
     width: 100%;
   }
-  .wa-sidebar-header { display: none; } /* en móvil se usa el msg-header original */
+  .wa-sidebar-header { display: none; } /* en mï¿½vil se usa el msg-header original */
   .wa-search-bar { display: none; }    /* opcional: mostrar si se quiere */
-  .wa-main { display: none; }         /* el chat en móvil usa page-chat */
+  .wa-main { display: none; }         /* el chat en mï¿½vil usa page-chat */
   .chat-mobile-only { display: flex; }
 
   /* Mostrar msg-bottom-nav */
   .msg-bottom-nav { display: flex; }
 }
 
-/* PÁGINA: MENSAJES */
+/* Pï¿½GINA: MENSAJES */
 
 /* ---- Header ---- */
 .msg-header {
@@ -2315,7 +2314,7 @@ body.select-mode .chat-msg-row .msg-checkbox { display: flex; align-items: cente
   transition: transform .2s;
 }
 .msg-back-btn:hover i { transform: translateX(-2px); }
-/* En móvil solo mostrar el ícono, ocultar el texto */
+/* En mï¿½vil solo mostrar el ï¿½cono, ocultar el texto */
 @media (max-width: 480px) {
   .msg-back-label { display: none; }
   .msg-back-btn { padding: 7px 10px; }
@@ -2768,7 +2767,7 @@ body.select-mode .chat-msg-row .msg-checkbox { display: flex; align-items: cente
 }
 .msg-chat-menu:hover { background: var(--msg-surface); color: #fff; }
 
-/* ---- Estado vacío ---- */
+/* ---- Estado vacï¿½o ---- */
 .msg-empty {
   flex: 1;
   display: flex;
@@ -2872,7 +2871,7 @@ body.select-mode .chat-msg-row .msg-checkbox { display: flex; align-items: cente
 .msg-notif-banner-allow:hover { background: #5aa6a2; }
 .msg-notif-banner-allow:active { transform: scale(.96); }
 
-/* Estado "Activado" del botón de notificaciones */
+/* Estado "Activado" del botï¿½n de notificaciones */
 .msg-notif-banner-allow.activated {
   background: #10B981;
   cursor: default;
@@ -3098,7 +3097,7 @@ body.select-mode .chat-msg-row .msg-checkbox { display: flex; align-items: cente
   box-shadow: 0 4px 16px rgba(0,0,0,.12);
   transform: translateY(-1px);
 }
-/* Notificación ya leída */
+/* Notificaciï¿½n ya leï¿½da */
 .msg-notif-card--read {
   border-left-color: transparent;
   opacity: .75;
@@ -3108,7 +3107,7 @@ body.select-mode .chat-msg-row .msg-checkbox { display: flex; align-items: cente
   height: 120px;
   object-fit: cover;
 }
-/* Ícono emoji cuando no hay imagen */
+/* ï¿½cono emoji cuando no hay imagen */
 .msg-notif-card-emoji {
   width: 100%;
   height: 60px;
@@ -3221,7 +3220,7 @@ body.select-mode .chat-msg-row .msg-checkbox { display: flex; align-items: cente
   border: 2px solid var(--msg-bnav-bg);
 }
 
-/* PÁGINA: CHAT INDIVIDUAL */
+/* Pï¿½GINA: CHAT INDIVIDUAL */
 
 .chat-page {
   background: var(--msg-bg2);
@@ -3346,7 +3345,7 @@ body.select-mode .chat-msg-row .msg-checkbox { display: flex; align-items: cente
   align-self: flex-start;
 }
 
-/* Avatar pequeño */
+/* Avatar pequeï¿½o */
 .chat-msg-ava {
   width: 28px; height: 28px;
   border-radius: 50%;
@@ -3405,26 +3404,26 @@ body.select-mode .chat-msg-row .msg-checkbox { display: flex; align-items: cente
   flex-shrink: 0;
 }
 
-/* Reloj — enviando / sin conexión */
+/* Reloj ï¿½ enviando / sin conexiï¿½n */
 .chat-bubble-tick.tick-pending {
   color: rgba(255,255,255,.5);
   font-size: .65rem;
 }
 .in .chat-bubble-tick.tick-pending { color: var(--msg-muted); }
 
-/* Un gancho gris — llegó al servidor */
+/* Un gancho gris ï¿½ llegï¿½ al servidor */
 .chat-bubble-tick.tick-sent {
   color: rgba(255,255,255,.55);
 }
 .in .chat-bubble-tick.tick-sent { color: var(--msg-muted); }
 
-/* Doble gancho gris — entregado */
+/* Doble gancho gris ï¿½ entregado */
 .chat-bubble-tick.tick-delivered {
   color: rgba(255,255,255,.55);
 }
 .in .chat-bubble-tick.tick-delivered { color: var(--msg-muted); }
 
-/* Doble gancho azul — leído */
+/* Doble gancho azul ï¿½ leï¿½do */
 .chat-bubble-tick.tick-read {
   color: #53bdeb;   /* azul WhatsApp */
 }
@@ -3496,9 +3495,9 @@ body.select-mode .chat-msg-row .msg-checkbox { display: flex; align-items: cente
 .chat-send-btn:hover  { background: #5aa6a2; }
 .chat-send-btn:active { transform: scale(.92); }
 
-/* DARK MODE – adaptar variables al data-theme="dark" del resto de Fynder */
+/* DARK MODE ï¿½ adaptar variables al data-theme="dark" del resto de Fynder */
 
-/* BOTÓN "Mensajear" en el modal de negocio */
+/* BOTï¿½N "Mensajear" en el modal de negocio */
 .btn-msg-biz {
   display: flex;
   align-items: center;
@@ -3521,7 +3520,7 @@ body.select-mode .chat-msg-row .msg-checkbox { display: flex; align-items: cente
 }
 .btn-msg-biz i { color: var(--primary); }
 
-/* ÍCONO de mensajes en el navbar */
+/* ï¿½CONO de mensajes en el navbar */
 .nav-msg-btn {
   position: relative;
   width: 36px; height: 36px;
@@ -3550,7 +3549,7 @@ body.select-mode .chat-msg-row .msg-checkbox { display: flex; align-items: cente
   border: 2px solid var(--bg);
 }
 
-/* RESPONSIVE – mensajes (ya manejado en el bloque de layout WA) */
+/* RESPONSIVE ï¿½ mensajes (ya manejado en el bloque de layout WA) */
 @media (max-width: 768px) {
   .msg-page,
   .chat-page {
@@ -3561,7 +3560,7 @@ body.select-mode .chat-msg-row .msg-checkbox { display: flex; align-items: cente
 }
 
 
-/* MEJORAS CHAT – burbujas */
+/* MEJORAS CHAT ï¿½ burbujas */
 
 /* Fondo del chat */
 .chat-page { background: var(--msg-bg2); }
@@ -3647,7 +3646,7 @@ body.select-mode .chat-msg-row .msg-checkbox { display: flex; align-items: cente
 }
 .chat-header-online.visible { display: block; }
 
-/* Sub del header: "en línea" en verde */
+/* Sub del header: "en lï¿½nea" en verde */
 .chat-header-sub.online { color: #22c55e; }
 
 /* Input bar */
@@ -3698,7 +3697,7 @@ body.select-mode .chat-msg-row .msg-checkbox { display: flex; align-items: cente
   background: var(--msg-bg2);
   border-left: 1px solid var(--msg-border);
   transition: width .28s cubic-bezier(.4,0,.2,1);
-  position: relative; /* Para el posicionamiento del menú contextual */
+  position: relative; /* Para el posicionamiento del menï¿½ contextual */
   color: var(--msg-text);
   font-family: 'Inter', sans-serif;
 }
@@ -3707,12 +3706,12 @@ body.select-mode .chat-msg-row .msg-checkbox { display: flex; align-items: cente
   width: 340px;
 }
 
-/* En pantallas más pequeñas que abren el panel, reducir un poco */
+/* En pantallas mï¿½s pequeï¿½as que abren el panel, reducir un poco */
 @media (max-width: 1100px) {
   .wa-info-panel.open { width: 300px; }
 }
 
-/* Ocultar en móvil — allí se usa page-chat-profile */
+/* Ocultar en mï¿½vil ï¿½ allï¿½ se usa page-chat-profile */
 @media (max-width: 768px) {
   .wa-info-panel { display: none !important; }
 }
@@ -3748,7 +3747,7 @@ body.select-mode .chat-msg-row .msg-checkbox { display: flex; align-items: cente
   overscroll-behavior: contain;
 }
 
-/* PÁGINA: PERFIL DEL NEGOCIO (desde chat) – estilo WhatsApp dark */
+/* Pï¿½GINA: PERFIL DEL NEGOCIO (desde chat) ï¿½ estilo WhatsApp dark */
 
 .chat-profile-page {
   background: var(--msg-bg2);
@@ -3866,7 +3865,7 @@ body.select-mode .chat-msg-row .msg-checkbox { display: flex; align-items: cente
   background: var(--msg-surface2);
 }
 
-/* Sección de fotos */
+/* Secciï¿½n de fotos */
 .cpro-section {
   background: var(--msg-bg);
   padding: 14px 16px;
@@ -3921,7 +3920,7 @@ body.select-mode .chat-msg-row .msg-checkbox { display: flex; align-items: cente
   transition: background .15s;
 }
 .cpro-settings-item:last-child { border-bottom: none; }
-/* Items con acción tienen cursor pointer y hover */
+/* Items con acciï¿½n tienen cursor pointer y hover */
 .cpro-settings-item[onclick] {
   cursor: pointer;
 }
@@ -3987,7 +3986,7 @@ body.select-mode .chat-msg-row .msg-checkbox { display: flex; align-items: cente
 .cpro-toggle.on { background: #67B8B4; }
 .cpro-toggle.on::after { left: 23px; background: #fff; }
 
-/* Sección peligrosa con margen bottom */
+/* Secciï¿½n peligrosa con margen bottom */
 .cpro-danger-section { margin-bottom: 32px; }
 
 
@@ -3999,14 +3998,14 @@ body.select-mode .chat-msg-row .msg-checkbox { display: flex; align-items: cente
   border-bottom-right-radius: 4px;
 }
 
-/* Más espacio entre grupos de mensajes */
+/* Mï¿½s espacio entre grupos de mensajes */
 .chat-msg-row.in  + .chat-msg-row.out,
 .chat-msg-row.out + .chat-msg-row.in {
   margin-top: 8px;
 }
 
 
-/* MENÚ CONTEXTUAL DE CHAT (?) */
+/* MENï¿½ CONTEXTUAL DE CHAT (?) */
 .msg-ctx-overlay {
   display: none;
   position: fixed; inset: 0;
@@ -4071,7 +4070,7 @@ body.select-mode .chat-msg-row .msg-checkbox { display: flex; align-items: cente
 }
 .emoji-overlay.open { display: block; }
 
-/* Base: bottom sheet móvil */
+/* Base: bottom sheet mï¿½vil */
 .emoji-picker {
   position: fixed;
   bottom: -100%;
@@ -4088,7 +4087,7 @@ body.select-mode .chat-msg-row .msg-checkbox { display: flex; align-items: cente
 }
 .emoji-picker.open { bottom: 0; }
 
-/* Desktop: popup flotante — posición la da el JS */
+/* Desktop: popup flotante ï¿½ posiciï¿½n la da el JS */
 @media (min-width: 769px) {
   .emoji-picker {
     bottom: auto;
@@ -4294,15 +4293,15 @@ body.select-mode .chat-msg-row .msg-checkbox { display: flex; align-items: cente
 .msg-font-btn.active,
 .msg-font-btn:hover { background: rgba(103,184,180,.15); color: #67B8B4; border-color: #67B8B4; }
 
-/* Chat font size aplicada al área de mensajes */
+/* Chat font size aplicada al ï¿½rea de mensajes */
 .chat-messages.font-small  .chat-bubble { font-size: .8rem; }
 .chat-messages.font-normal .chat-bubble { font-size: .875rem; }
 .chat-messages.font-large  .chat-bubble { font-size: 1rem; }
 
 
-/* NAVBAR REDISEÑADO – limpio y sin saturación */
+/* NAVBAR REDISEï¿½ADO ï¿½ limpio y sin saturaciï¿½n */
 
-/* Botón ícono genérico del navbar (perfil, dashboard) */
+/* Botï¿½n ï¿½cono genï¿½rico del navbar (perfil, dashboard) */
 .nav-icon-btn {
   width: 34px; height: 34px;
   border-radius: 10px;
@@ -4332,12 +4331,12 @@ body.select-mode .chat-msg-row .msg-checkbox { display: flex; align-items: cente
 }
 .nav-username.on-hero { color: rgba(255,255,255,.9); }
 
-/* Ocultar username en pantallas medianas pero NO en móvil (se restaura arriba) */
+/* Ocultar username en pantallas medianas pero NO en mï¿½vil (se restaura arriba) */
 @media (min-width: 769px) and (max-width: 1100px) {
   .nav-username { display: none; }
 }
 
-/* En móvil: íconos de perfil/dashboard ocultos (están en el drawer) —
+/* En mï¿½vil: ï¿½conos de perfil/dashboard ocultos (estï¿½n en el drawer) ï¿½
    userName se maneja en el bloque 768px de abajo */
 @media (max-width: 768px) {
   .nav-icon-btn { display: none !important; }
@@ -4375,7 +4374,7 @@ body.select-mode .chat-msg-row .msg-checkbox { display: flex; align-items: cente
   .btn-login-nav { display: none !important; }
 }
 
-/* HERO IMPROVEMENTS – better spacing and visual hierarchy */
+/* HERO IMPROVEMENTS ï¿½ better spacing and visual hierarchy */
 
 /* More padding top so content doesn't start right at the navbar */
 .hero-inner {
@@ -4460,7 +4459,7 @@ body.select-mode .chat-msg-row .msg-checkbox { display: flex; align-items: cente
 }
 .cat-name { font-size: .75rem !important; }
 
-/* BOTÓN AJUSTES EN NAVBAR */
+/* BOTï¿½N AJUSTES EN NAVBAR */
 .nav-settings-btn {
   width: 36px; height: 36px;
   border-radius: 50%;
@@ -4501,7 +4500,7 @@ body:has(#page-fynder.active) #navbar:not(.scrolled) .nav-settings-btn:hover {
   color: #fff;
 }
 
-/* PÁGINA DE AJUSTES */
+/* Pï¿½GINA DE AJUSTES */
 #page-settings {
   min-height: 100vh;
   background: var(--bg);
@@ -4708,7 +4707,7 @@ body:has(#page-fynder.active) #navbar:not(.scrolled) .nav-settings-btn:hover {
 .sett-toggle.on { background: #2D3748; }
 .sett-toggle.on::after { left: 23px; }
 
-/* Botón pequeño */
+/* Botï¿½n pequeï¿½o */
 .sett-btn-sm {
   padding: 6px 14px;
   border-radius: 22px;
@@ -4923,7 +4922,7 @@ body { top: 0 !important; }
   transform: rotate(90deg);
 }
 
-/* Submenú expandible dentro de ajustes */
+/* Submenï¿½ expandible dentro de ajustes */
 .sett-expandable {
   display: none;
   flex-direction: column;
@@ -4981,7 +4980,7 @@ body { top: 0 !important; }
   transition: width .5s ease;
 }
 
-/* Reducir animaciones cuando está activado */
+/* Reducir animaciones cuando estï¿½ activado */
 [data-reduce-motion] *,
 [data-reduce-motion] *::before,
 [data-reduce-motion] *::after {
@@ -5027,7 +5026,7 @@ body { top: 0 !important; }
   border-color: rgba(103,184,180,.2);
 }
 
-/* Etiqueta de grupo (subtítulo de sección) */
+/* Etiqueta de grupo (subtï¿½tulo de secciï¿½n) */
 .sett-group-label {
   font-size: .75rem;
   font-weight: 700;
@@ -5038,7 +5037,7 @@ body { top: 0 !important; }
 }
 .sett-group-label:first-child { margin-top: 0; }
 
-/* Radio dot (selección única) */
+/* Radio dot (selecciï¿½n ï¿½nica) */
 .sett-radio-dot {
   width: 18px; height: 18px;
   border-radius: 50%;
@@ -5064,7 +5063,7 @@ body { top: 0 !important; }
 .sett-radio-row:hover { background: #F8FAFC; }
 [data-theme="dark"] .sett-radio-row:hover { background: rgba(255,255,255,.04); }
 
-/* Caja de información de restauración */
+/* Caja de informaciï¿½n de restauraciï¿½n */
 .sett-restore-info {
   display: flex;
   align-items: flex-start;
@@ -5091,7 +5090,7 @@ body { top: 0 !important; }
 [data-theme="dark"] .sett-group-label { color: var(--muted); }
 
 
-/* MODO OSCURO — COMPLEMENTO COMPLETO — Cubre todos los elementos que usaban colores hardcoded (#fff, #F8FAFC, etc.) y que no estaban cubiertos por las reglas anteriores. */
+/* MODO OSCURO ï¿½ COMPLEMENTO COMPLETO ï¿½ Cubre todos los elementos que usaban colores hardcoded (#fff, #F8FAFC, etc.) y que no estaban cubiertos por las reglas anteriores. */
 
 /* ---- Navbar complementos ---- */
 [data-theme="dark"] .nav-icon-btn { background: rgba(255,255,255,.05); color: var(--muted); border-color: rgba(255,255,255,.08); }
@@ -5138,14 +5137,14 @@ body { top: 0 !important; }
 [data-theme="dark"] .sett-select         { background: var(--card); border-color: rgba(255,255,255,.1); color: var(--fg); }
 [data-theme="dark"] .sett-storage-bar-wrap { background: rgba(255,255,255,.08); }
 
-/* ---- input-wrap genérico (formularios de auth, contacto, etc.) ---- */
+/* ---- input-wrap genï¿½rico (formularios de auth, contacto, etc.) ---- */
 [data-theme="dark"] .input-wrap           { background: rgba(255,255,255,.06); border-color: rgba(255,255,255,.1); }
 [data-theme="dark"] .input-wrap input     { background: transparent; color: var(--fg); }
 [data-theme="dark"] .input-wrap input::placeholder { color: var(--muted); }
 [data-theme="dark"] .input-wrap input:focus { background: rgba(255,255,255,.08) !important; }
 [data-theme="dark"] .input-wrap .input-icon { color: var(--muted); }
 
-/* ---- Formulario soporte – campos ---- */
+/* ---- Formulario soporte ï¿½ campos ---- */
 [data-theme="dark"] .support-field input,
 [data-theme="dark"] .support-field select,
 [data-theme="dark"] .support-field textarea {
@@ -5159,7 +5158,7 @@ body { top: 0 !important; }
 [data-theme="dark"] .support-field select:focus,
 [data-theme="dark"] .support-field textarea:focus { border-color: var(--primary); }
 
-/* ---- Mapa – popup y controles ---- */
+/* ---- Mapa ï¿½ popup y controles ---- */
 [data-theme="dark"] .map-popup            { background: var(--card); border-color: rgba(255,255,255,.1); }
 [data-theme="dark"] .map-popup-close      { background: rgba(255,255,255,.08); color: var(--muted); }
 [data-theme="dark"] .map-popup-close:hover { background: rgba(255,255,255,.15); color: var(--fg); }
@@ -5213,7 +5212,7 @@ body { top: 0 !important; }
 [data-theme="dark"] .mobile-menu-nav button { color: var(--muted); }
 
 
-/* ---- Fynder (saber más) page ---- */
+/* ---- Fynder (saber mï¿½s) page ---- */
 [data-theme="dark"] #page-fynder          { background: var(--bg) !important; }
 [data-theme="dark"] .fynder-hero-title    { color: #fff; }
 [data-theme="dark"] .fynder-card          { background: var(--card); border-color: rgba(255,255,255,.07); }
@@ -5236,7 +5235,7 @@ body { top: 0 !important; }
 /* ---- Stat hero card val en modo oscuro ---- */
 [data-theme="dark"] .hero-stat-val { color: var(--fg); }
 
-/* ---- Página de registro de negocio ---- */
+/* ---- Pï¿½gina de registro de negocio ---- */
 [data-theme="dark"] .biz-steps-header     { background: var(--bg); }
 [data-theme="dark"] .biz-step-label       { color: var(--muted); }
 [data-theme="dark"] .biz-step.active .biz-step-label { color: var(--primary); }
@@ -5249,13 +5248,13 @@ body { top: 0 !important; }
 [data-theme="dark"] .biz-time-range       { background: rgba(255,255,255,.06); border-color: rgba(255,255,255,.1); color: var(--fg); }
 [data-theme="dark"] .biz-form-actions     { border-top-color: rgba(255,255,255,.07); background: var(--bg); }
 
-/* ---- Sección de mapa interno en modal ---- */
+/* ---- Secciï¿½n de mapa interno en modal ---- */
 [data-theme="dark"] .modal-map-wrap       { border-color: rgba(255,255,255,.1); }
 [data-theme="dark"] .modal-map-ext-link   { background: rgba(255,255,255,.06); color: var(--primary); border-top-color: rgba(255,255,255,.08); }
 [data-theme="dark"] .modal-map-ext-link:hover { background: rgba(103,184,180,.12); color: var(--primary); }
 [data-theme="dark"] .modal-map-ext-link svg { stroke: var(--primary); }
 
-/* ---- Botón volver general ---- */
+/* ---- Botï¿½n volver general ---- */
 [data-theme="dark"] .back-page-btn        { background: rgba(255,255,255,.06); border-color: rgba(255,255,255,.1); color: var(--muted); }
 [data-theme="dark"] .back-page-btn:hover  { background: rgba(103,184,180,.12); color: var(--primary); border-color: rgba(103,184,180,.3); }
 
@@ -5263,7 +5262,7 @@ body { top: 0 !important; }
 [data-theme="dark"] .filter-chip.active   { background: #2D3748; color: #fff; border-color: var(--primary); }
 [data-theme="dark"] .filter-chip.active:hover { background: var(--primary-d); }
 
-/* ---- Bcard – botón ---- */
+/* ---- Bcard ï¿½ botï¿½n ---- */
 [data-theme="dark"] .bcard-btn            { background: rgba(103,184,180,.12); color: var(--primary); }
 [data-theme="dark"] .bcard-btn:hover      { background: #2D3748; color: #fff; }
 [data-theme="dark"] .bcard-hours          { color: var(--muted); }
@@ -5276,7 +5275,7 @@ body { top: 0 !important; }
 [data-theme="dark"] .section-link         { color: var(--primary); }
 [data-theme="dark"] .section-header h2    { color: var(--fg); }
 
-/* ---- Página de favoritos: estado vacío ---- */
+/* ---- Pï¿½gina de favoritos: estado vacï¿½o ---- */
 [data-theme="dark"] .favs-empty           { color: var(--muted); }
 [data-theme="dark"] .favs-empty-icon      { opacity: .3; }
 
@@ -5284,7 +5283,7 @@ body { top: 0 !important; }
 [data-theme="dark"] .dir-count            { color: var(--muted); }
 [data-theme="dark"] .dir-empty            { color: var(--muted); }
 
-/* ---- Modal de negocio: botones de acción ---- */
+/* ---- Modal de negocio: botones de acciï¿½n ---- */
 [data-theme="dark"] .biz-modal-btn        { background: rgba(255,255,255,.07); border-color: rgba(255,255,255,.12); color: var(--fg); }
 [data-theme="dark"] .biz-modal-btn:hover  { background: rgba(103,184,180,.15); color: var(--primary); }
 [data-theme="dark"] .modal-close-btn      { background: rgba(255,255,255,.08); color: var(--muted); }
@@ -5349,7 +5348,7 @@ body { top: 0 !important; }
   border-color: rgba(255,255,255,.12);
 }
 
-/* CHAT: DIVISOR REDIMENSIONABLE (sidebar ? área principal) */
+/* CHAT: DIVISOR REDIMENSIONABLE (sidebar ? ï¿½rea principal) */
 .wa-resize-handle {
   width: 5px;
   cursor: col-resize;
@@ -5379,7 +5378,7 @@ body { top: 0 !important; }
   .wa-resize-handle { display: none; }
 }
 
-/* CHAT: MENÚ DE ADJUNTAR */
+/* CHAT: MENï¿½ DE ADJUNTAR */
 .chat-attach-wrap {
   position: relative;
   flex-shrink: 0;
@@ -5437,7 +5436,7 @@ body { top: 0 !important; }
   flex-shrink: 0;
 }
 
-/* -- Burbujas de ubicación y contacto -- */
+/* -- Burbujas de ubicaciï¿½n y contacto -- */
 .chat-bubble-location {
   display: flex;
   align-items: center;
@@ -5477,7 +5476,7 @@ body { top: 0 !important; }
 .chat-bubble-contact-name  { font-weight: 600; font-size: .875rem; }
 .chat-bubble-contact-sub   { font-size: .75rem; opacity: .65; }
 
-/* CHAT: INPUT BAR estilo WhatsApp — micrófono */
+/* CHAT: INPUT BAR estilo WhatsApp ï¿½ micrï¿½fono */
 .chat-mic-btn {
   transition: background .2s, transform .15s, box-shadow .2s;
 }
@@ -5489,7 +5488,7 @@ body { top: 0 !important; }
   background: #5aa6a2 !important;
   transform: scale(1.08);
 }
-/* Animación de pulso cuando se está grabando */
+/* Animaciï¿½n de pulso cuando se estï¿½ grabando */
 @keyframes recordPulse {
   0%   { box-shadow: 0 0 0 0 rgba(239,68,68,.5); }
   70%  { box-shadow: 0 0 0 8px rgba(239,68,68,0); }
@@ -5500,7 +5499,7 @@ body { top: 0 !important; }
   animation: recordPulse 1.2s ease-out infinite;
 }
 
-/* CHAT: BARRA DE GRABACIÓN DE AUDIO */
+/* CHAT: BARRA DE GRABACIï¿½N DE AUDIO */
 .chat-record-bar {
   background: var(--msg-bg);
   border-top: 1px solid var(--msg-border);
@@ -5659,9 +5658,9 @@ body { top: 0 !important; }
   white-space: nowrap;
 }
 
-/* CHAT HEADER menú contextual de los tres puntos */
+/* CHAT HEADER menï¿½ contextual de los tres puntos */
 .wa-chat-area {
-  position: relative; /* necesario para el menú absoluto */
+  position: relative; /* necesario para el menï¿½ absoluto */
 }
 .wa-chat-header-actions {
   display: flex;
@@ -5709,9 +5708,9 @@ body { top: 0 !important; }
   margin: 4px 8px;
 }
 
-/* CHAT PROFILE: menú contextual del ? y ajustes varios */
+/* CHAT PROFILE: menï¿½ contextual del ? y ajustes varios */
 .chat-profile-page {
-  position: relative; /* para el menú absoluto */
+  position: relative; /* para el menï¿½ absoluto */
 }
 .cpro-ctx-menu {
   top: 56px;
@@ -5724,7 +5723,7 @@ body { top: 0 !important; }
   flex-shrink: 0;
 }
 
-/* RAIL DE ÍCONOS IZQUIERDO — estilo WhatsApp Web */
+/* RAIL DE ï¿½CONOS IZQUIERDO ï¿½ estilo WhatsApp Web */
 .wa-icon-rail {
   width: 68px;
   flex-shrink: 0;
@@ -5743,10 +5742,10 @@ body { top: 0 !important; }
 /* En desktop, mostrar el rail */
 @media (min-width: 769px) {
   .wa-icon-rail { display: flex; }
-  /* En móvil el rail se convierte en barra inferior horizontal */
+  /* En mï¿½vil el rail se convierte en barra inferior horizontal */
 }
 
-/* En móvil: rail como barra inferior */
+/* En mï¿½vil: rail como barra inferior */
 @media (max-width: 768px) {
   .wa-icon-rail {
     display: flex;
@@ -5784,7 +5783,7 @@ body { top: 0 !important; }
 }
 .wa-rail-logo-icon svg { display: block; }
 
-/* Sección de nav y bottom */
+/* Secciï¿½n de nav y bottom */
 .wa-rail-nav {
   display: flex;
   flex-direction: column;
@@ -5843,7 +5842,7 @@ body { top: 0 !important; }
   }
 }
 
-/* Badge de mensajes no leídos en el rail */
+/* Badge de mensajes no leï¿½dos en el rail */
 .wa-rail-badge {
   position: absolute;
   top: 4px; right: 4px;
@@ -5909,12 +5908,12 @@ body { top: 0 !important; }
   background-position: 0 0, 10px 10px !important;
 }
 
-/* Animación de entrada del panel de ajustes de chat mejorada */
+/* Animaciï¿½n de entrada del panel de ajustes de chat mejorada */
 .msg-settings-panel {
   border-radius: 0 16px 16px 0;  /* esquinas redondeadas en el lado derecho */
 }
 
-/* ---- Búsqueda de chats: sin resultados y resaltado ---- */
+/* ---- Bï¿½squeda de chats: sin resultados y resaltado ---- */
 .msg-search-empty {
   display: flex;
   flex-direction: column;
@@ -5937,7 +5936,7 @@ mark.msg-search-mark {
   padding: 0 1px;
 }
 
-/* SECCIÓN PATROCINADORES — página About */
+/* SECCIï¿½N PATROCINADORES ï¿½ pï¿½gina About */
 
 .about-sponsors-section {
   position: relative;
@@ -6127,7 +6126,7 @@ mark.msg-search-mark {
   border-color: rgba(47,91,183,.3);
 }
 
-/* Botón */
+/* Botï¿½n */
 .about-sponsor-btn {
   display: inline-flex;
   align-items: center;
@@ -6218,7 +6217,7 @@ mark.msg-search-mark {
   border-color: rgba(244,211,94,.2);
 }
 
-/* -- Logo Supérate (estrella dorada) -- */
+/* -- Logo Supï¿½rate (estrella dorada) -- */
 .about-sponsor-logo-superate {
   background: linear-gradient(135deg, #e8a000, #f7c520, #f5a623) !important;
   box-shadow: 0 4px 16px rgba(247,197,32,.45) !important;
@@ -6262,7 +6261,7 @@ mark.msg-search-mark {
   line-height: 1.3;
 }
 
-/* Grid más amplio para las tarjetas */
+/* Grid mï¿½s amplio para las tarjetas */
 .about-sponsors-grid {
   max-width: 1100px !important;
   grid-template-columns: repeat(auto-fit, minmax(440px, 1fr)) !important;
@@ -6282,7 +6281,7 @@ iframe.goog-te-menu-frame { box-shadow: 0 4px 20px rgba(0,0,0,.15) !important; b
 
 /* reacciones y menu contextual */
 
-/* Wrapper del mensaje — necesario para posicionar badges y hover-bar */
+/* Wrapper del mensaje ï¿½ necesario para posicionar badges y hover-bar */
 .chat-msg-row {
   position: relative;
   /* margen inferior para que los badges no se encimen con el siguiente mensaje */
@@ -6293,7 +6292,7 @@ iframe.goog-te-menu-frame { box-shadow: 0 4px 20px rgba(0,0,0,.15) !important; b
   margin-bottom: 18px;
 }
 
-/* -- Botón chevron ? dentro del bubble (esquina superior derecha al hover) -- */
+/* -- Botï¿½n chevron ? dentro del bubble (esquina superior derecha al hover) -- */
 .chat-bubble-menu-btn {
   position: absolute;
   top: 4px;
@@ -6316,10 +6315,10 @@ iframe.goog-te-menu-frame { box-shadow: 0 4px 20px rgba(0,0,0,.15) !important; b
   opacity: 1;
   pointer-events: auto;
 }
-/* El bubble-wrap necesita position:relative para que el botón se posicione bien */
+/* El bubble-wrap necesita position:relative para que el botï¿½n se posicione bien */
 .chat-bubble-wrap { position: relative; }
 
-/* -- Barra de reacciones rápidas (desplegable al hacer clic en la carita) -- */
+/* -- Barra de reacciones rï¿½pidas (desplegable al hacer clic en la carita) -- */
 .chat-reaction-bar {
   position: fixed;
   display: flex;
@@ -6343,7 +6342,7 @@ iframe.goog-te-menu-frame { box-shadow: 0 4px 20px rgba(0,0,0,.15) !important; b
   transform: scale(1) translateY(0);
 }
 
-/* Botones de emoji en la barra — grandes y sin fondo por defecto */
+/* Botones de emoji en la barra ï¿½ grandes y sin fondo por defecto */
 .chat-reaction-btn {
   width: 36px; height: 36px;
   border-radius: 50%;
@@ -6364,7 +6363,7 @@ iframe.goog-te-menu-frame { box-shadow: 0 4px 20px rgba(0,0,0,.15) !important; b
   opacity: .45;
 }
 
-/* Boton "+" — circulo gris oscuro bien definido */
+/* Boton "+" ï¿½ circulo gris oscuro bien definido */
 .chat-reaction-bar .react-more {
   width: 32px; height: 32px;
   border-radius: 50%;
@@ -6383,7 +6382,7 @@ iframe.goog-te-menu-frame { box-shadow: 0 4px 20px rgba(0,0,0,.15) !important; b
   transform: scale(1.1);
 }
 
-/* -- Badge de reacción pegado a la esquina inferior del bubble ----- */
+/* -- Badge de reacciï¿½n pegado a la esquina inferior del bubble ----- */
 /* El bubble wrapper (el <div> que envuelve la burbuja) es el padre */
 .chat-bubble-wrap {
   position: relative;
@@ -6402,7 +6401,7 @@ iframe.goog-te-menu-frame { box-shadow: 0 4px 20px rgba(0,0,0,.15) !important; b
 /* lado derecho (mensajes salientes) */
 .chat-msg-row.out .chat-bubble-reactions { right: 6px; }
 
-/* Chip individual de reacción */
+/* Chip individual de reacciï¿½n */
 .chat-bubble-reaction-badge {
   display: inline-flex;
   align-items: center;
@@ -6455,7 +6454,7 @@ iframe.goog-te-menu-frame { box-shadow: 0 4px 20px rgba(0,0,0,.15) !important; b
   transform: scale(1);
 }
 
-/* -- Tira de emojis rápidos -- */
+/* -- Tira de emojis rï¿½pidos -- */
 #msgBubbleCtxMenu .ctx-reaction-strip {
   display: flex;
   align-items: center;
@@ -6475,7 +6474,7 @@ iframe.goog-te-menu-frame { box-shadow: 0 4px 20px rgba(0,0,0,.15) !important; b
   background: rgba(255,255,255,.13);
   transform: scale(1.35);
 }
-/* Botón "+" en la tira del menú */
+/* Botï¿½n "+" en la tira del menï¿½ */
 #msgBubbleCtxMenu .ctx-reaction-strip .react-more {
   width: 32px; height: 32px;
   border-radius: 50%;
@@ -6493,7 +6492,7 @@ iframe.goog-te-menu-frame { box-shadow: 0 4px 20px rgba(0,0,0,.15) !important; b
   transform: scale(1.1);
 }
 
-/* -- Ítems del menú -- */
+/* -- ï¿½tems del menï¿½ -- */
 .ctx-menu-item {
   display: flex;
   align-items: center;
@@ -6510,7 +6509,7 @@ iframe.goog-te-menu-frame { box-shadow: 0 4px 20px rgba(0,0,0,.15) !important; b
 .ctx-menu-item:first-of-type { margin-top: 2px; }
 .ctx-menu-item:hover { background: rgba(255,255,255,.07); }
 
-/* Ícono de cada ítem */
+/* ï¿½cono de cada ï¿½tem */
 .ctx-menu-item i {
   width: 20px;
   text-align: center;
@@ -6519,7 +6518,7 @@ iframe.goog-te-menu-frame { box-shadow: 0 4px 20px rgba(0,0,0,.15) !important; b
   flex-shrink: 0;
 }
 
-/* "Responder" — borde verde resaltado como en la imagen */
+/* "Responder" ï¿½ borde verde resaltado como en la imagen */
 .ctx-menu-item[onclick*="reply"] {
   margin: 8px 10px 4px;
   border: 1.5px solid #25d366;
@@ -6623,14 +6622,14 @@ iframe.goog-te-menu-frame { box-shadow: 0 4px 20px rgba(0,0,0,.15) !important; b
   overflow-x: visible !important;
   padding-bottom: 20px;
 }
-/* El contenedor de mensajes del chat WA también */
+/* El contenedor de mensajes del chat WA tambiï¿½n */
 .wa-chat-messages {
   overflow-x: visible !important;
   padding-bottom: 20px;
 }
 
 
-/* El row no debe cortar el botón de carita que sale por los lados */
+/* El row no debe cortar el botï¿½n de carita que sale por los lados */
 .chat-msg-row {
   overflow: visible !important;
 }
@@ -6638,7 +6637,7 @@ iframe.goog-te-menu-frame { box-shadow: 0 4px 20px rgba(0,0,0,.15) !important; b
 
 /* ELIMINAR MENSAJE ESTILO WHATSAPP */
 
-/* Overlay oscuro detrás del modal */
+/* Overlay oscuro detrï¿½s del modal */
 .del-msg-overlay {
   position: fixed;
   inset: 0;
@@ -6714,7 +6713,7 @@ iframe.goog-te-menu-frame { box-shadow: 0 4px 20px rgba(0,0,0,.15) !important; b
 
 /* MODO SELECCION DE MENSAJES NO SIRVE */
 
-/* Barra inferior de selección */
+/* Barra inferior de selecciï¿½n */
 .msg-select-bar {
   position: fixed;
   bottom: 0; left: 0; right: 0;
@@ -6772,7 +6771,7 @@ iframe.goog-te-menu-frame { box-shadow: 0 4px 20px rgba(0,0,0,.15) !important; b
 .msg-select-action.danger { color: #e05454; }
 .msg-select-action.danger:hover { background: rgba(224,84,84,.12); color: #ff6b6b; }
 
-/* Checkbox en cada mensaje cuando está en modo selección */
+/* Checkbox en cada mensaje cuando estï¿½ en modo selecciï¿½n */
 .chat-msg-row .msg-checkbox {
   display: none;
   width: 20px; height: 20px;
@@ -6784,13 +6783,13 @@ iframe.goog-te-menu-frame { box-shadow: 0 4px 20px rgba(0,0,0,.15) !important; b
 .chat-msg-row.out .msg-checkbox { margin: auto 0 auto 8px; order: 1; }
 body.select-mode .chat-msg-row .msg-checkbox { display: flex; align-items: center; }
 
-/* En modo selección, el row seleccionado tiene fondo */
+/* En modo selecciï¿½n, el row seleccionado tiene fondo */
 .chat-msg-row.selected-msg {
   background: rgba(37,211,102,.08);
   border-radius: 8px;
 }
 
-/* Mensaje eliminado "para todos" — bubble especial */
+/* Mensaje eliminado "para todos" ï¿½ bubble especial */
 .chat-bubble.deleted-for-all {
   background: transparent !important;
   border: 1px solid rgba(255,255,255,.12) !important;
