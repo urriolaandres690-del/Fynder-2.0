@@ -5359,12 +5359,15 @@ body:has(#page-fynder.active) #navbar:not(.scrolled) .nav-dots-btn:hover {
 .auth-panel-logo-img        { height: 56px; width: auto; }
 /* Rail de mensajes */
 .wa-rail-logo {
-  background: none;
+  background: #2D3748 !important;
   border: none;
   cursor: pointer;
   display: flex;
   align-items: center;
   justify-content: center;
   padding: 4px;
+  border-radius: 14px !important;
+  width: 44px !important;
+  height: 44px !important;
 }
-.wa-rail-logo-img { height: 36px; width: 36px; object-fit: contain; border-radius: 10px; padding: 2px; }
+.wa-rail-logo-img { height: 36px; width: 36px; object-fit: contain; }
