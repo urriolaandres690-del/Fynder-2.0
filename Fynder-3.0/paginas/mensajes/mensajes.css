@@ -2169,8 +2169,8 @@ body.select-mode .chat-msg-row .msg-checkbox { display: flex; align-items: cente
     z-index: 1;
   }
   .wa-welcome-icon {
-    width: 150px; height: 150px;
-    border-radius: 30px;
+    width: 120px; height: 120px;
+    border-radius: 26px;
     background: #2D3748;
     border: none;
     display: flex; align-items: center; justify-content: center;
