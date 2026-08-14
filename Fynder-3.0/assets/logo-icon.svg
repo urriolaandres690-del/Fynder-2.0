@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 150 165">
+
+  <!-- Pin con hueco circular usando evenodd -->
+  <path fill-rule="evenodd" fill="#45C6C0" d="
+    M 75 8
+    C 41 8 14 35 14 69
+    C 14 88 23 105 37 116
+    C 49 126 75 158 75 158
+    C 75 158 101 126 113 116
+    C 127 105 136 88 136 69
+    C 136 35 109 8 75 8 Z
+
+    M 30 69
+    A 45 45 0 1 0 120 69
+    A 45 45 0 1 0 30 69 Z
+  "/>
+
+  <!-- Aro amarillo -->
+  <circle cx="75" cy="69" r="27" fill="none" stroke="#F9C200" stroke-width="13"/>
+
+  <!-- Mango amarillo -->
+  <line x1="94" y1="88" x2="124" y2="118"
+        stroke="#F9C200" stroke-width="13" stroke-linecap="round"/>
+
+</svg>
