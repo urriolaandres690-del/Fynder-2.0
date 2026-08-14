@@ -5367,4 +5367,4 @@ body:has(#page-fynder.active) #navbar:not(.scrolled) .nav-dots-btn:hover {
   justify-content: center;
   padding: 4px;
 }
-.wa-rail-logo-img { height: 40px; width: 40px; object-fit: contain; border-radius: 10px; }
+.wa-rail-logo-img { height: 36px; width: 36px; object-fit: contain; border-radius: 10px; padding: 2px; }
