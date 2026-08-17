@@ -645,12 +645,15 @@ input, button, select, textarea {
     .how-card {
       position: relative; display: flex; flex-direction: column; align-items: center; text-align: center;
       padding: 40px 28px 32px; border-radius: 24px;
-      border: 1px solid var(--border);
+      border: 1.5px solid rgba(103,184,180,.18);
       background: #fff;
-      box-shadow: var(--shadow-sm);
+      box-shadow: 0 4px 24px rgba(47,91,183,.07), 0 1px 4px rgba(0,0,0,.04);
       overflow: hidden;
       transition: transform .3s, box-shadow .3s, border-color .3s;
     }
+    .how-card-teal { background: linear-gradient(160deg, rgba(103,184,180,.08) 0%, #fff 60%); border-color: rgba(103,184,180,.28); }
+    .how-card-blue { background: linear-gradient(160deg, rgba(47,91,183,.08) 0%, #fff 60%); border-color: rgba(47,91,183,.2); }
+    .how-card-green { background: linear-gradient(160deg, rgba(16,185,129,.08) 0%, #fff 60%); border-color: rgba(16,185,129,.22); }
     .how-card:hover { transform: translateY(-6px); }
     .how-card-teal:hover  { box-shadow: 0 20px 50px rgba(103,184,180,.2); border-color: rgba(103,184,180,.35); }
     .how-card-blue:hover  { box-shadow: 0 20px 50px rgba(47,91,183,.25);  border-color: rgba(47,91,183,.35);  }
