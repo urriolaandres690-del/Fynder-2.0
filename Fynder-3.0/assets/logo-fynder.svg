@@ -13,7 +13,7 @@
   </defs>
 
   <!-- Fondo circular azul detrás del texto -->
-  <ellipse cx="338" cy="83" rx="182" ry="80" fill="url(#bgGrad)"/>
+  <ellipse cx="340" cy="83" rx="180" ry="82" fill="url(#bgGrad)"/>
 
   <!-- Pin teal -->
   <path fill="#45C6C0" mask="url(#m)" d="
