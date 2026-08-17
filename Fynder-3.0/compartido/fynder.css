@@ -608,7 +608,7 @@ input, button, select, textarea {
 
     .how-section {
       padding: 96px 0;
-      background: #F8FAFC;
+      background: linear-gradient(160deg, #EEF6FA 0%, #F0F4FF 50%, #EDF9F4 100%);
       position: relative;
       overflow: hidden;
     }
@@ -616,8 +616,18 @@ input, button, select, textarea {
       content: '';
       position: absolute;
       inset: 0;
-      background-image: radial-gradient(rgba(0,0,0,.06) 1px, transparent 1px);
-      background-size: 32px 32px;
+      background-image: radial-gradient(rgba(103,184,180,.12) 1px, transparent 1px);
+      background-size: 28px 28px;
+      pointer-events: none;
+    }
+    /* Orbes decorativos de fondo */
+    .how-section::after {
+      content: '';
+      position: absolute;
+      width: 600px; height: 600px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(103,184,180,.12) 0%, transparent 70%);
+      top: -200px; left: -150px;
       pointer-events: none;
     }
 
