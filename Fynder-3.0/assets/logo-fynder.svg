@@ -1,31 +1,26 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 520 165">
-  <defs>
-    <mask id="m">
-      <rect width="520" height="165" fill="white"/>
-      <circle cx="74" cy="69" r="46" fill="black"/>
-      <circle cx="74" cy="69" r="34" fill="white"/>
-      <circle cx="74" cy="69" r="21" fill="black"/>
-      <line x1="90" y1="84" x2="131" y2="125"
-            stroke="black" stroke-width="34" stroke-linecap="round"/>
-      <line x1="92" y1="86" x2="122" y2="116"
-            stroke="white" stroke-width="13" stroke-linecap="round"/>
-    </mask>
-  </defs>
-
-  <path fill="#45C6C0" mask="url(#m)" d="
-    M 74 8
-    C 40 8 13 35 13 69
-    C 13 88 22 105 36 116
-    C 48 126 74 158 74 158
-    C 74 158 100 126 112 116
-    C 126 105 135 88 135 69
-    C 135 35 108 8 74 8 Z
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 520 170">
+  <!-- 1. Pin teal de fondo -->
+  <path fill="#45C6C0" d="
+    M 75 6
+    C 38 6 8 36 8 73
+    C 8 96 20 116 38 129
+    C 52 140 75 164 75 164
+    C 75 164 98 140 112 129
+    C 130 116 142 96 142 73
+    C 142 36 112 6 75 6 Z
   "/>
 
-  <circle cx="74" cy="69" r="27" fill="none" stroke="#F9C200" stroke-width="13"/>
-  <line x1="93" y1="87" x2="122" y2="116"
-        stroke="#F9C200" stroke-width="13" stroke-linecap="round"/>
+  <!-- 2. Disco amarillo (parte exterior del anillo) -->
+  <circle cx="75" cy="73" r="40" fill="#F9C200"/>
 
+  <!-- 3. Hueco interior en teal (crea el anillo) -->
+  <circle cx="75" cy="73" r="24" fill="#45C6C0"/>
+
+  <!-- 4. Mango de la lupa en amarillo -->
+  <line x1="103" y1="101" x2="136" y2="134"
+        stroke="#F9C200" stroke-width="17" stroke-linecap="round"/>
+
+  <!-- Texto FYNDER -->
   <text x="160" y="108"
         font-family="'Montserrat','Arial Black','Arial',sans-serif"
         font-size="74" font-weight="900" letter-spacing="0">
