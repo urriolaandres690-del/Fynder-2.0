@@ -9,10 +9,7 @@
     </mask>
   </defs>
 
-  <!-- Pin: evenodd para círculo limpio + máscara solo para mango -->
-  <path fill-rule="evenodd" fill="#45C6C0"
-        mask="url(#mangoCutLight)"
-        d="
+  <path fill-rule="evenodd" fill="#45C6C0" mask="url(#mangoCutLight)" d="
     M 74 8
     C 40 8 13 35 13 69
     C 13 88 22 105 36 116
@@ -21,9 +18,9 @@
     C 126 105 135 88 135 69
     C 135 35 108 8 74 8 Z
 
-    M 119 69
-    A 45 45 0 0 0 29 69
-    A 45 45 0 0 0 119 69 Z
+    M 29 69
+    A 45 45 0 0 1 119 69
+    A 45 45 0 0 1 29 69 Z
   "/>
 
   <circle cx="74" cy="69" r="27" fill="none" stroke="#F9C200" stroke-width="13"/>
