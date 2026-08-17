@@ -1,384 +1,374 @@
-﻿.welcome-modal-overlay {
-  position: fixed;
-  inset: 0;
-  z-index: 9999;
-  background: rgba(0,0,0,.6);
-  backdrop-filter: blur(8px);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 16px;
-  opacity: 0;
-  pointer-events: none;
-  transition: opacity .3s ease;
-}
-.welcome-modal-overlay.active {
-  opacity: 1;
-  pointer-events: all;
-}
-.welcome-modal {
-  background: var(--card-bg, #fff);
-  border-radius: 24px;
-  padding: 36px 30px 24px;
-  max-width: 440px;
-  width: 100%;
-  position: relative;
-  box-shadow: 0 32px 80px rgba(0,0,0,.28);
-  transform: translateY(28px) scale(.96);
-  transition: transform .38s cubic-bezier(.22,.68,0,1.2);
-  text-align: center;
-  overflow: hidden;
-}
-.welcome-modal::before {
-  content: '';
-  position: absolute;
-  top: 0; left: 0; right: 0;
-  height: 4px;
-  background: linear-gradient(90deg, #67B8B4, #2F5BB7, #67B8B4);
-  background-size: 200% 100%;
-  animation: wm-shimmer 2.5s linear infinite;
-}
-@keyframes wm-shimmer { 0%{background-position:0% 0%} 100%{background-position:200% 0%} }
-.welcome-modal-overlay.active .welcome-modal {
-  transform: translateY(0) scale(1);
-}
-.welcome-modal-close {
-  position: absolute;
-  top: 16px; right: 16px;
-  background: var(--bg-secondary, #f3f4f6);
-  border: none;
-  border-radius: 50%;
-  width: 32px; height: 32px;
-  display: flex; align-items: center; justify-content: center;
-  cursor: pointer;
-  color: var(--text-secondary, #6b7280);
-  transition: background .2s, color .2s;
-  z-index: 2;
-}
-.welcome-modal-close:hover { background: var(--border-color, #e5e7eb); color: var(--text-primary, #111); }
+﻿/* ══════════════════════════════════════════
+   MODAL DE BIENVENIDA — Rediseño completo
+   ══════════════════════════════════════════ */
 
-.welcome-modal-logo {
-  margin: 0 auto 16px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 100%;
-}
-.welcome-modal-logo img {
-  width: 100%;
-  max-width: 220px;
-  height: auto;
-  display: block;
-}
-.welcome-modal-title {
-  font-size: 1.4rem;
-  font-weight: 800;
-  color: var(--text-primary, #111);
-  margin-bottom: 8px;
-  letter-spacing: -.3px;
-}
-.welcome-modal-title span {
-  background: linear-gradient(135deg, #2F5BB7, #67B8B4);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-}
-.welcome-modal-desc {
-  font-size: .875rem;
-  color: var(--text-secondary, #6b7280);
-  line-height: 1.6;
-  margin-bottom: 20px;
-}
-
-.welcome-modal-perks {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 10px;
-  margin-bottom: 22px;
-  text-align: left;
-}
-.welcome-perk {
-  background: var(--bg-secondary, #f8fafc);
-  border: 1px solid var(--border-color, #e5e7eb);
-  border-radius: 14px;
-  padding: 12px 13px;
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  transition: border-color .2s, box-shadow .2s;
-}
-.welcome-perk:hover { border-color: #67B8B4; box-shadow: 0 2px 12px rgba(103,184,180,.15); }
-.welcome-perk-icon {
-  width: 34px; height: 34px;
-  border-radius: 10px;
-  background: linear-gradient(135deg, rgba(47,91,183,.12), rgba(103,184,180,.15));
-  display: flex; align-items: center; justify-content: center;
-  flex-shrink: 0;
-  color: #2F5BB7;
-  font-size: .85rem;
-}
-.welcome-perk-text { display: flex; flex-direction: column; gap: 1px; }
-.welcome-perk-text strong { font-size: .78rem; font-weight: 700; color: var(--text-primary, #111); line-height: 1.2; }
-.welcome-perk-text span   { font-size: .7rem; color: var(--text-secondary, #9ca3af); line-height: 1.3; }
-
-.welcome-modal-actions {
-  display: flex;
-  flex-direction: column;
-  gap: 9px;
-  margin-bottom: 14px;
-}
-.welcome-btn-primary {
-  background: linear-gradient(135deg, #2F5BB7, #67B8B4);
-  color: #fff;
-  border: none;
-  border-radius: 14px;
-  padding: 14px 20px;
-  font-size: .95rem;
-  font-weight: 700;
-  cursor: pointer;
-  display: flex; align-items: center; justify-content: center; gap: 8px;
-  box-shadow: 0 6px 20px rgba(47,91,183,.3);
-  transition: opacity .2s, transform .15s, box-shadow .2s;
-}
-.welcome-btn-primary:hover { opacity: .92; transform: translateY(-1px); box-shadow: 0 10px 28px rgba(47,91,183,.38); }
-
-.welcome-btn-secondary {
-  background: transparent;
-  color: var(--text-primary, #111);
-  border: 1.5px solid var(--border-color, #e5e7eb);
-  border-radius: 14px;
-  padding: 12px 20px;
-  font-size: .9rem;
-  font-weight: 600;
-  cursor: pointer;
-  display: flex; align-items: center; justify-content: center; gap: 8px;
-  transition: border-color .2s, background .2s;
-}
-.welcome-btn-secondary:hover { border-color: #2F5BB7; background: rgba(47,91,183,.05); }
-
-.welcome-skip {
-  background: none;
-  border: none;
-  font-size: .82rem;
-  font-weight: 600;
-  cursor: pointer;
-  padding: 6px 10px;
-  border-radius: 8px;
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  color: #67B8B4;
-  transition: color .2s, background .2s;
-}
-.welcome-skip:hover { color: #2F5BB7; background: rgba(103,184,180,.08); }
-.welcome-skip i { font-size: .7rem; transition: transform .2s; }
-.welcome-skip:hover i { transform: translateX(3px); }
-
-[data-theme="dark"] .welcome-modal { background: var(--card, #1E293B); }
-[data-theme="dark"] .welcome-perk { background: rgba(255,255,255,.05); border-color: rgba(255,255,255,.09); }
-[data-theme="dark"] .welcome-perk-icon { background: linear-gradient(135deg, rgba(47,91,183,.2), rgba(103,184,180,.2)); color: #67B8B4; }
-[data-theme="dark"] .welcome-perk-text strong { color: var(--fg, #f1f5f9); }
-[data-theme="dark"] .welcome-perk-text span   { color: var(--muted, #94a3b8); }
-[data-theme="dark"] .welcome-btn-secondary { border-color: rgba(255,255,255,.12); color: var(--fg, #f1f5f9); }
-[data-theme="dark"] .welcome-modal-close { background: rgba(255,255,255,.08); color: var(--muted, #94a3b8); }
-
-@media (max-width: 480px) {
-  .welcome-modal { padding: 28px 18px 20px; }
-  .welcome-modal-perks { grid-template-columns: 1fr; }
-}
-
-/* ── Movido desde fynder.css ── */
-/*MODAL DE BIENVENIDA / RECOMENDACION LOGIN*/
+/* ── Overlay ── */
 .welcome-modal-overlay {
   position: fixed;
   inset: 0;
   z-index: 9999;
-  background: rgba(0,0,0,.6);
-  backdrop-filter: blur(8px);
+  background: rgba(10, 20, 50, 0.72);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
   display: flex;
   align-items: center;
   justify-content: center;
   padding: 16px;
   opacity: 0;
   pointer-events: none;
-  transition: opacity .3s ease;
+  transition: opacity .35s ease;
 }
 .welcome-modal-overlay.active {
   opacity: 1;
   pointer-events: all;
 }
+
+/* ── Tarjeta principal ── */
 .welcome-modal {
-  background: var(--card-bg, #fff);
-  border-radius: 24px;
-  padding: 36px 30px 24px;
-  max-width: 440px;
+  background: #ffffff;
+  border-radius: 28px;
+  padding: 0;
+  max-width: 460px;
   width: 100%;
   position: relative;
-  box-shadow: 0 32px 80px rgba(0,0,0,.28);
-  transform: translateY(28px) scale(.96);
-  transition: transform .38s cubic-bezier(.22,.68,0,1.2);
-  text-align: center;
+  box-shadow:
+    0 40px 100px rgba(0, 0, 0, .22),
+    0 8px 32px rgba(47, 91, 183, .18);
+  transform: translateY(32px) scale(.95);
+  transition: transform .42s cubic-bezier(.22,.68,0,1.2), opacity .35s ease;
   overflow: hidden;
 }
-/* banda decorativa superior */
-.welcome-modal::before {
-  content: '';
-  position: absolute;
-  top: 0; left: 0; right: 0;
-  height: 4px;
-  background: linear-gradient(90deg, #67B8B4, #2F5BB7, #67B8B4);
-  background-size: 200% 100%;
-  animation: wm-shimmer 2.5s linear infinite;
-}
-@keyframes wm-shimmer { 0%{background-position:0% 0%} 100%{background-position:200% 0%} }
 .welcome-modal-overlay.active .welcome-modal {
   transform: translateY(0) scale(1);
 }
-.welcome-modal-close {
-  position: absolute;
-  top: 16px; right: 16px;
-  background: var(--bg-secondary, #f3f4f6);
-  border: none;
-  border-radius: 50%;
-  width: 32px; height: 32px;
-  display: flex; align-items: center; justify-content: center;
-  cursor: pointer;
-  color: var(--text-secondary, #6b7280);
-  transition: background .2s, color .2s;
-  z-index: 2;
-}
-.welcome-modal-close:hover { background: var(--border-color, #e5e7eb); color: var(--text-primary, #111); }
 
+/* ── Cabecera con gradiente ── */
+.welcome-modal-header {
+  position: relative;
+  padding: 36px 30px 28px;
+  text-align: center;
+  background: linear-gradient(145deg, #0f2d6e 0%, #1a4db5 45%, #45C6C0 100%);
+  overflow: hidden;
+}
+
+/* Burbujas decorativas en el header */
+.welcome-modal-header::before,
+.welcome-modal-header::after {
+  content: '';
+  position: absolute;
+  border-radius: 50%;
+  opacity: .15;
+}
+.welcome-modal-header::before {
+  width: 180px; height: 180px;
+  background: #fff;
+  top: -60px; left: -50px;
+}
+.welcome-modal-header::after {
+  width: 120px; height: 120px;
+  background: #F9C200;
+  bottom: -40px; right: -30px;
+}
+
+/* Puntos decorativos */
+.welcome-header-dots {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+}
+.welcome-header-dots span {
+  position: absolute;
+  border-radius: 50%;
+  background: rgba(255,255,255,.18);
+  animation: wm-float 4s ease-in-out infinite;
+}
+.welcome-header-dots span:nth-child(1) { width:8px; height:8px; top:20%; left:15%; animation-delay:0s; }
+.welcome-header-dots span:nth-child(2) { width:5px; height:5px; top:60%; left:80%; animation-delay:.8s; }
+.welcome-header-dots span:nth-child(3) { width:10px; height:10px; top:75%; left:30%; animation-delay:1.6s; }
+.welcome-header-dots span:nth-child(4) { width:6px; height:6px; top:25%; left:70%; animation-delay:2.4s; }
+
+@keyframes wm-float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-8px); }
+}
+
+/* ── Logo en header ── */
 .welcome-modal-logo {
-  margin: 0 auto 16px;
+  position: relative;
+  z-index: 1;
+  margin: 0 auto 6px;
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 100%;
 }
 .welcome-modal-logo img {
   width: 100%;
-  max-width: 220px;
+  max-width: 200px;
   height: auto;
   display: block;
+  filter: drop-shadow(0 4px 16px rgba(0,0,0,.25));
+  animation: wm-logo-in .6s cubic-bezier(.22,.68,0,1.2) .1s both;
 }
-.welcome-modal-title {
-  font-size: 1.4rem;
+@keyframes wm-logo-in {
+  from { transform: scale(.7) translateY(10px); opacity: 0; }
+  to   { transform: scale(1) translateY(0);     opacity: 1; }
+}
+
+/* Tagline debajo del logo */
+.welcome-modal-tagline {
+  position: relative;
+  z-index: 1;
+  font-size: .72rem;
+  font-weight: 700;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,.75);
+  margin-top: 2px;
+}
+
+/* Badge "Gratis" flotante */
+.welcome-modal-badge {
+  position: absolute;
+  top: 16px; right: 60px;
+  z-index: 2;
+  background: #F9C200;
+  color: #0f2d6e;
+  font-size: .65rem;
   font-weight: 800;
-  color: var(--text-primary, #111);
-  margin-bottom: 8px;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+  padding: 4px 10px;
+  border-radius: 20px;
+  box-shadow: 0 2px 10px rgba(249,194,0,.4);
+  animation: wm-badge-pulse 2.5s ease-in-out infinite;
+}
+@keyframes wm-badge-pulse {
+  0%, 100% { transform: scale(1); box-shadow: 0 2px 10px rgba(249,194,0,.4); }
+  50%       { transform: scale(1.06); box-shadow: 0 4px 18px rgba(249,194,0,.6); }
+}
+
+/* ── Botón cerrar ── */
+.welcome-modal-close {
+  position: absolute;
+  top: 14px; right: 14px;
+  background: rgba(255,255,255,.18);
+  border: 1.5px solid rgba(255,255,255,.3);
+  border-radius: 50%;
+  width: 34px; height: 34px;
+  display: flex; align-items: center; justify-content: center;
+  cursor: pointer;
+  color: rgba(255,255,255,.9);
+  transition: background .2s, transform .2s;
+  z-index: 10;
+}
+.welcome-modal-close:hover {
+  background: rgba(255,255,255,.3);
+  transform: rotate(90deg);
+}
+
+/* ── Cuerpo ── */
+.welcome-modal-body {
+  padding: 24px 28px 22px;
+}
+
+/* ── Título ── */
+.welcome-modal-title {
+  font-size: 1.35rem;
+  font-weight: 800;
+  color: #0f1f45;
+  margin-bottom: 7px;
   letter-spacing: -.3px;
+  text-align: center;
 }
 .welcome-modal-title span {
-  background: linear-gradient(135deg, #2F5BB7, #67B8B4);
+  background: linear-gradient(135deg, #1a4db5, #45C6C0);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
 }
+
+/* ── Descripción ── */
 .welcome-modal-desc {
-  font-size: .875rem;
-  color: var(--text-secondary, #6b7280);
-  line-height: 1.6;
-  margin-bottom: 20px;
+  font-size: .845rem;
+  color: #6b7280;
+  line-height: 1.65;
+  margin-bottom: 18px;
+  text-align: center;
 }
 
 /* ── Perks ── */
 .welcome-modal-perks {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 10px;
-  margin-bottom: 22px;
-  text-align: left;
+  gap: 9px;
+  margin-bottom: 20px;
 }
 .welcome-perk {
-  background: var(--bg-secondary, #f8fafc);
-  border: 1px solid var(--border-color, #e5e7eb);
-  border-radius: 14px;
-  padding: 12px 13px;
+  background: #f8faff;
+  border: 1.5px solid #e8eef8;
+  border-radius: 16px;
+  padding: 12px 11px;
   display: flex;
   align-items: center;
   gap: 10px;
-  transition: border-color .2s, box-shadow .2s;
+  transition: border-color .2s, box-shadow .2s, transform .2s;
+  cursor: default;
 }
-.welcome-perk:hover { border-color: #67B8B4; box-shadow: 0 2px 12px rgba(103,184,180,.15); }
+.welcome-perk:hover {
+  border-color: #45C6C0;
+  box-shadow: 0 4px 16px rgba(69,198,192,.18);
+  transform: translateY(-2px);
+}
 .welcome-perk-icon {
-  width: 34px; height: 34px;
-  border-radius: 10px;
-  background: linear-gradient(135deg, rgba(47,91,183,.12), rgba(103,184,180,.15));
+  width: 36px; height: 36px;
+  border-radius: 12px;
   display: flex; align-items: center; justify-content: center;
   flex-shrink: 0;
-  color: #2F5BB7;
   font-size: .85rem;
 }
+
+/* Colores únicos por perk */
+.welcome-perk:nth-child(1) .welcome-perk-icon { background: #fff0f3; color: #e5496a; }
+.welcome-perk:nth-child(2) .welcome-perk-icon { background: #edf5ff; color: #2F5BB7; }
+.welcome-perk:nth-child(3) .welcome-perk-icon { background: #fffbea; color: #d97706; }
+.welcome-perk:nth-child(4) .welcome-perk-icon { background: #f0fdf4; color: #16a34a; }
+
 .welcome-perk-text { display: flex; flex-direction: column; gap: 1px; }
-.welcome-perk-text strong { font-size: .78rem; font-weight: 700; color: var(--text-primary, #111); line-height: 1.2; }
-.welcome-perk-text span   { font-size: .7rem; color: var(--text-secondary, #9ca3af); line-height: 1.3; }
+.welcome-perk-text strong {
+  font-size: .76rem;
+  font-weight: 700;
+  color: #1e293b;
+  line-height: 1.2;
+}
+.welcome-perk-text span {
+  font-size: .68rem;
+  color: #94a3b8;
+  line-height: 1.3;
+}
+
+/* ── Divisor ── */
+.welcome-modal-divider {
+  height: 1px;
+  background: linear-gradient(90deg, transparent, #e2e8f0 30%, #e2e8f0 70%, transparent);
+  margin-bottom: 18px;
+}
 
 /* ── Botones ── */
 .welcome-modal-actions {
   display: flex;
   flex-direction: column;
   gap: 9px;
-  margin-bottom: 14px;
+  margin-bottom: 12px;
 }
 .welcome-btn-primary {
-  background: linear-gradient(135deg, #2F5BB7, #67B8B4);
+  background: linear-gradient(135deg, #1a4db5 0%, #45C6C0 100%);
   color: #fff;
   border: none;
-  border-radius: 14px;
-  padding: 14px 20px;
+  border-radius: 16px;
+  padding: 15px 20px;
   font-size: .95rem;
   font-weight: 700;
   cursor: pointer;
-  display: flex; align-items: center; justify-content: center; gap: 8px;
-  box-shadow: 0 6px 20px rgba(47,91,183,.3);
+  display: flex; align-items: center; justify-content: center; gap: 9px;
+  box-shadow: 0 6px 24px rgba(26,77,181,.32);
   transition: opacity .2s, transform .15s, box-shadow .2s;
+  position: relative;
+  overflow: hidden;
 }
-.welcome-btn-primary:hover { opacity: .92; transform: translateY(-1px); box-shadow: 0 10px 28px rgba(47,91,183,.38); }
+.welcome-btn-primary::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(255,255,255,.15) 0%, transparent 60%);
+  pointer-events: none;
+}
+.welcome-btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 32px rgba(26,77,181,.42);
+}
+.welcome-btn-primary:active { transform: translateY(0); }
 
 .welcome-btn-secondary {
-  background: transparent;
-  color: var(--text-primary, #111);
-  border: 1.5px solid var(--border-color, #e5e7eb);
-  border-radius: 14px;
-  padding: 12px 20px;
+  background: #fff;
+  color: #1e293b;
+  border: 2px solid #e2e8f0;
+  border-radius: 16px;
+  padding: 13px 20px;
   font-size: .9rem;
   font-weight: 600;
   cursor: pointer;
-  display: flex; align-items: center; justify-content: center; gap: 8px;
-  transition: border-color .2s, background .2s;
+  display: flex; align-items: center; justify-content: center; gap: 9px;
+  transition: border-color .2s, background .2s, transform .15s, box-shadow .2s;
 }
-.welcome-btn-secondary:hover { border-color: #2F5BB7; background: rgba(47,91,183,.05); }
+.welcome-btn-secondary:hover {
+  border-color: #1a4db5;
+  background: #f0f5ff;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 14px rgba(26,77,181,.12);
+}
 
-/* ── Continuar sin sesión ── */
+/* ── Skip ── */
 .welcome-skip {
   background: none;
   border: none;
-  font-size: .82rem;
+  font-size: .8rem;
   font-weight: 600;
   cursor: pointer;
-  padding: 6px 10px;
+  padding: 5px 8px;
   border-radius: 8px;
   display: inline-flex;
   align-items: center;
-  gap: 6px;
-  color: #67B8B4;
-  transition: color .2s, background .2s;
+  gap: 5px;
+  color: #94a3b8;
+  transition: color .2s;
 }
-.welcome-skip:hover { color: #2F5BB7; background: rgba(103,184,180,.08); }
-.welcome-skip i { font-size: .7rem; transition: transform .2s; }
+.welcome-skip:hover { color: #45C6C0; }
+.welcome-skip i { font-size: .65rem; transition: transform .2s; }
 .welcome-skip:hover i { transform: translateX(3px); }
 
-/* Dark mode */
-[data-theme="dark"] .welcome-modal { background: var(--card, #1E293B); }
-[data-theme="dark"] .welcome-perk { background: rgba(255,255,255,.05); border-color: rgba(255,255,255,.09); }
-[data-theme="dark"] .welcome-perk-icon { background: linear-gradient(135deg, rgba(47,91,183,.2), rgba(103,184,180,.2)); color: #67B8B4; }
-[data-theme="dark"] .welcome-perk-text strong { color: var(--fg, #f1f5f9); }
-[data-theme="dark"] .welcome-perk-text span   { color: var(--muted, #94a3b8); }
-[data-theme="dark"] .welcome-btn-secondary { border-color: rgba(255,255,255,.12); color: var(--fg, #f1f5f9); }
-[data-theme="dark"] .welcome-modal-close { background: rgba(255,255,255,.08); color: var(--muted, #94a3b8); }
+/* ── Footer del body ── */
+.welcome-modal-footer {
+  text-align: center;
+  padding-bottom: 4px;
+}
 
+/* ── Dark mode ── */
+[data-theme="dark"] .welcome-modal { background: #0f172a; }
+[data-theme="dark"] .welcome-modal-header {
+  background: linear-gradient(145deg, #07173a 0%, #0f2d6e 45%, #1a6b68 100%);
+}
+[data-theme="dark"] .welcome-modal-body { /* hereda */ }
+[data-theme="dark"] .welcome-modal-title { color: #f1f5f9; }
+[data-theme="dark"] .welcome-modal-desc  { color: #94a3b8; }
+[data-theme="dark"] .welcome-perk {
+  background: rgba(255,255,255,.04);
+  border-color: rgba(255,255,255,.08);
+}
+[data-theme="dark"] .welcome-perk:hover { border-color: #45C6C0; }
+[data-theme="dark"] .welcome-perk-text strong { color: #f1f5f9; }
+[data-theme="dark"] .welcome-perk-text span   { color: #64748b; }
+[data-theme="dark"] .welcome-btn-secondary {
+  background: rgba(255,255,255,.05);
+  border-color: rgba(255,255,255,.12);
+  color: #f1f5f9;
+}
+[data-theme="dark"] .welcome-btn-secondary:hover {
+  background: rgba(26,77,181,.2);
+  border-color: #45C6C0;
+}
+[data-theme="dark"] .welcome-modal-close {
+  background: rgba(255,255,255,.1);
+  border-color: rgba(255,255,255,.2);
+}
+[data-theme="dark"] .welcome-modal-divider {
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,.08) 30%, rgba(255,255,255,.08) 70%, transparent);
+}
+
+/* ── Responsive ── */
 @media (max-width: 480px) {
-  .welcome-modal { padding: 28px 18px 20px; }
-  .welcome-modal-perks { grid-template-columns: 1fr; }
+  .welcome-modal-header { padding: 28px 20px 22px; }
+  .welcome-modal-body   { padding: 18px 18px 18px; }
+  .welcome-modal-perks  { grid-template-columns: 1fr; }
+  .welcome-modal-logo img { max-width: 160px; }
 }
