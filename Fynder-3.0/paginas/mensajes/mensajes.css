@@ -2169,13 +2169,14 @@ body.select-mode .chat-msg-row .msg-checkbox { display: flex; align-items: cente
     z-index: 1;
   }
   .wa-welcome-icon {
-    width: 140px; height: 140px;
-    border-radius: 30px;
+    width: 160px; height: 160px;
+    border-radius: 34px;
     background: #1a1f2e;
     border: none;
     display: flex; align-items: center; justify-content: center;
     margin-bottom: 8px;
-    padding: 14px;
+    padding: 30px;
+    box-sizing: border-box;
   }
   .wa-welcome-title {
     font-family: 'Poppins', sans-serif;
