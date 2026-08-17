@@ -674,7 +674,7 @@ input, button, select, textarea {
     .how-icon { width: 68px; height: 68px; border-radius: 20px; display: flex; align-items: center; justify-content: center; position: relative; z-index: 1; transition: transform .3s; }
     .how-card:hover .how-icon { transform: scale(1.1); }
 
-    .how-icon-ring { position: absolute; inset: -8px; border-radius: 28px; border: 1px dashed; opacity: .3; animation: howRingSpin 8s linear infinite; }
+    .how-icon-ring { position: absolute; inset: -8px; border-radius: 28px; border: 1px dashed; opacity: .45; animation: howRingSpin 8s linear infinite; }
     .how-ring-teal  { border-color: #67B8B4; }
     .how-ring-blue  { border-color: #2F5BB7; animation-direction: reverse; }
     .how-ring-green { border-color: #10B981; }
