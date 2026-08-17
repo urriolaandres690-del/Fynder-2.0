@@ -19,15 +19,11 @@
     C 136 35 109 8 75 8 Z
   "/>
 
-  <!-- Anillo amarillo con agujero transparente (evenodd):
-       Círculo exterior r=34, círculo interior r=21, ambos centrados en (75,69) -->
+  <!-- Anillo amarillo con agujero transparente.
+       Cada círculo = dos semicírculos exactos con large-arc-flag=1 -->
   <path fill="#F9C200" fill-rule="evenodd" d="
-    M 109 69
-    A 34 34 0 1 0 41 69
-    A 34 34 0 1 0 109 69 Z
-    M 96 69
-    A 21 21 0 1 1 54 69
-    A 21 21 0 1 1 96 69 Z
+    M 109 69 A 34 34 0 1 0 41 69 A 34 34 0 1 0 109 69 Z
+    M 96 69  A 21 21 0 1 1 54 69 A 21 21 0 1 1 96 69  Z
   "/>
 
   <!-- Mango amarillo -->
