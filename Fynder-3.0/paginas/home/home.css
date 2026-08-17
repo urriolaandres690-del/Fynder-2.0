@@ -63,7 +63,7 @@
 
     } 
 
-    .hero-search-icon { align-self: center; color: var(--muted); margin-left: 8px; flex-shrink: 0; } 
+    .hero-search-icon { align-self: center; color: var(--muted); margin-left: 8px; flex-shrink: 0; overflow: hidden; display: block; } 
 
     .hero-search input { flex: 1; border: none; outline: none; font-size: .875rem; color: var(--fg); padding: 8px; background: transparent; font-family: 'Inter', sans-serif; } 
 

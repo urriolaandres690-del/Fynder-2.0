@@ -225,7 +225,7 @@ input, button, select, textarea {
         background:#ffffff;
         }
         
-        /* Evita que el fondo blanco del body se vea detrás del navbar transparente sobre el hero */
+        /* Evita que el fondo blanco del body se vea detrï¿½s del navbar transparente sobre el hero */
         body:has(#page-home.active) {
           background: linear-gradient(135deg, #1E8F8B 0%, #67B8B4 45%, #2F5BB7 100%);
           background-attachment: fixed;
@@ -375,7 +375,7 @@ input, button, select, textarea {
 
     } 
 
-    .hero-search-icon { align-self: center; color: var(--muted); margin-left: 8px; flex-shrink: 0; } 
+    .hero-search-icon { align-self: center; color: var(--muted); margin-left: 8px; flex-shrink: 0; overflow: hidden; display: block; } 
 
     .hero-search input { flex: 1; border: none; outline: none; font-size: .875rem; color: var(--fg); padding: 8px; background: transparent; font-family: 'Inter', sans-serif; } 
 
@@ -473,7 +473,7 @@ input, button, select, textarea {
 
     .cards-grid { display: grid; grid-template-columns: repeat(auto-fill,minmax(240px,1fr)); gap: 20px; }
 
-    /* -- Scroll vertical seccion Más Populares -- */
+    /* -- Scroll vertical seccion Mï¿½s Populares -- */
     .popular-scroll-wrap {
       max-height: 520px;
       overflow-y: auto;
@@ -486,7 +486,7 @@ input, button, select, textarea {
     .popular-scroll-wrap::-webkit-scrollbar { width: 5px; }
     .popular-scroll-wrap::-webkit-scrollbar-track { background: transparent; }
     .popular-scroll-wrap::-webkit-scrollbar-thumb { background: #CBD5E1; border-radius: 99px; }
-    /* Cuando está siendo scrolleado quitamos el fade para no cortar contenido */
+    /* Cuando estï¿½ siendo scrolleado quitamos el fade para no cortar contenido */
     .popular-scroll-wrap.scrolled-end {
       -webkit-mask-image: none;
               mask-image: none;
@@ -739,7 +739,7 @@ input, button, select, textarea {
       animation: particleRise 8s ease-in infinite;
       opacity: 0;
     }
-    /* Variaciones de tamaño y color para dar diversidad */
+    /* Variaciones de tamaï¿½o y color para dar diversidad */
     .footer-particles span:nth-child(3n) {
       width: 2px; height: 2px;
       background: rgba(47, 91, 183, 0.8);
@@ -1269,7 +1269,7 @@ input, button, select, textarea {
     color:white;
    }
 
-    /* NOTE: .bcard:hover with scale was removed — it displaced the "Ver más" button
+    /* NOTE: .bcard:hover with scale was removed ï¿½ it displaced the "Ver mï¿½s" button
        making it unclickable. The clean hover is defined earlier in the file. */
 
     .auth-card{
@@ -1287,7 +1287,7 @@ input, button, select, textarea {
     }    
 
 
-    /* NOTE: Old .auth-page { display:flex } removed — it overrode .page { display:none }
+    /* NOTE: Old .auth-page { display:flex } removed ï¿½ it overrode .page { display:none }
        causing login/register to always be visible. The new .auth-page.active handles this. */
 
 .login-header{
@@ -1944,7 +1944,7 @@ select option {
 [data-theme="dark"] .auth-input-icon { color: rgba(255,255,255,.4); }
 [data-theme="dark"] .auth-eye-btn { color: rgba(255,255,255,.35) !important; }
 
-/* Botón alternativo (blanco en light ? oscuro en dark) */
+/* Botï¿½n alternativo (blanco en light ? oscuro en dark) */
 [data-theme="dark"] .auth-alt-btn {
   background: rgba(255,255,255,.06) !important;
   border-color: rgba(255,255,255,.12) !important;
@@ -2392,15 +2392,15 @@ svg, svg *, path, polygon, circle, rect, line, polyline {
 .footer-logo-texto {
   transition: none !important;
 }
-/* Solo el scale del hover del botón fav va animado */
+/* Solo el scale del hover del botï¿½n fav va animado */
 .bcard-fav {
   transition: transform .15s ease !important;
 }
 
 
 
-/* --- MODAL ESTADÍSTICAS --- */
-/* Modal de estadísticas con gráfica */
+/* --- MODAL ESTADï¿½STICAS --- */
+/* Modal de estadï¿½sticas con grï¿½fica */
 
 /* Tarjetas hero-stat interactivas */
 .hero-stat-card {
@@ -2473,7 +2473,7 @@ svg, svg *, path, polygon, circle, rect, line, polyline {
   margin: 0 auto 20px;
 }
 
-/* Botón cerrar */
+/* Botï¿½n cerrar */
 .smodal-close {
   position: absolute;
   top: 18px;
@@ -2527,7 +2527,7 @@ svg, svg *, path, polygon, circle, rect, line, polyline {
   font-weight: 500;
 }
 
-/* Título y desc */
+/* Tï¿½tulo y desc */
 .smodal-title {
   font-size: 1.0625rem;
   font-weight: 700;
@@ -2560,7 +2560,7 @@ svg, svg *, path, polygon, circle, rect, line, polyline {
 .smodal-extra-row span { color: #6B7280; }
 .smodal-extra-row strong { font-weight: 700; font-size: .875rem; }
 
-/* Sección de gráfica */
+/* Secciï¿½n de grï¿½fica */
 .smodal-chart-section { margin-top: 4px; }
 .smodal-chart-title {
   font-size: .75rem;
@@ -2647,7 +2647,7 @@ svg, svg *, path, polygon, circle, rect, line, polyline {
 
 
 /* --- RESPONSIVE GLOBAL --- */
-/* RESPONSIVE GLOBAL – Correcciones para móvil, tablet, desktop */
+/* RESPONSIVE GLOBAL ï¿½ Correcciones para mï¿½vil, tablet, desktop */
 
 /* ---- Hamburger button ---- */
 .nav-hamburger {
@@ -2799,7 +2799,7 @@ svg, svg *, path, polygon, circle, rect, line, polyline {
   transition: all .2s;
 }
 
-/* -- Herramientas tipo Chrome en el menú -- */
+/* -- Herramientas tipo Chrome en el menï¿½ -- */
 .mobile-menu-tool-item {
   display: flex !important;
   align-items: center !important;
@@ -2832,7 +2832,7 @@ svg, svg *, path, polygon, circle, rect, line, polyline {
 }
 .mobile-menu-tool-item:hover > i { color: var(--primary) !important; }
 
-/* Ítem con submenú */
+/* ï¿½tem con submenï¿½ */
 .mobile-menu-has-sub .mobile-sub-arrow {
   font-size: .7rem !important;
   color: var(--muted) !important;
@@ -2843,7 +2843,7 @@ svg, svg *, path, polygon, circle, rect, line, polyline {
   transform: rotate(90deg) !important;
 }
 
-/* Submenú desplegable */
+/* Submenï¿½ desplegable */
 .mobile-submenu {
   display: none;
   flex-direction: column;
@@ -2883,7 +2883,7 @@ svg, svg *, path, polygon, circle, rect, line, polyline {
 }
 .mobile-submenu button:hover i { color: var(--primary) !important; }
 
-/* Ítem de salir (peligro) */
+/* ï¿½tem de salir (peligro) */
 .mobile-menu-tool-danger {
   color: #EF4444 !important;
 }
@@ -2893,7 +2893,7 @@ svg, svg *, path, polygon, circle, rect, line, polyline {
   color: #DC2626 !important;
 }
 
-/* Footer "Gestionado por tu organización" */
+/* Footer "Gestionado por tu organizaciï¿½n" */
 .mobile-menu-org-footer {
   display: flex;
   align-items: center;
@@ -2937,7 +2937,7 @@ svg, svg *, path, polygon, circle, rect, line, polyline {
   color: #EF4444;
 }
 
-/* BREAKPOINT: tablet ancho (769px – 1024px) */
+/* BREAKPOINT: tablet ancho (769px ï¿½ 1024px) */
 @media (max-width: 1024px) {
   /* How-grid: paso intermedio 5 cols ? 3 pasos verticales */
   .how-grid {
@@ -2970,7 +2970,7 @@ svg, svg *, path, polygon, circle, rect, line, polyline {
   .plan-card-pro:hover { transform: translateY(-3px); }
 }
 
-/* BREAKPOINT: tablet (601px – 768px) */
+/* BREAKPOINT: tablet (601px ï¿½ 768px) */
 @media (max-width: 768px) {
   /* How-grid: apilado */
   .how-grid { grid-template-columns: 1fr; }
@@ -3008,7 +3008,7 @@ svg, svg *, path, polygon, circle, rect, line, polyline {
   .dir-toolbar { top: 56px; }
 }
 
-/* BREAKPOINT: móvil grande (481px – 600px) */
+/* BREAKPOINT: mï¿½vil grande (481px ï¿½ 600px) */
 @media (max-width: 600px) {
   /* Navbar: mostrar hamburger, ocultar nav-links y acciones grandes */
   .nav-links         { display: none !important; }
@@ -3016,17 +3016,17 @@ svg, svg *, path, polygon, circle, rect, line, polyline {
   .btn-login-nav     { display: none !important; }
   .nav-hamburger     { display: flex !important; }
 
-  /* El botón "Registrar negocio" ocupa demasiado en el nav */
+  /* El botï¿½n "Registrar negocio" ocupa demasiado en el nav */
   #navbar .btn-teal  { display: none !important; }
 
   /* Nav actions: reducir gap y evitar desborde */
   .nav-actions { gap: 6px !important; flex-wrap: nowrap; overflow: visible; }
 
-  /* Dark toggle y dots más compactos en móvil */
+  /* Dark toggle y dots mï¿½s compactos en mï¿½vil */
   .dark-toggle-btn { width: 34px !important; height: 34px !important; }
   .nav-dots-btn    { width: 34px !important; height: 34px !important; flex-shrink: 0; }
 
-  /* Nombre de usuario más compacto */
+  /* Nombre de usuario mï¿½s compacto */
   #userName { font-size: 13px !important; margin-right: 4px !important; max-width: 80px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; display: inline-block !important; }
 
   /* Nav inner padding reducido */
@@ -3072,9 +3072,9 @@ svg, svg *, path, polygon, circle, rect, line, polyline {
   .fynder-modal { border-radius: 16px 16px 0 0; }
 }
 
-/* BREAKPOINT: móvil pequeño (= 480px) */
+/* BREAKPOINT: mï¿½vil pequeï¿½o (= 480px) */
 @media (max-width: 480px) {
-  /* Tipografía base */
+  /* Tipografï¿½a base */
   html { font-size: 15px; }
 
   /* Navbar: solo logo + dark toggle + hamburger */
@@ -3087,7 +3087,7 @@ svg, svg *, path, polygon, circle, rect, line, polyline {
   .hero-popular { flex-wrap: wrap; gap: 6px; }
   .hero-stats { grid-template-columns: 1fr 1fr; gap: 10px; }
 
-  /* Categorías home */
+  /* Categorï¿½as home */
   .cat-grid { grid-template-columns: repeat(3, 1fr); gap: 10px; }
 
   /* Cards grid */
@@ -3113,7 +3113,7 @@ svg, svg *, path, polygon, circle, rect, line, polyline {
   .fyl-cta           { padding: 36px 16px; border-radius: 20px; }
   .fyl-hero          { padding: 70px 16px 50px; }
 
-  /* Modal: fullscreen en móvil pequeño */
+  /* Modal: fullscreen en mï¿½vil pequeï¿½o */
   .fynder-modal-overlay { padding: 0; align-items: flex-end; }
   .fynder-modal {
     max-height: 92dvh;
@@ -3147,7 +3147,7 @@ svg, svg *, path, polygon, circle, rect, line, polyline {
   .profile-header-actions { width: 100%; }
 }
 
-/* BREAKPOINT: móvil muy pequeño (= 360px) */
+/* BREAKPOINT: mï¿½vil muy pequeï¿½o (= 360px) */
 @media (max-width: 360px) {
   html { font-size: 14px; }
   .hero h1 { font-size: 1.45rem; }
@@ -3157,7 +3157,7 @@ svg, svg *, path, polygon, circle, rect, line, polyline {
   .plan-price-amount { font-size: 1.75rem; }
 }
 
-/* DARK MODE – correcciones drawer móvil */
+/* DARK MODE ï¿½ correcciones drawer mï¿½vil */
 [data-theme="dark"] .mobile-menu-drawer {
   background: var(--card);
   box-shadow: -8px 0 32px rgba(0,0,0,.5);
@@ -3177,11 +3177,11 @@ svg, svg *, path, polygon, circle, rect, line, polyline {
 }
 
 
-/* ESCALA MÓVIL – Reducción de tamaños en pantallas pequeñas */
+/* ESCALA Mï¿½VIL ï¿½ Reducciï¿½n de tamaï¿½os en pantallas pequeï¿½as */
 
 @media (max-width: 600px) {
 
-  /* ---- Tipografía global ---- */
+  /* ---- Tipografï¿½a global ---- */
   html { font-size: 15px; }
 
   /* ---- Hero ---- */
@@ -3209,10 +3209,10 @@ svg, svg *, path, polygon, circle, rect, line, polyline {
   .bcard-list-name { font-size: .9rem; }
   .bcard-list-desc { font-size: .8rem; }
 
-  /* ---- Categorías ---- */
+  /* ---- Categorï¿½as ---- */
   .cat-item-label  { font-size: .7rem; }
 
-  /* ---- Sección de acción ---- */
+  /* ---- Secciï¿½n de acciï¿½n ---- */
   .cta-inner h2    { font-size: 1.5rem !important; }
   .cta-inner p     { font-size: .875rem; }
   .cta-section     { padding: 44px 0; }
@@ -3243,7 +3243,7 @@ svg, svg *, path, polygon, circle, rect, line, polyline {
   .profile-card    { padding: 20px 16px; }
   .profile-section-title { font-size: .95rem; }
 
-  /* ---- Saber más (fynder landing) ---- */
+  /* ---- Saber mï¿½s (fynder landing) ---- */
   .fyl-hero-title  { font-size: 1.6rem !important; }
   .fyl-hero-lead   { font-size: .9rem; }
   .fyl-section-title { font-size: 1.3rem !important; }
@@ -3292,7 +3292,7 @@ svg, svg *, path, polygon, circle, rect, line, polyline {
 
   html { font-size: 14.5px; }
 
-  /* Hero más compacto */
+  /* Hero mï¿½s compacto */
   .hero            { min-height: auto; padding: 80px 16px 36px; }
   .hero h1         { font-size: 1.55rem !important; }
   .hero p          { font-size: .875rem; }
@@ -3301,7 +3301,7 @@ svg, svg *, path, polygon, circle, rect, line, polyline {
   .hero-stat-card .stat-num { font-size: 1.25rem; }
   .hero-stat-card .stat-label { font-size: .7rem; }
 
-  /* Categorías home más pequeñas */
+  /* Categorï¿½as home mï¿½s pequeï¿½as */
   .cat-grid        { gap: 8px; }
   .cat-item        { padding: 12px 6px; border-radius: 14px; }
   .cat-item-label  { font-size: .65rem; }
@@ -3314,7 +3314,7 @@ svg, svg *, path, polygon, circle, rect, line, polyline {
   .bcard           { border-radius: 14px; }
   .bcard-img       { height: 150px; }
 
-  /* Llamada a la acción */
+  /* Llamada a la acciï¿½n */
   .cta-inner h2    { font-size: 1.3rem !important; }
   .cta-inner       { padding: 32px 16px; border-radius: 16px; }
   .cta-btns        { flex-direction: column; gap: 10px; }
@@ -3322,7 +3322,7 @@ svg, svg *, path, polygon, circle, rect, line, polyline {
 }
 
 
-/* ---- Mobile drawer: user info + botones de acción ---- */
+/* ---- Mobile drawer: user info + botones de acciï¿½n ---- */
 .mobile-menu-user-info {
   display: flex;
   align-items: center;
@@ -3422,7 +3422,7 @@ svg, svg *, path, polygon, circle, rect, line, polyline {
 }
 .mobile-action-logout:hover { background: rgba(239,68,68,.08); }
 
-/* ---- Panel de cuentas múltiples ---- */
+/* ---- Panel de cuentas mï¿½ltiples ---- */
 .mobile-accounts-panel {
   display: none;
   flex-direction: column;
@@ -3544,7 +3544,7 @@ svg, svg *, path, polygon, circle, rect, line, polyline {
 .mobile-menu-nav-small:hover i { color: var(--primary) !important; }
 
 
-/* ---- Botón tres puntitos (desktop) / hamburguesa (mobile) ---- */
+/* ---- Botï¿½n tres puntitos (desktop) / hamburguesa (mobile) ---- */
 .nav-dots-btn {
   display: flex;
   align-items: center;
@@ -3580,7 +3580,7 @@ svg, svg *, path, polygon, circle, rect, line, polyline {
   border-color: var(--primary);
 }
 
-/* En mobile el mismo botón muestra tres barras */
+/* En mobile el mismo botï¿½n muestra tres barras */
 .nav-icon-mobile  { display: none !important; }
 .nav-icon-desktop { display: block !important; }
 
@@ -3598,7 +3598,7 @@ svg, svg *, path, polygon, circle, rect, line, polyline {
 .nav-hamburger { display: none !important; }
 
 
-/* ABOUT PAGE V2 – Rediseño visual completo */
+/* ABOUT PAGE V2 ï¿½ Rediseï¿½o visual completo */
 
 /* Keyframes */
 @keyframes about-float   { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-10px)} }
@@ -3615,7 +3615,7 @@ svg, svg *, path, polygon, circle, rect, line, polyline {
 .about-page-redesign { min-height:100vh; background:var(--bg); }
 .about-back-btn { position:absolute; top:90px; left:24px; z-index:10; }
 
-/* Full-width alternating sections (like secciones alternadas de saber más) */
+/* Full-width alternating sections (like secciones alternadas de saber mï¿½s) */
 .about-section-alt-bg {
   max-width: 100% !important;
   background: #fff;
@@ -3776,7 +3776,7 @@ svg, svg *, path, polygon, circle, rect, line, polyline {
   border-top:1px solid rgba(255,255,255,.08); padding-top:14px; margin-top:4px;
 }
 
-/* ---- Misión, visión y valores: tarjetas con brillo ---- */
+/* ---- Misiï¿½n, visiï¿½n y valores: tarjetas con brillo ---- */
 .about-mvv-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:20px; }
 @media(max-width:900px){.about-mvv-grid{grid-template-columns:1fr 1fr;}}
 @media(max-width:560px){.about-mvv-grid{grid-template-columns:1fr;}}
@@ -3886,7 +3886,7 @@ svg, svg *, path, polygon, circle, rect, line, polyline {
 }
 .about-team-v2-avatar:hover .about-avatar-ring { opacity:1; }
 
-/* ---- Sección final de acción ---- */
+/* ---- Secciï¿½n final de acciï¿½n ---- */
 .about-cta-v2 {
   background:linear-gradient(135deg,#0F172A 0%,#1E293B 50%,#0A1628 100%);
   padding:64px 40px; text-align:center; color:#fff;
@@ -4083,7 +4083,7 @@ svg, svg *, path, polygon, circle, rect, line, polyline {
 }
 #page-map.active { display: flex; }
 
-/* El mapa en sí (toolbar + layout) ocupa el 100vh inicial */
+/* El mapa en sï¿½ (toolbar + layout) ocupa el 100vh inicial */
 #page-map > .map-layout {
   flex: 0 0 calc(100vh - 64px - 56px); /* viewport - navbar - toolbar */
 }
@@ -4460,9 +4460,9 @@ svg, svg *, path, polygon, circle, rect, line, polyline {
 }
 
 
-/* TEMA CLARO/OSCURO — Páginas "Saber más" y "Sobre Fynder" — Fix: fondos, bordes, textos y cards adaptables al tema */
+/* TEMA CLARO/OSCURO ï¿½ Pï¿½ginas "Saber mï¿½s" y "Sobre Fynder" ï¿½ Fix: fondos, bordes, textos y cards adaptables al tema */
 
-/* -- Fondos de sección principal -- */
+/* -- Fondos de secciï¿½n principal -- */
 .fyl-body { background: var(--bg); }
 .about-body { background: var(--bg); }
 
@@ -4477,7 +4477,7 @@ svg, svg *, path, polygon, circle, rect, line, polyline {
   border-color: var(--border);
 }
 
-/* Bordes más visibles en modo claro */
+/* Bordes mï¿½s visibles en modo claro */
 .fyl-step    { border: 1.5px solid rgba(103,184,180,.22); }
 .fyl-feature { border: 1.5px solid rgba(103,184,180,.22); }
 .fyl-impact-card { border: 1.5px solid rgba(103,184,180,.22); }
@@ -4519,7 +4519,7 @@ section.fyl-section-alt { background: #EBF6F5 !important; }
 .about-mvv-card h3 { color: var(--fg); }
 .about-mvv-card p  { color: var(--muted); }
 
-/* -- About: sección origen tarjeta — ver bloque final de fixes -- */
+/* -- About: secciï¿½n origen tarjeta ï¿½ ver bloque final de fixes -- */
 
 /* -- MODO OSCURO: overrides mejorados -- */
 [data-theme="dark"] section.fyl-section-alt  { background: #1A2744 !important; }
@@ -4541,7 +4541,7 @@ section.fyl-section-alt { background: #EBF6F5 !important; }
 /* -- FAQ abierto: borde destacado en ambos modos -- */
 .fyl-faq-item[open] { box-shadow: var(--shadow-md); border-color: var(--primary); }
 
-/* -- Número de paso: suave en claro, no se pierde -- */
+/* -- Nï¿½mero de paso: suave en claro, no se pierde -- */
 .fyl-step-num { color: rgba(103,184,180,.25); }
 [data-theme="dark"] .fyl-step-num { color: rgba(103,184,180,.15); }
 
@@ -4557,12 +4557,12 @@ section.fyl-section-alt { background: #EBF6F5 !important; }
   border-color: rgba(103,184,180,.15);
 }
 
-/* -- Wave del hero de Saber más y Sobre Fynder --
-   En claro: la ola termina en el fondo de página */
+/* -- Wave del hero de Saber mï¿½s y Sobre Fynder --
+   En claro: la ola termina en el fondo de pï¿½gina */
 .fyl-hero-wave path,
 .about-hero-wave path { fill: var(--bg) !important; }
 
-/* -- Fondo de página saber más -- */
+/* -- Fondo de pï¿½gina saber mï¿½s -- */
 #page-fynder { background: var(--bg); }
 #page-about  { background: var(--bg); }
 
@@ -4575,16 +4575,16 @@ section.fyl-section-alt { background: #EBF6F5 !important; }
 /* -- About team card: override en bloque de fixes -- */
 
 
-/* FIX MODO CLARO — Hero badges/pills, CTAs oscuros, esquinas */
+/* FIX MODO CLARO ï¿½ Hero badges/pills, CTAs oscuros, esquinas */
 
-/* -- 1. HERO BADGE del "Saber más": texto visible sobre turquesa -- */
+/* -- 1. HERO BADGE del "Saber mï¿½s": texto visible sobre turquesa -- */
 .fyl-hero-badge {
   background: rgba(255,255,255,.22);
   border: 1px solid rgba(255,255,255,.4);
   color: #fff;
 }
 
-/* -- 2. STAT PILLS del hero: más visibles sobre turquesa -- */
+/* -- 2. STAT PILLS del hero: mï¿½s visibles sobre turquesa -- */
 .fyl-stat-pill {
   background: rgba(255,255,255,.18);
   border: 1px solid rgba(255,255,255,.35);
@@ -4592,8 +4592,8 @@ section.fyl-section-alt { background: #EBF6F5 !important; }
 }
 .fyl-pill-num { color: #fff; font-weight: 900; }
 
-/* -- 3. CTA FINAL "Saber más" (fyl-cta): 
-   Full-width, sin border-radius — fluye sin esquinas raras -- */
+/* -- 3. CTA FINAL "Saber mï¿½s" (fyl-cta): 
+   Full-width, sin border-radius ï¿½ fluye sin esquinas raras -- */
 .fyl-cta {
   background: linear-gradient(135deg, #1E8F8B 0%, #2F5BB7 100%);
   border-radius: 0 !important;
@@ -4618,8 +4618,8 @@ section.fyl-section-alt { background: #EBF6F5 !important; }
   background: linear-gradient(135deg, #0F172A 0%, #1E293B 50%, #0A1628 100%);
 }
 
-/* -- 6. FYL CTA FINAL ("¿Listo para ser encontrado?"):
-   Full-width dentro del fyl-body, sin esquinas extrañas -- */
+/* -- 6. FYL CTA FINAL ("ï¿½Listo para ser encontrado?"):
+   Full-width dentro del fyl-body, sin esquinas extraï¿½as -- */
 section.fyl-section .fyl-cta {
   margin: 0;
   border-radius: 0 !important;
@@ -4631,8 +4631,8 @@ section.fyl-section .fyl-cta {
   border-radius: 0 !important;
 }
 
-/* -- 8. FOOTER integrado suavemente: sin esquinas raras en la última sección -- */
-/* El about termina con el cta que es full-width — bordes correctos */
+/* -- 8. FOOTER integrado suavemente: sin esquinas raras en la ï¿½ltima secciï¿½n -- */
+/* El about termina con el cta que es full-width ï¿½ bordes correctos */
 #page-about footer,
 #page-fynder footer {
   border-radius: 0;
@@ -4680,22 +4680,22 @@ section.fyl-section .fyl-cta {
 [data-theme="dark"] .about-badge-dot { background: #67B8B4; }
 
 
-/* FIX VISUAL — Texto FYNDER visible, Origin card, Team card */
+/* FIX VISUAL ï¿½ Texto FYNDER visible, Origin card, Team card */
 
-/* -- 1. FYNDER en el título del hero: amarillo brillante, nunca invisible -- */
+/* -- 1. FYNDER en el tï¿½tulo del hero: amarillo brillante, nunca invisible -- */
 .fyl-hero-title span {
   color: var(--yellow, #F4D35E) !important;
   text-shadow: 0 0 30px rgba(244,211,94,.4);
 }
 
-/* -- 2. TARJETA ORIGEN — modo claro: glassmorphism con gradiente vibrante -- */
+/* -- 2. TARJETA ORIGEN ï¿½ modo claro: glassmorphism con gradiente vibrante -- */
 .about-origin-v2-card {
   background: linear-gradient(135deg, #1E8F8B 0%, #2F5BB7 100%) !important;
   border: 1.5px solid rgba(255,255,255,.3) !important;
   box-shadow: 0 20px 60px rgba(30,143,139,.35), 0 4px 20px rgba(47,91,183,.25);
 }
 
-/* Logo del rayo en el origen card: más visible */
+/* Logo del rayo en el origen card: mï¿½s visible */
 .about-origin-logo-big {
   background: rgba(255,255,255,.2) !important;
   border: 2px solid rgba(255,255,255,.35);
@@ -4733,7 +4733,7 @@ section.fyl-section .fyl-cta {
   color: rgba(255,255,255,.8) !important;
 }
 
-/* -- 3. TEAM CARD "Detrás de Fynder" — espectacular, con bordes y glow -- */
+/* -- 3. TEAM CARD "Detrï¿½s de Fynder" ï¿½ espectacular, con bordes y glow -- */
 .about-section.about-section-alt-bg:has(.about-team-card) {
   padding: 0 !important;
   overflow: visible !important;
@@ -4790,15 +4790,15 @@ section.fyl-section .fyl-cta {
 }
 
 
-/* REDONDEO GLOBAL + FIX TESTIMONIO FEATURED — Saber más y Sobre Fynder — menos cuadrados, más fluidos */
+/* REDONDEO GLOBAL + FIX TESTIMONIO FEATURED ï¿½ Saber mï¿½s y Sobre Fynder ï¿½ menos cuadrados, mï¿½s fluidos */
 
-/* -- FIX CRÍTICO: testimonio del medio (featured) siempre texto blanco -- */
+/* -- FIX CRï¿½TICO: testimonio del medio (featured) siempre texto blanco -- */
 .fyl-testi-featured .fyl-testi-text   { color: rgba(255,255,255,.88) !important; }
 .fyl-testi-featured .fyl-testi-stars  { color: #FDE68A !important; }
 .fyl-testi-featured .fyl-testi-author strong { color: #fff !important; }
 .fyl-testi-featured .fyl-testi-author span   { color: rgba(255,255,255,.65) !important; }
 
-/* -- REDONDEO — cards de "Saber más" -- */
+/* -- REDONDEO ï¿½ cards de "Saber mï¿½s" -- */
 .fyl-what-card  { border-radius: 28px !important; }
 .fyl-step       { border-radius: 24px !important; }
 .fyl-feature    { border-radius: 22px !important; }
@@ -4808,20 +4808,20 @@ section.fyl-section .fyl-cta {
 .fyl-faq-item   { border-radius: 18px !important; }
 .fyl-compare    { border-radius: 32px !important; overflow: hidden; }
 
-/* Botones más redondeados */
+/* Botones mï¿½s redondeados */
 .fyl-btn-primary,
 .fyl-btn-ghost  { border-radius: 18px !important; }
 .fyl-for-btn-teal,
 .fyl-for-btn-purple { border-radius: 16px !important; }
 .fyl-cta-btn    { border-radius: 18px !important; }
 
-/* Pills del hero: ya son 99px, está bien */
+/* Pills del hero: ya son 99px, estï¿½ bien */
 
 /* Iconos de feat y pasos */
 .fyl-feat-icon  { border-radius: 16px !important; }
-.fyl-step-num   { border-radius: 0; } /* número, no card */
+.fyl-step-num   { border-radius: 0; } /* nï¿½mero, no card */
 
-/* -- REDONDEO — cards de "Sobre Fynder" -- */
+/* -- REDONDEO ï¿½ cards de "Sobre Fynder" -- */
 .about-mvv-card      { border-radius: 28px !important; }
 .about-impact-v2-card{ border-radius: 24px !important; }
 .about-origin-v2-card{ border-radius: 28px !important; }
@@ -4837,7 +4837,7 @@ section.fyl-section .fyl-cta {
 .about-cta-v2-primary,
 .about-cta-v2-ghost   { border-radius: 18px !important; }
 
-/* -- Secciones FAQ más redondeadas -- */
+/* -- Secciones FAQ mï¿½s redondeadas -- */
 .fyl-faq-item summary { border-radius: 18px !important; }
 .fyl-faq-item[open] summary { border-radius: 18px 18px 0 0 !important; }
 
@@ -4845,7 +4845,7 @@ section.fyl-section .fyl-cta {
 .fyl-compare-no  { border-radius: 32px 0 0 32px !important; }
 .fyl-compare-yes { border-radius: 0 32px 32px 0 !important; }
 
-/* -- Categorías de saber más: ya son pill (99px), ok -- */
+/* -- Categorï¿½as de saber mï¿½s: ya son pill (99px), ok -- */
 
 /* -- Secciones de fondo alternado: esquinas superiores redondeadas -- */
 section.fyl-section-alt {
@@ -4853,16 +4853,16 @@ section.fyl-section-alt {
 }
 
 
-/* FIX FINAL — Team card redondeo + testimonios */
+/* FIX FINAL ï¿½ Team card redondeo + testimonios */
 
 /* -- Team card: esquinas bien redondeadas y aspecto premium -- */
 .about-team-card {
   border-radius: 28px !important;
   margin: 24px !important;
-  /* Ancho real dentro del padding de la sección */
+  /* Ancho real dentro del padding de la secciï¿½n */
 }
 
-/* La sección que lo contiene: deja espacio para que se vean las esquinas */
+/* La secciï¿½n que lo contiene: deja espacio para que se vean las esquinas */
 .about-section.about-section-alt-bg:has(.about-team-card) {
   background: var(--bg) !important;
   padding: 0 !important;
@@ -4872,7 +4872,7 @@ section.fyl-section-alt {
 .about-origin-pill { border-radius: 99px !important; }
 .about-origin-logo-big { border-radius: 24px !important; }
 
-/* -- Testimonio featured: protección total del background -- */
+/* -- Testimonio featured: protecciï¿½n total del background -- */
 .fyl-testi.fyl-testi-featured {
   background: linear-gradient(155deg, #1E8F8B 0%, #2563EB 100%) !important;
   border-color: transparent !important;
@@ -4883,15 +4883,15 @@ section.fyl-section-alt {
 .fyl-testi.fyl-testi-featured .fyl-testi-author strong { color: #fff !important; }
 .fyl-testi.fyl-testi-featured .fyl-testi-author span   { color: rgba(255,255,255,.65) !important; }
 
-/* -- About section-alt-bg con team card usa fondo de página -- */
+/* -- About section-alt-bg con team card usa fondo de pï¿½gina -- */
 [data-theme="dark"] .about-section.about-section-alt-bg:has(.about-team-card) {
   background: var(--bg) !important;
 }
 
 
-/* NAVBAR BLANCO sobre heroes de About y Saber más — Fallback CSS para cuando on-hero no se aplica a tiempo */
+/* NAVBAR BLANCO sobre heroes de About y Saber mï¿½s ï¿½ Fallback CSS para cuando on-hero no se aplica a tiempo */
 
-/* Nav links blancos sobre el hero de Home, About y Saber más */
+/* Nav links blancos sobre el hero de Home, About y Saber mï¿½s */
 body:has(#page-home.active) #navbar:not(.scrolled) .nav-link,
 body:has(#page-about.active) #navbar:not(.scrolled) .nav-link,
 body:has(#page-fynder.active) #navbar:not(.scrolled) .nav-link {
@@ -4910,7 +4910,7 @@ body:has(#page-fynder.active) #navbar:not(.scrolled) .nav-link.active {
   color: #fff;
 }
 
-/* Botones ghost del navbar (Mi perfil, Mi panel, Cerrar sesión) */
+/* Botones ghost del navbar (Mi perfil, Mi panel, Cerrar sesiï¿½n) */
 body:has(#page-home.active) #navbar:not(.scrolled) .btn-ghost,
 body:has(#page-about.active) #navbar:not(.scrolled) .btn-ghost,
 body:has(#page-fynder.active) #navbar:not(.scrolled) .btn-ghost {
@@ -4931,7 +4931,7 @@ body:has(#page-fynder.active) #navbar:not(.scrolled) #userName {
   color: rgba(255,255,255,.9);
 }
 
-/* Botón Iniciar sesión */
+/* Botï¿½n Iniciar sesiï¿½n */
 body:has(#page-home.active) #navbar:not(.scrolled) .btn-login-nav,
 body:has(#page-about.active) #navbar:not(.scrolled) .btn-login-nav,
 body:has(#page-fynder.active) #navbar:not(.scrolled) .btn-login-nav {
@@ -4959,7 +4959,7 @@ body:has(#page-fynder.active) #navbar:not(.scrolled) .logo-text .fyn {
   color: #fff;
 }
 
-/* Botón dark toggle */
+/* Botï¿½n dark toggle */
 body:has(#page-home.active) #navbar:not(.scrolled) .dark-toggle-btn,
 body:has(#page-about.active) #navbar:not(.scrolled) .dark-toggle-btn,
 body:has(#page-fynder.active) #navbar:not(.scrolled) .dark-toggle-btn {
@@ -4967,7 +4967,7 @@ body:has(#page-fynder.active) #navbar:not(.scrolled) .dark-toggle-btn {
   background: rgba(255,255,255,.1);
 }
 
-/* Botón menú hamburguesa/dots */
+/* Botï¿½n menï¿½ hamburguesa/dots */
 body:has(#page-home.active) #navbar:not(.scrolled) .nav-dots-btn,
 body:has(#page-about.active) #navbar:not(.scrolled) .nav-dots-btn,
 body:has(#page-fynder.active) #navbar:not(.scrolled) .nav-dots-btn {
@@ -4990,14 +4990,14 @@ body:has(#page-fynder.active) #navbar:not(.scrolled) .nav-dots-btn:hover {
 }
 
 
-/* RESPONSIVE MÓVIL – CORRECCIONES COMPLETAS — Aplicadas al final para que tengan máxima prioridad */
+/* RESPONSIVE Mï¿½VIL ï¿½ CORRECCIONES COMPLETAS ï¿½ Aplicadas al final para que tengan mï¿½xima prioridad */
 
 /* ---- viewport meta fix: evitar zoom al tocar inputs ---- */
 @media (max-width: 768px) {
   input, select, textarea { font-size: 16px !important; }
 }
 
-/* TABLET (= 1024px) – nav + hero + layout */
+/* TABLET (= 1024px) ï¿½ nav + hero + layout */
 @media (max-width: 1024px) {
   .nav-inner { padding: 0 16px; }
   .hero-inner {
@@ -5011,7 +5011,7 @@ body:has(#page-fynder.active) #navbar:not(.scrolled) .nav-dots-btn:hover {
   .footer-grid { grid-template-columns: 1fr 1fr; gap: 32px; }
 }
 
-/* TABLET PEQUEÑA / MÓVIL GRANDE (= 768px) */
+/* TABLET PEQUEï¿½A / Mï¿½VIL GRANDE (= 768px) */
 @media (max-width: 768px) {
   /* ---- Navbar ---- */
   .nav-links      { display: none !important; }
@@ -5021,18 +5021,18 @@ body:has(#page-fynder.active) #navbar:not(.scrolled) .nav-dots-btn:hover {
   #navbar .btn-teal { display: none !important; }
   .nav-inner { padding: 0 14px; height: 56px; }
 
-  /* Ocultar íconos de perfil, dashboard, mensajes y ajustes en móvil —
+  /* Ocultar ï¿½conos de perfil, dashboard, mensajes y ajustes en mï¿½vil ï¿½
      solo dejar: userName + dark toggle + hamburger (barras) + dots (puntos) */
   .nav-icon-btn      { display: none !important; }
   .nav-msg-btn       { display: none !important; }
   .nav-settings-btn  { display: none !important; }
 
-  /* Dark toggle + hamburger más compactos */
+  /* Dark toggle + hamburger mï¿½s compactos */
   .dark-toggle-btn { width: 36px !important; height: 36px !important; padding: 0; }
   .nav-dots-btn    { width: 36px !important; height: 36px !important; padding: 0; flex-shrink: 0; }
   .nav-actions     { gap: 8px !important; }
 
-  /* "Hola, Joss" visible en móvil */
+  /* "Hola, Joss" visible en mï¿½vil */
   #userName {
     display: inline-block !important;
     font-size: 13px !important;
@@ -5099,7 +5099,7 @@ body:has(#page-fynder.active) #navbar:not(.scrolled) .nav-dots-btn:hover {
   .section-title { font-size: 1.4rem !important; }
   .section-label { font-size: .72rem; }
 
-  /* ---- Categorías ---- */
+  /* ---- Categorï¿½as ---- */
   .cat-grid { grid-template-columns: repeat(4, 1fr) !important; gap: 10px; }
   .cat-card { padding: 14px 6px; border-radius: 14px; gap: 8px; }
   .cat-icon { width: 42px; height: 42px; border-radius: 12px; }
@@ -5122,7 +5122,7 @@ body:has(#page-fynder.active) #navbar:not(.scrolled) .nav-dots-btn:hover {
   /* ---- Populares ---- */
   .cards-list { display: flex; flex-direction: column; gap: 12px; }
 
-  /* ---- Cómo funciona ---- */
+  /* ---- Cï¿½mo funciona ---- */
   .how-section { padding: 48px 0; }
   .how-grid    { grid-template-columns: 1fr; gap: 16px; }
   .how-connector { display: none; }
@@ -5164,7 +5164,7 @@ body:has(#page-fynder.active) #navbar:not(.scrolled) .nav-dots-btn:hover {
   .map-panel { display: none; }
   .map-toolbar { top: 56px; }
 
-  /* ---- Página business register ---- */
+  /* ---- Pï¿½gina business register ---- */
   .biz-reg-grid-2 { grid-template-columns: 1fr; }
 
   /* ---- Modal ---- */
@@ -5178,13 +5178,13 @@ body:has(#page-fynder.active) #navbar:not(.scrolled) .nav-dots-btn:hover {
   /* ---- Share panel ---- */
   .share-panel-box { width: 100%; border-radius: 20px 20px 0 0; }
 
-  /* ---- Menú móvil drawer más ancho ---- */
+  /* ---- Menï¿½ mï¿½vil drawer mï¿½s ancho ---- */
   .mobile-menu-drawer { width: min(320px, 88vw) !important; }
 }
 
-/* MÓVIL (= 600px) – ajustes adicionales */
+/* Mï¿½VIL (= 600px) ï¿½ ajustes adicionales */
 @media (max-width: 600px) {
-  /* Hero aún más compacto */
+  /* Hero aï¿½n mï¿½s compacto */
   .hero-inner { padding: 72px 14px 40px; }
   .hero h1 { font-size: 1.75rem !important; }
   .hero-stats { grid-template-columns: 1fr 1fr; gap: 8px; }
@@ -5192,10 +5192,10 @@ body:has(#page-fynder.active) #navbar:not(.scrolled) .nav-dots-btn:hover {
   .hero-stat-icon { width: 32px; height: 32px; border-radius: 10px; }
   .hero-stat-icon svg { width: 16px; height: 16px; }
 
-  /* Categorías: 4 cols */
+  /* Categorï¿½as: 4 cols */
   .cat-grid { grid-template-columns: repeat(4, 1fr) !important; gap: 8px; }
 
-  /* Cards: 1 columna en móvil chico */
+  /* Cards: 1 columna en mï¿½vil chico */
   .cards-grid { grid-template-columns: 1fr !important; }
   .bcard-img  { height: 180px; }
 
@@ -5203,14 +5203,14 @@ body:has(#page-fynder.active) #navbar:not(.scrolled) .nav-dots-btn:hover {
   .footer-grid { grid-template-columns: 1fr !important; gap: 20px; }
   .footer-col ul { display: grid; grid-template-columns: 1fr 1fr; gap: 4px 16px; }
 
-  /* Sección popular: stack */
+  /* Secciï¿½n popular: stack */
   .cards-list .bcard-list { flex-direction: column; }
 
   /* Section header always stacked */
   .section-header { flex-direction: column !important; align-items: flex-start !important; }
 }
 
-/* MÓVIL PEQUEÑO (= 480px) */
+/* Mï¿½VIL PEQUEï¿½O (= 480px) */
 @media (max-width: 480px) {
   html { font-size: 14.5px; }
 
@@ -5218,7 +5218,7 @@ body:has(#page-fynder.active) #navbar:not(.scrolled) .nav-dots-btn:hover {
   .hero h1 { font-size: 1.55rem !important; }
   .hero p  { font-size: .875rem; }
 
-  /* Categorías: 4 columnas */
+  /* Categorï¿½as: 4 columnas */
   .cat-grid { grid-template-columns: repeat(4, 1fr) !important; gap: 6px; }
   .cat-card { padding: 10px 4px; border-radius: 12px; }
   .cat-icon { width: 36px; height: 36px; border-radius: 10px; }
@@ -5235,14 +5235,14 @@ body:has(#page-fynder.active) #navbar:not(.scrolled) .nav-dots-btn:hover {
   .cta-inner h2 { font-size: 1.35rem !important; }
   .cta-perks    { flex-direction: column; align-items: center; gap: 10px; }
 
-  /* Drawer un poco más angosto */
+  /* Drawer un poco mï¿½s angosto */
   .mobile-menu-drawer { width: 82vw !important; }
 
   /* Stat cards en hero: compactos */
   .hero-stat-card { padding: 8px 10px; border-radius: 12px; }
 }
 
-/* MÓVIL MUY PEQUEÑO (= 360px) */
+/* Mï¿½VIL MUY PEQUEï¿½O (= 360px) */
 @media (max-width: 360px) {
   html { font-size: 13.5px; }
   .hero h1 { font-size: 1.4rem !important; }
@@ -5251,7 +5251,7 @@ body:has(#page-fynder.active) #navbar:not(.scrolled) .nav-dots-btn:hover {
   .nav-inner { padding: 0 10px; }
 }
 
-/* DARK MODE – ajustes adicionales en móvil */
+/* DARK MODE ï¿½ ajustes adicionales en mï¿½vil */
 @media (max-width: 768px) {
   [data-theme="dark"] .hero-search {
     background: rgba(255,255,255,.12);
@@ -5265,13 +5265,13 @@ body:has(#page-fynder.active) #navbar:not(.scrolled) .nav-dots-btn:hover {
   [data-theme="dark"] .hero-search-btn { background: var(--primary); }
 }
 
-/* DESKTOP – asegurar que el hero-right se muestre correctamente */
+/* DESKTOP ï¿½ asegurar que el hero-right se muestre correctamente */
 @media (min-width: 1025px) {
   .hero-right { display: flex !important; }
   .hero-inner { grid-template-columns: 1fr 1fr; padding: 80px 24px 64px; }
 }
 
-/* TOUCH TARGETS – mínimo 44px en todos los botones táctiles */
+/* TOUCH TARGETS ï¿½ mï¿½nimo 44px en todos los botones tï¿½ctiles */
 @media (max-width: 768px) {
   .hero-tag,
   .filter-chip,
@@ -5290,7 +5290,7 @@ body:has(#page-fynder.active) #navbar:not(.scrolled) .nav-dots-btn:hover {
   .mobile-menu-nav button { min-height: 48px; }
 }
 
-/* SMOOTH SCROLL + OVERSCROLL para móvil */
+/* SMOOTH SCROLL + OVERSCROLL para mï¿½vil */
 @media (max-width: 768px) {
   .mobile-menu-drawer,
   .fynder-modal,
@@ -5302,7 +5302,7 @@ body:has(#page-fynder.active) #navbar:not(.scrolled) .nav-dots-btn:hover {
 }
 
 
-/* ---- Hero stats mobile: ocultas en desktop, visibles en móvil ---- */
+/* ---- Hero stats mobile: ocultas en desktop, visibles en mï¿½vil ---- */
 .hero-stats-mobile {
   display: none;
   margin-top: 24px;
@@ -5352,7 +5352,7 @@ body:has(#page-fynder.active) #navbar:not(.scrolled) .nav-dots-btn:hover {
   display: block;
   object-fit: contain;
 }
-/* Tamaños por contexto */
+/* Tamaï¿½os por contexto */
 #navbar .logo-img           { height: 44px; width: auto; }
 .mobile-menu-logo .logo-img { height: 40px; width: auto; }
 .footer-logo-img            { height: 38px; width: auto; }
