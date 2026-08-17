@@ -1801,7 +1801,14 @@ body{
 /* como funciona modo oscuro */
 [data-theme="dark"] .how-section { background: #0F172A !important; }
 [data-theme="dark"] .how-section::before { background-image: radial-gradient(rgba(255,255,255,.04) 1px, transparent 1px); }
+[data-theme="dark"] .how-section::after  { display: none; }
 [data-theme="dark"] .how-card { background: rgba(30,41,59,.8); border-color: rgba(255,255,255,.07); }
+[data-theme="dark"] .how-card-teal  { background: rgba(30,41,59,.8) !important; border-color: rgba(103,184,180,.18) !important; }
+[data-theme="dark"] .how-card-blue  { background: rgba(30,41,59,.8) !important; border-color: rgba(47,91,183,.18) !important; }
+[data-theme="dark"] .how-card-green { background: rgba(30,41,59,.8) !important; border-color: rgba(16,185,129,.18) !important; }
+[data-theme="dark"] .how-card-teal  .how-num { color: rgba(103,184,180,.1); }
+[data-theme="dark"] .how-card-blue  .how-num { color: rgba(47,91,183,.1); }
+[data-theme="dark"] .how-card-green .how-num { color: rgba(16,185,129,.1); }
 [data-theme="dark"] .how-title { color: var(--fg); }
 [data-theme="dark"] .how-desc  { color: var(--muted); }
 [data-theme="dark"] .how-num   { color: rgba(255,255,255,.05); }
