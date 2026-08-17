@@ -1,4 +1,4 @@
-button, input, select, textarea {
+﻿button, input, select, textarea {
   font-family: 'Inter', sans-serif;
   font-size: inherit;
   line-height: inherit;
@@ -4957,6 +4957,13 @@ body:has(#page-home.active) #navbar:not(.scrolled) .logo-text .fyn,
 body:has(#page-about.active) #navbar:not(.scrolled) .logo-text .fyn,
 body:has(#page-fynder.active) #navbar:not(.scrolled) .logo-text .fyn {
   color: #fff;
+}
+
+/* Logo SVG: versión clara sobre heroes con fondo oscuro */
+body:has(#page-home.active) #navbar:not(.scrolled) .logo-img,
+body:has(#page-about.active) #navbar:not(.scrolled) .logo-img,
+body:has(#page-fynder.active) #navbar:not(.scrolled) .logo-img {
+  filter: brightness(0) invert(1) sepia(1) saturate(3) hue-rotate(10deg);
 }
 
 /* Bot�n dark toggle */
