@@ -4959,25 +4959,6 @@ body:has(#page-fynder.active) #navbar:not(.scrolled) .logo-text .fyn {
   color: #fff;
 }
 
-/* Logo dual: dark=default, light=sobre hero oscuro o modo oscuro */
-#navbar .logo-img-light            { display: none; }
-#navbar .logo-img-dark             { display: block; }
-
-body:has(#page-home.active) #navbar:not(.scrolled) .logo-img-light,
-body:has(#page-about.active) #navbar:not(.scrolled) .logo-img-light,
-body:has(#page-fynder.active) #navbar:not(.scrolled) .logo-img-light {
-  display: block;
-}
-body:has(#page-home.active) #navbar:not(.scrolled) .logo-img-dark,
-body:has(#page-about.active) #navbar:not(.scrolled) .logo-img-dark,
-body:has(#page-fynder.active) #navbar:not(.scrolled) .logo-img-dark {
-  display: none;
-}
-
-/* Modo oscuro: siempre usar logo light */
-[data-theme="dark"] #navbar .logo-img-light { display: block; }
-[data-theme="dark"] #navbar .logo-img-dark  { display: none; }
-
 /* Bot�n dark toggle */
 body:has(#page-home.active) #navbar:not(.scrolled) .dark-toggle-btn,
 body:has(#page-about.active) #navbar:not(.scrolled) .dark-toggle-btn,
