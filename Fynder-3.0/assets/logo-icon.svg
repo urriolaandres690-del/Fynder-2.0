@@ -1,22 +1,14 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="-20 -12 190 200">
   <defs>
-    <clipPath id="lupa-clip">
-      <!-- Anillo exterior de la lupa -->
-      <circle cx="75" cy="69" r="34"/>
-      <!-- Mango -->
-      <rect x="88" y="82" width="13" height="48" rx="6.5" ry="6.5"
-            transform="rotate(45 94.5 106)"/>
-    </clipPath>
     <mask id="m">
       <rect x="-20" y="-12" width="190" height="200" fill="white"/>
-      <!-- Quitar zona completa de la lupa (circle + mango) con margen generoso -->
       <circle cx="75" cy="69" r="47" fill="black"/>
       <line x1="89" y1="83" x2="134" y2="128"
             stroke="black" stroke-width="38" stroke-linecap="round"/>
     </mask>
   </defs>
 
-  <!-- Pin teal con máscara que elimina toda la zona de la lupa -->
+  <!-- Pin teal -->
   <path fill="#45C6C0" mask="url(#m)" d="
     M 75 8
     C 41 8 14 35 14 69
@@ -27,11 +19,17 @@
     C 136 35 109 8 75 8 Z
   "/>
 
-  <!-- Lupa amarilla pura con fill, sin stroke para evitar bordes sucios -->
-  <!-- Anillo: círculo exterior relleno amarillo, agujero interior negro -->
-  <circle cx="75" cy="69" r="34" fill="#F9C200"/>
-  <circle cx="75" cy="69" r="21" fill="#0D0D0D"/>
-  <!-- Mango -->
+  <!-- Anillo amarillo: fill-rule evenodd crea el agujero transparente en el centro -->
+  <path fill="#F9C200" fill-rule="evenodd" d="
+    M 75 35
+    A 34 34 0 1 1 74.999 35
+    Z
+    M 75 48
+    A 21 21 0 1 0 75.001 48
+    Z
+  "/>
+
+  <!-- Mango amarillo -->
   <line x1="94" y1="88" x2="123" y2="117"
         stroke="#F9C200" stroke-width="13" stroke-linecap="round"/>
 </svg>
