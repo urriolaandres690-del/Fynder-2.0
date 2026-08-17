@@ -232,7 +232,7 @@
 .welcome-perk:nth-child(1) .welcome-perk-icon { background: #fff0f3; color: #e5496a; }
 .welcome-perk:nth-child(2) .welcome-perk-icon { background: #edf5ff; color: #2F5BB7; }
 .welcome-perk:nth-child(3) .welcome-perk-icon { background: #ecfdf5; color: #059669; }
-.welcome-perk:nth-child(4) .welcome-perk-icon { background: #f0fdf4; color: #16a34a; }
+.welcome-perk:nth-child(4) .welcome-perk-icon { background: #fffbea; color: #f59e0b; }
 
 .welcome-perk-text { display: flex; flex-direction: column; gap: 1px; }
 .welcome-perk-text strong {
