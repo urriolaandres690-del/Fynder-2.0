@@ -1,7 +1,22 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="-20 -12 190 200">
+  <defs>
+    <mask id="m">
+      <rect x="-20" y="-12" width="190" height="200" fill="white"/>
+      <!-- Hueco circular -->
+      <circle cx="75" cy="69" r="45" fill="black"/>
+      <circle cx="75" cy="69" r="34" fill="white"/>
+      <circle cx="75" cy="69" r="20" fill="black"/>
+      <!-- Hueco mango con gap -->
+      <line x1="95" y1="89" x2="132" y2="126"
+            stroke="black" stroke-width="30" stroke-linecap="round"/>
+      <!-- Devolver trazo del mango -->
+      <line x1="95" y1="89" x2="126" y2="120"
+            stroke="white" stroke-width="13" stroke-linecap="round"/>
+    </mask>
+  </defs>
 
-  <!-- Pin con hueco circular usando evenodd -->
-  <path fill-rule="evenodd" fill="#45C6C0" d="
+  <!-- Pin teal con máscara limpia -->
+  <path fill="#45C6C0" d="
     M 75 8
     C 41 8 14 35 14 69
     C 14 88 23 105 37 116
@@ -9,11 +24,7 @@
     C 75 158 101 126 113 116
     C 127 105 136 88 136 69
     C 136 35 109 8 75 8 Z
-
-    M 30 69
-    A 45 45 0 1 0 120 69
-    A 45 45 0 1 0 30 69 Z
-  "/>
+  " mask="url(#m)"/>
 
   <!-- Aro amarillo -->
   <circle cx="75" cy="69" r="27" fill="none" stroke="#F9C200" stroke-width="13"/>
