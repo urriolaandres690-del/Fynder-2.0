@@ -20,10 +20,15 @@
   "/>
 
   <!-- Anillo amarillo con agujero transparente.
-       Cada círculo = dos semicírculos exactos con large-arc-flag=1 -->
+       Usamos círculo superior como punto de corte (75, 35) y (75, 103)
+       para evitar el desnivel en el eje horizontal -->
   <path fill="#F9C200" fill-rule="evenodd" d="
-    M 109 69 A 34 34 0 1 0 41 69 A 34 34 0 1 0 109 69 Z
-    M 96 69  A 21 21 0 1 1 54 69 A 21 21 0 1 1 96 69  Z
+    M 75 35
+    A 34 34 0 1 0 75 103
+    A 34 34 0 1 0 75 35 Z
+    M 75 48
+    A 21 21 0 1 1 75 90
+    A 21 21 0 1 1 75 48 Z
   "/>
 
   <!-- Mango amarillo -->
