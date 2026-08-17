@@ -36,6 +36,6 @@
   <text x="160" y="108"
         font-family="'Montserrat','Arial Black','Arial',sans-serif"
         font-size="74" font-weight="900" letter-spacing="0">
-    <tspan fill="white">FYN</tspan><tspan fill="#F9C200">DER</tspan>
+    <tspan fill="#1E293B">FYN</tspan><tspan fill="#F9C200">DER</tspan>
   </text>
 </svg>
