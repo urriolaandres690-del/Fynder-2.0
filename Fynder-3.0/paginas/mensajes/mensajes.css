@@ -2175,7 +2175,6 @@ body.select-mode .chat-msg-row .msg-checkbox { display: flex; align-items: cente
     border: none;
     display: flex; align-items: center; justify-content: center;
     margin-bottom: 8px;
-    padding: 30px;
     box-sizing: border-box;
   }
   .wa-welcome-title {
