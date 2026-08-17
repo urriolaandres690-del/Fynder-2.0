@@ -659,8 +659,8 @@ input, button, select, textarea {
     .how-card-blue:hover  { box-shadow: 0 20px 50px rgba(47,91,183,.22),   0 4px 12px rgba(47,91,183,.1);    border-color: rgba(47,91,183,.45);  }
     .how-card-green:hover { box-shadow: 0 20px 50px rgba(16,185,129,.22),  0 4px 12px rgba(16,185,129,.1);   border-color: rgba(16,185,129,.45); }
 
-    .how-card-glow { position: absolute; width: 180px; height: 180px; border-radius: 50%; filter: blur(60px); top: -40px; left: 50%; transform: translateX(-50%); pointer-events: none; opacity: .35; transition: opacity .3s; }
-    .how-card:hover .how-card-glow { opacity: .6; }
+    .how-card-glow { position: absolute; width: 180px; height: 180px; border-radius: 50%; filter: blur(60px); top: -40px; left: 50%; transform: translateX(-50%); pointer-events: none; opacity: .55; transition: opacity .3s; }
+    .how-card:hover .how-card-glow { opacity: .8; }
     .how-card-glow-teal  { background: #67B8B4; }
     .how-card-glow-blue  { background: #2F5BB7; }
     .how-card-glow-green { background: #10B981; }
