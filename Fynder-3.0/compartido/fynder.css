@@ -1,4 +1,4 @@
-﻿button, input, select, textarea {
+button, input, select, textarea {
   font-family: 'Inter', sans-serif;
   font-size: inherit;
   line-height: inherit;
@@ -225,7 +225,7 @@ input, button, select, textarea {
         background:#ffffff;
         }
         
-        /* Evita que el fondo blanco del body se vea detrás del navbar transparente sobre el hero */
+        /* Evita que el fondo blanco del body se vea detr�s del navbar transparente sobre el hero */
         body:has(#page-home.active) {
           background: linear-gradient(135deg, #1E8F8B 0%, #67B8B4 45%, #2F5BB7 100%);
           background-attachment: fixed;
@@ -473,7 +473,7 @@ input, button, select, textarea {
 
     .cards-grid { display: grid; grid-template-columns: repeat(auto-fill,minmax(240px,1fr)); gap: 20px; }
 
-    /* ── Scroll vertical seccion Más Populares ── */
+    /* -- Scroll vertical seccion M�s Populares -- */
     .popular-scroll-wrap {
       max-height: 520px;
       overflow-y: auto;
@@ -486,13 +486,13 @@ input, button, select, textarea {
     .popular-scroll-wrap::-webkit-scrollbar { width: 5px; }
     .popular-scroll-wrap::-webkit-scrollbar-track { background: transparent; }
     .popular-scroll-wrap::-webkit-scrollbar-thumb { background: #CBD5E1; border-radius: 99px; }
-    /* Cuando está siendo scrolleado quitamos el fade para no cortar contenido */
+    /* Cuando est� siendo scrolleado quitamos el fade para no cortar contenido */
     .popular-scroll-wrap.scrolled-end {
       -webkit-mask-image: none;
               mask-image: none;
     }
 
-    /* ── Carrusel de destacados ── */
+    /* -- Carrusel de destacados -- */
     .featured-carousel-wrap {
       position: relative;
       /* fade en los bordes para indicar scroll */
@@ -739,7 +739,7 @@ input, button, select, textarea {
       animation: particleRise 8s ease-in infinite;
       opacity: 0;
     }
-    /* Variaciones de tamaño y color para dar diversidad */
+    /* Variaciones de tama�o y color para dar diversidad */
     .footer-particles span:nth-child(3n) {
       width: 2px; height: 2px;
       background: rgba(47, 91, 183, 0.8);
@@ -1269,7 +1269,7 @@ input, button, select, textarea {
     color:white;
    }
 
-    /* NOTE: .bcard:hover with scale was removed — it displaced the "Ver más" button
+    /* NOTE: .bcard:hover with scale was removed � it displaced the "Ver m�s" button
        making it unclickable. The clean hover is defined earlier in the file. */
 
     .auth-card{
@@ -1287,7 +1287,7 @@ input, button, select, textarea {
     }    
 
 
-    /* NOTE: Old .auth-page { display:flex } removed — it overrode .page { display:none }
+    /* NOTE: Old .auth-page { display:flex } removed � it overrode .page { display:none }
        causing login/register to always be visible. The new .auth-page.active handles this. */
 
 .login-header{
@@ -1696,7 +1696,7 @@ body{
 
 
 
-/* ═══ DARK MODE GLOBAL ═══ */
+/* --- DARK MODE GLOBAL --- */
 /* boton de tema */
 .dark-toggle-btn {
   width: 38px; height: 38px;
@@ -1944,7 +1944,7 @@ select option {
 [data-theme="dark"] .auth-input-icon { color: rgba(255,255,255,.4); }
 [data-theme="dark"] .auth-eye-btn { color: rgba(255,255,255,.35) !important; }
 
-/* Botón alternativo (blanco en light → oscuro en dark) */
+/* Bot�n alternativo (blanco en light ? oscuro en dark) */
 [data-theme="dark"] .auth-alt-btn {
   background: rgba(255,255,255,.06) !important;
   border-color: rgba(255,255,255,.12) !important;
@@ -2392,15 +2392,15 @@ svg, svg *, path, polygon, circle, rect, line, polyline {
 .footer-logo-texto {
   transition: none !important;
 }
-/* Solo el scale del hover del botón fav va animado */
+/* Solo el scale del hover del bot�n fav va animado */
 .bcard-fav {
   transition: transform .15s ease !important;
 }
 
 
 
-/* ═══ MODAL ESTADÍSTICAS ═══ */
-/* Modal de estadísticas con gráfica */
+/* --- MODAL ESTAD�STICAS --- */
+/* Modal de estad�sticas con gr�fica */
 
 /* Tarjetas hero-stat interactivas */
 .hero-stat-card {
@@ -2473,7 +2473,7 @@ svg, svg *, path, polygon, circle, rect, line, polyline {
   margin: 0 auto 20px;
 }
 
-/* Botón cerrar */
+/* Bot�n cerrar */
 .smodal-close {
   position: absolute;
   top: 18px;
@@ -2527,7 +2527,7 @@ svg, svg *, path, polygon, circle, rect, line, polyline {
   font-weight: 500;
 }
 
-/* Título y desc */
+/* T�tulo y desc */
 .smodal-title {
   font-size: 1.0625rem;
   font-weight: 700;
@@ -2560,7 +2560,7 @@ svg, svg *, path, polygon, circle, rect, line, polyline {
 .smodal-extra-row span { color: #6B7280; }
 .smodal-extra-row strong { font-weight: 700; font-size: .875rem; }
 
-/* Sección de gráfica */
+/* Secci�n de gr�fica */
 .smodal-chart-section { margin-top: 4px; }
 .smodal-chart-title {
   font-size: .75rem;
@@ -2646,8 +2646,8 @@ svg, svg *, path, polygon, circle, rect, line, polyline {
 }
 
 
-/* ═══ RESPONSIVE GLOBAL ═══ */
-/* RESPONSIVE GLOBAL – Correcciones para móvil, tablet, desktop */
+/* --- RESPONSIVE GLOBAL --- */
+/* RESPONSIVE GLOBAL � Correcciones para m�vil, tablet, desktop */
 
 /* ---- Hamburger button ---- */
 .nav-hamburger {
@@ -2799,7 +2799,7 @@ svg, svg *, path, polygon, circle, rect, line, polyline {
   transition: all .2s;
 }
 
-/* ── Herramientas tipo Chrome en el menú ── */
+/* -- Herramientas tipo Chrome en el men� -- */
 .mobile-menu-tool-item {
   display: flex !important;
   align-items: center !important;
@@ -2832,7 +2832,7 @@ svg, svg *, path, polygon, circle, rect, line, polyline {
 }
 .mobile-menu-tool-item:hover > i { color: var(--primary) !important; }
 
-/* Ítem con submenú */
+/* �tem con submen� */
 .mobile-menu-has-sub .mobile-sub-arrow {
   font-size: .7rem !important;
   color: var(--muted) !important;
@@ -2843,7 +2843,7 @@ svg, svg *, path, polygon, circle, rect, line, polyline {
   transform: rotate(90deg) !important;
 }
 
-/* Submenú desplegable */
+/* Submen� desplegable */
 .mobile-submenu {
   display: none;
   flex-direction: column;
@@ -2883,7 +2883,7 @@ svg, svg *, path, polygon, circle, rect, line, polyline {
 }
 .mobile-submenu button:hover i { color: var(--primary) !important; }
 
-/* Ítem de salir (peligro) */
+/* �tem de salir (peligro) */
 .mobile-menu-tool-danger {
   color: #EF4444 !important;
 }
@@ -2893,7 +2893,7 @@ svg, svg *, path, polygon, circle, rect, line, polyline {
   color: #DC2626 !important;
 }
 
-/* Footer "Gestionado por tu organización" */
+/* Footer "Gestionado por tu organizaci�n" */
 .mobile-menu-org-footer {
   display: flex;
   align-items: center;
@@ -2937,9 +2937,9 @@ svg, svg *, path, polygon, circle, rect, line, polyline {
   color: #EF4444;
 }
 
-/* BREAKPOINT: tablet ancho (769px – 1024px) */
+/* BREAKPOINT: tablet ancho (769px � 1024px) */
 @media (max-width: 1024px) {
-  /* How-grid: paso intermedio 5 cols → 3 pasos verticales */
+  /* How-grid: paso intermedio 5 cols ? 3 pasos verticales */
   .how-grid {
     grid-template-columns: 1fr 1fr;
     gap: 20px;
@@ -2953,7 +2953,7 @@ svg, svg *, path, polygon, circle, rect, line, polyline {
     width: 100%;
   }
 
-  /* About cards: 3→2 cols */
+  /* About cards: 3?2 cols */
   .about-cards { grid-template-columns: 1fr 1fr; }
   .about-impact-grid { grid-template-columns: 1fr 1fr; }
 
@@ -2970,7 +2970,7 @@ svg, svg *, path, polygon, circle, rect, line, polyline {
   .plan-card-pro:hover { transform: translateY(-3px); }
 }
 
-/* BREAKPOINT: tablet (601px – 768px) */
+/* BREAKPOINT: tablet (601px � 768px) */
 @media (max-width: 768px) {
   /* How-grid: apilado */
   .how-grid { grid-template-columns: 1fr; }
@@ -3008,7 +3008,7 @@ svg, svg *, path, polygon, circle, rect, line, polyline {
   .dir-toolbar { top: 56px; }
 }
 
-/* BREAKPOINT: móvil grande (481px – 600px) */
+/* BREAKPOINT: m�vil grande (481px � 600px) */
 @media (max-width: 600px) {
   /* Navbar: mostrar hamburger, ocultar nav-links y acciones grandes */
   .nav-links         { display: none !important; }
@@ -3016,17 +3016,17 @@ svg, svg *, path, polygon, circle, rect, line, polyline {
   .btn-login-nav     { display: none !important; }
   .nav-hamburger     { display: flex !important; }
 
-  /* El botón "Registrar negocio" ocupa demasiado en el nav */
+  /* El bot�n "Registrar negocio" ocupa demasiado en el nav */
   #navbar .btn-teal  { display: none !important; }
 
   /* Nav actions: reducir gap y evitar desborde */
   .nav-actions { gap: 6px !important; flex-wrap: nowrap; overflow: visible; }
 
-  /* Dark toggle y dots más compactos en móvil */
+  /* Dark toggle y dots m�s compactos en m�vil */
   .dark-toggle-btn { width: 34px !important; height: 34px !important; }
   .nav-dots-btn    { width: 34px !important; height: 34px !important; flex-shrink: 0; }
 
-  /* Nombre de usuario más compacto */
+  /* Nombre de usuario m�s compacto */
   #userName { font-size: 13px !important; margin-right: 4px !important; max-width: 80px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; display: inline-block !important; }
 
   /* Nav inner padding reducido */
@@ -3072,9 +3072,9 @@ svg, svg *, path, polygon, circle, rect, line, polyline {
   .fynder-modal { border-radius: 16px 16px 0 0; }
 }
 
-/* BREAKPOINT: móvil pequeño (≤ 480px) */
+/* BREAKPOINT: m�vil peque�o (= 480px) */
 @media (max-width: 480px) {
-  /* Tipografía base */
+  /* Tipograf�a base */
   html { font-size: 15px; }
 
   /* Navbar: solo logo + dark toggle + hamburger */
@@ -3087,7 +3087,7 @@ svg, svg *, path, polygon, circle, rect, line, polyline {
   .hero-popular { flex-wrap: wrap; gap: 6px; }
   .hero-stats { grid-template-columns: 1fr 1fr; gap: 10px; }
 
-  /* Categorías home */
+  /* Categor�as home */
   .cat-grid { grid-template-columns: repeat(3, 1fr); gap: 10px; }
 
   /* Cards grid */
@@ -3113,7 +3113,7 @@ svg, svg *, path, polygon, circle, rect, line, polyline {
   .fyl-cta           { padding: 36px 16px; border-radius: 20px; }
   .fyl-hero          { padding: 70px 16px 50px; }
 
-  /* Modal: fullscreen en móvil pequeño */
+  /* Modal: fullscreen en m�vil peque�o */
   .fynder-modal-overlay { padding: 0; align-items: flex-end; }
   .fynder-modal {
     max-height: 92dvh;
@@ -3147,7 +3147,7 @@ svg, svg *, path, polygon, circle, rect, line, polyline {
   .profile-header-actions { width: 100%; }
 }
 
-/* BREAKPOINT: móvil muy pequeño (≤ 360px) */
+/* BREAKPOINT: m�vil muy peque�o (= 360px) */
 @media (max-width: 360px) {
   html { font-size: 14px; }
   .hero h1 { font-size: 1.45rem; }
@@ -3157,7 +3157,7 @@ svg, svg *, path, polygon, circle, rect, line, polyline {
   .plan-price-amount { font-size: 1.75rem; }
 }
 
-/* DARK MODE – correcciones drawer móvil */
+/* DARK MODE � correcciones drawer m�vil */
 [data-theme="dark"] .mobile-menu-drawer {
   background: var(--card);
   box-shadow: -8px 0 32px rgba(0,0,0,.5);
@@ -3177,11 +3177,11 @@ svg, svg *, path, polygon, circle, rect, line, polyline {
 }
 
 
-/* ESCALA MÓVIL – Reducción de tamaños en pantallas pequeñas */
+/* ESCALA M�VIL � Reducci�n de tama�os en pantallas peque�as */
 
 @media (max-width: 600px) {
 
-  /* ---- Tipografía global ---- */
+  /* ---- Tipograf�a global ---- */
   html { font-size: 15px; }
 
   /* ---- Hero ---- */
@@ -3209,10 +3209,10 @@ svg, svg *, path, polygon, circle, rect, line, polyline {
   .bcard-list-name { font-size: .9rem; }
   .bcard-list-desc { font-size: .8rem; }
 
-  /* ---- Categorías ---- */
+  /* ---- Categor�as ---- */
   .cat-item-label  { font-size: .7rem; }
 
-  /* ---- Sección de acción ---- */
+  /* ---- Secci�n de acci�n ---- */
   .cta-inner h2    { font-size: 1.5rem !important; }
   .cta-inner p     { font-size: .875rem; }
   .cta-section     { padding: 44px 0; }
@@ -3243,7 +3243,7 @@ svg, svg *, path, polygon, circle, rect, line, polyline {
   .profile-card    { padding: 20px 16px; }
   .profile-section-title { font-size: .95rem; }
 
-  /* ---- Saber más (fynder landing) ---- */
+  /* ---- Saber m�s (fynder landing) ---- */
   .fyl-hero-title  { font-size: 1.6rem !important; }
   .fyl-hero-lead   { font-size: .9rem; }
   .fyl-section-title { font-size: 1.3rem !important; }
@@ -3292,7 +3292,7 @@ svg, svg *, path, polygon, circle, rect, line, polyline {
 
   html { font-size: 14.5px; }
 
-  /* Hero más compacto */
+  /* Hero m�s compacto */
   .hero            { min-height: auto; padding: 80px 16px 36px; }
   .hero h1         { font-size: 1.55rem !important; }
   .hero p          { font-size: .875rem; }
@@ -3301,7 +3301,7 @@ svg, svg *, path, polygon, circle, rect, line, polyline {
   .hero-stat-card .stat-num { font-size: 1.25rem; }
   .hero-stat-card .stat-label { font-size: .7rem; }
 
-  /* Categorías home más pequeñas */
+  /* Categor�as home m�s peque�as */
   .cat-grid        { gap: 8px; }
   .cat-item        { padding: 12px 6px; border-radius: 14px; }
   .cat-item-label  { font-size: .65rem; }
@@ -3314,7 +3314,7 @@ svg, svg *, path, polygon, circle, rect, line, polyline {
   .bcard           { border-radius: 14px; }
   .bcard-img       { height: 150px; }
 
-  /* Llamada a la acción */
+  /* Llamada a la acci�n */
   .cta-inner h2    { font-size: 1.3rem !important; }
   .cta-inner       { padding: 32px 16px; border-radius: 16px; }
   .cta-btns        { flex-direction: column; gap: 10px; }
@@ -3322,7 +3322,7 @@ svg, svg *, path, polygon, circle, rect, line, polyline {
 }
 
 
-/* ---- Mobile drawer: user info + botones de acción ---- */
+/* ---- Mobile drawer: user info + botones de acci�n ---- */
 .mobile-menu-user-info {
   display: flex;
   align-items: center;
@@ -3422,7 +3422,7 @@ svg, svg *, path, polygon, circle, rect, line, polyline {
 }
 .mobile-action-logout:hover { background: rgba(239,68,68,.08); }
 
-/* ---- Panel de cuentas múltiples ---- */
+/* ---- Panel de cuentas m�ltiples ---- */
 .mobile-accounts-panel {
   display: none;
   flex-direction: column;
@@ -3544,7 +3544,7 @@ svg, svg *, path, polygon, circle, rect, line, polyline {
 .mobile-menu-nav-small:hover i { color: var(--primary) !important; }
 
 
-/* ---- Botón tres puntitos (desktop) / hamburguesa (mobile) ---- */
+/* ---- Bot�n tres puntitos (desktop) / hamburguesa (mobile) ---- */
 .nav-dots-btn {
   display: flex;
   align-items: center;
@@ -3580,7 +3580,7 @@ svg, svg *, path, polygon, circle, rect, line, polyline {
   border-color: var(--primary);
 }
 
-/* En mobile el mismo botón muestra tres barras */
+/* En mobile el mismo bot�n muestra tres barras */
 .nav-icon-mobile  { display: none !important; }
 .nav-icon-desktop { display: block !important; }
 
@@ -3598,7 +3598,7 @@ svg, svg *, path, polygon, circle, rect, line, polyline {
 .nav-hamburger { display: none !important; }
 
 
-/* ABOUT PAGE V2 – Rediseño visual completo */
+/* ABOUT PAGE V2 � Redise�o visual completo */
 
 /* Keyframes */
 @keyframes about-float   { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-10px)} }
@@ -3615,7 +3615,7 @@ svg, svg *, path, polygon, circle, rect, line, polyline {
 .about-page-redesign { min-height:100vh; background:var(--bg); }
 .about-back-btn { position:absolute; top:90px; left:24px; z-index:10; }
 
-/* Full-width alternating sections (like secciones alternadas de saber más) */
+/* Full-width alternating sections (like secciones alternadas de saber m�s) */
 .about-section-alt-bg {
   max-width: 100% !important;
   background: #fff;
@@ -3776,7 +3776,7 @@ svg, svg *, path, polygon, circle, rect, line, polyline {
   border-top:1px solid rgba(255,255,255,.08); padding-top:14px; margin-top:4px;
 }
 
-/* ---- Misión, visión y valores: tarjetas con brillo ---- */
+/* ---- Misi�n, visi�n y valores: tarjetas con brillo ---- */
 .about-mvv-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:20px; }
 @media(max-width:900px){.about-mvv-grid{grid-template-columns:1fr 1fr;}}
 @media(max-width:560px){.about-mvv-grid{grid-template-columns:1fr;}}
@@ -3886,7 +3886,7 @@ svg, svg *, path, polygon, circle, rect, line, polyline {
 }
 .about-team-v2-avatar:hover .about-avatar-ring { opacity:1; }
 
-/* ---- Sección final de acción ---- */
+/* ---- Secci�n final de acci�n ---- */
 .about-cta-v2 {
   background:linear-gradient(135deg,#0F172A 0%,#1E293B 50%,#0A1628 100%);
   padding:64px 40px; text-align:center; color:#fff;
@@ -4071,7 +4071,7 @@ svg, svg *, path, polygon, circle, rect, line, polyline {
 }
  
 
-/* ── pagina mapa de negocios ── */
+/* -- pagina mapa de negocios -- */
 
 #page-map {
   display: none;
@@ -4083,7 +4083,7 @@ svg, svg *, path, polygon, circle, rect, line, polyline {
 }
 #page-map.active { display: flex; }
 
-/* El mapa en sí (toolbar + layout) ocupa el 100vh inicial */
+/* El mapa en s� (toolbar + layout) ocupa el 100vh inicial */
 #page-map > .map-layout {
   flex: 0 0 calc(100vh - 64px - 56px); /* viewport - navbar - toolbar */
 }
@@ -4460,13 +4460,13 @@ svg, svg *, path, polygon, circle, rect, line, polyline {
 }
 
 
-/* TEMA CLARO/OSCURO — Páginas "Saber más" y "Sobre Fynder" — Fix: fondos, bordes, textos y cards adaptables al tema */
+/* TEMA CLARO/OSCURO � P�ginas "Saber m�s" y "Sobre Fynder" � Fix: fondos, bordes, textos y cards adaptables al tema */
 
-/* ── Fondos de sección principal ── */
+/* -- Fondos de secci�n principal -- */
 .fyl-body { background: var(--bg); }
 .about-body { background: var(--bg); }
 
-/* ── Cards en modo claro: fondo blanco limpio con borde visible ── */
+/* -- Cards en modo claro: fondo blanco limpio con borde visible -- */
 .fyl-step,
 .fyl-feature,
 .fyl-impact-card,
@@ -4477,7 +4477,7 @@ svg, svg *, path, polygon, circle, rect, line, polyline {
   border-color: var(--border);
 }
 
-/* Bordes más visibles en modo claro */
+/* Bordes m�s visibles en modo claro */
 .fyl-step    { border: 1.5px solid rgba(103,184,180,.22); }
 .fyl-feature { border: 1.5px solid rgba(103,184,180,.22); }
 .fyl-impact-card { border: 1.5px solid rgba(103,184,180,.22); }
@@ -4491,11 +4491,11 @@ svg, svg *, path, polygon, circle, rect, line, polyline {
   border-color: transparent !important;
 }
 
-/* ── Secciones alternadas en modo CLARO: fondo suave diferenciado ── */
+/* -- Secciones alternadas en modo CLARO: fondo suave diferenciado -- */
 section.fyl-section-alt { background: #EBF6F5 !important; }
 .about-section-alt-bg   { background: #EBF6F5 !important; }
 
-/* ── Textos de cards en modo claro ── */
+/* -- Textos de cards en modo claro -- */
 .fyl-section-title  { color: var(--fg); }
 .fyl-section-lead   { color: var(--muted); }
 .fyl-step-body h3   { color: var(--fg); }
@@ -4514,14 +4514,14 @@ section.fyl-section-alt { background: #EBF6F5 !important; }
 .fyl-compare-no { background: #FEF2F2; }
 .fyl-compare-no .fyl-compare-list li { color: #6B7280; }
 
-/* ── About: cards mvv en modo claro ── */
+/* -- About: cards mvv en modo claro -- */
 .about-mvv-card { background: var(--card); border-color: rgba(103,184,180,.22); }
 .about-mvv-card h3 { color: var(--fg); }
 .about-mvv-card p  { color: var(--muted); }
 
-/* ── About: sección origen tarjeta — ver bloque final de fixes ── */
+/* -- About: secci�n origen tarjeta � ver bloque final de fixes -- */
 
-/* ── MODO OSCURO: overrides mejorados ── */
+/* -- MODO OSCURO: overrides mejorados -- */
 [data-theme="dark"] section.fyl-section-alt  { background: #1A2744 !important; }
 [data-theme="dark"] .about-section-alt-bg    { background: #1A2744 !important; }
 
@@ -4538,14 +4538,14 @@ section.fyl-section-alt { background: #EBF6F5 !important; }
 
 [data-theme="dark"] .about-mvv-card { background: var(--card); border-color: rgba(103,184,180,.15); }
 
-/* ── FAQ abierto: borde destacado en ambos modos ── */
+/* -- FAQ abierto: borde destacado en ambos modos -- */
 .fyl-faq-item[open] { box-shadow: var(--shadow-md); border-color: var(--primary); }
 
-/* ── Número de paso: suave en claro, no se pierde ── */
+/* -- N�mero de paso: suave en claro, no se pierde -- */
 .fyl-step-num { color: rgba(103,184,180,.25); }
 [data-theme="dark"] .fyl-step-num { color: rgba(103,184,180,.15); }
 
-/* ── About stats y cards ── */
+/* -- About stats y cards -- */
 .about-stat-card,
 .about-timeline-item {
   background: var(--card);
@@ -4557,34 +4557,34 @@ section.fyl-section-alt { background: #EBF6F5 !important; }
   border-color: rgba(103,184,180,.15);
 }
 
-/* ── Wave del hero de Saber más y Sobre Fynder ──
-   En claro: la ola termina en el fondo de página */
+/* -- Wave del hero de Saber m�s y Sobre Fynder --
+   En claro: la ola termina en el fondo de p�gina */
 .fyl-hero-wave path,
 .about-hero-wave path { fill: var(--bg) !important; }
 
-/* ── Fondo de página saber más ── */
+/* -- Fondo de p�gina saber m�s -- */
 #page-fynder { background: var(--bg); }
 #page-about  { background: var(--bg); }
 
-/* ── VS badge del comparador en modo claro ── */
+/* -- VS badge del comparador en modo claro -- */
 .fyl-compare-vs { background: var(--card); color: var(--fg); }
 
-/* ── About CTA final: turquesa en claro, oscuro en dark ── */
+/* -- About CTA final: turquesa en claro, oscuro en dark -- */
 /* (override abajo en el bloque de fixes) */
 
-/* ── About team card: override en bloque de fixes ── */
+/* -- About team card: override en bloque de fixes -- */
 
 
-/* FIX MODO CLARO — Hero badges/pills, CTAs oscuros, esquinas */
+/* FIX MODO CLARO � Hero badges/pills, CTAs oscuros, esquinas */
 
-/* ── 1. HERO BADGE del "Saber más": texto visible sobre turquesa ── */
+/* -- 1. HERO BADGE del "Saber m�s": texto visible sobre turquesa -- */
 .fyl-hero-badge {
   background: rgba(255,255,255,.22);
   border: 1px solid rgba(255,255,255,.4);
   color: #fff;
 }
 
-/* ── 2. STAT PILLS del hero: más visibles sobre turquesa ── */
+/* -- 2. STAT PILLS del hero: m�s visibles sobre turquesa -- */
 .fyl-stat-pill {
   background: rgba(255,255,255,.18);
   border: 1px solid rgba(255,255,255,.35);
@@ -4592,8 +4592,8 @@ section.fyl-section-alt { background: #EBF6F5 !important; }
 }
 .fyl-pill-num { color: #fff; font-weight: 900; }
 
-/* ── 3. CTA FINAL "Saber más" (fyl-cta): 
-   Full-width, sin border-radius — fluye sin esquinas raras ── */
+/* -- 3. CTA FINAL "Saber m�s" (fyl-cta): 
+   Full-width, sin border-radius � fluye sin esquinas raras -- */
 .fyl-cta {
   background: linear-gradient(135deg, #1E8F8B 0%, #2F5BB7 100%);
   border-radius: 0 !important;
@@ -4605,10 +4605,10 @@ section.fyl-section-alt { background: #EBF6F5 !important; }
   background: linear-gradient(135deg, #0F172A 0%, #1E293B 50%, #0A1628 100%);
 }
 
-/* ── 4. ABOUT TEAM CARD: ver bloque final de fixes para los estilos actualizados ── */
+/* -- 4. ABOUT TEAM CARD: ver bloque final de fixes para los estilos actualizados -- */
 
-/* ── 5. ABOUT CTA FINAL ("Tu negocio merece ser encontrado"):
-   Full-width, sin border-radius, conecta perfectamente ── */
+/* -- 5. ABOUT CTA FINAL ("Tu negocio merece ser encontrado"):
+   Full-width, sin border-radius, conecta perfectamente -- */
 .about-cta-v2 {
   background: linear-gradient(135deg, #1E8F8B 0%, #2563EB 60%, #1e3a8a 100%);
   border-radius: 0 !important;
@@ -4618,28 +4618,28 @@ section.fyl-section-alt { background: #EBF6F5 !important; }
   background: linear-gradient(135deg, #0F172A 0%, #1E293B 50%, #0A1628 100%);
 }
 
-/* ── 6. FYL CTA FINAL ("¿Listo para ser encontrado?"):
-   Full-width dentro del fyl-body, sin esquinas extrañas ── */
+/* -- 6. FYL CTA FINAL ("�Listo para ser encontrado?"):
+   Full-width dentro del fyl-body, sin esquinas extra�as -- */
 section.fyl-section .fyl-cta {
   margin: 0;
   border-radius: 0 !important;
 }
 
-/* ── 7. ABOUT SECTION que contiene el CTA: sin padding para que fluya ── */
+/* -- 7. ABOUT SECTION que contiene el CTA: sin padding para que fluya -- */
 #page-about .about-cta-v2 {
   margin: 0;
   border-radius: 0 !important;
 }
 
-/* ── 8. FOOTER integrado suavemente: sin esquinas raras en la última sección ── */
-/* El about termina con el cta que es full-width — bordes correctos */
+/* -- 8. FOOTER integrado suavemente: sin esquinas raras en la �ltima secci�n -- */
+/* El about termina con el cta que es full-width � bordes correctos */
 #page-about footer,
 #page-fynder footer {
   border-radius: 0;
   margin-top: 0;
 }
 
-/* ── 9. Stat pills del about-hero (mismo tratamiento) ── */
+/* -- 9. Stat pills del about-hero (mismo tratamiento) -- */
 .about-hero-stat-pill {
   background: rgba(255,255,255,.18);
   border: 1px solid rgba(255,255,255,.35);
@@ -4647,7 +4647,7 @@ section.fyl-section .fyl-cta {
 }
 .about-stat-pill-num { color: #fff; font-weight: 900; }
 
-/* ── 10. Badge pill del about hero ── */
+/* -- 10. Badge pill del about hero -- */
 .about-hero-badge-pill {
   background: rgba(255,255,255,.2);
   border-color: rgba(255,255,255,.35);
@@ -4655,7 +4655,7 @@ section.fyl-section .fyl-cta {
 }
 .about-badge-dot { background: #fff; }
 
-/* ── MODO OSCURO: restaurar pills oscuros ── */
+/* -- MODO OSCURO: restaurar pills oscuros -- */
 [data-theme="dark"] .fyl-hero-badge {
   background: rgba(103,184,180,.15);
   border-color: rgba(103,184,180,.3);
@@ -4680,22 +4680,22 @@ section.fyl-section .fyl-cta {
 [data-theme="dark"] .about-badge-dot { background: #67B8B4; }
 
 
-/* FIX VISUAL — Texto FYNDER visible, Origin card, Team card */
+/* FIX VISUAL � Texto FYNDER visible, Origin card, Team card */
 
-/* ── 1. FYNDER en el título del hero: amarillo brillante, nunca invisible ── */
+/* -- 1. FYNDER en el t�tulo del hero: amarillo brillante, nunca invisible -- */
 .fyl-hero-title span {
   color: var(--yellow, #F4D35E) !important;
   text-shadow: 0 0 30px rgba(244,211,94,.4);
 }
 
-/* ── 2. TARJETA ORIGEN — modo claro: glassmorphism con gradiente vibrante ── */
+/* -- 2. TARJETA ORIGEN � modo claro: glassmorphism con gradiente vibrante -- */
 .about-origin-v2-card {
   background: linear-gradient(135deg, #1E8F8B 0%, #2F5BB7 100%) !important;
   border: 1.5px solid rgba(255,255,255,.3) !important;
   box-shadow: 0 20px 60px rgba(30,143,139,.35), 0 4px 20px rgba(47,91,183,.25);
 }
 
-/* Logo del rayo en el origen card: más visible */
+/* Logo del rayo en el origen card: m�s visible */
 .about-origin-logo-big {
   background: rgba(255,255,255,.2) !important;
   border: 2px solid rgba(255,255,255,.35);
@@ -4733,7 +4733,7 @@ section.fyl-section .fyl-cta {
   color: rgba(255,255,255,.8) !important;
 }
 
-/* ── 3. TEAM CARD "Detrás de Fynder" — espectacular, con bordes y glow ── */
+/* -- 3. TEAM CARD "Detr�s de Fynder" � espectacular, con bordes y glow -- */
 .about-section.about-section-alt-bg:has(.about-team-card) {
   padding: 0 !important;
   overflow: visible !important;
@@ -4790,15 +4790,15 @@ section.fyl-section .fyl-cta {
 }
 
 
-/* REDONDEO GLOBAL + FIX TESTIMONIO FEATURED — Saber más y Sobre Fynder — menos cuadrados, más fluidos */
+/* REDONDEO GLOBAL + FIX TESTIMONIO FEATURED � Saber m�s y Sobre Fynder � menos cuadrados, m�s fluidos */
 
-/* ── FIX CRÍTICO: testimonio del medio (featured) siempre texto blanco ── */
+/* -- FIX CR�TICO: testimonio del medio (featured) siempre texto blanco -- */
 .fyl-testi-featured .fyl-testi-text   { color: rgba(255,255,255,.88) !important; }
 .fyl-testi-featured .fyl-testi-stars  { color: #FDE68A !important; }
 .fyl-testi-featured .fyl-testi-author strong { color: #fff !important; }
 .fyl-testi-featured .fyl-testi-author span   { color: rgba(255,255,255,.65) !important; }
 
-/* ── REDONDEO — cards de "Saber más" ── */
+/* -- REDONDEO � cards de "Saber m�s" -- */
 .fyl-what-card  { border-radius: 28px !important; }
 .fyl-step       { border-radius: 24px !important; }
 .fyl-feature    { border-radius: 22px !important; }
@@ -4808,20 +4808,20 @@ section.fyl-section .fyl-cta {
 .fyl-faq-item   { border-radius: 18px !important; }
 .fyl-compare    { border-radius: 32px !important; overflow: hidden; }
 
-/* Botones más redondeados */
+/* Botones m�s redondeados */
 .fyl-btn-primary,
 .fyl-btn-ghost  { border-radius: 18px !important; }
 .fyl-for-btn-teal,
 .fyl-for-btn-purple { border-radius: 16px !important; }
 .fyl-cta-btn    { border-radius: 18px !important; }
 
-/* Pills del hero: ya son 99px, está bien */
+/* Pills del hero: ya son 99px, est� bien */
 
 /* Iconos de feat y pasos */
 .fyl-feat-icon  { border-radius: 16px !important; }
-.fyl-step-num   { border-radius: 0; } /* número, no card */
+.fyl-step-num   { border-radius: 0; } /* n�mero, no card */
 
-/* ── REDONDEO — cards de "Sobre Fynder" ── */
+/* -- REDONDEO � cards de "Sobre Fynder" -- */
 .about-mvv-card      { border-radius: 28px !important; }
 .about-impact-v2-card{ border-radius: 24px !important; }
 .about-origin-v2-card{ border-radius: 28px !important; }
@@ -4837,42 +4837,42 @@ section.fyl-section .fyl-cta {
 .about-cta-v2-primary,
 .about-cta-v2-ghost   { border-radius: 18px !important; }
 
-/* ── Secciones FAQ más redondeadas ── */
+/* -- Secciones FAQ m�s redondeadas -- */
 .fyl-faq-item summary { border-radius: 18px !important; }
 .fyl-faq-item[open] summary { border-radius: 18px 18px 0 0 !important; }
 
-/* ── Compare: columnas con esquinas redondeadas en los extremos ── */
+/* -- Compare: columnas con esquinas redondeadas en los extremos -- */
 .fyl-compare-no  { border-radius: 32px 0 0 32px !important; }
 .fyl-compare-yes { border-radius: 0 32px 32px 0 !important; }
 
-/* ── Categorías de saber más: ya son pill (99px), ok ── */
+/* -- Categor�as de saber m�s: ya son pill (99px), ok -- */
 
-/* ── Secciones de fondo alternado: esquinas superiores redondeadas ── */
+/* -- Secciones de fondo alternado: esquinas superiores redondeadas -- */
 section.fyl-section-alt {
   border-radius: 0 !important; /* full-width, sin esquinas */
 }
 
 
-/* FIX FINAL — Team card redondeo + testimonios */
+/* FIX FINAL � Team card redondeo + testimonios */
 
-/* ── Team card: esquinas bien redondeadas y aspecto premium ── */
+/* -- Team card: esquinas bien redondeadas y aspecto premium -- */
 .about-team-card {
   border-radius: 28px !important;
   margin: 24px !important;
-  /* Ancho real dentro del padding de la sección */
+  /* Ancho real dentro del padding de la secci�n */
 }
 
-/* La sección que lo contiene: deja espacio para que se vean las esquinas */
+/* La secci�n que lo contiene: deja espacio para que se vean las esquinas */
 .about-section.about-section-alt-bg:has(.about-team-card) {
   background: var(--bg) !important;
   padding: 0 !important;
 }
 
-/* ── Redondeo de los pills de origen ── */
+/* -- Redondeo de los pills de origen -- */
 .about-origin-pill { border-radius: 99px !important; }
 .about-origin-logo-big { border-radius: 24px !important; }
 
-/* ── Testimonio featured: protección total del background ── */
+/* -- Testimonio featured: protecci�n total del background -- */
 .fyl-testi.fyl-testi-featured {
   background: linear-gradient(155deg, #1E8F8B 0%, #2563EB 100%) !important;
   border-color: transparent !important;
@@ -4883,15 +4883,15 @@ section.fyl-section-alt {
 .fyl-testi.fyl-testi-featured .fyl-testi-author strong { color: #fff !important; }
 .fyl-testi.fyl-testi-featured .fyl-testi-author span   { color: rgba(255,255,255,.65) !important; }
 
-/* ── About section-alt-bg con team card usa fondo de página ── */
+/* -- About section-alt-bg con team card usa fondo de p�gina -- */
 [data-theme="dark"] .about-section.about-section-alt-bg:has(.about-team-card) {
   background: var(--bg) !important;
 }
 
 
-/* NAVBAR BLANCO sobre heroes de About y Saber más — Fallback CSS para cuando on-hero no se aplica a tiempo */
+/* NAVBAR BLANCO sobre heroes de About y Saber m�s � Fallback CSS para cuando on-hero no se aplica a tiempo */
 
-/* Nav links blancos sobre el hero de Home, About y Saber más */
+/* Nav links blancos sobre el hero de Home, About y Saber m�s */
 body:has(#page-home.active) #navbar:not(.scrolled) .nav-link,
 body:has(#page-about.active) #navbar:not(.scrolled) .nav-link,
 body:has(#page-fynder.active) #navbar:not(.scrolled) .nav-link {
@@ -4910,7 +4910,7 @@ body:has(#page-fynder.active) #navbar:not(.scrolled) .nav-link.active {
   color: #fff;
 }
 
-/* Botones ghost del navbar (Mi perfil, Mi panel, Cerrar sesión) */
+/* Botones ghost del navbar (Mi perfil, Mi panel, Cerrar sesi�n) */
 body:has(#page-home.active) #navbar:not(.scrolled) .btn-ghost,
 body:has(#page-about.active) #navbar:not(.scrolled) .btn-ghost,
 body:has(#page-fynder.active) #navbar:not(.scrolled) .btn-ghost {
@@ -4931,7 +4931,7 @@ body:has(#page-fynder.active) #navbar:not(.scrolled) #userName {
   color: rgba(255,255,255,.9);
 }
 
-/* Botón Iniciar sesión */
+/* Bot�n Iniciar sesi�n */
 body:has(#page-home.active) #navbar:not(.scrolled) .btn-login-nav,
 body:has(#page-about.active) #navbar:not(.scrolled) .btn-login-nav,
 body:has(#page-fynder.active) #navbar:not(.scrolled) .btn-login-nav {
@@ -4959,7 +4959,7 @@ body:has(#page-fynder.active) #navbar:not(.scrolled) .logo-text .fyn {
   color: #fff;
 }
 
-/* Botón dark toggle */
+/* Bot�n dark toggle */
 body:has(#page-home.active) #navbar:not(.scrolled) .dark-toggle-btn,
 body:has(#page-about.active) #navbar:not(.scrolled) .dark-toggle-btn,
 body:has(#page-fynder.active) #navbar:not(.scrolled) .dark-toggle-btn {
@@ -4967,7 +4967,7 @@ body:has(#page-fynder.active) #navbar:not(.scrolled) .dark-toggle-btn {
   background: rgba(255,255,255,.1);
 }
 
-/* Botón menú hamburguesa/dots */
+/* Bot�n men� hamburguesa/dots */
 body:has(#page-home.active) #navbar:not(.scrolled) .nav-dots-btn,
 body:has(#page-about.active) #navbar:not(.scrolled) .nav-dots-btn,
 body:has(#page-fynder.active) #navbar:not(.scrolled) .nav-dots-btn {
@@ -4990,14 +4990,14 @@ body:has(#page-fynder.active) #navbar:not(.scrolled) .nav-dots-btn:hover {
 }
 
 
-/* RESPONSIVE MÓVIL – CORRECCIONES COMPLETAS — Aplicadas al final para que tengan máxima prioridad */
+/* RESPONSIVE M�VIL � CORRECCIONES COMPLETAS � Aplicadas al final para que tengan m�xima prioridad */
 
 /* ---- viewport meta fix: evitar zoom al tocar inputs ---- */
 @media (max-width: 768px) {
   input, select, textarea { font-size: 16px !important; }
 }
 
-/* TABLET (≤ 1024px) – nav + hero + layout */
+/* TABLET (= 1024px) � nav + hero + layout */
 @media (max-width: 1024px) {
   .nav-inner { padding: 0 16px; }
   .hero-inner {
@@ -5011,7 +5011,7 @@ body:has(#page-fynder.active) #navbar:not(.scrolled) .nav-dots-btn:hover {
   .footer-grid { grid-template-columns: 1fr 1fr; gap: 32px; }
 }
 
-/* TABLET PEQUEÑA / MÓVIL GRANDE (≤ 768px) */
+/* TABLET PEQUE�A / M�VIL GRANDE (= 768px) */
 @media (max-width: 768px) {
   /* ---- Navbar ---- */
   .nav-links      { display: none !important; }
@@ -5021,18 +5021,18 @@ body:has(#page-fynder.active) #navbar:not(.scrolled) .nav-dots-btn:hover {
   #navbar .btn-teal { display: none !important; }
   .nav-inner { padding: 0 14px; height: 56px; }
 
-  /* Ocultar íconos de perfil, dashboard, mensajes y ajustes en móvil —
+  /* Ocultar �conos de perfil, dashboard, mensajes y ajustes en m�vil �
      solo dejar: userName + dark toggle + hamburger (barras) + dots (puntos) */
   .nav-icon-btn      { display: none !important; }
   .nav-msg-btn       { display: none !important; }
   .nav-settings-btn  { display: none !important; }
 
-  /* Dark toggle + hamburger más compactos */
+  /* Dark toggle + hamburger m�s compactos */
   .dark-toggle-btn { width: 36px !important; height: 36px !important; padding: 0; }
   .nav-dots-btn    { width: 36px !important; height: 36px !important; padding: 0; flex-shrink: 0; }
   .nav-actions     { gap: 8px !important; }
 
-  /* "Hola, Joss" visible en móvil */
+  /* "Hola, Joss" visible en m�vil */
   #userName {
     display: inline-block !important;
     font-size: 13px !important;
@@ -5099,7 +5099,7 @@ body:has(#page-fynder.active) #navbar:not(.scrolled) .nav-dots-btn:hover {
   .section-title { font-size: 1.4rem !important; }
   .section-label { font-size: .72rem; }
 
-  /* ---- Categorías ---- */
+  /* ---- Categor�as ---- */
   .cat-grid { grid-template-columns: repeat(4, 1fr) !important; gap: 10px; }
   .cat-card { padding: 14px 6px; border-radius: 14px; gap: 8px; }
   .cat-icon { width: 42px; height: 42px; border-radius: 12px; }
@@ -5122,7 +5122,7 @@ body:has(#page-fynder.active) #navbar:not(.scrolled) .nav-dots-btn:hover {
   /* ---- Populares ---- */
   .cards-list { display: flex; flex-direction: column; gap: 12px; }
 
-  /* ---- Cómo funciona ---- */
+  /* ---- C�mo funciona ---- */
   .how-section { padding: 48px 0; }
   .how-grid    { grid-template-columns: 1fr; gap: 16px; }
   .how-connector { display: none; }
@@ -5164,7 +5164,7 @@ body:has(#page-fynder.active) #navbar:not(.scrolled) .nav-dots-btn:hover {
   .map-panel { display: none; }
   .map-toolbar { top: 56px; }
 
-  /* ---- Página business register ---- */
+  /* ---- P�gina business register ---- */
   .biz-reg-grid-2 { grid-template-columns: 1fr; }
 
   /* ---- Modal ---- */
@@ -5178,13 +5178,13 @@ body:has(#page-fynder.active) #navbar:not(.scrolled) .nav-dots-btn:hover {
   /* ---- Share panel ---- */
   .share-panel-box { width: 100%; border-radius: 20px 20px 0 0; }
 
-  /* ---- Menú móvil drawer más ancho ---- */
+  /* ---- Men� m�vil drawer m�s ancho ---- */
   .mobile-menu-drawer { width: min(320px, 88vw) !important; }
 }
 
-/* MÓVIL (≤ 600px) – ajustes adicionales */
+/* M�VIL (= 600px) � ajustes adicionales */
 @media (max-width: 600px) {
-  /* Hero aún más compacto */
+  /* Hero a�n m�s compacto */
   .hero-inner { padding: 72px 14px 40px; }
   .hero h1 { font-size: 1.75rem !important; }
   .hero-stats { grid-template-columns: 1fr 1fr; gap: 8px; }
@@ -5192,10 +5192,10 @@ body:has(#page-fynder.active) #navbar:not(.scrolled) .nav-dots-btn:hover {
   .hero-stat-icon { width: 32px; height: 32px; border-radius: 10px; }
   .hero-stat-icon svg { width: 16px; height: 16px; }
 
-  /* Categorías: 4 cols */
+  /* Categor�as: 4 cols */
   .cat-grid { grid-template-columns: repeat(4, 1fr) !important; gap: 8px; }
 
-  /* Cards: 1 columna en móvil chico */
+  /* Cards: 1 columna en m�vil chico */
   .cards-grid { grid-template-columns: 1fr !important; }
   .bcard-img  { height: 180px; }
 
@@ -5203,14 +5203,14 @@ body:has(#page-fynder.active) #navbar:not(.scrolled) .nav-dots-btn:hover {
   .footer-grid { grid-template-columns: 1fr !important; gap: 20px; }
   .footer-col ul { display: grid; grid-template-columns: 1fr 1fr; gap: 4px 16px; }
 
-  /* Sección popular: stack */
+  /* Secci�n popular: stack */
   .cards-list .bcard-list { flex-direction: column; }
 
   /* Section header always stacked */
   .section-header { flex-direction: column !important; align-items: flex-start !important; }
 }
 
-/* MÓVIL PEQUEÑO (≤ 480px) */
+/* M�VIL PEQUE�O (= 480px) */
 @media (max-width: 480px) {
   html { font-size: 14.5px; }
 
@@ -5218,7 +5218,7 @@ body:has(#page-fynder.active) #navbar:not(.scrolled) .nav-dots-btn:hover {
   .hero h1 { font-size: 1.55rem !important; }
   .hero p  { font-size: .875rem; }
 
-  /* Categorías: 4 columnas */
+  /* Categor�as: 4 columnas */
   .cat-grid { grid-template-columns: repeat(4, 1fr) !important; gap: 6px; }
   .cat-card { padding: 10px 4px; border-radius: 12px; }
   .cat-icon { width: 36px; height: 36px; border-radius: 10px; }
@@ -5235,14 +5235,14 @@ body:has(#page-fynder.active) #navbar:not(.scrolled) .nav-dots-btn:hover {
   .cta-inner h2 { font-size: 1.35rem !important; }
   .cta-perks    { flex-direction: column; align-items: center; gap: 10px; }
 
-  /* Drawer un poco más angosto */
+  /* Drawer un poco m�s angosto */
   .mobile-menu-drawer { width: 82vw !important; }
 
   /* Stat cards en hero: compactos */
   .hero-stat-card { padding: 8px 10px; border-radius: 12px; }
 }
 
-/* MÓVIL MUY PEQUEÑO (≤ 360px) */
+/* M�VIL MUY PEQUE�O (= 360px) */
 @media (max-width: 360px) {
   html { font-size: 13.5px; }
   .hero h1 { font-size: 1.4rem !important; }
@@ -5251,7 +5251,7 @@ body:has(#page-fynder.active) #navbar:not(.scrolled) .nav-dots-btn:hover {
   .nav-inner { padding: 0 10px; }
 }
 
-/* DARK MODE – ajustes adicionales en móvil */
+/* DARK MODE � ajustes adicionales en m�vil */
 @media (max-width: 768px) {
   [data-theme="dark"] .hero-search {
     background: rgba(255,255,255,.12);
@@ -5265,13 +5265,13 @@ body:has(#page-fynder.active) #navbar:not(.scrolled) .nav-dots-btn:hover {
   [data-theme="dark"] .hero-search-btn { background: var(--primary); }
 }
 
-/* DESKTOP – asegurar que el hero-right se muestre correctamente */
+/* DESKTOP � asegurar que el hero-right se muestre correctamente */
 @media (min-width: 1025px) {
   .hero-right { display: flex !important; }
   .hero-inner { grid-template-columns: 1fr 1fr; padding: 80px 24px 64px; }
 }
 
-/* TOUCH TARGETS – mínimo 44px en todos los botones táctiles */
+/* TOUCH TARGETS � m�nimo 44px en todos los botones t�ctiles */
 @media (max-width: 768px) {
   .hero-tag,
   .filter-chip,
@@ -5290,7 +5290,7 @@ body:has(#page-fynder.active) #navbar:not(.scrolled) .nav-dots-btn:hover {
   .mobile-menu-nav button { min-height: 48px; }
 }
 
-/* SMOOTH SCROLL + OVERSCROLL para móvil */
+/* SMOOTH SCROLL + OVERSCROLL para m�vil */
 @media (max-width: 768px) {
   .mobile-menu-drawer,
   .fynder-modal,
@@ -5302,7 +5302,7 @@ body:has(#page-fynder.active) #navbar:not(.scrolled) .nav-dots-btn:hover {
 }
 
 
-/* ---- Hero stats mobile: ocultas en desktop, visibles en móvil ---- */
+/* ---- Hero stats mobile: ocultas en desktop, visibles en m�vil ---- */
 .hero-stats-mobile {
   display: none;
   margin-top: 24px;
@@ -5335,7 +5335,7 @@ body:has(#page-fynder.active) #navbar:not(.scrolled) .nav-dots-btn:hover {
   .hero-stats-mobile { display: none !important; }
 }
 
-/* ── NUEVO LOGO ── */
+/* -- NUEVO LOGO -- */
 .logo-img-btn {
   background: none !important;
   border: none !important;
@@ -5352,14 +5352,14 @@ body:has(#page-fynder.active) #navbar:not(.scrolled) .nav-dots-btn:hover {
   display: block;
   object-fit: contain;
 }
-/* Tamaños por contexto */
+/* Tama�os por contexto */
 #navbar .logo-img           { height: 44px; width: auto; }
 .mobile-menu-logo .logo-img { height: 40px; width: auto; }
 .footer-logo-img            { height: 38px; width: auto; }
 .auth-panel-logo-img        { height: 56px; width: auto; }
 /* Rail de mensajes */
 .wa-rail-logo {
-  background: #2D3748 !important;
+  background: #1a1f2e !important;
   border: none;
   cursor: pointer;
   display: flex;
@@ -5371,3 +5371,4 @@ body:has(#page-fynder.active) #navbar:not(.scrolled) .nav-dots-btn:hover {
   height: 44px !important;
 }
 .wa-rail-logo-img { height: 36px; width: 36px; object-fit: contain; }
+
