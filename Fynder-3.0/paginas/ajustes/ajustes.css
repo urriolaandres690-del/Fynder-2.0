@@ -472,18 +472,49 @@ body { top: 0 !important; }
   display: flex;
   align-items: center;
   gap: 12px;
-  padding: 14px 18px;
-  background: rgba(47,91,183,.08);
-  border: 1px solid rgba(47,91,183,.2);
+  padding: 12px 18px;
+  background: rgba(47,91,183,.06);
+  border: 1px solid rgba(47,91,183,.18);
   border-radius: 12px;
-  margin-bottom: 20px;
+  margin-bottom: 24px;
   font-size: .8125rem;
   color: var(--fg);
+  line-height: 1.5;
 }
+.sett-org-icon {
+  width: 32px;
+  height: 32px;
+  border-radius: 10px;
+  background: rgba(47,91,183,.12);
+  color: #2F5BB7;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: .875rem;
+  flex-shrink: 0;
+}
+.sett-org-link {
+  background: none;
+  border: none;
+  padding: 0;
+  color: #2F5BB7;
+  font-size: inherit;
+  font-weight: 600;
+  cursor: pointer;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+  transition: opacity .15s;
+}
+.sett-org-link:hover { opacity: .75; }
 [data-theme="dark"] .sett-org-banner {
   background: rgba(47,91,183,.12);
   border-color: rgba(47,91,183,.25);
 }
+[data-theme="dark"] .sett-org-icon {
+  background: rgba(47,91,183,.18);
+  color: #7B9EE8;
+}
+[data-theme="dark"] .sett-org-link { color: #7B9EE8; }
 
 .sett-group-label {
   font-size: .75rem;
