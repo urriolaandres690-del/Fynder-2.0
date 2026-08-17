@@ -665,7 +665,10 @@ input, button, select, textarea {
     .how-card-glow-blue  { background: #2F5BB7; }
     .how-card-glow-green { background: #10B981; }
 
-    .how-num { position: absolute; top: 12px; right: 16px; font-size: 5rem; font-weight: 900; font-family: 'Poppins', sans-serif; line-height: 1; color: rgba(0,0,0,.05); pointer-events: none; user-select: none; }
+    .how-num { position: absolute; top: 12px; right: 16px; font-size: 5rem; font-weight: 900; font-family: 'Poppins', sans-serif; line-height: 1; color: rgba(0,0,0,.055); pointer-events: none; user-select: none; }
+    .how-card-teal  .how-num { color: rgba(103,184,180,.18); }
+    .how-card-blue  .how-num { color: rgba(47,91,183,.15); }
+    .how-card-green .how-num { color: rgba(16,185,129,.18); }
 
     .how-icon-wrap { position: relative; margin-bottom: 22px; }
     .how-icon { width: 68px; height: 68px; border-radius: 20px; display: flex; align-items: center; justify-content: center; position: relative; z-index: 1; transition: transform .3s; }
