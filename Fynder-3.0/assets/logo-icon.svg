@@ -1,47 +1,22 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 150 170">
-  <defs>
-    <!-- Clip para confinar todo al viewBox -->
-    <clipPath id="clip">
-      <rect width="150" height="170"/>
-    </clipPath>
-  </defs>
+  <!-- 1. Pin teal de fondo -->
+  <path fill="#45C6C0" d="
+    M 75 6
+    C 38 6 8 36 8 73
+    C 8 96 20 116 38 129
+    C 52 140 75 164 75 164
+    C 75 164 98 140 112 129
+    C 130 116 142 96 142 73
+    C 142 36 112 6 75 6 Z
+  "/>
 
-  <g clip-path="url(#clip)">
-    <!-- Pin teal: forma de lágrima -->
-    <path fill="#45C6C0" d="
-      M 75 6
-      C 38 6 8 36 8 73
-      C 8 96 20 116 38 129
-      C 52 140 75 164 75 164
-      C 75 164 98 140 112 129
-      C 130 116 142 96 142 73
-      C 142 36 112 6 75 6 Z
-    "/>
+  <!-- 2. Disco amarillo (parte exterior del anillo) -->
+  <circle cx="75" cy="73" r="40" fill="#F9C200"/>
 
-    <!-- Hueco interior del pin (fondo transparente) usando mismo path escalado -->
-    <!-- Anillo amarillo de la lupa: donut hecho con dos círculos usando even-odd -->
-    <path fill="#F9C200" fill-rule="evenodd" d="
-      M 75 34
-      A 39 39 0 1 1 74.999 34 Z
-      M 75 34
-      m -39 39
-      a 39 39 0 1 0 78 0
-      a 39 39 0 1 0 -78 0
-      M 75 73
-      m -23 0
-      a 23 23 0 1 0 46 0
-      a 23 23 0 1 0 -46 0
-    "/>
+  <!-- 3. Hueco interior en teal (crea el anillo) -->
+  <circle cx="75" cy="73" r="24" fill="#45C6C0"/>
 
-    <!-- Anillo amarillo limpio: círculo exterior lleno menos interior -->
-    <circle cx="75" cy="73" r="39" fill="#F9C200"/>
-    <circle cx="75" cy="73" r="23" fill="#45C6C0"/>
-
-    <!-- Mango de la lupa -->
-    <line x1="103" y1="101" x2="136" y2="134"
-          stroke="#F9C200" stroke-width="16" stroke-linecap="round"/>
-
-    <!-- Hueco del interior del pin encima del círculo interior -->
-    <!-- (el círculo interior ya está en teal, el pin está debajo) -->
-  </g>
+  <!-- 4. Mango de la lupa en amarillo -->
+  <line x1="103" y1="101" x2="136" y2="134"
+        stroke="#F9C200" stroke-width="17" stroke-linecap="round"/>
 </svg>
