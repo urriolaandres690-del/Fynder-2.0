@@ -1,15 +1,24 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="-20 -12 190 200">
   <defs>
-    <mask id="mangoCutIcon">
+    <mask id="m">
       <rect x="-20" y="-12" width="190" height="200" fill="white"/>
+      <!-- Hueco del aro: quitar exterior -->
+      <circle cx="75" cy="69" r="45" fill="black"/>
+      <!-- Devolver anillo del trazo -->
+      <circle cx="75" cy="69" r="34" fill="white"/>
+      <!-- Quitar interior — círculo perfecto -->
+      <circle cx="75" cy="69" r="21" fill="black"/>
+      <!-- Quitar mango con gap -->
       <line x1="91" y1="85" x2="132" y2="126"
             stroke="black" stroke-width="32" stroke-linecap="round"/>
+      <!-- Devolver trazo del mango -->
       <line x1="93" y1="87" x2="123" y2="117"
             stroke="white" stroke-width="13" stroke-linecap="round"/>
     </mask>
   </defs>
 
-  <path fill-rule="evenodd" fill="#45C6C0" mask="url(#mangoCutIcon)" d="
+  <!-- Pin teal simple, sin evenodd, con máscara para todo -->
+  <path fill="#45C6C0" mask="url(#m)" d="
     M 75 8
     C 41 8 14 35 14 69
     C 14 88 23 105 37 116
@@ -17,10 +26,6 @@
     C 75 158 101 126 113 116
     C 127 105 136 88 136 69
     C 136 35 109 8 75 8 Z
-
-    M 30 69
-    A 45 45 0 0 1 120 69
-    A 45 45 0 0 1 30 69 Z
   "/>
 
   <circle cx="75" cy="69" r="27" fill="none" stroke="#F9C200" stroke-width="13"/>
