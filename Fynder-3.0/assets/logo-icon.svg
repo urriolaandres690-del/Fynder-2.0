@@ -1,21 +1,15 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="-20 -12 190 200">
   <defs>
-    <!-- Máscara SOLO para el mango — sin tocar el círculo -->
-    <mask id="mangoCut">
+    <mask id="mangoCutIcon">
       <rect x="-20" y="-12" width="190" height="200" fill="white"/>
-      <!-- Recortar zona del mango + gap alrededor -->
-      <line x1="93" y1="87" x2="134" y2="128"
+      <line x1="91" y1="85" x2="132" y2="126"
             stroke="black" stroke-width="32" stroke-linecap="round"/>
-      <!-- Devolver exactamente el trazo amarillo del mango -->
-      <line x1="95" y1="89" x2="125" y2="119"
+      <line x1="93" y1="87" x2="123" y2="117"
             stroke="white" stroke-width="13" stroke-linecap="round"/>
     </mask>
   </defs>
 
-  <!-- Pin con hueco circular PERFECTO usando evenodd — sin máscara = sin suciedad -->
-  <path fill-rule="evenodd" fill="#45C6C0"
-        mask="url(#mangoCut)"
-        d="
+  <path fill-rule="evenodd" fill="#45C6C0" mask="url(#mangoCutIcon)" d="
     M 75 8
     C 41 8 14 35 14 69
     C 14 88 23 105 37 116
@@ -24,17 +18,12 @@
     C 127 105 136 88 136 69
     C 136 35 109 8 75 8 Z
 
-    M 120 69
-    A 45 45 0 0 0 30 69
-    A 45 45 0 0 0 120 69 Z
+    M 30 69
+    A 45 45 0 0 1 120 69
+    A 45 45 0 0 1 30 69 Z
   "/>
 
-  <!-- Aro amarillo -->
-  <circle cx="75" cy="69" r="27"
-          fill="none" stroke="#F9C200" stroke-width="13"/>
-
-  <!-- Mango amarillo -->
-  <line x1="94" y1="88" x2="124" y2="118"
+  <circle cx="75" cy="69" r="27" fill="none" stroke="#F9C200" stroke-width="13"/>
+  <line x1="94" y1="88" x2="123" y2="117"
         stroke="#F9C200" stroke-width="13" stroke-linecap="round"/>
-
 </svg>
