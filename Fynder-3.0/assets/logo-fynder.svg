@@ -19,14 +19,10 @@
     C 135 35 108 8 74 8 Z
   "/>
 
-  <!-- Anillo amarillo con agujero transparente (evenodd) -->
+  <!-- Anillo amarillo con agujero transparente -->
   <path fill="#F9C200" fill-rule="evenodd" d="
-    M 108 69
-    A 34 34 0 1 0 40 69
-    A 34 34 0 1 0 108 69 Z
-    M 95 69
-    A 21 21 0 1 1 53 69
-    A 21 21 0 1 1 95 69 Z
+    M 108 69 A 34 34 0 1 0 40 69 A 34 34 0 1 0 108 69 Z
+    M 95 69  A 21 21 0 1 1 53 69 A 21 21 0 1 1 95 69  Z
   "/>
 
   <!-- Mango amarillo -->
