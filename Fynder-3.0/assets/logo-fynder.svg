@@ -6,14 +6,7 @@
       <line x1="88" y1="82" x2="133" y2="127"
             stroke="black" stroke-width="38" stroke-linecap="round"/>
     </mask>
-    <radialGradient id="bgGrad" cx="50%" cy="50%" r="50%">
-      <stop offset="0%" stop-color="#6aa3e8"/>
-      <stop offset="100%" stop-color="#3a6abf"/>
-    </radialGradient>
   </defs>
-
-  <!-- Fondo circular azul detrás del texto -->
-  <ellipse cx="340" cy="83" rx="180" ry="82" fill="url(#bgGrad)"/>
 
   <!-- Pin teal -->
   <path fill="#45C6C0" mask="url(#m)" d="
@@ -40,7 +33,6 @@
   <line x1="93" y1="87" x2="122" y2="116"
         stroke="#F9C200" stroke-width="13" stroke-linecap="round"/>
 
-  <!-- Texto FYNDER -->
   <text x="160" y="108"
         font-family="'Montserrat','Arial Black','Arial',sans-serif"
         font-size="74" font-weight="900" letter-spacing="0">
