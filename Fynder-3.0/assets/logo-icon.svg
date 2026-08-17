@@ -2,22 +2,21 @@
   <defs>
     <mask id="m">
       <rect x="-20" y="-12" width="190" height="200" fill="white"/>
-      <!-- Hueco del aro: quitar exterior -->
-      <circle cx="75" cy="69" r="45" fill="black"/>
+      <!-- Quitar exterior del aro con un poco más de margen -->
+      <circle cx="75" cy="69" r="46" fill="black"/>
       <!-- Devolver anillo del trazo -->
       <circle cx="75" cy="69" r="34" fill="white"/>
-      <!-- Quitar interior — círculo perfecto -->
+      <!-- Quitar interior -->
       <circle cx="75" cy="69" r="21" fill="black"/>
       <!-- Quitar mango con gap -->
       <line x1="91" y1="85" x2="132" y2="126"
-            stroke="black" stroke-width="32" stroke-linecap="round"/>
+            stroke="black" stroke-width="34" stroke-linecap="round"/>
       <!-- Devolver trazo del mango -->
       <line x1="93" y1="87" x2="123" y2="117"
             stroke="white" stroke-width="13" stroke-linecap="round"/>
     </mask>
   </defs>
 
-  <!-- Pin teal simple, sin evenodd, con máscara para todo -->
   <path fill="#45C6C0" mask="url(#m)" d="
     M 75 8
     C 41 8 14 35 14 69
