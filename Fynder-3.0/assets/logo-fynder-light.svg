@@ -2,11 +2,11 @@
   <defs>
     <mask id="m">
       <rect width="520" height="165" fill="white"/>
-      <circle cx="74" cy="69" r="45" fill="black"/>
+      <circle cx="74" cy="69" r="46" fill="black"/>
       <circle cx="74" cy="69" r="34" fill="white"/>
       <circle cx="74" cy="69" r="21" fill="black"/>
       <line x1="90" y1="84" x2="131" y2="125"
-            stroke="black" stroke-width="32" stroke-linecap="round"/>
+            stroke="black" stroke-width="34" stroke-linecap="round"/>
       <line x1="92" y1="86" x2="122" y2="116"
             stroke="white" stroke-width="13" stroke-linecap="round"/>
     </mask>
