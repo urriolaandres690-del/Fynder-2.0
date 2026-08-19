@@ -1974,3 +1974,17 @@ section.fyl-section-alt > *:last-child { padding-bottom: 72px; }
 [data-theme="dark"] .about-team-banner-text h2 { color: var(--fg); }
 [data-theme="dark"] .about-team-banner-text p  { color: var(--muted); }
 
+
+/* ── Dark mode: restaurar hero badge y stat pills al estilo teal original ── */
+[data-theme="dark"] .fyl-hero-badge {
+  background: rgba(103,184,180,.15);
+  border-color: rgba(103,184,180,.3);
+  color: #67B8B4;
+  text-shadow: none;
+}
+[data-theme="dark"] .fyl-stat-pill {
+  background: rgba(255,255,255,.07);
+  border-color: rgba(255,255,255,.12);
+  color: rgba(255,255,255,.85);
+}
+[data-theme="dark"] .fyl-pill-num { color: #67B8B4; }
