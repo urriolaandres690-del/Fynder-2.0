@@ -31,11 +31,11 @@
 .fyl-hero-badge {
   display: inline-flex; align-items: center; gap: 7px;
   padding: 6px 16px;
-  background: rgba(103,184,180,.15);
-  border: 1px solid rgba(103,184,180,.3);
+  background: rgba(255,255,255,.22);
+  border: 1px solid rgba(255,255,255,.45);
   border-radius: 99px;
   font-size: .75rem; font-weight: 700;
-  color: #67B8B4;
+  color: #fff;
   font-family: 'Poppins', sans-serif;
   text-transform: uppercase; letter-spacing: .07em;
   margin-bottom: 22px;
@@ -92,14 +92,14 @@
   display: inline-flex; align-items: center; gap: 8px;
   padding: 10px 18px;
   background: rgba(255,255,255,.07);
-  border: 1px solid rgba(255,255,255,.12);
-  border-radius: 99px;
+  background: rgba(255,255,255,.18);
+  border: 1px solid rgba(255,255,255,.35);
   color: rgba(255,255,255,.85);
   font-size: .8125rem; font-weight: 600;
-  font-family: 'Poppins', sans-serif;
+  color: rgba(255,255,255,.92);
   backdrop-filter: blur(6px);
 }
-.fyl-pill-num { font-weight: 900; color: #67B8B4; }
+.fyl-pill-num { font-weight: 900; color: #fff; }
 .fyl-hero-wave { position: relative; z-index: 2; width: 100%; margin-top: 24px; line-height: 0; }
 .fyl-hero-wave svg { width: 100%; display: block; }
 
@@ -1263,11 +1263,11 @@ section.fyl-section-alt { background: #EBF6F5 !important; }
 .fyl-hero-badge {
   display: inline-flex; align-items: center; gap: 7px;
   padding: 6px 16px;
-  background: rgba(103,184,180,.15);
-  border: 1px solid rgba(103,184,180,.3);
+  background: rgba(255,255,255,.22);
+  border: 1px solid rgba(255,255,255,.45);
   border-radius: 99px;
   font-size: .75rem; font-weight: 700;
-  color: #67B8B4;
+  color: #fff;
   font-family: 'Poppins', sans-serif;
   text-transform: uppercase; letter-spacing: .07em;
   margin-bottom: 22px;
@@ -1324,14 +1324,14 @@ section.fyl-section-alt { background: #EBF6F5 !important; }
   display: inline-flex; align-items: center; gap: 8px;
   padding: 10px 18px;
   background: rgba(255,255,255,.07);
-  border: 1px solid rgba(255,255,255,.12);
-  border-radius: 99px;
+  background: rgba(255,255,255,.18);
+  border: 1px solid rgba(255,255,255,.35);
   color: rgba(255,255,255,.85);
   font-size: .8125rem; font-weight: 600;
-  font-family: 'Poppins', sans-serif;
+  color: rgba(255,255,255,.92);
   backdrop-filter: blur(6px);
 }
-.fyl-pill-num { font-weight: 900; color: #67B8B4; }
+.fyl-pill-num { font-weight: 900; color: #fff; }
 .fyl-hero-wave { position: relative; z-index: 2; width: 100%; margin-top: 24px; line-height: 0; }
 .fyl-hero-wave svg { width: 100%; display: block; }
 
@@ -1973,4 +1973,4 @@ section.fyl-section-alt > *:last-child { padding-bottom: 72px; }
 [data-theme="dark"] .about-team-banner    { background: var(--card); border-color: rgba(255,255,255,.07); }
 [data-theme="dark"] .about-team-banner-text h2 { color: var(--fg); }
 [data-theme="dark"] .about-team-banner-text p  { color: var(--muted); }
-
+
