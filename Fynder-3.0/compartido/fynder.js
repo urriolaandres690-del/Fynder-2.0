@@ -366,7 +366,7 @@ function updateNav(){
     if(uname && !logged) uname.textContent = '';
 
     const dashboard = document.getElementById('navBtnDashboard');
-    if(dashboard) dashboard.style.display = logged ? 'inline-flex' : 'none';
+    if(dashboard) dashboard.style.display = 'none'; // oculto temporalmente
 
     [logout, profile].forEach(el => { if(el) el.classList.toggle('on-hero', isHero); });
     if(login)  login.classList.toggle('on-hero', isHero);
