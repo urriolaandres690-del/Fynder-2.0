@@ -5378,7 +5378,8 @@ body:has(#page-fynder.active) #navbar:not(.scrolled) .nav-dots-btn:hover {
 /* Tama�os por contexto */
 #navbar .logo-img           { height: 44px; width: auto; }
 .mobile-menu-logo .logo-img { height: 40px; width: auto; }
-.footer-logo-img            { height: 38px; width: auto; }
+.footer-logo-img            { height: 64px; width: auto; filter: drop-shadow(0 0 10px rgba(103,184,180,.45)) drop-shadow(0 0 24px rgba(244,211,94,.25)); transition: filter .35s; }
+.footer-logo:hover .footer-logo-img { filter: drop-shadow(0 0 16px rgba(103,184,180,.75)) drop-shadow(0 0 36px rgba(244,211,94,.55)) drop-shadow(0 0 60px rgba(103,184,180,.3)); }
 .auth-panel-logo-img        { height: 56px; width: auto; }
 /* Rail de mensajes */
 .wa-rail-logo {
