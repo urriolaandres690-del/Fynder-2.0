@@ -432,8 +432,12 @@ function toggleArticleComments() {
   body.style.display = isOpen ? 'none' : 'block';
   toggle.classList.toggle('open', !isOpen);
 
-  // Iniciar listener del scroll para el fade al abrirse
   if(!isOpen) {
+    // Inyectar avatar del usuario en el formulario
+    const avEl = document.getElementById('artCommentFormAvatar');
+    if(avEl) avEl.innerHTML = _getUserAvatarHTML(40);
+
+    // Listener del scroll para el fade
     setTimeout(() => {
       const wrap = document.getElementById('artCommentListWrap');
       if(!wrap) return;
