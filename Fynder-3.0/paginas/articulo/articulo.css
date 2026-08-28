@@ -447,9 +447,33 @@
   background: var(--card);
   border: 1.5px solid var(--border);
   border-radius: 20px;
-  padding: 24px;
-  margin-bottom: 32px;
+  padding: 20px;
   box-shadow: 0 2px 12px rgba(0,0,0,.06);
+}
+
+/* Layout fila: avatar + textarea */
+.article-comment-form-row {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+}
+
+.article-comment-form-av {
+  flex-shrink: 0;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  overflow: hidden;
+  margin-top: 2px;
+  background: var(--teal-light);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.article-comment-form-right {
+  flex: 1;
+  min-width: 0;
 }
 
 .article-comment-form h3 {
