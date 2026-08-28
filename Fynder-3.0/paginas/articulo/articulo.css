@@ -513,10 +513,10 @@
 /* ── Modo oscuro ── */
 [data-theme="dark"] #page-article { background: var(--bg) !important; }
 [data-theme="dark"] .article-content { color: var(--fg); }
+[data-theme="dark"] .article-content > p:first-of-type { color: var(--fg); }
 [data-theme="dark"] .article-content h2,
-[data-theme="dark"] .article-content h3,
-[data-theme="dark"] .article-content strong { color: var(--fg); }
-[data-theme="dark"] .article-content h2 { border-bottom-color: rgba(103,184,180,.15); }
+[data-theme="dark"] .article-content h3 { color: var(--fg); }
+[data-theme="dark"] .article-content h2 { border-bottom-color: rgba(103,184,180,.12); }
 [data-theme="dark"] .article-content blockquote {
   background: linear-gradient(135deg, rgba(103,184,180,.06), rgba(47,91,183,.04));
 }
