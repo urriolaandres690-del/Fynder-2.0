@@ -37,6 +37,7 @@ function initSettingsPage() {
   // Activar sección "cuenta" por defecto
   const firstBtn = document.querySelector('#page-settings .sett-nav-item[data-section="cuenta"]');
   settGoSection('cuenta', firstBtn);
+  settSyncAccount();
 }
 
 // ── CUENTA ─────────────────────────────────────────────────────────────────
