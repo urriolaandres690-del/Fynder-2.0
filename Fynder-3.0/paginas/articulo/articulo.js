@@ -140,14 +140,29 @@ function openArticle(id) {
   // Llenar la página de artículo
   document.getElementById('artHeroImg').src = art.image;
   document.getElementById('artHeroImg').alt = art.title;
-  document.getElementById('artCatLabel').textContent = art.category;
-  document.getElementById('artCatLabel').style.color = art.color;
-  document.getElementById('artTitle').textContent = art.title;
-  document.getElementById('artAuthorAv').style.background = `linear-gradient(${art.authorGrad})`;
-  document.getElementById('artAuthorAv').textContent = art.authorInitial;
-  document.getElementById('artAuthorName').textContent = art.author;
+
+  // Hero info
+  const heroCat = document.getElementById('artHeroCat');
+  if(heroCat){ heroCat.textContent = art.category; }
+
+  const heroTitle = document.getElementById('artTitle');
+  if(heroTitle) heroTitle.textContent = art.title;
+
+  const heroAv = document.getElementById('artAuthorAv');
+  if(heroAv){
+    heroAv.style.background = `linear-gradient(${art.authorGrad})`;
+    heroAv.textContent = art.authorInitial;
+  }
+  const heroAuthorName = document.getElementById('artAuthorName');
+  if(heroAuthorName) heroAuthorName.textContent = art.author;
+
   document.getElementById('artDate').textContent = art.date;
   document.getElementById('artReadTime').textContent = art.readTime;
+
+  // Vieja meta-bar (oculta por CSS, pero la llenamos por si acaso)
+  const catLabel = document.getElementById('artCatLabel');
+  if(catLabel){ catLabel.textContent = art.category; catLabel.style.color = art.color; }
+
   document.getElementById('artBody').innerHTML = art.body;
 
   _currentArticleId = id;
