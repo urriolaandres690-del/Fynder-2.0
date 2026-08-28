@@ -429,8 +429,20 @@ function toggleArticleComments() {
   const toggle  = document.getElementById('artCommentsToggle');
   if(!body || !toggle) return;
   const isOpen = body.style.display !== 'none';
-  body.style.display   = isOpen ? 'none' : 'block';
+  body.style.display = isOpen ? 'none' : 'block';
   toggle.classList.toggle('open', !isOpen);
+
+  // Iniciar listener del scroll para el fade al abrirse
+  if(!isOpen) {
+    setTimeout(() => {
+      const wrap = document.getElementById('artCommentListWrap');
+      if(!wrap) return;
+      wrap.addEventListener('scroll', function onScroll() {
+        const atBottom = wrap.scrollTop + wrap.clientHeight >= wrap.scrollHeight - 10;
+        wrap.classList.toggle('scrolled-end', atBottom);
+      }, { passive: true });
+    }, 50);
+  }
 }
 
 function artCommentCharCount(el) {
