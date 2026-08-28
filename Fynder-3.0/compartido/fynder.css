@@ -5405,7 +5405,7 @@ body:has(#page-fynder.active) #navbar:not(.scrolled) .nav-dots-btn:hover {
 [data-theme="dark"] .logo-img-day  { display: none; }
 [data-theme="dark"] .logo-img-night { display: block; }
 
-/* ── Logo navbar: día muestra oscuro, noche muestra blanco ── */
-/* Estado inicial: el JS (_updateNavLogo) controla cuál se muestra via style.display */
-#navbar .logo-img-day,
-#navbar .logo-img-night { display: none; }
+/* ── Logo navbar: el JS (_updateNavLogo) controla cuál se muestra via style.display ──
+   Estado por defecto: day visible para que nunca quede en blanco antes del primer goPage */
+#navbar .logo-img-day   { display: block; }
+#navbar .logo-img-night { display: none;  }
