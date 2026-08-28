@@ -5,6 +5,61 @@
   padding: 40px 24px 80px;
 }
 
+/* ── Banner hero del header ── */
+.dashboard-hero {
+  background: linear-gradient(135deg, #E6F5F4 0%, #EEF6FF 50%, #F3E8FF 100%);
+  border: 1.5px solid rgba(103,184,180,.22);
+  border-radius: 24px;
+  padding: 36px 36px 32px;
+  margin-bottom: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  flex-wrap: wrap;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 4px 24px rgba(103,184,180,.13);
+}
+
+.dashboard-hero::before {
+  content: '';
+  position: absolute;
+  top: -40px;
+  right: -40px;
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(103,184,180,.18) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+.dashboard-hero::after {
+  content: '';
+  position: absolute;
+  bottom: -50px;
+  left: 30%;
+  width: 160px;
+  height: 160px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(124,58,237,.08) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+[data-theme="dark"] .dashboard-hero {
+  background: linear-gradient(135deg, rgba(103,184,180,.08) 0%, rgba(47,91,183,.08) 50%, rgba(124,58,237,.08) 100%);
+  border-color: rgba(103,184,180,.15);
+  box-shadow: 0 4px 24px rgba(0,0,0,.25);
+}
+
+.dashboard-hero-left {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  flex: 1;
+  min-width: 0;
+}
+
 .dashboard-header {
   display: flex;
   align-items: center;
@@ -13,28 +68,30 @@
 }
 
 .dashboard-header-icon {
-  width: 56px;
-  height: 56px;
-  border-radius: 18px;
-  background: var(--teal-light);
-  color: var(--primary);
+  width: 64px;
+  height: 64px;
+  border-radius: 20px;
+  background: linear-gradient(135deg, #67B8B4, #2F5BB7);
+  color: #fff;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 1.4rem;
+  font-size: 1.5rem;
   flex-shrink: 0;
+  box-shadow: 0 6px 20px rgba(103,184,180,.35);
 }
 
 [data-theme="dark"] .dashboard-header-icon {
-  background: rgba(103,184,180,.15);
+  background: linear-gradient(135deg, rgba(103,184,180,.8), rgba(47,91,183,.8));
+  box-shadow: 0 6px 20px rgba(103,184,180,.2);
 }
 
 .dashboard-title {
-  font-size: 1.75rem;
+  font-size: 1.85rem;
   font-weight: 900;
   font-family: 'Poppins', sans-serif;
   color: var(--fg);
-  margin: 0 0 2px;
+  margin: 0 0 4px;
   line-height: 1.15;
 }
 
@@ -43,6 +100,43 @@
   color: var(--muted);
   margin: 0;
 }
+
+/* Chips de estado rápido en el hero */
+.dashboard-hero-chips {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.dashboard-hero-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 14px;
+  border-radius: 99px;
+  font-size: .75rem;
+  font-weight: 600;
+  font-family: 'Poppins', sans-serif;
+  background: rgba(255,255,255,.7);
+  border: 1px solid rgba(103,184,180,.25);
+  color: var(--fg);
+  backdrop-filter: blur(4px);
+}
+
+.dashboard-hero-chip i {
+  font-size: .7rem;
+}
+
+.dashboard-hero-chip.chip-teal  { color: #67B8B4; border-color: rgba(103,184,180,.35); }
+.dashboard-hero-chip.chip-blue  { color: #2F5BB7; border-color: rgba(47,91,183,.25); background: rgba(239,246,255,.7); }
+.dashboard-hero-chip.chip-green { color: #10B981; border-color: rgba(16,185,129,.25); background: rgba(236,253,245,.7); }
+
+[data-theme="dark"] .dashboard-hero-chip {
+  background: rgba(255,255,255,.06);
+  border-color: rgba(103,184,180,.2);
+}
+[data-theme="dark"] .dashboard-hero-chip.chip-blue  { background: rgba(47,91,183,.12); }
+[data-theme="dark"] .dashboard-hero-chip.chip-green { background: rgba(16,185,129,.1); }
 
 .dash-section {
   margin-bottom: 48px;
@@ -1207,4 +1301,4 @@
 }
 
 
-/* SABER MÁS – Animaciones, efectos y mejoras de botones */
+/* SABER MÁS – Animaciones, efectos y mejoras de botones */
