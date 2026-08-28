@@ -142,6 +142,7 @@ function _seedArticleComments(articleId) {
 }
 
 
+function openArticle(id) {
   const articles = {
     "1": {
       title: "Cómo llevar tu negocio local al siguiente nivel con presencia digital",
