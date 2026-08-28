@@ -5395,3 +5395,12 @@ body:has(#page-fynder.active) #navbar:not(.scrolled) .nav-dots-btn:hover {
 }
 .wa-rail-logo-img { height: 36px; width: 36px; object-fit: contain; }
 
+
+/* ── Logo del menú móvil: día/noche ── */
+/* Modo día: mostrar logo oscuro, ocultar el blanco */
+.logo-img-day  { display: block; }
+.logo-img-night { display: none; }
+
+/* Modo oscuro: mostrar logo blanco, ocultar el oscuro */
+[data-theme="dark"] .logo-img-day  { display: none; }
+[data-theme="dark"] .logo-img-night { display: block; }
