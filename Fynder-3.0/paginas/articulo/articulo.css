@@ -476,13 +476,7 @@
   min-width: 0;
 }
 
-.article-comment-form h3 {
-  font-size: .9375rem;
-  font-weight: 700;
-  color: var(--fg);
-  margin-bottom: 16px;
-  font-family: 'Poppins', sans-serif;
-}
+.article-comment-form h3 { display: none; }
 
 .article-comment-form textarea {
   width: 100%;
