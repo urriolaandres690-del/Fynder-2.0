@@ -416,6 +416,9 @@ function heroSearchGo(){const q=document.getElementById('heroSearch').value.trim
 
 window.__scrolled=false;
 
+// Ejecutar logo update una vez el DOM esté listo
+document.addEventListener('DOMContentLoaded', function(){ _updateNavLogo(); });
+
 function _updateNavLogo(){
   const day   = document.querySelector('#mainLogo .logo-img-day');
   const night = document.querySelector('#mainLogo .logo-img-night');
