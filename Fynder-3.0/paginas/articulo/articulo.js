@@ -127,8 +127,14 @@ const ARTICLE_SEED_COMMENTS = {
 
 function _seedArticleComments(articleId) {
   const key = 'fynderComments_' + articleId;
-  // Solo sembrar si no hay comentarios guardados aún
-  if(localStorage.getItem(key) !== null) return;
+  // Sembrar si no existe la clave O si el array guardado está vacío
+  const existing = localStorage.getItem(key);
+  if(existing !== null) {
+    try {
+      const parsed = JSON.parse(existing);
+      if(Array.isArray(parsed) && parsed.length > 0) return;
+    } catch(e) {}
+  }
   const seed = ARTICLE_SEED_COMMENTS[articleId];
   if(!seed) return;
   // Asignar IDs únicos basados en timestamp ficticio
