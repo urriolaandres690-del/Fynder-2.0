@@ -147,7 +147,7 @@
 .article-body-wrap {
   max-width: 760px;
   margin: 0 auto;
-  padding: 48px 24px 0;
+  padding: 52px 24px 0;
 }
 
 /* Ocultar la meta-bar vieja (la info ahora está en el hero) */
@@ -159,79 +159,168 @@
   display: none; /* se muestra en el hero ahora */
 }
 
-.article-content {
-  font-size: 1.05rem;
+/* Primer párrafo más grande — lead */
+.article-content > p:first-of-type {
+  font-size: 1.15rem;
   color: var(--fg);
-  line-height: 1.9;
+  line-height: 1.85;
+  font-weight: 450;
+  border-left: 4px solid var(--primary);
+  padding-left: 18px;
+  margin-bottom: 28px;
+}
+
+.article-content {
+  font-size: 1.0rem;
+  color: var(--fg);
+  line-height: 1.95;
 }
 
 .article-content h2 {
-  font-size: 1.5rem;
+  font-size: 1.55rem;
   font-weight: 800;
   color: var(--fg);
-  margin: 40px 0 14px;
+  margin: 48px 0 16px;
   font-family: 'Poppins', sans-serif;
-  padding-bottom: 10px;
+  padding-bottom: 12px;
   border-bottom: 2px solid var(--teal-light);
+  position: relative;
+}
+
+.article-content h2::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 48px;
+  height: 2px;
+  background: var(--primary);
+  border-radius: 99px;
 }
 
 .article-content h3 {
-  font-size: 1.2rem;
+  font-size: 1.15rem;
   font-weight: 700;
   color: var(--fg);
-  margin: 32px 0 10px;
+  margin: 36px 0 12px;
   font-family: 'Poppins', sans-serif;
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: 10px;
 }
 
 .article-content h3::before {
   content: '';
   display: inline-block;
   width: 4px;
-  height: 1.1em;
-  background: var(--primary);
+  min-width: 4px;
+  height: 1.15em;
+  background: linear-gradient(180deg, var(--primary), #2F5BB7);
   border-radius: 99px;
   flex-shrink: 0;
 }
 
 .article-content p {
-  margin-bottom: 18px;
+  margin-bottom: 20px;
+  color: var(--fg);
 }
 
 .article-content strong {
   color: var(--fg);
   font-weight: 700;
+  background: linear-gradient(135deg, rgba(103,184,180,.12), rgba(47,91,183,.08));
+  padding: 1px 5px;
+  border-radius: 5px;
 }
 
+[data-theme="dark"] .article-content strong {
+  background: linear-gradient(135deg, rgba(103,184,180,.15), rgba(47,91,183,.12));
+}
+
+/* Cita destacada */
 .article-content blockquote {
-  margin: 28px 0;
-  padding: 20px 24px;
+  margin: 32px 0;
+  padding: 22px 28px;
   background: linear-gradient(135deg, rgba(103,184,180,.07), rgba(47,91,183,.05));
   border-left: 4px solid var(--primary);
-  border-radius: 0 14px 14px 0;
+  border-radius: 0 16px 16px 0;
   font-size: 1.05rem;
   font-style: italic;
   color: var(--fg);
+  position: relative;
+}
+
+.article-content blockquote::before {
+  content: '"';
+  position: absolute;
+  top: -8px;
+  left: 20px;
+  font-size: 4rem;
+  color: var(--primary);
+  opacity: .25;
+  font-family: Georgia, serif;
+  line-height: 1;
 }
 
 .article-content ul,
 .article-content ol {
-  padding-left: 20px;
-  margin-bottom: 18px;
+  padding-left: 0;
+  margin-bottom: 20px;
+  list-style: none;
 }
 
-.article-content li {
-  margin-bottom: 8px;
+.article-content ul li,
+.article-content ol li {
+  margin-bottom: 10px;
   line-height: 1.75;
+  padding-left: 24px;
+  position: relative;
 }
 
-/* Separador visual entre secciones del contenido */
+.article-content ul li::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: .55em;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--primary);
+}
+
+.article-content ol {
+  counter-reset: article-ol;
+}
+
+.article-content ol li {
+  counter-increment: article-ol;
+}
+
+.article-content ol li::before {
+  content: counter(article-ol);
+  position: absolute;
+  left: 0;
+  top: .1em;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: var(--primary);
+  color: #fff;
+  font-size: .65rem;
+  font-weight: 700;
+  font-family: 'Poppins', sans-serif;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 18px;
+  text-align: center;
+}
+
+/* Separador */
 .article-content hr {
   border: none;
   border-top: 1.5px solid var(--border);
-  margin: 36px 0;
+  margin: 40px 0;
 }
 
 /* ── Footer actions ── */
