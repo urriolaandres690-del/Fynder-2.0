@@ -475,6 +475,13 @@ function submitArticleComment() {
   ta.value = '';
   artCommentCharCount(ta);
   renderArticleComments(_currentArticleId);
+  // Asegurar que el panel de comentarios esté abierto
+  const body   = document.getElementById('artCommentsBody');
+  const toggle = document.getElementById('artCommentsToggle');
+  if(body && body.style.display === 'none') {
+    body.style.display = 'block';
+    if(toggle) toggle.classList.add('open');
+  }
   showToast('¡Comentario publicado! 💬');
 }
 
