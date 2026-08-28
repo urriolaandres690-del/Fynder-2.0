@@ -5406,19 +5406,6 @@ body:has(#page-fynder.active) #navbar:not(.scrolled) .nav-dots-btn:hover {
 [data-theme="dark"] .logo-img-night { display: block; }
 
 /* ── Logo navbar: día muestra oscuro, noche muestra blanco ── */
-/* Por defecto modo día: logo oscuro visible, blanco oculto */
-#navbar .logo-img-day   { display: block; }
-#navbar .logo-img-night { display: none;  }
-
-/* Modo oscuro: invertir */
-[data-theme="dark"] #navbar .logo-img-day   { display: none;  }
-[data-theme="dark"] #navbar .logo-img-night { display: block; }
-
-/* Sobre el hero (fondo oscuro) en modo día: mostrar logo blanco */
-body:has(#page-home.active)   #navbar:not(.scrolled) .logo-img-day,
-body:has(#page-about.active)  #navbar:not(.scrolled) .logo-img-day,
-body:has(#page-fynder.active) #navbar:not(.scrolled) .logo-img-day { display: none;  }
-
-body:has(#page-home.active)   #navbar:not(.scrolled) .logo-img-night,
-body:has(#page-about.active)  #navbar:not(.scrolled) .logo-img-night,
-body:has(#page-fynder.active) #navbar:not(.scrolled) .logo-img-night { display: block; }
+/* Estado inicial: el JS (_updateNavLogo) controla cuál se muestra via style.display */
+#navbar .logo-img-day,
+#navbar .logo-img-night { display: none; }
