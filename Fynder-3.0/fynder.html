@@ -3259,25 +3259,35 @@
 </div>
 
 
-<div id="page-article" class="page" style="min-height:100vh;background:var(--bg);padding-bottom:0">
+<div id="page-article" class="page">
   <div class="article-hero">
     <img id="artHeroImg" src="" alt="" class="article-hero-img" />
     <div class="article-hero-overlay"></div>
-    <button class="back-legal-btn article-back-btn" onclick="goPage('blog')">
+
+    <!-- Botón volver flotante -->
+    <button class="article-back-btn" onclick="goPage('blog')">
       <i class="fas fa-arrow-left"></i> Volver al Blog
     </button>
+
+    <!-- Info del artículo sobre la imagen -->
+    <div class="article-hero-info">
+      <div class="article-hero-meta">
+        <span class="article-hero-cat" id="artHeroCat"></span>
+        <span class="article-hero-date"><i class="fas fa-calendar-alt"></i> <span id="artDate"></span></span>
+        <span class="article-hero-read"><i class="fas fa-clock"></i> <span id="artReadTime"></span></span>
+      </div>
+      <h1 class="article-hero-title" id="artTitle"></h1>
+      <div class="article-hero-author">
+        <div class="article-hero-av" id="artAuthorAv"></div>
+        <span class="article-hero-author-name" id="artAuthorName"></span>
+      </div>
+    </div>
   </div>
+
   <div class="article-body-wrap">
     <div class="article-meta-bar">
       <span class="blog-cat-label" id="artCatLabel"></span>
-      <div class="blog-author">
-        <div class="blog-author-av" id="artAuthorAv"></div>
-        <span id="artAuthorName"></span>
-      </div>
-      <span class="blog-date"><i class="fas fa-calendar-alt"></i> <span id="artDate"></span></span>
-      <span class="blog-read"><i class="fas fa-clock"></i> <span id="artReadTime"></span></span>
     </div>
-    <h1 class="article-title" id="artTitle"></h1>
     <div class="article-content" id="artBody"></div>
     <div class="article-footer-actions">
       <button class="legal-action-btn legal-action-btn-primary" onclick="goPage('blog')">
