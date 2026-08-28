@@ -424,6 +424,15 @@ function renderArticleComments(articleId) {
   }).join('');
 }
 
+function toggleArticleComments() {
+  const body    = document.getElementById('artCommentsBody');
+  const toggle  = document.getElementById('artCommentsToggle');
+  if(!body || !toggle) return;
+  const isOpen = body.style.display !== 'none';
+  body.style.display   = isOpen ? 'none' : 'block';
+  toggle.classList.toggle('open', !isOpen);
+}
+
 function artCommentCharCount(el) {
   const c = document.getElementById('artCommentChars');
   if(c) c.textContent = el.value.length + ' / 500';
