@@ -417,16 +417,19 @@ function heroSearchGo(){const q=document.getElementById('heroSearch').value.trim
 window.__scrolled=false;
 
 function _updateNavLogo(){
-  const img = document.querySelector('#mainLogo .logo-img');
-  if(!img) return;
-  const dark = document.documentElement.getAttribute('data-theme')==='dark';
-  if(dark){
-    img.src = 'assets/logo-fynder.svg'; // FYN blanco sobre oscuro
-  } else if(window.__scrolled){
-    img.src = 'assets/logo-fynder-light.svg'; // FYN turquesa + DER amarillo sobre blanco
-  } else {
-    img.src = 'assets/logo-fynder.svg'; // FYN blanco sobre hero teal
-  }
+  const day   = document.querySelector('#mainLogo .logo-img-day');
+  const night = document.querySelector('#mainLogo .logo-img-night');
+  if(!day || !night) return;
+
+  const dark   = document.documentElement.getAttribute('data-theme') === 'dark';
+  const isHero = (currentPage === 'home' || currentPage === 'about' || currentPage === 'fynder') && !window.__scrolled;
+
+  // Mostrar logo blanco (night) cuando: modo oscuro O estamos sobre un hero sin scroll
+  // En cualquier otro caso (página clara, scrolled, etc.) mostrar logo oscuro (day)
+  const showNight = dark || isHero;
+
+  day.style.display   = showNight ? 'none'  : 'block';
+  night.style.display = showNight ? 'block' : 'none';
 }
 
 window.addEventListener('scroll',()=>{const s=window.scrollY>40;if(s!==window.__scrolled){window.__scrolled=s;document.getElementById('navbar').classList.toggle('scrolled',s);updateNav();_updateNavLogo();}},{passive:true}); 
